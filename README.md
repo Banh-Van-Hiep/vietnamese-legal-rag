@@ -23,7 +23,7 @@ Answer + Citation
 	↓
 Team 3 — Backend / Frontend
 	↓
-User
+User.
 ```
 
 Hybrid Retrieval và RRF nằm trong phạm vi Team 1. Team 2 bắt đầu với candidate chunks do Team 1 cung cấp và phụ trách phần RAG/LLM. Team 3 tích hợp trải nghiệm ứng dụng cho người dùng.
