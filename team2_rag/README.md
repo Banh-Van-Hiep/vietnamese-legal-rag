@@ -10,4 +10,8 @@
 
 ## Scope
 
-Team 2 tự thiết kế implementation bên trong thư mục này. Team nhận candidate chunks qua interface được thống nhất trong `contracts/`. Hybrid Retrieval và RRF thuộc Team 1. README này chỉ mô tả trách nhiệm; chưa có implementation.
+Team 2 tự thiết kế implementation bên trong thư mục này. Team nhận candidate chunks qua interface được thống nhất giữa các team; Hybrid Retrieval và RRF thuộc Team 1.
+
+## Week 1 Design
+
+Tài liệu phân tích và thiết kế Week 1, gồm RAG flow, reranker, context builder, prompt, LLM proposal, citation và I/O contract, bắt đầu tại [`rag-flow.md`](rag-flow.md). Đây là tài liệu thiết kế, không phải implementation.
