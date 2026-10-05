@@ -74,7 +74,7 @@ Team 2 -- Answer + citations ---------> Team 3
 Team 3 -- User question --------------> Team 2
 ```
 
-Thiết kế interface/API cho Team 2 được ghi tại [`docs/team2_rag/rag-io-specification.md`](docs/team2_rag/rag-io-specification.md), kèm JSON Schema trong [`docs/team2_rag/schemas/`](docs/team2_rag/schemas/). Đây là tài liệu thiết kế Week 1, chưa phải contract implementation; các team cần review và xác nhận trước khi triển khai.
+Thiết kế interface/API cho Team 2 được ghi tại [`docs/team2_rag/rag-io-specification.md`](docs/team2_rag/rag-io-specification.md). Bộ contract chung đề xuất theo đặc tả Team 1/3 nằm tại [`contracts/v0.1/`](contracts/v0.1/). Bộ [`docs/team2_rag/schemas/`](docs/team2_rag/schemas/) là schema nháp cũ, giữ để tham khảo và không dùng để validate giao tiếp liên team v1.2. Các team cần review và xác nhận contract trước khi triển khai.
 
 ## Team 2 Week 1 Design
 

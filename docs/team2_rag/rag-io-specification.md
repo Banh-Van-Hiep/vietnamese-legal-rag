@@ -1,86 +1,111 @@
-# ĐẶC TẢ I/O CỦA RAG
+# Đặc tả I/O của RAG
 
-Đây là đề xuất interface/API để review liên team trong Tuần 1, không phải implementation contract đã được phê duyệt. Các JSON Schema đặt trong [`schemas/`](schemas/) là nguồn tham chiếu cấu trúc cho từng payload.
+## Nguồn cấu trúc
 
-## API Contract
+Theo [Team 3 v1.2, mục 1.6–1.10](https://github.com/Banh-Van-Hiep/vietnamese-legal-rag/blob/a80f44b248b80ea39155b8029ddc132686a1e907/docs/team3_fullstack/team3.md) và [retrieval Team 1](https://github.com/Banh-Van-Hiep/vietnamese-legal-rag/blob/a80f44b248b80ea39155b8029ddc132686a1e907/docs/team1_data/retrieval-design.md). Tài liệu này mô tả cách Team 2 sử dụng các interface đã được đề xuất trong docs hai team; không đặt ra form liên team khác.
 
-| Hạng mục | Đề xuất |
+Các JSON Schema trong [schemas/](schemas/) là bản nháp cũ, được giữ nguyên. Ví dụ: retrieval cũ có 7 trường, citation cũ có 6 trường, RAG response cũ không có `status`. Không coi những schema này là bộ kiểm tra v1.2; chưa bổ sung adapter hay schema mới trong Week 1.
+
+## 1. Team 3 → Team 2
+
+| Ranh giới | Payload và trách nhiệm |
 | --- | --- |
-| Method và path | `POST /api/v1/query` |
-| Request body | [`request.schema.json`](schemas/request.schema.json) |
-| Success body | [`rag_response.schema.json`](schemas/rag_response.schema.json) |
-| Error body | [`error_response.schema.json`](schemas/error_response.schema.json) |
-| Ví dụ request | `{"question":"Người lao động được nghỉ phép bao nhiêu ngày?"}` |
-| Cấu trúc success | `{"answer":"...","citations":[...]}` |
+| Public `POST /api/v1/query` | FE gửi `question`, `client_request_id` UUID v4, `conversation_id` tùy chọn/null. Backend kiểm tra, lưu và chống gửi trùng. |
+| Internal `POST /internal/v1/query` | Backend gửi `question`, `history` và header `X-Request-ID`. Không gửi ID hội thoại/request công khai sang Python. |
 
-Team 3 phụ trách REST API được expose ra bên ngoài và backend integration. Việc Team 3 gọi Team 2 dưới dạng in-process service hay internal endpoint, HTTP status mapping, authentication, version negotiation và streaming vẫn là các quyết định cần thống nhất; tài liệu này không quy định implementation cụ thể.
+`question` công khai dài 1–2000 code point sau trim. Hội thoại mới gửi `history=[]`; hội thoại cũ gửi tối đa 5 cặp user/assistant đã hoàn tất với `answer_status=answered`, từ cũ đến mới. Mỗi item chỉ có `role` (`user|assistant`) và `content` không rỗng. Tổng content ≤20000 code point; body nội bộ ≤256 KiB. Backend bỏ nguyên cặp cũ nhất nếu vượt giới hạn, không gửi lượt hiện tại, pending, failed hoặc insufficient_context.
 
-## Chuỗi Payload
+```json
+{
+  "question": "Câu hỏi dùng để kiểm thử",
+  "history": []
+}
+```
 
-### 1. Request Schema
+Team 2 diễn giải tham chiếu bằng history thành câu hỏi độc lập, tối đa 4000 code point để gọi retrieval. Không dùng history làm bằng chứng; nếu mơ hồ thì yêu cầu làm rõ, không tự đoán.
 
-Đầu vào của query flow là một trường `question` bắt buộc, kiểu chuỗi và không được rỗng. Xem [`schemas/request.schema.json`](schemas/request.schema.json).
+## 2. Team 1 → Team 2
 
-### 2. Retrieval Output Schema
+Gọi `retrieve(question, top_k=20)` qua thư viện Python Team 1; `top_k` hợp lệ 1–50. Output có `question` đúng câu hỏi đã truy xuất và `results` tối đa `top_k` candidate.
 
-Team 1 trả về `question` và `results` theo thứ tự. Mỗi result bao gồm `chunk_id`, `content`, `document`, `article`, `clause` có thể là `null`, `source` và `score` kiểu số. Xem [`schemas/retrieval_output.schema.json`](schemas/retrieval_output.schema.json).
+| Field candidate | Ràng buộc theo Team 1/3 |
+| --- | --- |
+| `chunk_id` | String 1–200 ký tự; định danh chunk gốc |
+| `document_id`, `article_id` | String 1–200 / 1–100; ASCII chữ, số, `_`, `-`; định danh phiên bản nguồn |
+| `content` | String không rỗng, tối đa 20000 code point |
+| `document_title`, `article` | String 1–500 / 1–100 |
+| `clause`, `point` | Mỗi field có key; string 1–100 hoặc null |
+| `source_url` | URL HTTPS tuyệt đối, tối đa 2048 ký tự |
+| `score` | Number hữu hạn; không phải xác suất đúng |
+| `rank` | Integer 1..N liên tục, duy nhất; results xếp rank tăng dần |
+| `retrieval_method` | `bm25|dense|hybrid_rrf` |
 
-### 3. Reranker Output Schema
+Cả 12 trường đều bắt buộc. Team 2 giữ nguyên candidate và metadata, lưu điểm rerank riêng trong bộ nhớ nội bộ; không đổi `score` thành field khác trong output Team 1. Retrieval thành công không có kết quả trả `results=[]`; index lỗi/timeout phải phát sinh lỗi.
 
-Team 2 trả về cùng câu hỏi và metadata của candidate. `score` được đổi tên thành `retrieval_score`; `rerank_score` được bổ sung. Hai score không ghi đè lên nhau. `results` được sắp xếp theo `rerank_score` giảm dần. Xem [`schemas/rerank_output.schema.json`](schemas/rerank_output.schema.json).
+Ví dụ mock, không phải văn bản pháp luật:
 
-### 4. Context Schema
+```json
+{
+  "question": "Câu hỏi dùng để kiểm thử",
+  "results": [{
+    "chunk_id": "mock_v1_art1_clause1",
+    "document_id": "mock_v1",
+    "article_id": "art1",
+    "content": "Đoạn mẫu chỉ dùng để kiểm thử cấu trúc.",
+    "document_title": "Văn bản kiểm thử",
+    "article": "Điều 1",
+    "clause": "Khoản 1",
+    "point": null,
+    "source_url": "https://example.com/mock-law",
+    "score": 0.03,
+    "rank": 1,
+    "retrieval_method": "hybrid_rrf"
+  }]
+}
+```
 
-Context chứa `question` ban đầu, `token_budget`, `estimated_tokens`, các `chunks` được chọn theo thứ tự và `groups`. Mỗi chunk giữ lại identifier, content, metadata nguồn, cả hai score và `position` bắt đầu từ 1. Groups tham chiếu đến các `chunk_id` tồn tại theo `document` + `article`; chúng không thay thế metadata của từng chunk. Xem [`schemas/context.schema.json`](schemas/context.schema.json).
+## 3. Team 2 → Team 3
 
-### 5. LLM Input Schema
+Internal RagResponse chỉ có `status`, `answer`, `citations`. `answer` không rỗng, tối đa 12000 code point. Citation có 9 trường theo [citation-specification.md](citation-specification.md).
 
-LLM input bao gồm `system_instruction`, `legal_context` có cấu trúc, `user_question` và `output_instruction`. Nội dung được truy xuất được xem là dữ liệu không đáng tin cậy về mặt instruction, không phải chỉ thị. Xem [`schemas/llm_input.schema.json`](schemas/llm_input.schema.json).
+```json
+{
+  "status": "answered",
+  "answer": "Nội dung trả lời kiểm thử dựa trên đoạn mẫu [C1].",
+  "citations": [{
+    "citation_id": "C1",
+    "chunk_id": "mock_v1_art1_clause1",
+    "document_id": "mock_v1",
+    "article_id": "art1",
+    "document_title": "Văn bản kiểm thử",
+    "article": "Điều 1",
+    "clause": "Khoản 1",
+    "point": null,
+    "source_url": "https://example.com/mock-law"
+  }]
+}
+```
 
-### 6. LLM Output Schema
+```json
+{
+  "status": "insufficient_context",
+  "answer": "Tài liệu được truy xuất chưa đủ căn cứ để trả lời.",
+  "citations": []
+}
+```
 
-Output có cấu trúc đề xuất gồm `answer` và `citations`. Mỗi citation có `claim` và các trường nguồn từ Citation Schema. LLM output chưa được xác minh cho đến khi Team 2 kiểm tra lại với legal context. Xem [`schemas/llm_output.schema.json`](schemas/llm_output.schema.json).
+Backend bổ sung `conversation_id`, `client_request_id`, `user_message_id`, `assistant_message_id`, `created_at` UTC vào public response. Team 2 không sinh các trường đó. `insufficient_context` vẫn là HTTP 200; không có marker citation trong answer.
 
-### 7. Citation Schema
+## 4. Lỗi và timeout
 
-Citation ánh xạ một claim trong câu trả lời tới `chunk_id`, `document`, `article`, `clause` và `source`. Toàn bộ metadata nguồn phải khớp với một context chunk đang tồn tại. Xem [`schemas/citation.schema.json`](schemas/citation.schema.json).
+ErrorResponse là `{"error":{"code":"...","message":"...","retryable":false}}`. Không kèm `answer` hoặc `status` nghiệp vụ; message tiếng Việt an toàn.
 
-### 8. Final RAG Response
+| Lỗi nội bộ | HTTP | Public code do Backend ánh xạ |
+| --- | --- | --- |
+| `INVALID_LLM_OUTPUT`, `CITATION_INVALID` | 502 | `UPSTREAM_INVALID_RESPONSE` |
+| `RETRIEVAL_UNAVAILABLE`, `LLM_UNAVAILABLE` | 503 | `SERVICE_UNAVAILABLE` |
+| `RETRIEVAL_TIMEOUT`, `LLM_TIMEOUT` | 504 | `UPSTREAM_TIMEOUT` |
 
-Success response có cấu trúc bắt buộc `{"answer":"...","citations":[...]}`. `citations` chỉ chứa các citation vượt qua các bước kiểm tra provenance đã thống nhất. Xem [`schemas/rag_response.schema.json`](schemas/rag_response.schema.json).
+Theo Team 3: output sai không retry; unavailable/timeout có `retryable=true`. Input nội bộ sai trả 400, Backend ánh xạ 4xx query thành 502 `UPSTREAM_CONTRACT_ERROR`; lỗi nội bộ ngoài dự kiến trả 500. Ngân sách AI layer 45 giây, Backend chờ 50 giây, FE 60 giây. Retry, nếu có, phải nằm trong ngân sách còn lại.
 
-### 9. Error Response
-
-Error body được đề xuất là `{ "error": { "code": "...", "message": "...", "retryable": false } }`. Không được để lộ secrets hoặc raw sensitive provider payloads. HTTP status mapping sẽ được thống nhất với Team 3. Xem [`schemas/error_response.schema.json`](schemas/error_response.schema.json).
-
-## Team Interfaces
-
-### Team 1 → Team 2
-
-Team 1 phụ trách legal data processing, chunking, metadata, BM25, Dense Retrieval, embedding, vector store/DB, Hybrid Retrieval, RRF và retrieval evaluation. Team 1 cung cấp Retrieval Output candidates. Hybrid Retrieval và RRF là trách nhiệm của Team 1. Team 2 giữ nguyên identifiers và metadata, đồng thời lưu riêng retrieval/rerank scores.
-
-### Team 2 → Team 3
-
-Team 2 phụ trách reranker, context builder, prompt, LLM service abstraction, citation verification, RAG pipeline và answer-quality/grounding. Team 2 cung cấp answer + verified citations dưới dạng RAG Output. Team 3 phụ trách backend, REST API, frontend, UI/UX, document viewer, integration và deployment; frontend không được gọi trực tiếp external LLM provider.
-
-### Team 3 → Team 2
-
-Câu hỏi của người dùng đi vào thông qua query request. Team 3 phụ trách external API/backend boundary; internal call boundary và error/status mapping vẫn cần được thống nhất.
-
-## Các Quyết Định Cần Xác Nhận
-
-- **Team 1:** exact retrieval output envelope và field types; `article`/`document`/`source` là string hay structured identifiers; clause có thể `null` hay không; score meaning/direction; stable `chunk_id`; source provenance; candidate Top-K (đề xuất ban đầu 20); empty-result behavior.
-- **Team 3:** API ownership và service boundary; HTTP status/error mapping; authentication; request size limits; response có request identifiers hay không; frontend citation/document-viewer needs; timeout propagation.
-- **Team 1 + Team 2:** retrieval/citation metadata preservation và versioning khi schema thay đổi.
-- **Team 2:** reranker Top-K (đề xuất ban đầu 5), context budget/tokenizer, provider structured-output support, invalid citation policy và retry/timeout defaults.
-
-## Công Việc Dự Kiến Trong Tuần 2
-
-- Review và phê duyệt schemas với Team 1 và Team 3; ghi nhận thay đổi và thống nhất cách version hóa contract.
-- Thống nhất metadata semantics, nullability, empty results, score semantics, API status codes và error behavior.
-- Xây dựng evaluation fixtures đại diện và benchmark retrieval/reranking/context sau khi ownership và quyền truy cập dữ liệu được xác nhận.
-- Chỉ implement provider/service và các thành phần RAG sau khi thiết kế được review; thêm integration tests dựa trên các contract đã được phê duyệt.
-
-## Phạm Vi Tuần 1
-
-Toàn bộ payload, examples và values đều là đề xuất thiết kế. Tuần 1 không có Python implementation, endpoint, provider integration, database, frontend hoặc legal corpus.
+Rerank/context/LLM input là xử lý nội bộ Team 2, không tạo endpoint hoặc đổi payload liên team trong Week 1. Trước implementation, các team cần chốt schema kiểm tra tương ứng đặc tả v1.2; bản nháp JSON hiện tại chưa đáp ứng việc này.
