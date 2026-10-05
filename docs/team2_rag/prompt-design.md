@@ -33,6 +33,6 @@ Không tự tạo trường hội thoại, ID message hoặc thời gian của B
 
 System instruction do Team 2 kiểm soát. Context được serialize riêng theo [Context Builder](context-builder.md); câu hỏi gốc và câu hỏi đã diễn giải được ghi rõ, không nối văn bản không có ranh giới. Nếu gửi history cho LLM, giữ nó riêng và tính vào budget; tuyệt đối không gắn history làm legal context.
 
-Ưu tiên structured output khi provider hỗ trợ. Đây là output LLM **chưa kiểm tra**, không chuyển thẳng cho Backend. Team 2 kiểm tra cấu trúc và provenance, rồi đánh lại citation liên tục theo lần xuất hiện đầu tiên để đáp ứng [Team 3 v1.2](../team3_fullstack/team3.md). Nguồn sai không được sửa bằng suy đoán.
+Ưu tiên structured output khi provider hỗ trợ. Đây là output LLM **chưa kiểm tra**, không chuyển thẳng cho Backend. Team 2 kiểm tra cấu trúc và provenance, rồi đánh lại citation liên tục theo lần xuất hiện đầu tiên để đáp ứng [Team 3 v1.2](https://github.com/Banh-Van-Hiep/vietnamese-legal-rag/blob/a80f44b248b80ea39155b8029ddc132686a1e907/docs/team3_fullstack/team3.md). Nguồn sai không được sửa bằng suy đoán.
 
 Thiếu căn cứ thật sự trả insufficient_context. JSON sai/citation không hợp lệ trả lỗi theo [I/O](rag-io-specification.md), không dùng thiếu căn cứ để che lỗi model. Week 1 chưa chạy prompt hoặc thêm provider code.

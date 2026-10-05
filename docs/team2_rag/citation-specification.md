@@ -2,7 +2,7 @@
 
 ## Form theo Team 3
 
-Theo [Team 3 v1.2, mục 1.7](../team3_fullstack/team3.md), citation có **9 trường bắt buộc**:
+Theo [Team 3 v1.2, mục 1.7](https://github.com/Banh-Van-Hiep/vietnamese-legal-rag/blob/a80f44b248b80ea39155b8029ddc132686a1e907/docs/team3_fullstack/team3.md), citation có **9 trường bắt buộc**:
 
 | Field | Nguồn và ràng buộc |
 | --- | --- |

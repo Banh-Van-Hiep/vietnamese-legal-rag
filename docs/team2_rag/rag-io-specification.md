@@ -2,7 +2,7 @@
 
 ## Nguồn cấu trúc
 
-Theo [Team 3 v1.2, mục 1.6–1.10](../team3_fullstack/team3.md) và [retrieval Team 1](../team1_data/retrieval-design.md). Tài liệu này mô tả cách Team 2 sử dụng các interface đã được đề xuất trong docs hai team; không đặt ra form liên team khác.
+Theo [Team 3 v1.2, mục 1.6–1.10](https://github.com/Banh-Van-Hiep/vietnamese-legal-rag/blob/a80f44b248b80ea39155b8029ddc132686a1e907/docs/team3_fullstack/team3.md) và [retrieval Team 1](https://github.com/Banh-Van-Hiep/vietnamese-legal-rag/blob/a80f44b248b80ea39155b8029ddc132686a1e907/docs/team1_data/retrieval-design.md). Tài liệu này mô tả cách Team 2 sử dụng các interface đã được đề xuất trong docs hai team; không đặt ra form liên team khác.
 
 Các JSON Schema trong [schemas/](schemas/) là bản nháp cũ, được giữ nguyên. Ví dụ: retrieval cũ có 7 trường, citation cũ có 6 trường, RAG response cũ không có `status`. Không coi những schema này là bộ kiểm tra v1.2; chưa bổ sung adapter hay schema mới trong Week 1.
 

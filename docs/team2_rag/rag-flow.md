@@ -42,4 +42,4 @@ Backend dùng metadata `document_id/article_id` để mở nguyên văn từ ngu
 - `insufficient_context`: thiếu căn cứ sau retrieval thành công hoặc câu hỏi cần làm rõ; `citations=[]`.
 - Lỗi retrieval/LLM/output: dùng ErrorResponse theo [I/O](rag-io-specification.md), không đổi thành thiếu căn cứ.
 
-Week 1 chỉ bàn giao sơ đồ và thiết kế. Nguồn đối chiếu: [Team 3, mục 1.9–2](../team3_fullstack/team3.md) và [Team 1](../team1_data/retrieval-design.md).
+Week 1 chỉ bàn giao sơ đồ và thiết kế. Nguồn đối chiếu: [Team 3, mục 1.9–2](https://github.com/Banh-Van-Hiep/vietnamese-legal-rag/blob/a80f44b248b80ea39155b8029ddc132686a1e907/docs/team3_fullstack/team3.md) và [Team 1](https://github.com/Banh-Van-Hiep/vietnamese-legal-rag/blob/a80f44b248b80ea39155b8029ddc132686a1e907/docs/team1_data/retrieval-design.md).

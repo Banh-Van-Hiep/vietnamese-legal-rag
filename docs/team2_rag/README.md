@@ -12,7 +12,7 @@ Thiết kế cho demo pháp luật lao động, ưu tiên Bộ luật Lao độn
 
 ## Nguồn đối chiếu và ranh giới
 
-Bản thiết kế này dựa trên `develop` tại `a80f44b`: [đặc tả Team 3 v1.2](../team3_fullstack/team3.md), mục 1.6–1.10, và [retrieval design của Team 1](../team1_data/retrieval-design.md). Các endpoint trong đặc tả vẫn là thiết kế, không chứng minh đã có runtime.
+Bản thiết kế này dựa trên `develop` tại `a80f44b`: [đặc tả Team 3 v1.2](https://github.com/Banh-Van-Hiep/vietnamese-legal-rag/blob/a80f44b248b80ea39155b8029ddc132686a1e907/docs/team3_fullstack/team3.md), mục 1.6–1.10, và [retrieval design của Team 1](https://github.com/Banh-Van-Hiep/vietnamese-legal-rag/blob/a80f44b248b80ea39155b8029ddc132686a1e907/docs/team1_data/retrieval-design.md). Các endpoint trong đặc tả vẫn là thiết kế, không chứng minh đã có runtime.
 
 Team 1 sở hữu corpus, chunking, metadata, retrieval, hybrid/RRF và nguồn nguyên văn điều luật. Team 3 sở hữu API công khai, hội thoại, lưu dữ liệu, frontend và document viewer. Tham số rerank/context/LLM trong tài liệu Team 2 là lựa chọn khởi đầu để review.
 
