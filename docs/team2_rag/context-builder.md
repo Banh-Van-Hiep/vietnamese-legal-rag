@@ -1,57 +1,69 @@
-# Context Builder
+# VLRA-10 — Context Builder
 
-## Responsibility
+## Ngân sách thử nghiệm
 
-Context Builder nhận danh sách reranked chunks, chọn tập phù hợp với câu hỏi và giới hạn context, sắp thứ tự để dễ đọc, đồng thời nhóm các chunk theo `document` và `article` để giữ quan hệ nguồn. Đây là thiết kế; chưa có thuật toán chọn hoặc tokenizer implementation.
+| Thành phần | Giá trị |
+| --- | ---: |
+| Chunk đã chọn | Tối đa 5 |
+| Legal context (gồm nhãn, metadata, separator) | Tối đa 3000 token |
+| Output reserve | 1500 token |
+| Safety margin | 256 token |
 
-## Proposed Selection and Ordering
+context_budget = min(3000, model_window - system_tokens - question_tokens
+- output_reserve - safety_margin). Đếm với tokenizer/token counter của LLM đã chọn,
+kể cả framing/messages. Nếu bật thinking thì tính cả thinking trong output reserve.
+Không dùng số từ/ký tự/token_count embedding để thay số token LLM.
+Week 1 chưa có token counter/runtime; đây là cấu hình thử nghiệm.
 
-1. Nhận kết quả theo thứ tự giảm dần `rerank_score`.
-2. Loại các bản ghi thiếu định danh hoặc content rỗng theo lỗi contract; không tự sửa metadata.
-3. Chọn theo độ liên quan cho tới khi đạt token/context budget. Nếu một chunk vượt phần budget còn lại, policy cắt/loại chunk cần được thống nhất và không được làm sai lệch nguồn; proposal ban đầu là bỏ qua chunk không vừa thay vì cắt nội dung pháp lý.
-4. Giữ thứ tự relevance làm thứ tự phẳng của `chunks`; gom `chunk_ids` theo `document` + `article` trong `groups` để có thể trình bày theo nguồn.
-5. Giữ nguyên `chunk_id`, `content`, `document`, `article`, `clause`, `source`, `retrieval_score` và `rerank_score` trên mỗi chunk.
+Team 1 đề xuất 512 token bằng tokenizer embedding. 5 × 512 không bảo đảm vừa
+3000 token LLM khác; phải đếm lại khi đóng gói.
 
-Tokenization phụ thuộc provider/model. `token_budget` và `estimated_tokens` là số nguyên không âm; cách tính chính xác và mức dự phòng cho prompt phải được xác nhận trong benchmark/integration.
+## Thuật toán
 
-## Input and Output
+```text
+budget = ngân sách context còn lại
+selected = []
+for candidate in pool đã rerank:
+    nếu chunk_id đã chọn: bỏ qua
+    block = metadata v0.1 + content nguyên vẹn
+    nếu toàn context sau khi thêm block vượt budget: bỏ qua
+    chọn block, giữ thứ tự relevance
+    dừng khi đủ 5 chunk
+gán C1..Cn và bảng nguồn trong bộ nhớ
+```
 
-**Input:** câu hỏi và danh sách reranked results theo [`schemas/rerank_output.schema.json`](schemas/rerank_output.schema.json).
+Không cắt giữa Điều/Khoản, không LLM-tóm-tắt nguồn, không gộp hai chunk rồi tạo ID mới.
+Cùng article_id nhưng chunk_id khác vẫn giữ riêng; không bỏ ngoại lệ vì cùng Điều.
+Đếm lại toàn prompt trước khi gửi. Không còn chunk vừa → thiếu căn cứ,
+không gửi prompt bị truncate.
 
-**Output:** object Context theo [`schemas/context.schema.json`](schemas/context.schema.json), gồm `question`, `token_budget`, `estimated_tokens`, thứ tự `chunks` đã chọn và `groups` tham chiếu chunk theo document/article. Không bỏ metadata nguồn khi biến context thành prompt input.
+## Định dạng context
 
-## Example
+Mỗi block serialize JSON đã escape; tách khỏi trusted system instruction:
 
-Ví dụ minh họa cấu trúc, không phải trích dẫn pháp luật:
-
-```json
+```text
 {
-  "question": "Người lao động được nghỉ phép bao nhiêu ngày?",
-  "token_budget": 3000,
-  "estimated_tokens": 180,
-  "chunks": [
-    {
-      "chunk_id": "chunk-example-001",
-      "content": "Example legal text supplied by the retrieval system.",
-      "document": "Example document",
-      "article": "Example article",
-      "clause": null,
-      "source": "example-source",
-      "retrieval_score": 0.72,
-      "rerank_score": 0.91,
-      "position": 1
-    }
-  ],
-  "groups": [
-    {
-      "document": "Example document",
-      "article": "Example article",
-      "chunk_ids": ["chunk-example-001"]
-    }
-  ]
+  "citation_id": "C1",
+  "chunk_id": "<ID thật>",
+  "document_id": "<ID thật>",
+  "article_id": "<ID thật>",
+  "document_title": "<nhãn thật>",
+  "article": "<nhãn thật>",
+  "clause": null,
+  "point": null,
+  "source_url": "<HTTPS URL thật>",
+  "content": "<nguyên văn chunk>"
 }
 ```
 
-## Open Decisions
+C1 là nhãn lượt hiện tại, không bắt Team 1 sinh.
+Giữ null và metadata thật. Score/rank chỉ nằm trong diagnostics nội bộ.
 
-Team 1 cần xác nhận field semantics/nullability và giới hạn candidate size. Team 2 cần benchmark tokenizer/budget và thống nhất xử lý chunk vượt budget trước khi triển khai.
+## Đủ căn cứ/câu dẫn
+
+Context không rỗng chưa chắc đủ căn cứ: giữ điều kiện/ngoại lệ, yêu cầu làm rõ
+nếu thiếu dữ kiện, không dùng nội dung phụ thuộc câu dẫn chưa được gửi.
+Team 1 có context_header chứa câu dẫn Điều nhưng field đó không có trong v0.1.
+Team 2 không tự dựng câu dẫn từ tên Điều hoặc suy ra metadata thiếu.
+Xem [điểm cần review](cross-team-review.md).
+Article expansion/small-to-big để sau; không triển khai viewer thay Team 3.

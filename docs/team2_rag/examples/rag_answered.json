@@ -1,0 +1,17 @@
+{
+  "status": "answered",
+  "answer": "Nội dung mock dùng kiểm thử liên kết nguồn, không phải kết luận pháp luật [C1].",
+  "citations": [
+    {
+      "citation_id": "C1",
+      "chunk_id": "bl-45-2019-qh14-v1__dieu-113__k1__0",
+      "document_id": "bl-45-2019-qh14-v1",
+      "article_id": "dieu-113",
+      "document_title": "Bộ luật Lao động — mock fixture",
+      "article": "Điều 113",
+      "clause": "Khoản 1",
+      "point": null,
+      "source_url": "https://example.com/mock-labor-law"
+    }
+  ]
+}

@@ -1,27 +1,54 @@
-# Citation Specification
+# VLRA-11 — Quy chuẩn trích dẫn
 
-## Definition
+Nguồn chuẩn: [rag_response.schema.json](../../contracts/v0.1/rag_response.schema.json).
+Không thêm claim/quote/snippet/document_number/metadata hiệu lực vào v0.1.
 
-Citation là liên kết từ một claim trong câu trả lời tới legal chunk làm nguồn tham khảo cho claim đó. Citation phải mang `chunk_id` và metadata nguồn khớp với chunk đầu vào; không được chỉ là URL hoặc tên điều luật do model tự đoán.
+## Tạo citation
 
-## Fields and Mapping
+Team 2 gán C1…Cn cho chunk trong context. Model chỉ trả marker/ID đã dùng;
+Team 2 sao chép metadata từ bảng nguồn, không để LLM sinh lại.
 
-Citation schema: [`schemas/citation.schema.json`](schemas/citation.schema.json). Mỗi citation có `claim`, `chunk_id`, `document`, `article`, `clause` và `source`. Các metadata phải được sao chép từ chunk hợp lệ; `clause` có thể `null` nếu nguồn không cung cấp. `chunk_id`, document, article, clause và source không được chuẩn hóa lại theo suy đoán.
+| Field | Nguồn |
+| --- | --- |
+| citation_id | Nhãn C1…C10 do Team 2 gán cho lượt |
+| chunk_id, document_id, article_id | Giữ nguyên định danh candidate |
+| document_title, article | Nhãn hiển thị từ candidate |
+| clause, point | Sao chép, giữ null |
+| source_url | HTTPS URL từ candidate |
+
+Không suy số hiệu/ngày ban hành từ document_id.
+Giữ ID Team 1 như bl-45-2019-qh14-v1__dieu-113__k1__0.
+Metadata bổ sung để đề xuất v0.2 riêng.
+
+## Marker/hiển thị
+
+Nhận định pháp lý có marker ngay sau nội dung được hỗ trợ: "… [C1]."
+Một nguồn có thể lặp marker nhiều lần nhưng list chỉ có một citation/chunk.
+Không marker mồ côi/citation thừa; ID và chunk_id trong list phải duy nhất.
+Sau khi chọn nguồn đã dùng, ID không nhất thiết liên tục.
+
+Nhãn đề xuất: [C1] <document_title> — <article>, <clause>, <point>, bỏ nhãn null.
+Team 3 có thể render số 1 nhưng phải giữ mapping C1.
+Không đổi RagResponse sang camelCase/thêm snippet theo UI mock.
+Viewer dùng document_id/article_id; nguồn gốc dùng source_url.
+Đây là bàn giao thiết kế, không sửa frontend Team 3.
 
 ## Verification
 
-Sau LLM output, Team 2 kiểm tra tối thiểu:
+1. Validate Draft 2020-12 và FormatChecker.
+2. answered có nguồn; insufficient_context citations rỗng, không marker.
+3. Parse mọi token dạng [C...]; chỉ C1…C10 hợp lệ.
+4. Tập marker = tập citation_id; không ID/chunk_id trùng.
+5. Nguồn thuộc context thực sự đã gửi LLM, không chỉ thuộc retrieval pool.
+6. Mọi metadata khớp đúng candidate, kể cả null.
+7. Review nguồn có hỗ trợ nội dung, điều kiện và ngoại lệ không.
 
-1. `chunk_id` tồn tại trong Context được gửi cho LLM (và do đó có trong tập retrieved sources đã chọn).
-2. `document`, `article`, `clause` và `source` khớp metadata của đúng chunk đó, bao gồm nullability.
-3. Citation claim không rỗng và citation phù hợp cấu trúc output.
+Bước 1–6 chỉ chứng minh cấu trúc/provenance, không bảo đảm đúng ngữ nghĩa.
+Week 2 đánh giá thủ công groundedness/coverage; chưa có verifier ngữ nghĩa.
+Schema không tự kiểm tra mapping marker/context.
 
-Kiểm tra trên chỉ xác minh provenance/consistency, chưa chứng minh nguồn hỗ trợ ngữ nghĩa cho claim. Claim-support verification, citation coverage/accuracy và đánh giá chuyên gia là hướng mở rộng ở các tuần sau.
+## Khi sai
 
-## Invalid Citation Handling
-
-Không chuyển citation invalid tới Team 3 như citation đã xác minh. Ghi nhận lỗi validation nội bộ theo error handling đã thống nhất; bỏ citation không khớp. Nếu một claim cần nguồn nhưng không còn citation hợp lệ, thiết kế an toàn là loại/viết lại claim thành giới hạn thông tin hoặc trả lời rằng context không đủ, thay vì trình bày claim không có nguồn. Chính sách từ chối toàn bộ response so với lọc một phần cần được chốt trước implementation.
-
-## Week 1 Status
-
-Schema và verification rules là thiết kế; chưa có citation parser, verifier hoặc claim-support model.
+JSON/shape sai → INVALID_LLM_OUTPUT; nguồn/marker/metadata sai → CITATION_INVALID.
+Không âm thầm bỏ citation rồi giữ kết luận không nguồn; không sửa ID bằng suy đoán.
+Thiếu căn cứ hợp lệ → insufficient_context. Không dùng thiếu căn cứ để che lỗi xử lý.

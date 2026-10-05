@@ -1,53 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "retrieval_output.schema.json",
-  "title": "Team 1 Retrieval Output",
-  "description": "Ordered candidate chunks returned by Team 1 retrieval.",
-  "type": "object",
-  "additionalProperties": false,
-  "required": ["question", "results"],
-  "properties": {
-    "question": {
-      "type": "string",
-      "minLength": 1
-    },
-    "results": {
-      "type": "array",
-      "items": {
-        "$ref": "#/$defs/retrievalResult"
-      }
-    }
-  },
-  "$defs": {
-    "retrievalResult": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": ["chunk_id", "content", "document", "article", "clause", "source", "score"],
-      "properties": {
-        "chunk_id": { "type": "string", "minLength": 1 },
-        "content": { "type": "string", "minLength": 1 },
-        "document": { "type": "string", "minLength": 1 },
-        "article": { "type": "string", "minLength": 1 },
-        "clause": { "type": ["string", "null"] },
-        "source": { "type": "string", "minLength": 1 },
-        "score": { "type": "number" }
-      }
-    }
-  },
-  "examples": [
-    {
-      "question": "Người lao động được nghỉ phép bao nhiêu ngày?",
-      "results": [
-        {
-          "chunk_id": "chunk-example-001",
-          "content": "Example legal text supplied by the retrieval system.",
-          "document": "Example document",
-          "article": "Example article",
-          "clause": null,
-          "source": "example-source",
-          "score": 0.72
-        }
-      ]
-    }
-  ]
+  "title": "Deprecated path — alias to contract v0.1",
+  "description": "Use contracts/v0.1; legacy payload shape is no longer authoritative.",
+  "$ref": "../../../contracts/v0.1/retrieval_output.schema.json"
 }

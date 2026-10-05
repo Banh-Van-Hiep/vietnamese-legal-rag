@@ -1,37 +1,52 @@
-# Team 2 RAG Flow
+# VLRA-9 — Luồng RAG end-to-end
 
-## End-to-End Flow
+Week 1 chỉ thiết kế, không triển khai service. Scope: pháp luật lao động.
 
-```text
-User Question
-  -> Team 3 Backend
-  -> Team 1 Retrieval
-  -> BM25 / Dense / Hybrid / RRF
-  -> Team 2 Reranker
-  -> Context Builder
-  -> Prompt
-  -> External LLM API
-  -> Citation Verification
-  -> Answer + Citation
-  -> Team 3 Frontend
-  -> User
+```mermaid
+flowchart TD
+    FE["Frontend — Team 3"] --> BE["Backend: validate, lưu lượt hỏi — Team 3"]
+    BE --> Q["Python AI layer: câu hỏi độc lập — Team 2"]
+    Q --> R["Retrieval: BM25 / Dense / RRF — Team 1"]
+    R --> V{"Retrieval thành công?"}
+    V -->|Không| ERR["ErrorResponse"]
+    V -->|Có| RR["Rerank Top-20 — Team 2"]
+    RR --> CT["Context: tối đa 5 chunk, theo budget"]
+    CT --> HAS{"Có nguồn phù hợp, đủ nghĩa?"}
+    HAS -->|Không| IC["insufficient_context; citations rỗng"]
+    HAS -->|Có| P["System prompt và nguồn mới"]
+    P --> L["External LLM API"]
+    L --> CV{"Output và citation hợp lệ?"}
+    CV -->|Không| ERR
+    CV -->|Thiếu căn cứ| IC
+    CV -->|Có| ANS["answered: answer và citations"]
+    ERR --> OUT["Backend: chốt trạng thái, lưu kết quả — Team 3"]
+    IC --> OUT
+    ANS --> OUT
+    OUT --> FE
 ```
 
-Backend nhận request và điều phối các service/API. Team 1 thực hiện truy xuất ứng viên bằng BM25 và/hoặc dense retrieval; hybrid retrieval và Reciprocal Rank Fusion (RRF) là trách nhiệm của Team 1. Team 1 trả candidate chunks cùng điểm retrieval và metadata.
-
-Team 2 xếp hạng lại ứng viên, chọn và sắp xếp context trong giới hạn ngân sách, dựng prompt, gọi external LLM API qua abstraction, rồi kiểm tra citation do model trả về có tham chiếu context hợp lệ hay không. Kết quả đã xác minh được trả dưới dạng answer + citations.
-
-Team 3 sở hữu backend, REST API, frontend, UI/UX, document viewer, integration và deployment. Frontend hiển thị kết quả; frontend không gọi trực tiếp LLM provider.
+Q chuyển câu hỏi độc lập đã chuẩn hóa tới retrieval. Diễn giải từ history
+là hướng tích hợp sau Week 1, không phải chức năng đã có.
+Refusal hoặc JSON hỏng từ model là lỗi xử lý, không tự đổi thành thiếu căn cứ.
 
 ## Ownership
 
-| Stage | Owner | Boundary |
+| Team | Trách nhiệm | Team 2 không làm thay |
 | --- | --- | --- |
-| Legal data, cleaning, chunking, metadata | Team 1 | Cung cấp dữ liệu/chunks có metadata |
-| BM25, dense, embedding, vector store, hybrid, RRF | Team 1 | Retrieval Output tới Team 2 |
-| Reranker, context builder, prompt, LLM service, citations, RAG pipeline | Team 2 | RAG Output tới Team 3 |
-| Backend, REST API, frontend, document viewer, integration, deployment | Team 3 | Nhận question, trình bày answer/citations |
+| 1 | Corpus, cleaning, chunking, IDs, embedding, retrieval/RRF, article store | Dữ liệu/index/Qdrant |
+| 2 | Rerank, context, prompt, chọn LLM, kiểm tra citation, RagResponse | Public API/hội thoại |
+| 3 | FE/BE, DB, chống gửi trùng, HTTP mapping, viewer, deployment | Frontend/backend/Docker |
 
-## Week 1 Boundary
+Team 1/2 có thể cùng process Python tại MVP; gọi retrieve(question, top_k=20),
+không bắt Team 1 tạo HTTP service riêng.
 
-Week 1 chỉ phân tích và thiết kế. Sơ đồ, field, schema, provider abstraction và tham số trong tài liệu là proposal để các team review; không có RAG runtime, model integration, retrieval, API hay UI implementation trong deliverables này.
+## Hai đường không qua sinh câu trả lời
+
+- Xem lịch sử: FE → BE → DB → FE; không gọi lại RAG.
+- Mở điều luật: FE → BE → AI layer → article store Team 1 → BE → FE.
+  Dùng document_id + article_id từ citation, không dùng LLM viết lại nguyên văn.
+  Endpoint/viewer thuộc thiết kế Team 3; không triển khai trong PR này.
+
+Retrieval thành công nhưng rỗng/không đủ căn cứ → insufficient_context.
+Index/LLM lỗi, timeout hoặc citation sai → ErrorResponse; Backend quyết định HTTP.
+Chi tiết: [I/O](rag-io-specification.md). Không thêm out_of_scope trong v0.1.

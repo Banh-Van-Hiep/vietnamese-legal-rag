@@ -1,0 +1,19 @@
+{
+  "question": "Câu hỏi mock dùng để kiểm thử contract?",
+  "results": [
+    {
+      "chunk_id": "bl-45-2019-qh14-v1__dieu-113__k1__0",
+      "document_id": "bl-45-2019-qh14-v1",
+      "article_id": "dieu-113",
+      "content": "Văn bản giả lập cho kiểm tra cấu trúc. Không phải nguyên văn pháp luật hoặc căn cứ tư vấn.",
+      "document_title": "Bộ luật Lao động — mock fixture",
+      "article": "Điều 113",
+      "clause": "Khoản 1",
+      "point": null,
+      "source_url": "https://example.com/mock-labor-law",
+      "score": 0.017,
+      "rank": 1,
+      "retrieval_method": "hybrid_rrf"
+    }
+  ]
+}

@@ -1,22 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "request.schema.json",
-  "title": "RAG Query Request",
-  "description": "Request payload for POST /api/v1/query.",
-  "type": "object",
-  "additionalProperties": false,
-  "required": ["question"],
-  "properties": {
-    "question": {
-      "type": "string",
-      "minLength": 1,
-      "maxLength": 10000,
-      "description": "User question. Whitespace-only validation is an API-level responsibility."
-    }
-  },
-  "examples": [
-    {
-      "question": "Người lao động được nghỉ phép bao nhiêu ngày?"
-    }
-  ]
+  "title": "Deprecated path — alias to contract v0.1",
+  "description": "Use contracts/v0.1; legacy payload shape is no longer authoritative.",
+  "$ref": "../../../contracts/v0.1/query_request.schema.json"
 }

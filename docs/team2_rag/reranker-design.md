@@ -1,28 +1,49 @@
-# Reranker Design
+# VLRA-10 — Reranker
 
-## Role
+## Lựa chọn Week 1
 
-Team 1 trả về các candidate chunks được tìm thấy bằng retrieval. Reranker của Team 2 đánh giá mức liên quan của từng candidate với câu hỏi và sắp xếp lại thứ tự trước khi Context Builder chọn context. Reranking không thay thế BM25, dense retrieval, hybrid retrieval hoặc RRF; các phần retrieval này thuộc Team 1.
+Đề xuất BAAI/bge-reranker-v2-m3, cross-encoder đa ngôn ngữ,
+dùng sentence-transformers.CrossEncoder hoặc FlagEmbedding khi triển khai.
+[Model card chính chủ](https://huggingface.co/BAAI/bge-reranker-v2-m3)
+mô tả chấm query/passage trực tiếp và hỗ trợ multilingual.
+Cross-Encoder là kiến trúc; BGE là model cụ thể, không phải hai lựa chọn loại trừ nhau.
 
-## Initial Top-K Proposal
+| Phương án | Nhận xét |
+| --- | --- |
+| Không rerank | Baseline theo rank Team 1, ít latency |
+| bge-reranker-base/large | Model card tập trung Trung/Anh; chưa ưu tiên cho tiếng Việt |
+| bge-reranker-v2-m3 | Chọn thử nghiệm vì multilingual, đầu vào cặp văn bản |
 
-| Parameter | Initial proposal | Meaning |
-| --- | ---: | --- |
-| Retrieval Top-K | 20 | Số candidate Team 1 chuyển sang Team 2 |
-| Reranker Top-K | 5 | Số candidate Team 2 giữ lại cho context selection |
+Chưa có kết quả chứng minh tốt nhất cho luật lao động. Không tải model,
+cài dependency, fine-tune hoặc đổi embedding Team 1 trong Week 1.
 
-Đây là giá trị khởi đầu để benchmark, không phải cấu hình cuối. Reranker có thể đề xuất dùng cross-encoder để chấm cặp `(question, chunk)`; chưa chọn model, thư viện hoặc runtime cụ thể.
+## Thuật toán
 
-## Data Preservation
+1. Validate RetrievalOutput: rank 1…N, score hữu hạn, không ID trùng.
+2. Nhận tối đa 20 candidate từ retrieve(question, top_k=20).
+3. Chấm cặp (question, nhãn document/article/clause/point + content).
+4. Sắp rerank_score giảm; hòa điểm dùng rank gốc tăng rồi chunk_id.
+5. Chuyển cả pool đã sắp cho builder, chọn tối đa 5 chunk vừa budget.
+   Không cắt pool ngay tại 5 vì còn phải xét candidate sau khi chunk quá dài.
 
-Mỗi kết quả sau rerank giữ nguyên `chunk_id`, `content`, `document`, `article`, `clause` và `source`. Điểm đầu vào `score` được biểu diễn là `retrieval_score`; reranker thêm `rerank_score`. Hai điểm có ý nghĩa và thang đo khác nhau, không ghi đè lên nhau. Thứ tự `results` là thứ tự giảm dần theo `rerank_score`.
+Giữ nguyên 12 field từ Team 1. score/rank vẫn thuộc retrieval;
+rerank_score/vị trí rerank chỉ là nội bộ, không đưa vào citation/public response.
+Score kể cả sigmoid 0–1 không là xác suất đúng về pháp luật.
+Không đặt ngưỡng 0.5 tùy tiện để quyết định đủ căn cứ.
 
-Schema: [`schemas/retrieval_output.schema.json`](schemas/retrieval_output.schema.json) và [`schemas/rerank_output.schema.json`](schemas/rerank_output.schema.json).
+## Giới hạn và dự phòng
 
-## Future Benchmark Plan
+Giá trị thử nghiệm: batch_size=4, max_length=1024 token của tokenizer reranker,
+ngân sách rerank 5 giây trong deadline AI 45 giây. Đây là mục tiêu, chưa đo.
+CPU dùng FP32; chỉ thử FP16 trên accelerator hỗ trợ.
+Kiểm tra độ dài trước khi chấm, không để tokenizer âm thầm truncate.
+Nếu cặp quá dài, model lỗi hoặc hết budget: bypass rerank cho toàn pool của lượt,
+giữ rank Team 1, ghi diagnostics nội bộ. Không trộn điểm đã/chưa chấm.
+Content gốc luôn giữ nguyên cho builder; không dùng bản bị cắt làm chứng cứ.
 
-Sau khi có dữ liệu đánh giá và implementation, so sánh baseline không rerank với cross-encoder trên cùng query set và cùng candidate pool. Theo dõi retrieval Top-K, reranker Top-K, Recall@K/MRR hoặc nDCG phù hợp, chất lượng answer/citation downstream, latency, throughput và chi phí. Tách tập tune và tập đánh giá; ghi rõ model/version, cấu hình và ngày chạy. Chưa kết luận model hoặc Top-K nào tốt nhất trước benchmark.
+## Benchmark Week 2
 
-## Week 1 Status
-
-Đây là thiết kế/proposal. Chưa có reranker code, model dependency hoặc benchmark result.
+Cùng query set và candidate pool: baseline vs BGE; đo nDCG@5/MRR@5,
+recall nguồn sau đóng gói, latency p50/p95, RAM và chất lượng answer/citation.
+Ghi model revision, tokenizer, thiết bị và cấu hình. Tách tune/test.
+Không tự thay retrieval/Hybrid/RRF của Team 1.

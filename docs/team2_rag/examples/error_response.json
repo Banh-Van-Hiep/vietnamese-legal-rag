@@ -1,0 +1,7 @@
+{
+  "error": {
+    "code": "LLM_TIMEOUT",
+    "message": "Dịch vụ xử lý chưa phản hồi trong thời hạn.",
+    "retryable": true
+  }
+}
