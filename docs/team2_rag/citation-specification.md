@@ -1,27 +1,32 @@
 # Citation Specification
 
-## Definition
+## Form theo Team 3
 
-Citation là liên kết từ một claim trong câu trả lời tới legal chunk làm nguồn tham khảo cho claim đó. Citation phải mang `chunk_id` và metadata nguồn khớp với chunk đầu vào; không được chỉ là URL hoặc tên điều luật do model tự đoán.
+Theo [Team 3 v1.2, mục 1.7](../team3_fullstack/team3.md), citation có **9 trường bắt buộc**:
 
-## Fields and Mapping
+| Field | Nguồn và ràng buộc |
+| --- | --- |
+| `citation_id` | Team 2 gán `C1..C10`, liên tục theo lần xuất hiện đầu tiên trong answer |
+| `chunk_id` | ID chunk trong context, 1–200 ký tự |
+| `document_id`, `article_id` | Chép từ chunk; 1–200 / 1–100; ASCII chữ/số/`_`/`-` |
+| `document_title`, `article` | Chép tên hiển thị; 1–500 / 1–100 |
+| `clause`, `point` | Chép đúng string 1–100 hoặc null; luôn có key |
+| `source_url` | Chép URL HTTPS tuyệt đối, tối đa 2048 ký tự |
 
-Citation schema: [`schemas/citation.schema.json`](schemas/citation.schema.json). Mỗi citation có `claim`, `chunk_id`, `document`, `article`, `clause` và `source`. Các metadata phải được sao chép từ chunk hợp lệ; `clause` có thể `null` nếu nguồn không cung cấp. `chunk_id`, document, article, clause và source không được chuẩn hóa lại theo suy đoán.
+Không thêm `claim/document/source/score` vào citation gửi Backend. Schema JSON cũ trong `schemas/` vẫn được giữ nguyên nhưng không mô tả form v1.2 này.
 
-## Verification
+## Hiển thị và kiểm tra
 
-Sau LLM output, Team 2 kiểm tra tối thiểu:
+Answer dùng marker `[C1]`, `[C2]` ngay sau nhận định được hỗ trợ. Frontend lấy citation tương ứng; mở điều luật bằng `document_id/article_id`, không suy ID từ tên hiển thị. Có thể hiển thị tên văn bản, điều/khoản/điểm và link nguồn.
 
-1. `chunk_id` tồn tại trong Context được gửi cho LLM (và do đó có trong tập retrieved sources đã chọn).
-2. `document`, `article`, `clause` và `source` khớp metadata của đúng chunk đó, bao gồm nullability.
-3. Citation claim không rỗng và citation phù hợp cấu trúc output.
+Team 2 kiểm tra theo thứ tự:
 
-Kiểm tra trên chỉ xác minh provenance/consistency, chưa chứng minh nguồn hỗ trợ ngữ nghĩa cho claim. Claim-support verification, citation coverage/accuracy và đánh giá chuyên gia là hướng mở rộng ở các tuần sau.
+1. Output hợp lệ về kiểu, `status` và giới hạn answer/citations.
+2. Nhãn nguồn của LLM ánh xạ tới đúng chunk trong context đã gửi; metadata khớp nguồn. Nhãn lạ, URL/ID sửa hoặc trùng chunk là citation invalid.
+3. Lấy các nguồn thực sự được dùng theo lần xuất hiện đầu tiên; ánh xạ nhãn tạm sang `C1..Cn` và thay marker đồng thời để không va chạm nhãn. Ví dụ chỉ dùng nguồn tạm C3 thì citation cuối và marker đều thành C1.
+4. Tạo citation cuối từ metadata của đúng chunk đó; không có citation thừa, marker thiếu nguồn hoặc dùng nguồn không gửi cho LLM.
+5. `answered` cần ≥1 citation, tối đa 10 theo API (thiết kế context tối đa 5); `insufficient_context` cần `[]` và không có marker.
 
-## Invalid Citation Handling
+Không bỏ citation sai rồi giữ lại nhận định chưa được hỗ trợ. Trả `CITATION_INVALID` khi provenance không hợp lệ, `INVALID_LLM_OUTPUT` khi JSON/form sai; Backend ánh xạ lỗi theo [I/O](rag-io-specification.md).
 
-Không chuyển citation invalid tới Team 3 như citation đã xác minh. Ghi nhận lỗi validation nội bộ theo error handling đã thống nhất; bỏ citation không khớp. Nếu một claim cần nguồn nhưng không còn citation hợp lệ, thiết kế an toàn là loại/viết lại claim thành giới hạn thông tin hoặc trả lời rằng context không đủ, thay vì trình bày claim không có nguồn. Chính sách từ chối toàn bộ response so với lọc một phần cần được chốt trước implementation.
-
-## Week 1 Status
-
-Schema và verification rules là thiết kế; chưa có citation parser, verifier hoặc claim-support model.
+Khớp ID/metadata chỉ chứng minh nguồn nhất quán, không chứng minh nội dung nguồn hỗ trợ kết luận. Prompt yêu cầu bám nguồn; đánh giá thủ công phải kiểm tra điều kiện/ngoại lệ và citation support. Week 1 chưa triển khai verifier hoặc công bố chất lượng đã đo.
