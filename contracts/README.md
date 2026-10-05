@@ -18,4 +18,6 @@ Team 3 cũng gửi user question qua interface đã thống nhất để phục 
 
 Đề xuất contract dùng chung cho Week 1 nằm tại [`v0.1/`](v0.1/), gồm tài liệu Revision 2 và bốn JSON Schema cho các ranh giới giữa Team 1, Team 2 và Team 3.
 
-Các schema trong [`docs/team2_rag/schemas/`](../docs/team2_rag/schemas/) mô tả dữ liệu nội bộ của Team 2. Team 1, Team 2 và Team 3 cần review các điểm chưa thống nhất trong [`v0.1/README.md`](v0.1/README.md) trước khi triển khai.
+Các schema trong [`docs/team2_rag/schemas/`](../docs/team2_rag/schemas/) là bản nháp cũ, giữ để tham khảo; không dùng để validate giao tiếp liên team v1.2 hoặc coi là schema nội bộ đã được chốt. Bộ contract chung đề xuất nằm tại [`v0.1/`](v0.1/).
+
+Team 1, Team 2 và Team 3 cần review các điểm chưa thống nhất trong [`v0.1/README.md`](v0.1/README.md) trước khi triển khai. Request nội bộ `question/history` hiện được mô tả trong docs, chưa có JSON Schema riêng trong bộ bốn schema chung.
