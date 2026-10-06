@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "llm_output.schema.json",
+  "title": "LLM Output",
+  "description": "Structured answer and citation candidates returned by an LLM provider.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["answer", "citations"],
+  "properties": {
+    "answer": { "type": "string", "minLength": 1 },
+    "citations": {
+      "type": "array",
+      "items": { "$ref": "citation.schema.json" }
+    }
+  },
+  "examples": [
+    {
+      "answer": "The supplied context is illustrative and does not establish a legal conclusion.",
+      "citations": []
+    }
+  ]
+}

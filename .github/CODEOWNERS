@@ -1,0 +1,5 @@
+/src/team1_data/        @team1-lead
+/src/team2_rag/         @team2-lead
+/src/team3_fullstack/   @team3-lead
+/contracts/         @team1-lead @team2-lead @team3-lead
+/evaluation/        @team1-lead @team2-lead

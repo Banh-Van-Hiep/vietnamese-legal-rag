@@ -1,0 +1,7 @@
+[project]
+name = "vietnamese-legal-rag"
+version = "0.1.0"
+description = "Vietnamese Legal RAG Assistant project skeleton"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
