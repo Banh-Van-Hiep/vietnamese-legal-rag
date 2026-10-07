@@ -1,7 +1,8 @@
 package com.legalai.backend.ai;
 
 /**
- * Cài đặt thật của {@link AiClient}: gọi dịch vụ Python qua HTTP theo contracts/.
+ * Placeholder cho HTTP integration. Chưa đăng ký bean hay gọi Python:
+ * cần chốt contract nội bộ, history và nguồn nguyên văn trước khi triển khai.
  */
 public class HttpAiClient {
 

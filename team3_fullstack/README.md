@@ -11,9 +11,25 @@
 
 Team 3 tự thiết kế implementation bên trong thư mục này. Dữ liệu trao đổi với Team 2 được thống nhất trong `contracts/`.
 
+## Nhiệm vụ tuần này
+
+Hai nhiệm vụ thuộc [VLRA-4](https://banhvanhiep.atlassian.net/browse/VLRA-4). Nội dung và trạng thái dưới đây được ghi theo thông tin nhiệm vụ do Tuấn cung cấp.
+
+### [VLRA-22](https://banhvanhiep.atlassian.net/browse/VLRA-22) — Khởi tạo khung dự án Backend (Spring Boot Skeleton)
+
+**Trạng thái:** To Do
+
+**Mô tả:** Khởi tạo project Backend bằng Java + Spring Boot; xây dựng cấu trúc thư mục Backend; cấu hình CORS; cấu hình file `.env` và các biến môi trường; cài đặt các dependency cơ bản; tạo các API Endpoint dạng Mock; API nhận request và trả về response mẫu theo schema đã thống nhất; kiểm tra Backend chạy ổn định và sẵn sàng tích hợp với Team 2 và Frontend.
+
+### [VLRA-23](https://banhvanhiep.atlassian.net/browse/VLRA-23) — Khởi tạo khung dự án Frontend (Frontend Skeleton)
+
+**Trạng thái:** To Do
+
+**Mô tả:** Dựng xong khung dự án Frontend (React/Next.js), cấu hình Router, Tailwind/UI library. Khởi tạo sẵn khung giao diện Chat UI và màn hình Legal Document Viewer ban đầu.
+
 ## Backend (`backend/`)
 
-Spring Boot (Maven, Java) + PostgreSQL. Backend nhận câu hỏi từ frontend, gọi dịch vụ RAG của Team 2 (Python) để lấy câu trả lời kèm trích dẫn, và lưu lịch sử hội thoại.
+Spring Boot (Maven, Java); PostgreSQL là hướng tích hợp persistence sau. Skeleton hiện chạy profile `mock`, trả dữ liệu kiểm thử và lưu hội thoại trong bộ nhớ. Dịch vụ RAG thật của Team 2 (Python) chưa được kết nối. Hướng dẫn chạy và kết quả kiểm thử: [backend/README.md](backend/README.md).
 
 Nguyên tắc: code chia theo tính năng (package-by-feature); mỗi tính năng gồm Controller → Service → Repository. Chỉ package `ai/` được nói chuyện với Python.
 
@@ -26,7 +42,7 @@ Gốc package: `backend/src/main/java/com/legalai/backend/`
 | `pom.xml` | Khai báo dependency (Spring Web MVC, JPA, Validation, PostgreSQL driver) và phiên bản Java/Spring Boot. |
 | `mvnw`, `mvnw.cmd`, `.mvn/` | Maven Wrapper, chạy build mà không cần cài Maven. |
 | `Dockerfile` | Đóng gói backend thành image để triển khai *(chưa có)*. |
-| `src/main/resources/application.properties` | Cấu hình ứng dụng: kết nối PostgreSQL, JPA, địa chỉ dịch vụ AI (`AI_SERVICE_URL`). |
+| `src/main/resources/application.properties`, `application-mock.properties` | Port, origin CORS, trạng thái mock; profile mock tắt cấu hình DB/JPA. |
 | `BackendApplication.java` | Điểm khởi chạy của Spring Boot (`main`). |
 | `src/test/.../BackendApplicationTests.java` | Test kiểm tra ứng dụng khởi động được. |
 
@@ -43,10 +59,10 @@ Gốc package: `backend/src/main/java/com/legalai/backend/`
 
 | File | Vai trò |
 |---|---|
-| `Conversation.java` | Entity JPA: một cuộc hội thoại (bảng `conversation`). |
-| `Message.java` | Entity JPA: một tin nhắn (câu hỏi hoặc câu trả lời) thuộc một hội thoại. |
-| `ConversationRepository.java` | Truy cập DB cho `Conversation` (Spring Data JPA). |
-| `MessageRepository.java` | Truy cập DB cho `Message`, ví dụ lấy tin nhắn theo hội thoại. |
+| `Conversation.java` | Snapshot hội thoại của mock; chưa phải entity JPA. |
+| `Message.java` | Snapshot tin nhắn của mock; chưa phải entity JPA. |
+| `ConversationRepository.java` | Placeholder Spring Data JPA, tắt trong profile mock; cần entity trước khi dùng. |
+| `MessageRepository.java` | Placeholder Spring Data JPA, tắt trong profile mock; cần entity trước khi dùng. |
 | `ConversationService.java` | Nghiệp vụ: tạo hội thoại, liệt kê, xem chi tiết, xóa, thêm tin nhắn. |
 | `ConversationController.java` | REST endpoint cho lịch sử hội thoại (danh sách, chi tiết, xóa). |
 
@@ -61,21 +77,22 @@ Gốc package: `backend/src/main/java/com/legalai/backend/`
 
 | File | Vai trò |
 |---|---|
-| `AiClient.java` | Interface: hợp đồng gọi dịch vụ AI (hỏi đáp với `question` và `history`, lấy nội dung điều luật). Các lớp khác chỉ phụ thuộc interface này. |
+| `AiClient.java` | Interface mock nhận question/lấy điều luật; contract HTTP và history cần được chốt khi tích hợp thật. |
 | `MockAiClient.java` | Cài đặt giả, trả dữ liệu mẫu để phát triển khi Team 2 chưa xong. |
-| `HttpAiClient.java` | Cài đặt thật, gọi dịch vụ Python qua HTTP theo `contracts/`. |
+| `HttpAiClient.java` | Placeholder HTTP, chưa đăng ký bean hoặc gọi Python. |
 | `dto/RagAnswer.java` | Kết quả RAG: `status`, câu trả lời và danh sách trích dẫn; dữ liệu hội thoại do Backend bổ sung. |
 | `dto/Citation.java` | Một trích dẫn: văn bản/điều luật được dùng làm căn cứ. |
-| `dto/LegalChunk.java` | Một đoạn văn bản luật (chunk) lấy từ dữ liệu của Team 1/2. |
+| `dto/LegalChunk.java` | Placeholder retrieval chunk; không coi một chunk là toàn điều luật. |
+| `dto/ArticleResponse.java` | Response riêng chứa toàn điều luật mẫu cho document viewer. |
 
 Các DTO trong `ai/dto/` phải bám theo schema trong `contracts/`.
 
-### `common/` — dùng chung *(chưa có)*
+### `common/` — dùng chung
 
 | File | Vai trò |
 |---|---|
 | `config/CorsConfig.java` | Cho phép frontend gọi API từ domain khác (CORS). |
-| `config/` (cấu hình `AiClient`) | Chọn `MockAiClient` hay `HttpAiClient` theo cấu hình. |
+| Profile `mock` trên `MockAiClient` | Chỉ đăng ký client mock; chọn HTTP client chưa triển khai. |
 | `exception/GlobalExceptionHandler.java` | Bắt lỗi tập trung, trả JSON lỗi thống nhất. |
 | `exception/ApiError.java` | Cấu trúc thông báo lỗi trả về cho client. |
 
@@ -83,7 +100,9 @@ Các DTO trong `ai/dto/` phải bám theo schema trong `contracts/`.
 
 ## Trạng thái
 
-Các class hiện mới là khung (chưa có logic). Mục đánh dấu *(chưa có)* chưa được tạo. API và luồng dưới đây là đặc tả đề xuất phiên bản 1.2, chưa thể hiện các endpoint đã được triển khai. `history` và API lấy nguyên văn điều luật cần được thống nhất với Team 1/Team 2 trong `contracts/`.
+Backend đã có endpoint mock cho query, hội thoại, lịch sử, điều luật và health, cùng CORS/validation/lỗi và kiểm thử. Dữ liệu chỉ tồn tại trong bộ nhớ của lần chạy; chưa có persistence PostgreSQL hoặc RAG thật. Xem [phạm vi, hướng dẫn local và kết quả rà soát](backend/README.md). Mục đánh dấu *(chưa có)* chưa được tạo.
+
+API và luồng dưới đây vẫn là đặc tả **đề xuất** phiên bản 1.2 cho hệ thống đầy đủ, không phải cam kết rằng các phần persistence/history/upstream đã được triển khai. Bản `origin/develop` đã lưu local có contract v0.1 Revision 2 nhưng vẫn ghi Proposal; cần chốt history và API nguyên văn nội bộ với Team 1/Team 2 trước tích hợp thật. Nội dung nhiệm vụ VLRA-22 do Tuấn cung cấp đã xác định công nghệ Backend là Java + Spring Boot.
 
 ## API
 
