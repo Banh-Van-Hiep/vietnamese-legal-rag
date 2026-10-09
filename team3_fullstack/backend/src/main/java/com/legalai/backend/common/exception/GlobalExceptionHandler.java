@@ -3,6 +3,7 @@ package com.legalai.backend.common.exception;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.MediaType;
 import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
@@ -18,7 +19,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(ApiException.class)
     public ResponseEntity<ApiError> api(ApiException error) {
-        var response = ResponseEntity.status(error.status());
+        var response = ResponseEntity.status(error.status()).contentType(MediaType.APPLICATION_JSON);
         if (error.conversationId() != null) {
             response.header("X-Conversation-ID", error.conversationId().toString());
         }
@@ -40,7 +41,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     public ResponseEntity<ApiError> method(HttpRequestMethodNotSupportedException error) {
-        var response = ResponseEntity.status(405);
+        var response = ResponseEntity.status(405).contentType(MediaType.APPLICATION_JSON);
         if (error.getSupportedMethods() != null) {
             response.header("Allow", String.join(", ", error.getSupportedMethods()));
         }
