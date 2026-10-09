@@ -1,6 +1,7 @@
 package com.legalai.backend.document;
 
 import com.legalai.backend.ai.AiClient;
+import com.legalai.backend.ai.AiResponseValidator;
 import com.legalai.backend.ai.dto.ArticleResponse;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,6 @@ public class DocumentService {
     public DocumentService(AiClient ai) { this.ai = ai; }
 
     public ArticleResponse article(String documentId, String articleId) {
-        return ai.article(documentId, articleId);
+        return AiResponseValidator.article(ai.article(documentId, articleId), documentId, articleId);
     }
 }

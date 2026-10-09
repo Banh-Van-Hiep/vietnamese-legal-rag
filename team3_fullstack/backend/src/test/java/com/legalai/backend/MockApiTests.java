@@ -53,7 +53,13 @@ class MockApiTests {
         assertEquals(Set.of("code", "message", "retryable"), Set.copyOf(root.get("error").propertyNames()));
         assertEquals(code, field(root.get("error"), "code"));
         assertTrue(root.get("error").get("retryable").isBoolean());
-        assertTrue(response.headers().firstValue("X-Request-ID").isPresent());
+        if (Set.of(400, 404, 405, 413, 415).contains(status)) {
+            assertFalse(root.get("error").get("retryable").asBoolean());
+        }
+        assertTrue(root.get("error").get("message").isString());
+        assertFalse(field(root.get("error"), "message").isBlank());
+        assertTrue(response.headers().firstValue("Content-Type").orElseThrow().startsWith("application/json"));
+        UUID.fromString(response.headers().firstValue("X-Request-ID").orElseThrow());
     }
 
     @Test void queryReturnsContractAndReplayDoesNotCreateMessages() throws Exception {
@@ -74,6 +80,16 @@ class MockApiTests {
         assertEquals(Set.of("citation_id", "chunk_id", "document_id", "article_id", "document_title",
                 "article", "clause", "point", "source_url"), Set.copyOf(citation.propertyNames()));
         assertTrue(citation.get("point").isNull());
+        var source = send("GET", "/api/v1/documents/" + field(citation, "document_id")
+                + "/articles/" + field(citation, "article_id"), null);
+        assertEquals(200, source.statusCode(), source.body());
+        var article = json(source);
+        for (String name : new String[] {"document_id", "article_id", "document_title", "article", "source_url"}) {
+            assertEquals(field(citation, name), field(article, name), name);
+        }
+        assertTrue(field(article, "content").contains("\n"));
+        assertTrue(field(article, "document_title").contains("kiểm thử"));
+        assertEquals("https", URI.create(field(article, "source_url")).getScheme());
         assertTrue(field(result, "created_at").endsWith("Z"));
         var replay = post("/api/v1/query", query("Câu hỏi kiểm thử"));
         assertEquals(result, json(replay));
@@ -155,10 +171,17 @@ class MockApiTests {
     }
 
     @Test void conversationsUsePagedEnvelopeAndValidateTitleAndPagination() throws Exception {
-        var created = post("/api/v1/conversations", "{}");
+        var created = send("POST", "/api/v1/conversations", "{}", "Content-Type", "application/json",
+                "Origin", "http://localhost:5173");
         assertEquals(201, created.statusCode());
+        assertEquals("http://localhost:5173", created.headers().firstValue("Access-Control-Allow-Origin").orElseThrow());
+        String exposed = created.headers().firstValue("Access-Control-Expose-Headers").orElseThrow();
+        assertTrue(exposed.contains("Location"));
+        assertTrue(exposed.contains("X-Request-ID"));
+        UUID.fromString(created.headers().firstValue("X-Request-ID").orElseThrow());
         assertEquals("Hội thoại mới", field(json(created), "title"));
         String path = created.headers().firstValue("Location").orElseThrow();
+        assertEquals("/api/v1/conversations/" + field(json(created), "conversation_id"), path);
         assertEquals(json(created), json(send("GET", path, null)));
         var empty = json(send("GET", path + "/messages", null));
         assertEquals(0, empty.get("total_pages").asInt());
@@ -189,6 +212,8 @@ class MockApiTests {
         error(send("GET", "/api/v1/documents/missing/articles/art1", null), 404, "DOCUMENT_NOT_FOUND");
         error(send("GET", "/api/v1/documents/mock_v1/articles/missing", null), 404, "ARTICLE_NOT_FOUND");
         error(send("GET", "/api/v1/documents/mock.v1/articles/art1", null), 400, "INVALID_REQUEST");
+        error(send("GET", "/api/v1/documents/mock_v1/articles/art1?extra=1", null), 400, "INVALID_REQUEST");
+        error(send("GET", "/api/v1/documents/mock_v1/articles/art1", "{}"), 400, "INVALID_REQUEST");
         assertEquals("up", field(json(send("GET", "/api/v1/health", null)), "status"));
         error(send("GET", "/api/v1/health?extra=1", null), 400, "INVALID_REQUEST");
         error(send("GET", "/api/v1/health", "{}"), 400, "INVALID_REQUEST");

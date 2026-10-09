@@ -1,6 +1,7 @@
 package com.legalai.backend.chat;
 
 import com.legalai.backend.ai.AiClient;
+import com.legalai.backend.ai.AiResponseValidator;
 import com.legalai.backend.chat.dto.ChatRequest;
 import com.legalai.backend.chat.dto.ChatResponse;
 import com.legalai.backend.common.exception.ApiException;
@@ -24,7 +25,7 @@ public class ChatService {
         if (turn.response() != null) { return turn.response(); }
         try {
             // AI call occurs outside the synchronized store operation; no DB transaction is held.
-            var answer = ai.query(request.question());
+            var answer = AiResponseValidator.query(ai.query(request.question()));
             return conversations.complete(turn, answer);
         } catch (ApiException error) {
             throw conversations.fail(turn, error);

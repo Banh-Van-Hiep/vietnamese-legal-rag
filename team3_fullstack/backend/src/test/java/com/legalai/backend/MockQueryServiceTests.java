@@ -57,13 +57,18 @@ class MockQueryServiceTests {
     }
 
     @Test void upstreamFailureIsSavedAndReplayedAsErrorInsteadOfInsufficientContext() {
-        for (int status : new int[] {503, 504}) {
+        for (int status : new int[] {500, 503, 504}) {
             var store = new ConversationService();
             var calls = new AtomicInteger();
-            String code = status == 504 ? "UPSTREAM_TIMEOUT" : "SERVICE_UNAVAILABLE";
+            String code = switch (status) {
+                case 500 -> "INTERNAL_ERROR";
+                case 504 -> "UPSTREAM_TIMEOUT";
+                default -> "SERVICE_UNAVAILABLE";
+            };
             AiClient ai = new AiClient() {
                 public RagAnswer query(String question) {
                     calls.incrementAndGet();
+                    if (status == 500) { throw new IllegalStateException("private-provider-detail test-secret-sentinel"); }
                     throw new ApiException(status, code, "Dịch vụ tạm thời không phản hồi.", true);
                 }
                 public ArticleResponse article(String document, String article) { throw new UnsupportedOperationException(); }
@@ -73,7 +78,14 @@ class MockQueryServiceTests {
             var failure = assertThrows(ApiException.class, () -> service.query(request));
             assertEquals(status, failure.status());
             assertNotNull(failure.conversationId());
+            assertEquals(code, failure.body().error().code());
+            assertEquals(status != 500, failure.body().error().retryable());
+            assertFalse(failure.body().error().message().isBlank());
+            assertFalse(failure.body().error().message().contains("private-provider-detail"));
+            assertFalse(failure.body().error().message().contains("test-secret-sentinel"));
             var messages = store.messages(failure.conversationId(), new PageRequest(0, 20)).items();
+            assertEquals(request.client_request_id(), messages.get(0).client_request_id());
+            assertEquals(failure.conversationId(), messages.get(0).conversation_id());
             assertEquals("completed", messages.get(0).state());
             var assistant = messages.get(1);
             assertEquals("failed", assistant.state());
