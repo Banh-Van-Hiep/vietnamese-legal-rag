@@ -1,15 +1,37 @@
 # Quickstart validation — Task01
 
 **Trạng thái:** hướng dẫn lập ở vòng plan; đã thực hiện kiểm chứng T01 ngày 2026-10-09,
-xem [báo cáo mục 6](../../docs/team3_fullstack/t01-backend-foundation.md#6-kiểm-chứng-spec-t01-riêng-ngày-09102026).
+xem [báo cáo mục 6](verification.md#6-kiểm-chứng-spec-t01-riêng-ngày-09102026).
 Runner hiện đã tuân thủ Q2; các ghi chú “chưa chạy trong lượt plan” bên dưới mô tả thời điểm lập kế hoạch.
 Tham chiếu [plan hiện tại](plan.md), [tasks hiện tại](tasks.md), [data model](data-model.md)
-và [interfaces](contracts/README.md). Các ca U1/C1 dưới đây vẫn là hướng dẫn chưa thực hiện.
+và [interfaces](contracts/README.md). Các ca U1/C1 đã kiểm chứng trong vòng T01; dùng các bước dưới đây để tái hiện, kết quả gốc nằm ở verification.md.
+
+## Chạy Backend để thử nhanh
+
+Các lệnh này chạy từ repository root, dùng terminal riêng và JDK25 trên máy.
+Nếu chưa có backend/.env, tạo từ .env.example và điền cấu hình máy; Spring không tự đọc .env.
+Không ghi đè file cá nhân đã có.
+
+    $env:JAVA_HOME = 'D:\Java\jdk-25'
+    $env:SPRING_PROFILES_ACTIVE = 'mock'
+    $env:MOCK_ANSWER_STATUS = 'answered'
+    Remove-Item Env:MOCK_QUERY_SCENARIO,Env:MOCK_ARTICLE_SCENARIO -ErrorAction SilentlyContinue
+    .\team3_fullstack\backend\run-local.ps1 -Port 8080
+
+Mặc định health ở http://localhost:8080/api/v1/health. Ctrl+C dừng tiến trình đang chạy;
+nếu 8080 bận, chọn cổng khác với -Port. -EnvFile tương đối được tính từ Backend.
+Q2: explicit Port/AllowedOrigins > terminal > .env > Spring defaults; supplied blank/sai không fallback.
+Runner nạp KEY=value, chỉ đọc dữ liệu, không thực thi biểu thức shell; finally khôi phục env/location.
+Cấu hình gồm JAVA_HOME, SPRING_PROFILES_ACTIVE, SERVER_PORT, CORS_ALLOWED_ORIGINS,
+MOCK_ANSWER_STATUS; hai selector mới được mô tả trong [quickstart T02](../002-t02-mock-api/quickstart.md).
+Tái hiện nghiệm thu T01 đầy đủ bằng các mục dưới, không chỉ gọi health.
 
 ## 1. Điều kiện và chuẩn bị
 
 Dùng Windows PowerShell 5.1 hoặc môi trường PowerShell tương thích runner hiện tại, JDK 25
 và Maven Wrapper đi kèm. Không cần AI/key thật, Docker hoặc PostgreSQL cho profile mock.
+Trên code đã có T02, bỏ MOCK_QUERY_SCENARIO/MOCK_ARTICLE_SCENARIO khỏi terminal kiểm tra
+trước các ca legacy/default; đây là cách cô lập để tái hiện T01, không mở rộng tiêu chí T01.
 Lần đầu build cần mạng để Maven lấy dependency. Không thêm package vào POM để chạy hướng dẫn.
 
 Từ gốc repo, mở một terminal dành riêng cho kiểm tra:
@@ -163,7 +185,7 @@ nếu thiếu assertion thì bổ sung ở bước triển khai, dùng endpoint 
   500/INTERNAL_ERROR, retryable=false, conversation ID đúng lượt và X-Conversation-ID tương ứng,
   X-Request-ID, message an toàn/không rỗng và không lộ chi tiết lỗi gốc. AI gây lỗi chỉ nằm trong
   cấu hình test, không thêm endpoint hoặc scenario public; probe 500 chưa tiếp nhận lượt không
-  thay bằng chứng này. T019 chạy kiểm chứng các ca; chưa thực hiện trong lượt sửa tài liệu.
+  thay bằng chứng này. T019 đã kiểm chứng các ca; kết quả được ghi trong verification.md, không suy ra đã chạy lại trên máy mới.
   Trên ứng dụng thật `/api/v1/t01-error-probe/timeout` phải không tồn tại.
 
 **Ca default (T012):** Dừng đúng smoke trước đó, kiểm tra port 8080 rảnh. Trong terminal
@@ -176,6 +198,7 @@ Remove-Item -LiteralPath Env:SPRING_PROFILES_ACTIVE -ErrorAction SilentlyContinu
 Remove-Item -LiteralPath Env:SERVER_PORT -ErrorAction SilentlyContinue
 Remove-Item -LiteralPath Env:CORS_ALLOWED_ORIGINS -ErrorAction SilentlyContinue
 Remove-Item -LiteralPath Env:MOCK_ANSWER_STATUS -ErrorAction SilentlyContinue
+Remove-Item Env:MOCK_QUERY_SCENARIO,Env:MOCK_ARTICLE_SCENARIO -ErrorAction SilentlyContinue
 & (Join-Path $env:JAVA_HOME 'bin\javac.exe') -version
 '# Default smoke: no profile, port, origin or answer-status overrides.' |
   Set-Content -LiteralPath .\target\t01\default.env -Encoding UTF8

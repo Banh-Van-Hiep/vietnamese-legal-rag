@@ -1,6 +1,11 @@
 # Implementation Plan: Task02 — API mock query/document
+
+Ghi chú tổ chức tài liệu 09/10/2026: đường dẫn báo cáo trong tài liệu này là vị trí bàn giao
+hiện tại (verification.md trong spec); baseline/log gốc vẫn ghi đường dẫn docs/ trước khi chuyển.
+Snapshot lúc plan và checkbox/evidence đã kiểm chứng được giữ nguyên; không chạy lại test khi dọn tài liệu.
+
 **Branch**: feature/team3/tuan | **Date**: 2026-10-09 | **Spec**: [spec.md](spec.md)
-**Status**: Đã implement và kiểm chứng local: package74/runner37/HTTP8 PASS. Nhánh thực khác feature key 002, không switch. Xem [báo cáo T02](../../docs/team3_fullstack/t02-mock-api.md); không thay nghiệm thu nhóm.
+**Status**: Đã implement và kiểm chứng local: package74/runner37/HTTP8 PASS. Nhánh thực khác feature key 002, không switch. Xem [báo cáo T02](verification.md); không thay nghiệm thu nhóm.
 
 ## Summary
 Giữ Backend/T01, bổ sung cấu hình mock query/document độc lập, guard output theo Team 3
@@ -30,10 +35,13 @@ Quyết định vận hành không tự mang nhãn nhóm phê duyệt; người 
 ## Project Structure
 ### Documentation (this feature)
 specs/002-t02-mock-api/{spec,plan,research,data-model,quickstart,decisions,tasks}.md,
-contracts/README.md, checklists/requirements.md; report triển khai sau tại docs/team3_fullstack/t02-mock-api.md.
+contracts/README.md, checklists/requirements.md; report triển khai sau tại specs/002-t02-mock-api/verification.md.
 
 ### Source Code (repository root)
-| Path | Đã có | Tác động dự kiến |
+Các cột dưới là snapshot lúc lập plan, không là danh sách việc chưa làm hiện tại.
+Đối chiếu tasks.md và verification.md để biết kết quả đã bàn giao.
+
+| Path | Đã có lúc plan | Tác động dự kiến |
 | --- | --- | --- |
 | team3_fullstack/backend/src/main/java/com/legalai/backend/ai/MockAiClient.java | Success + tuple mock | Thêm query/article scenario, giữ constructor legacy |
 | team3_fullstack/backend/src/main/java/com/legalai/backend/ai/AiResponseValidator.java | Chưa có | Guard typed DTO, 502 nếu sai |
@@ -45,7 +53,7 @@ contracts/README.md, checklists/requirements.md; report triển khai sau tại d
 | team3_fullstack/backend/src/test/java/com/legalai/backend/AiResponseValidatorTests.java | Chưa có | Boundary/nullable/marker/ID/HTTPS/Unicode guard |
 | team3_fullstack/backend/src/test/java/com/legalai/backend/MockScenarioTests.java | Chưa có | Modes, fixture liên kết, legacy/error precedence |
 | team3_fullstack/backend/src/test/java/com/legalai/backend/BackendConfigurationTests.java | Spy/probe T01 | HTTP controlled invalid query/article →502; không public probe mới |
-| docs/team3_fullstack/t02-mock-api.md | Chưa có | Hướng dẫn/scenario/evidence/limitations |
+| specs/002-t02-mock-api/verification.md | Chưa có lúc plan | Kết quả/evidence/limitations; hướng dẫn chạy ở quickstart.md |
 POM, DTO field definitions, controllers/routes, store, CORS/exception handler/406 giữ nguyên.
 Khi DTO không đáp ứng nguồn phải ghi vấn đề; không tự đổi schema.
 

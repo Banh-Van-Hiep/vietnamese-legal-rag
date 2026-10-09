@@ -1,8 +1,13 @@
 # Tasks: Task01 — Nền tảng Backend/API Team 3
 
+Ghi chú tổ chức tài liệu 09/10/2026: đường dẫn báo cáo trong tài liệu này là vị trí bàn giao
+hiện tại (verification.md trong spec); baseline/log gốc vẫn ghi đường dẫn docs/ trước khi chuyển.
+Snapshot lúc plan và checkbox/evidence đã kiểm chứng được giữ nguyên; không chạy lại test khi dọn tài liệu.
+
+
 **Input**: [spec.md](spec.md), [plan.md](plan.md), [research.md](research.md), [data-model.md](data-model.md), [contracts/README.md](contracts/README.md), [quickstart.md](quickstart.md).  
 **Ngày**: 2026-10-09. **Nhánh giữ nguyên**: `feature/team3/tuan`.  
-**Trạng thái**: Đã thực hiện và kiểm chứng local 23/23 task ngày 2026-10-09; [báo cáo/bằng chứng](../../docs/team3_fullstack/t01-backend-foundation.md#6-kiểm-chứng-spec-t01-riêng-ngày-09102026). Không xác nhận toàn tuần 2 hoặc UI.
+**Trạng thái**: Đã thực hiện và kiểm chứng local 23/23 task ngày 2026-10-09; [báo cáo/bằng chứng](verification.md#6-kiểm-chứng-spec-t01-riêng-ngày-09102026). Không xác nhận toàn tuần 2 hoặc UI.
 
 Nguồn API/luồng/kiến trúc là `docs/team3_fullstack/team3.md`, đã được Team 3 thống nhất theo Q1;
 `docs/team3_fullstack/team3-week2-spec.md` xác định phạm vi T01. Báo cáo Codex và code chỉ mô tả
@@ -32,7 +37,7 @@ Các thay đổi này có từ trước; không quy toàn bộ code đang đọc
 | `team3_fullstack/backend/src/test/java/com/legalai/backend/BackendConfigurationTests.java`: no DataSource, MockAiClient, CORS và test-only probe 500/503/504 | Chạy lại có bằng chứng; không tạo probe hoặc endpoint lỗi mới |
 | `team3_fullstack/backend/src/test/java/com/legalai/backend/MockApiTests.java`: health, input errors, Allow, CORS hai nhóm origin; Location hiện chưa kèm Origin | Bổ sung assertion nhỏ, tái sử dụng các ca đã có |
 | `team3_fullstack/backend/src/test/powershell/RunLocalConfigurationTests.ps1` chưa tồn tại | Bổ sung harness runner; các fixture/log dưới target là output kiểm tra |
-| `docs/team3_fullstack/t01-backend-foundation.md`: báo cáo lịch sử 07/10 và đính chính nguồn | Hướng dẫn Q2 và bằng chứng mới; không dùng 24 test PASS cũ để nghiệm thu mới |
+| `specs/001-t01-backend-foundation/verification.md`: báo cáo lịch sử 07/10 và đính chính nguồn | Hướng dẫn Q2 và bằng chứng mới; không dùng 24 test PASS cũ để nghiệm thu mới |
 
 Không giao việc tạo controller/service/DTO/entity/migration, nối Python/RAG, sửa UI, streaming/auth
 hoặc hoàn thiện fixture/history của T02. Không sửa `contracts/` chung hoặc code Team 1/2.
@@ -48,7 +53,7 @@ Task nháp Q2 được thay bằng danh sách này: **T001 cũ → T007–T009/T
 
 **Mục đích**: Bảo toàn thay đổi và xác nhận môi trường, không khởi tạo skeleton mới.
 
-- [X] T001 Ghi baseline nhánh/HEAD, git status, staged/unstaged diff và hash các file dự kiến tác động của `team3_fullstack/backend/`, `docs/team3_fullstack/t01-backend-foundation.md`, `specs/001-t01-backend-foundation/` vào `team3_fullstack/backend/target/t01/baseline.txt`; phân biệt tracked/untracked và README đã xóa, không reset/stash/switch branch.
+- [X] T001 Ghi baseline nhánh/HEAD, git status, staged/unstaged diff và hash các file dự kiến tác động của `team3_fullstack/backend/`, `specs/001-t01-backend-foundation/verification.md`, `specs/001-t01-backend-foundation/` vào `team3_fullstack/backend/target/t01/baseline.txt`; phân biệt tracked/untracked và README đã xóa, không reset/stash/switch branch.
 - [X] T002 Đối chiếu `team3_fullstack/backend/pom.xml` và `team3_fullstack/backend/.mvn/wrapper/maven-wrapper.properties` với JDK/Maven/PowerShell thực tế; ghi lệnh/version và JDK 25 dùng kiểm tra vào `team3_fullstack/backend/target/t01/environment.txt`; giữ dependency/runtime hiện có, báo rõ nếu chưa đủ môi trường thay vì đánh dấu build đạt.
 
 ## Phase 2: Foundational — điều kiện chung để kiểm chứng
@@ -132,8 +137,8 @@ triển khai hiện có, ngoài contract/nghiệm thu T01; không xóa hoặc th
 ## Phase 6: Polish — kiểm chứng tổng hợp và tài liệu bàn giao
 
 - [X] T021 Sau mọi sửa runner/test, chạy harness `team3_fullstack/backend/src/test/powershell/RunLocalConfigurationTests.ps1` và final package qua `team3_fullstack/backend/run-local.ps1 -Task package`; dùng `specs/001-t01-backend-foundation/quickstart.md` đối chiếu bộ validation, lưu log vào `team3_fullstack/backend/target/t01/final-validation.log` và giữ báo cáo surefire cuối. Không dùng -DskipTests, không chạy Maven đồng thời hay lặp smoke đã đạt trên cùng nội dung nếu không có thay đổi/failure mới; kiểm tra mọi bằng chứng gắn đúng working tree cuối.
-- [X] T022 Cập nhật hướng dẫn Q2 và ma trận từng AC-T01-01–08 trong `docs/team3_fullstack/t01-backend-foundation.md` từ kết quả thực T001–T021: nguồn yêu cầu, commit/working tree/runtime, lệnh, expected/actual, pass/fail/chưa kiểm tra và log path; giữ tách lịch sử 07/10 khỏi bằng chứng mới. Ghi mock memory mất sau restart, AI/DB/UI/T02–T06 ngoài nghiệm thu, khác biệt schema liên team giữ theo spec; không đổi phê duyệt hoặc ghi PASS khi chưa chạy (AC-T01-08).
-- [X] T023 Đối chiếu git status/diff/hash với `team3_fullstack/backend/target/t01/baseline.txt`, rà scope các file của `team3_fullstack/backend/` và `docs/team3_fullstack/t01-backend-foundation.md`; xác nhận không mất thay đổi cũ, không sửa Frontend/Team 1/2/contracts chung/.env và không phục hồi README đã chuyển. Kiểm tra evidence T022 rồi cập nhật checkbox tương ứng trong `specs/001-t01-backend-foundation/tasks.md` chỉ cho task thực sự đạt; lưu mục chưa kiểm tra/fail, không commit/push/merge hoặc đánh dấu toàn T01 nếu AC còn thiếu.
+- [X] T022 Cập nhật hướng dẫn Q2 và ma trận từng AC-T01-01–08 trong `specs/001-t01-backend-foundation/verification.md` từ kết quả thực T001–T021: nguồn yêu cầu, commit/working tree/runtime, lệnh, expected/actual, pass/fail/chưa kiểm tra và log path; giữ tách lịch sử 07/10 khỏi bằng chứng mới. Ghi mock memory mất sau restart, AI/DB/UI/T02–T06 ngoài nghiệm thu, khác biệt schema liên team giữ theo spec; không đổi phê duyệt hoặc ghi PASS khi chưa chạy (AC-T01-08).
+- [X] T023 Đối chiếu git status/diff/hash với `team3_fullstack/backend/target/t01/baseline.txt`, rà scope các file của `team3_fullstack/backend/` và `specs/001-t01-backend-foundation/verification.md`; xác nhận không mất thay đổi cũ, không sửa Frontend/Team 1/2/contracts chung/.env và không phục hồi README đã chuyển. Kiểm tra evidence T022 rồi cập nhật checkbox tương ứng trong `specs/001-t01-backend-foundation/tasks.md` chỉ cho task thực sự đạt; lưu mục chưa kiểm tra/fail, không commit/push/merge hoặc đánh dấu toàn T01 nếu AC còn thiếu.
 
 ## Dependencies & execution order
 

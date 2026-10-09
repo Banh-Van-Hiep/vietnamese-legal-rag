@@ -1,12 +1,13 @@
 # Feature Specification: Task01 — Nền tảng Backend/API Team 3
 
 **Feature Branch**: `feature/team3/tuan`
+**Nhóm / phụ trách / task**: Team 3 / Tuấn / T01.
 
 **Feature Directory**: `specs/001-t01-backend-foundation`
 
 **Created**: 2026-10-09
 
-**Status**: Clarified — Q1–Q3 giữ nguyên; T01 đã triển khai và kiểm chứng local ngày 2026-10-09 theo [tasks.md](tasks.md) và [báo cáo mục 6](../../docs/team3_fullstack/t01-backend-foundation.md#6-kiểm-chứng-spec-t01-riêng-ngày-09102026); kết quả chờ nhóm review, không xác nhận toàn tuần 2.
+**Status**: Đã triển khai và kiểm chứng local ngày 2026-10-09 theo [tasks.md](tasks.md) và [verification.md](verification.md#6-kiểm-chứng-spec-t01-riêng-ngày-09102026); Q1–Q3 giữ nguyên, kết quả chờ nhóm review, không xác nhận toàn tuần 2.
 
 **Input**: Chuẩn bị spec riêng cho Task01 từ spec tuần 2, tài liệu API/kiến trúc Team 3,
 báo cáo T01 và việc đọc code Backend; phân biệt yêu cầu với hiện trạng, chỉ viết tài liệu.
@@ -132,8 +133,8 @@ nghĩa vụ bàn giao tổng thể của T06.
 | --- | --- |
 | [Spec Team 3 tuần 2 v1.2](../../docs/team3_fullstack/team3-week2-spec.md), mục 2–4 | Nguồn phạm vi T01, BE-01/BE-02 và phần Backend của AC-01/AC-02; các task T02–T06 được tách riêng |
 | [Tài liệu Team 3](../../docs/team3_fullstack/team3.md), kiến trúc và mục 1.1/1.4/1.6/1.8/1.10 | Tài liệu gốc v1.2 đã được Team 3 thống nhất, theo xác nhận của Tuấn ngày 2026-10-09; căn cứ API, luồng và kiến trúc trong phạm vi T01 |
-| [Báo cáo triển khai T01](../../docs/team3_fullstack/t01-backend-foundation.md) | Do Codex sinh để ghi lựa chọn triển khai và kết quả lịch sử ngày 07/10/2026; không có quyền thay đổi trạng thái phê duyệt yêu cầu và không tự nghiệm thu spec này |
-| [Constitution 1.0.0](../../.specify/memory/constitution.md) | Giữ tương thích, ranh giới team, kiến trúc và kiểm chứng; ngày phê chuẩn còn TODO |
+| [Báo cáo triển khai T01](verification.md) | Do Codex sinh để ghi lựa chọn triển khai và kết quả lịch sử ngày 07/10/2026; không có quyền thay đổi trạng thái phê duyệt yêu cầu và không tự nghiệm thu spec này |
+| Constitution 1.0.0 (nguồn local tại lúc lập spec) | Giữ tương thích, ranh giới team, kiến trúc và kiểm chứng; ngày phê chuẩn còn TODO. Xem [specs README](../README.md) để đọc bộ tài liệu chia sẻ không phụ thuộc công cụ local |
 | [contracts/README.md](../../contracts/README.md) và [schema lỗi Team 2](../../docs/team2_rag/schemas/error_response.schema.json) | README dẫn tới proposal/schema Team 2; đây là nội dung cần đối chiếu và đồng bộ, không thay đổi trạng thái tài liệu Team 3 đã thống nhất |
 
 **Đã chốt theo phạm vi được giao**: giữ công nghệ và khung hiện tại; T01 của Tuấn tập trung
@@ -260,12 +261,12 @@ Các số lượng trên là phạm vi mẫu kiểm tra của đặc tả, khôn
 
 ### Tiêu chí nghiệm thu có thể kiểm tra
 
-Tất cả tiêu chí dưới đây đang ở trạng thái **chưa đánh giá trong lượt soạn spec**.
+Lượt soạn spec chưa đánh giá các tiêu chí dưới đây. Sau implement, 8/8 AC đã PASS bằng kiểm chứng local ngày 09/10/2026 trong [verification.md](verification.md#6-kiểm-chứng-spec-t01-riêng-ngày-09102026); không thay nghiệm thu nhóm.
 
 | Mã | Cách kiểm tra và kết quả cần có | Truy vết | Phụ thuộc quyết định |
 | --- | --- | --- | --- |
-| AC-T01-01 | Làm theo hướng dẫn từ dependency tới mock; build/chạy được và health trả 200/status=up khi AI/key thật vắng mặt; giữ khung/interface hiện có | FR-001–003, FR-007; US1; SC-001; phần BE của AC-01 tuần 2 | Căn cứ `team3.md`; chưa kiểm tra triển khai theo spec này |
-| AC-T01-02 | Chạy với hai bộ port/origin/mode; xác nhận giá trị thực tế. Với cùng một biến, kiểm tra tham số chạy thắng terminal/.env, terminal thắng .env, .env được dùng khi hai nguồn trên vắng, mặc định được dùng khi cả ba nguồn vắng; giá trị ưu tiên sai không bị âm thầm thay thế; không sửa source để đổi local | FR-004–006; US1; SC-002; phần BE của AC-02 tuần 2 | Q2 đã chốt; runner/test còn cần triển khai theo plan/tasks |
+| AC-T01-01 | Làm theo hướng dẫn từ dependency tới mock; build/chạy được và health trả 200/status=up khi AI/key thật vắng mặt; giữ khung/interface hiện có | FR-001–003, FR-007; US1; SC-001; phần BE của AC-01 tuần 2 | Căn cứ `team3.md`; kết quả local tại verification.md |
+| AC-T01-02 | Chạy với hai bộ port/origin/mode; xác nhận giá trị thực tế. Với cùng một biến, kiểm tra tham số chạy thắng terminal/.env, terminal thắng .env, .env được dùng khi hai nguồn trên vắng, mặc định được dùng khi cả ba nguồn vắng; giá trị ưu tiên sai không bị âm thầm thay thế; không sửa source để đổi local | FR-004–006; US1; SC-002; phần BE của AC-02 tuần 2 | Q2 đã chốt; runner/test đã kiểm chứng local, xem verification.md |
 | AC-T01-03 | Kiểm tra cấu hình/runtime sai và port đang bận; nhận lỗi và không có thông báo sẵn sàng giả | FR-006; US1; SC-001–002 | Không cần chọn contract query |
 | AC-T01-04 | Origin được phép: preflight và yêu cầu thực tế thành công về CORS; đọc header trên thành công/lỗi khi có ý nghĩa với thao tác | FR-008, FR-010; US2; SC-003 | Header theo `team3.md` mục 1.1/1.4/1.6 |
 | AC-T01-05 | Origin ngoài danh sách không có quyền CORS; kiểm tra trường hợp từ chối preflight/yêu cầu thực tế cùng trường hợp được phép ở AC-T01-04 | FR-009; US2; SC-003; AC-02 tuần 2 | Q3 đã chốt: không bắt buộc body JSON 403 |
@@ -363,7 +364,7 @@ hướng dẫn, kiểm tra cấu hình trùng/fallback và nghiệm thu. Hai tas
 ánh xạ trong tasks hiện tại; không còn là danh sách hai task nháp. Q1–Q3 giữ nguyên.
 Các vòng specify/clarify/plan/tasks chỉ cập nhật tài liệu, chưa sửa runner hoặc chạy build/test.
 Vòng implement sau đó đã thực hiện và kiểm chứng T001–T023; kết quả local và giới hạn được ghi
-trong [báo cáo mục 6](../../docs/team3_fullstack/t01-backend-foundation.md#6-kiểm-chứng-spec-t01-riêng-ngày-09102026), không thay quyết định Q1–Q3 hoặc yêu cầu chức năng.
+trong [báo cáo mục 6](verification.md#6-kiểm-chứng-spec-t01-riêng-ngày-09102026), không thay quyết định Q1–Q3 hoặc yêu cầu chức năng.
 
 #### Q3 — Phạm vi nghiệm thu CORS và 406 đã được Tuấn quyết định
 

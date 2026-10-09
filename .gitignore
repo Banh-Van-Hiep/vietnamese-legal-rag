@@ -16,5 +16,4 @@ node_modules/
 /.agents/skills/speckit-*/
 
 # Personal instructions stay local; implementation reports and specs are shared.
-/docs/team3_fullstack/commit-guide.md
-/docs/team3_fullstack/backend-playground.md
+/.local/

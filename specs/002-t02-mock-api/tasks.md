@@ -1,6 +1,11 @@
 # Tasks: Task02 — API mock query/document
+
+Ghi chú tổ chức tài liệu 09/10/2026: đường dẫn báo cáo trong tài liệu này là vị trí bàn giao
+hiện tại (verification.md trong spec); baseline/log gốc vẫn ghi đường dẫn docs/ trước khi chuyển.
+Snapshot lúc plan và checkbox/evidence đã kiểm chứng được giữ nguyên; không chạy lại test khi dọn tài liệu.
+
 **Input**: spec.md, plan.md, research.md, data-model.md, contracts/README.md, quickstart.md, decisions.md.
-**Status**: 18/18 task đã kiểm chứng local; package74, runner37, HTTP8 PASS. Review hash/diff147 files không thay đổi ngoài phạm vi, cleanup0 PID/cổng. Báo cáo: [t02-mock-api.md](../../docs/team3_fullstack/t02-mock-api.md). Nhánh feature/team3/tuan giữ nguyên.
+**Status**: 18/18 task đã kiểm chứng local; package74, runner37, HTTP8 PASS. Review hash/diff147 files không thay đổi ngoài phạm vi, cleanup0 PID/cổng. Bàn giao: [verification.md](verification.md). Nhánh feature/team3/tuan giữ nguyên.
 [P] chỉ file độc lập sau prerequisite. Không Maven/test song song với sửa Java hoặc Maven khác.
 Tests được spec yêu cầu; không thêm framework/TDD policy/coverage. Existing endpoint/DTO/input/store/CORS
 không được tạo lại; chỉ guard/scenario/assertion còn thiếu. Checkbox cần evidence mới.
@@ -36,7 +41,7 @@ legacy/new selectors vàQ2, khôngprobe.
 
 ## Phase 6: Polish và bàn giao
 - [X] T016 Chạy final wrapper package qua team3_fullstack/backend/run-local.ps1 với build fixture dưới target/t02, không skipTests; archive reports và log team3_fullstack/backend/target/t02/final-validation.log; full T01/T02 tests/harness regression, JAR không test probe, không lặp smoke unchanged nếu không failure mới.
-- [X] T017 Viết docs/team3_fullstack/t02-mock-api.md và cập nhật trạng thái specs/002-t02-mock-api/{spec,plan,tasks,decisions,quickstart}.md từ kết quả thật: 8AC, sources/working tree/runtime/command/expected/actual/limits và quyền tự quyết; không gán quyết định mới là nhóm phê duyệt.
+- [X] T017 Viết specs/002-t02-mock-api/verification.md và cập nhật trạng thái specs/002-t02-mock-api/{spec,plan,tasks,decisions,quickstart}.md từ kết quả thật: 8AC, sources/working tree/runtime/command/expected/actual/limits và quyền tự quyết; không gán quyết định mới là nhóm phê duyệt.
 - [X] T018 Review status/diff/hash với team3_fullstack/backend/target/t02/baseline-hashes.json, giữ T01/source/FE/Team1/2/sharedschema/.env ngoài target; confirm no owned process/port leak, cập nhật checkbox trong specs/002-t02-mock-api/tasks.md chỉ khi evidence đạt; không commit/push/merge.
 
 ## Dependencies and parallel examples

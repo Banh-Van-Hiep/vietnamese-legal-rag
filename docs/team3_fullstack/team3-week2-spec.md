@@ -1,9 +1,10 @@
-# Team 3 — Spec tuần 2
+# Team 3 — Kế hoạch và phạm vi tuần 2
 
 **Dự án:** Vietnamese Legal RAG Assistant  
 **Phạm vi:** VLRA-22, VLRA-23 và nhiệm vụ Team 3 trong kế hoạch tuần 2.  
-**Trạng thái:** Yêu cầu triển khai; chưa xác nhận hoàn thành.  
-**Phiên bản:** 1.2 — 07/10/2026.
+**Trạng thái:** T01/T02 đã kiểm chứng local; chưa xác nhận toàn tuần 2 hoàn thành.
+
+**Phiên bản yêu cầu:** 1.2 — 07/10/2026. **Cập nhật tổ chức và trạng thái:** 09/10/2026.
 
 ## 1. Mục tiêu và cơ sở triển khai
 
@@ -11,7 +12,7 @@ Hoàn thiện khung Backend/Frontend đã tạo để chạy local, kiểm tra l
 
 Kế thừa cấu trúc package, đặc tả API và luồng đã xây dựng ở tuần 1; không dựng lại dự án hoặc viết lại contract. Backend dùng **Java + Spring Boot/Maven**; Frontend tiếp tục **React/TypeScript/Vite** hiện có. Phiên bản runtime/dependency theo cấu hình repository.
 
-Contract đã thống nhất trong `contracts/` là nguồn chính thức cho endpoint, DTO, citation và lỗi; tài liệu Team 3 giải thích cách tích hợp. Trước coding, ghi đường dẫn và phiên bản/commit contract áp dụng. Nếu tài liệu khác contract hoặc thiếu schema, làm rõ phần đó trước khi sửa interface chung; các task độc lập vẫn tiếp tục. Team 1/Team 2 chỉ được nhắc như nguồn dữ liệu/interface cần nhận, không thuộc phạm vi triển khai của spec này.
+[team3.md v1.2](team3.md) là căn cứ API, luồng và kiến trúc đã được Team 3 thống nhất theo xác nhận của Tuấn (Q1). File này xác định phạm vi task tuần 2; [specs/](../../specs/README.md) mô tả từng task và kết quả bàn giao. [contracts/](../../contracts/README.md) là nơi phối hợp interface liên team; các schema Team 2 được dẫn còn khác API Team 3 và được ghi trong [verification T01](../../specs/001-t01-backend-foundation/verification.md#2-contract-đã-đối-chiếu). Không tự đổi interface để khớp schema khác; làm rõ phần tích hợp bị ảnh hưởng và tiếp tục phần độc lập. Team 1/Team 2 chỉ là nguồn dữ liệu/interface cần nhận, không thuộc phạm vi triển khai của file này.
 
 ## 2. Yêu cầu tuần 2
 
@@ -28,27 +29,34 @@ Contract đã thống nhất trong `contracts/` là nguồn chính thức cho en
 
 ### Quy tắc tích hợp
 
-- Query: `POST /api/v1/query`; health: `GET /api/v1/health`; document: `GET /api/v1/documents/{document_id}/articles/{article_id}`, theo contract áp dụng.
-- Health trả `200 {"status":"up"}`. Query trả `200` cho cả hai trạng thái nghiệp vụ; thiếu/null/blank `question` hoặc ID sai trả `400 INVALID_REQUEST`. Document fixture tồn tại trả `200`; ID hợp lệ nhưng không có dữ liệu trả `404` theo mã document/article của contract. Lỗi hệ thống dùng HTTP/error envelope riêng. Nếu contract đã chốt khác các ví dụ này, cập nhật spec trước khi coding phần liên quan.
-- Tạo mới bỏ/null `conversation_id`; hỏi tiếp giữ ID Backend trả; chọn hội thoại mới bỏ ID cũ. `client_request_id` và hành vi gửi lại theo contract.
-- Tuần 2 kiểm tra nhận/trả ID trong demo; chưa yêu cầu đầy đủ lịch sử, chống trùng đồng thời, transaction hay đối soát pending. Hành vi nào chưa mô phỏng phải được ghi rõ; không thay public schema. Nếu dùng bộ nhớ tạm, ghi rõ mất dữ liệu sau restart. Không coi mock là đã có AI hiểu ngữ cảnh thật.
-- Citation fixture và document fixture phải dùng ID nhất quán. UI phải nhận diện chế độ mock; dữ liệu mẫu không phải tư vấn pháp luật thật.
-- Ground Truth theo phạm vi corpus nhóm chốt, dùng nguồn/metadata thật, không lấy từ response mock và không tự tạo `chunk_id`. Người được nhóm chỉ định review nguồn/đáp án. Chưa có format thì chỉ bàn giao draft; chưa được tính là GT hoàn thành. Mapping chunk có thể chờ nếu schema cho phép và nhóm chấp thuận. 30–50 câu là mục tiêu dataset chung, không phải chỉ tiêu riêng Team 3.
+Endpoint, DTO, citation, HTTP/code/retryable và luồng hội thoại dùng [API Team 3](team3.md#api);
+không lặp lại schema ở đây. Mỗi task dẫn đúng nguồn áp dụng; API hiện hữu không tự là bằng chứng phê duyệt.
+
+- Tuần 2 kiểm tra tạo hội thoại, hỏi tiếp và bắt đầu mới theo ID trong API. Chưa yêu cầu
+  đầy đủ history AI, chống trùng đồng thời, transaction hay đối soát pending.
+- Mock được nhận diện rõ, citation/document cùng ID và phiên bản; dữ liệu trong bộ nhớ mất
+  sau restart. Mock không chứng minh AI hiểu ngữ cảnh và không là nguồn luật/GT thật.
+- Fixture có hai kết quả nghiệp vụ và lỗi hệ thống tách riêng theo Team 3. Cách chọn
+  scenario T02 ở [quickstart](../../specs/002-t02-mock-api/quickstart.md), không thêm field ngoài contract.
+- Ground Truth dùng corpus nhóm chốt, nguồn/metadata thật và reviewer nhóm chỉ định;
+  không lấy response mock, không tự tạo chunk_id. Chưa có format thì chỉ là draft.
+  Mapping chunk chỉ được chờ nếu schema cho phép và nhóm chấp thuận. 30–50 câu là mục tiêu
+  dataset chung, không phải chỉ tiêu riêng Team 3.
 
 ## 3. Task và phân công
 
-| Task | Phụ trách | Kết quả |
-|---|---|---|
-| T01 | Tuấn — Backend/API | Đối chiếu code và contract; hoàn thiện dependency, mock mode, cấu hình/CORS và lỗi |
-| T02 | Tuấn — Backend/API | Hoàn thiện DTO, query/document mock và fixture cho các trạng thái |
-| T03 | Thành viên phụ trách UI | Hoàn thiện Router, styling, Chat/Search và Document Viewer |
-| T04 | Hai thành viên | Nối API client FE với BE mock; kiểm tra response và xử lý lỗi |
-| T05 | Team 3 | Soạn, review và bàn giao 5–10 câu hỏi + Ground Truth |
-| T06 | Hai thành viên | Ghi runtime, contract áp dụng, cấu hình, lệnh chạy/build, scenario mock, giới hạn và bằng chứng nghiệm thu |
+| Task | Phụ trách | Phạm vi | Trạng thái và bàn giao |
+| --- | --- | --- | --- |
+| T01 | Tuấn — Backend/API | Code/contract, dependency, mock mode, cấu hình/CORS và lỗi chung | Kiểm chứng local; [spec](../../specs/001-t01-backend-foundation/spec.md), [verification](../../specs/001-t01-backend-foundation/verification.md) |
+| T02 | Tuấn — Backend/API | DTO, query/document mock và fixture cho các trạng thái | Kiểm chứng local; [spec](../../specs/002-t02-mock-api/spec.md), [verification](../../specs/002-t02-mock-api/verification.md) |
+| T03 | Thành viên phụ trách UI | Router, styling, Chat/Search và Document Viewer | Chưa có bằng chứng nghiệm thu task đầy đủ; trang thử Backend không thay T03 |
+| T04 | Hai thành viên | API client FE–BE mock và kiểm tra response/lỗi | Chưa có bằng chứng nghiệm thu luồng UI đầy đủ |
+| T05 | Team 3 | Soạn, review và bàn giao 5–10 câu hỏi + Ground Truth | Chưa có bộ GT đã review trong bàn giao này |
+| T06 | Hai thành viên | Runtime, cấu hình, lệnh chạy/build, scenario, giới hạn và bằng chứng | T01/T02 có tài liệu; còn kiểm chứng chạy lại và bàn giao các phần khác của tuần 2 |
 
 T02 và T03 có thể làm song song sau khi thống nhất contract/fixture; T04 cần cả hai sẵn sàng. T05 thực hiện song song khi có format và nguồn.
 
-Kết quả triển khai T01 và đối chiếu contract ngày 07/10/2026: [Nền tảng Backend/API và bằng chứng kiểm tra](t01-backend-foundation.md). Phần cấu hình/CORS/lỗi đã kiểm tra; chênh lệch contract được ghi rõ để làm rõ trước T02. Các task còn lại chưa được nghiệm thu bằng kết quả T01.
+Kết quả T01/T02 là kiểm chứng local trong phạm vi task. Các AC tuần 2 dưới đây gồm cả FE, tích hợp và GT; không tự đánh dấu toàn bộ PASS từ build Backend hoặc từ trang thử tạm.
 
 ## 4. Tiêu chí nghiệm thu
 

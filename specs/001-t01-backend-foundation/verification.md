@@ -1,13 +1,30 @@
-# T01 — Nền tảng Backend/API
+# T01 — Kết quả kiểm chứng và bàn giao nền tảng Backend
 
-**Phụ trách:** Tuấn. **Bằng chứng lịch sử:** 07/10/2026. **Kiểm chứng spec riêng:** 09/10/2026.  
-**Spec:** [Team 3 tuần 2 v1.2](team3-week2-spec.md); [spec T01 riêng](../../specs/001-t01-backend-foundation/spec.md), [plan](../../specs/001-t01-backend-foundation/plan.md), [tasks](../../specs/001-t01-backend-foundation/tasks.md).  
-**Nhánh:** `feature/team3/tuan`. **Commit nền khi triển khai:** `bb1bb26017d2c90578635a29ad625e502dee09b6`. Các thay đổi T01 chưa có commit riêng.
+**Nhóm / phụ trách:** Team 3 / Tuấn. **Task:** T01.
+**Kết quả:** 23/23 task, 8/8 AC đã kiểm chứng local ngày 09/10/2026; chưa thay nghiệm thu nhóm.
+**Yêu cầu:** [spec.md](spec.md). **Tái hiện kiểm tra:** [quickstart.md](quickstart.md).
+**Nguồn API:** [Team 3 v1.2](../../docs/team3_fullstack/team3.md); phạm vi từ
+[kế hoạch tuần 2](../../docs/team3_fullstack/team3-week2-spec.md).
 
-**Đính chính nguồn yêu cầu ngày 2026-10-09:** Tuấn xác nhận [team3.md](team3.md) là tài liệu
-gốc đã được Team 3 thống nhất, dùng làm căn cứ API, luồng và kiến trúc. Spec tuần 2 xác định
-phạm vi T01 từ nhiệm vụ Jira và tài liệu đầu vào. Báo cáo này do Codex sinh để ghi triển khai,
-không có quyền thay đổi trạng thái phê duyệt yêu cầu hoặc tự nghiệm thu spec T01 riêng.
+## Bàn giao cho thành viên và AI khác
+
+- Backend tiếp tục Spring Boot/Maven/Java25, profile mock không cần AI hoặc DB.
+- Cấu hình Q2 theo từng key; CORS theo danh sách origin; lỗi HTTP/JSON/trace đã kiểm tra.
+  RuntimeException sau accept giữ conversation ID, lưu failed và trả thông báo an toàn.
+- Không đổi public schema, triển khai persistence, HTTP AiClient hoặc UI trong T01.
+  T02 kế thừa nền này; kết quả regression T02 nằm ở [verification T02](../002-t02-mock-api/verification.md).
+- Log gốc nằm dưới team3_fullstack/backend/target/t01/ được ignore, chỉ có trên máy kiểm chứng.
+  Thành viên khác dùng quickstart để tự chạy; không coi báo cáo hoặc class tồn tại là bằng chứng mới.
+
+| Mốc | Commit / nguồn |
+| --- | --- |
+| Lúc kiểm chứng | bb1bb26017d2c90578635a29ad625e502dee09b6 + working tree chưa commit, như log gốc |
+| Bàn giao code | 594e24a (nền/config), d6d1055 (test T01 và guard T02 cùng file) |
+| Bàn giao tài liệu | d15aa51 (specs), 530710e (báo cáo trước khi chuyển về specs/) |
+
+Commit bàn giao có thêm phần T02; không gán kết quả 25 test T01 cho một lần chạy trên commit
+cuối. Việc tổ chức lại tài liệu không chạy lại build/test hoặc thay trạng thái phê duyệt.
+Các phần dưới giữ riêng lịch sử 07/10 và kiểm chứng spec 09/10.
 
 ## 1. Phạm vi và kết quả lịch sử ngày 07/10/2026
 
@@ -26,18 +43,18 @@ Các file triển khai mới/sửa trong T01: `backend/pom.xml`, `backend/.env.e
 ## 2. Contract đã đối chiếu
 
 Nguồn trên nhánh hiện tại đã đối chiếu; ngày 2026-10-09 đính chính vai trò tài liệu theo
-xác nhận của Tuấn. Nội dung chưa commit trong working tree không được gán toàn bộ cho commit nền.
+xác nhận của Tuấn. Tại thời điểm kiểm chứng, nội dung working tree chưa commit không được gán toàn bộ cho commit nền; commit bàn giao hiện được ghi ở bảng trên.
 
 | Nguồn | Nội dung / kết luận |
 | --- | --- |
 | [`contracts/README.md`](../../contracts/README.md) | `contracts/` chỉ có README; dẫn tới tài liệu và schema Team 2, không có JSON Schema trong thư mục. Nhãn proposal của tài liệu được dẫn không phủ nhận tài liệu Team 3 đã thống nhất |
-| [`docs/team3_fullstack/team3.md`](team3.md) | Tài liệu gốc v1.2 đã được Team 3 thống nhất theo Tuấn; căn cứ API, luồng, kiến trúc; mục 1.10 quy định envelope/mã/HTTP/retryable |
-| [Spec tuần 2](team3-week2-spec.md) | Xác định phạm vi T01; không thay thế tài liệu gốc cho API/luồng/kiến trúc |
-| [`request.schema.json`](../team2_rag/schemas/request.schema.json) | Chỉ question, maxLength=10000, additionalProperties=false; khác Team 3 mục 1.6 yêu cầu client_request_id UUID v4, conversation_id tùy chọn/null và question 1–2000 code point sau trim |
-| [`rag_response.schema.json`](../team2_rag/schemas/rag_response.schema.json) | Chỉ answer/citations, additionalProperties=false; thiếu status nội bộ theo Team 3 mục 1.9. Schema được dẫn cho public query nhưng không mô tả ID/thời gian do Backend bổ sung ở mục 1.6 |
-| [`citation.schema.json`](../team2_rag/schemas/citation.schema.json) | Dùng claim/chunk_id/document/article/clause/source; khác 9 field tại Team 3 mục 1.7, thiếu citation_id/document_id/article_id/document_title/point/source_url và ràng buộc URL HTTPS |
-| [`error_response.schema.json`](../team2_rag/schemas/error_response.schema.json) | Envelope code/message/retryable khớp; không quy định bảng HTTP/public code/retryable theo từng lỗi. Ví dụ PROVIDER_TIMEOUT khác mã public UPSTREAM_TIMEOUT của Team 3 mục 1.10 |
-| History, health, article và [`retrieval_output.schema.json`](../team2_rag/schemas/retrieval_output.schema.json) | Schema được dẫn chưa biểu diễn history/health/article theo mục 1.8/1.9; candidate retrieval dùng 7 field, khác 12 field tại mục 1.9.1, thiếu các ID/version/metadata/order liên quan |
+| [`docs/team3_fullstack/team3.md`](../../docs/team3_fullstack/team3.md) | Tài liệu gốc v1.2 đã được Team 3 thống nhất theo Tuấn; căn cứ API, luồng, kiến trúc; mục 1.10 quy định envelope/mã/HTTP/retryable |
+| [Spec tuần 2](../../docs/team3_fullstack/team3-week2-spec.md) | Xác định phạm vi T01; không thay thế tài liệu gốc cho API/luồng/kiến trúc |
+| [`request.schema.json`](../../docs/team2_rag/schemas/request.schema.json) | Chỉ question, maxLength=10000, additionalProperties=false; khác Team 3 mục 1.6 yêu cầu client_request_id UUID v4, conversation_id tùy chọn/null và question 1–2000 code point sau trim |
+| [`rag_response.schema.json`](../../docs/team2_rag/schemas/rag_response.schema.json) | Chỉ answer/citations, additionalProperties=false; thiếu status nội bộ theo Team 3 mục 1.9. Schema được dẫn cho public query nhưng không mô tả ID/thời gian do Backend bổ sung ở mục 1.6 |
+| [`citation.schema.json`](../../docs/team2_rag/schemas/citation.schema.json) | Dùng claim/chunk_id/document/article/clause/source; khác 9 field tại Team 3 mục 1.7, thiếu citation_id/document_id/article_id/document_title/point/source_url và ràng buộc URL HTTPS |
+| [`error_response.schema.json`](../../docs/team2_rag/schemas/error_response.schema.json) | Envelope code/message/retryable khớp; không quy định bảng HTTP/public code/retryable theo từng lỗi. Ví dụ PROVIDER_TIMEOUT khác mã public UPSTREAM_TIMEOUT của Team 3 mục 1.10 |
+| History, health, article và [`retrieval_output.schema.json`](../../docs/team2_rag/schemas/retrieval_output.schema.json) | Schema được dẫn chưa biểu diễn history/health/article theo mục 1.8/1.9; candidate retrieval dùng 7 field, khác 12 field tại mục 1.9.1, thiếu các ID/version/metadata/order liên quan |
 
 **Căn cứ của T01:** áp dụng health, header và lỗi theo `team3.md` trong phạm vi spec tuần 2.
 Error envelope và HTTP/public code lấy từ yêu cầu Team 3 đã thống nhất, không lấy sự hiện hữu
@@ -48,78 +65,16 @@ schema dùng chung trong lượt đính chính này.
 biểu diễn đầy đủ yêu cầu Team 3 nêu trên. Ghi nhận để Team 1/Team 2/Team 3 phối hợp ở T02 hoặc
 bước tích hợp liên quan; không yêu cầu phê duyệt lại tài liệu gốc Team 3 để tiếp tục T01.
 Ngày 2026-10-09, Tuấn đã quyết định Q2: tham số chạy > biến terminal > `.env` > mặc định;
-runner còn cần sửa tại vòng clarify/plan. Việc triển khai và kiểm chứng mới theo [spec T01](../../specs/001-t01-backend-foundation/spec.md) được ghi ở mục 6, tách khỏi kết quả lịch sử.
+ở thời điểm clarify/plan runner cần sửa; kết quả triển khai đã đạt được ghi ở mục 6. Việc triển khai và kiểm chứng mới theo [spec T01](spec.md) được ghi ở mục 6, tách khỏi kết quả lịch sử.
 Q3 cũng đã chốt: nghiệm thu origin được phép/ngoài danh sách theo AC-02, không bắt buộc
 body JSON 403. 406/NOT_ACCEPTABLE là hành vi hiện có, không phải contract/tiêu chí nghiệm
 thu T01 và không bị xóa/đổi xử lý vì lý do đó. Các kết quả lịch sử không chứng minh việc
 triển khai các quyết định mới đã hoàn thành.
 
-## 3. Chạy Backend local
+## 3. Hướng dẫn tái hiện
 
-Thực hiện từ gốc repo trên Windows PowerShell:
-
-```powershell
-Set-Location .\team3_fullstack\backend
-$env:JAVA_HOME = 'D:\Java\jdk-25' # Đổi nếu JDK 25 trên máy nằm ở đường dẫn khác.
-& (Join-Path $env:JAVA_HOME 'bin\javac.exe') -version
-```
-
-Nếu chưa có `.env`, tạo từ mẫu rồi điền đường dẫn JDK 25 thực tế:
-
-```powershell
-if (!(Test-Path -LiteralPath .env)) {
-    Copy-Item -LiteralPath .env.example -Destination .env
-}
-```
-
-Ví dụ máy đã kiểm tra: `JAVA_HOME=D:/Java/jdk-25`. JDK trên PATH có thể khác JDK Maven dùng; runner kiểm tra javac trong JAVA_HOME phải là phiên bản 25. Spring Boot không tự đọc `.env`; `run-local.ps1` nạp file này vào tiến trình trước khi gọi Maven, rồi khôi phục các biến đã nạp khi kết thúc.
-
-```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File .\run-local.ps1
-```
-
-Backend mặc định ở `http://localhost:8080`; Ctrl+C để dừng. Lần đầu Maven Wrapper cần mạng để tải Maven/dependency. Nếu đã cài Maven, có thể thêm `-Maven mvn.cmd`.
-
-Nếu cổng 8080 đang được sử dụng, chạy ở cổng khác:
-
-```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File .\run-local.ps1 -Port 8081
-```
-
-Chọn file cấu hình khác hoặc origin khác mà không sửa `.env`:
-
-```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File .\run-local.ps1 `
-    -EnvFile .env -Port 8081 -AllowedOrigins 'http://localhost:5173,http://127.0.0.1:5173'
-```
-
-**Thứ tự đã triển khai và kiểm chứng theo Q2:** `-Port`/`-AllowedOrigins` được truyền rõ →
-biến terminal → file `.env` → mặc định Spring. Giá trị được chọn sai/rỗng báo lỗi, không lấy
-nguồn thấp hơn để che lỗi; chỉ fallback khi nguồn vắng. Parser vẫn kiểm tra cú pháp/key file.
-Đường dẫn tương đối của `-EnvFile` tính từ Backend; file được chỉ định nhưng vắng báo lỗi,
-file `.env` mặc định vắng cho phép dùng terminal. Runner finally khôi phục env/location.
-JAVA_HOME terminal thắng giá trị trong file: máy kiểm tra có terminal JDK 24 nên phải đặt
-JDK 25 trong terminal như lệnh ở đầu mục này; không âm thầm lấy JDK 25 từ file khi terminal sai.
-Có thể dùng trực tiếp wrapper với biến terminal, ví dụ:
-
-```powershell
-$env:JAVA_HOME = 'D:\Java\jdk-25'
-$env:SPRING_PROFILES_ACTIVE = 'mock'
-$env:SERVER_PORT = '8081'
-$env:CORS_ALLOWED_ORIGINS = 'http://localhost:5173'
-$env:MOCK_ANSWER_STATUS = 'answered'
-.\mvnw.cmd spring-boot:run
-```
-
-| Biến | Giá trị / quy tắc |
-| --- | --- |
-| `JAVA_HOME` | Thư mục JDK 25 trên máy; runner cần biến này |
-| `SPRING_PROFILES_ACTIVE` | `mock`; profile khác chưa được triển khai trong runner |
-| `SERVER_PORT` | Mặc định 8080; `-Port` nhận 1–65535 |
-| `CORS_ALLOWED_ORIGINS` | Mặc định localhost/127.0.0.1 cổng 5173; danh sách origin HTTP(S) chính xác, phân tách bằng dấu phẩy, không wildcard/path |
-| `MOCK_ANSWER_STATUS` | `answered` hoặc `insufficient_context`; lựa chọn đã có từ trước T01 |
-
-`.env.example` là file mẫu đưa vào Git; `.env` chứa cấu hình của từng máy và được Git bỏ qua. Không đưa secret, node_modules hoặc target vào Git. Script đọc KEY=value, hỗ trợ giá trị bao bằng dấu nháy và không thực thi biểu thức shell.
+Cách chạy, biến môi trường, Q2 và ma trận kiểm tra được tập trung trong [quickstart.md](quickstart.md).
+Báo cáo này ghi lệnh đã thực hiện và kết quả; không duy trì thêm một bản hướng dẫn chạy.
 
 ## 4. Bằng chứng lịch sử ngày 07/10/2026
 
@@ -157,10 +112,10 @@ Backend vẫn là mock, dùng bộ nhớ tạm và mất dữ liệu khi restart
 Đã thực hiện T001–T023 theo thứ tự phụ thuộc trên Backend hiện có. Q1–Q3 giữ nguyên:
 `team3.md` v1.2 là nguồn đã thống nhất; ưu tiên explicit > terminal > file > defaults;
 CORS không bắt body JSON 403 và giữ nguyên handler 406 ngoài tiêu chí T01.
-Các trạng thái PASS dưới đây là **kiểm chứng local trong phạm vi T01**, không tự xác nhận
+Các trạng thái PASS của lần kiểm chứng dưới đây là **kiểm chứng local trong phạm vi T01**, không tự xác nhận
 UI, Team 2 thật, T02–T06 hoặc nghiệm thu toàn tuần 2.
 
-**Môi trường và working tree:** nhánh `feature/team3/tuan`, HEAD
+**Môi trường và working tree lúc kiểm chứng:** nhánh `feature/team3/tuan`, HEAD
 `bb1bb26017d2c90578635a29ad625e502dee09b6`; working tree có thay đổi chưa commit từ trước.
 Windows 11 amd64, Windows PowerShell 5.1.26100.9444, JDK 25.0.1 tại `D:\Java\jdk-25`,
 Maven Wrapper 3.9.16, Spring Boot 4.1.1 theo POM. Không thêm dependency, không đổi POM.
@@ -197,7 +152,7 @@ gồm BackendApplicationTests 1, BackendConfigurationTests 5, MockApiTests 16,
 MockQueryServiceTests 2, InsufficientContextApiTests 1. Harness cuối: **31/31 ca PASS**,
 bao gồm env/location restoration sau thành công và lỗi. Không dùng skipTests.
 
-Smoke theo [quickstart](../../specs/001-t01-backend-foundation/quickstart.md) chạy qua runner
+Smoke theo [quickstart](quickstart.md) chạy qua runner
 và Maven Wrapper `spring-boot:run`; helper local `backend/target/t01/SmokeValidation.ps1`
 ghi lệnh/PID và dừng đúng cây process do nó tạo, không kill theo tên java/node.
 Cổng đã kiểm tra trống trước khi chạy; các server kiểm tra đã được dừng.
@@ -211,7 +166,7 @@ Cổng đã kiểm tra trống trước khi chạy; các server kiểm tra đã 
 | AC-T01-05 | Outside origin không Allow-Origin trên actual/preflight; không bắt JSON 403 | Java tests và smoke GET/OPTIONS ngoài danh sách đạt; không assertion body JSON 403. `cors-tests.log`, `config-smoke.log` | PASS |
 | AC-T01-06 | 400/404/405+Allow/413/415 đúng code/envelope/retryable=false, không answer/status | Assertions status/code/JSON/message/trace và retryable=false đạt, 413 giữ giới hạn 16 KiB. `error-tests.log`, `final-surefire/TEST-com.legalai.backend.MockApiTests.xml` | PASS |
 | AC-T01-07 | 500/503/504 false/true/true, response an toàn; header sau tiếp nhận và probe vắng trên app thật | Probe các nhóm lỗi đạt; RuntimeException sau tiếp nhận trả 500/INTERNAL_ERROR false, X-Conversation-ID đúng hội thoại, lượt failed và không lộ sentinel/provider/stack trong response. JAR cuối không chứa test/probe; app thực GET probe 404/NOT_FOUND. `error-tests.log`, `probe-isolation.log`, `final-surefire/`, `config-smoke.log` | PASS |
-| AC-T01-08 | Hướng dẫn, nguồn, runtime/working tree, lệnh, expected/actual, log và giới hạn | Báo cáo mục 3/6 cùng tasks/evidence được đối chiếu; git diff --check đạt; kiểm tra hash/scope giữ thay đổi có sẵn. `baseline.txt`, `environment.txt`, `verification.md`, `scope-review.json` | PASS |
+| AC-T01-08 | Hướng dẫn, nguồn, runtime/working tree, lệnh, expected/actual, log và giới hạn | Quickstart và báo cáo mục 6 cùng tasks/evidence được đối chiếu; git diff --check đạt; kiểm tra hash/scope giữ thay đổi có sẵn. `baseline.txt`, `environment.txt`, `verification.md`, `scope-review.json` | PASS |
 
 Mọi log/output nêu trong bảng nằm tại `team3_fullstack/backend/target/t01/`, được Git bỏ qua.
 Surefire hiện tại tại `backend/target/surefire-reports/`; bản lưu cuối tại `target/t01/final-surefire/`.
@@ -230,4 +185,4 @@ không dùng nghiệm thu. Chỉ log/báo cáo PASS cuối được dùng ở b�
 DB persistence, UI hoặc scenario lỗi public cho demo T02. Không còn bước T01 chưa chạy
 trong phạm vi tasks. Checklist chất lượng spec vẫn 14/16: hai mục giữ chi tiết API/kiến trúc
 là ngoại lệ đã ghi trong plan; không sửa marker checklist trong implement. Các kết quả local
-vẫn cần nhóm review theo workflow; không có commit/push/merge trong vòng này.
+vẫn cần nhóm review theo workflow; vòng kiểm chứng gốc không tự commit/push/merge; Tuấn đã tạo các commit bàn giao ở bảng trên. Chưa xác nhận PR/merge hoặc nghiệm thu nhóm.

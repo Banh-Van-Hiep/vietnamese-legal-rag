@@ -1,9 +1,10 @@
 # Feature Specification: Task02 — API mock query/document và fixture Team 3
 
 **Feature Branch**: feature/team3/tuan
+**Nhóm / phụ trách / task**: Team 3 / Tuấn / T02.
 **Feature Directory**: specs/002-t02-mock-api
 **Created**: 2026-10-09
-**Status**: Implemented và kiểm chứng local ngày 2026-10-09: 8/8 AC PASS, wrapper package 74 tests, runner 37 cases, HTTP matrix 8 records. Quyết định CL-T02-01/02 do Codex chọn theo ủy quyền, chờ Tuấn review; không thay nghiệm thu nhóm. Xem [báo cáo T02](../../docs/team3_fullstack/t02-mock-api.md).
+**Status**: Implemented và kiểm chứng local ngày 2026-10-09: 8/8 AC PASS, wrapper package 74 tests, runner 37 cases, HTTP matrix 8 records. Quyết định CL-T02-01/02 do Codex chọn theo ủy quyền, chờ Tuấn review; không thay nghiệm thu nhóm. Xem [báo cáo T02](verification.md).
 **Input**: T02 của Tuấn từ spec tuần 2, API/luồng/kiến trúc Team 3 đã thống nhất,
 nền T01 và code Backend hiện có. Giữ nhánh/diff; chưa sửa code ở bước specify.
 
@@ -124,8 +125,8 @@ hiện có được bảo toàn và dùng kiểm tra cần thiết, không mở 
 | [team3.md v1.2](../../docs/team3_fullstack/team3.md), 1.1/1.6/1.7/1.8/1.10 | API/luồng/kiến trúc đã thống nhất theo Q1 và yêu cầu hiện tại |
 | [Spec tuần 2 v1.2](../../docs/team3_fullstack/team3-week2-spec.md), BE-03, T02, AC-03/05/06 | Giới hạn task; phần UI không chuyển vào Backend |
 | [T01](../001-t01-backend-foundation/spec.md), [plan](../001-t01-backend-foundation/plan.md), [tasks](../001-t01-backend-foundation/tasks.md) | Nền local đã kiểm chứng; Q1–Q3 giữ nguyên |
-| [Constitution 1.0.0](../../.specify/memory/constitution.md) | Tương thích, ranh giới team, kiến trúc hiện có, kiểm chứng; ngày phê chuẩn còn TODO |
-| Code/test, [báo cáo T01](../../docs/team3_fullstack/t01-backend-foundation.md) | Quan sát/bằng chứng, không tự định nghĩa yêu cầu hoặc nghiệm thu T02 |
+| Constitution 1.0.0 (nguồn local tại lúc lập spec) | Tương thích, ranh giới team, kiến trúc hiện có, kiểm chứng; ngày phê chuẩn còn TODO. Công cụ local không là dependency của bộ tài liệu chia sẻ; xem [specs README](../README.md) |
+| Code/test, [báo cáo T01](../001-t01-backend-foundation/verification.md) | Quan sát/bằng chứng, không tự định nghĩa yêu cầu hoặc nghiệm thu T02 |
 
 Không tìm thấy AGENTS.md trong repository/các thư mục cha đã kiểm tra; dùng README,
 constitution và skill. Giữ công nghệ/package/AiClient hiện có; không runtime/test framework
@@ -238,7 +239,7 @@ fixture hữu hạn bàn giao, không corpus thật.
 
 ### Tiêu chí nghiệm thu
 
-Lượt specify chưa đánh giá AC; sau implement, cả 8 AC đã PASS bằng kiểm chứng mới trong [báo cáo T02](../../docs/team3_fullstack/t02-mock-api.md). T01 PASS không tự nghiệm thu T02.
+Lượt specify chưa đánh giá AC; sau implement, cả 8 AC đã PASS bằng kiểm chứng mới trong [báo cáo T02](verification.md). T01 PASS không tự nghiệm thu T02.
 
 | AC | Kiểm tra và kết quả | Truy vết |
 | --- | --- | --- |
@@ -275,7 +276,7 @@ quickstart T01 được đính chính tài liệu.
 
 ### Khác biệt tài liệu và phụ thuộc tối thiểu
 
-- Tuần 2 nói contracts/ là nguồn chính thức; Team 3 còn nhãn đề xuất/class khung.
+- Tại lúc specify, file tuần 2 nói contracts/ là nguồn chính thức; Team 3 còn nhãn đề xuất/class khung. Khi tổ chức lại tài liệu ngày 09/10/2026, các nhãn này đã được làm rõ theo Q1; phần dưới lưu đối chiếu lịch sử.
   Q1 và yêu cầu hiện tại xác nhận team3.md là căn cứ API/luồng/kiến trúc, tuần 2 giới hạn task.
   Nhãn cũ không mở lại phê duyệt.
 - contracts/README dẫn schema Team 2: request chỉ question max10000/additionalProperties=false,

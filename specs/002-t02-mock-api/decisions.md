@@ -15,5 +15,5 @@ quyết định dưới đây do Codex chọn, không tự gọi là phê duyệ
 Không thay Q1–Q3 T01, shared schema, công nghệ hoặc frontend/team khác. Các thay đổi
 đặc biệt quan trọng được ghi ở đây và báo cáo T02; Tuấn review sau khi quay lại.
 Đã implement và kiểm chứng local theo các lựa chọn này: wrapper package74 tests,
-runner37 cases, HTTP8 records PASS. Xem [báo cáo T02](../../docs/team3_fullstack/t02-mock-api.md);
+runner37 cases, HTTP8 records PASS. Xem [báo cáo T02](verification.md);
 không còn lựa chọn chặn công việc. Đây không phải biên bản nhóm phê duyệt.

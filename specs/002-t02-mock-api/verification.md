@@ -1,21 +1,42 @@
-# T02 — API mock query/document: kết quả triển khai
+# T02 — Kết quả kiểm chứng và bàn giao API mock
 
-**Ngày:** 2026-10-09 (Asia/Saigon). **Kết quả:** hoàn thành triển khai và kiểm chứng local T02;
-8/8 AC đạt, 18/18 task sau review cuối. Đây là kết quả kỹ thuật local, không thay biên bản nghiệm thu nhóm.
-**Feature:** [specs/002-t02-mock-api/](../../specs/002-t02-mock-api/spec.md).
-Nhánh thực giữ feature/team3/tuan, HEAD bb1bb26017d2c90578635a29ad625e502dee09b6; không commit/push.
+**Nhóm / phụ trách:** Team 3 / Tuấn. **Task:** T02.
+**Kết quả:** 18/18 task, 8/8 AC đã kiểm chứng local ngày 09/10/2026; chưa thay nghiệm thu nhóm.
+**Yêu cầu:** [spec.md](spec.md). **Tái hiện kiểm tra:** [quickstart.md](quickstart.md).
+**Nguồn API:** [Team 3 v1.2](../../docs/team3_fullstack/team3.md); phạm vi từ
+[kế hoạch tuần 2](../../docs/team3_fullstack/team3-week2-spec.md).
+
+## Bàn giao cho thành viên và AI khác
+
+- T02 kế thừa [nền T01](../001-t01-backend-foundation/verification.md), không dựng lại Backend.
+- Query/article có selector độc lập ở cấu hình instance; giữ legacy và Q2. Đổi mode cần restart.
+  Lỗi hệ thống dùng 500/503/504; input sai vẫn400, missing tuple404. Không thêm field/endpoint chọn scenario.
+- Output sai →502 qua guard; query giữ conversation ID sau accept. Một fixture mock_v1/art1
+  chia sẻ cùng metadata/citation/source; không phải luật thật hoặc GT.
+- T03/T04 có thể dùng API/fixture này. Trang thử FE là thay đổi riêng, không nghiệm thu T03/T04.
+  Team 2 thật, DB production/auth/streaming/history AI vẫn ngoài scope.
+
+| Mốc | Commit / nguồn |
+| --- | --- |
+| Lúc kiểm chứng | bb1bb26017d2c90578635a29ad625e502dee09b6 + working tree trước commit, như log gốc |
+| Bàn giao code | 06964cd (scenario), d6d1055 (guard/API tests); runner key mới cùng nền/config 594e24a |
+| Bàn giao tài liệu | d15aa51 (specs), 530710e (báo cáo trước khi chuyển về specs/) |
+| FE thử riêng | fec29d8; 9 browser checks ở backend/target/frontend-playground/, không thuộc AC T02 |
+
+Commit được đối chiếu từ lịch sử Git local; chưa xác nhận PR/merge. Lần sắp xếp tài liệu này
+không chạy lại build/test và không gán số liệu cũ thành kiểm chứng mới.
 
 ## Nguồn và workflow
 
-[Team 3 v1.2](team3.md) là căn cứ API/luồng/kiến trúc; [tuần 2](team3-week2-spec.md)
-xác định phạm vi T02. Q1–Q3 trong [T01 spec](../../specs/001-t01-backend-foundation/spec.md) giữ nguyên.
+[Team 3 v1.2](../../docs/team3_fullstack/team3.md) là căn cứ API/luồng/kiến trúc; [tuần 2](../../docs/team3_fullstack/team3-week2-spec.md)
+xác định phạm vi T02. Q1–Q3 trong [T01 spec](../001-t01-backend-foundation/spec.md) giữ nguyên.
 T01 được kiểm tra bằng source và bằng chứng gốc (25 Java tests, 31 runner cases, 8 smoke records);
 T02 không được đánh dấu hoàn thành dựa vào báo cáo T01.
 
 Các bước được chạy riêng: specify → clarify → plan → tasks → analyze → sửa U1/C1 → implement.
-[Analysis](../../specs/002-t02-mock-api/analysis.md) ghi vấn đề và remediation trước implement.
-[Plan](../../specs/002-t02-mock-api/plan.md), [tasks](../../specs/002-t02-mock-api/tasks.md),
-[quickstart](../../specs/002-t02-mock-api/quickstart.md) và [decisions](../../specs/002-t02-mock-api/decisions.md)
+[Analysis](analysis.md) ghi vấn đề và remediation trước implement.
+[Plan](plan.md), [tasks](tasks.md),
+[quickstart](quickstart.md) và [decisions](decisions.md)
 là bộ tài liệu T02. Không AGENTS.md trong repository/các ancestor đã tìm; constitution được đọc;
 không extensions.yml/hook. Checklist spec 14/16 giữ hai ngoại lệ về chi tiết API kế thừa theo yêu cầu
 người dùng; không đổi marker của reviewer để tạo kết quả nghiệm thu.
@@ -46,11 +67,12 @@ mới đã được Team 3 phê duyệt. Đổi mode cần restart. Không còn 
 contracts/ chứa schema Team 2 khác API Team 3 về question/IDs/status/citation và timeout code;
 đã ghi cụ thể trong spec/research, giữ nguyên shared schema và không triển khai upstream thật.
 
-## Kiểm chứng thực tế
+## Kiểm chứng thực tế ngày 09/10/2026
 
 Java 25.0.1 ở D:\Java\jdk-25, Maven Wrapper 3.9.16, Spring Boot 4.1.1, PowerShell 5.1.
 Chỉ đặt JAVA_HOME đúng trong tiến trình kiểm thử (terminal ban đầu kế thừa JDK24); không sửa cấu hình cá nhân.
-Các log dưới team3_fullstack/backend/target/t02/ được ignore, dùng để review local.
+Các log dưới team3_fullstack/backend/target/t02/ được ignore, chỉ có trên máy kiểm chứng.
+Bảng dưới chia sẻ expected/actual và tên evidence; người khác chạy lại qua quickstart, không phụ thuộc log local.
 
 | Bước | Kết quả và bằng chứng |
 | --- | --- |
@@ -63,10 +85,9 @@ Các log dưới team3_fullstack/backend/target/t02/ được ignore, dùng đ�
 | Production JAR | Guard có trong JAR; 0 test/probe entries; jar-review.json |
 | Cleanup | 0 owned PID còn sống; 0 listener cổng18084; process-cleanup-review.json |
 
-Lệnh build cuối từ repository root, môi trường legacy answered và hai selector mới absent:
-
-    $env:JAVA_HOME = 'D:\Java\jdk-25'
-    .\team3_fullstack\backend\run-local.ps1 -Task package -EnvFile .\team3_fullstack\backend\target\t02\build.env
+Lệnh package đã chạy qua run-local.ps1 -Task package -EnvFile target/t02/build.env,
+với JDK25, legacy answered và hai selector mới absent. Cách tạo fixture và chạy lại ở
+[quickstart.md](quickstart.md).
 
 Focused tests gọi mvnw.cmd -B -ntp -Dtest=... test; tên classes đầy đủ được ghi ở tasks/quickstart.
 Harness gọi src/test/powershell/RunLocalConfigurationTests.ps1 với JDK25.
