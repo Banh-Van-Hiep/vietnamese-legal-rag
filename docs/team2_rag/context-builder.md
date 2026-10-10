@@ -1,57 +1,27 @@
 # Context Builder
 
-## Responsibility
+## Mục tiêu và budget
 
-Context Builder nhận danh sách reranked chunks, chọn tập phù hợp với câu hỏi và giới hạn context, sắp thứ tự để dễ đọc, đồng thời nhóm các chunk theo `document` và `article` để giữ quan hệ nguồn. Đây là thiết kế; chưa có thuật toán chọn hoặc tokenizer implementation.
+Đóng gói nguồn pháp luật đủ nghĩa cho LLM, giữ nguyên nội dung và metadata từ Team 1. Không làm lại chunking, tóm tắt điều luật hoặc ghép chunk thành nguyên văn điều luật.
 
-## Proposed Selection and Ordering
+| Giới hạn khởi đầu | Giá trị |
+| --- | --- |
+| Context | Tối đa 5 chunk |
+| Budget legal context | 3000 token, gồm nội dung, metadata và nhãn nguồn |
+| Dự phòng output | 1500 token |
+| Safety margin | 256 token |
 
-1. Nhận kết quả theo thứ tự giảm dần `rerank_score`.
-2. Loại các bản ghi thiếu định danh hoặc content rỗng theo lỗi contract; không tự sửa metadata.
-3. Chọn theo độ liên quan cho tới khi đạt token/context budget. Nếu một chunk vượt phần budget còn lại, policy cắt/loại chunk cần được thống nhất và không được làm sai lệch nguồn; proposal ban đầu là bỏ qua chunk không vừa thay vì cắt nội dung pháp lý.
-4. Giữ thứ tự relevance làm thứ tự phẳng của `chunks`; gom `chunk_ids` theo `document` + `article` trong `groups` để có thể trình bày theo nguồn.
-5. Giữ nguyên `chunk_id`, `content`, `document`, `article`, `clause`, `source`, `retrieval_score` và `rerank_score` trên mỗi chunk.
+Đếm bằng tokenizer của LLM được chọn trên prompt đã serialize. Token embedding/reranker không thay thế token LLM. Budget khả dụng = min(3000, context window model − token system/question/history được gửi − output reserve − margin). Nếu phần còn lại không đủ, không gửi prompt vượt giới hạn.
 
-Tokenization phụ thuộc provider/model. `token_budget` và `estimated_tokens` là số nguyên không âm; cách tính chính xác và mức dự phòng cho prompt phải được xác nhận trong benchmark/integration.
+## Thuật toán đóng gói
 
-## Input and Output
+1. Duyệt toàn bộ pool theo thứ tự rerank, hoặc rank retrieval khi dùng baseline/fallback.
+2. Kiểm tra metadata, bỏ chunk trùng `chunk_id`; bản ghi vi phạm contract là lỗi, không tự sửa ID hoặc URL.
+3. Thử thêm nguyên chunk cùng metadata vào context và đếm lại token. Nếu vượt budget, bỏ qua chunk đó và xét chunk tiếp theo.
+4. Dừng khi đủ 5 chunk hoặc hết pool; giữ thứ tự đã chọn. Gán nhãn nguồn tạm `C1..Cn` cho lượt này.
+5. Prompt chứa mỗi nhãn, `chunk_id/document_id/article_id/document_title/article/clause/point/source_url` và `content` nguyên bản. Không cần gửi score cho LLM.
+6. Không còn nguồn đủ nghĩa thì trả `insufficient_context`; không lấy history thay nguồn.
 
-**Input:** câu hỏi và danh sách reranked results theo [`schemas/rerank_output.schema.json`](schemas/rerank_output.schema.json).
+Nguồn có thể thiếu phần mở đầu/điều kiện nếu chúng nằm ở chunk khác hoặc `context_header` không có trong retrieval payload. Không suy ra chúng từ tên điều luật; khi thiếu căn cứ quan trọng, nói rõ giới hạn hoặc hỏi thêm. Week 1 chưa đề xuất tự tải mở rộng cả điều luật.
 
-**Output:** object Context theo [`schemas/context.schema.json`](schemas/context.schema.json), gồm `question`, `token_budget`, `estimated_tokens`, thứ tự `chunks` đã chọn và `groups` tham chiếu chunk theo document/article. Không bỏ metadata nguồn khi biến context thành prompt input.
-
-## Example
-
-Ví dụ minh họa cấu trúc, không phải trích dẫn pháp luật:
-
-```json
-{
-  "question": "Người lao động được nghỉ phép bao nhiêu ngày?",
-  "token_budget": 3000,
-  "estimated_tokens": 180,
-  "chunks": [
-    {
-      "chunk_id": "chunk-example-001",
-      "content": "Example legal text supplied by the retrieval system.",
-      "document": "Example document",
-      "article": "Example article",
-      "clause": null,
-      "source": "example-source",
-      "retrieval_score": 0.72,
-      "rerank_score": 0.91,
-      "position": 1
-    }
-  ],
-  "groups": [
-    {
-      "document": "Example document",
-      "article": "Example article",
-      "chunk_ids": ["chunk-example-001"]
-    }
-  ]
-}
-```
-
-## Open Decisions
-
-Team 1 cần xác nhận field semantics/nullability và giới hạn candidate size. Team 2 cần benchmark tokenizer/budget và thống nhất xử lý chunk vượt budget trước khi triển khai.
+Đầu ra builder là context nội bộ dùng để dựng prompt; không thêm schema/API liên team. Citation chỉ được chọn từ những chunk thực sự nằm trong prompt, theo [citation-specification.md](citation-specification.md).
