@@ -1,14 +1,69 @@
 [
-  {
-    "id": "Mã định danh duy nhất (ví dụ: gold_001, gold_002...)",
-    "question": "Nhập câu hỏi thực tế bằng tiếng Việt về pháp luật doanh nghiệp",
-    "expected_status": "Nhập 'answered' nếu luật có quy định, hoặc 'insufficient_context' nếu câu hỏi ngoài corpus/thiếu căn cứ",
-    "ground_truth": "Nhập câu trả lời ngắn gọn chuẩn xác theo luật (hoặc lý do từ chối nếu thiếu căn cứ)",
-    "gold_chunk_ids": [
-      "Mã chunk tương ứng của Team 1 (ví dụ: luat-59-2020-qh14-v1__dieu-74__k3__0). Để mảng rỗng [] nếu expected_status là insufficient_context"
-    ],
-    "citation": "Tên văn bản và Điều/Khoản trích dẫn (ví dụ: Điều 74, Khoản 3 - Luật Doanh nghiệp 2020). Để chuỗi rỗng \"\" nếu insufficient_context",
-    "category": "Tên nhóm chủ đề (ví dụ: Thành lập doanh nghiệp, Loại hình doanh nghiệp, Vốn, Quản trị, Giải thể, Thiếu căn cứ...)",
-    "author": "Họ và tên thành viên đóng góp câu hỏi"
-  }
+{
+"id": "gold_001",
+"question": "Luật Doanh nghiệp quy định về những vấn đề gì?",
+"expected_status": "answered",
+"ground_truth": "Luật Doanh nghiệp quy định về việc thành lập, tổ chức quản lý, tổ chức lại, giải thể và hoạt động có liên quan của doanh nghiệp, bao gồm công ty trách nhiệm hữu hạn, công ty cổ phần, công ty hợp danh, doanh nghiệp tư nhân và nhóm công ty.",
+"gold_chunk_ids": [
+"luat-59-2020-qh14-v1__dieu-1__k0__0"
+],
+"citation": "Điều 1 - Luật Doanh nghiệp 2020",
+"category": "Phạm vi điều chỉnh",
+"author": "Bành Văn Hiệp"
+},
+{
+"id": "gold_002",
+"question": "Những ai thuộc đối tượng áp dụng của Luật Doanh nghiệp?",
+"expected_status": "answered",
+"ground_truth": "Đối tượng áp dụng gồm doanh nghiệp và cơ quan, tổ chức, cá nhân có liên quan đến việc thành lập, tổ chức quản lý, tổ chức lại, giải thể và hoạt động có liên quan của doanh nghiệp.",
+"gold_chunk_ids": [
+"luat-59-2020-qh14-v1__dieu-2__k1__0",
+"luat-59-2020-qh14-v1__dieu-2__k2__0"
+],
+"citation": "Điều 2 - Luật Doanh nghiệp 2020",
+"category": "Đối tượng áp dụng",
+"author": "Bành Văn Hiệp"
+},
+{
+"id": "gold_003",
+"question": "Theo Luật Doanh nghiệp, cổ đông là ai?",
+"expected_status": "answered",
+"ground_truth": "Cổ đông là cá nhân, tổ chức sở hữu ít nhất một cổ phần của công ty cổ phần.",
+"gold_chunk_ids": [
+"luat-59-2020-qh14-v1__dieu-4__k3__0"
+],
+"citation": "Khoản 3 Điều 4 - Luật Doanh nghiệp 2020",
+"category": "Giải thích thuật ngữ",
+"author": "Bành Văn Hiệp"
+},
+{
+"id": "gold_004",
+"question": "Vốn điều lệ của công ty trách nhiệm hữu hạn được xác định như thế nào?",
+"expected_status": "answered",
+"ground_truth": "Vốn điều lệ của công ty trách nhiệm hữu hạn là tổng giá trị tài sản do các thành viên công ty hoặc chủ sở hữu công ty đã góp hoặc cam kết góp khi thành lập công ty.",
+"gold_chunk_ids": [
+"luat-59-2020-qh14-v1__dieu-4__k34__0"
+],
+"citation": "Khoản 34 Điều 4 - Luật Doanh nghiệp 2020",
+"category": "Vốn",
+"author": "Bành Văn Hiệp"
+},
+{
+"id": "gold_005",
+"question": "Doanh nghiệp có những quyền gì theo Điều 7 Luật Doanh nghiệp?",
+"expected_status": "answered",
+"ground_truth": "Doanh nghiệp có quyền tự do kinh doanh ngành, nghề luật không cấm; tự chủ kinh doanh; lựa chọn hình thức tổ chức, ngành nghề, địa bàn, quy mô và phương thức sử dụng vốn; tìm kiếm thị trường, khách hàng, ký kết hợp đồng; xuất nhập khẩu; tuyển dụng và sử dụng lao động; ứng dụng khoa học, công nghệ và được bảo hộ quyền sở hữu trí tuệ theo quy định pháp luật.",
+"gold_chunk_ids": [
+"luat-59-2020-qh14-v1__dieu-7__k1__0",
+"luat-59-2020-qh14-v1__dieu-7__k2__0",
+"luat-59-2020-qh14-v1__dieu-7__k3__0",
+"luat-59-2020-qh14-v1__dieu-7__k4__0",
+"luat-59-2020-qh14-v1__dieu-7__k5__0",
+"luat-59-2020-qh14-v1__dieu-7__k6__0",
+"luat-59-2020-qh14-v1__dieu-7__k7__0"
+],
+"citation": "Điều 7 - Luật Doanh nghiệp 2020",
+"category": "Quyền của doanh nghiệp",
+"author": "Bành Văn Hiệp"
+}
 ]
