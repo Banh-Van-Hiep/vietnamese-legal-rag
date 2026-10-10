@@ -1,0 +1,20 @@
+{
+  "document_number": "67/VBHN-VPQH",
+  "document_type": "van_ban_hop_nhat",
+  "document_title": "Hợp nhất Luật Doanh nghiệp",
+  "issuing_authority": "Văn phòng Quốc hội",
+  "issued_date": "2025-08-15",
+  "effective_date": null,
+  "legal_status": "con_hieu_luc",
+  "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm",
+  "source_format": "html",
+  "note": "Nguồn tra cứu chính. Hợp nhất 59/2020/QH14 với 03/2022/QH15 và 76/2025/QH15. Giữ chú thích [n] ở cuối văn bản. Dòng tiêu đề Điều 119 và Điều 129 bị mất ở bản HTML nguồn nên được khôi phục theo Luật 59/2020; nội dung khoản phía dưới giữ nguyên. Cụm bị tách 'chứng k hoán' được nối lại thành 'chứng khoán'.",
+  "document_id": "vbhn-67-vbhn-vpqh-v1",
+  "fetched_at": "2026-10-09T01:40:00Z",
+  "sha256": "edefede9467e6089f344e3ce36755678c3b115ee187736437bc251c8421fde49",
+  "chars": 346311,
+  "lines": 4154,
+  "article_count": 220,
+  "first_article": "1",
+  "last_article": "3"
+}
