@@ -1,0 +1,14 @@
+[
+  {
+    "id": "Mã định danh duy nhất (ví dụ: gold_001, gold_002...)",
+    "question": "Nhập câu hỏi thực tế bằng tiếng Việt về pháp luật doanh nghiệp",
+    "expected_status": "Nhập 'answered' nếu luật có quy định, hoặc 'insufficient_context' nếu câu hỏi ngoài corpus/thiếu căn cứ",
+    "ground_truth": "Nhập câu trả lời ngắn gọn chuẩn xác theo luật (hoặc lý do từ chối nếu thiếu căn cứ)",
+    "gold_chunk_ids": [
+      "Mã chunk tương ứng của Team 1 (ví dụ: luat-59-2020-qh14-v1__dieu-74__k3__0). Để mảng rỗng [] nếu expected_status là insufficient_context"
+    ],
+    "citation": "Tên văn bản và Điều/Khoản trích dẫn (ví dụ: Điều 74, Khoản 3 - Luật Doanh nghiệp 2020). Để chuỗi rỗng \"\" nếu insufficient_context",
+    "category": "Tên nhóm chủ đề (ví dụ: Thành lập doanh nghiệp, Loại hình doanh nghiệp, Vốn, Quản trị, Giải thể, Thiếu căn cứ...)",
+    "author": "Họ và tên thành viên đóng góp câu hỏi"
+  }
+]
