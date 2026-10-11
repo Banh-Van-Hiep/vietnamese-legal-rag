@@ -1,6 +1,6 @@
 # Ground Truth của Team 3
 
-Bộ 8 mẫu hỏi đáp về Luật Doanh nghiệp, theo định dạng golden của Team 2
+Bộ hỏi đáp về Luật Doanh nghiệp, theo định dạng golden của Team 2
 (`team2_rag/data/golden/golden_phase1_30cai.json`): `id`, `question`, `expected_status`,
 `ground_truth`, `gold_chunk_ids`, `citation`, `category`, `author`.
 
@@ -8,6 +8,13 @@ Bộ 8 mẫu hỏi đáp về Luật Doanh nghiệp, theo định dạng golden 
 được reviewer nhóm chỉ định xác nhận trước khi nghiệm thu (AC-07). Chưa có xác nhận đó.
 
 ## Nội dung
+
+`team3_ground_truth.json` chứa 13 mẫu: 8 mẫu nháp ban đầu và 5 mẫu bổ sung.
+Có 12 mẫu `answered` với căn cứ và 1 mẫu `insufficient_context` không có chunk.
+VLRA-24 yêu cầu 5–10 câu mỗi thành viên, 30–50 câu cho dataset chung.
+File công khai dùng tác giả Team 3; bộ dữ liệu chưa được reviewer nhóm nghiệm thu.
+
+### Bộ nháp ban đầu — `team3_ground_truth.json`
 
 | ID | Chủ đề | Trạng thái kỳ vọng | Căn cứ |
 | --- | --- | --- | --- |
@@ -23,6 +30,24 @@ Bộ 8 mẫu hỏi đáp về Luật Doanh nghiệp, theo định dạng golden 
 Mẫu 008 kiểm tra đường "thiếu căn cứ": corpus chỉ nhắc "theo pháp luật về thuế thu nhập doanh nghiệp"
 (8 chunk), không có mức thuế suất, nên hệ thống không được nêu con số.
 
+### Mẫu bổ sung — trong `team3_ground_truth.json`
+
+| ID | Chủ đề | Căn cứ |
+| --- | --- | --- |
+| gt_t3_009 | Đặt trụ sở chính ở nước ngoài | Điều 42 |
+| gt_t3_010 | Văn phòng đại diện thực hiện kinh doanh | Khoản 2 Điều 44 |
+| gt_t3_011 | Thời hạn góp vốn và thời gian nhập khẩu tài sản | Khoản 2 Điều 47 |
+| gt_t3_012 | Chuyển nhượng vốn dẫn đến chỉ còn một thành viên | Khoản 3 Điều 52 |
+| gt_t3_013 | Doanh nghiệp tư nhân phát hành chứng khoán | Khoản 2 Điều 188 |
+
+Cả 5 mẫu dùng `expected_status = answered`, có chunk thật thuộc
+`vbhn-67-vbhn-vpqh-v1` (67/VBHN-VPQH ngày 15/08/2025). Đã đối chiếu nội dung
+các chunk tương ứng với bản Luật 59/2020/QH14 trong corpus: giống nhau ở các
+đoạn được chọn. Đây là kiểm tra theo corpus, chưa chứng minh không có thay đổi luật sau
+phiên bản này. Nguồn gốc: [Công báo](https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm).
+Trang thông tin truy cập được; tải PDF để đối chiếu độc lập ngày 12/10/2026 trả HTTP 502.
+Reviewer vẫn cần xác nhận đáp án, phiên bản áp dụng và nội dung văn bản gốc.
+
 ## Cách soạn
 
 - Đáp án lấy từ nội dung chunk trong `data/doanh-nghiep/processed/chunks.jsonl` của Team 1
@@ -35,18 +60,46 @@ Mẫu 008 kiểm tra đường "thiếu căn cứ": corpus chỉ nhắc "theo ph
 
 ## Kiểm tra
 
-```bash
-python team3_fullstack/ground_truth/validate_ground_truth.py
-# hoặc chỉ định nơi có chunks.jsonl:
-python team3_fullstack/ground_truth/validate_ground_truth.py --chunks đường/dẫn/chunks.jsonl
+Chạy **validator của Team 2** trên bộ Team 3 đã gộp, từ thư mục gốc repository:
+
+```powershell
+python -X utf8 -c "from pathlib import Path; import team2_rag.validate_golden as validator; validator.GOLDEN_FILE = Path('team3_fullstack/ground_truth/team3_ground_truth.json'); validator.validate_golden_dataset()"
 ```
 
-Script kiểm tra: đủ field, 5–10 mẫu, ID và câu hỏi không trùng (kể cả với golden Team 2), `expected_status`
-hợp lệ, mọi `gold_chunk_id` có trong corpus. Nó **không** kiểm tra đáp án đúng về pháp lý; việc đó thuộc
-về reviewer.
+`validate_golden.py` chưa có tham số CLI để chọn file: lệnh trên chỉ đổi đường dẫn
+trong tiến trình Python, không sửa script hay dữ liệu Team 2. Chạy trực tiếp
+`python team2_rag/validate_golden.py` sẽ kiểm tra bộ Team 2, không phải bộ Team 3.
+
+Validator Team 3 vẫn có giới hạn cũ **5–10 mẫu cho cả file**, nên chạy trên bộ gộp
+13 mẫu sẽ báo lỗi số lượng. Giới hạn này chưa phản ánh chỉ tiêu theo từng thành viên
+trong VLRA-24. Script được giữ nguyên trong lần gộp dữ liệu này:
+
+```powershell
+python -X utf8 team3_fullstack/ground_truth/validate_ground_truth.py
+```
+
+Validator Team 2 kiểm tra field bắt buộc, ID trùng trong file và chunk tồn tại, nhưng
+điều kiện chunk không rỗng đang kiểm tra trạng thái `answerable`, trong khi dataset dùng
+`answered`. Script cũng chưa trả exit code khác 0 khi phát hiện lỗi; phải đọc kết quả
+in ra. Validator Team 3 bổ sung kiểm tra trạng thái và chunk không rỗng cho `answered`.
+Cả hai không kiểm chứng tính đúng pháp lý của đáp án hoặc việc luật còn áp dụng hiện nay.
+
+Kết quả ngày **12/10/2026** cho `team3_ground_truth.json` sau khi gộp:
+
+- Validator Team 2: **PASS 13/13** theo thông báo kết quả, đủ field và mọi chunk ID tồn tại.
+- Validator Team 3: **FAIL**, exit code 1, chỉ vì giới hạn cũ 5–10 mẫu; thực tế có 13.
+  Script không báo lỗi field, trạng thái, ID/câu hỏi trùng hoặc mapping chunk.
+- Kiểm tra bổ sung độc lập: **PASS** cho đủ field, trạng thái và mapping cả 13 mẫu;
+  12 mẫu `answered` có chunk và 1 mẫu `insufficient_context` có căn cứ rỗng.
+  **18 ID/câu hỏi không trùng** khi gộp kiểm tra với 5 mẫu Team 2 sau chuẩn hóa
+  Unicode NFC, khoảng trắng và chữ hoa/thường. Nội dung 8 mẫu ban đầu giữ nguyên.
+- **Chưa nghiệm thu pháp lý**; kết quả trên không đánh dấu T05 hoàn thành.
 
 ## Việc còn lại
 
-- Reviewer nhóm chỉ định xác nhận từng mẫu, rồi đổi `author` sang người chịu trách nhiệm.
+- Reviewer nhóm chỉ định xác nhận từng mẫu và ghi kết quả review. Theo dõi phần đóng góp
+  từng thành viên trong bàn giao nội bộ; file công khai dùng tên nhóm.
+- Điều chỉnh giới hạn số lượng cũ của validator Team 3 theo yêu cầu VLRA-24 khi thực hiện
+  thay đổi script riêng; không dùng lỗi giới hạn này để kết luận dữ liệu sai căn cứ.
 - Team 2 xác nhận có nhận `expected_status = insufficient_context` và `gold_chunk_ids` rỗng trong định dạng golden
   (hiện bộ của họ chỉ có mẫu `answered`).

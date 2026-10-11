@@ -93,5 +93,65 @@
     "citation": "Không có căn cứ trong corpus hiện tại",
     "category": "Ngoài phạm vi corpus",
     "author": "Team 3 (bản nháp, chờ review)"
+  },
+  {
+    "id": "gt_t3_009",
+    "question": "Tôi muốn đặt trụ sở chính của doanh nghiệp ở nước ngoài thay vì Việt Nam, có được không?",
+    "expected_status": "answered",
+    "ground_truth": "Không. Theo Điều 42, trụ sở chính của doanh nghiệp phải nằm trên lãnh thổ Việt Nam. Đây là địa chỉ liên lạc của doanh nghiệp, được xác định theo địa giới đơn vị hành chính.",
+    "gold_chunk_ids": [
+      "vbhn-67-vbhn-vpqh-v1__dieu-42__k0__0"
+    ],
+    "citation": "Điều 42 - Luật Doanh nghiệp, hợp nhất tại Văn bản hợp nhất 67/VBHN-VPQH ngày 15/08/2025",
+    "category": "Trụ sở doanh nghiệp",
+    "author": "Team 3 (bản nháp, chờ review)"
+  },
+  {
+    "id": "gt_t3_010",
+    "question": "Công ty tôi muốn dùng văn phòng đại diện để thực hiện hoạt động kinh doanh của công ty, có được không?",
+    "expected_status": "answered",
+    "ground_truth": "Không. Văn phòng đại diện không có chức năng kinh doanh của doanh nghiệp. Đơn vị này thực hiện việc đại diện theo ủy quyền và bảo vệ lợi ích của doanh nghiệp.",
+    "gold_chunk_ids": [
+      "vbhn-67-vbhn-vpqh-v1__dieu-44__k2__0"
+    ],
+    "citation": "Khoản 2 Điều 44 - Luật Doanh nghiệp, hợp nhất tại Văn bản hợp nhất 67/VBHN-VPQH ngày 15/08/2025",
+    "category": "Văn phòng đại diện",
+    "author": "Team 3 (bản nháp, chờ review)"
+  },
+  {
+    "id": "gt_t3_011",
+    "question": "Tôi là thành viên công ty TNHH hai thành viên trở lên mới thành lập. Tôi phải góp đủ vốn trong bao lâu, và thời gian nhập khẩu tài sản góp vốn có tính vào thời hạn đó không?",
+    "expected_status": "answered",
+    "ground_truth": "Thành viên phải hoàn thành việc góp đủ vốn bằng đúng loại tài sản đã cam kết trong 90 ngày, tính từ ngày công ty được cấp Giấy chứng nhận đăng ký doanh nghiệp. Thời gian vận chuyển, nhập khẩu tài sản góp vốn và thời gian làm thủ tục hành chính chuyển quyền sở hữu tài sản không tính vào thời hạn này.",
+    "gold_chunk_ids": [
+      "vbhn-67-vbhn-vpqh-v1__dieu-47__k2__0"
+    ],
+    "citation": "Khoản 2 Điều 47 - Luật Doanh nghiệp, hợp nhất tại Văn bản hợp nhất 67/VBHN-VPQH ngày 15/08/2025",
+    "category": "Góp vốn công ty trách nhiệm hữu hạn",
+    "author": "Team 3 (bản nháp, chờ review)"
+  },
+  {
+    "id": "gt_t3_012",
+    "question": "Sau khi chuyển nhượng phần vốn góp, công ty TNHH hai thành viên trở lên của tôi chỉ còn một thành viên. Công ty phải chuyển sang loại hình nào và đăng ký thay đổi trong bao lâu?",
+    "expected_status": "answered",
+    "ground_truth": "Công ty phải tổ chức quản lý theo loại hình công ty TNHH một thành viên. Việc đăng ký thay đổi nội dung đăng ký doanh nghiệp phải được thực hiện trong 15 ngày, tính từ ngày hoàn thành việc chuyển nhượng.",
+    "gold_chunk_ids": [
+      "vbhn-67-vbhn-vpqh-v1__dieu-52__k3__0"
+    ],
+    "citation": "Khoản 3 Điều 52 - Luật Doanh nghiệp, hợp nhất tại Văn bản hợp nhất 67/VBHN-VPQH ngày 15/08/2025",
+    "category": "Chuyển nhượng phần vốn góp",
+    "author": "Team 3 (bản nháp, chờ review)"
+  },
+  {
+    "id": "gt_t3_013",
+    "question": "Tôi đang sở hữu doanh nghiệp tư nhân và muốn huy động vốn bằng cách phát hành chứng khoán. Loại hình doanh nghiệp này có được phát hành không?",
+    "expected_status": "answered",
+    "ground_truth": "Không. Khoản 2 Điều 188 quy định doanh nghiệp tư nhân không được phát hành chứng khoán dưới bất kỳ loại nào.",
+    "gold_chunk_ids": [
+      "vbhn-67-vbhn-vpqh-v1__dieu-188__k2__0"
+    ],
+    "citation": "Khoản 2 Điều 188 - Luật Doanh nghiệp, hợp nhất tại Văn bản hợp nhất 67/VBHN-VPQH ngày 15/08/2025",
+    "category": "Huy động vốn doanh nghiệp tư nhân",
+    "author": "Team 3 (bản nháp, chờ review)"
   }
 ]
