@@ -36,7 +36,7 @@ export default function Seal({ size = 32, withText = false, className = "" }: Pr
       </defs>
       <text className="seal__text" fill="currentColor">
         <textPath href={`#${pathId}`} textLength="256" lengthAdjust="spacing">
-          TRỢ LÝ LUẬT LAO ĐỘNG ★ LEGAL AI ★ VIỆT NAM ★
+          LUẬT DOANH NGHIỆP ★ LEGAL AI ★ VIỆT NAM ★
         </textPath>
       </text>
       <g transform="translate(42 42) scale(1.5)">

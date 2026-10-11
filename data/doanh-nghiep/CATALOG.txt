@@ -1,0 +1,55 @@
+Corpus Doanh nghiệp — bản text đã chuẩn hóa
+Cập nhật: 2026-10-09
+
+Mỗi văn bản có hai bản giống nhau:
+- data/doanh-nghiep/raw/{id}/source.txt
+- data/doanh-nghiep/interim/{id}.txt
+Metadata và sha256 nằm ở raw/{id}/fetch_info.json và registry/documents.json.
+
+Đã thu (phần lõi, khoảng một nửa nhóm văn bản liên quan):
+
+1. luat-59-2020-qh14-v1
+   Luật Doanh nghiệp 59/2020/QH14. 10 chương, Điều 1-218.
+   Bản gốc, đã hết hiệu lực một phần.
+
+2. luat-76-2025-qh15-v1
+   Luật sửa đổi, bổ sung một số điều của Luật Doanh nghiệp, 17/6/2025, hiệu lực 01/7/2025.
+
+3. vbhn-67-vbhn-vpqh-v1
+   Văn bản hợp nhất 67/VBHN-VPQH ngày 15/8/2025. Đây là bản tra cứu hiện hành,
+   đã gộp Luật 59/2020, Luật 03/2022/QH15 và Luật 76/2025/QH15.
+   Chú thích hợp nhất [1]-[54] giữ ở cuối file.
+
+4. vbhn-7566-vbhn-bkhdt-v1
+   Hợp nhất Nghị định 47/2021/NĐ-CP (quy định chi tiết Luật Doanh nghiệp)
+   với phần sửa của Nghị định 16/2023/NĐ-CP. Điều 1-35. Không gồm phụ lục biểu mẫu đã bãi bỏ.
+
+5. nd-168-2025-nd-cp-v1
+   Nghị định 168/2025/NĐ-CP về đăng ký doanh nghiệp, hiệu lực 01/7/2025.
+   Thay thế Nghị định 01/2021/NĐ-CP. Điều 1-124.
+
+6. nd-122-2021-nd-cp-dang-ky-doanh-nghiep-v1
+   Phần đăng ký doanh nghiệp của Nghị định 122/2021/NĐ-CP (xử phạt VPHC):
+   quy định chung và Điều 43-63. Không gồm đấu thầu, đầu tư công, PPP, hợp tác xã, quy hoạch.
+
+7. nd-288-2026-nd-cp-v1
+   Nghị định 288/2026/NĐ-CP ngày 21/7/2026 sửa các điều xử phạt đăng ký doanh nghiệp
+   của Nghị định 122/2021/NĐ-CP.
+
+8. tt-68-2025-tt-btc-v1
+   Thông tư 68/2025/TT-BTC, phần quy phạm Điều 1-3.
+   Phụ lục biểu mẫu trống không đưa vào. Đã được sửa bởi Thông tư 121/2026/TT-BTC.
+
+Chưa thu (nửa còn lại, đưa vào đợt sau nếu cần):
+- Luật 03/2022/QH15 (chỉ vài điều sửa Luật Doanh nghiệp; nội dung đã nằm trong VBHN 67)
+- Nghị định trái phiếu: 153/2020, 65/2022, 08/2023, 200/2026
+- Nghị định 248/2025 (tiền lương người đại diện vốn nhà nước)
+- Nghị định 16/2023 đầy đủ (doanh nghiệp quốc phòng; phần sửa NĐ 47 đã nằm trong VBHN 7566)
+- Nghị định 01/2021 (đã bị NĐ 168/2025 thay thế)
+- Thông tư 01/2021/TT-BKHĐT và 02/2023/TT-BKHĐT (đã hết hiệu lực)
+- Thông tư 121/2026/TT-BTC (sửa biểu mẫu)
+- Phụ lục biểu mẫu của Thông tư 68/2025
+
+Làm sạch đã áp dụng: NFC, xóa ký tự vô hình, bỏ menu web, bản tiếng Anh, nơi nhận,
+dòng gạch trang trí; nối cụm "chứng khoán" bị tách; khôi phục tiêu đề Điều 119 và Điều 129
+trong văn bản hợp nhất. Không sửa chính tả và không đổi nội dung quy phạm.

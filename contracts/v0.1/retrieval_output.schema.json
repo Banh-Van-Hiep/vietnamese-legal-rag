@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Retrieval Output v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "question",
+    "results"
+  ],
+  "properties": {
+    "question": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4000
+    },
+    "results": {
+      "type": "array",
+      "maxItems": 50,
+      "items": {
+        "title": "Retrieval Candidate",
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "chunk_id",
+          "document_id",
+          "article_id",
+          "content",
+          "document_title",
+          "article",
+          "clause",
+          "point",
+          "source_url",
+          "score",
+          "rank",
+          "retrieval_method"
+        ],
+        "properties": {
+          "chunk_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "document_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200,
+            "pattern": "^[A-Za-z0-9_-]+$",
+            "description": "ID bất biến theo phiên bản văn bản."
+          },
+          "article_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          },
+          "content": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 20000
+          },
+          "document_title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "article": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "clause": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "point": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "source_url": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^https://",
+            "maxLength": 2048
+          },
+          "score": {
+            "type": "number",
+            "description": "Điểm retrieval hữu hạn; không phải probability/confidence."
+          },
+          "rank": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Thứ tự chính thức; liên tục từ 1 trong results (kiểm tra bằng code)."
+          },
+          "retrieval_method": {
+            "enum": [
+              "bm25",
+              "dense",
+              "hybrid_rrf"
+            ]
+          }
+        }
+      },
+      "description": "Sắp theo rank tăng dần; [] khi retrieval thành công nhưng không có kết quả."
+    }
+  },
+  "description": "Team 1 → Team 2; khớp dữ liệu retrieval trong đặc tả Team 3 v1.2."
+}
