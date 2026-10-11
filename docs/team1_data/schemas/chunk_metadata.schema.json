@@ -1,0 +1,179 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chunk_metadata.schema.json",
+  "title": "Legal Chunk Metadata",
+  "description": "Một dòng trong data/processed/chunks.jsonl. Xem docs/team1_data/metadata-specification.md.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "chunk_id",
+    "document_id",
+    "document_key",
+    "article_id",
+    "version",
+    "document_title",
+    "document_number",
+    "document_type",
+    "issuing_authority",
+    "issued_date",
+    "effective_date",
+    "expiry_date",
+    "legal_status",
+    "source_url",
+    "part",
+    "chapter",
+    "chapter_title",
+    "section",
+    "section_title",
+    "article",
+    "article_title",
+    "clause",
+    "point",
+    "content",
+    "context_header",
+    "chunk_index",
+    "chunk_count",
+    "token_count",
+    "amended_by",
+    "amendment_notes",
+    "pipeline_version"
+  ],
+  "properties": {
+    "chunk_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "pattern": "^[A-Za-z0-9_-]+$"
+    },
+    "document_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "pattern": "^[A-Za-z0-9_-]+$"
+    },
+    "document_key": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "article_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "pattern": "^[A-Za-z0-9_-]+$"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^v[0-9]+$"
+    },
+    "document_title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500
+    },
+    "document_number": {
+      "type": "string",
+      "minLength": 1
+    },
+    "document_type": {
+      "enum": [
+        "hien_phap",
+        "bo_luat",
+        "luat",
+        "nghi_quyet",
+        "nghi_dinh",
+        "quyet_dinh",
+        "thong_tu",
+        "van_ban_hop_nhat"
+      ]
+    },
+    "issuing_authority": {
+      "type": "string",
+      "minLength": 1
+    },
+    "issued_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "effective_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "expiry_date": {
+      "anyOf": [
+        { "type": "string", "format": "date" },
+        { "type": "null" }
+      ]
+    },
+    "legal_status": {
+      "enum": [
+        "con_hieu_luc",
+        "het_hieu_luc_mot_phan",
+        "chua_co_hieu_luc",
+        "het_hieu_luc"
+      ]
+    },
+    "source_url": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https://",
+      "maxLength": 2048
+    },
+    "part": { "$ref": "#/$defs/nullableLabel" },
+    "chapter": { "$ref": "#/$defs/nullableLabel" },
+    "chapter_title": { "anyOf": [{ "type": "string", "minLength": 1 }, { "type": "null" }] },
+    "section": { "$ref": "#/$defs/nullableLabel" },
+    "section_title": { "anyOf": [{ "type": "string", "minLength": 1 }, { "type": "null" }] },
+    "article": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100
+    },
+    "article_title": {
+      "type": "string"
+    },
+    "clause": { "$ref": "#/$defs/nullableLabel" },
+    "point": { "$ref": "#/$defs/nullableLabel" },
+    "content": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 20000
+    },
+    "context_header": {
+      "type": "string",
+      "minLength": 1
+    },
+    "chunk_index": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "chunk_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "token_count": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "amended_by": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^[a-z0-9-]+$" }
+    },
+    "amendment_notes": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "pipeline_version": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "$defs": {
+    "nullableLabel": {
+      "anyOf": [
+        { "type": "string", "minLength": 1, "maxLength": 100 },
+        { "type": "null" }
+      ]
+    }
+  }
+}

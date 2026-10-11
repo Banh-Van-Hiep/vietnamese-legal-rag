@@ -1,0 +1,153 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RAG Response v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "status",
+    "answer",
+    "citations"
+  ],
+  "properties": {
+    "status": {
+      "enum": [
+        "answered",
+        "insufficient_context"
+      ]
+    },
+    "answer": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 12000
+    },
+    "citations": {
+      "type": "array",
+      "maxItems": 10,
+      "items": {
+        "title": "Citation",
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "citation_id",
+          "chunk_id",
+          "document_id",
+          "article_id",
+          "document_title",
+          "article",
+          "clause",
+          "point",
+          "source_url"
+        ],
+        "properties": {
+          "citation_id": {
+            "type": "string",
+            "pattern": "^C(?:[1-9]|10)$"
+          },
+          "chunk_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "document_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          },
+          "article_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          },
+          "document_title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "article": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "clause": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "point": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 100
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "source_url": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^https://",
+            "maxLength": 2048
+          }
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "answered"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "citations": {
+            "minItems": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "status": {
+            "const": "insufficient_context"
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "then": {
+        "properties": {
+          "citations": {
+            "maxItems": 0
+          },
+          "answer": {
+            "not": {
+              "pattern": "\\[C(?:[1-9]|10)\\]"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "description": "Team 2 → Team 3; chỉ chứa kết quả nghiệp vụ RAG theo đặc tả v1.2."
+}
