@@ -10,13 +10,17 @@ interface Props {
 
 export default function CitationList({ citations, onOpen }: Props) {
   return (
-    <details className="citations" open>
-      <summary className="citations__summary">
-        <Icon name="scale" size={16} />
+    <details className="group mt-1.5" open data-testid="citations">
+      <summary className="-ml-2 inline-flex cursor-pointer list-none items-center gap-2 rounded-lg py-1.5 pr-2.5 pl-2 text-[14px] font-semibold text-ink-700 select-none hover:bg-paper [&::-webkit-details-marker]:hidden">
+        <span className="inline-flex text-seal">
+          <Icon name="scale" size={16} />
+        </span>
         Căn cứ pháp lý ({citations.length})
-        <Icon name="chevronDown" size={15} />
+        <span className="inline-flex text-faint transition-transform duration-[160ms] group-open:rotate-180">
+          <Icon name="chevronDown" size={15} />
+        </span>
       </summary>
-      <ol className="citations__list">
+      <ol className="mt-2 flex flex-col gap-2.5">
         {citations.map((c) => (
           <li key={c.citation_id}>
             <CitationCard citation={c} onOpen={onOpen} />

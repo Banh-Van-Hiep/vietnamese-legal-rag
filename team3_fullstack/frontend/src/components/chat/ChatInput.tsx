@@ -18,7 +18,7 @@ export default function ChatInput({ onSend, sending }: Props) {
   const tooLong = length > MAX_QUESTION_LENGTH;
   const canSend = length > 0 && !tooLong && !sending;
 
-  // Tự giãn chiều cao theo nội dung, tối đa ~8 dòng (giới hạn trong CSS).
+  // Tự giãn chiều cao theo nội dung, tối đa ~8 dòng (max-h trên textarea).
   useEffect(() => {
     const el = textarea.current;
     if (!el) return;
@@ -49,8 +49,11 @@ export default function ChatInput({ onSend, sending }: Props) {
   }
 
   return (
-    <div className="composer-wrap">
-      <form className="composer" onSubmit={handleSubmit}>
+    <div className="flex-none px-6 pt-2 pb-3.5 max-[600px]:px-4">
+      <form
+        onSubmit={handleSubmit}
+        className="mx-auto max-w-[760px] rounded-2xl border border-line-strong bg-surface shadow-[0_1px_2px_rgba(18,27,46,0.04),0_6px_24px_-12px_rgba(18,27,46,0.18)] transition-colors duration-[120ms] focus-within:border-ink-700"
+      >
         <textarea
           ref={textarea}
           rows={1}
@@ -60,9 +63,15 @@ export default function ChatInput({ onSend, sending }: Props) {
           placeholder="Hỏi về Luật Doanh nghiệp, ví dụ: vốn điều lệ của công ty TNHH được xác định thế nào?"
           aria-label="Câu hỏi"
           aria-invalid={tooLong}
+          className="block max-h-[216px] w-full resize-none border-0 bg-transparent px-[18px] pt-3.5 pb-1 text-[15.5px] leading-[1.6] outline-0 placeholder:text-faint"
         />
-        <div className="composer__bar">
-          <span className={`composer__count ${tooLong ? "is-over" : ""}`} aria-live="polite">
+        <div className="flex items-center justify-between pt-1.5 pr-2 pb-2 pl-2.5">
+          <span
+            data-testid="char-count"
+            data-over={tooLong}
+            aria-live="polite"
+            className={`pl-2.5 text-[13px] ${tooLong ? "font-medium text-seal-strong" : "text-muted"}`}
+          >
             {tooLong
               ? `Câu hỏi dài quá ${MAX_QUESTION_LENGTH.toLocaleString("vi-VN")} ký tự (đang ${length.toLocaleString("vi-VN")})`
               : length > MAX_QUESTION_LENGTH * 0.9
@@ -70,16 +79,17 @@ export default function ChatInput({ onSend, sending }: Props) {
                 : ""}
           </span>
           <button
-            className="composer__send"
             type="submit"
+            data-testid="send"
             disabled={!canSend}
             aria-label={sending ? "Đang chờ câu trả lời" : "Gửi câu hỏi"}
+            className="inline-grid size-9 place-items-center rounded-[10px] bg-ink-900 text-white hover:enabled:bg-ink-700 disabled:cursor-not-allowed disabled:bg-line disabled:text-faint"
           >
             <Icon name="send" size={18} strokeWidth={2} />
           </button>
         </div>
       </form>
-      <p className="composer__note">
+      <p className="mt-2 text-center text-[12.5px] text-faint">
         Câu trả lời chỉ mang tính tham khảo, không thay thế ý kiến tư vấn của luật sư.
       </p>
     </div>

@@ -7,7 +7,8 @@ export default function MockBadge() {
   if (!isMockMode) return null;
   return (
     <span
-      className="mock-badge"
+      data-testid="mock-badge"
+      className="inline-flex flex-none items-center gap-1.5 rounded-full border border-dashed border-mock-border bg-mock-bg py-[3px] pr-2.5 pl-2 text-[12.5px] font-medium whitespace-nowrap text-mock-ink"
       title="Backend đang trả dữ liệu mẫu để kiểm thử cấu trúc. Đây không phải nội dung pháp luật thật."
     >
       <Icon name="info" size={14} />

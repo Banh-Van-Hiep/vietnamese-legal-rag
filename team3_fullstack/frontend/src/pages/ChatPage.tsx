@@ -3,7 +3,7 @@ import { useCallback, useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import ChatInput from "../components/chat/ChatInput";
 import ChatWindow from "../components/chat/ChatWindow";
-import Icon from "../components/common/Icon";
+import Notice, { noticeActionClass } from "../components/common/Notice";
 import DocumentDrawer from "../components/document/DocumentDrawer";
 import Header from "../components/layout/Header";
 import { useApp } from "../context/AppContext";
@@ -34,25 +34,27 @@ export default function ChatPage() {
     <>
       <Header title={title} />
       {chat.loadError ? (
-        <div className="chat-scroll">
-          <div className="notice notice--error notice--page" role="alert">
-            <Icon name="alert" size={18} />
-            <div>
-              <p className="notice__title">
-                {chat.loadError.notFound ? "Không tìm thấy hội thoại" : "Chưa tải được hội thoại"}
-              </p>
-              <p>
-                {chat.loadError.notFound
-                  ? "Hội thoại này đã bị xóa hoặc không còn trên máy chủ (dữ liệu thử nghiệm sẽ mất khi backend khởi động lại)."
-                  : chat.loadError.message}
-              </p>
-              {chat.loadError.notFound ? (
-                <Link className="notice__action" to="/">Bắt đầu hội thoại mới</Link>
+        <div className="flex-1 overflow-y-auto px-6 max-[600px]:px-4">
+          <Notice
+            variant="error"
+            role="alert"
+            testId="notice-page"
+            className="mx-auto mt-[12vh] max-w-[560px]"
+            title={chat.loadError.notFound ? "Không tìm thấy hội thoại" : "Chưa tải được hội thoại"}
+            action={
+              chat.loadError.notFound ? (
+                <Link className={noticeActionClass} to="/">Bắt đầu hội thoại mới</Link>
               ) : (
-                <button className="notice__action" type="button" onClick={chat.reload}>Thử lại</button>
-              )}
-            </div>
-          </div>
+                <button className={noticeActionClass} type="button" onClick={chat.reload}>Thử lại</button>
+              )
+            }
+          >
+            <p>
+              {chat.loadError.notFound
+                ? "Hội thoại này đã bị xóa hoặc không còn trên máy chủ (dữ liệu thử nghiệm sẽ mất khi backend khởi động lại)."
+                : chat.loadError.message}
+            </p>
+          </Notice>
         </div>
       ) : (
         <>

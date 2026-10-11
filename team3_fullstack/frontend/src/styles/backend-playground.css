@@ -1,3 +1,8 @@
+/* Tailwind (preflight) xóa lề của p/h1-h6, độ đậm của tiêu đề và gạch chân của liên kết. Trang thử này được dựng
+   với các giá trị mặc định của trình duyệt nên khôi phục lại ở đây. :where() có độ ưu tiên 0, các rule bên dưới vẫn thắng. */
+.backend-playground :where(p, h1, h2, h3, h4, h5, h6) { margin-block: revert; }
+.backend-playground :where(h1, h2, h3, h4, h5, h6) { font-size: revert; font-weight: revert; }
+.backend-playground :where(a) { text-decoration: revert; }
 .backend-playground { --ink: #183831; --green: #27634f; --muted: #687a73; min-height: 100vh; color: var(--ink); background: #f5f6f1; font-family: Inter, "Segoe UI", system-ui, sans-serif; }
 .backend-playground * { box-sizing: border-box; }
 .backend-playground button, .backend-playground textarea { font: inherit; }

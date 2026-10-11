@@ -2,6 +2,8 @@
 import { useState, type ReactNode } from "react";
 import type { Citation, UiMessage } from "../../types";
 import Icon from "../common/Icon";
+import IconButton from "../common/IconButton";
+import Notice, { noticeActionClass } from "../common/Notice";
 import Seal from "../common/Seal";
 import CitationList from "../citation/CitationList";
 
@@ -15,52 +17,56 @@ interface Props {
 export default function MessageBubble({ message, isLast, onRetry, onOpenCitation }: Props) {
   if (message.role === "user") {
     return (
-      <div className="msg msg--user">
-        <div className="msg__bubble">{message.content}</div>
+      <div className="flex justify-end" data-testid="msg-user">
+        <div className="max-w-[min(78%,560px)] rounded-[18px_18px_6px_18px] bg-user-bubble px-4 py-[11px] whitespace-pre-wrap">
+          {message.content}
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="msg msg--assistant">
-      <Seal size={30} className="msg__avatar" />
-      <div className="msg__body">
+    <div className="flex items-start gap-3.5 max-[600px]:gap-2.5" data-testid="msg-assistant">
+      <Seal size={30} className="mt-0.5" />
+      <div className="min-w-0 flex-1">
         {message.state === "pending" && <Pending />}
         {message.state === "failed" && message.failure && (
-          <div className="notice notice--error" role="alert">
-            <Icon name="alert" size={18} />
-            <div>
-              <p className="notice__title">Chưa nhận được câu trả lời</p>
-              <p>{message.failure.message}</p>
-              <p className="notice__meta">
-                Mã lỗi: {message.failure.code}
-                {message.failure.requestId ? ` · Mã yêu cầu: ${message.failure.requestId}` : ""}
-              </p>
-              {message.failure.retryable && isLast && (
-                <button className="notice__action" type="button" onClick={() => onRetry(message.key)}>
+          <Notice
+            variant="error"
+            role="alert"
+            testId="notice-error"
+            title="Chưa nhận được câu trả lời"
+            meta={`Mã lỗi: ${message.failure.code}${message.failure.requestId ? ` · Mã yêu cầu: ${message.failure.requestId}` : ""}`}
+            action={
+              message.failure.retryable && isLast ? (
+                <button className={noticeActionClass} type="button" onClick={() => onRetry(message.key)}>
                   Thử lại
                 </button>
-              )}
-            </div>
-          </div>
+              ) : undefined
+            }
+          >
+            <p>{message.failure.message}</p>
+          </Notice>
         )}
         {message.state === "completed" && message.answerStatus === "insufficient_context" && (
-          <div className="notice notice--info">
-            <Icon name="info" size={18} />
-            <div>
-              <p className="notice__title">Chưa đủ căn cứ để trả lời</p>
-              <p>{message.content}</p>
-              <p className="notice__meta">Thử nêu cụ thể hơn, ví dụ tên loại hình doanh nghiệp hoặc điều khoản cần hỏi.</p>
-            </div>
-          </div>
+          <Notice
+            variant="info"
+            testId="notice-info"
+            title="Chưa đủ căn cứ để trả lời"
+            meta="Thử nêu cụ thể hơn, ví dụ tên loại hình doanh nghiệp hoặc điều khoản cần hỏi."
+          >
+            <p>{message.content}</p>
+          </Notice>
         )}
         {message.state === "completed" && message.answerStatus !== "insufficient_context" && (
           <>
-            <div className="prose">{renderContent(message.content ?? "", message.citations, onOpenCitation)}</div>
+            <div className="text-[15.5px] leading-[1.7]" data-testid="answer">
+              {renderContent(message.content ?? "", message.citations, onOpenCitation)}
+            </div>
             {message.citations.length > 0 && (
               <CitationList citations={message.citations} onOpen={onOpenCitation} />
             )}
-            <div className="msg__actions">
+            <div className="mt-2.5 -ml-1.5 flex gap-0.5">
               <CopyButton text={message.content ?? ""} />
             </div>
           </>
@@ -71,9 +77,14 @@ export default function MessageBubble({ message, isLast, onRetry, onOpenCitation
 }
 
 function Pending() {
+  const dot = "size-1.5 animate-blink rounded-full bg-seal opacity-35";
   return (
-    <p className="pending" role="status">
-      <span className="pending__dots" aria-hidden="true"><i /><i /><i /></span>
+    <p className="my-1 flex items-center gap-2.5 text-muted" role="status">
+      <span className="inline-flex gap-1" aria-hidden="true">
+        <i className={dot} />
+        <i className={`${dot} [animation-delay:0.2s]`} />
+        <i className={`${dot} [animation-delay:0.4s]`} />
+      </span>
       Đang tra cứu căn cứ pháp lý…
     </p>
   );
@@ -91,9 +102,9 @@ function CopyButton({ text }: { text: string }) {
     }
   }
   return (
-    <button className="icon-btn icon-btn--sm" type="button" onClick={copy} aria-label={copied ? "Đã sao chép" : "Sao chép câu trả lời"}>
+    <IconButton size="sm" className="inline-grid" onClick={copy} aria-label={copied ? "Đã sao chép" : "Sao chép câu trả lời"}>
       <Icon name={copied ? "check" : "copy"} size={16} />
-    </button>
+    </IconButton>
   );
 }
 
@@ -104,20 +115,30 @@ function renderContent(content: string, citations: Citation[], onOpen: (c: Citat
     const lines = block.split("\n");
     if (lines.every((l) => l.startsWith("- "))) {
       return (
-        <ul key={i}>
+        <ul key={i} className="mb-3.5 list-disc pl-[22px]">
           {lines.map((l, j) => (
-            <li key={j}>{renderInline(l.slice(2), citations, onOpen)}</li>
+            <li key={j} className="mb-1 marker:text-faint">
+              {renderInline(l.slice(2), citations, onOpen)}
+            </li>
           ))}
         </ul>
       );
     }
-    return <p key={i}>{renderInline(block, citations, onOpen)}</p>;
+    // Đoạn chỉ gồm một cụm in đậm là tiêu đề của phần sau: cách đoạn trước xa hơn, sát đoạn sau hơn.
+    const isHeading = /^\*\*[^*]+\*\*$/.test(block.trim());
+    return (
+      <p key={i} className={isHeading ? "mt-[18px] mb-1.5" : "mb-3"}>
+        {renderInline(block, citations, onOpen)}
+      </p>
+    );
   });
 }
 
 function renderInline(text: string, citations: Citation[], onOpen: (c: Citation) => void): ReactNode[] {
   return text.split(/(\*\*[^*]+\*\*|\[C\d+\])/g).map((part, i) => {
-    if (part.startsWith("**") && part.endsWith("**")) return <strong key={i}>{part.slice(2, -2)}</strong>;
+    if (part.startsWith("**") && part.endsWith("**")) {
+      return <strong key={i} className="font-semibold text-ink-950">{part.slice(2, -2)}</strong>;
+    }
     const marker = part.match(/^\[(C\d+)\]$/);
     if (marker) {
       const citation = citations.find((c) => c.citation_id === marker[1]);
@@ -126,9 +147,10 @@ function renderInline(text: string, citations: Citation[], onOpen: (c: Citation)
         <button
           key={i}
           type="button"
-          className="cite-ref"
+          data-testid="cite-ref"
           onClick={() => onOpen(citation)}
           aria-label={`Mở căn cứ ${citation.citation_id}: ${citation.article}`}
+          className="ml-0.5 inline-grid h-[17px] min-w-[17px] place-items-center rounded-[4px] bg-seal-soft px-1 align-[4px] text-[11px] leading-none font-semibold text-seal-strong"
         >
           {marker[1].slice(1)}
         </button>
