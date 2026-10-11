@@ -72,7 +72,27 @@ export async function request<T>(path: string, options: RequestOptions = {}): Pr
         res.headers.get("X-Conversation-ID"),
       );
     }
-    return res.status === 204 ? (undefined as T) : ((await res.json()) as T);
+    if (res.status === 204) return undefined as T;
+    try {
+      return (await res.json()) as T;
+    } catch (error) {
+      if (signal?.aborted) throw error; // người gọi chủ động hủy
+      // Server đã trả 2xx nhưng FE không đọc được phản hồi (đứt kết nối, quá hạn chờ, body không phải JSON).
+      // Lượt hỏi có thể đã được lưu, nên đây là "chưa rõ kết quả": gửi lại phải dùng đúng client_request_id.
+      throw new ApiError(
+        timedOut
+          ? "Máy chủ chưa phản hồi kịp. Hãy thử lại."
+          : error instanceof SyntaxError
+            ? "Máy chủ trả về dữ liệu không đọc được. Hãy thử lại."
+            : "Mất kết nối khi nhận câu trả lời. Hãy thử lại.",
+        res.status,
+        timedOut ? "CLIENT_TIMEOUT" : error instanceof SyntaxError ? "INVALID_RESPONSE_BODY" : "NETWORK_ERROR",
+        true,
+        requestId,
+        res.headers.get("X-Conversation-ID"),
+        true,
+      );
+    }
   } finally {
     clearTimeout(timer);
     signal?.removeEventListener("abort", forwardAbort);

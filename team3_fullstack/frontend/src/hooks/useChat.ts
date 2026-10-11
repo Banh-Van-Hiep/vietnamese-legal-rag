@@ -1,6 +1,7 @@
 // Trạng thái một cuộc hội thoại: tải lịch sử, gửi câu hỏi, thử lại. Theo luồng ở docs/team3_fullstack/team3.md mục 2.
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ApiError } from "../api/client";
+import { canRetry, shouldReuseRequestId } from "../api/retryPolicy";
 import { sendQuery } from "../api/chatApi";
 import { createConversation, getAllMessages } from "../api/conversationApi";
 import type { Message, UiMessage } from "../types";
@@ -147,10 +148,7 @@ export function useChat({ conversationId, onConversationCreated, onChanged }: Op
     } catch (error) {
       if (myEpoch !== epoch.current) return;
       const api = error instanceof ApiError ? error : null;
-      retryInfo.current.set(assistantKey, {
-        requestId,
-        sameId: !!api && (api.outcomeUnknown || api.code === "REQUEST_IN_PROGRESS"),
-      });
+      retryInfo.current.set(assistantKey, { requestId, sameId: shouldReuseRequestId(error) });
       patch(assistantKey, (m) => ({
         ...m,
         state: "failed",
@@ -158,7 +156,7 @@ export function useChat({ conversationId, onConversationCreated, onChanged }: Op
           message: api?.message ?? "Có lỗi không mong đợi. Hãy thử lại.",
           code: api?.code ?? "UNKNOWN_ERROR",
           requestId: api?.requestId ?? null,
-          retryable: !api || api.retryable || api.outcomeUnknown,
+          retryable: canRetry(error),
         },
       }));
     } finally {
