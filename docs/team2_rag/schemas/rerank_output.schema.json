@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "rerank_output.schema.json",
+  "title": "Team 2 Reranker Output",
+  "description": "Reranked candidates with original retrieval score and separate rerank score.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["question", "results"],
+  "properties": {
+    "question": { "type": "string", "minLength": 1 },
+    "results": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/rerankedResult" }
+    }
+  },
+  "$defs": {
+    "rerankedResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["chunk_id", "content", "document", "article", "clause", "source", "retrieval_score", "rerank_score"],
+      "properties": {
+        "chunk_id": { "type": "string", "minLength": 1 },
+        "content": { "type": "string", "minLength": 1 },
+        "document": { "type": "string", "minLength": 1 },
+        "article": { "type": "string", "minLength": 1 },
+        "clause": { "type": ["string", "null"] },
+        "source": { "type": "string", "minLength": 1 },
+        "retrieval_score": { "type": "number" },
+        "rerank_score": { "type": "number" }
+      }
+    }
+  },
+  "examples": [
+    {
+      "question": "Người lao động được nghỉ phép bao nhiêu ngày?",
+      "results": [
+        {
+          "chunk_id": "chunk-example-001",
+          "content": "Example legal text supplied by the retrieval system.",
+          "document": "Example document",
+          "article": "Example article",
+          "clause": null,
+          "source": "example-source",
+          "retrieval_score": 0.72,
+          "rerank_score": 0.91
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "llm_input.schema.json",
+  "title": "LLM Input",
+  "description": "Prompt inputs separating trusted instructions from retrieved legal data.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["system_instruction", "legal_context", "user_question", "output_instruction"],
+  "properties": {
+    "system_instruction": { "type": "string", "minLength": 1 },
+    "legal_context": { "$ref": "context.schema.json" },
+    "user_question": { "type": "string", "minLength": 1 },
+    "output_instruction": { "type": "string", "minLength": 1 }
+  },
+  "examples": [
+    {
+      "system_instruction": "Answer in Vietnamese using only the supplied legal context.",
+      "legal_context": {
+        "question": "Người lao động được nghỉ phép bao nhiêu ngày?",
+        "token_budget": 3000,
+        "estimated_tokens": 180,
+        "chunks": [
+          {
+            "chunk_id": "chunk-example-001",
+            "content": "Example legal text supplied by the retrieval system.",
+            "document": "Example document",
+            "article": "Example article",
+            "clause": null,
+            "source": "example-source",
+            "retrieval_score": 0.72,
+            "rerank_score": 0.91,
+            "position": 1
+          }
+        ],
+        "groups": [
+          {
+            "document": "Example document",
+            "article": "Example article",
+            "chunk_ids": ["chunk-example-001"]
+          }
+        ]
+      },
+      "user_question": "Người lao động được nghỉ phép bao nhiêu ngày?",
+      "output_instruction": "Return answer and citations; cite only chunk IDs in legal_context."
+    }
+  ]
+}

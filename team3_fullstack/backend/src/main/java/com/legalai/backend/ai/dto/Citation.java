@@ -1,8 +1,4 @@
 package com.legalai.backend.ai.dto;
 
-/**
- * Một trích dẫn: văn bản/điều luật được dùng làm căn cứ cho câu trả lời.
- */
-public class Citation {
-
-}
+public record Citation(String citation_id, String chunk_id, String document_id, String article_id,
+        String document_title, String article, String clause, String point, String source_url) { }

@@ -9,3 +9,11 @@ venv/
 .vscode/
 .pytest_cache/
 *.log
+node_modules/
+
+# Keep Spec Kit tooling local; feature documents under specs/ are shared.
+/.specify/
+/.agents/skills/speckit-*/
+
+# Personal instructions stay local; implementation reports and specs are shared.
+/.local/

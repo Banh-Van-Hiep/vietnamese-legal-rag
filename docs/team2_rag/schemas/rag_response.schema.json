@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "rag_response.schema.json",
+  "title": "Final RAG Response",
+  "description": "Successful response from POST /api/v1/query with verified citations only.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["answer", "citations"],
+  "properties": {
+    "answer": { "type": "string", "minLength": 1 },
+    "citations": {
+      "type": "array",
+      "items": { "$ref": "citation.schema.json" }
+    }
+  },
+  "examples": [
+    {
+      "answer": "The supplied context is insufficient to answer this question.",
+      "citations": []
+    }
+  ]
+}

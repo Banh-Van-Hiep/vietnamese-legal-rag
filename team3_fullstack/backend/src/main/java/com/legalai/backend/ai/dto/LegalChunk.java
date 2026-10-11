@@ -1,7 +1,8 @@
 package com.legalai.backend.ai.dto;
 
 /**
- * Một đoạn văn bản luật (chunk) lấy từ dữ liệu của Team 1/2, dùng để xem nguyên văn.
+ * Placeholder cho candidate retrieval của Team 1/2. Một chunk không phải toàn bộ điều luật.
+ * API document viewer dùng ArticleResponse riêng.
  */
 public class LegalChunk {
 

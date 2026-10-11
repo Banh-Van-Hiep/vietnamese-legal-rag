@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "citation.schema.json",
+  "title": "Verified Citation Candidate",
+  "description": "A claim mapped to a legal context chunk and its source metadata.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["claim", "chunk_id", "document", "article", "clause", "source"],
+  "properties": {
+    "claim": { "type": "string", "minLength": 1 },
+    "chunk_id": { "type": "string", "minLength": 1 },
+    "document": { "type": "string", "minLength": 1 },
+    "article": { "type": "string", "minLength": 1 },
+    "clause": { "type": ["string", "null"] },
+    "source": { "type": "string", "minLength": 1 }
+  },
+  "examples": [
+    {
+      "claim": "Illustrative claim supported by the supplied context.",
+      "chunk_id": "chunk-example-001",
+      "document": "Example document",
+      "article": "Example article",
+      "clause": null,
+      "source": "example-source"
+    }
+  ]
+}
