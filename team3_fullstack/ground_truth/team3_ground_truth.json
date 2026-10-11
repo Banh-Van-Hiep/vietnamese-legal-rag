@@ -1,0 +1,97 @@
+[
+  {
+    "id": "gt_t3_001",
+    "question": "Công ty trách nhiệm hữu hạn hai thành viên trở lên có tối thiểu và tối đa bao nhiêu thành viên?",
+    "expected_status": "answered",
+    "ground_truth": "Công ty trách nhiệm hữu hạn hai thành viên trở lên là doanh nghiệp có từ 02 đến 50 thành viên, là tổ chức hoặc cá nhân.",
+    "gold_chunk_ids": [
+      "luat-59-2020-qh14-v1__dieu-46__k1__0"
+    ],
+    "citation": "Khoản 1 Điều 46 - Luật Doanh nghiệp 2020",
+    "category": "Công ty trách nhiệm hữu hạn",
+    "author": "Team 3 (bản nháp, chờ review)"
+  },
+  {
+    "id": "gt_t3_002",
+    "question": "Chủ sở hữu công ty trách nhiệm hữu hạn một thành viên chịu trách nhiệm về các khoản nợ của công ty trong phạm vi nào?",
+    "expected_status": "answered",
+    "ground_truth": "Chủ sở hữu công ty chịu trách nhiệm về các khoản nợ và nghĩa vụ tài sản khác của công ty trong phạm vi số vốn điều lệ của công ty.",
+    "gold_chunk_ids": [
+      "luat-59-2020-qh14-v1__dieu-74__k1__0"
+    ],
+    "citation": "Khoản 1 Điều 74 - Luật Doanh nghiệp 2020",
+    "category": "Công ty trách nhiệm hữu hạn",
+    "author": "Team 3 (bản nháp, chờ review)"
+  },
+  {
+    "id": "gt_t3_003",
+    "question": "Công ty cổ phần phải có tối thiểu bao nhiêu cổ đông?",
+    "expected_status": "answered",
+    "ground_truth": "Số lượng cổ đông tối thiểu của công ty cổ phần là 03 và không hạn chế số lượng tối đa. Cổ đông có thể là tổ chức hoặc cá nhân.",
+    "gold_chunk_ids": [
+      "luat-59-2020-qh14-v1__dieu-111__k1__0"
+    ],
+    "citation": "Điểm b khoản 1 Điều 111 - Luật Doanh nghiệp 2020",
+    "category": "Công ty cổ phần",
+    "author": "Team 3 (bản nháp, chờ review)"
+  },
+  {
+    "id": "gt_t3_004",
+    "question": "Một cá nhân có được thành lập nhiều doanh nghiệp tư nhân không?",
+    "expected_status": "answered",
+    "ground_truth": "Không. Mỗi cá nhân chỉ được quyền thành lập một doanh nghiệp tư nhân. Chủ doanh nghiệp tư nhân cũng không được đồng thời là chủ hộ kinh doanh hoặc thành viên hợp danh của công ty hợp danh.",
+    "gold_chunk_ids": [
+      "luat-59-2020-qh14-v1__dieu-188__k3__0"
+    ],
+    "citation": "Khoản 3 Điều 188 - Luật Doanh nghiệp 2020",
+    "category": "Doanh nghiệp tư nhân",
+    "author": "Team 3 (bản nháp, chờ review)"
+  },
+  {
+    "id": "gt_t3_005",
+    "question": "Thành viên hợp danh của công ty hợp danh phải là cá nhân hay tổ chức, và chịu trách nhiệm như thế nào?",
+    "expected_status": "answered",
+    "ground_truth": "Thành viên hợp danh phải là cá nhân, chịu trách nhiệm bằng toàn bộ tài sản của mình về các nghĩa vụ của công ty.",
+    "gold_chunk_ids": [
+      "luat-59-2020-qh14-v1__dieu-177__k1__0"
+    ],
+    "citation": "Điểm b khoản 1 Điều 177 - Luật Doanh nghiệp 2020",
+    "category": "Công ty hợp danh",
+    "author": "Team 3 (bản nháp, chờ review)"
+  },
+  {
+    "id": "gt_t3_006",
+    "question": "Trong tên doanh nghiệp, loại hình công ty cổ phần được viết như thế nào?",
+    "expected_status": "answered",
+    "ground_truth": "Loại hình công ty cổ phần được viết là \"công ty cổ phần\" hoặc \"công ty CP\".",
+    "gold_chunk_ids": [
+      "luat-59-2020-qh14-v1__dieu-37__k2__0"
+    ],
+    "citation": "Khoản 2 Điều 37 - Luật Doanh nghiệp 2020",
+    "category": "Tên doanh nghiệp",
+    "author": "Team 3 (bản nháp, chờ review)"
+  },
+  {
+    "id": "gt_t3_007",
+    "question": "Doanh nghiệp có được tự quyết định số lượng và hình thức con dấu không?",
+    "expected_status": "answered",
+    "ground_truth": "Có. Doanh nghiệp quyết định loại dấu, số lượng, hình thức và nội dung dấu của doanh nghiệp, chi nhánh, văn phòng đại diện và đơn vị khác của doanh nghiệp. Dấu bao gồm dấu được làm tại cơ sở khắc dấu hoặc dấu dưới hình thức chữ ký số theo quy định của pháp luật về giao dịch điện tử.",
+    "gold_chunk_ids": [
+      "luat-59-2020-qh14-v1__dieu-43__k1__0",
+      "luat-59-2020-qh14-v1__dieu-43__k2__0"
+    ],
+    "citation": "Khoản 1 và khoản 2 Điều 43 - Luật Doanh nghiệp 2020",
+    "category": "Dấu của doanh nghiệp",
+    "author": "Team 3 (bản nháp, chờ review)"
+  },
+  {
+    "id": "gt_t3_008",
+    "question": "Thuế suất thuế thu nhập doanh nghiệp phổ thông hiện nay là bao nhiêu phần trăm?",
+    "expected_status": "insufficient_context",
+    "ground_truth": "Dữ liệu hiện có (Luật Doanh nghiệp và các văn bản hướng dẫn) không quy định thuế suất thuế thu nhập doanh nghiệp, chỉ dẫn chiếu tới pháp luật về thuế. Hệ thống phải trả lời là chưa đủ căn cứ và không được nêu một con số cụ thể.",
+    "gold_chunk_ids": [],
+    "citation": "Không có căn cứ trong corpus hiện tại",
+    "category": "Ngoài phạm vi corpus",
+    "author": "Team 3 (bản nháp, chờ review)"
+  }
+]
