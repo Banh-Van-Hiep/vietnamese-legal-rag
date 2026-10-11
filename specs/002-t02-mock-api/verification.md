@@ -1,6 +1,6 @@
 # T02 — Kết quả kiểm chứng và bàn giao API mock
 
-**Nhóm / phụ trách:** Team 3 / Tuấn. **Task:** T02.
+**Nhóm / phụ trách:** Team 3 / thành viên phụ trách. **Task:** T02.
 **Kết quả:** 18/18 task, 8/8 AC đã kiểm chứng local ngày 09/10/2026; chưa thay nghiệm thu nhóm.
 **Yêu cầu:** [spec.md](spec.md). **Tái hiện kiểm tra:** [quickstart.md](quickstart.md).
 **Nguồn API:** [Team 3 v1.2](../../docs/team3_fullstack/team3.md); phạm vi từ
@@ -58,11 +58,11 @@ người dùng; không đổi marker của reviewer để tạo kết quả nghi
 - Bổ sung 47 ca guard/scenario và 2 HTTP spy tests; mở rộng assertions citation → article và GET body/query;
   runner harness thêm hai key, tổng 37 ca. Không thêm dependency hoặc sửa public DTO.
 
-## Quyết định cần Tuấn review
+## Quyết định cần thành viên phụ trách review
 
 CL-T02-01/02 và D03–D05 nằm trong decisions.md: selector qua cấu hình khởi động, document có ba mode
 lỗi, guard 502, giữ một fixture và fallback query tới property legacy đã phân giải.
-Các lựa chọn này do Codex quyết định theo ủy quyền của Tuấn ngày 2026-10-09; không tự gọi là quyết định
+Các lựa chọn này do Codex quyết định theo ủy quyền của thành viên phụ trách ngày 2026-10-09; không tự gọi là quyết định
 mới đã được Team 3 phê duyệt. Đổi mode cần restart. Không còn câu hỏi chức năng chặn implement.
 contracts/ chứa schema Team 2 khác API Team 3 về question/IDs/status/citation và timeout code;
 đã ghi cụ thể trong spec/research, giữ nguyên shared schema và không triển khai upstream thật.

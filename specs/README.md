@@ -8,8 +8,8 @@ Có spec hoặc checkbox hoàn thành không tự chứng minh yêu cầu đã �
 
 | Nhóm | Task / phụ trách | Chức năng | Trạng thái tại bàn giao | Điểm đọc |
 | --- | --- | --- | --- | --- |
-| Team 3 | T01 / Tuấn | Nền Backend, runtime/env, CORS, lỗi chung | Kiểm chứng local 23/23 tasks, 8/8 AC; chưa thay nghiệm thu nhóm | [Spec](001-t01-backend-foundation/spec.md), [bàn giao](001-t01-backend-foundation/verification.md) |
-| Team 3 | T02 / Tuấn | Query/document mock, fixture/scenario, guard output | Kiểm chứng local 18/18 tasks, 8/8 AC; lựa chọn vận hành chờ review của Tuấn | [Spec](002-t02-mock-api/spec.md), [bàn giao](002-t02-mock-api/verification.md) |
+| Team 3 | T01 / thành viên phụ trách | Nền Backend, runtime/env, CORS, lỗi chung | Kiểm chứng local 23/23 tasks, 8/8 AC; chưa thay nghiệm thu nhóm | [Spec](001-t01-backend-foundation/spec.md), [bàn giao](001-t01-backend-foundation/verification.md) |
+| Team 3 | T02 / thành viên phụ trách | Query/document mock, fixture/scenario, guard output | Kiểm chứng local 18/18 tasks, 8/8 AC; lựa chọn vận hành chờ review của thành viên phụ trách | [Spec](002-t02-mock-api/spec.md), [bàn giao](002-t02-mock-api/verification.md) |
 
 T01: 25 Java tests /31 runner cases tại vòng kiểm chứng riêng. T02: full package74 /runner37 /
 HTTP8 records, gồm regression T01; đây là kết quả ngày 09/10/2026 trước các commit bàn giao.

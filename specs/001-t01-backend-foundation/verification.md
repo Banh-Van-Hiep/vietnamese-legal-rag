@@ -1,6 +1,6 @@
 # T01 — Kết quả kiểm chứng và bàn giao nền tảng Backend
 
-**Nhóm / phụ trách:** Team 3 / Tuấn. **Task:** T01.
+**Nhóm / phụ trách:** Team 3 / thành viên phụ trách. **Task:** T01.
 **Kết quả:** 23/23 task, 8/8 AC đã kiểm chứng local ngày 09/10/2026; chưa thay nghiệm thu nhóm.
 **Yêu cầu:** [spec.md](spec.md). **Tái hiện kiểm tra:** [quickstart.md](quickstart.md).
 **Nguồn API:** [Team 3 v1.2](../../docs/team3_fullstack/team3.md); phạm vi từ
@@ -43,12 +43,12 @@ Các file triển khai mới/sửa trong T01: `backend/pom.xml`, `backend/.env.e
 ## 2. Contract đã đối chiếu
 
 Nguồn trên nhánh hiện tại đã đối chiếu; ngày 2026-10-09 đính chính vai trò tài liệu theo
-xác nhận của Tuấn. Tại thời điểm kiểm chứng, nội dung working tree chưa commit không được gán toàn bộ cho commit nền; commit bàn giao hiện được ghi ở bảng trên.
+xác nhận của thành viên phụ trách. Tại thời điểm kiểm chứng, nội dung working tree chưa commit không được gán toàn bộ cho commit nền; commit bàn giao hiện được ghi ở bảng trên.
 
 | Nguồn | Nội dung / kết luận |
 | --- | --- |
 | [`contracts/README.md`](../../contracts/README.md) | `contracts/` chỉ có README; dẫn tới tài liệu và schema Team 2, không có JSON Schema trong thư mục. Nhãn proposal của tài liệu được dẫn không phủ nhận tài liệu Team 3 đã thống nhất |
-| [`docs/team3_fullstack/team3.md`](../../docs/team3_fullstack/team3.md) | Tài liệu gốc v1.2 đã được Team 3 thống nhất theo Tuấn; căn cứ API, luồng, kiến trúc; mục 1.10 quy định envelope/mã/HTTP/retryable |
+| [`docs/team3_fullstack/team3.md`](../../docs/team3_fullstack/team3.md) | Tài liệu gốc v1.2 đã được Team 3 thống nhất theo thành viên phụ trách; căn cứ API, luồng, kiến trúc; mục 1.10 quy định envelope/mã/HTTP/retryable |
 | [Spec tuần 2](../../docs/team3_fullstack/team3-week2-spec.md) | Xác định phạm vi T01; không thay thế tài liệu gốc cho API/luồng/kiến trúc |
 | [`request.schema.json`](../../docs/team2_rag/schemas/request.schema.json) | Chỉ question, maxLength=10000, additionalProperties=false; khác Team 3 mục 1.6 yêu cầu client_request_id UUID v4, conversation_id tùy chọn/null và question 1–2000 code point sau trim |
 | [`rag_response.schema.json`](../../docs/team2_rag/schemas/rag_response.schema.json) | Chỉ answer/citations, additionalProperties=false; thiếu status nội bộ theo Team 3 mục 1.9. Schema được dẫn cho public query nhưng không mô tả ID/thời gian do Backend bổ sung ở mục 1.6 |
@@ -64,7 +64,7 @@ schema dùng chung trong lượt đính chính này.
 **Khác biệt cần phối hợp đồng bộ:** các schema/tài liệu do `contracts/README.md` dẫn tới chưa
 biểu diễn đầy đủ yêu cầu Team 3 nêu trên. Ghi nhận để Team 1/Team 2/Team 3 phối hợp ở T02 hoặc
 bước tích hợp liên quan; không yêu cầu phê duyệt lại tài liệu gốc Team 3 để tiếp tục T01.
-Ngày 2026-10-09, Tuấn đã quyết định Q2: tham số chạy > biến terminal > `.env` > mặc định;
+Ngày 2026-10-09, thành viên phụ trách đã quyết định Q2: tham số chạy > biến terminal > `.env` > mặc định;
 ở thời điểm clarify/plan runner cần sửa; kết quả triển khai đã đạt được ghi ở mục 6. Việc triển khai và kiểm chứng mới theo [spec T01](spec.md) được ghi ở mục 6, tách khỏi kết quả lịch sử.
 Q3 cũng đã chốt: nghiệm thu origin được phép/ngoài danh sách theo AC-02, không bắt buộc
 body JSON 403. 406/NOT_ACCEPTABLE là hành vi hiện có, không phải contract/tiêu chí nghiệm
@@ -115,7 +115,7 @@ CORS không bắt body JSON 403 và giữ nguyên handler 406 ngoài tiêu chí 
 Các trạng thái PASS của lần kiểm chứng dưới đây là **kiểm chứng local trong phạm vi T01**, không tự xác nhận
 UI, Team 2 thật, T02–T06 hoặc nghiệm thu toàn tuần 2.
 
-**Môi trường và working tree lúc kiểm chứng:** nhánh `feature/team3/tuan`, HEAD
+**Môi trường và working tree lúc kiểm chứng:** nhánh `feature/team3/*`, HEAD
 `bb1bb26017d2c90578635a29ad625e502dee09b6`; working tree có thay đổi chưa commit từ trước.
 Windows 11 amd64, Windows PowerShell 5.1.26100.9444, JDK 25.0.1 tại `D:\Java\jdk-25`,
 Maven Wrapper 3.9.16, Spring Boot 4.1.1 theo POM. Không thêm dependency, không đổi POM.
@@ -185,4 +185,4 @@ không dùng nghiệm thu. Chỉ log/báo cáo PASS cuối được dùng ở b�
 DB persistence, UI hoặc scenario lỗi public cho demo T02. Không còn bước T01 chưa chạy
 trong phạm vi tasks. Checklist chất lượng spec vẫn 14/16: hai mục giữ chi tiết API/kiến trúc
 là ngoại lệ đã ghi trong plan; không sửa marker checklist trong implement. Các kết quả local
-vẫn cần nhóm review theo workflow; vòng kiểm chứng gốc không tự commit/push/merge; Tuấn đã tạo các commit bàn giao ở bảng trên. Chưa xác nhận PR/merge hoặc nghiệm thu nhóm.
+vẫn cần nhóm review theo workflow; vòng kiểm chứng gốc không tự commit/push/merge; thành viên phụ trách đã tạo các commit bàn giao ở bảng trên. Chưa xác nhận PR/merge hoặc nghiệm thu nhóm.

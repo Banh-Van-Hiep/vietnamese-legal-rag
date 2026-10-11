@@ -17,8 +17,8 @@ Hướng dẫn cá nhân nằm ở .local/team3/ và không được push.
 
 | Phần | Kết quả và giới hạn | Chi tiết |
 | --- | --- | --- |
-| T01 — Tuấn | Nền Backend/env/CORS/lỗi đã kiểm chứng local; Q1–Q3 giữ nguyên | [Spec](../../specs/001-t01-backend-foundation/spec.md), [verification](../../specs/001-t01-backend-foundation/verification.md), [quickstart](../../specs/001-t01-backend-foundation/quickstart.md) |
-| T02 — Tuấn | Query/document mock, selector và guard output đã kiểm chứng local | [Spec](../../specs/002-t02-mock-api/spec.md), [verification](../../specs/002-t02-mock-api/verification.md), [quickstart](../../specs/002-t02-mock-api/quickstart.md) |
+| T01 — thành viên phụ trách | Nền Backend/env/CORS/lỗi đã kiểm chứng local; Q1–Q3 giữ nguyên | [Spec](../../specs/001-t01-backend-foundation/spec.md), [verification](../../specs/001-t01-backend-foundation/verification.md), [quickstart](../../specs/001-t01-backend-foundation/quickstart.md) |
+| T02 — thành viên phụ trách | Query/document mock, selector và guard output đã kiểm chứng local | [Spec](../../specs/002-t02-mock-api/spec.md), [verification](../../specs/002-t02-mock-api/verification.md), [quickstart](../../specs/002-t02-mock-api/quickstart.md) |
 | FE thử | Route /try-backend dùng Backend mock; build/browser9 đã kiểm tra trong vòng riêng | Commit fec29d8; không thay nghiệm thu UI T03/T04 |
 | T03–T06 | Còn UI chính thức, tích hợp, GT và bàn giao đầy đủ theo tuần 2 | [Phân công](team3-week2-spec.md#3-task-và-phân-công) |
 

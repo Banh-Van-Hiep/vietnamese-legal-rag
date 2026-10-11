@@ -5,7 +5,7 @@ hiện tại (verification.md trong spec); baseline/log gốc vẫn ghi đườn
 Snapshot lúc plan và checkbox/evidence đã kiểm chứng được giữ nguyên; không chạy lại test khi dọn tài liệu.
 
 
-**Branch**: `feature/team3/tuan` | **Date**: 2026-10-09 | **Spec**: [spec.md](spec.md)
+**Branch**: `feature/team3/*` | **Date**: 2026-10-09 | **Spec**: [spec.md](spec.md)
 
 **Input**: Feature specification `specs/001-t01-backend-foundation/spec.md`, Q1–Q3 đã làm rõ.
 
@@ -69,7 +69,7 @@ Gate đánh giá thiết kế, không phải kết quả build/test ứng dụng
 | Tái sử dụng kiến trúc | Project/POM/package/AiClient hiện có; không thêm DB/framework/test stack | PASS / PASS |
 | Kiểm chứng | Runner harness + HTTP tests + smoke + bảng AC; không tự dùng PASS lịch sử làm nghiệm thu mới | PASS / PASS |
 
-Constitution 1.0.0 còn TODO ngày phê chuẩn; plan giữ các nguyên tắc đã xác định. Q1 của Tuấn
+Constitution 1.0.0 còn TODO ngày phê chuẩn; plan giữ các nguyên tắc đã xác định. Q1 của thành viên phụ trách
 đã làm rõ vai trò team3.md, không tự diễn giải nhãn proposal cũ thành phủ nhận yêu cầu Team 3.
 Checklist spec hiện 14/16: hai mục tránh tuyệt đối chi tiết API/kiến trúc là ngoại lệ đã ghi
 do người dùng yêu cầu truy vết nguồn; không có câu hỏi chức năng mở hoặc vi phạm gate bị che.
@@ -199,7 +199,7 @@ Maven stub hoặc đọc properties làm proof runtime.
 
 ### Bảo toàn Git và rủi ro thực tế
 
-Nhánh thật là `feature/team3/tuan`, HEAD `bb1bb26017d2c90578635a29ad625e502dee09b6`.
+Nhánh thuộc `feature/team3/*`, HEAD `bb1bb26017d2c90578635a29ad625e502dee09b6`.
 Spec Kit setup trả active feature key `001-t01-backend-foundation`; không tạo/switch nhánh.
 Trước plan có 7 đường dẫn tracked dirty (gồm backend README bị xóa), nhiều tài liệu/test và
 thư mục skill/spec chưa tracked; staged diff rỗng. Nội dung trong working tree không bị gán

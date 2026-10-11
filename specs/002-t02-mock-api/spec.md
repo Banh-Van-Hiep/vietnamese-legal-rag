@@ -1,11 +1,11 @@
 # Feature Specification: Task02 — API mock query/document và fixture Team 3
 
-**Feature Branch**: feature/team3/tuan
-**Nhóm / phụ trách / task**: Team 3 / Tuấn / T02.
+**Feature Branch**: feature/team3/*
+**Nhóm / phụ trách / task**: Team 3 / thành viên phụ trách / T02.
 **Feature Directory**: specs/002-t02-mock-api
 **Created**: 2026-10-09
-**Status**: Implemented và kiểm chứng local ngày 2026-10-09: 8/8 AC PASS, wrapper package 74 tests, runner 37 cases, HTTP matrix 8 records. Quyết định CL-T02-01/02 do Codex chọn theo ủy quyền, chờ Tuấn review; không thay nghiệm thu nhóm. Xem [báo cáo T02](verification.md).
-**Input**: T02 của Tuấn từ spec tuần 2, API/luồng/kiến trúc Team 3 đã thống nhất,
+**Status**: Implemented và kiểm chứng local ngày 2026-10-09: 8/8 AC PASS, wrapper package 74 tests, runner 37 cases, HTTP matrix 8 records. Quyết định CL-T02-01/02 do Codex chọn theo ủy quyền, chờ thành viên phụ trách review; không thay nghiệm thu nhóm. Xem [báo cáo T02](verification.md).
+**Input**: T02 của thành viên phụ trách từ spec tuần 2, API/luồng/kiến trúc Team 3 đã thống nhất,
 nền T01 và code Backend hiện có. Giữ nhánh/diff; chưa sửa code ở bước specify.
 
 Không tìm thấy spec T02 riêng khi quét specs; đây là thư mục T02 duy nhất.
@@ -300,5 +300,5 @@ quickstart T01 được đính chính tài liệu.
 
 CL-T02-01/02 đã chốt theo ủy quyền và cập nhật FR/AC/flow; không còn marker cần clarify
 trước plan. Bảng trên lưu các lựa chọn/lý do, không phải câu hỏi chờ user. Q1–Q3 T01 giữ
-nguyên. Tuấn có thể review/đổi lựa chọn vận hành sau; không có thay đổi public API hoặc
+nguyên. thành viên phụ trách có thể review/đổi lựa chọn vận hành sau; không có thay đổi public API hoặc
 yêu cầu nhóm chưa chốt bị tự gán trạng thái phê duyệt. Phần SLA/auth/DB/RAG thật vẫn ngoài scope.

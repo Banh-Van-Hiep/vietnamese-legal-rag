@@ -1,7 +1,7 @@
 # Feature Specification: Task01 — Nền tảng Backend/API Team 3
 
-**Feature Branch**: `feature/team3/tuan`
-**Nhóm / phụ trách / task**: Team 3 / Tuấn / T01.
+**Feature Branch**: `feature/team3/*`
+**Nhóm / phụ trách / task**: Team 3 / thành viên phụ trách / T01.
 
 **Feature Directory**: `specs/001-t01-backend-foundation`
 
@@ -20,15 +20,15 @@ Nhánh Git được giữ nguyên; mã thư mục feature độc lập với tê
 
 ### Session 2026-10-09
 
-- Q: Task01 dùng nguồn nào cho API, luồng và kiến trúc khi các tài liệu ghi khác trạng thái? → A: Tuấn xác nhận `docs/team3_fullstack/team3.md` là tài liệu gốc đã được Team 3 thống nhất và là căn cứ cho API, luồng, kiến trúc; spec tuần 2 xác định phạm vi T01 từ nhiệm vụ Jira và đầu vào; báo cáo T01 do Codex sinh chỉ ghi triển khai, không có quyền thay đổi trạng thái phê duyệt. Đối chiếu `contracts/` để ghi khác biệt cụ thể, không dùng chúng hoặc hành vi code để phủ nhận yêu cầu Team 3 đã chốt.
-- Q: Khi `.env` và biến môi trường terminal đặt cùng một biến, nguồn nào được ưu tiên? → A: Tuấn chọn B: tham số chạy > biến môi trường terminal > `.env` > mặc định. Cập nhật spec; đưa sửa runner và kiểm tra cấu hình trùng vào plan/tasks; chưa sửa code trong clarify.
-- Q: Trong Task01, lỗi CORS 403 và HTTP 406 cần được nghiệm thu theo quy định nào? → A: Tuấn chọn A: nghiệm thu origin được phép và origin ngoài danh sách theo AC-02, không bắt buộc body JSON 403. Ghi nhận 406/NOT_ACCEPTABLE là hành vi triển khai hiện tại, không phải contract đã thống nhất hoặc tiêu chí nghiệm thu T01; không xóa hay đổi xử lý 406 vì lý do đó.
+- Q: Task01 dùng nguồn nào cho API, luồng và kiến trúc khi các tài liệu ghi khác trạng thái? → A: thành viên phụ trách xác nhận `docs/team3_fullstack/team3.md` là tài liệu gốc đã được Team 3 thống nhất và là căn cứ cho API, luồng, kiến trúc; spec tuần 2 xác định phạm vi T01 từ nhiệm vụ Jira và đầu vào; báo cáo T01 do Codex sinh chỉ ghi triển khai, không có quyền thay đổi trạng thái phê duyệt. Đối chiếu `contracts/` để ghi khác biệt cụ thể, không dùng chúng hoặc hành vi code để phủ nhận yêu cầu Team 3 đã chốt.
+- Q: Khi `.env` và biến môi trường terminal đặt cùng một biến, nguồn nào được ưu tiên? → A: thành viên phụ trách chọn B: tham số chạy > biến môi trường terminal > `.env` > mặc định. Cập nhật spec; đưa sửa runner và kiểm tra cấu hình trùng vào plan/tasks; chưa sửa code trong clarify.
+- Q: Trong Task01, lỗi CORS 403 và HTTP 406 cần được nghiệm thu theo quy định nào? → A: thành viên phụ trách chọn A: nghiệm thu origin được phép và origin ngoài danh sách theo AC-02, không bắt buộc body JSON 403. Ghi nhận 406/NOT_ACCEPTABLE là hành vi triển khai hiện tại, không phải contract đã thống nhất hoặc tiêu chí nghiệm thu T01; không xóa hay đổi xử lý 406 vì lý do đó.
 
 ## User Scenarios & Testing *(mandatory)*
 
 ### User Story 1 - Thành viên nhóm chạy Backend mock local (Priority: P1)
 
-Tuấn hoặc thành viên nhận bàn giao có thể chuẩn bị môi trường theo hướng dẫn, chạy Backend
+thành viên phụ trách hoặc thành viên nhận bàn giao có thể chuẩn bị môi trường theo hướng dẫn, chạy Backend
 mock và biết dịch vụ đã phục vụ HTTP, khi dịch vụ AI thật chưa chạy và không có API key thật.
 Người chạy có thể chọn cấu hình local mà không phải sửa source ứng dụng.
 
@@ -132,19 +132,19 @@ nghĩa vụ bàn giao tổng thể của T06.
 | Nguồn | Vai trò và trạng thái |
 | --- | --- |
 | [Spec Team 3 tuần 2 v1.2](../../docs/team3_fullstack/team3-week2-spec.md), mục 2–4 | Nguồn phạm vi T01, BE-01/BE-02 và phần Backend của AC-01/AC-02; các task T02–T06 được tách riêng |
-| [Tài liệu Team 3](../../docs/team3_fullstack/team3.md), kiến trúc và mục 1.1/1.4/1.6/1.8/1.10 | Tài liệu gốc v1.2 đã được Team 3 thống nhất, theo xác nhận của Tuấn ngày 2026-10-09; căn cứ API, luồng và kiến trúc trong phạm vi T01 |
+| [Tài liệu Team 3](../../docs/team3_fullstack/team3.md), kiến trúc và mục 1.1/1.4/1.6/1.8/1.10 | Tài liệu gốc v1.2 đã được Team 3 thống nhất, theo xác nhận của thành viên phụ trách ngày 2026-10-09; căn cứ API, luồng và kiến trúc trong phạm vi T01 |
 | [Báo cáo triển khai T01](verification.md) | Do Codex sinh để ghi lựa chọn triển khai và kết quả lịch sử ngày 07/10/2026; không có quyền thay đổi trạng thái phê duyệt yêu cầu và không tự nghiệm thu spec này |
 | Constitution 1.0.0 (nguồn local tại lúc lập spec) | Giữ tương thích, ranh giới team, kiến trúc và kiểm chứng; ngày phê chuẩn còn TODO. Xem [specs README](../README.md) để đọc bộ tài liệu chia sẻ không phụ thuộc công cụ local |
 | [contracts/README.md](../../contracts/README.md) và [schema lỗi Team 2](../../docs/team2_rag/schemas/error_response.schema.json) | README dẫn tới proposal/schema Team 2; đây là nội dung cần đối chiếu và đồng bộ, không thay đổi trạng thái tài liệu Team 3 đã thống nhất |
 
-**Đã chốt theo phạm vi được giao**: giữ công nghệ và khung hiện tại; T01 của Tuấn tập trung
+**Đã chốt theo phạm vi được giao**: giữ công nghệ và khung hiện tại; T01 của thành viên phụ trách tập trung
 dependency/mock/môi trường/CORS/lỗi; mock không cần AI/API key thật; cấu hình port/origin/mode;
 origin ngoài danh sách không được cấp CORS; kiểm chứng và ghi giới hạn; giữ ranh giới team.
 API, luồng và kiến trúc Team 3 dùng `team3.md` làm căn cứ; spec tuần 2 xác định phần cần làm
 trong T01. Xác nhận này không đồng nghĩa code đã đáp ứng yêu cầu hoặc spec này đã được nghiệm thu.
 
 **Đã chốt qua Q2**: tham số chạy > biến môi trường terminal > `.env` > mặc định.
-Đây là yêu cầu đã được Tuấn xác nhận; tại vòng clarify runner còn khác yêu cầu. Vòng implement
+Đây là yêu cầu đã được thành viên phụ trách xác nhận; tại vòng clarify runner còn khác yêu cầu. Vòng implement
 đã sửa và kiểm chứng Q2, với bằng chứng riêng trong báo cáo mục 6.
 
 **Đã chốt qua Q3**: CORS nghiệm thu origin được phép và ngoài danh sách theo AC-02;
@@ -220,7 +220,7 @@ không tự thay đổi public interface.
 | Lỗi nghiệp vụ HTTP | Yêu cầu sai hoặc lỗi xử lý thuộc interface áp dụng | JSON UTF-8 `{"error":{"code":"...","message":"...","retryable":false}}` theo `team3.md` mục 1.10; giá trị retryable phụ thuộc mã lỗi, không có answer/status nghiệp vụ |
 
 Bảng mã dưới đây **kế thừa tài liệu gốc Team 3 v1.2 mục 1.10 đã thống nhất**, theo xác nhận
-của Tuấn. Đây là căn cứ kiểm tra T01, không phải phiên bản contract mới do Codex tạo ra.
+của thành viên phụ trách. Đây là căn cứ kiểm tra T01, không phải phiên bản contract mới do Codex tạo ra.
 
 | Trường hợp | HTTP / mã theo Team 3 | Retryable | Ranh giới Task01 |
 | --- | --- | --- | --- |
@@ -295,7 +295,7 @@ phía Backend bằng yêu cầu kiểm tra tương ứng.
   hướng dẫn. Không sửa hoặc nghiệm thu UI/API client Frontend trong Task01.
 - **Team 1**: không có phụ thuộc runtime trực tiếp của T01. Nội dung/metadata/chunk/corpus thật
   phục vụ các task sau; không dùng một chunk để khẳng định đã có toàn điều luật.
-- **Nhóm dự án**: Q1–Q3 đã được Tuấn làm rõ; tiếp tục phối hợp
+- **Nhóm dự án**: Q1–Q3 đã được thành viên phụ trách làm rõ; tiếp tục phối hợp
   đồng bộ tài liệu liên team. Task01 không tự chỉnh schema/interface dùng chung để che khác biệt.
 - Kiểm tra cơ chế lỗi có thể dùng đầu vào/lỗi được kiểm soát trong môi trường kiểm thử.
   Không suy ra rằng đã có fixture lỗi trên API demo hoặc adapter gọi Team 2 thật.
@@ -320,14 +320,14 @@ Báo cáo T01 ghi 24 test đạt và smoke PASS ngày 07/10/2026. Lượt soạn
 không build, chạy test, mở dịch vụ hoặc xác minh lại các kết quả đó. Tài liệu Team 3 ghi class
 còn rỗng/JPA/HTTP client đã có vai trò thiết kế; phần mô tả hiện trạng đó lệch code được đọc.
 Cần đối chiếu và cập nhật trạng thái khi nghiệm thu, không chọn một bên làm bằng chứng hoàn thành.
-Những mô tả hiện trạng cũ hoặc nhãn “đề xuất” trong tài liệu không thay đổi xác nhận của Tuấn
+Những mô tả hiện trạng cũ hoặc nhãn “đề xuất” trong tài liệu không thay đổi xác nhận của thành viên phụ trách
 rằng `team3.md` là tài liệu gốc đã thống nhất; code và báo cáo không có quyền phê duyệt yêu cầu.
 
 ### Quyết định đã làm rõ, khác biệt tài liệu và điểm còn mở
 
-#### Q1 — Nguồn yêu cầu Task01 đã được Tuấn làm rõ
+#### Q1 — Nguồn yêu cầu Task01 đã được thành viên phụ trách làm rõ
 
-**Nguồn quyết định:** Tuấn xác nhận ngày 2026-10-09: `team3.md` là tài liệu gốc đã được Team 3
+**Nguồn quyết định:** thành viên phụ trách xác nhận ngày 2026-10-09: `team3.md` là tài liệu gốc đã được Team 3
 thống nhất; dùng cho API, luồng và kiến trúc. File tuần 2 được xây dựng từ nhiệm vụ Jira và
 tài liệu đầu vào, xác định phạm vi T01. Báo cáo T01 do Codex sinh không có quyền thay đổi
 trạng thái phê duyệt yêu cầu. Q1 đã đóng theo xác nhận này, không phải lựa chọn dùng nguồn tạm.
@@ -349,7 +349,7 @@ T01 áp dụng health/header/lỗi của `team3.md` trong phạm vi được gia
 là việc đồng bộ liên team cần ghi nhận, không tự sửa API đã thống nhất hoặc mở rộng T01.
 Không đổi schema/code trong lượt làm rõ này và không dùng báo cáo Codex làm nguồn thay thế.
 
-#### Q2 — Thứ tự ưu tiên cấu hình đã được Tuấn quyết định
+#### Q2 — Thứ tự ưu tiên cấu hình đã được thành viên phụ trách quyết định
 
 **Quyết định ngày 2026-10-09:** chọn B, tham số chạy > biến môi trường terminal > `.env`
 > mặc định. Q2 đã đóng; FR-005, US1, SC-002 và AC-T01-02 áp dụng thứ tự này.
@@ -366,7 +366,7 @@ Các vòng specify/clarify/plan/tasks chỉ cập nhật tài liệu, chưa sử
 Vòng implement sau đó đã thực hiện và kiểm chứng T001–T023; kết quả local và giới hạn được ghi
 trong [báo cáo mục 6](verification.md#6-kiểm-chứng-spec-t01-riêng-ngày-09102026), không thay quyết định Q1–Q3 hoặc yêu cầu chức năng.
 
-#### Q3 — Phạm vi nghiệm thu CORS và 406 đã được Tuấn quyết định
+#### Q3 — Phạm vi nghiệm thu CORS và 406 đã được thành viên phụ trách quyết định
 
 **Quyết định ngày 2026-10-09:** chọn A. CORS nghiệm thu cả origin được phép và origin ngoài
 danh sách theo AC-02 tuần 2; không bắt buộc body JSON 403 cho yêu cầu bị chặn.

@@ -10,4 +10,4 @@
 - Read-only research agent t02_plan_review xác nhận các vị trí guard, boundary Unicode,
   first occurrence marker, C0/C11/C01, array order không phải contract, và precedence 400/404
   trước article mode. Không agent mutation/build/test.
-- Chưa có unknown design; vận hành mới do Codex theo ủy quyền, cần Tuấn review sau.
+- Chưa có unknown design; vận hành mới do Codex theo ủy quyền, cần thành viên phụ trách review sau.

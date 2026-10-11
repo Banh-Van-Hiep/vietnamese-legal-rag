@@ -1,6 +1,6 @@
 # Team 3 — Kiến trúc, API và luồng tích hợp
 
-**Nguồn:** tài liệu gốc Team 3 đã thống nhất, theo xác nhận của Tuấn.
+**Nguồn:** tài liệu gốc Team 3 đã thống nhất, theo xác nhận của thành viên phụ trách.
 **Đặc tả API:** v1.2. **Tổ chức lại tài liệu:** 09/10/2026, giữ nguyên endpoint/schema/luồng.
 
 Đây là căn cứ API, luồng và kiến trúc của Team 3. [README Team 3](README.md) là mục lục và
@@ -46,7 +46,7 @@ không suy ra upstream đã chạy.
 - Q3: CORS nghiệm thu origin được phép/ngoài danh sách, không bắt body JSON403.
   Handler406 vẫn tồn tại; 406/NOT_ACCEPTABLE là hành vi triển khai, không nâng thành contract/AC T01.
 - Cấu hình scenario T02 và guard502 được ghi trong [decisions.md](../../specs/002-t02-mock-api/decisions.md)
-  theo ủy quyền của Tuấn; không tự gọi là phê duyệt mới của nhóm.
+  theo ủy quyền của thành viên phụ trách; không tự gọi là phê duyệt mới của nhóm.
 
 Phần API/luồng dưới đây giữ nội dung đã thống nhất. Thiết kế mô tả hệ thống đầy đủ; hiện trạng
 triển khai được ghi riêng ở bảng trên để không nhầm kế hoạch với chức năng đã chạy.

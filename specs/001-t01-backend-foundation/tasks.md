@@ -6,14 +6,14 @@ Snapshot lúc plan và checkbox/evidence đã kiểm chứng được giữ nguy
 
 
 **Input**: [spec.md](spec.md), [plan.md](plan.md), [research.md](research.md), [data-model.md](data-model.md), [contracts/README.md](contracts/README.md), [quickstart.md](quickstart.md).  
-**Ngày**: 2026-10-09. **Nhánh giữ nguyên**: `feature/team3/tuan`.  
+**Ngày**: 2026-10-09. **Nhánh giữ nguyên**: `feature/team3/*`.
 **Trạng thái**: Đã thực hiện và kiểm chứng local 23/23 task ngày 2026-10-09; [báo cáo/bằng chứng](verification.md#6-kiểm-chứng-spec-t01-riêng-ngày-09102026). Không xác nhận toàn tuần 2 hoặc UI.
 
 Nguồn API/luồng/kiến trúc là `docs/team3_fullstack/team3.md`, đã được Team 3 thống nhất theo Q1;
 `docs/team3_fullstack/team3-week2-spec.md` xác định phạm vi T01. Báo cáo Codex và code chỉ mô tả
 triển khai/bằng chứng, không quyết định phê duyệt. Q2–Q3 đã đóng, không hỏi lại hoặc chọn nguồn khác.
 
-**Tests**: Spec và yêu cầu của Tuấn có kiểm chứng AC; dùng test hiện có, chỉ bổ sung khoảng trống.
+**Tests**: Spec và yêu cầu của thành viên phụ trách có kiểm chứng AC; dùng test hiện có, chỉ bổ sung khoảng trống.
 Không áp đặt TDD, coverage hoặc framework mới. Thứ tự harness trước sửa runner giúp quan sát lỗi Q2;
 không yêu cầu làm test đang đúng thất bại hoặc dựng lại tính năng đã có.
 

@@ -4,7 +4,7 @@ Ghi chú tổ chức tài liệu 09/10/2026: đường dẫn báo cáo trong tà
 hiện tại (verification.md trong spec); baseline/log gốc vẫn ghi đường dẫn docs/ trước khi chuyển.
 Snapshot lúc plan và checkbox/evidence đã kiểm chứng được giữ nguyên; không chạy lại test khi dọn tài liệu.
 
-**Branch**: feature/team3/tuan | **Date**: 2026-10-09 | **Spec**: [spec.md](spec.md)
+**Branch**: feature/team3/* | **Date**: 2026-10-09 | **Spec**: [spec.md](spec.md)
 **Status**: Đã implement và kiểm chứng local: package74/runner37/HTTP8 PASS. Nhánh thực khác feature key 002, không switch. Xem [báo cáo T02](verification.md); không thay nghiệm thu nhóm.
 
 ## Summary

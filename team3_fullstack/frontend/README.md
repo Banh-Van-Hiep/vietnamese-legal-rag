@@ -24,7 +24,7 @@ Backend mock (cổng 8080, cho phép origin `http://localhost:5173`): xem
 | `/c/:conversationId` | Mở lại hội thoại đã lưu |
 | `/search` | Tra cứu (khung): tìm trong vài mục mẫu, chưa có API Search |
 | `/documents/:documentId/articles/:articleId` | Nguyên văn điều luật, mở và tải lại được |
-| `/try-backend` | Trang thử backend tạm của Tuấn, không thuộc UI chính thức |
+| `/try-backend` | Trang thử backend tạm của Team 3, không thuộc UI chính thức |
 
 Bấm số tham chiếu `[C1]` trong câu trả lời hoặc nút "Xem nguyên văn điều luật" để mở điều luật ở ngăn bên phải
 mà không rời hội thoại.

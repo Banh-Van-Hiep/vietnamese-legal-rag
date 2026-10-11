@@ -9,7 +9,7 @@
   đã được Team 3 thống nhất theo Q1; [spec tuần 2](../../docs/team3_fullstack/team3-week2-spec.md)
   giới hạn T01; [spec riêng](spec.md) ghi Q1–Q3. Báo cáo T01 chỉ là bằng chứng lịch sử.
 - **Rationale:** Tách yêu cầu khỏi code và báo cáo Codex; nhãn cũ trong tài liệu không phủ nhận
-  xác nhận của Tuấn. Khác biệt schema do `contracts/README.md` dẫn tới đã được liệt kê trong spec.
+  xác nhận của thành viên phụ trách. Khác biệt schema do `contracts/README.md` dẫn tới đã được liệt kê trong spec.
 - **Alternatives considered:** lấy schema Team 2 hoặc code hiện tại làm nguồn thay thế bị loại;
   sửa schema liên team hay đưa query/history thật vào T01 vượt phạm vi.
 

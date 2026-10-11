@@ -5,7 +5,7 @@ hiện tại (verification.md trong spec); baseline/log gốc vẫn ghi đườn
 Snapshot lúc plan và checkbox/evidence đã kiểm chứng được giữ nguyên; không chạy lại test khi dọn tài liệu.
 
 **Input**: spec.md, plan.md, research.md, data-model.md, contracts/README.md, quickstart.md, decisions.md.
-**Status**: 18/18 task đã kiểm chứng local; package74, runner37, HTTP8 PASS. Review hash/diff147 files không thay đổi ngoài phạm vi, cleanup0 PID/cổng. Bàn giao: [verification.md](verification.md). Nhánh feature/team3/tuan giữ nguyên.
+**Status**: 18/18 task đã kiểm chứng local; package74, runner37, HTTP8 PASS. Review hash/diff147 files không thay đổi ngoài phạm vi, cleanup0 PID/cổng. Bàn giao: [verification.md](verification.md). Nhánh feature/team3/* giữ nguyên.
 [P] chỉ file độc lập sau prerequisite. Không Maven/test song song với sửa Java hoặc Maven khác.
 Tests được spec yêu cầu; không thêm framework/TDD policy/coverage. Existing endpoint/DTO/input/store/CORS
 không được tạo lại; chỉ guard/scenario/assertion còn thiếu. Checkbox cần evidence mới.
@@ -95,4 +95,4 @@ T016: final-validation.log BUILD SUCCESS74, final-surefire/ và jar-review.json.
 T017–018: báo cáo T02, scope-review.json147 baseline/133 unchanged/14 expected changed,
 4 new expected files, 0 unexpected; process-cleanup-review.json0 owned PID/0 listener18084.
 Tất cả evidence dưới team3_fullstack/backend/target/t02/ (ignore); log runner dẫn fixture ở target/t01/.
-Không task triển khai còn mở; Tuấn review quyết định trong decisions.md, không thay nghiệm thu nhóm.
+Không task triển khai còn mở; thành viên phụ trách review quyết định trong decisions.md, không thay nghiệm thu nhóm.

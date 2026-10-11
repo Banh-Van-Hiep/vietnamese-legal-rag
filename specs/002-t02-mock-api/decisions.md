@@ -1,6 +1,6 @@
-# T02 — quyết định để Tuấn review
+# T02 — quyết định để thành viên phụ trách review
 
-**Ngày:** 2026-10-09. **Nhánh:** feature/team3/tuan. Không commit/push.
+**Ngày:** 2026-10-09. **Nhánh:** feature/team3/*. Không commit/push.
 Nguồn quyền: người dùng ủy quyền tự quyết và tiếp tục chuỗi workflow khi vắng mặt;
 quyết định dưới đây do Codex chọn, không tự gọi là phê duyệt mới của Team 3.
 
@@ -13,7 +13,7 @@ quyết định dưới đây do Codex chọn, không tự gọi là phê duyệ
 | D05 | Query selector vắng fallback tới property app.mock.answer-status đã phân giải | Raw env fallback bỏ qua property override của test/cấu hình Spring hiện có; kiểm thử InsufficientContextApiTests chứng minh tương thích | Không đổi Q2 cho env/runner; không fallback khi selector có giá trị sai; chưa thêm công nghệ/dependency |
 
 Không thay Q1–Q3 T01, shared schema, công nghệ hoặc frontend/team khác. Các thay đổi
-đặc biệt quan trọng được ghi ở đây và báo cáo T02; Tuấn review sau khi quay lại.
+đặc biệt quan trọng được ghi ở đây và báo cáo T02; thành viên phụ trách review sau khi quay lại.
 Đã implement và kiểm chứng local theo các lựa chọn này: wrapper package74 tests,
 runner37 cases, HTTP8 records PASS. Xem [báo cáo T02](verification.md);
 không còn lựa chọn chặn công việc. Đây không phải biên bản nhóm phê duyệt.

@@ -51,7 +51,7 @@ New-Item -ItemType Directory -Path .\target\t01 -Force | Out-Null
 ) | Set-Content -LiteralPath .\target\t01\run.env -Encoding UTF8
 ```
 
-JAVA_HOME là ví dụ của máy Tuấn, thay bằng đường dẫn JDK 25 thật. Không chỉ dựa `java` trên
+JAVA_HOME là đường dẫn ví dụ, thay bằng đường dẫn JDK 25 thật trên máy đang chạy. Không chỉ dựa `java` trên
 PATH; Maven dùng JAVA_HOME. Không copy/ghi đè `.env` đang có. Fixture trong target được Git bỏ qua.
 
 ## 2. Kiểm tra runner và build

@@ -12,7 +12,7 @@ Hoàn thiện khung Backend/Frontend đã tạo để chạy local, kiểm tra l
 
 Kế thừa cấu trúc package, đặc tả API và luồng đã xây dựng ở tuần 1; không dựng lại dự án hoặc viết lại contract. Backend dùng **Java + Spring Boot/Maven**; Frontend tiếp tục **React/TypeScript/Vite** hiện có. Phiên bản runtime/dependency theo cấu hình repository.
 
-[team3.md v1.2](team3.md) là căn cứ API, luồng và kiến trúc đã được Team 3 thống nhất theo xác nhận của Tuấn (Q1). File này xác định phạm vi task tuần 2; [specs/](../../specs/README.md) mô tả từng task và kết quả bàn giao. [contracts/](../../contracts/README.md) là nơi phối hợp interface liên team; các schema Team 2 được dẫn còn khác API Team 3 và được ghi trong [verification T01](../../specs/001-t01-backend-foundation/verification.md#2-contract-đã-đối-chiếu). Không tự đổi interface để khớp schema khác; làm rõ phần tích hợp bị ảnh hưởng và tiếp tục phần độc lập. Team 1/Team 2 chỉ là nguồn dữ liệu/interface cần nhận, không thuộc phạm vi triển khai của file này.
+[team3.md v1.2](team3.md) là căn cứ API, luồng và kiến trúc đã được Team 3 thống nhất theo xác nhận của thành viên phụ trách (Q1). File này xác định phạm vi task tuần 2; [specs/](../../specs/README.md) mô tả từng task và kết quả bàn giao. [contracts/](../../contracts/README.md) là nơi phối hợp interface liên team; các schema Team 2 được dẫn còn khác API Team 3 và được ghi trong [verification T01](../../specs/001-t01-backend-foundation/verification.md#2-contract-đã-đối-chiếu). Không tự đổi interface để khớp schema khác; làm rõ phần tích hợp bị ảnh hưởng và tiếp tục phần độc lập. Team 1/Team 2 chỉ là nguồn dữ liệu/interface cần nhận, không thuộc phạm vi triển khai của file này.
 
 ## 2. Yêu cầu tuần 2
 
@@ -47,8 +47,8 @@ không lặp lại schema ở đây. Mỗi task dẫn đúng nguồn áp dụng;
 
 | Task | Phụ trách | Phạm vi | Trạng thái và bàn giao |
 | --- | --- | --- | --- |
-| T01 | Tuấn — Backend/API | Code/contract, dependency, mock mode, cấu hình/CORS và lỗi chung | Kiểm chứng local; [spec](../../specs/001-t01-backend-foundation/spec.md), [verification](../../specs/001-t01-backend-foundation/verification.md) |
-| T02 | Tuấn — Backend/API | DTO, query/document mock và fixture cho các trạng thái | Kiểm chứng local; [spec](../../specs/002-t02-mock-api/spec.md), [verification](../../specs/002-t02-mock-api/verification.md) |
+| T01 | thành viên phụ trách — Backend/API | Code/contract, dependency, mock mode, cấu hình/CORS và lỗi chung | Kiểm chứng local; [spec](../../specs/001-t01-backend-foundation/spec.md), [verification](../../specs/001-t01-backend-foundation/verification.md) |
+| T02 | thành viên phụ trách — Backend/API | DTO, query/document mock và fixture cho các trạng thái | Kiểm chứng local; [spec](../../specs/002-t02-mock-api/spec.md), [verification](../../specs/002-t02-mock-api/verification.md) |
 | T03 | Thành viên phụ trách UI | Router, styling, Chat/Search và Document Viewer | Chưa có bằng chứng nghiệm thu task đầy đủ; trang thử Backend không thay T03 |
 | T04 | Hai thành viên | API client FE–BE mock và kiểm tra response/lỗi | Chưa có bằng chứng nghiệm thu luồng UI đầy đủ |
 | T05 | Team 3 | Soạn, review và bàn giao 5–10 câu hỏi + Ground Truth | Chưa có bộ GT đã review trong bàn giao này |
