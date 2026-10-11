@@ -5,9 +5,10 @@ import CitationCard from "./CitationCard";
 
 interface Props {
   citations: Citation[];
+  onOpen: (citation: Citation) => void;
 }
 
-export default function CitationList({ citations }: Props) {
+export default function CitationList({ citations, onOpen }: Props) {
   return (
     <details className="citations" open>
       <summary className="citations__summary">
@@ -16,9 +17,9 @@ export default function CitationList({ citations }: Props) {
         <Icon name="chevronDown" size={15} />
       </summary>
       <ol className="citations__list">
-        {citations.map((c, i) => (
-          <li key={c.chunkId}>
-            <CitationCard citation={c} index={i + 1} />
+        {citations.map((c) => (
+          <li key={c.citation_id}>
+            <CitationCard citation={c} onOpen={onOpen} />
           </li>
         ))}
       </ol>

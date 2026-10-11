@@ -1,15 +1,82 @@
 // Cấu hình base URL và xử lý lỗi. Nơi duy nhất gọi backend.
 const BASE_URL = import.meta.env.VITE_API_URL ?? "http://localhost:8080";
 
-export async function request<T>(path: string, init?: RequestInit): Promise<T> {
-  const res = await fetch(`${BASE_URL}${path}`, {
-    headers: { "Content-Type": "application/json" },
-    ...init,
-  });
-  if (!res.ok) {
-    throw new Error(`Lỗi ${res.status}: ${await res.text()}`);
+/** Lỗi từ backend (envelope { error: { code, message, retryable } }) hoặc lỗi kết nối. */
+export class ApiError extends Error {
+  constructor(
+    message: string,
+    public readonly status: number,
+    public readonly code: string,
+    public readonly retryable: boolean,
+    public readonly requestId: string | null = null,
+    /** Header X-Conversation-ID: có khi backend đã tiếp nhận lượt hỏi rồi mới lỗi. */
+    public readonly conversationId: string | null = null,
+    /** Chưa biết backend đã xử lý hay chưa (mất kết nối, quá hạn chờ). */
+    public readonly outcomeUnknown = false,
+  ) {
+    super(message);
   }
-  return res.status === 204 ? (undefined as T) : ((await res.json()) as T);
+}
+
+interface RequestOptions {
+  method?: "GET" | "POST" | "DELETE";
+  json?: unknown;
+  signal?: AbortSignal;
+  /** Thời gian chờ tối đa của FE theo đặc tả: query 60s, document 15s. */
+  timeoutMs?: number;
+}
+
+export async function request<T>(path: string, options: RequestOptions = {}): Promise<T> {
+  const { method = "GET", json, signal, timeoutMs = 15_000 } = options;
+  const controller = new AbortController();
+  let timedOut = false;
+  const timer = setTimeout(() => {
+    timedOut = true;
+    controller.abort();
+  }, timeoutMs);
+  const forwardAbort = () => controller.abort();
+  signal?.addEventListener("abort", forwardAbort);
+
+  try {
+    let res: Response;
+    try {
+      res = await fetch(`${BASE_URL}${path}`, {
+        method,
+        headers: json === undefined
+          ? { Accept: "application/json" }
+          : { Accept: "application/json", "Content-Type": "application/json" },
+        body: json === undefined ? undefined : JSON.stringify(json),
+        signal: controller.signal,
+      });
+    } catch (error) {
+      if (signal?.aborted) throw error; // người gọi chủ động hủy
+      if (timedOut) {
+        throw new ApiError("Máy chủ chưa phản hồi kịp. Hãy thử lại.", 0, "CLIENT_TIMEOUT", true, null, null, true);
+      }
+      throw new ApiError(
+        "Không kết nối được máy chủ. Kiểm tra backend đang chạy và thử lại.",
+        0, "NETWORK_ERROR", true, null, null, true,
+      );
+    }
+
+    const requestId = res.headers.get("X-Request-ID");
+    if (!res.ok) {
+      const body = await res.json().catch(() => null);
+      const detail = body?.error;
+      throw new ApiError(
+        detail?.message ?? `Yêu cầu thất bại (HTTP ${res.status}).`,
+        res.status,
+        detail?.code ?? "UNKNOWN_ERROR",
+        detail?.retryable ?? false,
+        requestId,
+        res.headers.get("X-Conversation-ID"),
+      );
+    }
+    return res.status === 204 ? (undefined as T) : ((await res.json()) as T);
+  } finally {
+    clearTimeout(timer);
+    signal?.removeEventListener("abort", forwardAbort);
+  }
 }
 
 export { BASE_URL };
