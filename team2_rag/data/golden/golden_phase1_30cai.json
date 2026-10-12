@@ -126,5 +126,89 @@
 "citation": "Khoản 2 Điều 188 - Luật Doanh nghiệp, theo Văn bản hợp nhất 67/VBHN-VPQH năm 2025",
 "category": "Doanh nghiệp tư nhân",
 "author": "Đỗ Đức Đạt"
-}
+},
+  {
+    "id": "gold_ds1_001",
+    "question": "Theo Điều 16 Luật Doanh nghiệp, những hành vi nào bị nghiêm cấm trong đăng ký doanh nghiệp và hoạt động kinh doanh?",
+    "expected_status": "answered",
+    "ground_truth": "Các hành vi bị nghiêm cấm bao gồm: cấp hoặc từ chối cấp Giấy chứng nhận đăng ký doanh nghiệp trái quy định; yêu cầu nộp thêm giấy tờ trái luật; gây chậm trễ, phiền hà, cản trở hoặc sách nhiễu; ngăn cản chủ sở hữu, thành viên, cổ đông thực hiện quyền và nghĩa vụ; kinh doanh không đăng ký hoặc tiếp tục kinh doanh khi đã bị thu hồi giấy chứng nhận hoặc đang bị tạm dừng; kê khai không trung thực, không chính xác; kê khai khống vốn điều lệ, không góp đủ vốn hoặc cố ý định giá sai tài sản góp vốn; kinh doanh ngành, nghề bị cấm hoặc chưa đủ điều kiện; lừa đảo, rửa tiền và tài trợ khủng bố.",
+    "gold_chunk_ids": [
+      "luat-59-2020-qh14-v1__dieu-16__k1__0",
+      "luat-59-2020-qh14-v1__dieu-16__k2__0",
+      "luat-59-2020-qh14-v1__dieu-16__k3__0",
+      "luat-59-2020-qh14-v1__dieu-16__k4__0",
+      "luat-59-2020-qh14-v1__dieu-16__k5__0",
+      "luat-59-2020-qh14-v1__dieu-16__k6__0",
+      "luat-59-2020-qh14-v1__dieu-16__k7__0"
+    ],
+    "citation": "Điều 16 - Các hành vi bị nghiêm cấm",
+    "category": "Hành vi bị nghiêm cấm",
+    "author": "Trần Anh Dũng"
+  },
+  {
+    "id": "gold_ds1_002",
+    "question": "Hồ sơ đăng ký công ty hợp danh gồm những giấy tờ gì theo Điều 20 Luật Doanh nghiệp?",
+    "expected_status": "answered",
+    "ground_truth": "Hồ sơ đăng ký công ty hợp danh gồm: (1) Giấy đề nghị đăng ký doanh nghiệp; (2) Điều lệ công ty; (3) Danh sách thành viên; (4) Bản sao giấy tờ pháp lý của cá nhân đối với thành viên; (5) Bản sao Giấy chứng nhận đăng ký đầu tư đối với nhà đầu tư nước ngoài theo quy định của Luật Đầu tư.",
+    "gold_chunk_ids": [
+      "luat-59-2020-qh14-v1__dieu-20__k1__0",
+      "luat-59-2020-qh14-v1__dieu-20__k2__0",
+      "luat-59-2020-qh14-v1__dieu-20__k3__0",
+      "luat-59-2020-qh14-v1__dieu-20__k4__0",
+      "luat-59-2020-qh14-v1__dieu-20__k5__0"
+    ],
+    "citation": "Điều 20 - Hồ sơ đăng ký công ty hợp danh",
+    "category": "Hồ sơ đăng ký doanh nghiệp",
+    "author": "Trần Anh Dũng"
+  },
+  {
+    "id": "gold_ds1_003",
+    "question": "Giấy đề nghị đăng ký doanh nghiệp phải có những nội dung chủ yếu nào theo Điều 23 Luật Doanh nghiệp?",
+    "expected_status": "answered",
+    "ground_truth": "Giấy đề nghị đăng ký doanh nghiệp gồm các nội dung chủ yếu: tên doanh nghiệp; địa chỉ trụ sở chính và thông tin liên hệ; ngành, nghề kinh doanh; vốn điều lệ hoặc vốn đầu tư của chủ doanh nghiệp tư nhân; thông tin về cổ phần đối với công ty cổ phần; thông tin đăng ký thuế; số lượng lao động dự kiến; thông tin cá nhân và chữ ký của chủ doanh nghiệp tư nhân, thành viên hợp danh và người đại diện theo pháp luật của công ty trách nhiệm hữu hạn, công ty cổ phần theo quy định tại Điều 23.",
+    "gold_chunk_ids": [
+      "luat-59-2020-qh14-v1__dieu-23__k1__0",
+      "luat-59-2020-qh14-v1__dieu-23__k2__0",
+      "luat-59-2020-qh14-v1__dieu-23__k3__0",
+      "luat-59-2020-qh14-v1__dieu-23__k4__0",
+      "luat-59-2020-qh14-v1__dieu-23__k5__0",
+      "luat-59-2020-qh14-v1__dieu-23__k6__0",
+      "luat-59-2020-qh14-v1__dieu-23__k7__0",
+      "luat-59-2020-qh14-v1__dieu-23__k8__0",
+      "luat-59-2020-qh14-v1__dieu-23__k9__0"
+    ],
+    "citation": "Điều 23 - Nội dung giấy đề nghị đăng ký doanh nghiệp",
+    "category": "Nội dung đăng ký doanh nghiệp",
+    "author": "Trần Anh Dũng"
+  },
+  {
+    "id": "gold_ds1_004",
+    "question": "Điều lệ công ty phải quy định những nội dung chủ yếu nào theo Điều 24 Luật Doanh nghiệp?",
+    "expected_status": "answered",
+    "ground_truth": "Điều lệ công ty phải có các nội dung chủ yếu như: tên và địa chỉ trụ sở chính, chi nhánh và văn phòng đại diện nếu có; ngành, nghề kinh doanh; vốn điều lệ và thông tin cổ phần đối với công ty cổ phần; thông tin thành viên, chủ sở hữu hoặc cổ đông sáng lập và phần vốn góp hoặc cổ phần tương ứng; quyền và nghĩa vụ của thành viên, cổ đông; cơ cấu tổ chức quản lý; số lượng, chức danh, quyền và nghĩa vụ của người đại diện theo pháp luật; thể thức thông qua quyết định và giải quyết tranh chấp nội bộ; căn cứ xác định lương, thù lao, thưởng; trường hợp mua lại phần vốn góp hoặc cổ phần; nguyên tắc phân chia lợi nhuận và xử lý lỗ; trường hợp, trình tự giải thể và thanh lý tài sản; thể thức sửa đổi, bổ sung Điều lệ.",
+    "gold_chunk_ids": [
+      "luat-59-2020-qh14-v1__dieu-24__k1__0",
+      "luat-59-2020-qh14-v1__dieu-24__k2__0",
+      "luat-59-2020-qh14-v1__dieu-24__k3__0",
+      "luat-59-2020-qh14-v1__dieu-24__k4__0"
+    ],
+    "citation": "Khoản 2 Điều 24 - Điều lệ công ty",
+    "category": "Điều lệ công ty",
+    "author": "Trần Anh Dũng"
+  },
+  {
+    "id": "gold_ds1_005",
+    "question": "Giấy chứng nhận đăng ký doanh nghiệp gồm những nội dung chủ yếu nào theo Điều 28 Luật Doanh nghiệp?",
+    "expected_status": "answered",
+    "ground_truth": "Giấy chứng nhận đăng ký doanh nghiệp gồm: (1) Tên doanh nghiệp và mã số doanh nghiệp; (2) Địa chỉ trụ sở chính; (3) Thông tin cá nhân của người đại diện theo pháp luật, thành viên hợp danh hoặc chủ doanh nghiệp tư nhân; đối với công ty trách nhiệm hữu hạn còn có thông tin của thành viên là cá nhân hoặc thông tin tên, mã số doanh nghiệp và địa chỉ trụ sở chính của thành viên là tổ chức; (4) Vốn điều lệ đối với công ty hoặc vốn đầu tư đối với doanh nghiệp tư nhân.",
+    "gold_chunk_ids": [
+      "luat-59-2020-qh14-v1__dieu-28__k1__0",
+      "luat-59-2020-qh14-v1__dieu-28__k2__0",
+      "luat-59-2020-qh14-v1__dieu-28__k3__0",
+      "luat-59-2020-qh14-v1__dieu-28__k4__0"
+    ],
+    "citation": "Điều 28 - Nội dung Giấy chứng nhận đăng ký doanh nghiệp",
+    "category": "Giấy chứng nhận đăng ký doanh nghiệp",
+    "author": "Trần Anh Dũng"
+  }
 ]
