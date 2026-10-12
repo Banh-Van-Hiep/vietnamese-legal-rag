@@ -5,8 +5,8 @@
 
 ## 1. Nguồn yêu cầu
 
-- **Decision:** [team3.md](../../docs/team3_fullstack/team3.md) là căn cứ API/luồng/kiến trúc
-  đã được Team 3 thống nhất theo Q1; [spec tuần 2](../../docs/team3_fullstack/team3-week2-spec.md)
+- **Decision:** [team3.md](../../../docs/team3_fullstack/team3.md) là căn cứ API/luồng/kiến trúc
+  đã được Team 3 thống nhất theo Q1; [spec tuần 2](../tasks.md)
   giới hạn T01; [spec riêng](spec.md) ghi Q1–Q3. Báo cáo T01 chỉ là bằng chứng lịch sử.
 - **Rationale:** Tách yêu cầu khỏi code và báo cáo Codex; nhãn cũ trong tài liệu không phủ nhận
   xác nhận của thành viên phụ trách. Khác biệt schema do `contracts/README.md` dẫn tới đã được liệt kê trong spec.
@@ -16,7 +16,7 @@
 ## 2. Runtime và dependency
 
 - **Decision:** giữ Java 25, Spring Boot 4.1.1, Maven Wrapper 3.9.16 từ
-  [pom.xml](../../team3_fullstack/backend/pom.xml) và [wrapper properties](../../team3_fullstack/backend/.mvn/wrapper/maven-wrapper.properties).
+  [pom.xml](../../../team3_fullstack/backend/pom.xml) và [wrapper properties](../../../team3_fullstack/backend/.mvn/wrapper/maven-wrapper.properties).
   Giữ Web MVC, Validation, JPA, PostgreSQL driver và test starter; không thêm dependency.
 - **Rationale:** Khung và kiểm thử hiện có đủ cho nền tảng local. JPA/driver có trong POM nhưng
   bị loại khỏi auto-configuration ở profile mock; không cần chuyển persistence hoặc dựng project mới.
@@ -28,7 +28,7 @@
 - **Decision:** sửa runner hiện có thành tham số được truyền rõ > môi trường process/terminal
   > `.env` > mặc định Spring. Parse `.env` thành dữ liệu trước, không ghi đè terminal trong lúc parse.
   Chọn nguồn theo từng key rồi mới áp dụng và lưu bản cũ để khôi phục ở finally.
-- **Rationale:** [runner](../../team3_fullstack/backend/run-local.ps1) hiện gọi SetEnvironmentVariable
+- **Rationale:** [runner](../../../team3_fullstack/backend/run-local.ps1) hiện gọi SetEnvironmentVariable
   cho mọi key trong file nên terminal bị ghi đè. Đây là khoảng trống triển khai chắc chắn qua đọc code.
   Q2 đã chọn thứ tự mới; không cần hỏi lại hoặc coi hành vi cũ là contract.
 - **Alternatives considered:** giữ `.env` ưu tiên hơn terminal đã bị Q2 loại; đổi precedence toàn

@@ -3,7 +3,7 @@
 **Feature Branch**: `feature/team3/*`
 **Nhóm / phụ trách / task**: Team 3 / thành viên phụ trách / T01.
 
-**Feature Directory**: `specs/001-t01-backend-foundation`
+**Feature Directory**: `specs/team3-week2/001-t01-backend-foundation`
 
 **Created**: 2026-10-09
 
@@ -131,11 +131,11 @@ nghĩa vụ bàn giao tổng thể của T06.
 
 | Nguồn | Vai trò và trạng thái |
 | --- | --- |
-| [Spec Team 3 tuần 2 v1.2](../../docs/team3_fullstack/team3-week2-spec.md), mục 2–4 | Nguồn phạm vi T01, BE-01/BE-02 và phần Backend của AC-01/AC-02; các task T02–T06 được tách riêng |
-| [Tài liệu Team 3](../../docs/team3_fullstack/team3.md), kiến trúc và mục 1.1/1.4/1.6/1.8/1.10 | Tài liệu gốc v1.2 đã được Team 3 thống nhất, theo xác nhận của thành viên phụ trách ngày 2026-10-09; căn cứ API, luồng và kiến trúc trong phạm vi T01 |
+| [Phân rã task Team 3 tuần 2 (kế thừa v1.2)](../tasks.md), mục 2–4 | Nguồn phạm vi T01, BE-01/BE-02 và phần Backend của AC-01/AC-02; các task T02–T06 được tách riêng |
+| [Tài liệu Team 3](../../../docs/team3_fullstack/team3.md), kiến trúc và mục 1.1/1.4/1.6/1.8/1.10 | Tài liệu gốc v1.2 đã được Team 3 thống nhất, theo xác nhận của thành viên phụ trách ngày 2026-10-09; căn cứ API, luồng và kiến trúc trong phạm vi T01 |
 | [Báo cáo triển khai T01](verification.md) | Do Codex sinh để ghi lựa chọn triển khai và kết quả lịch sử ngày 07/10/2026; không có quyền thay đổi trạng thái phê duyệt yêu cầu và không tự nghiệm thu spec này |
-| Constitution 1.0.0 (nguồn local tại lúc lập spec) | Giữ tương thích, ranh giới team, kiến trúc và kiểm chứng; ngày phê chuẩn còn TODO. Xem [specs README](../README.md) để đọc bộ tài liệu chia sẻ không phụ thuộc công cụ local |
-| [contracts/README.md](../../contracts/README.md) và [schema lỗi Team 2](../../docs/team2_rag/schemas/error_response.schema.json) | README dẫn tới proposal/schema Team 2; đây là nội dung cần đối chiếu và đồng bộ, không thay đổi trạng thái tài liệu Team 3 đã thống nhất |
+| Constitution 1.0.0 (nguồn local tại lúc lập spec) | Giữ tương thích, ranh giới team, kiến trúc và kiểm chứng; ngày phê chuẩn còn TODO. Xem [specs README](../../README.md) để đọc bộ tài liệu chia sẻ không phụ thuộc công cụ local |
+| [contracts/README.md](../../../contracts/README.md) và [schema lỗi Team 2](../../../docs/team2_rag/schemas/error_response.schema.json) | README dẫn tới proposal/schema Team 2; đây là nội dung cần đối chiếu và đồng bộ, không thay đổi trạng thái tài liệu Team 3 đã thống nhất |
 
 **Đã chốt theo phạm vi được giao**: giữ công nghệ và khung hiện tại; T01 của thành viên phụ trách tập trung
 dependency/mock/môi trường/CORS/lỗi; mock không cần AI/API key thật; cấu hình port/origin/mode;
@@ -307,14 +307,14 @@ Working tree có thay đổi chưa commit; không gọi HEAD là commit của to
 
 | File/nhóm đã đọc | Quan sát |
 | --- | --- |
-| [pom.xml](../../team3_fullstack/backend/pom.xml) | Có dependency web, validation, JPA, PostgreSQL và test starter; Java 25/Spring Boot 4.1.1 đang được cấu hình |
-| [runner](../../team3_fullstack/backend/run-local.ps1), [.env.example](../../team3_fullstack/backend/.env.example), [application.properties](../../team3_fullstack/backend/src/main/resources/application.properties) | Có nạp env, lựa chọn port/origin/file; thứ tự ưu tiên và whitelist biến là lựa chọn triển khai hiện tại |
-| [application-mock.properties](../../team3_fullstack/backend/src/main/resources/application-mock.properties) | Profile mock tắt datasource/JPA; không chứng minh mọi dependency đã chạy đúng trong lượt này |
-| [CorsConfig](../../team3_fullstack/backend/src/main/java/com/legalai/backend/common/config/CorsConfig.java) | Origin chính xác, kiểm tra định dạng, preflight và expose header; chưa có nguồn phê chuẩn mọi quy tắc định dạng |
-| [GlobalExceptionHandler](../../team3_fullstack/backend/src/main/java/com/legalai/backend/common/exception/GlobalExceptionHandler.java), [ApiError](../../team3_fullstack/backend/src/main/java/com/legalai/backend/common/exception/ApiError.java), filter/interceptor | Có envelope, JSON, trace và giới hạn body; code có 406 trong khi bảng Team 3 chưa nêu mã này; CORS 403 không đi qua envelope nghiệp vụ hiện tại |
-| [AiClient](../../team3_fullstack/backend/src/main/java/com/legalai/backend/ai/AiClient.java), [MockAiClient](../../team3_fullstack/backend/src/main/java/com/legalai/backend/ai/MockAiClient.java), HttpAiClient | Có client mock cho query/article; client HTTP thật còn placeholder; chưa có history nội bộ |
+| [pom.xml](../../../team3_fullstack/backend/pom.xml) | Có dependency web, validation, JPA, PostgreSQL và test starter; Java 25/Spring Boot 4.1.1 đang được cấu hình |
+| [runner](../../../team3_fullstack/backend/run-local.ps1), [.env.example](../../../team3_fullstack/backend/.env.example), [application.properties](../../../team3_fullstack/backend/src/main/resources/application.properties) | Có nạp env, lựa chọn port/origin/file; thứ tự ưu tiên và whitelist biến là lựa chọn triển khai hiện tại |
+| [application-mock.properties](../../../team3_fullstack/backend/src/main/resources/application-mock.properties) | Profile mock tắt datasource/JPA; không chứng minh mọi dependency đã chạy đúng trong lượt này |
+| [CorsConfig](../../../team3_fullstack/backend/src/main/java/com/legalai/backend/common/config/CorsConfig.java) | Origin chính xác, kiểm tra định dạng, preflight và expose header; chưa có nguồn phê chuẩn mọi quy tắc định dạng |
+| [GlobalExceptionHandler](../../../team3_fullstack/backend/src/main/java/com/legalai/backend/common/exception/GlobalExceptionHandler.java), [ApiError](../../../team3_fullstack/backend/src/main/java/com/legalai/backend/common/exception/ApiError.java), filter/interceptor | Có envelope, JSON, trace và giới hạn body; code có 406 trong khi bảng Team 3 chưa nêu mã này; CORS 403 không đi qua envelope nghiệp vụ hiện tại |
+| [AiClient](../../../team3_fullstack/backend/src/main/java/com/legalai/backend/ai/AiClient.java), [MockAiClient](../../../team3_fullstack/backend/src/main/java/com/legalai/backend/ai/MockAiClient.java), HttpAiClient | Có client mock cho query/article; client HTTP thật còn placeholder; chưa có history nội bộ |
 | ChatController/ChatService, DocumentController/DocumentService, ConversationService và model/repository | Có endpoint/điều phối/mock store; model là record, chưa phải entity JPA; query/document DTO và persistence không được nghiệm thu bởi spec T01 |
-| [BackendConfigurationTests](../../team3_fullstack/backend/src/test/java/com/legalai/backend/BackendConfigurationTests.java) và các test hiện có | Có ca mock/CORS/lỗi và controller probe chỉ phục vụ test; tồn tại test không đồng nghĩa test đã chạy/đạt trong lượt này |
+| [BackendConfigurationTests](../../../team3_fullstack/backend/src/test/java/com/legalai/backend/BackendConfigurationTests.java) và các test hiện có | Có ca mock/CORS/lỗi và controller probe chỉ phục vụ test; tồn tại test không đồng nghĩa test đã chạy/đạt trong lượt này |
 
 Báo cáo T01 ghi 24 test đạt và smoke PASS ngày 07/10/2026. Lượt soạn spec chỉ đọc code/tài liệu,
 không build, chạy test, mở dịch vụ hoặc xác minh lại các kết quả đó. Tài liệu Team 3 ghi class

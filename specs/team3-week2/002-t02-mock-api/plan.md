@@ -34,8 +34,8 @@ Quyết định vận hành không tự mang nhãn nhóm phê duyệt; người 
 
 ## Project Structure
 ### Documentation (this feature)
-specs/002-t02-mock-api/{spec,plan,research,data-model,quickstart,decisions,tasks}.md,
-contracts/README.md, checklists/requirements.md; report triển khai sau tại specs/002-t02-mock-api/verification.md.
+specs/team3-week2/002-t02-mock-api/{spec,plan,research,data-model,quickstart,decisions,tasks}.md,
+contracts/README.md, checklists/requirements.md; report triển khai sau tại specs/team3-week2/002-t02-mock-api/verification.md.
 
 ### Source Code (repository root)
 Các cột dưới là snapshot lúc lập plan, không là danh sách việc chưa làm hiện tại.
@@ -53,7 +53,7 @@ Các cột dưới là snapshot lúc lập plan, không là danh sách việc ch
 | team3_fullstack/backend/src/test/java/com/legalai/backend/AiResponseValidatorTests.java | Chưa có | Boundary/nullable/marker/ID/HTTPS/Unicode guard |
 | team3_fullstack/backend/src/test/java/com/legalai/backend/MockScenarioTests.java | Chưa có | Modes, fixture liên kết, legacy/error precedence |
 | team3_fullstack/backend/src/test/java/com/legalai/backend/BackendConfigurationTests.java | Spy/probe T01 | HTTP controlled invalid query/article →502; không public probe mới |
-| specs/002-t02-mock-api/verification.md | Chưa có lúc plan | Kết quả/evidence/limitations; hướng dẫn chạy ở quickstart.md |
+| specs/team3-week2/002-t02-mock-api/verification.md | Chưa có lúc plan | Kết quả/evidence/limitations; hướng dẫn chạy ở quickstart.md |
 POM, DTO field definitions, controllers/routes, store, CORS/exception handler/406 giữ nguyên.
 Khi DTO không đáp ứng nguồn phải ghi vấn đề; không tự đổi schema.
 

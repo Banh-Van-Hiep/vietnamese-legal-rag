@@ -1,7 +1,7 @@
 # Interface references — Task01
 
 Đây là ghi chú giao tiếp kế thừa để thiết kế/kiểm tra T01, không phải contract thay thế.
-Nguồn API/luồng/kiến trúc: [team3.md](../../../docs/team3_fullstack/team3.md), đã được Team 3
+Nguồn API/luồng/kiến trúc: [team3.md](../../../../docs/team3_fullstack/team3.md), đã được Team 3
 thống nhất theo Q1; phạm vi: [spec.md](../spec.md). Không sửa `contracts/` chung hoặc schema Team 2.
 
 ## HTTP và header cần kiểm tra

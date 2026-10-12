@@ -7,7 +7,7 @@ Snapshot lúc plan và checkbox/evidence đã kiểm chứng được giữ nguy
 
 **Branch**: `feature/team3/*` | **Date**: 2026-10-09 | **Spec**: [spec.md](spec.md)
 
-**Input**: Feature specification `specs/001-t01-backend-foundation/spec.md`, Q1–Q3 đã làm rõ.
+**Input**: Feature specification `specs/team3-week2/001-t01-backend-foundation/spec.md`, Q1–Q3 đã làm rõ.
 
 **Status**: Phase 0/1 thiết kế đã lập; 23 nhiệm vụ trong [tasks.md](tasks.md) đã thực hiện và
 kiểm chứng local ngày 2026-10-09, xem [báo cáo mục 6](verification.md#6-kiểm-chứng-spec-t01-riêng-ngày-09102026). Kết quả chờ nhóm review, không xác nhận toàn tuần 2.
@@ -17,7 +17,7 @@ Hai task nháp Q2 đã được mở rộng và ánh xạ trong danh sách tasks
 ## Summary
 
 Tiếp tục trên Backend hiện có, giữ Java/Spring Boot/Maven, package theo tính năng,
-AiClient/mock store và API theo [tài liệu gốc Team 3](../../docs/team3_fullstack/team3.md).
+AiClient/mock store và API theo [tài liệu gốc Team 3](../../../docs/team3_fullstack/team3.md).
 Spec tuần 2 giới hạn T01 vào dependency/mock/môi trường/CORS/lỗi; không đưa T02–T06 vào kế hoạch này.
 
 Hiện trạng lúc lập kế hoạch: runner để `.env` ghi đè terminal, trái Q2. Thiết kế chọn nguồn
@@ -79,7 +79,7 @@ do người dùng yêu cầu truy vết nguồn; không có câu hỏi chức n�
 ### Documentation (this feature)
 
 ```text
-specs/001-t01-backend-foundation/
+specs/team3-week2/001-t01-backend-foundation/
 ├── spec.md                       # Đã làm rõ, giữ nguyên trong plan
 ├── plan.md                       # Kế hoạch kỹ thuật Phase 0/1 hiện tại
 ├── research.md                   # Phase 0: quyết định, lý do, phương án loại
@@ -107,7 +107,7 @@ team3_fullstack/backend/
         ├── java/com/legalai/backend/              # Tests hiện có
         └── powershell/RunLocalConfigurationTests.ps1  # Dự kiến bổ sung, chưa tạo
 docs/team3_fullstack/team3.md
-specs/001-t01-backend-foundation/verification.md
+specs/team3-week2/001-t01-backend-foundation/verification.md
 team3_fullstack/frontend/                         # Không sửa
 ```
 
@@ -128,7 +128,7 @@ không phục hồi `backend/README.md` người dùng đã xóa/chuyển và kh
 | `src/test/powershell/RunLocalConfigurationTests.ps1` | Chưa có harness runner | Bổ sung isolated env/file/Maven stub, precedence/fallback/invalid/restoration; không framework mới |
 | `src/test/java/.../BackendConfigurationTests.java`, `MockApiTests.java` | Mock, health, CORS, lỗi đã có nhiều ca | Bổ sung assertion Allow-Methods/Allow-Headers, Location actual + Origin, retryable=false ở đầu vào; test HTTP query trả 500 sau tiếp nhận bằng AI lỗi cô lập trong test, giữ test-only probe hiện có |
 | `src/test/java/.../MockQueryServiceTests.java` | Có test service tiếp nhận lượt rồi lỗi 503/504 | Mở rộng test hiện có cho RuntimeException → 500/INTERNAL_ERROR, retryable=false, conversation ID đúng lượt và message an toàn; không sửa ChatService hoặc thêm scenario public |
-| `specs/001-t01-backend-foundation/verification.md` | Báo cáo lịch sử và đính chính nguồn | Sau triển khai cập nhật hướng dẫn/bằng chứng mới, giữ ngày/giới hạn kết quả cũ; không đổi phê duyệt |
+| `specs/team3-week2/001-t01-backend-foundation/verification.md` | Báo cáo lịch sử và đính chính nguồn | Sau triển khai cập nhật hướng dẫn/bằng chứng mới, giữ ngày/giới hạn kết quả cũ; không đổi phê duyệt |
 
 Các file ngoài bảng, Frontend, Team 1/2, `.specify`/template và contract chung không phải target.
 Nếu triển khai phát hiện cần thay behavior API ngoài bảng, ghi lại thay vì tự mở rộng T01.

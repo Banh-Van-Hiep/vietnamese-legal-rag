@@ -3,8 +3,8 @@
 **Nhóm / phụ trách:** Team 3 / thành viên phụ trách. **Task:** T01.
 **Kết quả:** 23/23 task, 8/8 AC đã kiểm chứng local ngày 09/10/2026; chưa thay nghiệm thu nhóm.
 **Yêu cầu:** [spec.md](spec.md). **Tái hiện kiểm tra:** [quickstart.md](quickstart.md).
-**Nguồn API:** [Team 3 v1.2](../../docs/team3_fullstack/team3.md); phạm vi từ
-[kế hoạch tuần 2](../../docs/team3_fullstack/team3-week2-spec.md).
+**Nguồn API:** [Team 3 v1.2](../../../docs/team3_fullstack/team3.md); phạm vi từ
+[kế hoạch tuần 2](../tasks.md).
 
 ## Bàn giao cho thành viên và AI khác
 
@@ -47,14 +47,14 @@ xác nhận của thành viên phụ trách. Tại thời điểm kiểm chứng
 
 | Nguồn | Nội dung / kết luận |
 | --- | --- |
-| [`contracts/README.md`](../../contracts/README.md) | `contracts/` chỉ có README; dẫn tới tài liệu và schema Team 2, không có JSON Schema trong thư mục. Nhãn proposal của tài liệu được dẫn không phủ nhận tài liệu Team 3 đã thống nhất |
-| [`docs/team3_fullstack/team3.md`](../../docs/team3_fullstack/team3.md) | Tài liệu gốc v1.2 đã được Team 3 thống nhất theo thành viên phụ trách; căn cứ API, luồng, kiến trúc; mục 1.10 quy định envelope/mã/HTTP/retryable |
-| [Spec tuần 2](../../docs/team3_fullstack/team3-week2-spec.md) | Xác định phạm vi T01; không thay thế tài liệu gốc cho API/luồng/kiến trúc |
-| [`request.schema.json`](../../docs/team2_rag/schemas/request.schema.json) | Chỉ question, maxLength=10000, additionalProperties=false; khác Team 3 mục 1.6 yêu cầu client_request_id UUID v4, conversation_id tùy chọn/null và question 1–2000 code point sau trim |
-| [`rag_response.schema.json`](../../docs/team2_rag/schemas/rag_response.schema.json) | Chỉ answer/citations, additionalProperties=false; thiếu status nội bộ theo Team 3 mục 1.9. Schema được dẫn cho public query nhưng không mô tả ID/thời gian do Backend bổ sung ở mục 1.6 |
-| [`citation.schema.json`](../../docs/team2_rag/schemas/citation.schema.json) | Dùng claim/chunk_id/document/article/clause/source; khác 9 field tại Team 3 mục 1.7, thiếu citation_id/document_id/article_id/document_title/point/source_url và ràng buộc URL HTTPS |
-| [`error_response.schema.json`](../../docs/team2_rag/schemas/error_response.schema.json) | Envelope code/message/retryable khớp; không quy định bảng HTTP/public code/retryable theo từng lỗi. Ví dụ PROVIDER_TIMEOUT khác mã public UPSTREAM_TIMEOUT của Team 3 mục 1.10 |
-| History, health, article và [`retrieval_output.schema.json`](../../docs/team2_rag/schemas/retrieval_output.schema.json) | Schema được dẫn chưa biểu diễn history/health/article theo mục 1.8/1.9; candidate retrieval dùng 7 field, khác 12 field tại mục 1.9.1, thiếu các ID/version/metadata/order liên quan |
+| [`contracts/README.md`](../../../contracts/README.md) | `contracts/` chỉ có README; dẫn tới tài liệu và schema Team 2, không có JSON Schema trong thư mục. Nhãn proposal của tài liệu được dẫn không phủ nhận tài liệu Team 3 đã thống nhất |
+| [`docs/team3_fullstack/team3.md`](../../../docs/team3_fullstack/team3.md) | Tài liệu gốc v1.2 đã được Team 3 thống nhất theo thành viên phụ trách; căn cứ API, luồng, kiến trúc; mục 1.10 quy định envelope/mã/HTTP/retryable |
+| [Spec tuần 2](../tasks.md) | Xác định phạm vi T01; không thay thế tài liệu gốc cho API/luồng/kiến trúc |
+| [`request.schema.json`](../../../docs/team2_rag/schemas/request.schema.json) | Chỉ question, maxLength=10000, additionalProperties=false; khác Team 3 mục 1.6 yêu cầu client_request_id UUID v4, conversation_id tùy chọn/null và question 1–2000 code point sau trim |
+| [`rag_response.schema.json`](../../../docs/team2_rag/schemas/rag_response.schema.json) | Chỉ answer/citations, additionalProperties=false; thiếu status nội bộ theo Team 3 mục 1.9. Schema được dẫn cho public query nhưng không mô tả ID/thời gian do Backend bổ sung ở mục 1.6 |
+| [`citation.schema.json`](../../../docs/team2_rag/schemas/citation.schema.json) | Dùng claim/chunk_id/document/article/clause/source; khác 9 field tại Team 3 mục 1.7, thiếu citation_id/document_id/article_id/document_title/point/source_url và ràng buộc URL HTTPS |
+| [`error_response.schema.json`](../../../docs/team2_rag/schemas/error_response.schema.json) | Envelope code/message/retryable khớp; không quy định bảng HTTP/public code/retryable theo từng lỗi. Ví dụ PROVIDER_TIMEOUT khác mã public UPSTREAM_TIMEOUT của Team 3 mục 1.10 |
+| History, health, article và [`retrieval_output.schema.json`](../../../docs/team2_rag/schemas/retrieval_output.schema.json) | Schema được dẫn chưa biểu diễn history/health/article theo mục 1.8/1.9; candidate retrieval dùng 7 field, khác 12 field tại mục 1.9.1, thiếu các ID/version/metadata/order liên quan |
 
 **Căn cứ của T01:** áp dụng health, header và lỗi theo `team3.md` trong phạm vi spec tuần 2.
 Error envelope và HTTP/public code lấy từ yêu cầu Team 3 đã thống nhất, không lấy sự hiện hữu

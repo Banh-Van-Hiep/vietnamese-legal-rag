@@ -1,6 +1,6 @@
 # T02 — Quickstart validation
 **Trạng thái:** đã thực hiện local ngày 2026-10-09: wrapper package74, runner37 và HTTP8 PASS; xem [báo cáo T02](verification.md) và target/t02/ dưới backend. Không thay nghiệm thu nhóm.
-Thư mục feature: specs/002-t02-mock-api/. Từ repository root, dùng PowerShell/JDK25 và
+Thư mục feature: specs/team3-week2/002-t02-mock-api/. Từ repository root, dùng PowerShell/JDK25 và
 wrapper; không AI/key/DB thật, không sửa .env cá nhân.
 
     $env:JAVA_HOME = 'D:\Java\jdk-25'

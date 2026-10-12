@@ -30,7 +30,7 @@ npm test                    # test đơn vị (vitest), không cần backend
 ```
 
 Backend mock (cổng 8080, cho phép origin `http://localhost:5173`): xem
-[quickstart T02](../../specs/002-t02-mock-api/quickstart.md). Backend lưu trong bộ nhớ, **mất dữ liệu khi khởi động lại**.
+[quickstart T02](../../specs/team3-week2/002-t02-mock-api/quickstart.md). Backend lưu trong bộ nhớ, **mất dữ liệu khi khởi động lại**.
 
 ## Các trang
 

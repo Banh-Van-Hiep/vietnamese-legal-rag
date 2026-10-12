@@ -101,8 +101,13 @@ Kết quả ngày **12/10/2026** cho `team3_ground_truth.json` sau khi gộp:
 
 - Reviewer nhóm chỉ định xác nhận từng mẫu và ghi kết quả review. Theo dõi phần đóng góp
   từng thành viên trong bàn giao nội bộ; file công khai dùng tên nhóm.
-- Nhóm thống nhất cách hiểu chỉ tiêu số lượng: spec tuần 2 ghi "5–10 câu" cho Team 3, còn VLRA-24 (theo mô tả
-  ở trên) tính 5–10 câu mỗi thành viên. Chốt xong thì đặt `--min/--max` tương ứng. Mẫu `insufficient_context`
-  (không có căn cứ để đối chiếu) có được tính vào chỉ tiêu hay không cũng cần chốt.
+- [Nhiệm vụ tuần 2](../../docs/team3_fullstack/week2.md) đã đồng bộ chỉ tiêu VLRA-24:
+  5–10 câu mỗi thành viên, không giới hạn 10 mẫu cho cả file gộp. Còn xác nhận đóng góp từng
+  thành viên trong bàn giao nội bộ. Mẫu `insufficient_context` (không có căn cứ để đối chiếu)
+  chưa tính vào chỉ tiêu có Ground Truth và chunk_id khi chưa được nhóm chấp thuận.
 - Team 2 xác nhận có nhận `expected_status = insufficient_context` và `gold_chunk_ids` rỗng trong định dạng golden
   (hiện bộ của họ chỉ có mẫu `answered`).
+
+Lần kiểm chứng tổng hợp ngày 12/10/2026: cả hai validator PASS 13/13; kiểm tra regression
+10/10 ca (1 hợp lệ, 9 trường hợp phải bị từ chối) PASS. Xem
+[báo cáo nghiệm thu tuần 2](../../specs/team3-week2/verification.md). Kết quả này chưa thay review pháp lý.

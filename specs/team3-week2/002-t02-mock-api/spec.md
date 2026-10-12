@@ -2,7 +2,7 @@
 
 **Feature Branch**: feature/team3/*
 **Nhóm / phụ trách / task**: Team 3 / thành viên phụ trách / T02.
-**Feature Directory**: specs/002-t02-mock-api
+**Feature Directory**: specs/team3-week2/002-t02-mock-api
 **Created**: 2026-10-09
 **Status**: Implemented và kiểm chứng local ngày 2026-10-09: 8/8 AC PASS, wrapper package 74 tests, runner 37 cases, HTTP matrix 8 records. Quyết định CL-T02-01/02 do Codex chọn theo ủy quyền, chờ thành viên phụ trách review; không thay nghiệm thu nhóm. Xem [báo cáo T02](verification.md).
 **Input**: T02 của thành viên phụ trách từ spec tuần 2, API/luồng/kiến trúc Team 3 đã thống nhất,
@@ -122,10 +122,10 @@ hiện có được bảo toàn và dùng kiểm tra cần thiết, không mở 
 
 | Nguồn | Vai trò |
 | --- | --- |
-| [team3.md v1.2](../../docs/team3_fullstack/team3.md), 1.1/1.6/1.7/1.8/1.10 | API/luồng/kiến trúc đã thống nhất theo Q1 và yêu cầu hiện tại |
-| [Spec tuần 2 v1.2](../../docs/team3_fullstack/team3-week2-spec.md), BE-03, T02, AC-03/05/06 | Giới hạn task; phần UI không chuyển vào Backend |
+| [team3.md v1.2](../../../docs/team3_fullstack/team3.md), 1.1/1.6/1.7/1.8/1.10 | API/luồng/kiến trúc đã thống nhất theo Q1 và yêu cầu hiện tại |
+| [Spec tuần 2 v1.2](../tasks.md), BE-03, T02, AC-03/05/06 | Giới hạn task; phần UI không chuyển vào Backend |
 | [T01](../001-t01-backend-foundation/spec.md), [plan](../001-t01-backend-foundation/plan.md), [tasks](../001-t01-backend-foundation/tasks.md) | Nền local đã kiểm chứng; Q1–Q3 giữ nguyên |
-| Constitution 1.0.0 (nguồn local tại lúc lập spec) | Tương thích, ranh giới team, kiến trúc hiện có, kiểm chứng; ngày phê chuẩn còn TODO. Công cụ local không là dependency của bộ tài liệu chia sẻ; xem [specs README](../README.md) |
+| Constitution 1.0.0 (nguồn local tại lúc lập spec) | Tương thích, ranh giới team, kiến trúc hiện có, kiểm chứng; ngày phê chuẩn còn TODO. Công cụ local không là dependency của bộ tài liệu chia sẻ; xem [specs README](../../README.md) |
 | Code/test, [báo cáo T01](../001-t01-backend-foundation/verification.md) | Quan sát/bằng chứng, không tự định nghĩa yêu cầu hoặc nghiệm thu T02 |
 
 Không tìm thấy AGENTS.md trong repository/các thư mục cha đã kiểm tra; dùng README,

@@ -3,8 +3,8 @@
 **Nhóm / phụ trách:** Team 3 / thành viên phụ trách. **Task:** T02.
 **Kết quả:** 18/18 task, 8/8 AC đã kiểm chứng local ngày 09/10/2026; chưa thay nghiệm thu nhóm.
 **Yêu cầu:** [spec.md](spec.md). **Tái hiện kiểm tra:** [quickstart.md](quickstart.md).
-**Nguồn API:** [Team 3 v1.2](../../docs/team3_fullstack/team3.md); phạm vi từ
-[kế hoạch tuần 2](../../docs/team3_fullstack/team3-week2-spec.md).
+**Nguồn API:** [Team 3 v1.2](../../../docs/team3_fullstack/team3.md); phạm vi từ
+[kế hoạch tuần 2](../tasks.md).
 
 ## Bàn giao cho thành viên và AI khác
 
@@ -28,7 +28,7 @@ không chạy lại build/test và không gán số liệu cũ thành kiểm ch�
 
 ## Nguồn và workflow
 
-[Team 3 v1.2](../../docs/team3_fullstack/team3.md) là căn cứ API/luồng/kiến trúc; [tuần 2](../../docs/team3_fullstack/team3-week2-spec.md)
+[Team 3 v1.2](../../../docs/team3_fullstack/team3.md) là căn cứ API/luồng/kiến trúc; [tuần 2](../tasks.md)
 xác định phạm vi T02. Q1–Q3 trong [T01 spec](../001-t01-backend-foundation/spec.md) giữ nguyên.
 T01 được kiểm tra bằng source và bằng chứng gốc (25 Java tests, 31 runner cases, 8 smoke records);
 T02 không được đánh dấu hoàn thành dựa vào báo cáo T01.

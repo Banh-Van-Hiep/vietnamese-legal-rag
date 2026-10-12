@@ -1,18 +1,17 @@
 # Team 3 — Kiến trúc, API và luồng tích hợp
 
 **Nguồn:** tài liệu gốc Team 3 đã thống nhất, theo xác nhận của thành viên phụ trách.
-**Đặc tả API:** v1.2. **Tổ chức lại tài liệu:** 09/10/2026, giữ nguyên endpoint/schema/luồng.
+**Đặc tả API:** v1.2. **Tổ chức lại tài liệu:** 12/10/2026, giữ nguyên endpoint/schema/luồng.
 
-Đây là căn cứ API, luồng và kiến trúc của Team 3. [README Team 3](README.md) là mục lục và
-hiện trạng bàn giao; [kế hoạch tuần 2](team3-week2-spec.md) xác định phạm vi task;
-[specs/](../../specs/README.md) chứa đặc tả, kế hoạch, nhiệm vụ và kết quả từng chức năng.
+Đây là căn cứ API, luồng và kiến trúc của Team 3. [README Team 3](README.md) là mục lục
+tài liệu chung; [week2.md](week2.md) ghi 3 nhiệm vụ Jira của tuần 2.
+Phân rã task và hiện trạng triển khai nằm trong [specs/](../../specs/README.md).
 
 ## Phạm vi và kiến trúc
 
 Team 3 phụ trách Backend/REST API, Frontend/UI, Document Viewer, tích hợp và triển khai.
 Team 1 sở hữu data/retrieval; Team 2 sở hữu reranker/context/prompt/LLM/citation/evaluation.
-Dữ liệu liên team được phối hợp qua [contracts/](../../contracts/README.md); khác biệt schema
-đang có được ghi trong [đối chiếu T01](../../specs/001-t01-backend-foundation/verification.md#2-contract-đã-đối-chiếu).
+Dữ liệu liên team được phối hợp qua [contracts/](../../contracts/README.md).
 Không dùng code hoặc báo cáo để tự thay đổi API đã chốt.
 
 Backend tiếp tục Java + Spring Boot/Maven, package theo tính năng trong
@@ -21,35 +20,22 @@ Controller nhận HTTP; service điều phối; DTO biểu diễn dữ liệu; r
 khi được triển khai. Chỉ package ai/ giao tiếp với dịch vụ Python; các service phụ thuộc AiClient.
 Frontend tiếp tục React/TypeScript/Vite trong team3_fullstack/frontend/.
 
-| Thành phần | Vai trò | Hiện trạng sau T01/T02 |
-| --- | --- | --- |
-| chat/ | Nhận query, điều phối lượt, trả response và ID | Mock đồng bộ; guard output trước complete, lỗi sau accept giữ conversation ID |
-| conversation/ | Tạo/xem/xóa hội thoại, lưu và xem tin nhắn | Bộ nhớ tạm; Conversation/Message là snapshot, repository JPA là placeholder tắt trong mock |
-| document/ | Mở điều luật theo document_id/article_id | Mock tuple, guard đúng ID/schema; không tải URL tùy ý |
-| ai/ | Ranh giới Backend–RAG | AiClient hiện nhận question/lấy article; MockAiClient có scenario; HttpAiClient chưa triển khai |
-| common/ | Parser/filter/trace/CORS/lỗi | Đã có validation, CORS theo origin và error envelope |
-| application*.properties, run-local.ps1 | Runtime/profile/env/port/origin | Mock tắt datasource/JPA; .env do runner nạp, không do Spring tự đọc |
-| Frontend | Chat/Search/Viewer theo thiết kế | Có trang thử /try-backend; các màn hình chính T03/T04 chưa được nghiệm thu |
+| Thành phần | Vai trò |
+| --- | --- |
+| chat/ | Nhận query, điều phối lượt, trả response và ID |
+| conversation/ | Tạo/xem/xóa hội thoại, lưu và xem tin nhắn |
+| document/ | Mở điều luật theo document_id/article_id |
+| ai/ | Ranh giới Backend–RAG |
+| common/ | Parser/filter/trace/CORS/lỗi |
+| application*.properties, run-local.ps1 | Runtime/profile/env/port/origin |
+| Frontend | Chat/Search/Viewer theo thiết kế |
 
-PostgreSQL, history truyền sang AI và gọi Python thật là phần kiến trúc tích hợp phía sau;
-T01/T02 chưa triển khai chúng. Mock mất dữ liệu sau restart, không hiểu ngữ cảnh bằng AI thật.
-Các schema nội bộ ở mục 1.9 là căn cứ phối hợp tích hợp; chênh lệch Team 2 còn phải đồng bộ,
-không suy ra upstream đã chạy.
-
-## Trạng thái và quyết định áp dụng
-
-- T01/T02 đã triển khai và kiểm chứng local; kết quả/commit/giới hạn nằm trong verification.md
-  ở từng thư mục spec. Không đồng nghĩa nghiệm thu toàn tuần 2.
-- Q1: tài liệu này là nguồn API/luồng/kiến trúc; file tuần 2 giới hạn task.
-- Q2: tham số Port/AllowedOrigins được truyền rõ > biến terminal > .env > mặc định Spring,
-  theo từng key; winner rỗng/sai báo lỗi, chỉ fallback khi nguồn vắng.
-- Q3: CORS nghiệm thu origin được phép/ngoài danh sách, không bắt body JSON403.
-  Handler406 vẫn tồn tại; 406/NOT_ACCEPTABLE là hành vi triển khai, không nâng thành contract/AC T01.
-- Cấu hình scenario T02 và guard502 được ghi trong [decisions.md](../../specs/002-t02-mock-api/decisions.md)
-  theo ủy quyền của thành viên phụ trách; không tự gọi là phê duyệt mới của nhóm.
+PostgreSQL, history truyền sang AI và gọi Python là thành phần của kiến trúc tích hợp.
+Các schema nội bộ ở mục 1.9 là căn cứ phối hợp liên team. Phương án triển khai, giới hạn mock
+và kết quả kiểm chứng được ghi trong specs theo từng task.
 
 Phần API/luồng dưới đây giữ nội dung đã thống nhất. Thiết kế mô tả hệ thống đầy đủ; hiện trạng
-triển khai được ghi riêng ở bảng trên để không nhầm kế hoạch với chức năng đã chạy.
+triển khai và quyết định kiểm chứng được ghi riêng trong specs để không nhầm thiết kế với chức năng đã chạy.
 
 ## API
 

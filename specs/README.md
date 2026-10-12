@@ -1,34 +1,74 @@
 # Shared feature specifications
 
 Thư mục specs/ được chia sẻ qua Git để các thành viên và AI hiểu thay đổi sau khi merge code.
-Mỗi thư mục mô tả một chức năng/task: yêu cầu, thiết kế, công việc và kết quả bàn giao.
+Nơi đây quản lý phân rã task, phạm vi kỹ thuật, spec/plan/tasks, dependency, tiêu chí kiểm chứng
+và bằng chứng nghiệm thu. Nhiệm vụ chung theo tuần/Jira và kiến trúc/API cấp nhóm thuộc `docs/`.
+Hai thư mục độc lập về nội dung; liên kết chỉ để truy vết nguồn yêu cầu, không sao chép bảng task/test.
 Có spec hoặc checkbox hoàn thành không tự chứng minh yêu cầu đã được phê duyệt hay toàn bộ hệ thống đã chạy.
 
 ## Các phần đã có
 
 | Nhóm | Task / phụ trách | Chức năng | Trạng thái tại bàn giao | Điểm đọc |
 | --- | --- | --- | --- | --- |
-| Team 3 | T01 / thành viên phụ trách | Nền Backend, runtime/env, CORS, lỗi chung | Kiểm chứng local 23/23 tasks, 8/8 AC; chưa thay nghiệm thu nhóm | [Spec](001-t01-backend-foundation/spec.md), [bàn giao](001-t01-backend-foundation/verification.md) |
-| Team 3 | T02 / thành viên phụ trách | Query/document mock, fixture/scenario, guard output | Kiểm chứng local 18/18 tasks, 8/8 AC; lựa chọn vận hành chờ review của thành viên phụ trách | [Spec](002-t02-mock-api/spec.md), [bàn giao](002-t02-mock-api/verification.md) |
+| Team 3 | T01 / thành viên phụ trách | Nền Backend, runtime/env, CORS, lỗi chung | Kiểm chứng local 23/23 tasks, 8/8 AC; chưa thay nghiệm thu nhóm | [Spec](team3-week2/001-t01-backend-foundation/spec.md), [bàn giao](team3-week2/001-t01-backend-foundation/verification.md) |
+| Team 3 | T02 / thành viên phụ trách | Query/document mock, fixture/scenario, guard output | Kiểm chứng local 18/18 tasks, 8/8 AC; lựa chọn vận hành chờ review của thành viên phụ trách | [Spec](team3-week2/002-t02-mock-api/spec.md), [bàn giao](team3-week2/002-t02-mock-api/verification.md) |
+| Team 3 | Tuần 2 / Team 3 | Phân rã T01–T06 và nghiệm thu từ task lên 3 nhiệm vụ Jira | T01–T04 PASS kỹ thuật local; T05 chờ review pháp lý, T06 chờ thành viên khác xác nhận chạy lại | [Task](team3-week2/tasks.md), [nghiệm thu task → Jira](team3-week2/verification.md) |
 
 T01: 25 Java tests /31 runner cases tại vòng kiểm chứng riêng. T02: full package74 /runner37 /
 HTTP8 records, gồm regression T01; đây là kết quả ngày 09/10/2026 trước các commit bàn giao.
 Không cộng các con số thành tổng test mới hoặc tự gán PASS cho lần merge khác.
-T03–T06 chưa có bộ spec/verification riêng trong bàn giao này. Tài liệu Team 1/2 hiện nằm trong
+T03–T06 được theo dõi trong [bộ tuần 2](team3-week2/tasks.md), chưa tạo thư mục spec riêng.
+Kết quả kiểm chứng hiện tại nằm trong [verification](team3-week2/verification.md). Tài liệu Team 1/2 hiện nằm trong
 [docs/](../docs/README.md); bảng trên không kết luận trạng thái code của các team khác.
 
 ## Đọc sau khi nhận hoặc merge code
 
-1. Đọc README repository và hướng dẫn repository hiện có, rồi mục lục này để tìm nhóm/task.
-2. Đọc spec.md để hiểu phạm vi và yêu cầu; xem phần Clarifications/decisions.md nếu có.
-3. Đọc plan.md và tasks.md để hiểu cách triển khai, dependency và phần còn mở.
-4. Đọc verification.md để biết code/commit đã bàn giao, kết quả thực tế, giới hạn và phần cần phối hợp.
-5. Đọc quickstart.md khi chạy lại; đối chiếu code/config/test và Git diff hiện tại trước khi sửa.
+1. Đọc nhiệm vụ tuần theo Jira và kiến trúc/API trong docs để hiểu đầu ra chung.
+2. Đọc phân rã trong specs để chọn task, dependency và ánh xạ Jira; với Team 3 xem `team3-week2/tasks.md`.
+3. Đọc spec/plan/tasks của chức năng nếu đã có; xem Clarifications/decisions trước khi sửa.
+4. Đối chiếu từng task với tiêu chí và bằng chứng trong verification, sau đó tổng hợp lên Jira.
+5. Đọc quickstart/hướng dẫn chạy lại; đối chiếu code/config/test và Git diff hiện tại.
 
 Với Team 3, API/luồng/kiến trúc lấy từ [team3.md v1.2](../docs/team3_fullstack/team3.md);
-phạm vi tuần 2 lấy từ [kế hoạch](../docs/team3_fullstack/team3-week2-spec.md).
+3 nhiệm vụ tuần 2 lấy từ [week2.md](../docs/team3_fullstack/week2.md);
+phạm vi task và tiêu chí chi tiết lấy từ [phân rã tuần 2](team3-week2/tasks.md).
 Q1–Q3 và lựa chọn vận hành cụ thể nằm trong spec/verification; code hiện tại không tự đổi contract.
 Không suy ra đã có PostgreSQL, Python/RAG thật, UI chính thức hoặc nghiệm thu nhóm từ một fixture mock.
+
+## Quy trình nhận VLRA và thực hiện task
+
+1. Khi nhận từng VLRA, cập nhật nhiệm vụ chung theo tuần tại `docs/<team>/week<N>.md`:
+   mã Jira, mục tiêu, đầu ra, phạm vi và nguồn yêu cầu. Kiểm tra đã có nhiệm vụ đó để tránh trùng.
+2. Phân rã thành task ở `specs/<team>-week<N>/tasks.md`, ghi task → VLRA, phạm vi và phụ thuộc.
+   Đây là danh sách tổng của tuần; `tasks.md` trong từng thư mục task là các bước triển khai nhỏ.
+3. Khi bắt đầu một task, kiểm tra code và bộ spec hiện có. Tái sử dụng/cập nhật nếu đã có;
+   task mới dùng thư mục `specs/<team>-week<N>/<NNN>-<task>-<chuc-nang>/`.
+4. Chạy **`$speckit-specify` → `$speckit-clarify` → `$speckit-plan` → `$speckit-tasks`
+   → `$speckit-analyze` → sửa vấn đề → `$speckit-implement`** cho đúng task được chọn.
+   Mỗi bước ghi kết quả riêng; analyze chỉ báo vấn đề, bước sửa mới thay tài liệu.
+   Phân biệt quyết định đã chốt và phần cần làm rõ; không tự đổi API/công nghệ/phạm vi.
+5. Sau implement, kiểm tra từng bước và tiêu chí của task rồi cập nhật `verification.md`.
+   Chỉ đánh dấu hoàn thành khi có bằng chứng; ghi phần chưa chạy hoặc còn chờ review.
+6. Tổng hợp task đã kiểm chứng vào `specs/<team>-week<N>/verification.md`, đối chiếu với
+   đầu ra từng VLRA trong docs, rồi mới kết luận nghiệm thu tuần. Không tự commit/push.
+
+Với Spec Kit, chỉ định **`SPECIFY_FEATURE_DIRECTORY`** là thư mục task đầy đủ để giữ đúng
+vị trí theo tuần; `.specify/feature.json` lưu lựa chọn trên máy, không được push.
+Ví dụ task mới: `specs/team3-week2/003-t03-frontend/`. Không trỏ vào thư mục tổng tuần,
+không tạo lại task đã có hoặc tự chạy lại workflow T01/T02 chỉ vì chuyển thư mục.
+
+Cấu trúc Team 3 tuần 2:
+
+```text
+specs/team3-week2/
+├── tasks.md                       # Phân rã task → VLRA của tuần
+├── verification.md                # Nghiệm thu task → VLRA → tuần
+├── 001-t01-backend-foundation/     # Bộ Spec Kit của T01
+└── 002-t02-mock-api/               # Bộ Spec Kit của T02
+```
+
+Đây là quy trình đã được người dùng xác nhận. Khi thêm tuần/task khác, áp dụng cùng cách
+tổ chức; mỗi bộ tài liệu vẫn đọc được khi thành viên dùng công cụ AI khác hoặc không cài Spec Kit.
 
 ## Vai trò các file
 

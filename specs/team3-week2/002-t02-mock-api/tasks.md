@@ -37,12 +37,12 @@ không được tạo lại; chỉ guard/scenario/assertion còn thiếu. Checkb
 **Independent test**: query/document500/503/504 qua instance config thật, input400/404 trước lỗi;
 legacy/new selectors vàQ2, khôngprobe.
 - [X] T014 [US3] Chạy team3_fullstack/backend/src/test/powershell/RunLocalConfigurationTests.ps1 với JDK25; lưu team3_fullstack/backend/target/t02/runner-tests.log; xác nhận base T01 và hai key mới priority/file fallback/blank/semantic wrong retained/restoration.
-- [X] T015 [US3] Thực hiện HTTP matrix theo specs/002-t02-mock-api/quickstart.md bằng fixture/helper riêng ở team3_fullstack/backend/target/t02/: legacy insuff, explicit new answered, terminal key thắng file, internal/unavailable/timeout cho query/document; kiểm tra envelope/retryable/trace, query input400, doc400/404 và GET document ?extra=1/body {} đều400 trong success/error modes, health/CORS/probe absent và invalid config nonzero. Giữ PID/port ownership/Hidden/cleanup, ghi expected/actual/commands, không sửa .env thật.
+- [X] T015 [US3] Thực hiện HTTP matrix theo specs/team3-week2/002-t02-mock-api/quickstart.md bằng fixture/helper riêng ở team3_fullstack/backend/target/t02/: legacy insuff, explicit new answered, terminal key thắng file, internal/unavailable/timeout cho query/document; kiểm tra envelope/retryable/trace, query input400, doc400/404 và GET document ?extra=1/body {} đều400 trong success/error modes, health/CORS/probe absent và invalid config nonzero. Giữ PID/port ownership/Hidden/cleanup, ghi expected/actual/commands, không sửa .env thật.
 
 ## Phase 6: Polish và bàn giao
 - [X] T016 Chạy final wrapper package qua team3_fullstack/backend/run-local.ps1 với build fixture dưới target/t02, không skipTests; archive reports và log team3_fullstack/backend/target/t02/final-validation.log; full T01/T02 tests/harness regression, JAR không test probe, không lặp smoke unchanged nếu không failure mới.
-- [X] T017 Viết specs/002-t02-mock-api/verification.md và cập nhật trạng thái specs/002-t02-mock-api/{spec,plan,tasks,decisions,quickstart}.md từ kết quả thật: 8AC, sources/working tree/runtime/command/expected/actual/limits và quyền tự quyết; không gán quyết định mới là nhóm phê duyệt.
-- [X] T018 Review status/diff/hash với team3_fullstack/backend/target/t02/baseline-hashes.json, giữ T01/source/FE/Team1/2/sharedschema/.env ngoài target; confirm no owned process/port leak, cập nhật checkbox trong specs/002-t02-mock-api/tasks.md chỉ khi evidence đạt; không commit/push/merge.
+- [X] T017 Viết specs/team3-week2/002-t02-mock-api/verification.md và cập nhật trạng thái specs/team3-week2/002-t02-mock-api/{spec,plan,tasks,decisions,quickstart}.md từ kết quả thật: 8AC, sources/working tree/runtime/command/expected/actual/limits và quyền tự quyết; không gán quyết định mới là nhóm phê duyệt.
+- [X] T018 Review status/diff/hash với team3_fullstack/backend/target/t02/baseline-hashes.json, giữ T01/source/FE/Team1/2/sharedschema/.env ngoài target; confirm no owned process/port leak, cập nhật checkbox trong specs/team3-week2/002-t02-mock-api/tasks.md chỉ khi evidence đạt; không commit/push/merge.
 
 ## Dependencies and parallel examples
 | Task | Depends on |
