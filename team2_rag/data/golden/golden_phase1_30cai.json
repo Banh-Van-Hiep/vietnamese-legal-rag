@@ -66,4 +66,65 @@
 "category": "Quyền của doanh nghiệp",
 "author": "Bành Văn Hiệp"
 }
+,
+{
+"id": "gold_datdo_001",
+"question": "Công ty TNHH hai thành viên trở lên được có tối thiểu và tối đa bao nhiêu thành viên? Thành viên có thể là tổ chức không?",
+"expected_status": "answered",
+"ground_truth": "Công ty TNHH hai thành viên trở lên có từ 2 đến 50 thành viên. Thành viên có thể là tổ chức hoặc cá nhân.",
+"gold_chunk_ids": [
+"vbhn-67-vbhn-vpqh-v1__dieu-46__k1__0"
+],
+"citation": "Khoản 1 Điều 46 - Luật Doanh nghiệp, theo Văn bản hợp nhất 67/VBHN-VPQH năm 2025",
+"category": "Công ty TNHH hai thành viên trở lên",
+"author": "Đỗ Đức Đạt"
+},
+{
+"id": "gold_datdo_002",
+"question": "Thành viên công ty TNHH hai thành viên trở lên phải góp đủ vốn đã cam kết trong bao lâu? Thời gian vận chuyển, nhập khẩu tài sản góp vốn và làm thủ tục chuyển quyền sở hữu có tính vào thời hạn này không?",
+"expected_status": "answered",
+"ground_truth": "Thành viên phải góp đủ vốn và đúng loại tài sản đã cam kết trong 90 ngày tính từ ngày công ty được cấp Giấy chứng nhận đăng ký doanh nghiệp. Thời gian vận chuyển, nhập khẩu tài sản góp vốn và thực hiện thủ tục hành chính để chuyển quyền sở hữu tài sản không được tính vào 90 ngày này.",
+"gold_chunk_ids": [
+"vbhn-67-vbhn-vpqh-v1__dieu-47__k2__0"
+],
+"citation": "Khoản 2 Điều 47 - Luật Doanh nghiệp, theo Văn bản hợp nhất 67/VBHN-VPQH năm 2025",
+"category": "Thời hạn góp vốn",
+"author": "Đỗ Đức Đạt"
+},
+{
+"id": "gold_datdo_003",
+"question": "Khi thành viên góp vốn vào công ty TNHH bằng tài sản có đăng ký quyền sở hữu, việc chuyển quyền sở hữu tài sản đó cho công ty có phải chịu lệ phí trước bạ không?",
+"expected_status": "answered",
+"ground_truth": "Không phải chịu lệ phí trước bạ khi chuyển quyền sở hữu tài sản góp vốn cho công ty. Người góp vốn vẫn phải thực hiện thủ tục chuyển quyền sở hữu tài sản có đăng ký quyền sở hữu theo quy định pháp luật.",
+"gold_chunk_ids": [
+"vbhn-67-vbhn-vpqh-v1__dieu-35__k1__0"
+],
+"citation": "Điểm a Khoản 1 Điều 35 - Luật Doanh nghiệp, theo Văn bản hợp nhất 67/VBHN-VPQH năm 2025",
+"category": "Chuyển quyền sở hữu tài sản góp vốn",
+"author": "Đỗ Đức Đạt"
+},
+{
+"id": "gold_datdo_004",
+"question": "Công ty cổ phần phải có ít nhất bao nhiêu cổ đông và có giới hạn số lượng cổ đông tối đa không?",
+"expected_status": "answered",
+"ground_truth": "Công ty cổ phần cần tối thiểu 3 cổ đông và không bị giới hạn số cổ đông tối đa. Cổ đông có thể là tổ chức hoặc cá nhân.",
+"gold_chunk_ids": [
+"vbhn-67-vbhn-vpqh-v1__dieu-111__k1__0"
+],
+"citation": "Điểm b Khoản 1 Điều 111 - Luật Doanh nghiệp, theo Văn bản hợp nhất 67/VBHN-VPQH năm 2025",
+"category": "Công ty cổ phần",
+"author": "Đỗ Đức Đạt"
+},
+{
+"id": "gold_datdo_005",
+"question": "Doanh nghiệp tư nhân có được phát hành chứng khoán để huy động vốn không?",
+"expected_status": "answered",
+"ground_truth": "Không. Doanh nghiệp tư nhân không được huy động vốn bằng cách phát hành bất kỳ loại chứng khoán nào.",
+"gold_chunk_ids": [
+"vbhn-67-vbhn-vpqh-v1__dieu-188__k2__0"
+],
+"citation": "Khoản 2 Điều 188 - Luật Doanh nghiệp, theo Văn bản hợp nhất 67/VBHN-VPQH năm 2025",
+"category": "Doanh nghiệp tư nhân",
+"author": "Đỗ Đức Đạt"
+}
 ]
