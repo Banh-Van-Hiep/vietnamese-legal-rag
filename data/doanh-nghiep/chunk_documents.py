@@ -257,24 +257,30 @@ class Parser:
         )
 
 
+def chunk_document(meta: dict, text: str) -> list[dict]:
+    """Tách một văn bản đã làm sạch thành danh sách chunk."""
+    parser = Parser(meta)
+    for line in text.splitlines():
+        parser.feed(line.strip())
+    parser.flush_article()
+    return parser.chunks
+
+
 def main() -> None:
     registry = json.loads(REGISTRY.read_text(encoding="utf-8"))
     all_chunks = []
     for meta in registry:
         path = INTERIM / f"{meta['document_id']}.txt"
-        parser = Parser(meta)
-        for line in path.read_text(encoding="utf-8").splitlines():
-            parser.feed(line.strip())
-        parser.flush_article()
-        ids = [c["chunk_id"] for c in parser.chunks]
+        parser_chunks = chunk_document(meta, path.read_text(encoding="utf-8"))
+        ids = [c["chunk_id"] for c in parser_chunks]
         bad = [i for i in ids if not RE_CHUNK_ID.match(i)]
         if bad:
             raise SystemExit(f"chunk_id sai mẫu metadata spec: {bad[:5]}")
         if len(ids) != len(set(ids)):
             dup = sorted({i for i in ids if ids.count(i) > 1})
             raise SystemExit(f"duplicate chunk_id in {meta['document_id']}: {dup[:8]}")
-        all_chunks.extend(parser.chunks)
-        print(f"{meta['document_id']}: {len(parser.chunks)} chunks")
+        all_chunks.extend(parser_chunks)
+        print(f"{meta['document_id']}: {len(parser_chunks)} chunks")
 
     global_ids = [c["chunk_id"] for c in all_chunks]
     if len(global_ids) != len(set(global_ids)):
