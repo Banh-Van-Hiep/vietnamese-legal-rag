@@ -1,6 +1,6 @@
 # Vietnamese Legal RAG Assistant
 
-Project xây dựng trợ lý hỏi đáp pháp luật Việt Nam dựa trên Retrieval-Augmented Generation (RAG). Repository này hiện chỉ cung cấp cấu trúc dự án, phân công trách nhiệm và các điểm thống nhất giữa các team; chưa chứa implementation.
+Project xây dựng trợ lý hỏi đáp pháp luật Việt Nam dựa trên Retrieval-Augmented Generation (RAG). Repository có tài liệu phân công/thiết kế và implementation theo từng team; Backend mock T01/T02 cùng FE thử của Team 3 đã được bàn giao. Hiện trạng từng chức năng được ghi trong [specs/](specs/README.md) và [tài liệu team](docs/README.md).
 
 ## System Flow
 
@@ -38,7 +38,7 @@ Phụ trách legal data, data cleaning, chunking, metadata, BM25 retrieval, dens
 
 Phụ trách reranker, context builder, prompt, LLM, citation, RAG pipeline, RAG evaluation, answer quality, hallucination/grounding và citation verification.
 
-### Team 3 — Fullstack (`src/team3_fullstack/`)
+### Team 3 — Fullstack (`team3_fullstack/`)
 
 Phụ trách backend, REST API, frontend, UI/UX, document viewer, integration và deployment.
 
@@ -55,6 +55,8 @@ Phụ trách backend, REST API, frontend, UI/UX, document viewer, integration v�
 │   └── team3_fullstack/
 ├── evaluation/    # Tài liệu evaluation dùng chung
 ├── scripts/       # Vị trí dành cho utility scripts trong tương lai
+├── specs/         # Đặc tả và bàn giao chức năng dùng chung, xem specs/README.md
+├── team3_fullstack/ # Project Backend/Frontend chạy của Team 3
 ├── src/           # Source code của ba team
 │   ├── team1_data/
 │   ├── team2_rag/
@@ -62,7 +64,7 @@ Phụ trách backend, REST API, frontend, UI/UX, document viewer, integration v�
 └── tests/         # Vị trí dành cho integration/E2E tests dùng chung
 ```
 
-Các thư mục team độc lập về implementation. Những file hiện có chỉ mô tả phạm vi và nguyên tắc làm việc, chưa triển khai source code.
+Các thư mục team độc lập về implementation. Project chạy của Team 3 ở `team3_fullstack/`; xem [mục lục Team 3](docs/team3_fullstack/README.md). Đọc [specs/README.md](specs/README.md) sau khi nhận/merge code để biết yêu cầu, quyết định, commit và giới hạn của phần đã bàn giao; không suy ra trạng thái team khác từ mock Team 3.
 
 ## Shared Contracts
 
