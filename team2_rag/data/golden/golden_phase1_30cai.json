@@ -1,134 +1,137 @@
 [
-{
-"id": "gold_001",
-"question": "Luật Doanh nghiệp quy định về những vấn đề gì?",
-"expected_status": "answered",
-"ground_truth": "Luật Doanh nghiệp quy định về việc thành lập, tổ chức quản lý, tổ chức lại, giải thể và hoạt động có liên quan của doanh nghiệp, bao gồm công ty trách nhiệm hữu hạn, công ty cổ phần, công ty hợp danh, doanh nghiệp tư nhân và nhóm công ty.",
-"gold_chunk_ids": [
-"luat-59-2020-qh14-v1__dieu-1__k0__0"
-],
-"citation": "Điều 1 - Luật Doanh nghiệp 2020",
-"category": "Phạm vi điều chỉnh",
-"author": "Bành Văn Hiệp"
-},
-{
-"id": "gold_002",
-"question": "Những ai thuộc đối tượng áp dụng của Luật Doanh nghiệp?",
-"expected_status": "answered",
-"ground_truth": "Đối tượng áp dụng gồm doanh nghiệp và cơ quan, tổ chức, cá nhân có liên quan đến việc thành lập, tổ chức quản lý, tổ chức lại, giải thể và hoạt động có liên quan của doanh nghiệp.",
-"gold_chunk_ids": [
-"luat-59-2020-qh14-v1__dieu-2__k1__0",
-"luat-59-2020-qh14-v1__dieu-2__k2__0"
-],
-"citation": "Điều 2 - Luật Doanh nghiệp 2020",
-"category": "Đối tượng áp dụng",
-"author": "Bành Văn Hiệp"
-},
-{
-"id": "gold_003",
-"question": "Theo Luật Doanh nghiệp, cổ đông là ai?",
-"expected_status": "answered",
-"ground_truth": "Cổ đông là cá nhân, tổ chức sở hữu ít nhất một cổ phần của công ty cổ phần.",
-"gold_chunk_ids": [
-"luat-59-2020-qh14-v1__dieu-4__k3__0"
-],
-"citation": "Khoản 3 Điều 4 - Luật Doanh nghiệp 2020",
-"category": "Giải thích thuật ngữ",
-"author": "Bành Văn Hiệp"
-},
-{
-"id": "gold_004",
-"question": "Vốn điều lệ của công ty trách nhiệm hữu hạn được xác định như thế nào?",
-"expected_status": "answered",
-"ground_truth": "Vốn điều lệ của công ty trách nhiệm hữu hạn là tổng giá trị tài sản do các thành viên công ty hoặc chủ sở hữu công ty đã góp hoặc cam kết góp khi thành lập công ty.",
-"gold_chunk_ids": [
-"luat-59-2020-qh14-v1__dieu-4__k34__0"
-],
-"citation": "Khoản 34 Điều 4 - Luật Doanh nghiệp 2020",
-"category": "Vốn",
-"author": "Bành Văn Hiệp"
-},
-{
-"id": "gold_005",
-"question": "Doanh nghiệp có những quyền gì theo Điều 7 Luật Doanh nghiệp?",
-"expected_status": "answered",
-"ground_truth": "Doanh nghiệp có quyền tự do kinh doanh ngành, nghề luật không cấm; tự chủ kinh doanh; lựa chọn hình thức tổ chức, ngành nghề, địa bàn, quy mô và phương thức sử dụng vốn; tìm kiếm thị trường, khách hàng, ký kết hợp đồng; xuất nhập khẩu; tuyển dụng và sử dụng lao động; ứng dụng khoa học, công nghệ và được bảo hộ quyền sở hữu trí tuệ theo quy định pháp luật.",
-"gold_chunk_ids": [
-"luat-59-2020-qh14-v1__dieu-7__k1__0",
-"luat-59-2020-qh14-v1__dieu-7__k2__0",
-"luat-59-2020-qh14-v1__dieu-7__k3__0",
-"luat-59-2020-qh14-v1__dieu-7__k4__0",
-"luat-59-2020-qh14-v1__dieu-7__k5__0",
-"luat-59-2020-qh14-v1__dieu-7__k6__0",
-"luat-59-2020-qh14-v1__dieu-7__k7__0"
-],
-"citation": "Điều 7 - Luật Doanh nghiệp 2020",
-"category": "Quyền của doanh nghiệp",
-"author": "Bành Văn Hiệp"
-}
-,
-{
-"id": "gold_datdo_001",
-"question": "Công ty TNHH hai thành viên trở lên được có tối thiểu và tối đa bao nhiêu thành viên? Thành viên có thể là tổ chức không?",
-"expected_status": "answered",
-"ground_truth": "Công ty TNHH hai thành viên trở lên có từ 2 đến 50 thành viên. Thành viên có thể là tổ chức hoặc cá nhân.",
-"gold_chunk_ids": [
-"vbhn-67-vbhn-vpqh-v1__dieu-46__k1__0"
-],
-"citation": "Khoản 1 Điều 46 - Luật Doanh nghiệp, theo Văn bản hợp nhất 67/VBHN-VPQH năm 2025",
-"category": "Công ty TNHH hai thành viên trở lên",
-"author": "Đỗ Đức Đạt"
-},
-{
-"id": "gold_datdo_002",
-"question": "Thành viên công ty TNHH hai thành viên trở lên phải góp đủ vốn đã cam kết trong bao lâu? Thời gian vận chuyển, nhập khẩu tài sản góp vốn và làm thủ tục chuyển quyền sở hữu có tính vào thời hạn này không?",
-"expected_status": "answered",
-"ground_truth": "Thành viên phải góp đủ vốn và đúng loại tài sản đã cam kết trong 90 ngày tính từ ngày công ty được cấp Giấy chứng nhận đăng ký doanh nghiệp. Thời gian vận chuyển, nhập khẩu tài sản góp vốn và thực hiện thủ tục hành chính để chuyển quyền sở hữu tài sản không được tính vào 90 ngày này.",
-"gold_chunk_ids": [
-"vbhn-67-vbhn-vpqh-v1__dieu-47__k2__0"
-],
-"citation": "Khoản 2 Điều 47 - Luật Doanh nghiệp, theo Văn bản hợp nhất 67/VBHN-VPQH năm 2025",
-"category": "Thời hạn góp vốn",
-"author": "Đỗ Đức Đạt"
-},
-{
-"id": "gold_datdo_003",
-"question": "Khi thành viên góp vốn vào công ty TNHH bằng tài sản có đăng ký quyền sở hữu, việc chuyển quyền sở hữu tài sản đó cho công ty có phải chịu lệ phí trước bạ không?",
-"expected_status": "answered",
-"ground_truth": "Không phải chịu lệ phí trước bạ khi chuyển quyền sở hữu tài sản góp vốn cho công ty. Người góp vốn vẫn phải thực hiện thủ tục chuyển quyền sở hữu tài sản có đăng ký quyền sở hữu theo quy định pháp luật.",
-"gold_chunk_ids": [
-"vbhn-67-vbhn-vpqh-v1__dieu-35__k1__0"
-],
-"citation": "Điểm a Khoản 1 Điều 35 - Luật Doanh nghiệp, theo Văn bản hợp nhất 67/VBHN-VPQH năm 2025",
-"category": "Chuyển quyền sở hữu tài sản góp vốn",
-"author": "Đỗ Đức Đạt"
-},
-{
-"id": "gold_datdo_004",
-"question": "Công ty cổ phần phải có ít nhất bao nhiêu cổ đông và có giới hạn số lượng cổ đông tối đa không?",
-"expected_status": "answered",
-"ground_truth": "Công ty cổ phần cần tối thiểu 3 cổ đông và không bị giới hạn số cổ đông tối đa. Cổ đông có thể là tổ chức hoặc cá nhân.",
-"gold_chunk_ids": [
-"vbhn-67-vbhn-vpqh-v1__dieu-111__k1__0"
-],
-"citation": "Điểm b Khoản 1 Điều 111 - Luật Doanh nghiệp, theo Văn bản hợp nhất 67/VBHN-VPQH năm 2025",
-"category": "Công ty cổ phần",
-"author": "Đỗ Đức Đạt"
-},
-{
-"id": "gold_datdo_005",
-"question": "Doanh nghiệp tư nhân có được phát hành chứng khoán để huy động vốn không?",
-"expected_status": "answered",
-"ground_truth": "Không. Doanh nghiệp tư nhân không được huy động vốn bằng cách phát hành bất kỳ loại chứng khoán nào.",
-"gold_chunk_ids": [
-"vbhn-67-vbhn-vpqh-v1__dieu-188__k2__0"
-],
-"citation": "Khoản 2 Điều 188 - Luật Doanh nghiệp, theo Văn bản hợp nhất 67/VBHN-VPQH năm 2025",
-"category": "Doanh nghiệp tư nhân",
-"author": "Đỗ Đức Đạt"
-},
   {
-    "id": "gold_ds1_001",
+    "id": "gold_001",
+    "question": "Luật Doanh nghiệp quy định về những vấn đề gì?",
+    "expected_status": "answered",
+    "ground_truth": "Luật Doanh nghiệp quy định về việc thành lập, tổ chức quản lý, tổ chức lại, giải thể và hoạt động có liên quan của doanh nghiệp, bao gồm công ty trách nhiệm hữu hạn, công ty cổ phần, công ty hợp danh, doanh nghiệp tư nhân và nhóm công ty.",
+    "gold_chunk_ids": [
+      "luat-59-2020-qh14-v1__dieu-1__k0__0"
+    ],
+    "citation": "Điều 1 - Luật Doanh nghiệp 2020",
+    "category": "Phạm vi điều chỉnh",
+    "author": "Bành Văn Hiệp"
+  },
+  {
+    "id": "gold_002",
+    "question": "Những ai thuộc đối tượng áp dụng của Luật Doanh nghiệp?",
+    "expected_status": "answered",
+    "ground_truth": "Đối tượng áp dụng gồm doanh nghiệp và cơ quan, tổ chức, cá nhân có liên quan đến việc thành lập, tổ chức quản lý, tổ chức lại, giải thể và hoạt động có liên quan của doanh nghiệp.",
+    "gold_chunk_ids": [
+      "luat-59-2020-qh14-v1__dieu-2__k1__0",
+      "luat-59-2020-qh14-v1__dieu-2__k2__0"
+    ],
+    "citation": "Điều 2 - Luật Doanh nghiệp 2020",
+    "category": "Đối tượng áp dụng",
+    "author": "Bành Văn Hiệp"
+  },
+  {
+    "id": "gold_003",
+    "question": "Theo Luật Doanh nghiệp, cổ đông là ai?",
+    "expected_status": "answered",
+    "ground_truth": "Cổ đông là cá nhân, tổ chức sở hữu ít nhất một cổ phần của công ty cổ phần.",
+    "gold_chunk_ids": [
+      "luat-59-2020-qh14-v1__dieu-4__k3__0"
+    ],
+    "citation": "Khoản 3 Điều 4 - Luật Doanh nghiệp 2020",
+    "category": "Giải thích thuật ngữ",
+    "author": "Bành Văn Hiệp"
+  },
+  {
+    "id": "gold_004",
+    "question": "Vốn điều lệ của công ty trách nhiệm hữu hạn được xác định như thế nào?",
+    "expected_status": "answered",
+    "ground_truth": "Vốn điều lệ của công ty trách nhiệm hữu hạn là tổng giá trị tài sản do các thành viên công ty hoặc chủ sở hữu công ty đã góp hoặc cam kết góp khi thành lập công ty.",
+    "gold_chunk_ids": [
+      "luat-59-2020-qh14-v1__dieu-4__k34__0"
+    ],
+    "citation": "Khoản 34 Điều 4 - Luật Doanh nghiệp 2020",
+    "category": "Vốn",
+    "author": "Bành Văn Hiệp"
+  },
+  {
+    "id": "gold_005",
+    "question": "Doanh nghiệp có những quyền gì theo Điều 7 Luật Doanh nghiệp?",
+    "expected_status": "answered",
+    "ground_truth": "Doanh nghiệp có quyền: tự do kinh doanh ngành, nghề mà luật không cấm; tự chủ kinh doanh và lựa chọn hình thức tổ chức, ngành nghề, địa bàn, quy mô; lựa chọn hình thức, phương thức huy động, phân bổ và sử dụng vốn; tự do tìm kiếm thị trường, khách hàng và ký kết hợp đồng; kinh doanh xuất khẩu, nhập khẩu; tuyển dụng, thuê và sử dụng lao động theo quy định của pháp luật; chủ động ứng dụng khoa học và công nghệ và được bảo hộ quyền sở hữu trí tuệ; chiếm hữu, sử dụng, định đoạt tài sản của doanh nghiệp; từ chối yêu cầu của cơ quan, tổ chức, cá nhân về cung cấp nguồn lực không theo quy định của pháp luật; khiếu nại, tham gia tố tụng theo quy định của pháp luật; và các quyền khác theo quy định của pháp luật.",
+    "gold_chunk_ids": [
+      "luat-59-2020-qh14-v1__dieu-7__k1__0",
+      "luat-59-2020-qh14-v1__dieu-7__k2__0",
+      "luat-59-2020-qh14-v1__dieu-7__k3__0",
+      "luat-59-2020-qh14-v1__dieu-7__k4__0",
+      "luat-59-2020-qh14-v1__dieu-7__k5__0",
+      "luat-59-2020-qh14-v1__dieu-7__k6__0",
+      "luat-59-2020-qh14-v1__dieu-7__k7__0",
+      "luat-59-2020-qh14-v1__dieu-7__k8__0",
+      "luat-59-2020-qh14-v1__dieu-7__k9__0",
+      "luat-59-2020-qh14-v1__dieu-7__k10__0",
+      "luat-59-2020-qh14-v1__dieu-7__k11__0"
+    ],
+    "citation": "Điều 7 - Luật Doanh nghiệp 2020",
+    "category": "Quyền của doanh nghiệp",
+    "author": "Bành Văn Hiệp"
+  },
+  {
+    "id": "gold_006",
+    "question": "Công ty TNHH hai thành viên trở lên được có tối thiểu và tối đa bao nhiêu thành viên? Thành viên có thể là tổ chức không?",
+    "expected_status": "answered",
+    "ground_truth": "Công ty TNHH hai thành viên trở lên có từ 2 đến 50 thành viên. Thành viên có thể là tổ chức hoặc cá nhân.",
+    "gold_chunk_ids": [
+      "vbhn-67-vbhn-vpqh-v1__dieu-46__k1__0"
+    ],
+    "citation": "Khoản 1 Điều 46 - Luật Doanh nghiệp, theo Văn bản hợp nhất 67/VBHN-VPQH năm 2025",
+    "category": "Công ty TNHH hai thành viên trở lên",
+    "author": "Đỗ Đức Đạt"
+  },
+  {
+    "id": "gold_007",
+    "question": "Thành viên công ty TNHH hai thành viên trở lên phải góp đủ vốn đã cam kết trong bao lâu? Thời gian vận chuyển, nhập khẩu tài sản góp vốn và làm thủ tục chuyển quyền sở hữu có tính vào thời hạn này không?",
+    "expected_status": "answered",
+    "ground_truth": "Thành viên phải góp đủ vốn và đúng loại tài sản đã cam kết trong 90 ngày tính từ ngày công ty được cấp Giấy chứng nhận đăng ký doanh nghiệp. Thời gian vận chuyển, nhập khẩu tài sản góp vốn và thực hiện thủ tục hành chính để chuyển quyền sở hữu tài sản không được tính vào 90 ngày này.",
+    "gold_chunk_ids": [
+      "vbhn-67-vbhn-vpqh-v1__dieu-47__k2__0"
+    ],
+    "citation": "Khoản 2 Điều 47 - Luật Doanh nghiệp, theo Văn bản hợp nhất 67/VBHN-VPQH năm 2025",
+    "category": "Thời hạn góp vốn",
+    "author": "Đỗ Đức Đạt"
+  },
+  {
+    "id": "gold_008",
+    "question": "Khi thành viên góp vốn vào công ty TNHH bằng tài sản có đăng ký quyền sở hữu, việc chuyển quyền sở hữu tài sản đó cho công ty có phải chịu lệ phí trước bạ không?",
+    "expected_status": "answered",
+    "ground_truth": "Không phải chịu lệ phí trước bạ khi chuyển quyền sở hữu tài sản góp vốn cho công ty. Người góp vốn vẫn phải thực hiện thủ tục chuyển quyền sở hữu tài sản có đăng ký quyền sở hữu theo quy định pháp luật.",
+    "gold_chunk_ids": [
+      "vbhn-67-vbhn-vpqh-v1__dieu-35__k1__0"
+    ],
+    "citation": "Điểm a Khoản 1 Điều 35 - Luật Doanh nghiệp, theo Văn bản hợp nhất 67/VBHN-VPQH năm 2025",
+    "category": "Chuyển quyền sở hữu tài sản góp vốn",
+    "author": "Đỗ Đức Đạt"
+  },
+  {
+    "id": "gold_009",
+    "question": "Công ty cổ phần phải có ít nhất bao nhiêu cổ đông và có giới hạn số lượng cổ đông tối đa không?",
+    "expected_status": "answered",
+    "ground_truth": "Công ty cổ phần cần tối thiểu 3 cổ đông và không bị giới hạn số cổ đông tối đa. Cổ đông có thể là tổ chức hoặc cá nhân.",
+    "gold_chunk_ids": [
+      "vbhn-67-vbhn-vpqh-v1__dieu-111__k1__0"
+    ],
+    "citation": "Điểm b Khoản 1 Điều 111 - Luật Doanh nghiệp, theo Văn bản hợp nhất 67/VBHN-VPQH năm 2025",
+    "category": "Công ty cổ phần",
+    "author": "Đỗ Đức Đạt"
+  },
+  {
+    "id": "gold_010",
+    "question": "Doanh nghiệp tư nhân có được phát hành chứng khoán để huy động vốn không?",
+    "expected_status": "answered",
+    "ground_truth": "Không. Doanh nghiệp tư nhân không được huy động vốn bằng cách phát hành bất kỳ loại chứng khoán nào.",
+    "gold_chunk_ids": [
+      "vbhn-67-vbhn-vpqh-v1__dieu-188__k2__0"
+    ],
+    "citation": "Khoản 2 Điều 188 - Luật Doanh nghiệp, theo Văn bản hợp nhất 67/VBHN-VPQH năm 2025",
+    "category": "Doanh nghiệp tư nhân",
+    "author": "Đỗ Đức Đạt"
+  },
+  {
+    "id": "gold_011",
     "question": "Theo Điều 16 Luật Doanh nghiệp, những hành vi nào bị nghiêm cấm trong đăng ký doanh nghiệp và hoạt động kinh doanh?",
     "expected_status": "answered",
     "ground_truth": "Các hành vi bị nghiêm cấm bao gồm: cấp hoặc từ chối cấp Giấy chứng nhận đăng ký doanh nghiệp trái quy định; yêu cầu nộp thêm giấy tờ trái luật; gây chậm trễ, phiền hà, cản trở hoặc sách nhiễu; ngăn cản chủ sở hữu, thành viên, cổ đông thực hiện quyền và nghĩa vụ; kinh doanh không đăng ký hoặc tiếp tục kinh doanh khi đã bị thu hồi giấy chứng nhận hoặc đang bị tạm dừng; kê khai không trung thực, không chính xác; kê khai khống vốn điều lệ, không góp đủ vốn hoặc cố ý định giá sai tài sản góp vốn; kinh doanh ngành, nghề bị cấm hoặc chưa đủ điều kiện; lừa đảo, rửa tiền và tài trợ khủng bố.",
@@ -146,7 +149,7 @@
     "author": "Trần Anh Dũng"
   },
   {
-    "id": "gold_ds1_002",
+    "id": "gold_012",
     "question": "Hồ sơ đăng ký công ty hợp danh gồm những giấy tờ gì theo Điều 20 Luật Doanh nghiệp?",
     "expected_status": "answered",
     "ground_truth": "Hồ sơ đăng ký công ty hợp danh gồm: (1) Giấy đề nghị đăng ký doanh nghiệp; (2) Điều lệ công ty; (3) Danh sách thành viên; (4) Bản sao giấy tờ pháp lý của cá nhân đối với thành viên; (5) Bản sao Giấy chứng nhận đăng ký đầu tư đối với nhà đầu tư nước ngoài theo quy định của Luật Đầu tư.",
@@ -162,7 +165,7 @@
     "author": "Trần Anh Dũng"
   },
   {
-    "id": "gold_ds1_003",
+    "id": "gold_013",
     "question": "Giấy đề nghị đăng ký doanh nghiệp phải có những nội dung chủ yếu nào theo Điều 23 Luật Doanh nghiệp?",
     "expected_status": "answered",
     "ground_truth": "Giấy đề nghị đăng ký doanh nghiệp gồm các nội dung chủ yếu: tên doanh nghiệp; địa chỉ trụ sở chính và thông tin liên hệ; ngành, nghề kinh doanh; vốn điều lệ hoặc vốn đầu tư của chủ doanh nghiệp tư nhân; thông tin về cổ phần đối với công ty cổ phần; thông tin đăng ký thuế; số lượng lao động dự kiến; thông tin cá nhân và chữ ký của chủ doanh nghiệp tư nhân, thành viên hợp danh và người đại diện theo pháp luật của công ty trách nhiệm hữu hạn, công ty cổ phần theo quy định tại Điều 23.",
@@ -182,7 +185,7 @@
     "author": "Trần Anh Dũng"
   },
   {
-    "id": "gold_ds1_004",
+    "id": "gold_014",
     "question": "Điều lệ công ty phải quy định những nội dung chủ yếu nào theo Điều 24 Luật Doanh nghiệp?",
     "expected_status": "answered",
     "ground_truth": "Điều lệ công ty phải có các nội dung chủ yếu như: tên và địa chỉ trụ sở chính, chi nhánh và văn phòng đại diện nếu có; ngành, nghề kinh doanh; vốn điều lệ và thông tin cổ phần đối với công ty cổ phần; thông tin thành viên, chủ sở hữu hoặc cổ đông sáng lập và phần vốn góp hoặc cổ phần tương ứng; quyền và nghĩa vụ của thành viên, cổ đông; cơ cấu tổ chức quản lý; số lượng, chức danh, quyền và nghĩa vụ của người đại diện theo pháp luật; thể thức thông qua quyết định và giải quyết tranh chấp nội bộ; căn cứ xác định lương, thù lao, thưởng; trường hợp mua lại phần vốn góp hoặc cổ phần; nguyên tắc phân chia lợi nhuận và xử lý lỗ; trường hợp, trình tự giải thể và thanh lý tài sản; thể thức sửa đổi, bổ sung Điều lệ.",
@@ -197,7 +200,7 @@
     "author": "Trần Anh Dũng"
   },
   {
-    "id": "gold_ds1_005",
+    "id": "gold_015",
     "question": "Giấy chứng nhận đăng ký doanh nghiệp gồm những nội dung chủ yếu nào theo Điều 28 Luật Doanh nghiệp?",
     "expected_status": "answered",
     "ground_truth": "Giấy chứng nhận đăng ký doanh nghiệp gồm: (1) Tên doanh nghiệp và mã số doanh nghiệp; (2) Địa chỉ trụ sở chính; (3) Thông tin cá nhân của người đại diện theo pháp luật, thành viên hợp danh hoặc chủ doanh nghiệp tư nhân; đối với công ty trách nhiệm hữu hạn còn có thông tin của thành viên là cá nhân hoặc thông tin tên, mã số doanh nghiệp và địa chỉ trụ sở chính của thành viên là tổ chức; (4) Vốn điều lệ đối với công ty hoặc vốn đầu tư đối với doanh nghiệp tư nhân.",
@@ -210,5 +213,243 @@
     "citation": "Điều 28 - Nội dung Giấy chứng nhận đăng ký doanh nghiệp",
     "category": "Giấy chứng nhận đăng ký doanh nghiệp",
     "author": "Trần Anh Dũng"
+  },
+  {
+    "id": "gold_016",
+    "question": "So sánh các loại hình doanh nghiệp theo Luật Doanh nghiệp 2020: công ty trách nhiệm hữu hạn hai thành viên trở lên, công ty trách nhiệm hữu hạn một thành viên, công ty cổ phần, công ty hợp danh và doanh nghiệp tư nhân khác nhau thế nào về chủ sở hữu và mức chịu trách nhiệm về nợ?",
+    "expected_status": "answered",
+    "ground_truth": "Công ty TNHH hai thành viên trở lên có từ 02 đến 50 thành viên là tổ chức, cá nhân, thành viên chịu trách nhiệm trong phạm vi số vốn đã góp (trừ trường hợp khoản 4 Điều 47). Công ty TNHH một thành viên do một tổ chức hoặc một cá nhân làm chủ sở hữu, chủ sở hữu chịu trách nhiệm trong phạm vi số vốn điều lệ. Công ty cổ phần có vốn điều lệ chia thành các cổ phần bằng nhau, cổ đông là tổ chức, cá nhân, tối thiểu 03 và không hạn chế tối đa, chỉ chịu trách nhiệm trong phạm vi số vốn đã góp. Công ty hợp danh có ít nhất 02 thành viên hợp danh là chủ sở hữu chung, thành viên hợp danh là cá nhân chịu trách nhiệm bằng toàn bộ tài sản, có thể có thêm thành viên góp vốn chỉ chịu trách nhiệm trong phạm vi vốn đã cam kết góp. Doanh nghiệp tư nhân do một cá nhân làm chủ và tự chịu trách nhiệm bằng toàn bộ tài sản của mình.",
+    "gold_chunk_ids": [
+      "luat-59-2020-qh14-v1__dieu-46__k1__0",
+      "luat-59-2020-qh14-v1__dieu-74__k1__0",
+      "luat-59-2020-qh14-v1__dieu-111__k1__0",
+      "luat-59-2020-qh14-v1__dieu-177__k1__0",
+      "luat-59-2020-qh14-v1__dieu-188__k1__0"
+    ],
+    "citation": "Khoản 1 Điều 46, khoản 1 Điều 74, khoản 1 Điều 111, khoản 1 Điều 177, khoản 1 Điều 188 - Luật Doanh nghiệp 2020",
+    "category": "Loại hình doanh nghiệp",
+    "author": "Phương Anh"
+  },
+  {
+    "id": "gold_017",
+    "question": "Cổ đông công ty cổ phần chịu trách nhiệm về nợ của công ty trong phạm vi nào và có những nghĩa vụ gì?",
+    "expected_status": "answered",
+    "ground_truth": "Cổ đông chỉ chịu trách nhiệm về các khoản nợ và nghĩa vụ tài sản khác của công ty trong phạm vi số vốn đã góp vào doanh nghiệp. Cổ đông có nghĩa vụ: thanh toán đủ và đúng hạn số cổ phần cam kết mua; không được rút vốn đã góp bằng cổ phần phổ thông ra khỏi công ty dưới mọi hình thức, trừ trường hợp được công ty hoặc người khác mua lại cổ phần (nếu rút trái quy định thì cổ đông và người có lợi ích liên quan liên đới chịu trách nhiệm về nợ và nghĩa vụ tài sản trong phạm vi giá trị cổ phần bị rút và các thiệt hại); tuân thủ Điều lệ và quy chế quản lý nội bộ; chấp hành nghị quyết, quyết định của Đại hội đồng cổ đông, Hội đồng quản trị; bảo mật thông tin do công ty cung cấp và chỉ dùng để bảo vệ quyền, lợi ích hợp pháp của mình; thực hiện nghĩa vụ khác theo Luật và Điều lệ công ty.",
+    "gold_chunk_ids": [
+      "luat-59-2020-qh14-v1__dieu-111__k1__0",
+      "luat-59-2020-qh14-v1__dieu-119__k1__0",
+      "luat-59-2020-qh14-v1__dieu-119__k2__0",
+      "luat-59-2020-qh14-v1__dieu-119__k3__0",
+      "luat-59-2020-qh14-v1__dieu-119__k4__0",
+      "luat-59-2020-qh14-v1__dieu-119__k5__0",
+      "luat-59-2020-qh14-v1__dieu-119__k6__0"
+    ],
+    "citation": "Điểm c khoản 1 Điều 111, Điều 119 - Luật Doanh nghiệp 2020",
+    "category": "Cổ đông công ty cổ phần",
+    "author": "Phương Anh"
+  },
+  {
+    "id": "gold_018",
+    "question": "Công ty trách nhiệm hữu hạn và công ty cổ phần có thể có bao nhiêu người đại diện theo pháp luật, và người đại diện theo pháp luật phải thực hiện những trách nhiệm gì?",
+    "expected_status": "answered",
+    "ground_truth": "Công ty TNHH và công ty cổ phần có thể có một hoặc nhiều người đại diện theo pháp luật; Điều lệ công ty quy định cụ thể số lượng, chức danh quản lý, quyền và nghĩa vụ của họ. Nếu có nhiều hơn một người mà Điều lệ chưa phân chia rõ quyền, nghĩa vụ thì mỗi người đều là đại diện đủ thẩm quyền của doanh nghiệp trước bên thứ ba và tất cả cùng chịu trách nhiệm liên đới đối với thiệt hại gây ra cho doanh nghiệp. Người đại diện theo pháp luật phải: thực hiện quyền và nghĩa vụ được giao một cách trung thực, cẩn trọng, tốt nhất vì lợi ích hợp pháp của doanh nghiệp; trung thành với lợi ích của doanh nghiệp, không lạm dụng địa vị, chức vụ, thông tin, bí quyết, cơ hội kinh doanh, tài sản của doanh nghiệp để tư lợi hoặc phục vụ người khác; thông báo kịp thời, đầy đủ, chính xác về doanh nghiệp mà mình và người có liên quan làm chủ hoặc có cổ phần, phần vốn góp. Người đại diện chịu trách nhiệm cá nhân đối với thiệt hại cho doanh nghiệp do vi phạm các trách nhiệm này.",
+    "gold_chunk_ids": [
+      "vbhn-67-vbhn-vpqh-v1__dieu-12__k2__0",
+      "vbhn-67-vbhn-vpqh-v1__dieu-13__k1__0",
+      "vbhn-67-vbhn-vpqh-v1__dieu-13__k2__0"
+    ],
+    "citation": "Khoản 2 Điều 12, Điều 13 - Luật Doanh nghiệp (Văn bản hợp nhất 67/VBHN-VPQH)",
+    "category": "Người đại diện theo pháp luật",
+    "author": "Phương Anh"
+  },
+  {
+    "id": "gold_019",
+    "question": "Doanh nghiệp bị giải thể trong những trường hợp nào, phải đáp ứng điều kiện gì, và với trường hợp tự giải thể thì phải gửi hồ sơ cho cơ quan đăng ký kinh doanh theo các mốc thời hạn nào?",
+    "expected_status": "answered",
+    "ground_truth": "Theo khoản 1 Điều 207 Luật Doanh nghiệp (bản hợp nhất), doanh nghiệp bị giải thể khi: kết thúc thời hạn hoạt động ghi trong Điều lệ mà không gia hạn; có nghị quyết, quyết định giải thể của chủ doanh nghiệp tư nhân, Hội đồng thành viên, chủ sở hữu công ty hoặc Đại hội đồng cổ đông tùy loại hình; công ty không còn đủ số lượng thành viên, cổ đông tối thiểu trong 06 tháng liên tục mà không chuyển đổi loại hình; hoặc bị thu hồi Giấy chứng nhận đăng ký doanh nghiệp (trừ trường hợp Luật Quản lý thuế quy định khác). Doanh nghiệp chỉ được giải thể khi bảo đảm thanh toán hết nợ và nghĩa vụ tài sản khác và không trong quá trình giải quyết tranh chấp tại Tòa án hoặc Trọng tài. Với ba trường hợp đầu (điểm a, b, c), theo Điều 64 Nghị định 168/2025/NĐ-CP: trong 07 ngày làm việc kể từ ngày thông qua nghị quyết hoặc quyết định giải thể, doanh nghiệp gửi giấy tờ (gồm nghị quyết, quyết định giải thể) đến Cơ quan đăng ký kinh doanh cấp tỉnh nơi đặt trụ sở chính; trong 05 ngày làm việc kể từ ngày thanh toán hết nợ, doanh nghiệp gửi hồ sơ đăng ký giải thể; trước khi nộp hồ sơ đăng ký giải thể phải làm thủ tục chấm dứt hoạt động chi nhánh, văn phòng đại diện, địa điểm kinh doanh.",
+    "gold_chunk_ids": [
+      "vbhn-67-vbhn-vpqh-v1__dieu-207__k1__0",
+      "vbhn-67-vbhn-vpqh-v1__dieu-207__k2__0",
+      "nd-168-2025-nd-cp-v1__dieu-64__k1__0",
+      "nd-168-2025-nd-cp-v1__dieu-64__k3__0",
+      "nd-168-2025-nd-cp-v1__dieu-64__k4__0"
+    ],
+    "citation": "Khoản 1, 2 Điều 207 - Luật Doanh nghiệp (VBHN 67/VBHN-VPQH); khoản 1, 3, 4 Điều 64 - Nghị định 168/2025/NĐ-CP",
+    "category": "Giải thể doanh nghiệp",
+    "author": "Phương Anh"
+  },
+  {
+    "id": "gold_020",
+    "question": "Chủ sở hữu hưởng lợi của doanh nghiệp được xác định theo tiêu chí nào, doanh nghiệp phải kê khai những thông tin gì và lưu giữ danh sách này ra sao?",
+    "expected_status": "answered",
+    "ground_truth": "Chủ sở hữu hưởng lợi là cá nhân sở hữu trực tiếp hoặc gián tiếp từ 25% vốn điều lệ hoặc 25% tổng số cổ phần có quyền biểu quyết trở lên của doanh nghiệp, hoặc cá nhân có quyền chi phối việc thông qua ít nhất một trong các vấn đề như bổ nhiệm, miễn nhiệm, bãi nhiệm đa số hoặc tất cả thành viên hội đồng quản trị, chủ tịch hội đồng quản trị, chủ tịch hội đồng thành viên, người đại diện theo pháp luật, giám đốc hoặc tổng giám đốc; sửa đổi, bổ sung điều lệ; thay đổi cơ cấu tổ chức quản lý; tổ chức lại, giải thể công ty. Sở hữu gián tiếp là sở hữu từ 25% trở lên thông qua tổ chức khác. Doanh nghiệp kê khai, thông báo với Cơ quan đăng ký kinh doanh cấp tỉnh: cá nhân là cổ đông sở hữu từ 25% tổng số cổ phần có quyền biểu quyết trở lên; cá nhân là thành viên sở hữu từ 25% vốn điều lệ trở lên của công ty hợp danh, công ty TNHH hai thành viên trở lên; cá nhân là chủ sở hữu công ty TNHH một thành viên; chủ sở hữu hưởng lợi theo tiêu chí quyền chi phối thì doanh nghiệp tự xác định và kê khai (nếu có); và thông tin cổ đông là tổ chức sở hữu từ 25% tổng số cổ phần có quyền biểu quyết trở lên (tên tổ chức, mã số doanh nghiệp hoặc số quyết định thành lập, ngày cấp, nơi cấp, địa chỉ trụ sở chính, tỷ lệ sở hữu). Doanh nghiệp lưu giữ danh sách chủ sở hữu hưởng lợi đã kê khai dưới dạng văn bản giấy hoặc văn bản điện tử.",
+    "gold_chunk_ids": [
+      "nd-168-2025-nd-cp-v1__dieu-17__k1__0",
+      "nd-168-2025-nd-cp-v1__dieu-17__k2__0",
+      "nd-168-2025-nd-cp-v1__dieu-18__k1__0",
+      "nd-168-2025-nd-cp-v1__dieu-18__k2__0",
+      "nd-168-2025-nd-cp-v1__dieu-18__k3__0",
+      "nd-168-2025-nd-cp-v1__dieu-19__k0__0"
+    ],
+    "citation": "Điều 17, Điều 18, Điều 19 - Nghị định 168/2025/NĐ-CP",
+    "category": "Chủ sở hữu hưởng lợi",
+    "author": "Phương Anh"
+  },
+  {
+    "id": "gold_021",
+    "question": "Luật số 76/2025/QH15 sửa đổi Luật Doanh nghiệp theo hướng nào để quản lý thông tin về chủ sở hữu hưởng lợi?",
+    "expected_status": "answered",
+    "ground_truth": "Luật 76/2025/QH15 bổ sung thông tin chủ sở hữu hưởng lợi vào nhiều điều của Luật Doanh nghiệp: bổ sung khoản 5a Điều 8 (doanh nghiệp có nghĩa vụ thu thập, cập nhật, lưu giữ thông tin về chủ sở hữu hưởng lợi và cung cấp cho cơ quan nhà nước có thẩm quyền khi được yêu cầu); bổ sung điểm h khoản 1 Điều 11 (hồ sơ có danh sách chủ sở hữu hưởng lợi, nếu có); bổ sung danh sách chủ sở hữu hưởng lợi (nếu có) vào khoản 3 Điều 20, Điều 21, Điều 22 và thông tin về chủ sở hữu hưởng lợi vào khoản 10 Điều 23; thêm thông tin chủ sở hữu hưởng lợi vào nội dung phải thông báo thay đổi tại khoản 1 Điều 31; bổ sung khoản 1a Điều 33 (cơ quan nhà nước có thẩm quyền được đề nghị cung cấp thông tin chủ sở hữu hưởng lợi lưu trên Hệ thống thông tin quốc gia về đăng ký doanh nghiệp để phục vụ phòng, chống rửa tiền và không phải trả phí); bổ sung điểm h khoản 1 Điều 216 (lưu giữ thông tin ít nhất 05 năm kể từ ngày doanh nghiệp giải thể, phá sản); bổ sung khoản 6 Điều 217 (Chính phủ quy định chi tiết tiêu chí xác định, chủ thể kê khai, việc kê khai, cung cấp, lưu giữ, chia sẻ thông tin).",
+    "gold_chunk_ids": [
+      "luat-76-2025-qh15-v1__dieu-1__k2__0",
+      "luat-76-2025-qh15-v1__dieu-1__k3__0",
+      "luat-76-2025-qh15-v1__dieu-1__k7__0",
+      "luat-76-2025-qh15-v1__dieu-1__k8__0",
+      "luat-76-2025-qh15-v1__dieu-1__k9__0",
+      "luat-76-2025-qh15-v1__dieu-1__k10__0",
+      "luat-76-2025-qh15-v1__dieu-1__k13__0",
+      "luat-76-2025-qh15-v1__dieu-1__k14__0",
+      "luat-76-2025-qh15-v1__dieu-1__k26__0",
+      "luat-76-2025-qh15-v1__dieu-1__k27__0"
+    ],
+    "citation": "Khoản 2, 3, 7, 8, 9, 10, 13, 14, 26, 27 Điều 1 - Luật số 76/2025/QH15",
+    "category": "Chủ sở hữu hưởng lợi",
+    "author": "Tuấn"
+  },
+  {
+    "id": "gold_022",
+    "question": "Luật số 76/2025/QH15 có hiệu lực từ khi nào, doanh nghiệp thành lập trước ngày luật có hiệu lực phải bổ sung thông tin chủ sở hữu hưởng lợi vào thời điểm nào, và các đợt chào bán trái phiếu riêng lẻ đã công bố thông tin trước đó áp dụng quy định nào?",
+    "expected_status": "answered",
+    "ground_truth": "Luật có hiệu lực thi hành từ ngày 01 tháng 7 năm 2025. Doanh nghiệp đăng ký thành lập trước thời điểm này bổ sung thông tin về chủ sở hữu hưởng lợi (nếu có) và thông tin để xác định chủ sở hữu hưởng lợi (nếu có) đồng thời tại thời điểm thực hiện thủ tục đăng ký thay đổi hoặc thông báo thay đổi nội dung đăng ký doanh nghiệp gần nhất, trừ khi doanh nghiệp yêu cầu bổ sung sớm hơn. Các đợt chào bán trái phiếu doanh nghiệp riêng lẻ đã gửi nội dung công bố thông tin trước đợt chào bán cho Sở giao dịch chứng khoán trước ngày luật có hiệu lực thì tiếp tục thực hiện theo Luật Doanh nghiệp số 59/2020/QH14 đã được sửa đổi, bổ sung theo Luật số 03/2022/QH15.",
+    "gold_chunk_ids": [
+      "luat-76-2025-qh15-v1__dieu-2__k0__0",
+      "luat-76-2025-qh15-v1__dieu-3__k1__0",
+      "luat-76-2025-qh15-v1__dieu-3__k2__0"
+    ],
+    "citation": "Điều 2, Điều 3 - Luật số 76/2025/QH15",
+    "category": "Hiệu lực và chuyển tiếp",
+    "author": "Tuấn"
+  },
+  {
+    "id": "gold_023",
+    "question": "Theo văn bản hợp nhất Nghị định hướng dẫn Luật Doanh nghiệp (7566/VBHN-BKHĐT), doanh nghiệp xã hội được xác định theo quy định nào, phải duy trì những cam kết gì và ai phải chịu trách nhiệm liên đới khi doanh nghiệp xã hội vi phạm?",
+    "expected_status": "answered",
+    "ground_truth": "Doanh nghiệp xã hội là doanh nghiệp đáp ứng tiêu chí quy định tại khoản 1 Điều 10 Luật Doanh nghiệp. Doanh nghiệp xã hội phải duy trì mục tiêu xã hội, môi trường, mức lợi nhuận giữ lại để tái đầu tư và các nội dung khác ghi trong Cam kết thực hiện mục tiêu xã hội, môi trường trong suốt quá trình hoạt động. Trừ trường hợp chấm dứt mục tiêu xã hội, môi trường trước thời hạn đã cam kết, doanh nghiệp phải hoàn lại toàn bộ ưu đãi, khoản viện trợ, tài trợ đã tiếp nhận và lợi nhuận giữ lại để tái đầu tư. Nếu vi phạm, chủ doanh nghiệp tư nhân, thành viên hợp danh, thành viên công ty TNHH, cổ đông có liên quan đối với công ty cổ phần, thành viên Hội đồng quản trị, Giám đốc, Tổng Giám đốc ở nhiệm kỳ hoặc thời gian có liên quan chịu trách nhiệm liên đới đối với thiệt hại phát sinh.",
+    "gold_chunk_ids": [
+      "vbhn-7566-vbhn-bkhdt-v1__dieu-2__k1__0",
+      "vbhn-7566-vbhn-bkhdt-v1__dieu-3__k1__0",
+      "vbhn-7566-vbhn-bkhdt-v1__dieu-3__k2__0"
+    ],
+    "citation": "Khoản 1 Điều 2, Điều 3 - Nghị định hướng dẫn Luật Doanh nghiệp (VBHN 7566/VBHN-BKHĐT)",
+    "category": "Doanh nghiệp xã hội",
+    "author": "Tuấn"
+  },
+  {
+    "id": "gold_024",
+    "question": "Doanh nghiệp nhà nước công bố thông tin bằng hình thức và phương tiện nào, báo cáo công bố qua mạng điện tử có giá trị pháp lý ra sao và phải được duy trì tối thiểu bao lâu?",
+    "expected_status": "answered",
+    "ground_truth": "Hình thức công bố thông tin gồm văn bản và dữ liệu điện tử. Phương tiện báo cáo, công bố gồm trang thông tin điện tử của doanh nghiệp, cổng hoặc trang thông tin điện tử của cơ quan đại diện chủ sở hữu và Cổng thông tin doanh nghiệp. Báo cáo công bố thông tin qua mạng điện tử có giá trị pháp lý như bản giấy, là cơ sở đối chiếu, so sánh, xác thực thông tin phục vụ thu thập, tổng hợp, kiểm tra, giám sát. Báo cáo phải được duy trì trên các kênh trên (trang thông tin điện tử của doanh nghiệp, cổng hoặc trang của cơ quan đại diện chủ sở hữu và Cổng thông tin doanh nghiệp) tối thiểu 05 năm.",
+    "gold_chunk_ids": [
+      "vbhn-7566-vbhn-bkhdt-v1__dieu-21__k1__0",
+      "vbhn-7566-vbhn-bkhdt-v1__dieu-21__k2__0",
+      "vbhn-7566-vbhn-bkhdt-v1__dieu-20__k4__0",
+      "vbhn-7566-vbhn-bkhdt-v1__dieu-20__k5__0"
+    ],
+    "citation": "Khoản 1, 2 Điều 21, khoản 4, 5 Điều 20 - Nghị định hướng dẫn Luật Doanh nghiệp (VBHN 7566/VBHN-BKHĐT)",
+    "category": "Công bố thông tin doanh nghiệp nhà nước",
+    "author": "Tuấn"
+  },
+  {
+    "id": "gold_025",
+    "question": "Theo Nghị định 122/2021/NĐ-CP, vi phạm hành chính trong lĩnh vực đăng ký doanh nghiệp bị xử phạt bằng những hình thức nào, mức phạt tiền tối đa là bao nhiêu, mức phạt đối với cá nhân so với tổ chức ra sao và thời hiệu xử phạt là bao lâu?",
+    "expected_status": "answered",
+    "ground_truth": "Hình thức xử phạt chính gồm phạt cảnh cáo và phạt tiền; ngoài ra tùy tính chất, mức độ vi phạm còn bị áp dụng một hoặc nhiều biện pháp khắc phục hậu quả quy định tại các điều từ Chương II đến Chương V của Nghị định. Mức phạt tiền tối đa trong lĩnh vực đăng ký doanh nghiệp là 100.000.000 đồng. Mức phạt tiền quy định tại Nghị định là mức áp dụng đối với tổ chức (trừ một số điều được nêu rõ là áp dụng cho cá nhân); với cùng một hành vi, mức phạt đối với cá nhân bằng 1/2 mức phạt đối với tổ chức. Thời hiệu xử phạt vi phạm hành chính trong lĩnh vực đăng ký doanh nghiệp là 01 năm.",
+    "gold_chunk_ids": [
+      "nd-122-2021-nd-cp-v1__dieu-3__k1__0",
+      "nd-122-2021-nd-cp-v1__dieu-3__k2__0",
+      "nd-122-2021-nd-cp-v1__dieu-4__k1__0",
+      "nd-122-2021-nd-cp-v1__dieu-4__k2__0",
+      "nd-122-2021-nd-cp-v1__dieu-5__k1__0"
+    ],
+    "citation": "Điều 3, Điều 4, khoản 1 Điều 5 - Nghị định 122/2021/NĐ-CP",
+    "category": "Xử phạt vi phạm hành chính",
+    "author": "Tuấn"
+  },
+  {
+    "id": "gold_026",
+    "question": "Công ty hết thời hạn hoạt động ghi trong Điều lệ mà không thực hiện thủ tục giải thể thì bị phạt bao nhiêu, phải khắc phục hậu quả thế nào và mức phạt đó áp dụng cho tổ chức hay cá nhân?",
+    "expected_status": "answered",
+    "ground_truth": "Hành vi không thực hiện thủ tục giải thể khi kết thúc thời hạn hoạt động ghi trong Điều lệ công ty mà không có quyết định gia hạn bị phạt tiền từ 20.000.000 đồng đến 30.000.000 đồng; biện pháp khắc phục hậu quả là buộc thực hiện thủ tục giải thể doanh nghiệp. Mức phạt này là mức áp dụng đối với tổ chức; với cùng một hành vi, mức phạt đối với cá nhân bằng 1/2 mức phạt đối với tổ chức.",
+    "gold_chunk_ids": [
+      "nd-122-2021-nd-cp-v1__dieu-58__k1__0",
+      "nd-122-2021-nd-cp-v1__dieu-58__k2__0",
+      "nd-122-2021-nd-cp-v1__dieu-4__k2__0"
+    ],
+    "citation": "Khoản 1, 2 Điều 58, khoản 2 Điều 4 - Nghị định 122/2021/NĐ-CP",
+    "category": "Xử phạt vi phạm hành chính",
+    "author": "Hậu"
+  },
+  {
+    "id": "gold_027",
+    "question": "Theo Nghị định 288/2026/NĐ-CP, kê khai không trung thực hồ sơ đăng ký doanh nghiệp và chậm đăng ký thay đổi nội dung đăng ký doanh nghiệp bị xử phạt như thế nào?",
+    "expected_status": "answered",
+    "ground_truth": "Nghị định 288/2026/NĐ-CP sửa đổi Điều 43 Nghị định 122/2021: kê khai không trung thực, không chính xác nội dung hồ sơ đăng ký doanh nghiệp (và các hồ sơ liên quan, kể cả thông tin chủ sở hữu hưởng lợi) bị phạt tiền từ 30.000.000 đến 70.000.000 đồng. Sửa đổi Điều 44: vi phạm thời hạn đăng ký thay đổi nội dung đăng ký doanh nghiệp quá hạn từ 01 đến 10 ngày bị cảnh cáo; từ 11 đến 30 ngày bị phạt 10.000.000 đến 20.000.000 đồng; từ 31 đến 90 ngày bị phạt 30.000.000 đến 40.000.000 đồng; từ 91 ngày trở lên bị phạt 50.000.000 đến 60.000.000 đồng.",
+    "gold_chunk_ids": [
+      "nd-288-2026-nd-cp-v1__dieu-1__k0__0",
+      "nd-288-2026-nd-cp-v1__dieu-2__k1__0",
+      "nd-288-2026-nd-cp-v1__dieu-2__k2__0",
+      "nd-288-2026-nd-cp-v1__dieu-2__k3__0",
+      "nd-288-2026-nd-cp-v1__dieu-2__k4__0"
+    ],
+    "citation": "Điều 1, khoản 1, 2, 3, 4 Điều 2 - Nghị định 288/2026/NĐ-CP (sửa đổi Điều 43, Điều 44 Nghị định 122/2021/NĐ-CP)",
+    "category": "Xử phạt vi phạm hành chính",
+    "author": "Hậu"
+  },
+  {
+    "id": "gold_028",
+    "question": "Nghị định 288/2026/NĐ-CP bãi bỏ những quy định nào của Nghị định 122/2021/NĐ-CP, có hiệu lực từ khi nào và ai chịu trách nhiệm hướng dẫn thi hành?",
+    "expected_status": "answered",
+    "ground_truth": "Nghị định 288/2026/NĐ-CP bãi bỏ Điều 49 và điểm a, điểm b khoản 1 và điểm a, điểm b khoản 2 Điều 50 (của Nghị định 122/2021/NĐ-CP). Nghị định có hiệu lực thi hành kể từ ngày ký ban hành. Bộ trưởng Bộ Tài chính có trách nhiệm hướng dẫn và tổ chức thi hành.",
+    "gold_chunk_ids": [
+      "nd-288-2026-nd-cp-v1__dieu-7__k0__0",
+      "nd-288-2026-nd-cp-v1__dieu-8__k1__0",
+      "nd-288-2026-nd-cp-v1__dieu-8__k2__0"
+    ],
+    "citation": "Điều 7, khoản 1, 2 Điều 8 - Nghị định 288/2026/NĐ-CP",
+    "category": "Hiệu lực và chuyển tiếp",
+    "author": "Hậu"
+  },
+  {
+    "id": "gold_029",
+    "question": "Thông tư 68/2025/TT-BTC ban hành biểu mẫu cho những hoạt động nào, áp dụng cho đối tượng nào, có hiệu lực từ khi nào và làm hết hiệu lực hoặc bãi bỏ những văn bản nào?",
+    "expected_status": "answered",
+    "ground_truth": "Thông tư ban hành biểu mẫu sử dụng trong đăng ký doanh nghiệp (Phụ lục I) và đăng ký hộ kinh doanh (Phụ lục II), áp dụng cho các đối tượng quy định tại Điều 2 Nghị định 168/2025/NĐ-CP về đăng ký doanh nghiệp. Thông tư có hiệu lực từ ngày 01 tháng 7 năm 2025. Thông tư bãi bỏ biểu mẫu tại Phụ lục I của Thông tư 43/2025/TT-BTC; đồng thời Thông tư 01/2021/TT-BKHĐT và Thông tư 02/2023/TT-BKHĐT hết hiệu lực kể từ ngày Thông tư này có hiệu lực.",
+    "gold_chunk_ids": [
+      "tt-68-2025-tt-btc-v1__dieu-1__k1__0",
+      "tt-68-2025-tt-btc-v1__dieu-1__k2__0",
+      "tt-68-2025-tt-btc-v1__dieu-2__k1__0",
+      "tt-68-2025-tt-btc-v1__dieu-2__k2__0",
+      "tt-68-2025-tt-btc-v1__dieu-3__k1__0",
+      "tt-68-2025-tt-btc-v1__dieu-3__k2__0",
+      "tt-68-2025-tt-btc-v1__dieu-3__k3__0"
+    ],
+    "citation": "Điều 1, Điều 2, khoản 1, 2, 3 Điều 3 - Thông tư 68/2025/TT-BTC",
+    "category": "Biểu mẫu đăng ký doanh nghiệp",
+    "author": "Hậu"
+  },
+  {
+    "id": "gold_030",
+    "question": "Doanh nghiệp tạm ngừng kinh doanh phải gửi thông báo trước ít nhất mấy ngày làm việc, hồ sơ gồm những giấy tờ nào, và hành vi không thông báo tạm ngừng kinh doanh bị xử phạt thế nào?",
+    "expected_status": "answered",
+    "ground_truth": "Doanh nghiệp gửi hồ sơ thông báo đến Cơ quan đăng ký kinh doanh cấp tỉnh chậm nhất 03 ngày làm việc trước ngày tạm ngừng kinh doanh. Hồ sơ gồm thông báo tạm ngừng kinh doanh và bản sao hoặc bản chính nghị quyết, quyết định về việc tạm ngừng kinh doanh của chủ sở hữu công ty (TNHH một thành viên), Hội đồng thành viên (TNHH hai thành viên trở lên, công ty hợp danh) hoặc Hội đồng quản trị (công ty cổ phần). Theo Điều 44 Nghị định 122/2021/NĐ-CP đã được Nghị định 288/2026/NĐ-CP sửa đổi, hành vi không thông báo tạm ngừng kinh doanh hoặc tiếp tục kinh doanh bị phạt từ 30.000.000 đến 70.000.000 đồng và bị buộc thực hiện thông báo tạm ngừng kinh doanh hoặc tiếp tục kinh doanh.",
+    "gold_chunk_ids": [
+      "nd-168-2025-nd-cp-v1__dieu-60__k1__0",
+      "nd-168-2025-nd-cp-v1__dieu-60__k2__0",
+      "nd-288-2026-nd-cp-v1__dieu-2__k5__0",
+      "nd-288-2026-nd-cp-v1__dieu-2__k7__0"
+    ],
+    "citation": "Khoản 1, 2 Điều 60 - Nghị định 168/2025/NĐ-CP; khoản 5, 7 Điều 2 - Nghị định 288/2026/NĐ-CP",
+    "category": "Tạm ngừng kinh doanh",
+    "author": "Hậu"
   }
 ]

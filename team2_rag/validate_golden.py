@@ -3,6 +3,7 @@ from pathlib import Path
 
 CHUNKS_FILE = Path("data/doanh-nghiep/processed/chunks.jsonl")
 GOLDEN_FILE = Path("team2_rag/data/golden/golden_phase1_30cai.json")
+VALID_STATUSES = {"answered", "insufficient_context"}
 
 
 def validate_golden_dataset():
@@ -63,9 +64,21 @@ def validate_golden_dataset():
         expected_status = item.get("expected_status")
         chunk_ids = item.get("gold_chunk_ids", [])
 
-        if expected_status == "answerable" and not chunk_ids:
+        if expected_status not in VALID_STATUSES:
             print(
-                "  ❌ Lỗi: expected_status là 'answerable' nhưng mảng gold_chunk_ids lại rỗng!"
+                f"  ❌ Lỗi: expected_status '{expected_status}' không hợp lệ, phải là một trong {sorted(VALID_STATUSES)}"
+            )
+            sample_error = True
+
+        if expected_status == "answered" and not chunk_ids:
+            print(
+                "  ❌ Lỗi: expected_status là 'answered' nhưng mảng gold_chunk_ids lại rỗng!"
+            )
+            sample_error = True
+
+        if expected_status == "insufficient_context" and chunk_ids:
+            print(
+                "  ❌ Lỗi: expected_status là 'insufficient_context' nhưng gold_chunk_ids không rỗng!"
             )
             sample_error = True
 
