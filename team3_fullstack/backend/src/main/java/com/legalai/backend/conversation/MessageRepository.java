@@ -1,10 +1,11 @@
 package com.legalai.backend.conversation;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.UUID;
 
 /**
- * Truy cập DB cho {@link Message} (Spring Data JPA).
+ * Placeholder for future persistence. Disabled in mock; needs a JPA entity before use.
  */
-public interface MessageRepository extends JpaRepository<Message, Long>{
+public interface MessageRepository extends JpaRepository<Message, UUID>{
 
 }

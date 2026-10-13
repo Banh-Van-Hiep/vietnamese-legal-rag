@@ -11,8 +11,8 @@
 	<groupId>com.legalai</groupId>
 	<artifactId>backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name/>
-	<description/>
+	<name>Vietnamese Legal RAG Backend</name>
+	<description>Team 3 Spring Boot backend with a local mock profile</description>
 	<url/>
 	<licenses>
 		<license/>

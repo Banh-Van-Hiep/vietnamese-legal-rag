@@ -1,1 +1,115 @@
-body { margin: 0; font-family: system-ui, sans-serif; }
+@import "tailwindcss";
+
+/*
+ * Design token của giao diện. Mực xanh đen của văn bản, giấy trắng, và đỏ con dấu làm điểm nhấn duy nhất.
+ * Mỗi biến --color-* sinh ra các class như bg-ink-900, text-muted, border-line.
+ */
+@theme {
+  --color-ink-950: #121b2e;
+  --color-ink-900: #18233a;
+  --color-ink-700: #2c3a57;
+  --color-ink: #1b2333;
+  --color-muted: #5d6677;
+  --color-faint: #8a93a3;
+  --color-paper: #f6f7f9;
+  --color-surface: #ffffff;
+  --color-line: #e1e4ea;
+  --color-line-strong: #cfd4dd;
+  --color-user-bubble: #e7ebf2;
+
+  --color-seal: #b3261e;
+  --color-seal-strong: #8f1d17;
+  --color-seal-soft: #fbeceb;
+  --color-seal-light: #e2554b;
+  --color-seal-line: #efc4c1;
+
+  --color-focus: #2f5bd3;
+
+  --color-side-text: #d3d9e5;
+  --color-side-muted: #8590a6;
+
+  --color-mock-border: #c58a1b;
+  --color-mock-bg: #fdf6e3;
+  --color-mock-ink: #7a5200;
+
+  --font-sans: "Be Vietnam Pro", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif: "Noto Serif", Georgia, "Times New Roman", serif;
+
+  /* Con dấu "đóng" xuống khi vào màn hình chào; chấm nhấp nháy khi đang chờ trả lời; ngăn xem điều luật trượt vào. */
+  --animate-stamp: stamp 700ms cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+  --animate-blink: blink 1.2s infinite ease-in-out;
+  --animate-drawer-in: drawer-in 200ms ease-out;
+
+  @keyframes stamp {
+    0% {
+      opacity: 0;
+      transform: scale(1.35) rotate(-14deg);
+    }
+    60% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.92;
+      transform: scale(1) rotate(-6deg);
+    }
+  }
+  @keyframes blink {
+    0%,
+    80%,
+    100% {
+      opacity: 0.25;
+    }
+    40% {
+      opacity: 1;
+    }
+  }
+  @keyframes drawer-in {
+    from {
+      transform: translateX(24px);
+      opacity: 0;
+    }
+    to {
+      transform: none;
+      opacity: 1;
+    }
+  }
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--color-ink);
+    background: var(--color-paper);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Tailwind v4 để nút có con trỏ mặc định; giao diện này muốn con trỏ bàn tay cho mọi nút bấm được. */
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+}
+
+/* Người dùng bật "giảm chuyển động": rút ngắn mọi hiệu ứng. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    transition-duration: 1ms !important;
+  }
+}

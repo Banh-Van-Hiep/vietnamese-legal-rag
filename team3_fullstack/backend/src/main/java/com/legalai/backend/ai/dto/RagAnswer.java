@@ -1,8 +1,6 @@
 package com.legalai.backend.ai.dto;
 
-/**
- * Kết quả RAG từ dịch vụ AI: câu trả lời và danh sách trích dẫn.
- */
-public class RagAnswer {
+import java.util.List;
 
-}
+/** Internal RAG result; the backend adds public message and conversation IDs. */
+public record RagAnswer(String status, String answer, List<Citation> citations) { }
