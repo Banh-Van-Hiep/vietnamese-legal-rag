@@ -11,6 +11,7 @@ from team2_rag.llm.types import (  # noqa: I001  (types phải được import t
     Usage,
 )
 from team2_rag.llm.errors import (
+    CitationInvalidError,
     LLMAuthError,
     LLMBadOutputError,
     LLMConfigError,
@@ -28,7 +29,7 @@ from team2_rag.llm.factory import create_llm_service, create_provider
 __all__ = [
     "STATUS_ANSWERED", "STATUS_INSUFFICIENT", "CitationCandidate", "HistoryTurn", "LLMInput",
     "LLMOutput", "LLMParams", "LLMResult", "Usage",
-    "LLMAuthError", "LLMBadOutputError", "LLMConfigError", "LLMContentBlockedError", "LLMError",
+    "CitationInvalidError", "LLMAuthError", "LLMBadOutputError", "LLMConfigError", "LLMContentBlockedError", "LLMError",
     "LLMProviderError", "LLMRateLimitError", "LLMTimeoutError",
     "LLMProvider", "LLMService", "parse_llm_output", "create_llm_service", "create_provider",
 ]
