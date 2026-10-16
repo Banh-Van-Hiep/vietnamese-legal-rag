@@ -9,13 +9,14 @@ và [Metadata Specification](metadata-specification.md).
 
 ## 2. Phạm vi dữ liệu
 
-Giai đoạn đầu tập trung vào **pháp luật lao động**: Bộ luật Lao động 2019, các
-luật sửa đổi và các văn bản hướng dẫn còn hiệu lực. Phạm vi này thống nhất với
-`contracts/v0.1/README.md` của Team 2.
+Phạm vi là **mảng pháp luật doanh nghiệp**: Luật Doanh nghiệp 59/2020/QH14, các
+luật sửa đổi, văn bản hợp nhất và các nghị định, thông tư liên quan còn hiệu lực. Phạm vi này thống nhất với
+`contracts/v0.1/CONTRACT.md` của Team 2.
 
-Chọn lĩnh vực lao động vì câu hỏi thực tế đa dạng và gần người dùng hơn (nghỉ
-phép, làm thêm giờ, thử việc, sa thải, trợ cấp thôi việc), nên bộ câu hỏi đánh
-giá retrieval dễ xây dựng và sát thực tế.
+Chọn mảng doanh nghiệp vì câu hỏi thực tế đa dạng (thành lập, góp vốn, chia lợi
+nhuận, đăng ký thay đổi, tạm ngừng kinh doanh, xử phạt) và trải trên nhiều văn
+bản, nên bộ câu hỏi đánh giá retrieval phải kiểm tra được việc tìm đúng văn bản
+trong một nhóm luật chứ không chỉ một bộ luật.
 
 ### 2.1. Danh mục văn bản
 
@@ -23,18 +24,18 @@ Mức ưu tiên: **P0** bắt buộc cho MVP, **P1** nên có, **P2** bổ sung 
 
 | Ưu tiên | Số hiệu | Loại | Cơ quan ban hành | Trích yếu | Ngày ban hành | Ngày hiệu lực | Ghi chú |
 |---|---|---|---|---|---|---|---|
-| P0 | 45/2019/QH14 | Bộ luật | Quốc hội | Bộ luật Lao động | 20/11/2019 | 01/01/2021 | Văn bản gốc; 17 chương, 220 điều. Đã được sửa đổi bởi 71/2025/QH15 |
-| P0 | 125/VBHN-VPQH | Văn bản hợp nhất | Văn phòng Quốc hội | Hợp nhất Bộ luật Lao động | 2025 | — | **Nguồn nội dung tra cứu chính** (xem mục 4.3) |
-| P0 | 145/2020/NĐ-CP | Nghị định | Chính phủ | Hướng dẫn Bộ luật Lao động về điều kiện lao động và quan hệ lao động | 14/12/2020 | 01/02/2021 | Hết hiệu lực một phần; đã sửa bởi NĐ 35/2022/NĐ-CP và NĐ 129/2025/NĐ-CP |
-| P0 | 293/2025/NĐ-CP | Nghị định | Chính phủ | Mức lương tối thiểu đối với người lao động làm việc theo hợp đồng lao động | 10/11/2025 | 01/01/2026 | Thay thế NĐ 74/2024/NĐ-CP |
-| P0 | 135/2020/NĐ-CP | Nghị định | Chính phủ | Quy định về tuổi nghỉ hưu | 18/11/2020 | 01/01/2021 | Còn hiệu lực |
-| P1 | 71/2025/QH15 | Luật | Quốc hội | Luật Công nghiệp công nghệ số (có sửa đổi Bộ luật Lao động) | 14/06/2025 | 01/01/2026 | Chỉ lấy phần sửa đổi Bộ luật Lao động |
-| P1 | 219/2025/NĐ-CP | Nghị định | Chính phủ | Người lao động nước ngoài làm việc tại Việt Nam | 07/08/2025 | 07/08/2025 | Thay thế nội dung tương ứng của NĐ 152/2020 và NĐ 70/2023 |
-| P1 | 12/2022/NĐ-CP | Nghị định | Chính phủ | Xử phạt vi phạm hành chính trong lĩnh vực lao động, BHXH | 17/01/2022 | 17/01/2022 | Hữu ích cho câu hỏi về chế tài |
-| P2 | 10/2020/TT-BLĐTBXH | Thông tư | Bộ LĐ-TB&XH | Hướng dẫn một số nội dung về hợp đồng lao động, kỷ luật lao động | 12/11/2020 | 01/01/2021 | Kiểm tra trạng thái sau khi sắp xếp lại bộ máy năm 2025 |
+| P0 | 59/2020/QH14 | Luật | Quốc hội | Luật Doanh nghiệp | 17/06/2020 | 01/01/2021 | Văn bản gốc; 10 chương, 218 điều. Hết hiệu lực một phần, đã sửa bởi 03/2022/QH15 và 76/2025/QH15 |
+| P0 | 67/VBHN-VPQH | Văn bản hợp nhất | Văn phòng Quốc hội | Hợp nhất Luật Doanh nghiệp | 15/08/2025 | — | **Nguồn nội dung tra cứu chính** (xem mục 4.3) |
+| P0 | 168/2025/NĐ-CP | Nghị định | Chính phủ | Nghị định về đăng ký doanh nghiệp | 30/06/2025 | 01/07/2025 | Thay thế NĐ 01/2021/NĐ-CP |
+| P0 | 7566/VBHN-BKHĐT | Văn bản hợp nhất | Bộ Kế hoạch và Đầu tư | Hợp nhất Nghị định quy định chi tiết một số điều của Luật Doanh nghiệp | 18/09/2024 | 01/04/2021 | Hợp nhất NĐ 47/2021/NĐ-CP với phần sửa của NĐ 16/2023/NĐ-CP; hết hiệu lực một phần |
+| P1 | 76/2025/QH15 | Luật | Quốc hội | Luật sửa đổi, bổ sung một số điều của Luật Doanh nghiệp | 17/06/2025 | 01/07/2025 | Còn hiệu lực; đã được ghép vào 67/VBHN-VPQH |
+| P1 | 122/2021/NĐ-CP | Nghị định | Chính phủ | Xử phạt vi phạm hành chính trong lĩnh vực kế hoạch và đầu tư, phần đăng ký doanh nghiệp | 28/12/2021 | 01/01/2022 | Hết hiệu lực một phần; hữu ích cho câu hỏi về chế tài |
+| P1 | 288/2026/NĐ-CP | Nghị định | Chính phủ | Sửa đổi, bổ sung một số điều của NĐ 122/2021/NĐ-CP | 21/07/2026 | 21/07/2026 | Còn hiệu lực |
+| P2 | 68/2025/TT-BTC | Thông tư | Bộ Tài chính | Biểu mẫu sử dụng trong đăng ký doanh nghiệp, đăng ký hộ kinh doanh | 01/07/2025 | 01/07/2025 | Hết hiệu lực một phần; kiểm tra lại trạng thái khi thu thập |
 
-**Không đưa vào index mặc định** (đã hết hiệu lực, chỉ lưu raw để đối chiếu):
-NĐ 74/2024/NĐ-CP, NĐ 152/2020/NĐ-CP, NĐ 70/2023/NĐ-CP.
+**Phạm vi mở rộng:** danh sách trên là 8 văn bản đã thu. Văn bản liên quan còn lại
+được theo dõi ở `data/doanh-nghiep/CATALOG.txt`; thêm văn bản mới thì cập nhật
+registry (mục 5) trước khi đưa vào index.
 
 Mọi thông tin ngày và trạng thái trong bảng phải được kiểm tra lại trên nguồn
 chính thức (mục 3.1) tại thời điểm thu thập và ghi vào registry văn bản (mục 5).
@@ -96,16 +97,16 @@ Văn bản
 └── Phần        (tùy chọn)  "Phần thứ nhất", "PHẦN I"
     └── Chương  (tùy chọn)  "Chương I", "CHƯƠNG II"
         └── Mục (tùy chọn)  "Mục 1", "MỤC 2"
-            └── Điều        "Điều 113. Nghỉ hằng năm"
+            └── Điều        "Điều 69. Điều kiện để chia lợi nhuận"
                 └── Khoản   "1.", "2." ở đầu dòng
                     └── Điểm "a)", "b)", "đ)"
 ```
 
 - **Điều** là cấp bắt buộc và là đơn vị trích dẫn chính.
 - Phần, Chương, Mục có thể không tồn tại; khi không có thì metadata để `null`.
-- Ví dụ: Bộ luật Lao động 2019 có 17 chương, 220 điều. Điều 113 nằm trong
-  Chương VII (Thời giờ làm việc, thời giờ nghỉ ngơi), Mục 2 (Thời giờ nghỉ ngơi)
-  — một ví dụ có đủ cả cấp Chương và Mục.
+- Ví dụ: Luật Doanh nghiệp 59/2020/QH14 có 10 chương, 218 điều. Điều 69 nằm trong
+  Chương III (Công ty trách nhiệm hữu hạn), Mục 1 (Công ty trách nhiệm hữu hạn
+  hai thành viên trở lên) — một ví dụ có đủ cả cấp Chương và Mục.
 
 ### 4.2. Quy tắc nhận diện
 
@@ -114,15 +115,15 @@ Văn bản
 | Phần | `^(PHẦN\|Phần)\s+(thứ\s+\w+\|[IVXLC]+)` | Hiếm gặp trong phạm vi hiện tại |
 | Chương | `^(CHƯƠNG\|Chương)\s+([IVXLC]+)` | Số La Mã; dòng kế tiếp thường là tên chương viết hoa |
 | Mục | `^(MỤC\|Mục)\s+(\d+)` | Chỉ nhận diện khi nằm giữa Chương và Điều |
-| Điều | `^Điều\s+(\d+[a-z]?)\.\s*(.*)` | `113a` xuất hiện khi luật sửa đổi bổ sung điều mới |
+| Điều | `^Điều\s+(\d+[a-z]?)\.\s*(.*)` | `69a` xuất hiện khi luật sửa đổi bổ sung điều mới |
 | Khoản | `^(\d+[a-z]?)\.\s+` | Chỉ tính khi đang ở trong một Điều |
 | Điểm | `^([a-zđ])\)\s+` | Bảng chữ cái pháp lý: a b c d đ e g h i k l m n o p q r s t u v x y (không có f, j, w, z) |
 
-Cần phân biệt "Điều 113." ở đầu dòng (tiêu đề điều) với "quy định tại khoản 3
+Cần phân biệt "Điều 69." ở đầu dòng (tiêu đề điều) với "quy định tại khoản 3
 Điều 101 của Bộ luật này" trong câu (tham chiếu chéo). Chỉ mẫu ở **đầu dòng**
 mới mở một đơn vị mới.
 
-> **Cảnh báo từ khảo sát nguồn:** bản hợp nhất Bộ luật Lao động lấy từ một số
+> **Cảnh báo từ khảo sát nguồn:** bản hợp nhất Luật Doanh nghiệp lấy từ một số
 > trang tổng hợp **bị mất hoàn toàn dòng tiêu đề Chương và phần lớn tiêu đề Mục**,
 > chỉ còn lại các dòng `Điều N.`. Vì vậy bước Structure Extraction không được
 > giả định luôn có Chương/Mục; khi thiếu thì `chapter`/`section` để `null` và
@@ -134,13 +135,14 @@ mới mở một đơn vị mới.
 Văn bản sửa đổi có cấu trúc lồng nhau, ví dụ:
 
 ```text
-Điều 72. Sửa đổi, bổ sung một số điều của các luật có liên quan
-1. Sửa đổi, bổ sung khoản 1 Điều 24 của Bộ luật Lao động như sau:
-   "1. ..."
+Điều 1. Sửa đổi, bổ sung Luật Doanh nghiệp
+1. Sửa đổi, bổ sung một số khoản của Điều 4 như sau:
+   a) Sửa đổi, bổ sung khoản 5 như sau:
+   "5. ..."
 ```
 
-Nếu chunk trực tiếp, "khoản 1 Điều 24" của Bộ luật Lao động sẽ bị gán nhầm
-thành "khoản 1 Điều 72" của luật sửa đổi. Vì vậy:
+Nếu chunk trực tiếp, "khoản 5 Điều 4" của Luật Doanh nghiệp 59/2020/QH14 sẽ bị
+gán nhầm thành "khoản 1 Điều 1" của Luật 76/2025/QH15 (luật sửa đổi). Vì vậy:
 
 - **Nội dung tra cứu chính** lấy từ văn bản hợp nhất (VBHN) mới nhất, nơi các
   sửa đổi đã được ghép vào đúng Điều/Khoản gốc.
@@ -161,27 +163,27 @@ thành "khoản 1 Điều 72" của luật sửa đổi. Vì vậy:
 
 ## 5. Registry văn bản
 
-Mỗi văn bản có một bản ghi trong `data/registry/documents.json`. Đây là nguồn
+Mỗi văn bản có một bản ghi trong `data/doanh-nghiep/registry/documents.json`. Đây là nguồn
 dữ liệu cấp văn bản; metadata cấp chunk được sao chép từ đây
 (xem [Metadata Specification](metadata-specification.md)).
 
 ```json
 {
-  "document_key": "bl-45-2019-qh14",
-  "document_id": "bl-45-2019-qh14-v1",
-  "document_number": "45/2019/QH14",
-  "document_type": "bo_luat",
-  "document_title": "Bộ luật Lao động",
+  "document_key": "luat-59-2020-qh14",
+  "document_id": "luat-59-2020-qh14-v1",
+  "document_number": "59/2020/QH14",
+  "document_type": "luat",
+  "document_title": "Luật Doanh nghiệp",
   "issuing_authority": "Quốc hội",
-  "issued_date": "2019-11-20",
+  "issued_date": "2020-06-17",
   "effective_date": "2021-01-01",
   "expiry_date": null,
-  "legal_status": "con_hieu_luc",
-  "amended_by": ["luat-71-2025-qh15"],
-  "replaces": ["bl-10-2012-qh13"],
+  "legal_status": "het_hieu_luc_mot_phan",
+  "amended_by": ["luat-76-2025-qh15"],
+  "replaces": ["luat-68-2014-qh13"],
   "replaced_by": [],
-  "guided_by": ["nd-145-2020-nd-cp", "nd-135-2020-nd-cp", "nd-293-2025-nd-cp"],
-  "source_url": "https://vbpl.vn/...",
+  "guided_by": ["nd-168-2025-nd-cp"],
+  "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881",
   "source_format": "html",
   "version": "v1",
   "fetched_at": "2026-10-04T00:00:00Z"

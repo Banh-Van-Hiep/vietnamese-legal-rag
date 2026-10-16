@@ -54,7 +54,7 @@ phần đã thay đổi; không báo sẵn sàng khi Maven hoặc khởi động
   khi tạo tài nguyên. CORS expose các header có ý nghĩa với response, không sinh ID giả cho lỗi.
 
 CORS rejection không bắt buộc JSON 403. 406 hiện có chỉ là observation; không tạo enum/field
-hoặc thay handler để đưa nó thành yêu cầu T01. Chi tiết giao tiếp tại [contracts](contracts/README.md).
+hoặc thay handler để đưa nó thành yêu cầu T01. Chi tiết giao tiếp tại [contracts](contracts/interface-references.md).
 
 ## VerificationEvidence
 

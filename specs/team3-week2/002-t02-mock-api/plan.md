@@ -35,7 +35,7 @@ Quyết định vận hành không tự mang nhãn nhóm phê duyệt; người 
 ## Project Structure
 ### Documentation (this feature)
 specs/team3-week2/002-t02-mock-api/{spec,plan,research,data-model,quickstart,decisions,tasks}.md,
-contracts/README.md, checklists/requirements.md; report triển khai sau tại specs/team3-week2/002-t02-mock-api/verification.md.
+contracts/interface-references.md, checklists/requirements.md; report triển khai sau tại specs/team3-week2/002-t02-mock-api/verification.md.
 
 ### Source Code (repository root)
 Các cột dưới là snapshot lúc lập plan, không là danh sách việc chưa làm hiện tại.

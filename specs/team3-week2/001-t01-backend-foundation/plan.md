@@ -85,7 +85,7 @@ specs/team3-week2/001-t01-backend-foundation/
 ├── research.md                   # Phase 0: quyết định, lý do, phương án loại
 ├── data-model.md                 # Phase 1: cấu hình/truy vết/bằng chứng, không model DB mới
 ├── quickstart.md                 # Phase 1: hướng dẫn validation sau triển khai
-├── contracts/README.md           # Tham chiếu interface kế thừa, không contract mới
+├── contracts/interface-references.md           # Tham chiếu interface kế thừa, không contract mới
 ├── checklists/requirements.md    # Giữ trạng thái review spec
 └── tasks.md                      # 23 task theo story/phụ thuộc, đã kiểm chứng local
 ```
@@ -160,7 +160,7 @@ retryable=false, conversation ID gắn đúng lượt đã tiếp nhận, respon
 không dùng probe 500 chưa tiếp nhận lượt làm bằng chứng cho nhánh này. Giữ các ca mock/probe
 hiện có độc lập; không thêm endpoint, field chọn scenario hoặc fixture lỗi public của T02.
 
-Interface T01 tại [contracts/README.md](contracts/README.md) trích team3.md. CORS/header được
+Interface T01 tại [contracts/interface-references.md](contracts/interface-references.md) trích team3.md. CORS/header được
 kiểm tra trên endpoint có sẵn. 403 không cần JSON; 406 không là contract/nghiệm thu và giữ nguyên.
 Team 2 chỉ cần phối hợp đồng bộ tài liệu/schema cho bước tích hợp liên quan; service thật không
 là dependency chạy T01. Team 1 không có dependency runtime T01; Frontend chỉ cung cấp origin/header.
@@ -191,7 +191,7 @@ Maven stub hoặc đọc properties làm proof runtime.
 
 - Phase 0: [research.md](research.md) đã giải quyết quyết định kỹ thuật bằng nguồn local và Q1–Q3;
   rà soát độc lập chỉ đọc xác nhận test runner thiếu và ma trận AC, không chạy test/app.
-- Phase 1: [data-model.md](data-model.md), [interface references](contracts/README.md),
+- Phase 1: [data-model.md](data-model.md), [interface references](contracts/interface-references.md),
   [quickstart.md](quickstart.md) mô tả thiết kế/validation; post-design constitution gates PASS.
 - Danh sách [tasks.md](tasks.md) đã sinh và cập nhật thành 23 nhiệm vụ, giữ ý định hai task
   nháp Q2 và bổ sung kiểm chứng U1/C1. Vòng implement sau đó đã thực hiện tasks và lưu bằng
