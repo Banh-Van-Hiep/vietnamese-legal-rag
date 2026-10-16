@@ -1,0 +1,47 @@
+{
+  "question": "MOCK: Tìm quy định về thành viên công ty TNHH.",
+  "results": [
+    {
+      "chunk_id": "mock_enterprise_v1__dieu-1__k1__0",
+      "document_id": "mock_enterprise_v1",
+      "article_id": "dieu-1",
+      "content": "DỮ LIỆU GIẢ ĐỂ TEST. Đoạn A nói về tên doanh nghiệp, không phải căn cứ pháp lý.",
+      "document_title": "Văn bản doanh nghiệp giả lập",
+      "article": "Điều 1",
+      "clause": "Khoản 1",
+      "point": null,
+      "source_url": "https://example.com/mock-enterprise",
+      "score": 0.05,
+      "rank": 1,
+      "retrieval_method": "hybrid_rrf"
+    },
+    {
+      "chunk_id": "mock_enterprise_v1__dieu-2__k1__0",
+      "document_id": "mock_enterprise_v1",
+      "article_id": "dieu-2",
+      "content": "DỮ LIỆU GIẢ ĐỂ TEST. Đoạn B nói về thành viên công ty TNHH, không phải căn cứ pháp lý.",
+      "document_title": "Văn bản doanh nghiệp giả lập",
+      "article": "Điều 2",
+      "clause": "Khoản 1",
+      "point": null,
+      "source_url": "https://example.com/mock-enterprise",
+      "score": 0.04,
+      "rank": 2,
+      "retrieval_method": "hybrid_rrf"
+    },
+    {
+      "chunk_id": "mock_enterprise_v1__dieu-3__k0__0",
+      "document_id": "mock_enterprise_v1",
+      "article_id": "dieu-3",
+      "content": "DỮ LIỆU GIẢ ĐỂ TEST. Đoạn C nói về góp vốn của thành viên công ty TNHH, không phải căn cứ pháp lý.",
+      "document_title": "Văn bản doanh nghiệp giả lập",
+      "article": "Điều 3",
+      "clause": null,
+      "point": null,
+      "source_url": "https://example.com/mock-enterprise",
+      "score": 0.03,
+      "rank": 3,
+      "retrieval_method": "hybrid_rrf"
+    }
+  ]
+}
