@@ -16,7 +16,7 @@
     {
       "system_instruction": "Answer in Vietnamese using only the supplied legal context.",
       "legal_context": {
-        "question": "Người lao động được nghỉ phép bao nhiêu ngày?",
+        "question": "Luật Doanh nghiệp quy định về những vấn đề gì?",
         "token_budget": 3000,
         "estimated_tokens": 180,
         "chunks": [
@@ -40,7 +40,7 @@
           }
         ]
       },
-      "user_question": "Người lao động được nghỉ phép bao nhiêu ngày?",
+      "user_question": "Luật Doanh nghiệp quy định về những vấn đề gì?",
       "output_instruction": "Return answer and citations; cite only chunk IDs in legal_context."
     }
   ]
