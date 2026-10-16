@@ -29,19 +29,18 @@ Thứ tự áp dụng: R1/R2 trước, chỉ khi quá dài mới xuống R3, r�
 
 ### 2.2. Câu dẫn — vì sao bắt buộc lặp lại
 
-Ví dụ có thật — Điều 137 khoản 1 Bộ luật Lao động 2019:
+Ví dụ có thật — Điều 17 khoản 2 Luật Doanh nghiệp 59/2020/QH14:
 
 ```text
-1. Người sử dụng lao động không được sử dụng người lao động làm việc ban đêm,
-làm thêm giờ và đi công tác xa trong trường hợp sau đây:
-a) Mang thai từ tháng thứ 07 hoặc từ tháng thứ 06 nếu làm việc ở vùng cao, vùng sâu,
-vùng xa, biên giới, hải đảo;
-b) Đang nuôi con dưới 12 tháng tuổi, trừ trường hợp được người lao động đồng ý.
+2. Tổ chức, cá nhân sau đây không có quyền thành lập và quản lý doanh nghiệp tại Việt Nam:
+a) Cơ quan nhà nước, đơn vị lực lượng vũ trang nhân dân sử dụng tài sản nhà nước để thành lập
+doanh nghiệp kinh doanh thu lợi riêng cho cơ quan, đơn vị mình;
+b) Cán bộ, công chức, viên chức theo quy định của Luật Cán bộ, công chức và Luật Viên chức;
 ```
 
-Nếu tách Điểm a) ra thành chunk riêng mà **không có câu dẫn**, chunk chỉ còn
-"Mang thai từ tháng thứ 07 hoặc từ tháng thứ 06 nếu làm việc ở vùng cao..." —
-mất hoàn toàn vế "người sử dụng lao động không được sử dụng", chunk trở nên vô
+Nếu tách Điểm a) ra thành chunk riêng **không có câu dẫn**, chunk chỉ còn
+"Cơ quan nhà nước, đơn vị lực lượng vũ trang nhân dân sử dụng tài sản nhà nước..." —
+mất hoàn toàn vế "không có quyền thành lập và quản lý doanh nghiệp", chunk trở nên vô
 nghĩa và LLM có thể hiểu ngược. Vì vậy:
 
 - Câu dẫn của **Khoản** (phần trước Điểm a) được lặp lại ở đầu mọi chunk R3.
@@ -100,7 +99,7 @@ giai đoạn Retrieval Evaluation (mục 6).
 Ví dụ:
 
 ```text
-Bộ luật Lao động 45/2019/QH14 > Chương VII. Thời giờ làm việc, thời giờ nghỉ ngơi > Mục 2. Thời giờ nghỉ ngơi > Điều 113. Nghỉ hằng năm
+Luật Doanh nghiệp 59/2020/QH14 > Chương III. CÔNG TY TRÁCH NHIỆM HỮU HẠN > Mục 1. CÔNG TY TRÁCH NHIỆM HỮU HẠN HAI THÀNH VIÊN TRỞ LÊN > Điều 69. Điều kiện để chia lợi nhuận
 ```
 
 Text dùng để index (không lưu thành trường riêng, sinh ở bước indexing):

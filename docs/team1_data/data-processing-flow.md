@@ -130,7 +130,7 @@ các trường này từ nội dung.
 | Duy nhất | `chunk_id` không trùng trong toàn bộ dataset | Lỗi — dừng |
 | Nội dung | `content` không rỗng; độ dài trong giới hạn của Chunk Format | Lỗi — dừng |
 | Cấu trúc | Số Điều liên tục 1..N (cho phép điều chèn như `17a`); số Khoản liên tục trong Điều; chữ cái Điểm đúng thứ tự | Cảnh báo |
-| Đối chiếu | Số Điều trích xuất bằng số Điều kỳ vọng ghi trong registry (ví dụ Bộ luật Lao động 2019: 220) | Lỗi — dừng |
+| Đối chiếu | Số Điều trích xuất bằng số Điều kỳ vọng ghi trong registry (ví dụ Luật Doanh nghiệp 59/2020/QH14: 218) | Lỗi — dừng |
 | Ký tự | Tỷ lệ ký tự ngoài bảng chữ tiếng Việt, số và dấu câu < 1% | Cảnh báo, nghi lỗi mã hóa |
 | Nguồn | `source_url` là HTTPS và nằm trong danh sách domain nguồn chính thức | Lỗi — dừng |
 | Thủ công | Lấy ngẫu nhiên 5% chunk (tối thiểu 20) so với văn bản gốc | Ghi vào báo cáo |
@@ -145,16 +145,16 @@ Mỗi dòng của `data/processed/chunks.jsonl` là một chunk với đầy đ�
 
 ```json
 {
-  "chunk_id": "bl-45-2019-qh14-v1__dieu-113__k1__0",
-  "document_id": "bl-45-2019-qh14-v1",
-  "article_id": "dieu-113",
-  "document_title": "Bộ luật Lao động",
-  "document_number": "45/2019/QH14",
-  "article": "Điều 113",
-  "clause": "Khoản 1",
+  "chunk_id": "luat-59-2020-qh14-v1__dieu-69__k0__0",
+  "document_id": "luat-59-2020-qh14-v1",
+  "article_id": "dieu-69",
+  "document_title": "Luật Doanh nghiệp",
+  "document_number": "59/2020/QH14",
+  "article": "Điều 69",
+  "clause": null,
   "point": null,
   "content": "...",
-  "source_url": "https://vbpl.vn/..."
+  "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
 }
 ```
 

@@ -1,7 +1,7 @@
 # Contract v0.1 — Revision 2 (Week 1)
 
 **Project:** Vietnamese Legal RAG Assistant
-**Phạm vi demo:** Pháp luật lao động; corpus Week 1 ưu tiên **Bộ luật Lao động 2019**.
+**Phạm vi demo:** Pháp luật doanh nghiệp, gồm Luật Doanh nghiệp và các văn bản liên quan (luật sửa đổi, nghị định, thông tư, văn bản hợp nhất); corpus không xoay quanh một bộ luật duy nhất.
 **Nguồn đối chiếu:** Đặc tả API Team 3 v1.2 ngày 30/09/2026.
 **Trạng thái:** Proposal để Team 1/2/3 review; chưa phải implementation đã đóng băng.
 
@@ -46,17 +46,17 @@ Trong `answered`, answer dùng marker `[C1]`, `[C2]`… Mỗi marker phải có 
 ```json
 {
   "status": "answered",
-  "answer": "Câu trả lời minh họa về pháp luật lao động [C1].",
+  "answer": "Câu trả lời minh họa về pháp luật doanh nghiệp [C1].",
   "citations": [{
     "citation_id": "C1",
-    "chunk_id": "bll2019_v1_d113_k1",
-    "document_id": "bll2019_v1",
-    "article_id": "dieu113",
-    "document_title": "Bộ luật Lao động 2019",
-    "article": "Điều 113",
-    "clause": "Khoản 1",
+    "chunk_id": "luat-59-2020-qh14-v1__dieu-4__k2__0",
+    "document_id": "luat-59-2020-qh14-v1",
+    "article_id": "dieu-4",
+    "document_title": "Luật Doanh nghiệp",
+    "article": "Điều 4",
+    "clause": "Khoản 2",
     "point": null,
-    "source_url": "https://example.com/mock-labor-law"
+    "source_url": "https://example.com/mock-enterprise-law"
   }]
 }
 ```

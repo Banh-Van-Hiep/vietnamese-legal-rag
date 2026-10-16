@@ -68,9 +68,9 @@ Chi tiết từng nhánh:
 
 | Loại câu hỏi | Ví dụ | Phương pháp mạnh hơn |
 |---|---|---|
-| Có số hiệu, số Điều, thuật ngữ chính xác | "Điều 113 Bộ luật Lao động 45/2019/QH14 quy định gì?" | BM25 — so khớp đúng chuỗi |
-| Diễn đạt đời thường, khác từ ngữ trong luật | "Một năm được nghỉ phép bao nhiêu ngày?" | Dense — hiểu "nghỉ phép" ≈ "nghỉ hằng năm" |
-| Kết hợp cả hai | "Điều 113 có cho nghỉ gộp phép nhiều năm không?" | Hybrid |
+| Có số hiệu, số Điều, thuật ngữ chính xác | "Điều 69 Luật Doanh nghiệp 59/2020/QH14 quy định gì?" | BM25 — so khớp đúng chuỗi |
+| Diễn đạt đời thường, khác từ ngữ trong luật | "Chia lãi cho thành viên công ty cần điều kiện gì?" | Dense — hiểu "chia lãi" ≈ "chia lợi nhuận" |
+| Kết hợp cả hai | "Điều 69 có yêu cầu trả hết nợ đến hạn trước khi chia lợi nhuận không?" | Hybrid |
 
 Người dùng hỏi theo cả hai kiểu, nên phương pháp mặc định là `hybrid_rrf`;
 `bm25` và `dense` vẫn gọi riêng được để debug và đánh giá.
@@ -122,7 +122,7 @@ fusion phía server. Chi tiết ở Hybrid Retrieval Proposal.
 
 ### 4.1. Cách Team 2 gọi Team 1
 
-Theo `contracts/v0.1/README.md`, Team 1 và Team 2 chạy chung một Python service
+Theo `contracts/v0.1/CONTRACT.md`, Team 1 và Team 2 chạy chung một Python service
 ở MVP. Team 1 cung cấp **thư viện Python**, không phải HTTP service riêng:
 
 ```python

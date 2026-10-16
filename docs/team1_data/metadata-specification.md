@@ -23,18 +23,18 @@ Ký hiệu cột **Contract**: ✔ = trường được gửi sang Team 2 trong 
 
 | Trường | Kiểu | Bắt buộc | Contract | Ví dụ | Mô tả |
 |---|---|---|---|---|---|
-| `chunk_id` | string ≤ 200 | ✔ | ✔ | `bl-45-2019-qh14-v1__dieu-113__k1__0` | ID duy nhất của chunk |
-| `document_id` | string ≤ 200, `^[A-Za-z0-9_-]+$` | ✔ | ✔ | `bl-45-2019-qh14-v1` | ID **phiên bản** văn bản; không tái sử dụng khi nội dung đổi |
-| `document_key` | string, `^[a-z0-9-]+$` | ✔ | | `bl-45-2019-qh14` | ID cố định của văn bản qua các phiên bản |
-| `article_id` | string ≤ 100, `^[A-Za-z0-9_-]+$` | ✔ | ✔ | `dieu-113` | ID Điều trong văn bản, dùng trong URL xem điều luật |
+| `chunk_id` | string ≤ 200 | ✔ | ✔ | `luat-59-2020-qh14-v1__dieu-69__k0__0` | ID duy nhất của chunk |
+| `document_id` | string ≤ 200, `^[A-Za-z0-9_-]+$` | ✔ | ✔ | `luat-59-2020-qh14-v1` | ID **phiên bản** văn bản; không tái sử dụng khi nội dung đổi |
+| `document_key` | string, `^[a-z0-9-]+$` | ✔ | | `luat-59-2020-qh14` | ID cố định của văn bản qua các phiên bản |
+| `article_id` | string ≤ 100, `^[A-Za-z0-9_-]+$` | ✔ | ✔ | `dieu-69` | ID Điều trong văn bản, dùng trong URL xem điều luật |
 | `version` | string | ✔ | | `v1` | Phiên bản nội dung văn bản |
 
 ### 2.2. Thông tin văn bản (sao chép từ registry)
 
 | Trường | Kiểu | Bắt buộc | Contract | Ví dụ | Mô tả |
 |---|---|---|---|---|---|
-| `document_title` | string ≤ 500 | ✔ | ✔ | `Bộ luật Lao động` | Tên văn bản |
-| `document_number` | string | ✔ | | `45/2019/QH14` | **Số hiệu VBPL** đúng như trên văn bản |
+| `document_title` | string ≤ 500 | ✔ | ✔ | `Luật Doanh nghiệp` | Tên văn bản |
+| `document_number` | string | ✔ | | `59/2020/QH14` | **Số hiệu VBPL** đúng như trên văn bản |
 | `document_type` | enum | ✔ | | `luat` | **Loại văn bản** (mục 3.1) |
 | `issuing_authority` | string | ✔ | | `Quốc hội` | Cơ quan ban hành |
 | `issued_date` | date `YYYY-MM-DD` | ✔ | | `2020-06-17` | **Ngày ban hành** |
@@ -49,15 +49,15 @@ Ký hiệu cột **Contract**: ✔ = trường được gửi sang Team 2 trong 
 |---|---|---|---|---|---|
 | `part` | string \| null | ✔ (có key) | | `null` | Phần |
 | `chapter` | string \| null | ✔ (có key) | | `Chương II` | Chương |
-| `chapter_title` | string \| null | ✔ (có key) | | `Thời giờ làm việc, thời giờ nghỉ ngơi` | Tên chương |
+| `chapter_title` | string \| null | ✔ (có key) | | `CÔNG TY TRÁCH NHIỆM HỮU HẠN` | Tên chương |
 | `section` | string \| null | ✔ (có key) | | `null` | Mục |
 | `section_title` | string \| null | ✔ (có key) | | `null` | Tên mục |
-| `article` | string ≤ 100 | ✔ | ✔ | `Điều 113` | Nhãn hiển thị Điều |
+| `article` | string ≤ 100 | ✔ | ✔ | `Điều 69` | Nhãn hiển thị Điều |
 | `article_title` | string | ✔ | | `Quyền thành lập, góp vốn, ...` | Tên Điều |
 | `clause` | string ≤ 100 \| null | ✔ (có key) | ✔ | `Khoản 2` | `null` nếu chunk là cả Điều (R1) |
 | `point` | string ≤ 100 \| null | ✔ (có key) | ✔ | `null` | `Điểm a` khi chunk chỉ chứa đúng một Điểm |
 
-Nhãn hiển thị luôn có tiền tố: `Điều 113`, `Khoản 1`, `Điểm đ` — không lưu số trần.
+Nhãn hiển thị luôn có tiền tố: `Điều 69`, `Khoản 1`, `Điểm đ` — không lưu số trần.
 
 ### 2.4. Nội dung
 
@@ -118,17 +118,17 @@ trắng → `-`, gộp nhiều `-` liền nhau.
 
 | Loại | Số hiệu | `document_key` |
 |---|---|---|
-| Bộ luật | 45/2019/QH14 | `bl-45-2019-qh14` |
+| Luật | 59/2020/QH14 | `luat-59-2020-qh14` |
 | Luật | 71/2025/QH15 | `luat-71-2025-qh15` |
 | Nghị định | 145/2020/NĐ-CP | `nd-145-2020-nd-cp` |
 | Nghị định | 293/2025/NĐ-CP | `nd-293-2025-nd-cp` |
-| Thông tư | 10/2020/TT-BLĐTBXH | `tt-10-2020-tt-bldtbxh` |
+| Thông tư | 68/2025/TT-BTC | `tt-68-2025-tt-btc` |
 | Văn bản hợp nhất | 125/VBHN-VPQH | `vbhn-125-vbhn-vpqh` |
 
 ### 4.2. `document_id`
 
 ```text
-{document_key}-{version}        ví dụ: bl-45-2019-qh14-v1
+{document_key}-{version}        ví dụ: luat-59-2020-qh14-v1
 ```
 
 Tăng `version` khi nội dung văn bản trong corpus thay đổi (cập nhật VBHN, sửa
@@ -138,7 +138,7 @@ citation đã lưu ở Team 3 tiếp tục mở được.
 ### 4.3. `article_id`
 
 ```text
-dieu-{số Điều, chữ thường}      ví dụ: dieu-113, dieu-113a
+dieu-{số Điều, chữ thường}      ví dụ: dieu-69, dieu-69a
 pl-{số phụ lục}                 ví dụ: pl-1 (khi xử lý phụ lục)
 ```
 
@@ -152,7 +152,7 @@ pl-{số phụ lục}                 ví dụ: pl-1 (khi xử lý phụ lục)
 - `chunk_index` bắt đầu từ 0.
 - Dùng `__` (hai gạch dưới) làm ranh giới để tách ngược được các thành phần.
 
-Ví dụ: `bl-45-2019-qh14-v1__dieu-113__k1__0`, `nd-145-2020-nd-cp-v1__dieu-65__k0__1`.
+Ví dụ: `luat-59-2020-qh14-v1__dieu-69__k0__0`, `luat-59-2020-qh14-v1__dieu-17__k2__0`.
 
 ## 5. Ánh xạ sang Retrieval Output (Team 1 → Team 2)
 
@@ -176,8 +176,8 @@ Team 1 **chỉ gửi đúng các trường có dấu ✔** ở mục 2, cộng b
 
 ### 5.1. Đề xuất bổ sung contract v0.2
 
-Citation pháp luật thường cần số hiệu và ngày ban hành (ví dụ "khoản 1 Điều 113
-Bộ luật Lao động số 45/2019/QH14"). Contract v0.1 chưa có các trường này. Đề
+Citation pháp luật thường cần số hiệu và ngày ban hành (ví dụ "khoản 2 Điều 17
+Luật Doanh nghiệp số 59/2020/QH14"). Contract v0.1 chưa có các trường này. Đề
 xuất Team 2 và Team 3 xem xét bổ sung vào v0.2:
 
 - `document_number`
@@ -191,37 +191,37 @@ tương thích với `additionalProperties: false`.
 
 ```json
 {
-  "chunk_id": "bl-45-2019-qh14-v1__dieu-113__k1__0",
-  "document_id": "bl-45-2019-qh14-v1",
-  "document_key": "bl-45-2019-qh14",
-  "article_id": "dieu-113",
+  "chunk_id": "luat-59-2020-qh14-v1__dieu-69__k0__0",
+  "document_id": "luat-59-2020-qh14-v1",
+  "document_key": "luat-59-2020-qh14",
+  "article_id": "dieu-69",
   "version": "v1",
 
-  "document_title": "Bộ luật Lao động",
-  "document_number": "45/2019/QH14",
-  "document_type": "bo_luat",
+  "document_title": "Luật Doanh nghiệp",
+  "document_number": "59/2020/QH14",
+  "document_type": "luat",
   "issuing_authority": "Quốc hội",
-  "issued_date": "2019-11-20",
+  "issued_date": "2020-06-17",
   "effective_date": "2021-01-01",
   "expiry_date": null,
-  "legal_status": "con_hieu_luc",
-  "source_url": "https://vbpl.vn/...",
+  "legal_status": "het_hieu_luc_mot_phan",
+  "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881",
 
   "part": null,
-  "chapter": "Chương VII",
-  "chapter_title": "Thời giờ làm việc, thời giờ nghỉ ngơi",
-  "section": "Mục 2",
-  "section_title": "Thời giờ nghỉ ngơi",
-  "article": "Điều 113",
-  "article_title": "Nghỉ hằng năm",
-  "clause": "Khoản 1",
+  "chapter": "Chương III",
+  "chapter_title": "CÔNG TY TRÁCH NHIỆM HỮU HẠN",
+  "section": "Mục 1",
+  "section_title": "CÔNG TY TRÁCH NHIỆM HỮU HẠN HAI THÀNH VIÊN TRỞ LÊN",
+  "article": "Điều 69",
+  "article_title": "Điều kiện để chia lợi nhuận",
+  "clause": null,
   "point": null,
 
-  "content": "1. Người lao động làm việc đủ 12 tháng cho một người sử dụng lao động thì được nghỉ hằng năm, hưởng nguyên lương theo hợp đồng lao động như sau:\na) 12 ngày làm việc đối với người làm công việc trong điều kiện bình thường;\nb) 14 ngày làm việc đối với người lao động chưa thành niên, lao động là người khuyết tật, người làm nghề, công việc nặng nhọc, độc hại, nguy hiểm;\nc) 16 ngày làm việc đối với người làm nghề, công việc đặc biệt nặng nhọc, độc hại, nguy hiểm.",
-  "context_header": "Bộ luật Lao động 45/2019/QH14 > Chương VII. Thời giờ làm việc, thời giờ nghỉ ngơi > Mục 2. Thời giờ nghỉ ngơi > Điều 113. Nghỉ hằng năm",
+  "content": "Công ty chỉ được chia lợi nhuận cho các thành viên sau khi đã hoàn thành nghĩa vụ thuế và các nghĩa vụ tài chính khác theo quy định của pháp luật, bảo đảm thanh toán đủ các khoản nợ và nghĩa vụ tài sản khác đến hạn trả sau khi chia lợi nhuận.",
+  "context_header": "Luật Doanh nghiệp 59/2020/QH14 > Chương III. CÔNG TY TRÁCH NHIỆM HỮU HẠN > Mục 1. CÔNG TY TRÁCH NHIỆM HỮU HẠN HAI THÀNH VIÊN TRỞ LÊN > Điều 69. Điều kiện để chia lợi nhuận",
   "chunk_index": 0,
   "chunk_count": 1,
-  "token_count": 198,
+  "token_count": 90,
 
   "amended_by": [],
   "amendment_notes": [],

@@ -5,7 +5,7 @@ hiện tại (verification.md trong spec); baseline/log gốc vẫn ghi đườn
 Snapshot lúc plan và checkbox/evidence đã kiểm chứng được giữ nguyên; không chạy lại test khi dọn tài liệu.
 
 
-**Input**: [spec.md](spec.md), [plan.md](plan.md), [research.md](research.md), [data-model.md](data-model.md), [contracts/README.md](contracts/README.md), [quickstart.md](quickstart.md).  
+**Input**: [spec.md](spec.md), [plan.md](plan.md), [research.md](research.md), [data-model.md](data-model.md), [contracts/interface-references.md](contracts/interface-references.md), [quickstart.md](quickstart.md).  
 **Ngày**: 2026-10-09. **Nhánh giữ nguyên**: `feature/team3/*`.
 **Trạng thái**: Đã thực hiện và kiểm chứng local 23/23 task ngày 2026-10-09; [báo cáo/bằng chứng](verification.md#6-kiểm-chứng-spec-t01-riêng-ngày-09102026). Không xác nhận toàn tuần 2 hoặc UI.
 
