@@ -54,7 +54,7 @@
   },
   "examples": [
     {
-      "question": "Người lao động được nghỉ phép bao nhiêu ngày?",
+      "question": "Luật Doanh nghiệp quy định về những vấn đề gì?",
       "token_budget": 3000,
       "estimated_tokens": 180,
       "chunks": [
