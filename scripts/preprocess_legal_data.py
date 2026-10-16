@@ -179,6 +179,8 @@ def run(data_dir: Path = DATA_DIR) -> dict:
 
 
 def main() -> None:
+    # Console Windows mặc định cp1252 sẽ lỗi khi in tiếng Việt sau khi đã ghi xong file.
+    sys.stdout.reconfigure(encoding="utf-8")
     try:
         report = run()
     except (OSError, ValueError, json.JSONDecodeError) as error:
