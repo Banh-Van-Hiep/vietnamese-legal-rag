@@ -2,7 +2,7 @@
 
 ## Lựa chọn khởi đầu
 
-Đề xuất cross-encoder `BAAI/bge-reranker-v2-m3`: chấm trực tiếp cặp câu hỏi–đoạn văn, hỗ trợ đa ngôn ngữ theo [model card BAAI](https://huggingface.co/BAAI/bge-reranker-v2-m3). Đây là lý do chọn để thử trên tiếng Việt; chưa chứng minh độ chính xác với luật lao động. Không chọn `bge-reranker-base/large` làm mặc định vì model card mô tả chúng cho tiếng Trung/Anh.
+Đề xuất cross-encoder `BAAI/bge-reranker-v2-m3`: chấm trực tiếp cặp câu hỏi–đoạn văn, hỗ trợ đa ngôn ngữ theo [model card BAAI](https://huggingface.co/BAAI/bge-reranker-v2-m3). Đây là lý do chọn để thử trên tiếng Việt; chưa chứng minh độ chính xác với pháp luật doanh nghiệp. Không chọn `bge-reranker-base/large` làm mặc định vì model card mô tả chúng cho tiếng Trung/Anh.
 
 | Tham số | Proposal |
 | --- | --- |
