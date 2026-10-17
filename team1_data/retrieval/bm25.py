@@ -9,7 +9,6 @@ contracts/v0.1/retrieval_output.schema.json với retrieval_method = "bm25".
 
 from __future__ import annotations
 
-import hashlib
 import json
 import math
 from collections.abc import Iterable, Mapping
@@ -18,45 +17,14 @@ from pathlib import Path
 
 import bm25s
 
+from .common import (
+    DEFAULT_CHUNKS, DEFAULT_LEGAL_STATUS, MANIFEST, filter_chunks, ids_hash,
+    load_chunks, output_row, search_text, validate_query,
+)
 from .errors import RetrievalUnavailableError
 from .tokenizer import tokenize_vi
 
-DEFAULT_CHUNKS = Path("data/doanh-nghiep/processed/chunks.jsonl")
-DEFAULT_LEGAL_STATUS = ("con_hieu_luc", "het_hieu_luc_mot_phan")
-MAX_QUESTION_CHARS = 4000
-MAX_TOP_K = 50
-MANIFEST = "index_manifest.json"
 TOKENIZER_NAME = "tokenize_vi/underthesea"
-
-# Trường gửi sang Team 2 (contract v0.1), sao chép nguyên từ chunk.
-OUTPUT_FIELDS = (
-    "chunk_id", "document_id", "article_id", "content", "document_title",
-    "article", "clause", "point", "source_url",
-)
-
-
-def search_text(chunk: Mapping) -> str:
-    return chunk["context_header"] + "\n" + chunk["content"]
-
-
-def load_chunks(path: str | Path) -> list[dict]:
-    with Path(path).open(encoding="utf-8") as f:
-        return [json.loads(line) for line in f if line.strip()]
-
-
-def _ids_hash(chunk_ids: Iterable[str]) -> str:
-    return hashlib.sha256("\n".join(chunk_ids).encode("utf-8")).hexdigest()
-
-
-def _validate_query(question: object, top_k: object) -> str:
-    if not isinstance(question, str) or not question.strip():
-        raise ValueError("question must be a non-empty string")
-    question = question.strip()
-    if len(question) > MAX_QUESTION_CHARS:
-        raise ValueError(f"question must not exceed {MAX_QUESTION_CHARS} characters")
-    if isinstance(top_k, bool) or not isinstance(top_k, int) or not 1 <= top_k <= MAX_TOP_K:
-        raise ValueError(f"top_k must be an integer from 1 to {MAX_TOP_K}")
-    return question
 
 
 class BM25Retriever:
@@ -70,15 +38,9 @@ class BM25Retriever:
         b: float = 0.75,
         legal_status: Iterable[str] = DEFAULT_LEGAL_STATUS,
     ) -> None:
-        allowed = set(legal_status)
-        self.chunks = [dict(c) for c in chunks if c.get("legal_status") in allowed]
-        if not self.chunks:
-            raise ValueError("no chunk left to index after the legal_status filter")
-        ids = [c["chunk_id"] for c in self.chunks]
-        if len(set(ids)) != len(ids):
-            raise ValueError("chunk_id must be unique")
+        self.chunks = filter_chunks(chunks, legal_status)
         self.k1, self.b = k1, b
-        self.legal_status = sorted(allowed)
+        self.legal_status = sorted(set(legal_status))
         self._bm25 = bm25s.BM25(method="lucene", k1=k1, b=b)
         self._bm25.index([tokenize_vi(search_text(c)) for c in self.chunks], show_progress=False)
 
@@ -102,7 +64,7 @@ class BM25Retriever:
             "tokenizer": TOKENIZER_NAME,
             "legal_status": self.legal_status,
             "chunk_count": len(self.chunks),
-            "chunk_ids_sha256": _ids_hash(self.chunk_ids),
+            "chunk_ids_sha256": ids_hash(self.chunk_ids),
             "chunk_ids": self.chunk_ids,
         }
         (index_dir / MANIFEST).write_text(json.dumps(manifest, ensure_ascii=False, indent=1), encoding="utf-8")
@@ -120,7 +82,7 @@ class BM25Retriever:
             raise RetrievalUnavailableError(f"cannot load BM25 index ({type(exc).__name__})") from exc
         ids = manifest.get("chunk_ids", [])
         missing = [i for i in ids if i not in store]
-        if missing or _ids_hash(ids) != manifest.get("chunk_ids_sha256"):
+        if missing or ids_hash(ids) != manifest.get("chunk_ids_sha256"):
             raise RetrievalUnavailableError(
                 f"BM25 index does not match the chunk store ({len(missing)} chunk_id missing)")
         self = cls.__new__(cls)
@@ -132,7 +94,7 @@ class BM25Retriever:
 
     def retrieve(self, question: str, top_k: int = 20) -> dict:
         """Trả {question, results}; results rỗng khi không chunk nào trùng từ."""
-        question = _validate_query(question, top_k)
+        question = validate_query(question, top_k)
         vocab = self._bm25.vocab_dict
         tokens = [t for t in tokenize_vi(question) if t in vocab]
         if not tokens:
@@ -144,9 +106,6 @@ class BM25Retriever:
             score = float(score)
             if score <= 0 or not math.isfinite(score):
                 continue
-            chunk = self.chunks[int(idx)]
-            row = {f: chunk[f] for f in OUTPUT_FIELDS}
-            row.update(score=score, rank=len(results) + 1, retrieval_method="bm25")
-            results.append(row)
+            results.append(output_row(self.chunks[int(idx)], score, len(results) + 1, "bm25"))
         return {"question": question, "results": results}
 

@@ -1,7 +1,24 @@
-"""Retrieval của Team 1. Hiện có nhánh BM25; Dense và Hybrid sẽ thêm sau."""
+"""Retrieval của Team 1: nhánh BM25 và Dense; Hybrid sẽ thêm sau.
 
-from .bm25 import BM25Retriever
+Import lười để chỉ cần cài phụ thuộc của nhánh đang dùng (bm25s/underthesea hoặc qdrant-client).
+"""
+
+from importlib import import_module
+
 from .errors import RetrievalUnavailableError
-from .tokenizer import tokenize_vi
 
-__all__ = ["BM25Retriever", "RetrievalUnavailableError", "tokenize_vi"]
+_LAZY = {
+    "BM25Retriever": ".bm25",
+    "tokenize_vi": ".tokenizer",
+    "DenseRetriever": ".dense",
+    "SentenceTransformerEmbedder": ".embedding",
+}
+
+__all__ = ["BM25Retriever", "DenseRetriever", "RetrievalUnavailableError",
+           "SentenceTransformerEmbedder", "tokenize_vi"]
+
+
+def __getattr__(name):
+    if name in _LAZY:
+        return getattr(import_module(_LAZY[name], __name__), name)
+    raise AttributeError(f"module {__name__!r} has no attribute {name!r}")
