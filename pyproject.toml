@@ -13,6 +13,7 @@ build-backend = "setuptools.build_meta"
 [project.optional-dependencies]
 rag = ["langchain-core>=1,<2", "python-dotenv>=1,<2"]
 test = ["jsonschema[format]>=4.25,<5"]
+retrieval = ["bm25s>=0.3,<0.4", "underthesea>=9,<10"]
 
 [tool.setuptools.packages.find]
-include = ["team2_rag*"]
+include = ["team1_data*", "team2_rag*"]
