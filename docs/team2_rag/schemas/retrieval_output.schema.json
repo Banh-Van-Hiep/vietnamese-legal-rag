@@ -36,7 +36,7 @@
   },
   "examples": [
     {
-      "question": "Luật Doanh nghiệp quy định về những vấn đề gì?",
+      "question": "Người lao động được nghỉ phép bao nhiêu ngày?",
       "results": [
         {
           "chunk_id": "chunk-example-001",

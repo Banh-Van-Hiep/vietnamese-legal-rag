@@ -21,7 +21,7 @@ Yêu cầu chính:
 ```text
                        OFFLINE — Indexing
 ┌─────────────────────────────────────────────────────────────────┐
-│ data/{domain}/processed/chunks.jsonl                            │
+│ data/processed/chunks.jsonl                                     │
 │        │                                                        │
 │        ├─ lọc legal_status mặc định                             │
 │        ├─ search_text = context_header + "\n" + content         │
@@ -68,9 +68,9 @@ Chi tiết từng nhánh:
 
 | Loại câu hỏi | Ví dụ | Phương pháp mạnh hơn |
 |---|---|---|
-| Có số hiệu, số Điều, thuật ngữ chính xác | "Điều 47 Luật Doanh nghiệp 59/2020/QH14 quy định gì?" | BM25 — so khớp đúng chuỗi |
-| Diễn đạt đời thường, khác từ ngữ trong luật | "Mở công ty xong bao lâu phải nộp đủ tiền vốn?" | Dense — hiểu "nộp đủ tiền vốn" ≈ "góp vốn đủ và đúng loại tài sản đã cam kết" |
-| Kết hợp cả hai | "Điều 47 có cho góp vốn bằng tài sản khác không?" | Hybrid |
+| Có số hiệu, số Điều, thuật ngữ chính xác | "Điều 113 Bộ luật Lao động 45/2019/QH14 quy định gì?" | BM25 — so khớp đúng chuỗi |
+| Diễn đạt đời thường, khác từ ngữ trong luật | "Một năm được nghỉ phép bao nhiêu ngày?" | Dense — hiểu "nghỉ phép" ≈ "nghỉ hằng năm" |
+| Kết hợp cả hai | "Điều 113 có cho nghỉ gộp phép nhiều năm không?" | Hybrid |
 
 Người dùng hỏi theo cả hai kiểu, nên phương pháp mặc định là `hybrid_rrf`;
 `bm25` và `dense` vẫn gọi riêng được để debug và đánh giá.

@@ -5,17 +5,16 @@ from team2_rag.config.settings import load_settings
 from team2_rag.llm.http import HttpResponse
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
-QUESTION = "Luật Doanh nghiệp quy định về những vấn đề gì?"
-CONTEXT = """[C1] chunk_id=luat-59-2020-qh14-v1__dieu-1__k0__0 document_id=luat-59-2020-qh14-v1 article_id=dieu-1 document_title=Luật Doanh nghiệp article=Điều 1 clause=null point=null source_url=https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881
-Luật này quy định về việc thành lập, tổ chức quản lý, tổ chức lại, giải thể và hoạt động có liên quan của doanh nghiệp."""
+QUESTION = "Người lao động được nghỉ phép hằng năm bao nhiêu ngày?"
+CONTEXT = """[C1] chunk_id=LDT_113_01 document_id=BLD2019 article_id=art113 document_title=Bộ luật Lao động 2019 article=Điều 113 clause=Khoản 1 point=null source_url=https://example.com/law\nNgười lao động làm việc đủ 12 tháng được nghỉ hằng năm theo quy định."""
 
 
-def citation(cid="C1", chunk="luat-59-2020-qh14-v1__dieu-1__k0__0"):
-    return {"citation_id": cid, "chunk_id": chunk, "document_id": "luat-59-2020-qh14-v1", "article_id": "dieu-1", "document_title": "Luật Doanh nghiệp", "article": "Điều 1", "clause": None, "point": None, "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"}
+def citation(cid="C1", chunk="LDT_113_01"):
+    return {"citation_id": cid, "chunk_id": chunk, "document_id": "BLD2019", "article_id": "art113", "document_title": "Bộ luật Lao động 2019", "article": "Điều 113", "clause": "Khoản 1", "point": None, "source_url": "https://example.com/law"}
 
 
 def good_output(answer=None):
-    return {"status": "answered", "answer": answer or "Luật Doanh nghiệp quy định về thành lập, tổ chức quản lý và hoạt động của doanh nghiệp [C1].", "citations": [citation()]}
+    return {"status": "answered", "answer": answer or "Người lao động được nghỉ hằng năm theo nguồn [C1].", "citations": [citation()]}
 
 GOOD_TEXT = json.dumps(good_output(), ensure_ascii=False)
 
