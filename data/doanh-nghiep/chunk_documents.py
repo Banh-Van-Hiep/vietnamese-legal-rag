@@ -4,10 +4,17 @@ chunk_id theo docs/team1_data/metadata-specification.md mục 4.4:
 {document_id}__{article_id}__k{số Khoản hoặc 0}__{chunk_index}
 """
 
+import collections
 import json
 import re
+import sys
 import unicodedata
 from pathlib import Path
+
+# Console Windows mặc định cp1252, không in được tiếng Việt trong tên văn bản
+# và trong cảnh báo. Không đổi encoding của file xuất, chỉ của stdout.
+if hasattr(sys.stdout, "reconfigure"):
+    sys.stdout.reconfigure(encoding="utf-8")
 
 ROOT = Path(__file__).resolve().parent
 INTERIM = ROOT / "interim"
@@ -25,6 +32,88 @@ RE_STOP = re.compile(
     r"|^Nghị định này được Chính phủ\b"
 )
 RE_CHUNK_ID = re.compile(r"^[A-Za-z0-9_-]+$")
+
+# Bản HTML của VBHN 67/VBHN-VPQH chèn một dấu cách vào giữa bốn từ, ví dụ
+# "cử ngườ i khác" thay vì "cử người khác". Dò bằng phép thử tần số trên chính
+# corpus — mảnh bên trái ("ngườ") chỉ xuất hiện đúng số lần bị lỗi, trong khi từ
+# đúng ("người") xuất hiện hàng nghìn lần — rồi soát tay từng chỗ. Không mở rộng
+# danh sách này bằng cách đoán; `report_split_words` ở dưới sẽ cảnh báo nếu nguồn
+# mới có mẫu lỗi khác.
+SPLIT_WORDS = (
+    ("ngườ i", "người"),
+    ("Ngườ i", "Người"),
+    ("dướ i", "dưới"),
+    ("T rong", "Trong"),
+)
+RE_SPLIT_WORDS = tuple(
+    (re.compile(r"\b" + re.escape(bad) + r"\b"), good) for bad, good in SPLIT_WORDS
+)
+
+# Chú thích hợp nhất: dòng định nghĩa "[n] <nội dung>" nằm ở cuối file (đã bị
+# RE_FOOTNOTE chặn, không vào content), còn marker "[n]" nằm rải trong thân Điều
+# và trong tên Điều. Marker mang thông tin thật — Khoản này đã bị văn bản nào sửa
+# — nên được chuyển sang `amendment_notes` thay vì xóa trắng.
+RE_FOOTNOTE_DEF = re.compile(r"^\[(\d+)\]\s+(\S.*)$")
+RE_FOOTNOTE_MARK = re.compile(r"\s*\[(\d{1,2})\]")
+MISSING_NOTE = "(chú thích hợp nhất không có trong bản đã thu)"
+
+
+def repair_split_words(line: str) -> str:
+    """Nối lại các từ bị chèn dấu cách. Chỉ 4 cặp ở SPLIT_WORDS."""
+    for pattern, good in RE_SPLIT_WORDS:
+        line = pattern.sub(good, line)
+    return line
+
+
+def read_footnotes(text: str) -> dict[str, str]:
+    """Đọc các dòng định nghĩa chú thích hợp nhất ở cuối văn bản."""
+    notes = {}
+    for line in text.split("\n"):
+        found = RE_FOOTNOTE_DEF.match(line.strip())
+        if found:
+            notes[found.group(1)] = found.group(2).strip()
+    return notes
+
+
+def strip_footnote_marks(text: str) -> tuple[str, list[str]]:
+    """Bỏ marker [n] khỏi text, trả về text sạch và danh sách số chú thích."""
+    nums = [m.group(1) for m in RE_FOOTNOTE_MARK.finditer(text)]
+    if not nums:
+        return text, []
+    return RE_FOOTNOTE_MARK.sub("", text), nums
+
+
+def report_split_words(docs: dict[str, str]) -> None:
+    """Cảnh báo nếu còn mẫu 'dấu cách chen giữa từ' mà SPLIT_WORDS chưa biết.
+
+    Mảnh bên trái phải hiếm và nối lại phải ra một từ phổ biến — cùng phép thử
+    đã dùng để dò ra SPLIT_WORDS, chạy lại mỗi lần build để nguồn mới không
+    lọt lỗi im lặng.
+    """
+    word = re.compile(r"[^\W\d_]+", re.UNICODE)
+    freq = collections.Counter()
+    for text in docs.values():
+        freq.update(w.lower() for w in word.findall(text))
+    stray = collections.Counter()
+    for doc, text in docs.items():
+        for line in text.split("\n"):
+            spans = [(m.group(0), m.start(), m.end()) for m in word.finditer(line)]
+            for (a, _, ea), (b, sb, _) in zip(spans, spans[1:]):
+                if line[ea:sb] != " ":
+                    continue
+                joined = (a + b).lower()
+                if freq[joined] >= 5 and freq[joined] >= 10 * freq[a.lower()]:
+                    stray[(doc, a, b)] += 1
+    if stray:
+        print("CẢNH BÁO: còn từ bị chèn dấu cách mà SPLIT_WORDS chưa xử lý:")
+        for (doc, a, b), n in stray.most_common():
+            print(f"  {doc}: {a!r} + {b!r} -> {(a + b)!r}  x{n}")
+
+# Bản HTML của VBHN 67/VBHN-VPQH không giữ dòng tiêu đề Chương/Mục, nên
+# chapter/section được bù theo article_id từ Luật 59/2020/QH14 — hai văn bản
+# dùng cùng hệ thống số Điều. Chỉ bù metadata cấu trúc, không đổi content.
+STRUCTURE_FROM = {"vbhn-67-vbhn-vpqh-v1": "luat-59-2020-qh14-v1"}
+
 PREFIX = {
     "luat": "luat",
     "nghi_dinh": "nd",
@@ -54,6 +143,63 @@ def token_count(text: str) -> int:
     return max(1, len(re.findall(r"\S+", text)))
 
 
+def build_context_header(chunk: dict) -> str:
+    """context_header theo docs/team1_data/chunk-format-spec.md mục 4."""
+    parts = [f"{chunk['document_title']} {chunk['document_number']}"]
+    for level, title in (("chapter", "chapter_title"), ("section", "section_title")):
+        if chunk[level]:
+            bit = chunk[level]
+            if chunk[title]:
+                bit += f". {chunk[title]}"
+            parts.append(bit)
+    dieu = chunk["article"]
+    if chunk["article_title"]:
+        dieu += f". {chunk['article_title']}"
+    parts.append(dieu)
+    return " > ".join(parts)
+
+
+def finalize(chunk: dict) -> dict:
+    chunk["context_header"] = build_context_header(chunk)
+    chunk["token_count"] = token_count(chunk["context_header"] + "\n" + chunk["content"])
+    return chunk
+
+
+def backfill_structure(targets: list[dict], source: list[dict]) -> int:
+    """Lấp chapter/section cho targets theo article_id của source."""
+    table = {}
+    for chunk in source:
+        table.setdefault(
+            chunk["article_id"],
+            (
+                chunk["chapter"],
+                chunk["chapter_title"],
+                chunk["section"],
+                chunk["section_title"],
+            ),
+        )
+    filled = 0
+    missing = set()
+    for chunk in targets:
+        if chunk["chapter"]:
+            continue
+        found = table.get(chunk["article_id"])
+        if not found:
+            missing.add(chunk["article_id"])
+            continue
+        (
+            chunk["chapter"],
+            chunk["chapter_title"],
+            chunk["section"],
+            chunk["section_title"],
+        ) = found
+        finalize(chunk)
+        filled += 1
+    if missing:
+        print(f"  no match for {len(missing)} articles: {sorted(missing)}")
+    return filled
+
+
 def is_structural(line: str) -> bool:
     return bool(
         RE_CHAPTER.match(line)
@@ -66,8 +212,9 @@ def is_structural(line: str) -> bool:
 
 
 class Parser:
-    def __init__(self, meta: dict):
+    def __init__(self, meta: dict, footnotes: dict[str, str] | None = None):
         self.meta = meta
+        self.footnotes = footnotes or {}
         self.file_id = meta["document_id"]
         self.document_key, self.document_id = document_ids(meta)
         self.effective_date = meta["effective_date"] or meta["issued_date"]
@@ -79,18 +226,6 @@ class Parser:
         self.article = None
         self.chunks = []
         self.stopped = False
-
-    def chapter_label(self) -> str | None:
-        if not self.chapter:
-            return None
-        label = f"Chương {self.chapter}"
-        if self.chapter_title:
-            label += f". {self.chapter_title}"
-        if self.section:
-            label += f" > Mục {self.section}"
-            if self.section_title:
-                label += f". {self.section_title}"
-        return label
 
     def feed(self, line: str) -> None:
         if self.stopped:
@@ -188,40 +323,29 @@ class Parser:
         if art["title"]:
             dieu += f". {art['title']}"
         intro = "\n".join(art["intro"]).strip()
-        chuong = self.chapter_label()
         if not art["clauses"]:
             body = intro or dieu
-            self._emit(art["num"], None, dieu, chuong, body)
+            self._emit(art["num"], None, dieu, body)
             return
         for clause in art["clauses"]:
             text = "\n".join(clause["lines"]).strip()
             if intro:
                 text = intro + "\n\n" + text
-            self._emit(art["num"], clause["num"], dieu, chuong, text)
+            self._emit(art["num"], clause["num"], dieu, text)
 
-    def _emit(self, art_num: str, clause_num: str | None, dieu: str, chuong, body: str) -> None:
+    def _emit(self, art_num: str, clause_num: str | None, dieu: str, body: str) -> None:
         article_id = f"dieu-{art_num.lower()}"
         k = clause_num or "0"
         chunk_index = 0
         chunk_id = f"{self.document_id}__{article_id}__k{k}__{chunk_index}"
         article = f"Điều {art_num}"
         article_title = dieu.split(". ", 1)[1] if ". " in dieu else ""
-        parts = [f"{self.meta['document_title']} {self.meta['document_number']}"]
-        if self.chapter:
-            chapter_bit = f"Chương {self.chapter}"
-            if self.chapter_title:
-                chapter_bit += f". {self.chapter_title}"
-            parts.append(chapter_bit)
-        if self.section:
-            section_bit = f"Mục {self.section}"
-            if self.section_title:
-                section_bit += f". {self.section_title}"
-            parts.append(section_bit)
-        parts.append(dieu)
-        context_header = " > ".join(parts)
-        counted = token_count(context_header + "\n" + body)
+        body, body_marks = strip_footnote_marks(body)
+        article_title, title_marks = strip_footnote_marks(article_title)
+        seen = dict.fromkeys(body_marks + title_marks)
+        notes = [f"[{n}] {self.footnotes.get(n) or MISSING_NOTE}" for n in seen]
         self.chunks.append(
-            {
+            finalize({
                 "chunk_id": chunk_id,
                 "document_id": self.document_id,
                 "document_key": self.document_key,
@@ -246,41 +370,51 @@ class Parser:
                 "clause": f"Khoản {clause_num}" if clause_num else None,
                 "point": None,
                 "content": body,
-                "context_header": context_header,
+                "context_header": "",
                 "chunk_index": chunk_index,
                 "chunk_count": 1,
-                "token_count": counted,
+                "token_count": 0,
                 "amended_by": [],
-                "amendment_notes": [],
+                "amendment_notes": notes,
                 "pipeline_version": "1.0.0",
-            }
+            })
         )
-
-
-def chunk_document(meta: dict, text: str) -> list[dict]:
-    """Tách một văn bản đã làm sạch thành danh sách chunk."""
-    parser = Parser(meta)
-    for line in text.splitlines():
-        parser.feed(line.strip())
-    parser.flush_article()
-    return parser.chunks
 
 
 def main() -> None:
     registry = json.loads(REGISTRY.read_text(encoding="utf-8"))
     all_chunks = []
+    by_document = {}
+    sources = {}
     for meta in registry:
         path = INTERIM / f"{meta['document_id']}.txt"
-        parser_chunks = chunk_document(meta, path.read_text(encoding="utf-8"))
-        ids = [c["chunk_id"] for c in parser_chunks]
+        text = path.read_text(encoding="utf-8")
+        lines = [repair_split_words(line.strip()) for line in text.splitlines()]
+        # Báo cáo chạy trên text đã sửa, nên chỉ cảnh báo mẫu lỗi MỚI.
+        sources[meta["document_id"]] = "\n".join(lines)
+        parser = Parser(meta, read_footnotes(text))
+        for line in lines:
+            parser.feed(line)
+        parser.flush_article()
+        ids = [c["chunk_id"] for c in parser.chunks]
         bad = [i for i in ids if not RE_CHUNK_ID.match(i)]
         if bad:
             raise SystemExit(f"chunk_id sai mẫu metadata spec: {bad[:5]}")
         if len(ids) != len(set(ids)):
             dup = sorted({i for i in ids if ids.count(i) > 1})
             raise SystemExit(f"duplicate chunk_id in {meta['document_id']}: {dup[:8]}")
-        all_chunks.extend(parser_chunks)
-        print(f"{meta['document_id']}: {len(parser_chunks)} chunks")
+        by_document[parser.document_id] = parser.chunks
+        all_chunks.extend(parser.chunks)
+        print(f"{parser.document_id}: {len(parser.chunks)} chunks")
+
+    for target_id, source_id in STRUCTURE_FROM.items():
+        if target_id not in by_document or source_id not in by_document:
+            continue
+        print(f"backfill chapter/section: {target_id} <- {source_id}")
+        filled = backfill_structure(by_document[target_id], by_document[source_id])
+        print(f"  filled {filled} chunks")
+
+    report_split_words(sources)
 
     global_ids = [c["chunk_id"] for c in all_chunks]
     if len(global_ids) != len(set(global_ids)):

@@ -14,14 +14,14 @@ chuẩn hóa biểu diễn ký tự; không sửa chính tả, không diễn đ�
 ```text
 Registry văn bản (documents.json)
       ↓
-[1] Collection          → data/raw/{document_id}/
+[1] Collection          → data/{domain}/raw/{document_id}/
       ↓
 [2] Extraction          → text thô theo dòng
       ↓
 [3] Cleaning & Normalization
       ↓
 [4] Structure Extraction → cây Chương/Mục/Điều/Khoản/Điểm
-      ↓                    data/interim/{document_id}.json
+      ↓                    data/{domain}/interim/{document_id}.json
 [5] Chunking            (Chunk Format Specification)
       ↓
 [6] ID Generation       (Metadata Specification)
@@ -30,7 +30,7 @@ Registry văn bản (documents.json)
       ↓
 [8] Validation          → processing_report.json
       ↓
-data/processed/chunks.jsonl
+data/{domain}/processed/chunks.jsonl
       ↓
 Indexing BM25 + Dense   (Retrieval Design)
 ```
@@ -73,7 +73,7 @@ Các quy tắc chạy **theo đúng thứ tự** dưới đây.
 | C5 | Bỏ header/footer trang (PDF) | Dòng xuất hiện ở đầu/cuối trang trên ≥ 50% số trang; dòng chỉ chứa số trang (`^\s*\d+\s*$`, `^Trang \d+`) | Header lặp lại chen giữa nội dung Điều |
 | C6 | Nối dòng bị ngắt | Nối dòng hiện tại vào dòng trước nếu dòng trước không kết thúc bằng `. : ; ! ?` **và** dòng hiện tại không bắt đầu bằng mẫu cấu trúc (Chương/Mục/Điều/Khoản/Điểm, xem Legal Data Specification mục 4.2) | PDF ngắt dòng theo bố cục trang, cắt đôi câu |
 | C7 | Bỏ rác web | Xóa dòng khớp danh sách mẫu theo nguồn: "Tải về", "In văn bản", "Văn bản liên quan", "Lược đồ", breadcrumb, quảng cáo | Chỉ áp dụng với HTML |
-| C8 | Tách chú thích VBHN | Văn bản hợp nhất dùng chú thích `[1]`, `[2]` để ghi văn bản sửa đổi; chuyển nội dung chú thích vào metadata `amendment_notes` của Điều tương ứng và xóa marker khỏi content | Giữ thông tin căn cứ sửa đổi nhưng không làm bẩn text tìm kiếm |
+| C8 | Tách chú thích VBHN | Văn bản hợp nhất dùng chú thích `[1]`, `[2]` để ghi văn bản sửa đổi; chuyển nội dung chú thích vào metadata `amendment_notes` của Điều tương ứng và xóa marker khỏi content. **Đã triển khai** ở `chunk_documents.py` (`read_footnotes`, `strip_footnote_marks`); hiện 72 chunk có `amendment_notes`, xem `data/doanh-nghiep/CATALOG.txt` | Giữ thông tin căn cứ sửa đổi nhưng không làm bẩn text tìm kiếm |
 | C9 | Bỏ phần không quy phạm | Cắt phần đầu văn bản trước Chương/Điều đầu tiên (quốc hiệu, căn cứ) và phần từ "Nơi nhận:" trở đi; thông tin cần giữ được trích vào registry trước khi cắt | Xem Legal Data Specification mục 4.4 |
 | C10 | Chuẩn hóa khoảng trắng | Gộp nhiều dấu cách thành một; strip hai đầu dòng; tối đa một dòng trống liên tiếp | Bước cuối, dọn dẹp sau các bước trên |
 
@@ -104,7 +104,7 @@ Dòng khác               → nối vào đơn vị đang mở
 - Điều không có Khoản: toàn bộ nội dung thuộc Điều.
 - Phần text đứng trước Khoản 1 trong một Điều (câu dẫn) được lưu riêng là
   `article_intro` và gắn vào mọi chunk của Điều đó (xem Chunk Format).
-- Output: `data/interim/{document_id}.json` dạng cây.
+- Output: `data/{domain}/interim/{document_id}.json` dạng cây.
 
 ### 3.5. Chunking
 
@@ -130,31 +130,31 @@ các trường này từ nội dung.
 | Duy nhất | `chunk_id` không trùng trong toàn bộ dataset | Lỗi — dừng |
 | Nội dung | `content` không rỗng; độ dài trong giới hạn của Chunk Format | Lỗi — dừng |
 | Cấu trúc | Số Điều liên tục 1..N (cho phép điều chèn như `17a`); số Khoản liên tục trong Điều; chữ cái Điểm đúng thứ tự | Cảnh báo |
-| Đối chiếu | Số Điều trích xuất bằng số Điều kỳ vọng ghi trong registry (ví dụ Luật Doanh nghiệp 59/2020/QH14: 218) | Lỗi — dừng |
+| Đối chiếu | Số Điều trích xuất bằng số Điều kỳ vọng ghi trong registry (`article_count`; ví dụ Luật Doanh nghiệp 59/2020/QH14: 218) | Lỗi — dừng |
 | Ký tự | Tỷ lệ ký tự ngoài bảng chữ tiếng Việt, số và dấu câu < 1% | Cảnh báo, nghi lỗi mã hóa |
 | Nguồn | `source_url` là HTTPS và nằm trong danh sách domain nguồn chính thức | Lỗi — dừng |
 | Thủ công | Lấy ngẫu nhiên 5% chunk (tối thiểu 20) so với văn bản gốc | Ghi vào báo cáo |
 
-Kết quả ghi vào `data/processed/processing_report.json`: số văn bản, số Điều,
+Kết quả ghi vào `data/{domain}/processed/processing_report.json`: số văn bản, số Điều,
 số chunk, danh sách cảnh báo và lỗi theo `document_id`.
 
 ## 4. Output
 
-Mỗi dòng của `data/processed/chunks.jsonl` là một chunk với đầy đủ trường theo
-[Metadata Specification](metadata-specification.md). Ví dụ rút gọn:
+Mỗi dòng của `data/{domain}/processed/chunks.jsonl` là một chunk với đầy đủ trường
+theo [Metadata Specification](metadata-specification.md). Ví dụ rút gọn:
 
 ```json
 {
-  "chunk_id": "luat-59-2020-qh14-v1__dieu-69__k0__0",
+  "chunk_id": "luat-59-2020-qh14-v1__dieu-47__k2__0",
   "document_id": "luat-59-2020-qh14-v1",
-  "article_id": "dieu-69",
+  "article_id": "dieu-47",
   "document_title": "Luật Doanh nghiệp",
   "document_number": "59/2020/QH14",
-  "article": "Điều 69",
-  "clause": null,
+  "article": "Điều 47",
+  "clause": "Khoản 2",
   "point": null,
   "content": "...",
-  "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+  "source_url": "https://vbpl.vn/..."
 }
 ```
 

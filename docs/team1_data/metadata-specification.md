@@ -23,10 +23,10 @@ Ký hiệu cột **Contract**: ✔ = trường được gửi sang Team 2 trong 
 
 | Trường | Kiểu | Bắt buộc | Contract | Ví dụ | Mô tả |
 |---|---|---|---|---|---|
-| `chunk_id` | string ≤ 200 | ✔ | ✔ | `luat-59-2020-qh14-v1__dieu-69__k0__0` | ID duy nhất của chunk |
+| `chunk_id` | string ≤ 200 | ✔ | ✔ | `luat-59-2020-qh14-v1__dieu-47__k2__0` | ID duy nhất của chunk |
 | `document_id` | string ≤ 200, `^[A-Za-z0-9_-]+$` | ✔ | ✔ | `luat-59-2020-qh14-v1` | ID **phiên bản** văn bản; không tái sử dụng khi nội dung đổi |
 | `document_key` | string, `^[a-z0-9-]+$` | ✔ | | `luat-59-2020-qh14` | ID cố định của văn bản qua các phiên bản |
-| `article_id` | string ≤ 100, `^[A-Za-z0-9_-]+$` | ✔ | ✔ | `dieu-69` | ID Điều trong văn bản, dùng trong URL xem điều luật |
+| `article_id` | string ≤ 100, `^[A-Za-z0-9_-]+$` | ✔ | ✔ | `dieu-47` | ID Điều trong văn bản, dùng trong URL xem điều luật |
 | `version` | string | ✔ | | `v1` | Phiên bản nội dung văn bản |
 
 ### 2.2. Thông tin văn bản (sao chép từ registry)
@@ -40,7 +40,7 @@ Ký hiệu cột **Contract**: ✔ = trường được gửi sang Team 2 trong 
 | `issued_date` | date `YYYY-MM-DD` | ✔ | | `2020-06-17` | **Ngày ban hành** |
 | `effective_date` | date | ✔ | | `2021-01-01` | Ngày có hiệu lực |
 | `expiry_date` | date \| null | ✔ | | `null` | Ngày hết hiệu lực; `null` nếu còn hiệu lực |
-| `legal_status` | enum | ✔ | | `con_hieu_luc` | Trạng thái hiệu lực (mục 3.2) |
+| `legal_status` | enum | ✔ | | `het_hieu_luc_mot_phan` | Trạng thái hiệu lực (mục 3.2) |
 | `source_url` | string HTTPS ≤ 2048 | ✔ | ✔ | `https://vbpl.vn/...` | Nguồn chính thức |
 
 ### 2.3. Vị trí trong cấu trúc (Điều/Khoản gốc)
@@ -48,16 +48,16 @@ Ký hiệu cột **Contract**: ✔ = trường được gửi sang Team 2 trong 
 | Trường | Kiểu | Bắt buộc | Contract | Ví dụ | Mô tả |
 |---|---|---|---|---|---|
 | `part` | string \| null | ✔ (có key) | | `null` | Phần |
-| `chapter` | string \| null | ✔ (có key) | | `Chương II` | Chương |
+| `chapter` | string \| null | ✔ (có key) | | `Chương III` | Chương |
 | `chapter_title` | string \| null | ✔ (có key) | | `CÔNG TY TRÁCH NHIỆM HỮU HẠN` | Tên chương |
-| `section` | string \| null | ✔ (có key) | | `null` | Mục |
-| `section_title` | string \| null | ✔ (có key) | | `null` | Tên mục |
-| `article` | string ≤ 100 | ✔ | ✔ | `Điều 69` | Nhãn hiển thị Điều |
-| `article_title` | string | ✔ | | `Quyền thành lập, góp vốn, ...` | Tên Điều |
+| `section` | string \| null | ✔ (có key) | | `Mục 1` | Mục |
+| `section_title` | string \| null | ✔ (có key) | | `CÔNG TY TRÁCH NHIỆM HỮU HẠN HAI THÀNH VIÊN TRỞ LÊN` | Tên mục |
+| `article` | string ≤ 100 | ✔ | ✔ | `Điều 47` | Nhãn hiển thị Điều |
+| `article_title` | string | ✔ | | `Góp vốn thành lập công ty và cấp giấy chứng nhận phần vốn góp` | Tên Điều |
 | `clause` | string ≤ 100 \| null | ✔ (có key) | ✔ | `Khoản 2` | `null` nếu chunk là cả Điều (R1) |
 | `point` | string ≤ 100 \| null | ✔ (có key) | ✔ | `null` | `Điểm a` khi chunk chỉ chứa đúng một Điểm |
 
-Nhãn hiển thị luôn có tiền tố: `Điều 69`, `Khoản 1`, `Điểm đ` — không lưu số trần.
+Nhãn hiển thị luôn có tiền tố: `Điều 47`, `Khoản 2`, `Điểm đ` — không lưu số trần.
 
 ### 2.4. Nội dung
 
@@ -116,14 +116,19 @@ Mọi ID sinh **xác định** (deterministic) từ dữ liệu, chạy lại ch
 Chuẩn hóa số hiệu: bỏ dấu tiếng Việt (`Đ` → `d`), chữ thường, `/` và khoảng
 trắng → `-`, gộp nhiều `-` liền nhau.
 
+Bảng dưới đây là toàn bộ corpus hiện tại, lấy từ
+`data/doanh-nghiep/processed/chunks.jsonl`:
+
 | Loại | Số hiệu | `document_key` |
 |---|---|---|
 | Luật | 59/2020/QH14 | `luat-59-2020-qh14` |
-| Luật | 71/2025/QH15 | `luat-71-2025-qh15` |
-| Nghị định | 145/2020/NĐ-CP | `nd-145-2020-nd-cp` |
-| Nghị định | 293/2025/NĐ-CP | `nd-293-2025-nd-cp` |
+| Luật | 76/2025/QH15 | `luat-76-2025-qh15` |
+| Văn bản hợp nhất | 67/VBHN-VPQH | `vbhn-67-vbhn-vpqh` |
+| Văn bản hợp nhất | 7566/VBHN-BKHĐT | `vbhn-7566-vbhn-bkhdt` |
+| Nghị định | 168/2025/NĐ-CP | `nd-168-2025-nd-cp` |
+| Nghị định | 122/2021/NĐ-CP | `nd-122-2021-nd-cp` |
+| Nghị định | 288/2026/NĐ-CP | `nd-288-2026-nd-cp` |
 | Thông tư | 68/2025/TT-BTC | `tt-68-2025-tt-btc` |
-| Văn bản hợp nhất | 125/VBHN-VPQH | `vbhn-125-vbhn-vpqh` |
 
 ### 4.2. `document_id`
 
@@ -138,7 +143,7 @@ citation đã lưu ở Team 3 tiếp tục mở được.
 ### 4.3. `article_id`
 
 ```text
-dieu-{số Điều, chữ thường}      ví dụ: dieu-69, dieu-69a
+dieu-{số Điều, chữ thường}      ví dụ: dieu-47, dieu-47a
 pl-{số phụ lục}                 ví dụ: pl-1 (khi xử lý phụ lục)
 ```
 
@@ -152,7 +157,7 @@ pl-{số phụ lục}                 ví dụ: pl-1 (khi xử lý phụ lục)
 - `chunk_index` bắt đầu từ 0.
 - Dùng `__` (hai gạch dưới) làm ranh giới để tách ngược được các thành phần.
 
-Ví dụ: `luat-59-2020-qh14-v1__dieu-69__k0__0`, `luat-59-2020-qh14-v1__dieu-17__k2__0`.
+Ví dụ: `luat-59-2020-qh14-v1__dieu-47__k2__0`, `nd-168-2025-nd-cp-v1__dieu-19__k0__0`.
 
 ## 5. Ánh xạ sang Retrieval Output (Team 1 → Team 2)
 
@@ -166,17 +171,23 @@ Team 1 **chỉ gửi đúng các trường có dấu ✔** ở mục 2, cộng b
 | `rank` | Thứ tự 1..N liên tục sau khi xếp hạng |
 | `retrieval_method` | `bm25` \| `dense` \| `hybrid_rrf` |
 
-Ánh xạ từ tên trường cũ (bản đặc tả trước và schema cũ của Team 2):
+**Ánh xạ sang bộ schema nháp cũ.** Thư mục `docs/team2_rag/schemas/` còn giữ một
+file **cùng tên** `retrieval_output.schema.json` nhưng **không tương thích**: nó
+`required` các trường `document`, `source` và cũng dùng `additionalProperties: false`.
+Theo `README.md` của repo, bộ đó chỉ để tham khảo và **không dùng để validate** giao
+tiếp liên team. Nguồn đúng duy nhất là `contracts/v0.1/retrieval_output.schema.json`.
+Bảng dưới để đối chiếu khi đọc bộ nháp cũ:
 
-| Tên cũ | Tên mới |
+| Tên trong `docs/team2_rag/schemas/` (nháp cũ) | Tên trong `contracts/v0.1/` (đang dùng) |
 |---|---|
 | `document` | `document_title` |
 | `source` | `source_url` |
-| `chapter` | `chapter` (giữ, không gửi trong contract) |
+| — | `document_id`, `article_id`, `point`, `rank`, `retrieval_method` (nháp cũ không có) |
+| `chapter` | `chapter` (giữ trong chunk metadata, không gửi trong contract) |
 
 ### 5.1. Đề xuất bổ sung contract v0.2
 
-Citation pháp luật thường cần số hiệu và ngày ban hành (ví dụ "khoản 2 Điều 17
+Citation pháp luật thường cần số hiệu và ngày ban hành (ví dụ "khoản 2 Điều 47
 Luật Doanh nghiệp số 59/2020/QH14"). Contract v0.1 chưa có các trường này. Đề
 xuất Team 2 và Team 3 xem xét bổ sung vào v0.2:
 
@@ -191,10 +202,10 @@ tương thích với `additionalProperties: false`.
 
 ```json
 {
-  "chunk_id": "luat-59-2020-qh14-v1__dieu-69__k0__0",
+  "chunk_id": "luat-59-2020-qh14-v1__dieu-47__k2__0",
   "document_id": "luat-59-2020-qh14-v1",
   "document_key": "luat-59-2020-qh14",
-  "article_id": "dieu-69",
+  "article_id": "dieu-47",
   "version": "v1",
 
   "document_title": "Luật Doanh nghiệp",
@@ -212,16 +223,16 @@ tương thích với `additionalProperties: false`.
   "chapter_title": "CÔNG TY TRÁCH NHIỆM HỮU HẠN",
   "section": "Mục 1",
   "section_title": "CÔNG TY TRÁCH NHIỆM HỮU HẠN HAI THÀNH VIÊN TRỞ LÊN",
-  "article": "Điều 69",
-  "article_title": "Điều kiện để chia lợi nhuận",
-  "clause": null,
+  "article": "Điều 47",
+  "article_title": "Góp vốn thành lập công ty và cấp giấy chứng nhận phần vốn góp",
+  "clause": "Khoản 2",
   "point": null,
 
-  "content": "Công ty chỉ được chia lợi nhuận cho các thành viên sau khi đã hoàn thành nghĩa vụ thuế và các nghĩa vụ tài chính khác theo quy định của pháp luật, bảo đảm thanh toán đủ các khoản nợ và nghĩa vụ tài sản khác đến hạn trả sau khi chia lợi nhuận.",
-  "context_header": "Luật Doanh nghiệp 59/2020/QH14 > Chương III. CÔNG TY TRÁCH NHIỆM HỮU HẠN > Mục 1. CÔNG TY TRÁCH NHIỆM HỮU HẠN HAI THÀNH VIÊN TRỞ LÊN > Điều 69. Điều kiện để chia lợi nhuận",
+  "content": "2. Thành viên phải góp vốn cho công ty đủ và đúng loại tài sản đã cam kết khi đăng ký thành lập doanh nghiệp trong thời hạn 90 ngày kể từ ngày được cấp Giấy chứng nhận đăng ký doanh nghiệp, không kể thời gian vận chuyển, nhập khẩu tài sản góp vốn, thực hiện thủ tục hành chính để chuyển quyền sở hữu tài sản. Trong thời hạn này, thành viên có các quyền và nghĩa vụ tương ứng với tỷ lệ phần vốn góp đã cam kết. Thành viên công ty chỉ được góp vốn cho công ty bằng loại tài sản khác với tài sản đã cam kết nếu được sự tán thành của trên 50% số thành viên còn lại.",
+  "context_header": "Luật Doanh nghiệp 59/2020/QH14 > Chương III. CÔNG TY TRÁCH NHIỆM HỮU HẠN > Mục 1. CÔNG TY TRÁCH NHIỆM HỮU HẠN HAI THÀNH VIÊN TRỞ LÊN > Điều 47. Góp vốn thành lập công ty và cấp giấy chứng nhận phần vốn góp",
   "chunk_index": 0,
   "chunk_count": 1,
-  "token_count": 90,
+  "token_count": 169,
 
   "amended_by": [],
   "amendment_notes": [],

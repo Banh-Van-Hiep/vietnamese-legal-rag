@@ -51,9 +51,8 @@ list[str] token
 
 Tiếng Việt viết cách nhau theo **âm tiết**, không theo **từ**. "doanh nghiệp"
 là một từ gồm hai âm tiết. Nếu tách theo dấu cách, "doanh" và "nghiệp" thành hai
-token rời, BM25 sẽ khớp cả những chunk chứa "nghiệp" trong "ngành nghề, nghiệp
-vụ" hay "doanh" trong "doanh thu", "doanh số". Tách từ đúng cho ra token
-`doanh_nghiệp`, chính xác hơn.
+token rời, BM25 sẽ khớp cả những chunk chứa "nghiệp" trong "nghề nghiệp", "sự
+nghiệp", "nghiệp vụ". Tách từ đúng cho ra token `doanh_nghiệp`, chính xác hơn.
 
 ### 3.2. So sánh công cụ tách từ
 
@@ -80,10 +79,10 @@ phép dùng tự do.
 | Bước | Cách làm | Ví dụ |
 |---|---|---|
 | T1 | `unicodedata.normalize("NFC", text)` — phòng khi câu hỏi người dùng gõ dấu tổ hợp | — |
-| T2 | `text.lower()` | `Công Ty Cổ Phần` → `công ty cổ phần` |
+| T2 | `text.lower()` | `Doanh Nghiệp Nhà Nước` → `doanh nghiệp nhà nước` |
 | T3 | Quy các vần `oa`, `oe`, `uy` **ở cuối âm tiết** về một kiểu đặt dấu duy nhất (đề xuất: `oà` → `òa`, `oé` → `óe`, `uỷ` → `ủy`). Không áp dụng khi sau vần còn phụ âm (`hoàng`, `khoảng`, `huỳnh`) hoặc trước là `q` (`quý`, `quỷ`) | `hoà giải` và `hòa giải` cùng thành `hòa giải`; `hoàng` giữ nguyên |
-| T4 | Thay cụm pháp lý bằng token liền khối trước khi tách từ (mục 3.4) | `Điều 69` → `điều_69` |
-| T5 | `underthesea.word_tokenize(text, format="text").split()` | `giải thể doanh nghiệp` → `giải_thể`, `doanh_nghiệp` |
+| T4 | Thay cụm pháp lý bằng token liền khối trước khi tách từ (mục 3.4) | `Điều 47` → `điều_47` |
+| T5 | `underthesea.word_tokenize(text, format="text").split()` | segmenter nối các âm tiết cùng một từ bằng `_`: `doanh nghiệp` → `doanh_nghiệp`. Kết quả cụ thể phải kiểm chứng lại trên corpus hiện tại khi cài underthesea |
 | T6 | Bỏ token không chứa chữ hoặc số | `,` `:` `(` bị bỏ |
 | T7 | **Mặc định không bỏ stopword** (IDF đã tự giảm trọng số từ phổ biến). Nếu thử nghiệm bỏ stopword, tuyệt đối giữ các từ mang nghĩa pháp lý: `không`, `chưa`, `cấm`, `nghiêm_cấm`, `phải`, `được`, `có_quyền` | Bỏ `không` sẽ biến "không có quyền" thành "có quyền" |
 
@@ -100,9 +99,9 @@ mảnh. Bước T4 dùng regex để gộp các cụm sau thành **một token**
 | Điểm | `điểm\s+([a-zđ])\b` | `điểm_a` |
 | Chương | `chương\s+([ivxlc]+)\b` | `chương_ii` |
 
-Vì `search_text` có `context_header` chứa "Điều 69. ..." (xem Chunk Format), câu
-hỏi "điều 69 luật doanh nghiệp" sẽ khớp chính xác token `điều_69` của các chunk
-thuộc Điều 69.
+Vì `search_text` có `context_header` chứa "Điều 47. ..." (xem Chunk Format), câu
+hỏi "điều 47 luật doanh nghiệp" sẽ khớp chính xác token `điều_47` của các chunk
+thuộc Điều 47.
 
 ### 3.5. Phác thảo code
 
@@ -142,7 +141,7 @@ def tokenize_vi(text: str) -> list[str]:
 
 - T3: `hoà` → `hòa`, `thuỷ` → `thủy`, `uỷ ban` → `ủy ban`; giữ nguyên `hoàng`,
   `khoảng`, `toán`, `quý`, `quỷ`, `huỳnh`.
-- T4: bắt được `điều 69`, `khoản 1`, `điểm đ`, `chương vii`, `59/2020/qh14`,
+- T4: bắt được `điều 47`, `khoản 2`, `điểm đ`, `chương iii`, `59/2020/qh14`,
   `168/2025/nđ-cp`; **không** bắt `điều kiện`, `điều lệ`.
 
 ## 4. Cấu hình index và truy vấn
