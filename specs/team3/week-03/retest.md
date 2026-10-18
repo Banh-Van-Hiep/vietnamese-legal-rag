@@ -56,4 +56,4 @@ Nếu module, server hoặc tài nguyên còn thiếu, ghi BLOCKED và nguyên n
 2. Cập nhật từng lỗi bằng bảng trước/sau và tham chiếu test ID, fix SHA, evidence mới.
 3. Xuất `reports/v1.1/bien-ban-kiem-thu.{md,pdf,docx}` khi đã chạy lại; giữ mục chính của v1.0, gồm testcase, luồng dữ liệu và giới hạn kiểm chứng.
 4. Ghi ngày xuất thực tế, lịch sử sửa đổi, các mục còn BLOCKED và người review chưa xác nhận. Không đổi toàn bộ tuần thành PASS chỉ vì ba lỗi Dense đã sửa.
-5. Đưa phiên bản mới qua PR và gắn link PR/PDF mới vào VLRA-28/29; không tự merge hoặc thay trạng thái Jira khi chưa nghiệm thu.
+5. Đưa phiên bản mới lên nhánh bàn giao và chia sẻ link PDF/evidence mới. Chỉ tạo PR hoặc cập nhật Jira khi được yêu cầu lại; không tự merge hoặc thay trạng thái nghiệm thu.

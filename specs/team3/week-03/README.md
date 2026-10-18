@@ -1,7 +1,7 @@
 # Tuần 3 — Bàn giao kiểm thử VLRA-28 và VLRA-29
 
 **Bản biên bản:** v1.0, ngày 19/10/2026. **Source được kiểm tra:** `5a9af42e734391e00dfc0f7ede304506fdd5a28f`.
-Đây là PR bàn giao kiểm thử, còn lỗi và phần BLOCKED; không yêu cầu nghiệm thu toàn tuần.
+Đây là bộ hồ sơ bàn giao kiểm thử, còn lỗi và phần BLOCKED; không yêu cầu nghiệm thu toàn tuần.
 
 | Cần xem | Tài liệu |
 | --- | --- |
@@ -18,7 +18,8 @@ Retrieval: **53 PASS / 3 FAIL**, không ERROR/SKIP. Full regression: **76 PASS /
 2 ERROR**; hai ERROR preprocess đã tái hiện riêng, nằm ngoài retrieval. Dense model thật,
 Qdrant server và Hybrid runtime chưa đủ điều kiện kiểm chứng. Oracle RRF không thay runtime.
 
-PR chỉ gồm tests, công cụ đánh giá và hồ sơ tuần 3. Tài liệu/code Team 1/2, corpus,
-contract, FE/BE và thay đổi tổ chức tài liệu đang dở được giữ ngoài PR. Evidence lưu
+Phần bàn giao mới chỉ gồm tests, công cụ đánh giá và hồ sơ tuần 3. Tài liệu/code Team 1/2, corpus,
+contract, FE/BE và thay đổi tổ chức tài liệu đang dở được giữ ngoài phần bàn giao. Evidence lưu
 nguyên snapshot lần chạy; các phát biểu “chưa commit/push” trong hồ sơ cũ mô tả thời
-điểm kiểm thử trước khi người dùng yêu cầu xuất bản qua PR.
+điểm kiểm thử trước khi người dùng yêu cầu xuất bản. Theo quyết định mới nhất, hồ sơ
+được chia sẻ trực tiếp từ nhánh `feature/team3/tuan`; không tạo PR hoặc cập nhật Jira.

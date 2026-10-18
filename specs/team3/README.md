@@ -3,10 +3,10 @@
 ## 1. Điểm đọc
 
 - [Tuần 3: VLRA-28 / VLRA-29](week-03/README.md): biên bản, testcase, evidence và bàn giao kiểm thử retrieval của Team 1.
-- [Tuần 2 đã lưu trong repository](../team3-week2/tasks.md): giữ nguyên vị trí trong PR kiểm thử này.
+- [Tuần 2 đã lưu trong repository](../team3-week2/tasks.md): giữ nguyên vị trí trong lần bàn giao kiểm thử này.
 - [Tài liệu Team 3 hiện có](../../docs/team3_fullstack/README.md): tài liệu JSON/mock lịch sử; không dùng làm bằng chứng đã triển khai yêu cầu đích v2.0.
 
-PR kiểm thử không bao gồm việc tổ chức lại tài liệu đang làm ở máy local. Đọc đặc tả
+Lần bàn giao kiểm thử không bao gồm việc tổ chức lại tài liệu đang làm ở máy local. Đọc đặc tả
 Team 1 và contract được liên kết trong requirements của tuần 3 khi sửa retrieval.
 
 ## 2. Nguồn và ranh giới
