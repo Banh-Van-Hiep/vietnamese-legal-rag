@@ -1,0 +1,17 @@
+{
+  "created": "2026-10-19",
+  "review_status": "draft corpus-relative retrieval labels; legal review pending",
+  "corpus_sha256": "37aa6dea2b33a94f9ecc5020796d150f43f8a1dc5ef4d3e797fa9cb1d1707d66",
+  "baseline": "team2_rag/data/golden/golden_phase1_30cai.json",
+  "baseline_count": 30,
+  "supplement_count": 8,
+  "purpose": "diagnostic test development, not held-out benchmark; no tuning",
+  "source_chunk_hashes": {
+    "nd-168-2025-nd-cp-v1__dieu-1__k0__0": "a14eb1dfcdcd77bb42822e1d402d564db8d1dcceb501a114a9ae9923014a2ee7",
+    "nd-122-2021-nd-cp-v1__dieu-1__k1__0": "0eb4ff880d87e951ce28921bdc7d76aabde5089ccc4518fd2d71c566decd274c",
+    "tt-68-2025-tt-btc-v1__dieu-2__k1__0": "c1cea042dacd746bfc40f0c98a2d820ac5b2c5790ca5f69b93a8c406ea2738dc",
+    "tt-68-2025-tt-btc-v1__dieu-2__k2__0": "62684d4bce0289de99cca78d8824ee267ebeccfc3a8b293e53e0742872051bcd",
+    "vbhn-67-vbhn-vpqh-v1__dieu-3__k0__0": "816d3351dd7ab01d208b25f8f46421cae97ed9fc0b469db0574c4d539e0113cd",
+    "vbhn-7566-vbhn-bkhdt-v1__dieu-1__k1__0": "c47ac54fdea9873a71415763579cccdc3daeb86d3ef07010f6ae519542881486"
+  }
+}

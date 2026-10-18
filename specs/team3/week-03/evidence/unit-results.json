@@ -1,0 +1,390 @@
+{
+  "run_at": "2026-10-18T20:19:09.092407+00:00",
+  "environment": {
+    "python": "3.12.15",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "packages": {
+      "bm25s": "0.3.14",
+      "underthesea": "9.5.0",
+      "numpy": "2.5.4",
+      "qdrant-client": "1.19.1",
+      "jsonschema": "4.26.0",
+      "torch": "2.14.1+cpu",
+      "sentence-transformers": "5.7.0"
+    }
+  },
+  "pattern": "test_*retrieval*.py",
+  "tests_run": 56,
+  "counts": {
+    "pass": 53,
+    "fail": 3,
+    "error": 0,
+    "skip": 0
+  },
+  "cases": [
+    {
+      "id": "test_bm25_retrieval.BM25PersistenceTest.test_load_missing_index_raises",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.0019751000218093395
+    },
+    {
+      "id": "test_bm25_retrieval.BM25PersistenceTest.test_load_rejects_chunk_store_that_does_not_match",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.3402403999934904
+    },
+    {
+      "id": "test_bm25_retrieval.BM25PersistenceTest.test_save_and_load_give_same_results",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.033526599989272654
+    },
+    {
+      "id": "test_bm25_retrieval.BM25RetrieverTest.test_article_reference_query",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.0006118000019341707
+    },
+    {
+      "id": "test_bm25_retrieval.BM25RetrieverTest.test_basic_query_ranks_matching_chunk_first",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.0006746999570168555
+    },
+    {
+      "id": "test_bm25_retrieval.BM25RetrieverTest.test_contract_rejects_eight_invalid_inputs",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.000132500019390136
+    },
+    {
+      "id": "test_bm25_retrieval.BM25RetrieverTest.test_contract_schema_and_semantics",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.2753211000235751
+    },
+    {
+      "id": "test_bm25_retrieval.BM25RetrieverTest.test_contract_trim_and_boundaries",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.001259000040590763
+    },
+    {
+      "id": "test_bm25_retrieval.BM25RetrieverTest.test_index_skips_chunks_outside_default_legal_status",
+      "status": "PASS",
+      "details": [],
+      "seconds": 3.1599949579685926e-05
+    },
+    {
+      "id": "test_bm25_retrieval.BM25RetrieverTest.test_no_matching_word_returns_empty_results",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.00015709997387602925
+    },
+    {
+      "id": "test_bm25_retrieval.BM25RetrieverTest.test_rejects_empty_or_duplicate_corpus",
+      "status": "PASS",
+      "details": [],
+      "seconds": 5.169998621568084e-05
+    },
+    {
+      "id": "test_bm25_retrieval.BM25RetrieverTest.test_result_has_chunk_id_content_and_score",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.0003942000330425799
+    },
+    {
+      "id": "test_bm25_retrieval.TokenizerTest.test_does_not_treat_common_words_as_references",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.00040010001976042986
+    },
+    {
+      "id": "test_bm25_retrieval.TokenizerTest.test_keeps_legal_references_as_single_tokens",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.000548299984075129
+    },
+    {
+      "id": "test_bm25_retrieval.TokenizerTest.test_normalises_tone_placement_only_at_syllable_end",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.0005863999831490219
+    },
+    {
+      "id": "test_bm25_retrieval.TokenizerTest.test_segments_words_and_drops_punctuation",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.00042669998947530985
+    },
+    {
+      "id": "test_dense_retrieval.DenseIndexingTest.test_collection_uses_named_cosine_vector_and_alias",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.00012609997065737844
+    },
+    {
+      "id": "test_dense_retrieval.DenseIndexingTest.test_embeddings_are_l2_normalised",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.00018690002616494894
+    },
+    {
+      "id": "test_dense_retrieval.DenseIndexingTest.test_index_skips_chunks_outside_default_legal_status",
+      "status": "PASS",
+      "details": [],
+      "seconds": 4.329998046159744e-05
+    },
+    {
+      "id": "test_dense_retrieval.DenseIndexingTest.test_points_use_uuid5_ids_and_full_chunk_payload",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.00011560000712051988
+    },
+    {
+      "id": "test_dense_retrieval.DenseIndexingTest.test_rebuilding_existing_collection_is_refused",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.0002069000038318336
+    },
+    {
+      "id": "test_dense_retrieval.DenseIndexingTest.test_rejects_embedder_with_wrong_dimension",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.008270999998785555
+    },
+    {
+      "id": "test_dense_retrieval.DenseIndexingTest.test_rejects_empty_or_duplicate_corpus",
+      "status": "PASS",
+      "details": [],
+      "seconds": 4.710000939667225e-05
+    },
+    {
+      "id": "test_dense_retrieval.DensePersistenceTest.test_collection_dropped_after_connect_raises_on_retrieve",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.024901700031477958
+    },
+    {
+      "id": "test_dense_retrieval.DensePersistenceTest.test_connect_gives_same_results",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.012984099972527474
+    },
+    {
+      "id": "test_dense_retrieval.DensePersistenceTest.test_connect_missing_index_or_collection_raises",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.018479599966667593
+    },
+    {
+      "id": "test_dense_retrieval.DensePersistenceTest.test_connect_rejects_collection_that_does_not_match_manifest",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.012524400022812188
+    },
+    {
+      "id": "test_dense_retrieval.DensePersistenceTest.test_connect_rejects_different_embedding_model",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.01088400004664436
+    },
+    {
+      "id": "test_dense_retrieval.DensePersistenceTest.test_save_writes_manifest_and_embedding_cache",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.015522100031375885
+    },
+    {
+      "id": "test_dense_retrieval.DensePersistenceTest.test_unreachable_qdrant_raises_retrieval_unavailable",
+      "status": "PASS",
+      "details": [],
+      "seconds": 1.1326914000092074
+    },
+    {
+      "id": "test_dense_retrieval.DenseRetrieverTest.test_basic_query_ranks_matching_chunk_first",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.0011702000047080219
+    },
+    {
+      "id": "test_dense_retrieval.DenseRetrieverTest.test_contract_rejects_eight_invalid_inputs",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.00034680002136155963
+    },
+    {
+      "id": "test_dense_retrieval.DenseRetrieverTest.test_contract_schema_and_semantics",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.010233100038021803
+    },
+    {
+      "id": "test_dense_retrieval.DenseRetrieverTest.test_contract_trim_and_boundaries",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.006574800005182624
+    },
+    {
+      "id": "test_dense_retrieval.DenseRetrieverTest.test_query_filter_excludes_chunks_outside_legal_status",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.017916699987836182
+    },
+    {
+      "id": "test_dense_retrieval.DenseRetrieverTest.test_rejects_invalid_input_before_embedding",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.007433000020682812
+    },
+    {
+      "id": "test_dense_retrieval.DenseRetrieverTest.test_result_has_chunk_id_content_and_cosine_score",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.00044269999489188194
+    },
+    {
+      "id": "test_dense_retrieval.DenseRetrieverTest.test_top_k_limits_results_and_unrelated_query_still_returns_neighbours",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.0006210999563336372
+    },
+    {
+      "id": "test_eval_retrieval.MetricTests.test_cli_setup_failure_still_writes_json_and_nonzero_exit",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.16393010003957897
+    },
+    {
+      "id": "test_eval_retrieval.MetricTests.test_cutoff_and_miss",
+      "status": "PASS",
+      "details": [],
+      "seconds": 4.199997056275606e-05
+    },
+    {
+      "id": "test_eval_retrieval.MetricTests.test_duplicate_candidate_is_error_not_extra_hit",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.0008768999832682312
+    },
+    {
+      "id": "test_eval_retrieval.MetricTests.test_empty_gold_is_not_perfect_recall",
+      "status": "PASS",
+      "details": [],
+      "seconds": 2.2899999748915434e-05
+    },
+    {
+      "id": "test_eval_retrieval.MetricTests.test_errors_are_reported_and_run_fails",
+      "status": "PASS",
+      "details": [],
+      "seconds": 5.730002885684371e-05
+    },
+    {
+      "id": "test_eval_retrieval.MetricTests.test_macro_average_and_empty_gold_denominator",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.001679799985140562
+    },
+    {
+      "id": "test_eval_retrieval.MetricTests.test_partial_recall_and_first_relevant_rr",
+      "status": "PASS",
+      "details": [],
+      "seconds": 3.3400021493434906e-05
+    },
+    {
+      "id": "test_eval_retrieval.MetricTests.test_percentile_linear_interpolation",
+      "status": "PASS",
+      "details": [],
+      "seconds": 2.7799978852272034e-05
+    },
+    {
+      "id": "test_eval_retrieval.MetricTests.test_unknown_gold_duplicate_cases_and_invalid_status_are_rejected",
+      "status": "PASS",
+      "details": [],
+      "seconds": 5.129998316988349e-05
+    },
+    {
+      "id": "test_retrieval_edge_cases.BM25EdgeTests.test_nfc_and_nfd_queries_retrieve_same_ids",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.00745400000596419
+    },
+    {
+      "id": "test_retrieval_edge_cases.DenseIntegrityTests.test_connect_rejects_changed_query_prefix",
+      "status": "FAIL",
+      "details": [
+        "Traceback (most recent call last):\n  File \"<repo>\\tests\\test_retrieval_edge_cases.py\", line 91, in test_connect_rejects_changed_query_prefix\n    with self.assertRaises(RetrievalUnavailableError):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: RetrievalUnavailableError not raised\n"
+      ],
+      "seconds": 0.03630259999772534
+    },
+    {
+      "id": "test_retrieval_edge_cases.DenseIntegrityTests.test_connect_rejects_duplicate_physical_point_for_same_chunk",
+      "status": "FAIL",
+      "details": [
+        "Traceback (most recent call last):\n  File \"<repo>\\tests\\test_retrieval_edge_cases.py\", line 98, in test_connect_rejects_duplicate_physical_point_for_same_chunk\n    with self.assertRaises(RetrievalUnavailableError):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: RetrievalUnavailableError not raised\n"
+      ],
+      "seconds": 0.027720100013539195
+    },
+    {
+      "id": "test_retrieval_edge_cases.DenseIntegrityTests.test_manifest_id_hash_mismatch_rejected",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.027359900006558746
+    },
+    {
+      "id": "test_retrieval_edge_cases.DenseIntegrityTests.test_query_dimension_mismatch_is_not_empty_success",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.018703099980484694
+    },
+    {
+      "id": "test_retrieval_edge_cases.EmbeddingEdgeTests.test_adapter_nfc_trim_case_and_prefix_without_loading_model",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.0015988000086508691
+    },
+    {
+      "id": "test_retrieval_edge_cases.EmbeddingEdgeTests.test_large_finite_vectors_never_silently_become_zero",
+      "status": "FAIL",
+      "details": [
+        "Traceback (most recent call last):\n  File \"<repo>\\tests\\test_retrieval_edge_cases.py\", line 40, in test_large_finite_vectors_never_silently_become_zero\n    self.assertAlmostEqual(float(np.linalg.norm(normalized)), 1.0, places=5)\nAssertionError: 0.0 != 1.0 within 5 places (1.0 difference)\n"
+      ],
+      "seconds": 0.0005920999683439732
+    },
+    {
+      "id": "test_retrieval_edge_cases.EmbeddingEdgeTests.test_normal_vectors_have_unit_length",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.00030829996103420854
+    },
+    {
+      "id": "test_retrieval_edge_cases.EmbeddingEdgeTests.test_zero_and_nonfinite_vectors_rejected",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.00017590000061318278
+    }
+  ],
+  "sources": [
+    {
+      "path": "tests/retriever_contract.py",
+      "sha256": "1900ffb39ca7ddf13ac359a7437e38ee4024d33e0ae8416e5084f7c602eddc19"
+    },
+    {
+      "path": "tests/test_bm25_retrieval.py",
+      "sha256": "efc8d4a236c79137cc25fe479136fd478da8d1f6f11349586d08d32667ba22d0"
+    },
+    {
+      "path": "tests/test_dense_retrieval.py",
+      "sha256": "beb3d1f457fe569232c8fbbf061c4ec600428a2b30d144aa966c84c0df7bb0d1"
+    },
+    {
+      "path": "tests/test_eval_retrieval.py",
+      "sha256": "331aca06aade0381095f4f824eac9aef518d3aa2c98a59bd7c53541ed9b57c28"
+    },
+    {
+      "path": "tests/test_retrieval_edge_cases.py",
+      "sha256": "c558e478196cb18be1dd0703100befea21eb8172727ca1370c14c89d176e6963"
+    }
+  ]
+}

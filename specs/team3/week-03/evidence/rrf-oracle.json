@@ -1,0 +1,76 @@
+{
+  "status": "REFERENCE_ONLY",
+  "runtime_status": "BLOCKED",
+  "rrf_k": 60,
+  "weights": [
+    1,
+    1
+  ],
+  "bm25": [
+    "A",
+    "C",
+    "B",
+    "E"
+  ],
+  "dense": [
+    "B",
+    "D",
+    "E",
+    "F",
+    "A"
+  ],
+  "expected_order": [
+    "B",
+    "A",
+    "E",
+    "C",
+    "D",
+    "F"
+  ],
+  "expected_scores": {
+    "B": {
+      "exact": "124/3843",
+      "numeric": 0.032266458495966696
+    },
+    "A": {
+      "exact": "126/3965",
+      "numeric": 0.0317780580075662
+    },
+    "E": {
+      "exact": "127/4032",
+      "numeric": 0.03149801587301587
+    },
+    "C": {
+      "exact": "1/62",
+      "numeric": 0.016129032258064516
+    },
+    "D": {
+      "exact": "1/62",
+      "numeric": 0.016129032258064516
+    },
+    "F": {
+      "exact": "1/64",
+      "numeric": 0.015625
+    }
+  },
+  "tie_case": {
+    "bm25": [
+      "A",
+      "B"
+    ],
+    "dense": [
+      "B",
+      "A"
+    ],
+    "expected_order": [
+      "A",
+      "B"
+    ],
+    "reason": "same score and best rank; lexical ID"
+  },
+  "empty_case": {
+    "bm25": [],
+    "dense": [],
+    "expected": []
+  }
+}

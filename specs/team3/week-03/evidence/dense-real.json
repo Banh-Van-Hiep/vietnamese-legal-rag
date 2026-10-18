@@ -1,0 +1,29 @@
+{
+  "status": "BLOCKED",
+  "method": "dense",
+  "profile": "real-model + Qdrant server",
+  "model": {
+    "id": "AITeamVN/Vietnamese_Embedding",
+    "sha": "dea33aa1ab339f38d66ae0a40e6c40e0a9249568",
+    "safetensors": {
+      "parameters": {
+        "F32": 567754752
+      },
+      "total": 567754752
+    },
+    "library_name": "sentence-transformers",
+    "pipeline_tag": "sentence-similarity",
+    "checked_at": "2026-10-18T20:09:00.491239+00:00",
+    "metadata_source": "https://huggingface.co/api/models/AITeamVN/Vietnamese_Embedding"
+  },
+  "run_at": "2026-10-18T20:11:05.896717+00:00",
+  "preconditions": {
+    "total_ram_gb": 7.7,
+    "free_ram_gb": 1.1,
+    "weights_f32_bytes": 2271019008,
+    "docker": "daemon start attempted; version endpoint returned HTTP 500; stopped helper afterwards"
+  },
+  "reason": "Available RAM below float32 model weights alone; Qdrant server unavailable. Model weights were not downloaded, loaded or benchmarked.",
+  "metrics": null,
+  "legal_review": "not performed"
+}

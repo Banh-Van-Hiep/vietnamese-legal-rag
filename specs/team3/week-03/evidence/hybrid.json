@@ -1,0 +1,6 @@
+{
+  "status": "BLOCKED",
+  "method": "hybrid_rrf",
+  "reason": "No Hybrid/RRF runtime or factory in audited HEAD. VLRA-27 owner must deliver runtime; oracle and mixin are handoff artifacts only.",
+  "metrics": null
+}
