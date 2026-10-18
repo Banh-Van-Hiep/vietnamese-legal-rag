@@ -6,9 +6,9 @@ Chọn mô hình embedding tiếng Việt và chiến lược indexing vector ch
 kiếm ngữ nghĩa (semantic) trong [Retrieval Design](retrieval-design.md).
 
 Dense retrieval biến câu hỏi và chunk thành vector; hai đoạn **cùng nghĩa** thì
-vector gần nhau, kể cả khi không trùng từ. Ví dụ "mở công ty" và "đăng ký thành lập
-doanh nghiệp", hay "nộp tiền vốn" và "góp vốn đủ và đúng loại tài sản đã cam kết"
-— BM25 không khớp được, dense retrieval thì có.
+vector gần nhau, kể cả khi không trùng từ. Ví dụ "nghỉ phép năm" và "nghỉ hằng
+năm", hay "bị đuổi việc" và "đơn phương chấm dứt hợp đồng lao động" — BM25
+không khớp được, dense retrieval thì có.
 
 ## 2. Lựa chọn mô hình embedding
 
