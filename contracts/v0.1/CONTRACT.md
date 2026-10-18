@@ -1,7 +1,9 @@
 # Contract v0.1 — Revision 2 (Week 1)
 
 **Project:** Vietnamese Legal RAG Assistant
-**Phạm vi demo:** Pháp luật doanh nghiệp, gồm Luật Doanh nghiệp và các văn bản liên quan (luật sửa đổi, nghị định, thông tư, văn bản hợp nhất); corpus không xoay quanh một bộ luật duy nhất.
+**Phạm vi demo:** Lĩnh vực doanh nghiệp; corpus Week 1 ưu tiên **Văn bản hợp nhất Luật
+Doanh nghiệp 67/VBHN-VPQH** và **Luật Doanh nghiệp 59/2020/QH14**. Danh mục văn bản đầy
+đủ ở [`docs/team1_data/legal-data-specification.md`](../../docs/team1_data/legal-data-specification.md) mục 2.1.
 **Nguồn đối chiếu:** Đặc tả API Team 3 v1.2 ngày 30/09/2026.
 **Trạng thái:** Proposal để Team 1/2/3 review; chưa phải implementation đã đóng băng.
 
@@ -49,11 +51,11 @@ Trong `answered`, answer dùng marker `[C1]`, `[C2]`… Mỗi marker phải có 
   "answer": "Câu trả lời minh họa về pháp luật doanh nghiệp [C1].",
   "citations": [{
     "citation_id": "C1",
-    "chunk_id": "luat-59-2020-qh14-v1__dieu-4__k2__0",
+    "chunk_id": "luat-59-2020-qh14-v1__dieu-47__k2__0",
     "document_id": "luat-59-2020-qh14-v1",
-    "article_id": "dieu-4",
+    "article_id": "dieu-47",
     "document_title": "Luật Doanh nghiệp",
-    "article": "Điều 4",
+    "article": "Điều 47",
     "clause": "Khoản 2",
     "point": null,
     "source_url": "https://example.com/mock-enterprise-law"

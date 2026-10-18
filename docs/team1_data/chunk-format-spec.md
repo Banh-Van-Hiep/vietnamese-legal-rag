@@ -29,19 +29,24 @@ Thứ tự áp dụng: R1/R2 trước, chỉ khi quá dài mới xuống R3, r�
 
 ### 2.2. Câu dẫn — vì sao bắt buộc lặp lại
 
-Ví dụ có thật — Điều 17 khoản 2 Luật Doanh nghiệp 59/2020/QH14:
+Ví dụ có thật — Điều 17 khoản 3 Luật Doanh nghiệp 59/2020/QH14
+(`luat-59-2020-qh14-v1__dieu-17__k3__0`):
 
 ```text
-2. Tổ chức, cá nhân sau đây không có quyền thành lập và quản lý doanh nghiệp tại Việt Nam:
-a) Cơ quan nhà nước, đơn vị lực lượng vũ trang nhân dân sử dụng tài sản nhà nước để thành lập
-doanh nghiệp kinh doanh thu lợi riêng cho cơ quan, đơn vị mình;
-b) Cán bộ, công chức, viên chức theo quy định của Luật Cán bộ, công chức và Luật Viên chức;
+3. Tổ chức, cá nhân có quyền góp vốn, mua cổ phần, mua phần vốn góp vào công ty
+cổ phần, công ty trách nhiệm hữu hạn, công ty hợp danh theo quy định của Luật này,
+trừ trường hợp sau đây:
+a) Cơ quan nhà nước, đơn vị lực lượng vũ trang nhân dân sử dụng tài sản nhà nước
+góp vốn vào doanh nghiệp để thu lợi riêng cho cơ quan, đơn vị mình;
+b) Đối tượng không được góp vốn vào doanh nghiệp theo quy định của Luật Cán bộ,
+công chức, Luật Viên chức, Luật Phòng, chống tham nhũng.
 ```
 
-Nếu tách Điểm a) ra thành chunk riêng **không có câu dẫn**, chunk chỉ còn
-"Cơ quan nhà nước, đơn vị lực lượng vũ trang nhân dân sử dụng tài sản nhà nước..." —
-mất hoàn toàn vế "không có quyền thành lập và quản lý doanh nghiệp", chunk trở nên vô
-nghĩa và LLM có thể hiểu ngược. Vì vậy:
+Nếu tách Điểm a) ra thành chunk riêng mà **không có câu dẫn**, chunk chỉ còn
+"Cơ quan nhà nước, đơn vị lực lượng vũ trang nhân dân sử dụng tài sản nhà nước góp
+vốn vào doanh nghiệp để thu lợi riêng cho cơ quan, đơn vị mình" — mất hoàn toàn vế
+"**trừ trường hợp sau đây**", nên đoạn liệt kê **ngoại lệ bị cấm** đọc thành một
+quy định **cho phép**. LLM sẽ trả lời ngược hẳn. Vì vậy:
 
 - Câu dẫn của **Khoản** (phần trước Điểm a) được lặp lại ở đầu mọi chunk R3.
 - Câu dẫn của **Điều** (`article_intro`, phần trước Khoản 1 nếu có) được đưa
@@ -99,7 +104,7 @@ giai đoạn Retrieval Evaluation (mục 6).
 Ví dụ:
 
 ```text
-Luật Doanh nghiệp 59/2020/QH14 > Chương III. CÔNG TY TRÁCH NHIỆM HỮU HẠN > Mục 1. CÔNG TY TRÁCH NHIỆM HỮU HẠN HAI THÀNH VIÊN TRỞ LÊN > Điều 69. Điều kiện để chia lợi nhuận
+Luật Doanh nghiệp 59/2020/QH14 > Chương III. CÔNG TY TRÁCH NHIỆM HỮU HẠN > Mục 1. CÔNG TY TRÁCH NHIỆM HỮU HẠN HAI THÀNH VIÊN TRỞ LÊN > Điều 47. Góp vốn thành lập công ty và cấp giấy chứng nhận phần vốn góp
 ```
 
 Text dùng để index (không lưu thành trường riêng, sinh ở bước indexing):
@@ -112,7 +117,7 @@ Toàn bộ trường metadata khác: xem [Metadata Specification](metadata-speci
 
 ## 5. Đơn vị Điều đầy đủ (article store)
 
-Ngoài chunk, pipeline xuất thêm `data/processed/articles.jsonl`, mỗi dòng là
+Ngoài chunk, pipeline xuất thêm `data/{domain}/processed/articles.jsonl`, mỗi dòng là
 **toàn văn một Điều** khóa theo (`document_id`, `article_id`). Dùng cho:
 
 - API xem nguyên văn điều luật của Team 3

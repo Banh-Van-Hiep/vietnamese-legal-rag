@@ -9,33 +9,43 @@ và [Metadata Specification](metadata-specification.md).
 
 ## 2. Phạm vi dữ liệu
 
-Phạm vi là **mảng pháp luật doanh nghiệp**: Luật Doanh nghiệp 59/2020/QH14, các
-luật sửa đổi, văn bản hợp nhất và các nghị định, thông tư liên quan còn hiệu lực. Phạm vi này thống nhất với
-`contracts/v0.1/CONTRACT.md` của Team 2.
+Giai đoạn đầu tập trung vào **lĩnh vực doanh nghiệp**: Luật Doanh nghiệp, luật
+sửa đổi, và các văn bản hướng dẫn, đăng ký, xử phạt liên quan còn hiệu lực. Phạm
+vi này thống nhất với `contracts/v0.1/README.md` của Team 2.
 
-Chọn mảng doanh nghiệp vì câu hỏi thực tế đa dạng (thành lập, góp vốn, chia lợi
-nhuận, đăng ký thay đổi, tạm ngừng kinh doanh, xử phạt) và trải trên nhiều văn
-bản, nên bộ câu hỏi đánh giá retrieval phải kiểm tra được việc tìm đúng văn bản
-trong một nhóm luật chứ không chỉ một bộ luật.
+Chọn lĩnh vực doanh nghiệp vì câu hỏi thực tế đa dạng và có nhóm người dùng rõ
+ràng (thành lập doanh nghiệp, góp vốn và thời hạn góp vốn, chuyển nhượng phần vốn
+góp, cơ cấu quản trị, thủ tục đăng ký doanh nghiệp, mức xử phạt vi phạm về đăng
+ký), nên bộ câu hỏi đánh giá retrieval dễ xây dựng và sát thực tế.
 
 ### 2.1. Danh mục văn bản
 
 Mức ưu tiên: **P0** bắt buộc cho MVP, **P1** nên có, **P2** bổ sung sau.
 
-| Ưu tiên | Số hiệu | Loại | Cơ quan ban hành | Trích yếu | Ngày ban hành | Ngày hiệu lực | Ghi chú |
-|---|---|---|---|---|---|---|---|
-| P0 | 59/2020/QH14 | Luật | Quốc hội | Luật Doanh nghiệp | 17/06/2020 | 01/01/2021 | Văn bản gốc; 10 chương, 218 điều. Hết hiệu lực một phần, đã sửa bởi 03/2022/QH15 và 76/2025/QH15 |
-| P0 | 67/VBHN-VPQH | Văn bản hợp nhất | Văn phòng Quốc hội | Hợp nhất Luật Doanh nghiệp | 15/08/2025 | — | **Nguồn nội dung tra cứu chính** (xem mục 4.3) |
-| P0 | 168/2025/NĐ-CP | Nghị định | Chính phủ | Nghị định về đăng ký doanh nghiệp | 30/06/2025 | 01/07/2025 | Thay thế NĐ 01/2021/NĐ-CP |
-| P0 | 7566/VBHN-BKHĐT | Văn bản hợp nhất | Bộ Kế hoạch và Đầu tư | Hợp nhất Nghị định quy định chi tiết một số điều của Luật Doanh nghiệp | 18/09/2024 | 01/04/2021 | Hợp nhất NĐ 47/2021/NĐ-CP với phần sửa của NĐ 16/2023/NĐ-CP; hết hiệu lực một phần |
-| P1 | 76/2025/QH15 | Luật | Quốc hội | Luật sửa đổi, bổ sung một số điều của Luật Doanh nghiệp | 17/06/2025 | 01/07/2025 | Còn hiệu lực; đã được ghép vào 67/VBHN-VPQH |
-| P1 | 122/2021/NĐ-CP | Nghị định | Chính phủ | Xử phạt vi phạm hành chính trong lĩnh vực kế hoạch và đầu tư, phần đăng ký doanh nghiệp | 28/12/2021 | 01/01/2022 | Hết hiệu lực một phần; hữu ích cho câu hỏi về chế tài |
-| P1 | 288/2026/NĐ-CP | Nghị định | Chính phủ | Sửa đổi, bổ sung một số điều của NĐ 122/2021/NĐ-CP | 21/07/2026 | 21/07/2026 | Còn hiệu lực |
-| P2 | 68/2025/TT-BTC | Thông tư | Bộ Tài chính | Biểu mẫu sử dụng trong đăng ký doanh nghiệp, đăng ký hộ kinh doanh | 01/07/2025 | 01/07/2025 | Hết hiệu lực một phần; kiểm tra lại trạng thái khi thu thập |
+Corpus đã thu nằm ở `data/doanh-nghiep/`. Bảng dưới đây là bản đọc cho người;
+nguồn dữ liệu chính thức là `data/doanh-nghiep/registry/documents.json` (metadata
+cấp văn bản, sha256, số điều) và `data/doanh-nghiep/CATALOG.txt` (phạm vi đã cắt
+của từng văn bản và các quy tắc làm sạch đã áp dụng). Khi hai nơi lệch nhau,
+registry là đúng.
 
-**Phạm vi mở rộng:** danh sách trên là 8 văn bản đã thu. Văn bản liên quan còn lại
-được theo dõi ở `data/doanh-nghiep/CATALOG.txt`; thêm văn bản mới thì cập nhật
-registry (mục 5) trước khi đưa vào index.
+| Ưu tiên | Số hiệu | Loại | Cơ quan ban hành | Trích yếu | Ban hành | Hiệu lực | Trạng thái | Phạm vi đã thu |
+|---|---|---|---|---|---|---|---|---|
+| P0 | 67/VBHN-VPQH | Văn bản hợp nhất | Văn phòng Quốc hội | Hợp nhất Luật Doanh nghiệp | 15/08/2025 | — | Còn hiệu lực | **Nguồn nội dung tra cứu chính** (mục 4.3). Đã gộp Luật 59/2020, 03/2022/QH15 và 76/2025/QH15; chú thích hợp nhất [1]–[54] giữ ở cuối file |
+| P0 | 59/2020/QH14 | Luật | Quốc hội | Luật Doanh nghiệp | 17/06/2020 | 01/01/2021 | Hết hiệu lực một phần | Văn bản gốc, 10 chương, Điều 1–218. Giữ để trích dẫn căn cứ gốc |
+| P0 | 76/2025/QH15 | Luật | Quốc hội | Sửa đổi, bổ sung một số điều của Luật Doanh nghiệp | 17/06/2025 | 01/07/2025 | Còn hiệu lực | Index riêng để trích dẫn căn cứ sửa đổi (mục 4.3) |
+| P0 | 168/2025/NĐ-CP | Nghị định | Chính phủ | Đăng ký doanh nghiệp | 30/06/2025 | 01/07/2025 | Còn hiệu lực | Điều 1–124. Thay thế NĐ 01/2021/NĐ-CP |
+| P0 | 7566/VBHN-BKHĐT | Văn bản hợp nhất | Bộ Kế hoạch và Đầu tư | Hợp nhất Nghị định quy định chi tiết một số điều của Luật Doanh nghiệp | 18/09/2024 | 01/04/2021 | Hết hiệu lực một phần | Điều 1–35. Hợp nhất NĐ 47/2021/NĐ-CP với phần sửa của NĐ 16/2023/NĐ-CP; không gồm phụ lục biểu mẫu đã bãi bỏ |
+| P1 | 122/2021/NĐ-CP | Nghị định | Chính phủ | Xử phạt vi phạm hành chính lĩnh vực kế hoạch và đầu tư | 28/12/2021 | 01/01/2022 | Hết hiệu lực một phần | **Chỉ phần đăng ký doanh nghiệp**: quy định chung và Điều 43–63. Không gồm đấu thầu, đầu tư công, PPP, hợp tác xã, quy hoạch |
+| P1 | 288/2026/NĐ-CP | Nghị định | Chính phủ | Sửa đổi, bổ sung một số điều của NĐ 122/2021/NĐ-CP | 21/07/2026 | 21/07/2026 | Còn hiệu lực | Phần sửa các điều xử phạt về đăng ký doanh nghiệp |
+| P2 | 68/2025/TT-BTC | Thông tư | Bộ Tài chính | Biểu mẫu dùng trong đăng ký doanh nghiệp, đăng ký hộ kinh doanh | 01/07/2025 | 01/07/2025 | Hết hiệu lực một phần | Chỉ phần quy phạm Điều 1–3; phụ lục biểu mẫu chưa xử lý. Đã bị TT 121/2026/TT-BTC sửa |
+
+**Chưa thu, cân nhắc đợt sau:** Luật 03/2022/QH15 (nội dung đã nằm trong VBHN 67),
+nhóm nghị định trái phiếu doanh nghiệp (153/2020, 65/2022, 08/2023, 200/2026),
+NĐ 248/2025, NĐ 16/2023 bản đầy đủ, TT 121/2026/TT-BTC, phụ lục biểu mẫu của
+TT 68/2025.
+
+**Không đưa vào index mặc định** (đã bị thay thế hoặc hết hiệu lực, chỉ nêu để
+đối chiếu): NĐ 01/2021/NĐ-CP, TT 01/2021/TT-BKHĐT, TT 02/2023/TT-BKHĐT.
 
 Mọi thông tin ngày và trạng thái trong bảng phải được kiểm tra lại trên nguồn
 chính thức (mục 3.1) tại thời điểm thu thập và ghi vào registry văn bản (mục 5).
@@ -75,10 +85,14 @@ khác (nếu có) được lưu kèm để đối chiếu khi validation.
 
 ### 3.3. Lưu trữ raw
 
+Dữ liệu được tách theo **lĩnh vực** ở cấp ngoài cùng, để sau này thêm lĩnh vực
+mới mà không trộn corpus:
+
 ```text
-data/
+data/{domain}/                    # hiện có: doanh-nghiep
+├── CATALOG.txt                   # danh mục đã thu, phạm vi đã cắt, quy tắc làm sạch
 ├── raw/{document_id}/            # file gốc tải về theo phiên bản, không chỉnh sửa
-│   ├── source.html | source.docx | source.pdf
+│   ├── source.txt                # hoặc source.html | source.docx | source.pdf
 │   └── fetch_info.json           # source_url, thời điểm tải, sha256, định dạng
 ├── interim/{document_id}.txt     # text sau cleaning, trước chunking
 ├── processed/chunks.jsonl        # chunk + metadata, đầu vào indexing
@@ -97,16 +111,18 @@ Văn bản
 └── Phần        (tùy chọn)  "Phần thứ nhất", "PHẦN I"
     └── Chương  (tùy chọn)  "Chương I", "CHƯƠNG II"
         └── Mục (tùy chọn)  "Mục 1", "MỤC 2"
-            └── Điều        "Điều 69. Điều kiện để chia lợi nhuận"
+            └── Điều        "Điều 47. Góp vốn thành lập công ty và cấp giấy chứng nhận phần vốn góp"
                 └── Khoản   "1.", "2." ở đầu dòng
                     └── Điểm "a)", "b)", "đ)"
 ```
 
 - **Điều** là cấp bắt buộc và là đơn vị trích dẫn chính.
 - Phần, Chương, Mục có thể không tồn tại; khi không có thì metadata để `null`.
-- Ví dụ: Luật Doanh nghiệp 59/2020/QH14 có 10 chương, 218 điều. Điều 69 nằm trong
-  Chương III (Công ty trách nhiệm hữu hạn), Mục 1 (Công ty trách nhiệm hữu hạn
-  hai thành viên trở lên) — một ví dụ có đủ cả cấp Chương và Mục.
+- Ví dụ: Luật Doanh nghiệp 59/2020/QH14 có 10 chương, Điều 1–218. Điều 47 nằm
+  trong Chương III (Công ty trách nhiệm hữu hạn), Mục 1 (Công ty trách nhiệm hữu
+  hạn hai thành viên trở lên) — một ví dụ có đủ cả cấp Chương và Mục. Trong corpus
+  hiện tại chỉ Luật 59/2020 và VBHN 67 (bù theo Luật 59/2020) có cấp Mục; xem
+  cảnh báo ở mục 4.2.
 
 ### 4.2. Quy tắc nhận diện
 
@@ -115,34 +131,49 @@ Văn bản
 | Phần | `^(PHẦN\|Phần)\s+(thứ\s+\w+\|[IVXLC]+)` | Hiếm gặp trong phạm vi hiện tại |
 | Chương | `^(CHƯƠNG\|Chương)\s+([IVXLC]+)` | Số La Mã; dòng kế tiếp thường là tên chương viết hoa |
 | Mục | `^(MỤC\|Mục)\s+(\d+)` | Chỉ nhận diện khi nằm giữa Chương và Điều |
-| Điều | `^Điều\s+(\d+[a-z]?)\.\s*(.*)` | `69a` xuất hiện khi luật sửa đổi bổ sung điều mới |
+| Điều | `^Điều\s+(\d+[a-z]?)\.\s*(.*)` | `47a` xuất hiện khi luật sửa đổi bổ sung điều mới |
 | Khoản | `^(\d+[a-z]?)\.\s+` | Chỉ tính khi đang ở trong một Điều |
 | Điểm | `^([a-zđ])\)\s+` | Bảng chữ cái pháp lý: a b c d đ e g h i k l m n o p q r s t u v x y (không có f, j, w, z) |
 
-Cần phân biệt "Điều 69." ở đầu dòng (tiêu đề điều) với "quy định tại khoản 3
-Điều 101 của Bộ luật này" trong câu (tham chiếu chéo). Chỉ mẫu ở **đầu dòng**
-mới mở một đơn vị mới.
+Cần phân biệt "Điều 47." ở đầu dòng (tiêu đề điều) với "quy định tại khoản 2
+Điều 17 của Luật này" trong câu (tham chiếu chéo). Chỉ mẫu ở **đầu dòng** mới mở
+một đơn vị mới.
 
-> **Cảnh báo từ khảo sát nguồn:** bản hợp nhất Luật Doanh nghiệp lấy từ một số
-> trang tổng hợp **bị mất hoàn toàn dòng tiêu đề Chương và phần lớn tiêu đề Mục**,
-> chỉ còn lại các dòng `Điều N.`. Vì vậy bước Structure Extraction không được
-> giả định luôn có Chương/Mục; khi thiếu thì `chapter`/`section` để `null` và
-> ghi cảnh báo vào báo cáo xử lý. Ưu tiên nguồn `vbpl.vn` hoặc Công báo vì giữ
-> đủ cấu trúc.
+> **Cảnh báo, đã xảy ra trên corpus hiện tại:** bản HTML của VBHN 67/VBHN-VPQH —
+> chính là nguồn tra cứu chính ở mục 2.1 — **bị mất hoàn toàn dòng tiêu đề Chương
+> và Mục**, chỉ còn các dòng `Điều N.`; `raw/vbhn-67-vbhn-vpqh-v1/source.txt` không
+> có một dòng `Chương`/`Mục` nào. Vì VBHN 67 và Luật 59/2020 dùng cùng hệ thống số
+> Điều (218 `article_id` khớp 1:1), `chapter`/`section` được **bù theo `article_id`**
+> từ `luat-59-2020-qh14-v1` ở bước cuối của `data/doanh-nghiep/chunk_documents.py`
+> (hằng `STRUCTURE_FROM`; script đọc `interim/{document_id}.txt` + `registry/documents.json`
+> và ghi `processed/chunks.jsonl`). Chỉ metadata cấu trúc được bù, `content` giữ nguyên.
+> Hiện trạng đo trên `data/doanh-nghiep/processed/chunks.jsonl`:
+>
+> | Văn bản | Số chunk | Có `chapter` | Có `section` |
+> |---|---|---|---|
+> | `luat-59-2020-qh14-v1` | 906 | 906 | 167 |
+> | `vbhn-67-vbhn-vpqh-v1` | 916 | 916 (đã bù) | 168 (đã bù) |
+> | `nd-168-2025-nd-cp-v1` | 524 | 431 | 0 |
+> | 5 văn bản còn lại | 230 | 0 | 0 |
+>
+> Dù vậy bước Structure Extraction vẫn không được giả định luôn có Chương/Mục: khi
+> thiếu và không có văn bản gốc để ánh xạ thì `chapter`/`section` để `null` và ghi
+> cảnh báo vào báo cáo xử lý. `scripts/validate_chunks.py` đọc `chunks.jsonl` +
+> `registry/documents.json` và kiểm lại `context_header`, `token_count`, tính duy
+> nhất của `chunk_id` cùng bảng thống kê trên; chạy sau mỗi lần sinh lại chunk.
 
 ### 4.3. Văn bản sửa đổi và văn bản hợp nhất
 
 Văn bản sửa đổi có cấu trúc lồng nhau, ví dụ:
 
 ```text
-Điều 1. Sửa đổi, bổ sung Luật Doanh nghiệp
-1. Sửa đổi, bổ sung một số khoản của Điều 4 như sau:
-   a) Sửa đổi, bổ sung khoản 5 như sau:
-   "5. ..."
+Điều 1. Sửa đổi, bổ sung một số điều của Luật Doanh nghiệp
+1. Sửa đổi, bổ sung khoản 2 Điều 17 như sau:
+   "2. ..."
 ```
 
-Nếu chunk trực tiếp, "khoản 5 Điều 4" của Luật Doanh nghiệp 59/2020/QH14 sẽ bị
-gán nhầm thành "khoản 1 Điều 1" của Luật 76/2025/QH15 (luật sửa đổi). Vì vậy:
+Nếu chunk trực tiếp, "khoản 2 Điều 17" của Luật Doanh nghiệp sẽ bị gán nhầm
+thành "khoản 1 Điều 1" của Luật 76/2025/QH15. Vì vậy:
 
 - **Nội dung tra cứu chính** lấy từ văn bản hợp nhất (VBHN) mới nhất, nơi các
   sửa đổi đã được ghép vào đúng Điều/Khoản gốc.
@@ -163,8 +194,9 @@ gán nhầm thành "khoản 1 Điều 1" của Luật 76/2025/QH15 (luật sửa
 
 ## 5. Registry văn bản
 
-Mỗi văn bản có một bản ghi trong `data/doanh-nghiep/registry/documents.json`. Đây là nguồn
-dữ liệu cấp văn bản; metadata cấp chunk được sao chép từ đây
+Mỗi văn bản có một bản ghi trong `data/{domain}/registry/documents.json`
+(hiện tại: `data/doanh-nghiep/registry/documents.json`). Đây là nguồn dữ liệu cấp
+văn bản; metadata cấp chunk được sao chép từ đây
 (xem [Metadata Specification](metadata-specification.md)).
 
 ```json
@@ -179,16 +211,24 @@ dữ liệu cấp văn bản; metadata cấp chunk được sao chép từ đây
   "effective_date": "2021-01-01",
   "expiry_date": null,
   "legal_status": "het_hieu_luc_mot_phan",
-  "amended_by": ["luat-76-2025-qh15"],
+  "amended_by": ["luat-03-2022-qh15", "luat-76-2025-qh15"],
   "replaces": ["luat-68-2014-qh13"],
   "replaced_by": [],
-  "guided_by": ["nd-168-2025-nd-cp"],
+  "guided_by": ["vbhn-7566-vbhn-bkhdt", "nd-168-2025-nd-cp"],
   "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881",
   "source_format": "html",
   "version": "v1",
-  "fetched_at": "2026-10-04T00:00:00Z"
+  "fetched_at": "2026-10-09T01:40:00Z"
 }
 ```
+
+> **Khoảng cách với registry hiện tại.** Bản ghi thực tế trong
+> `data/doanh-nghiep/registry/documents.json` chưa có `document_key`, `version`,
+> `expiry_date` và bốn trường quan hệ (`amended_by`, `replaces`, `replaced_by`,
+> `guided_by`); bù lại nó có thêm `sha256`, `chars`, `lines`, `article_count`,
+> `first_article`, `last_article` và `note` (phạm vi đã cắt của văn bản). Các trường
+> quan hệ là phần cần bổ sung để làm được mục 4.3; cho tới lúc đó Team 2 không dựa
+> vào chúng.
 
 - `document_key` cố định cho một văn bản, dùng trong các quan hệ
   (`amended_by`, `guided_by`, ...).
