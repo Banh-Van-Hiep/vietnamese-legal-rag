@@ -7,9 +7,9 @@ import uuid
 import zlib
 from pathlib import Path
 
+from retriever_contract import RetrieverContractTests
+
 HAS_DEPS = all(importlib.util.find_spec(m) for m in ("numpy", "qdrant_client"))
-ROOT = Path(__file__).resolve().parents[1]
-SCHEMA = ROOT / "contracts" / "v0.1" / "retrieval_output.schema.json"
 
 if HAS_DEPS:
     import numpy as np
@@ -121,7 +121,9 @@ class DenseIndexingTest(unittest.TestCase):
 
 
 @unittest.skipUnless(HAS_DEPS, "requires numpy and qdrant-client")
-class DenseRetrieverTest(unittest.TestCase):
+class DenseRetrieverTest(RetrieverContractTests, unittest.TestCase):
+    method = "dense"
+
     @classmethod
     def setUpClass(cls):
         cls.retriever = build()
@@ -141,12 +143,6 @@ class DenseRetrieverTest(unittest.TestCase):
         self.assertTrue(-1.0 <= row["score"] <= 1.0 + 1e-6)
         self.assertEqual(row["retrieval_method"], "dense")
 
-    def test_ranks_are_continuous_and_scores_descending(self):
-        results = self.retriever.retrieve("doanh nghiệp giải thể thành lập", top_k=10)["results"]
-        self.assertEqual([r["rank"] for r in results], list(range(1, len(results) + 1)))
-        scores = [r["score"] for r in results]
-        self.assertEqual(scores, sorted(scores, reverse=True))
-
     def test_top_k_limits_results_and_unrelated_query_still_returns_neighbours(self):
         self.assertEqual(len(self.retriever.retrieve("doanh nghiệp", top_k=2)["results"]), 2)
         self.assertEqual(len(self.retriever.retrieve("xyz qwerty", top_k=50)["results"]), 4)
@@ -160,9 +156,6 @@ class DenseRetrieverTest(unittest.TestCase):
             vector={"dense": retriever.embedder.embed_query(stale["content"]).tolist()}, payload=stale)])
         self.assertNotIn(stale["chunk_id"], self.ids(retriever.retrieve(stale["content"], top_k=50)))
 
-    def test_question_is_trimmed_in_output(self):
-        self.assertEqual(self.retriever.retrieve("  chia lợi nhuận  ", top_k=1)["question"], "chia lợi nhuận")
-
     def test_rejects_invalid_input_before_embedding(self):
         retriever = build(index_version="validation")
         for question, top_k in [("", 5), ("   ", 5), (None, 5), ("a" * 4001, 5),
@@ -171,16 +164,6 @@ class DenseRetrieverTest(unittest.TestCase):
             with self.subTest(question=str(question)[:10], top_k=top_k), self.assertRaises(ValueError):
                 retriever.retrieve(question, top_k=top_k)
         self.assertEqual(retriever.embedder.query_calls, 0)
-
-    def test_output_matches_contract_schema(self):
-        try:
-            from jsonschema import Draft202012Validator
-        except ImportError:
-            self.skipTest("requires jsonschema")
-        validator = Draft202012Validator(json.loads(SCHEMA.read_text(encoding="utf-8")))
-        for question in ["tạm ngừng kinh doanh", "Điều 17 quyền thành lập", "xyz qwerty"]:
-            validator.validate(self.retriever.retrieve(question, top_k=20))
-
 
 @unittest.skipUnless(HAS_DEPS, "requires numpy and qdrant-client")
 class DensePersistenceTest(unittest.TestCase):

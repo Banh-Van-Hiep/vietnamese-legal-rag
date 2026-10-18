@@ -4,9 +4,9 @@ import tempfile
 import unittest
 from pathlib import Path
 
+from retriever_contract import RetrieverContractTests
+
 HAS_DEPS = all(importlib.util.find_spec(m) for m in ("bm25s", "underthesea"))
-ROOT = Path(__file__).resolve().parents[1]
-SCHEMA = ROOT / "contracts" / "v0.1" / "retrieval_output.schema.json"
 
 if HAS_DEPS:
     from team1_data.retrieval import BM25Retriever, RetrievalUnavailableError, tokenize_vi
@@ -66,7 +66,9 @@ class TokenizerTest(unittest.TestCase):
 
 
 @unittest.skipUnless(HAS_DEPS, "requires bm25s and underthesea")
-class BM25RetrieverTest(unittest.TestCase):
+class BM25RetrieverTest(RetrieverContractTests, unittest.TestCase):
+    method = "bm25"
+
     @classmethod
     def setUpClass(cls):
         cls.retriever = BM25Retriever(CHUNKS)
@@ -93,40 +95,9 @@ class BM25RetrieverTest(unittest.TestCase):
         self.assertIsInstance(row["score"], float)
         self.assertGreater(row["score"], 0)
         self.assertEqual(row["retrieval_method"], "bm25")
-
-    def test_ranks_are_continuous_and_scores_descending(self):
-        results = self.retriever.retrieve("doanh nghiệp giải thể thành lập", top_k=10)["results"]
-        self.assertEqual([r["rank"] for r in results], list(range(1, len(results) + 1)))
-        scores = [r["score"] for r in results]
-        self.assertEqual(scores, sorted(scores, reverse=True))
-
-    def test_top_k_limits_results(self):
-        self.assertLessEqual(len(self.retriever.retrieve("doanh nghiệp tạm ngừng giải thể", top_k=2)["results"]), 2)
-        self.assertLessEqual(len(self.retriever.retrieve("doanh nghiệp tạm ngừng giải thể", top_k=50)["results"]), 4)
-
     def test_no_matching_word_returns_empty_results(self):
         self.assertEqual(self.retriever.retrieve("xyz qwerty", top_k=5),
                          {"question": "xyz qwerty", "results": []})
-
-    def test_question_is_trimmed_in_output(self):
-        self.assertEqual(self.retriever.retrieve("  chia lợi nhuận  ", top_k=1)["question"], "chia lợi nhuận")
-
-    def test_rejects_invalid_input(self):
-        for question, top_k in [("", 5), ("   ", 5), (None, 5), ("a" * 4001, 5),
-                                ("chia lợi nhuận", 0), ("chia lợi nhuận", 51),
-                                ("chia lợi nhuận", True), ("chia lợi nhuận", 2.0)]:
-            with self.subTest(question=str(question)[:10], top_k=top_k), self.assertRaises(ValueError):
-                self.retriever.retrieve(question, top_k=top_k)
-
-    def test_output_matches_contract_schema(self):
-        try:
-            from jsonschema import Draft202012Validator
-        except ImportError:
-            self.skipTest("requires jsonschema")
-        validator = Draft202012Validator(json.loads(SCHEMA.read_text(encoding="utf-8")))
-        for question in ["tạm ngừng kinh doanh", "Điều 17 quyền thành lập", "xyz qwerty"]:
-            validator.validate(self.retriever.retrieve(question, top_k=20))
-
     def test_rejects_empty_or_duplicate_corpus(self):
         with self.assertRaises(ValueError):
             BM25Retriever([CHUNKS[4]])
