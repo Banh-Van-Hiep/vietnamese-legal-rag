@@ -1,7 +1,8 @@
-"""Luồng chính VLRA-29: generate_answer / to_error_response / query() mock. Không cần API key hay mạng."""
+"""Luồng chính VLRA-29: generate_answer / to_error_response (trong answer.py) và query() mock (service.py, không đổi). Không cần API key hay mạng."""
 import json, unittest
 from unittest.mock import patch
-from team2_rag import generate_answer, query, to_error_response
+from team2_rag import query
+from team2_rag.answer import generate_answer, to_error_response
 from team2_rag.config.settings import ConfigError, load_settings
 from team2_rag.llm.errors import (CitationInvalidError, LLMAuthError, LLMBadOutputError, LLMConfigError, LLMContentBlockedError,
                                   LLMProviderError, LLMRateLimitError, LLMTimeoutError)
@@ -86,7 +87,7 @@ class GenerateAnswerTests(unittest.TestCase):
 
     def test_settings_limits_and_token_budget_are_wired(self):
         p = FakeLLMProvider([reply(0)])
-        with patch("team2_rag.service.create_llm_service", return_value=LLMService(p)):
+        with patch("team2_rag.answer.create_llm_service", return_value=LLMService(p)):
             generate_answer(SAMPLE, settings=settings_for("openai", LLM_MAX_CONTEXT_CHUNKS="1"))
             user = p.calls[0][0].user
             self.assertIn(SAMPLE["results"][0]["chunk_id"], user); self.assertNotIn(SAMPLE["results"][1]["chunk_id"], user)

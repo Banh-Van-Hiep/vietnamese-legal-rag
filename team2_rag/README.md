@@ -7,7 +7,18 @@ from team2_rag.answer import answer_from_rerank, cited_chunk_ids
 svc = create_llm_service()                      # LLM_PROVIDER / LLM_MODEL / *_API_KEY
 resp = answer_from_rerank(reranker_output, svc)  # {"status", "answer", "citations"} = rag_response.schema.json
 cited_chunk_ids(resp)                            # ["bll2019_v1_d113_k1", ...] (chunk_id nguồn thật sự được trích dẫn)
+
+# hoặc để hàm tự đọc cấu hình (LLM thật + token budget + giới hạn chunk), và đổi lỗi LLM thành ErrorResponse:
+from team2_rag.answer import generate_answer, to_error_response
+try:
+    resp = generate_answer(reranker_output, history)
+except Exception as exc:
+    body = to_error_response(exc)               # {"error": {"code", "message", "retryable"}} hoặc None (input sai -> 400/500 do tầng API)
 ```
+
+Toàn bộ phần VLRA-29 nằm trong `answer.py`, `llm/tokens.py`, `prompts/context.py`. Các file dùng chung `service.py` (mock `query()` cho Team 3),
+`__init__.py`, `__main__.py` **giữ nguyên như `main`** để không xung đột. `service.py` (gốc) và `llm/service.py` (`LLMService`) là hai module khác nhau.
+Chạy Python từ thư mục chứa `team2_rag/`, không chạy từ bên trong `team2_rag/` (`types.py` sẽ che module `types` của thư viện chuẩn).
 
 Luồng: `reranker_output → prompts.context.build_context → LLMService.ask → kiểm tra citation → RAGResponse`.
 

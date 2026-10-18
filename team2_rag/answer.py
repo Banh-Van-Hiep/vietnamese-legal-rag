@@ -6,13 +6,14 @@ Kết quả đúng contracts/v0.1/rag_response.schema.json (`status`, `answer`, 
 from __future__ import annotations
 
 import logging
-import re
 from typing import Iterable, Mapping, Optional, Union
 
-from team2_rag.config.settings import DEFAULT_MAX_CONTEXT_CHARS, DEFAULT_MAX_CONTEXT_CHUNKS
-from team2_rag.llm.errors import CitationInvalidError
+from team2_rag.config.settings import DEFAULT_MAX_CONTEXT_CHARS, DEFAULT_MAX_CONTEXT_CHUNKS, LLMSettings, load_settings
+from team2_rag.llm.errors import CitationInvalidError, LLMError
+from team2_rag.llm.factory import create_llm_service
+from team2_rag.llm.output_parser import _MARKER_RE as _MARKER  # cùng regex marker với parser, không định nghĩa lại
 from team2_rag.llm.service import LLMService
-from team2_rag.llm.tokens import TokenBudget
+from team2_rag.llm.tokens import TokenBudget, token_budget_from_settings
 from team2_rag.llm.types import STATUS_ANSWERED, STATUS_INSUFFICIENT, HistoryTurn
 from team2_rag.prompts.builder import PromptBuilder
 from team2_rag.prompts.context import ContextBudgetError, ContextBuildError, build_context
@@ -24,7 +25,6 @@ logger.addHandler(logging.NullHandler())
 
 NO_CONTEXT_ANSWER = "Tài liệu được truy xuất chưa đủ căn cứ để trả lời."
 MAX_QUESTION_CHARS = 4000  # câu hỏi gửi retrieval (docs/team1_data/retrieval-design.md)
-_MARKER = re.compile(r"\[C([1-9][0-9]*)\]")
 
 
 def cited_chunk_ids(response: Mapping) -> list[str]:
@@ -118,4 +118,51 @@ def answer_from_rerank(
     return {"status": STATUS_ANSWERED, "answer": answer, "citations": citations}
 
 
-__all__ = ["ContextBudgetError", "ContextBuildError", "NO_CONTEXT_ANSWER", "answer_from_rerank", "cited_chunk_ids"]
+def generate_answer(
+    rerank_output: Mapping,
+    history: Optional[Iterable[Union[HistoryTurn, Mapping]]] = None,
+    *,
+    llm_service: Optional[LLMService] = None,
+    settings: Optional[LLMSettings] = None,
+    token_budget: Optional[TokenBudget] = None,
+    request_id: Optional[str] = None,
+) -> RAGResponse:
+    """Luồng thật của VLRA-29: output Reranker -> context -> LLM -> RAGResponse đã kiểm tra citation.
+
+    Không truyền `llm_service` thì gọi LLM thật theo cấu hình (LLM_PROVIDER/LLM_MODEL/*_API_KEY); test truyền
+    FakeLLMProvider. Có LLM_CONTEXT_WINDOW_TOKENS trong cấu hình thì dùng token budget, ngược lại dùng budget ký tự
+    xấp xỉ. Giới hạn chunk/ký tự lấy từ cấu hình. Lỗi được raise nguyên dạng (xem `to_error_response`).
+    `team2_rag.service.query()` vẫn là mock của Team 3 và không bị file này thay đổi.
+    """
+    if llm_service is None:
+        settings = settings or load_settings()
+        llm_service = create_llm_service(settings)
+        if token_budget is None and settings.context_window_tokens is not None:
+            token_budget = token_budget_from_settings(settings)
+    limits = {} if settings is None else {"max_chunks": settings.max_context_chunks, "max_context_chars": settings.max_context_chars}
+    return answer_from_rerank(rerank_output, llm_service, history, token_budget=token_budget, request_id=request_id, **limits)
+
+
+_ERROR_MESSAGES = {
+    "LLM_TIMEOUT": ("Dịch vụ tạm thời không phản hồi.", True),
+    "LLM_UNAVAILABLE": ("Dịch vụ xử lý tạm thời không khả dụng.", True),
+    "INVALID_LLM_OUTPUT": ("Phản hồi từ dịch vụ xử lý không hợp lệ.", False),
+    "CITATION_INVALID": ("Phản hồi từ dịch vụ xử lý không hợp lệ.", False),
+}
+
+
+def to_error_response(exc: BaseException) -> Optional[dict]:
+    """ErrorResponse {"error": {code, message, retryable}} cho lỗi LLM; None nếu không phải LLMError.
+
+    `retryable` theo bảng lỗi trong docs/team2_rag/rag-io-specification.md. Message an toàn: không chứa lỗi thô của
+    provider, prompt hay API key. ValueError/ContextBuildError/ContextBudgetError (input nội bộ sai) trả None:
+    tầng API quyết định HTTP 400/500.
+    """
+    if not isinstance(exc, LLMError):
+        return None
+    message, retryable = _ERROR_MESSAGES.get(exc.error_code, _ERROR_MESSAGES["LLM_UNAVAILABLE"])
+    return {"error": {"code": exc.error_code, "message": message, "retryable": retryable}}
+
+
+__all__ = ["ContextBudgetError", "ContextBuildError", "NO_CONTEXT_ANSWER", "answer_from_rerank",
+           "cited_chunk_ids", "generate_answer", "to_error_response"]
