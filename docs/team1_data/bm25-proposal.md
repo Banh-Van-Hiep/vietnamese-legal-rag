@@ -49,10 +49,10 @@ list[str] token
 
 ### 3.1. Vì sao phải tách từ
 
-Tiếng Việt viết cách nhau theo **âm tiết**, không theo **từ**. "lao động"
-là một từ gồm hai âm tiết. Nếu tách theo dấu cách, "lao" và "động" thành hai
-token rời, BM25 sẽ khớp cả những chunk chứa "động" trong "hoạt động", "biến
-động", "bất động sản". Tách từ đúng cho ra token `lao_động`, chính xác hơn.
+Tiếng Việt viết cách nhau theo **âm tiết**, không theo **từ**. "doanh nghiệp"
+là một từ gồm hai âm tiết. Nếu tách theo dấu cách, "doanh" và "nghiệp" thành hai
+token rời, BM25 sẽ khớp cả những chunk chứa "nghiệp" trong "nghề nghiệp", "sự
+nghiệp", "nghiệp vụ". Tách từ đúng cho ra token `doanh_nghiệp`, chính xác hơn.
 
 ### 3.2. So sánh công cụ tách từ
 
@@ -79,29 +79,29 @@ phép dùng tự do.
 | Bước | Cách làm | Ví dụ |
 |---|---|---|
 | T1 | `unicodedata.normalize("NFC", text)` — phòng khi câu hỏi người dùng gõ dấu tổ hợp | — |
-| T2 | `text.lower()` | `Người Lao Động` → `người lao động` |
+| T2 | `text.lower()` | `Doanh Nghiệp Nhà Nước` → `doanh nghiệp nhà nước` |
 | T3 | Quy các vần `oa`, `oe`, `uy` **ở cuối âm tiết** về một kiểu đặt dấu duy nhất (đề xuất: `oà` → `òa`, `oé` → `óe`, `uỷ` → `ủy`). Không áp dụng khi sau vần còn phụ âm (`hoàng`, `khoảng`, `huỳnh`) hoặc trước là `q` (`quý`, `quỷ`) | `hoà giải` và `hòa giải` cùng thành `hòa giải`; `hoàng` giữ nguyên |
-| T4 | Thay cụm pháp lý bằng token liền khối trước khi tách từ (mục 3.4) | `Điều 113` → `điều_113` |
-| T5 | `underthesea.word_tokenize(text, format="text").split()` | `nghỉ hằng năm` → `nghỉ`, `hằng_năm` |
+| T4 | Thay cụm pháp lý bằng token liền khối trước khi tách từ (mục 3.4) | `Điều 47` → `điều_47` |
+| T5 | `underthesea.word_tokenize(text, format="text").split()` | segmenter nối các âm tiết cùng một từ bằng `_`: `doanh nghiệp` → `doanh_nghiệp`. Kết quả cụ thể phải kiểm chứng lại trên corpus hiện tại khi cài underthesea |
 | T6 | Bỏ token không chứa chữ hoặc số | `,` `:` `(` bị bỏ |
 | T7 | **Mặc định không bỏ stopword** (IDF đã tự giảm trọng số từ phổ biến). Nếu thử nghiệm bỏ stopword, tuyệt đối giữ các từ mang nghĩa pháp lý: `không`, `chưa`, `cấm`, `nghiêm_cấm`, `phải`, `được`, `có_quyền` | Bỏ `không` sẽ biến "không có quyền" thành "có quyền" |
 
 ### 3.4. Bảo vệ cụm pháp lý
 
-Word segmenter không biết "45/2019/QH14" là một số hiệu, có thể cắt thành nhiều
+Word segmenter không biết "59/2020/QH14" là một số hiệu, có thể cắt thành nhiều
 mảnh. Bước T4 dùng regex để gộp các cụm sau thành **một token** trước khi tách từ:
 
 | Mẫu | Regex (sau T2) | Token |
 |---|---|---|
-| Số hiệu văn bản | `\d+/\d{4}/[a-zđ0-9-]+` | `45/2019/qh14`, `145/2020/nđ-cp` |
+| Số hiệu văn bản | `\d+/\d{4}/[a-zđ0-9-]+` | `59/2020/qh14`, `168/2025/nđ-cp` |
 | Điều | `điều\s+(\d+[a-z]?)` | `điều_17`, `điều_17a` |
 | Khoản | `khoản\s+(\d+)` | `khoản_2` |
 | Điểm | `điểm\s+([a-zđ])\b` | `điểm_a` |
 | Chương | `chương\s+([ivxlc]+)\b` | `chương_ii` |
 
-Vì `search_text` có `context_header` chứa "Điều 113. ..." (xem Chunk Format), câu
-hỏi "điều 113 bộ luật lao động" sẽ khớp chính xác token `điều_113` của các chunk
-thuộc Điều 113.
+Vì `search_text` có `context_header` chứa "Điều 47. ..." (xem Chunk Format), câu
+hỏi "điều 47 luật doanh nghiệp" sẽ khớp chính xác token `điều_47` của các chunk
+thuộc Điều 47.
 
 ### 3.5. Phác thảo code
 
@@ -141,8 +141,8 @@ def tokenize_vi(text: str) -> list[str]:
 
 - T3: `hoà` → `hòa`, `thuỷ` → `thủy`, `uỷ ban` → `ủy ban`; giữ nguyên `hoàng`,
   `khoảng`, `toán`, `quý`, `quỷ`, `huỳnh`.
-- T4: bắt được `điều 113`, `khoản 1`, `điểm đ`, `chương vii`, `45/2019/qh14`,
-  `145/2020/nđ-cp`; **không** bắt `điều kiện`, `điều lệ`.
+- T4: bắt được `điều 47`, `khoản 2`, `điểm đ`, `chương iii`, `59/2020/qh14`,
+  `168/2025/nđ-cp`; **không** bắt `điều kiện`, `điều lệ`.
 
 ## 4. Cấu hình index và truy vấn
 

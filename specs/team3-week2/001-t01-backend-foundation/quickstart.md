@@ -4,7 +4,7 @@
 xem [báo cáo mục 6](verification.md#6-kiểm-chứng-spec-t01-riêng-ngày-09102026).
 Runner hiện đã tuân thủ Q2; các ghi chú “chưa chạy trong lượt plan” bên dưới mô tả thời điểm lập kế hoạch.
 Tham chiếu [plan hiện tại](plan.md), [tasks hiện tại](tasks.md), [data model](data-model.md)
-và [interfaces](contracts/README.md). Các ca U1/C1 đã kiểm chứng trong vòng T01; dùng các bước dưới đây để tái hiện, kết quả gốc nằm ở verification.md.
+và [interfaces](contracts/interface-references.md). Các ca U1/C1 đã kiểm chứng trong vòng T01; dùng các bước dưới đây để tái hiện, kết quả gốc nằm ở verification.md.
 
 ## Chạy Backend để thử nhanh
 
@@ -178,7 +178,7 @@ nếu thiếu assertion thì bổ sung ở bước triển khai, dùng endpoint 
 ## 5. Lỗi, default và cleanup
 
 - Dùng `/api/v1/unknown`, GET vào `/api/v1/query`, POST media type sai/JSON sai/body trên
-  16 KiB để kiểm tra các mã tại [interfaces](contracts/README.md); không đưa 406 vào tiêu chí.
+  16 KiB để kiểm tra các mã tại [interfaces](contracts/interface-references.md); không đưa 406 vào tiêu chí.
 - Với 500/503/504, dùng probe/test hiện có để xác nhận envelope, retryable, không answer/status,
   không lộ chi tiết. T018 bổ sung riêng RuntimeException sau khi service tiếp nhận lượt trong
   MockQueryServiceTests và ca HTTP trên POST /api/v1/query hiện có trong BackendConfigurationTests:

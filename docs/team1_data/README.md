@@ -40,9 +40,10 @@ Team 1 tự thiết kế implementation bên trong thư mục này. Chỉ dữ l
 
 ### Phạm vi corpus
 
-Đã chốt: **pháp luật lao động**, trọng tâm là Bộ luật Lao động 2019
-(45/2019/QH14) và các văn bản hướng dẫn còn hiệu lực. Thống nhất với
-`contracts/v0.1/README.md` của Team 2. Danh mục đầy đủ ở
+Đã chốt: **lĩnh vực doanh nghiệp**, trọng tâm là Văn bản hợp nhất Luật Doanh nghiệp
+67/VBHN-VPQH và Luật Doanh nghiệp 59/2020/QH14, cùng các văn bản hướng dẫn, đăng ký
+và xử phạt liên quan. Thống nhất với `contracts/v0.1/README.md` của Team 2. Corpus
+đã thu nằm ở `data/doanh-nghiep/` (8 văn bản, 2.576 chunk); danh mục đầy đủ ở
 [`legal-data-specification.md`](legal-data-specification.md) mục 2.1.
 
 ### Vấn đề mở cần thống nhất với Team 2 và Team 3

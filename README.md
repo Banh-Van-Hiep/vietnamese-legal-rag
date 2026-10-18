@@ -30,11 +30,11 @@ Hybrid Retrieval và RRF nằm trong phạm vi Team 1. Team 2 bắt đầu với
 
 ## Team Responsibilities
 
-### Team 1 — Data & Retrieval (`src/team1_data/`)
+### Team 1 — Data & Retrieval (`data/`, `scripts/`)
 
 Phụ trách legal data, data cleaning, chunking, metadata, BM25 retrieval, dense retrieval, embedding, vector store/vector database, hybrid retrieval, RRF và retrieval evaluation. Hybrid Retrieval và RRF thuộc Team 1, không thuộc Team 2.
 
-### Team 2 — RAG & LLM (`docs/team2_rag/`)
+### Team 2 — RAG & LLM (`team2_rag/`)
 
 Phụ trách reranker, context builder, prompt, LLM, citation, RAG pipeline, RAG evaluation, answer quality, hallucination/grounding và citation verification.
 
@@ -46,22 +46,21 @@ Phụ trách backend, REST API, frontend, UI/UX, document viewer, integration v�
 
 ```text
 .
-├── .github/       # CODEOWNERS và Pull Request template
-├── configs/       # Tài liệu về cấu hình dùng chung
-├── contracts/     # Nguyên tắc interface/data contract giữa các team
-├── docs/          # Tài liệu project
+├── .github/          # CODEOWNERS và Pull Request template
+├── configs/          # Cấu hình dùng chung (chưa có implementation)
+├── contracts/        # Interface/data contract giữa các team, xem contracts/v0.1/CONTRACT.md
+├── data/
+│   └── doanh-nghiep/ # Corpus pháp luật doanh nghiệp: raw, interim, processed, registry
+├── docs/             # Tài liệu project
 │   ├── team1_data/
 │   ├── team2_rag/
 │   └── team3_fullstack/
-├── evaluation/    # Tài liệu evaluation dùng chung
-├── scripts/       # Vị trí dành cho utility scripts trong tương lai
-├── specs/         # Đặc tả và bàn giao chức năng dùng chung, xem specs/README.md
-├── team3_fullstack/ # Project Backend/Frontend chạy của Team 3
-├── src/           # Source code của ba team
-│   ├── team1_data/
-│   ├── team2_rag/
-│   └── team3_fullstack/
-└── tests/         # Vị trí dành cho integration/E2E tests dùng chung
+├── evaluation/       # Evaluation dùng chung (chưa có code)
+├── scripts/          # Script dùng chung, hiện có preprocess_legal_data.py
+├── specs/            # Đặc tả và bàn giao chức năng dùng chung, xem specs/README.md
+├── team2_rag/        # Code RAG/LLM của Team 2
+├── team3_fullstack/  # Backend/Frontend của Team 3
+└── tests/            # Test dùng chung
 ```
 
 Các thư mục team độc lập về implementation. Project chạy của Team 3 ở `team3_fullstack/`; xem [mục lục Team 3](docs/team3_fullstack/README.md). Đọc [specs/README.md](specs/README.md) sau khi nhận/merge code để biết yêu cầu, quyết định, commit và giới hạn của phần đã bàn giao; không suy ra trạng thái team khác từ mock Team 3.

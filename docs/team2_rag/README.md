@@ -2,7 +2,7 @@
 
 ## Scope Week 1
 
-Thiết kế cho demo pháp luật lao động, ưu tiên Bộ luật Lao động 2019. Team 2 nhận candidate từ Team 1, làm rerank/context/prompt/LLM/citation và trả kết quả cho Backend Team 3. Week 1 bàn giao tài liệu thiết kế; chưa triển khai RAG hoặc benchmark model.
+Thiết kế cho demo pháp luật doanh nghiệp, gồm Luật Doanh nghiệp và các luật, nghị định, thông tư, văn bản hợp nhất liên quan. Team 2 nhận candidate từ Team 1, làm rerank/context/prompt/LLM/citation và trả kết quả cho Backend Team 3. Week 1 bàn giao tài liệu thiết kế; chưa triển khai RAG hoặc benchmark model.
 
 | Task | Tài liệu |
 | --- | --- |

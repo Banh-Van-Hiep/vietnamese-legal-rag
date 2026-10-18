@@ -4,7 +4,7 @@ Ghi chú tổ chức tài liệu 09/10/2026: đường dẫn báo cáo trong tà
 hiện tại (verification.md trong spec); baseline/log gốc vẫn ghi đường dẫn docs/ trước khi chuyển.
 Snapshot lúc plan và checkbox/evidence đã kiểm chứng được giữ nguyên; không chạy lại test khi dọn tài liệu.
 
-**Input**: spec.md, plan.md, research.md, data-model.md, contracts/README.md, quickstart.md, decisions.md.
+**Input**: spec.md, plan.md, research.md, data-model.md, contracts/interface-references.md, quickstart.md, decisions.md.
 **Status**: 18/18 task đã kiểm chứng local; package74, runner37, HTTP8 PASS. Review hash/diff147 files không thay đổi ngoài phạm vi, cleanup0 PID/cổng. Bàn giao: [verification.md](verification.md). Nhánh feature/team3/* giữ nguyên.
 [P] chỉ file độc lập sau prerequisite. Không Maven/test song song với sửa Java hoặc Maven khác.
 Tests được spec yêu cầu; không thêm framework/TDD policy/coverage. Existing endpoint/DTO/input/store/CORS

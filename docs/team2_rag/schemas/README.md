@@ -6,7 +6,7 @@ Không dùng bộ này để validate payload Team 1 → Team 2 hoặc Team 2 �
 
 ## Contract chung đề xuất
 
-Đọc [Contract v0.1 Revision 2](../../../contracts/v0.1/README.md) và dùng đúng schema theo ranh giới:
+Đọc [Contract v0.1 Revision 2](../../../contracts/v0.1/CONTRACT.md) và dùng đúng schema theo ranh giới:
 
 - [query_request.schema.json](../../../contracts/v0.1/query_request.schema.json): request công khai Frontend → Backend Team 3.
 - [retrieval_output.schema.json](../../../contracts/v0.1/retrieval_output.schema.json): candidate Team 1 → Team 2.
