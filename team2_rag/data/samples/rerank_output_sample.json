@@ -1,0 +1,47 @@
+{
+  "question": "Luật Doanh nghiệp quy định về những vấn đề gì?",
+  "results": [
+    {
+      "chunk_id": "luat-59-2020-qh14-v1__dieu-1__k0__0",
+      "document_id": "luat-59-2020-qh14-v1",
+      "article_id": "dieu-1",
+      "content": "Luật này quy định về việc thành lập, tổ chức quản lý, tổ chức lại, giải thể và hoạt động có liên quan của doanh nghiệp, bao gồm công ty trách nhiệm hữu hạn, công ty cổ phần, công ty hợp danh và doanh nghiệp tư nhân; quy định về nhóm công ty.",
+      "document_title": "Luật Doanh nghiệp",
+      "article": "Điều 1",
+      "clause": null,
+      "point": null,
+      "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881",
+      "score": 0.03,
+      "rank": 1,
+      "retrieval_method": "hybrid_rrf"
+    },
+    {
+      "chunk_id": "luat-59-2020-qh14-v1__dieu-2__k1__0",
+      "document_id": "luat-59-2020-qh14-v1",
+      "article_id": "dieu-2",
+      "content": "1. Doanh nghiệp.",
+      "document_title": "Luật Doanh nghiệp",
+      "article": "Điều 2",
+      "clause": "Khoản 1",
+      "point": null,
+      "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881",
+      "score": 0.028999999999999998,
+      "rank": 2,
+      "retrieval_method": "hybrid_rrf"
+    },
+    {
+      "chunk_id": "luat-59-2020-qh14-v1__dieu-2__k2__0",
+      "document_id": "luat-59-2020-qh14-v1",
+      "article_id": "dieu-2",
+      "content": "2. Cơ quan, tổ chức, cá nhân có liên quan đến việc thành lập, tổ chức quản lý, tổ chức lại, giải thể và hoạt động có liên quan của doanh nghiệp.",
+      "document_title": "Luật Doanh nghiệp",
+      "article": "Điều 2",
+      "clause": "Khoản 2",
+      "point": null,
+      "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881",
+      "score": 0.027999999999999997,
+      "rank": 3,
+      "retrieval_method": "hybrid_rrf"
+    }
+  ]
+}

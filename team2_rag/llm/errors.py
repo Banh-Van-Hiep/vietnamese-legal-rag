@@ -39,6 +39,11 @@ class LLMContentBlockedError(LLMError):
     error_code = "LLM_UNAVAILABLE"
 
 
+class CitationInvalidError(LLMError):
+    """Citation không truy được về chunk đã gửi cho LLM, hoặc metadata/marker sai (citation-specification.md)."""
+    error_code = "CITATION_INVALID"
+
+
 class LLMBadOutputError(LLMError):
     error_code = "INVALID_LLM_OUTPUT"
 
