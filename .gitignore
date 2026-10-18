@@ -17,6 +17,3 @@ node_modules/
 
 # Personal instructions stay local; implementation reports and specs are shared.
 /.local/
-
-# Index build artifacts (rebuild with python -m team1_data.retrieval build)
-/data/index/

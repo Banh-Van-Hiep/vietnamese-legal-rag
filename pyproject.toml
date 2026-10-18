@@ -13,9 +13,6 @@ build-backend = "setuptools.build_meta"
 [project.optional-dependencies]
 rag = ["langchain-core>=1,<2", "python-dotenv>=1,<2"]
 test = ["jsonschema[format]>=4.25,<5"]
-retrieval = ["bm25s>=0.3,<0.4", "underthesea>=9,<10"]
-# qdrant-client đủ cho test (fake embedder + ":memory:"); sentence-transformers kéo theo torch (vài GB) để chạy model thật.
-dense = ["numpy>=1.26", "qdrant-client>=1.12,<2", "sentence-transformers>=3,<6"]
 
 [tool.setuptools.packages.find]
-include = ["team1_data*", "team2_rag*"]
+include = ["team2_rag*"]
