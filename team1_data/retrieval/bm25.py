@@ -130,17 +130,6 @@ class BM25Retriever:
     def retrieve(self, question: str, top_k: int = 20) -> dict:
         """Trả {question, results}; results rỗng khi không chunk nào trùng từ."""
         question = validate_query(question, top_k)
-        vocab = self._bm25.vocab_dict
-        tokens = [t for t in tokenize_vi(question) if t in vocab]
-        if not tokens:
-            return {"question": question, "results": []}
-        k = min(top_k, len(self.chunks))
-        docs, scores = self._bm25.retrieve([tokens], k=k, show_progress=False)
-        results = []
-        for idx, score in zip(docs[0], scores[0]):
-            score = float(score)
-            if score <= 0 or not math.isfinite(score):
-                continue
-            results.append(output_row(self.chunks[int(idx)], score, len(results) + 1, "bm25"))
+        results = self._search(question, limit=top_k)
         return {"question": question, "results": results}
 
