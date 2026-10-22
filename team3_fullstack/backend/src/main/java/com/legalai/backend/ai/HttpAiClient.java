@@ -72,12 +72,15 @@ public class HttpAiClient implements AiClient {
         return AiResponseValidator.query(new RagAnswer(status, answer, List.copyOf(citations)));
     }
     @Override public ArticleResponse article(String documentId, String articleId) {
+        return article(documentId, articleId, UUID.randomUUID().toString());
+    }
+    @Override public ArticleResponse article(String documentId, String articleId, String requestId) {
         if (!documentId.matches("[A-Za-z0-9_-]{1,200}") || !articleId.matches("[A-Za-z0-9_-]{1,100}")) {
             throw ApiException.invalid();
         }
         var request = HttpRequest.newBuilder(base.resolve("internal/v1/documents/" + documentId
                 + "/articles/" + articleId)).timeout(Duration.ofMillis(timeoutMs))
-                .header("Accept", "application/json").header("X-Request-ID", UUID.randomUUID().toString()).GET().build();
+                .header("Accept", "application/json").header("X-Request-ID", requestId).GET().build();
         JsonNode n = exchange(request, true);
         exact(n, Set.of("document_id", "document_title", "article_id", "article", "content", "source_url"));
         return AiResponseValidator.article(new ArticleResponse(string(n, "document_id", false),

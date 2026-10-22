@@ -15,4 +15,7 @@ public interface AiClient {
         return query(question);
     }
     ArticleResponse article(String documentId, String articleId);
+    default ArticleResponse article(String documentId, String articleId, String requestId) {
+        return article(documentId, articleId);
+    }
 }

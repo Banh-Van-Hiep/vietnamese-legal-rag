@@ -56,6 +56,17 @@ class StreamApiTests {
     private static HttpServer server() {
         try {
             var server = HttpServer.create(new InetSocketAddress("127.0.0.1", 0), 0);
+            server.createContext("/internal/v1/documents/", e -> {
+                String path=e.getRequestURI().getPath();
+                TRACES.put("article:"+path,e.getRequestHeaders().getFirst("X-Request-ID"));
+                int status=200;
+                String result="{\"document_id\":\"mock_v1\",\"document_title\":\"Văn bản kiểm thử\",\"article_id\":\"art1\",\"article\":\"Điều 1\",\"content\":\"Nguyên văn kiểm thử 😀\",\"source_url\":\"https://example.com/mock-law\"}";
+                if(path.endsWith("/missing")) {
+                    status=404;result="{\"error\":{\"code\":\"ARTICLE_NOT_FOUND\",\"message\":\"Không có Điều\",\"retryable\":false}}";
+                }
+                byte[] bytes=result.getBytes(StandardCharsets.UTF_8);e.getResponseHeaders().set("Content-Type","application/json");
+                try { e.sendResponseHeaders(status,bytes.length);e.getResponseBody().write(bytes); } finally { e.close(); }
+            });
             server.createContext("/internal/v1/query", e -> {
                 var input = JSON.readTree(e.getRequestBody().readAllBytes());
                 String q = input.get("question").asString();
@@ -247,6 +258,24 @@ class StreamApiTests {
         var response=send(body("Q",UUID.randomUUID(),null));
         assertEquals(503,response.statusCode()); assertTrue(response.body().contains("PERSISTENCE_UNAVAILABLE"));
         assertFalse(response.body().contains("private-secret")); assertFalse(response.body().contains("event:meta"));
+    }
+    @Test void publicArticleMapsSixFieldsAndForwardsAttemptTrace() throws Exception {
+        var response=client.send(HttpRequest.newBuilder(URI.create("http://localhost:"+port+"/api/v1/documents/mock_v1?articleId=art1")).GET().build(),HttpResponse.BodyHandlers.ofString(StandardCharsets.UTF_8));
+        assertEquals(200,response.statusCode(),response.body());var article=JSON.readTree(response.body());
+        assertEquals(Set.of("documentId","documentTitle","articleId","article","content","sourceUrl"),Set.copyOf(article.propertyNames()));
+        assertEquals("mock_v1",article.get("documentId").asString());assertEquals("Nguyên văn kiểm thử 😀",article.get("content").asString());
+        assertEquals(response.headers().firstValue("X-Request-ID").orElseThrow(),TRACES.get("article:/internal/v1/documents/mock_v1/articles/art1"));
+    }
+    @Test void publicArticleRejectsBadLookupAndDoesNotSubstituteSourceVersion() throws Exception {
+        String[][] cases={{"/api/v1/documents/mock_v1","400","INVALID_REQUEST"},
+                {"/api/v1/documents/mock_v1?articleId=art1&articleId=art2","400","INVALID_REQUEST"},
+                {"/api/v1/documents/mock_v1?articleId=missing","404","ARTICLE_NOT_FOUND"},
+                {"/api/v1/documents/mock_v2?articleId=art1","502","UPSTREAM_INVALID_RESPONSE"}};
+        for(var c:cases) {
+            var response=client.send(HttpRequest.newBuilder(URI.create("http://localhost:"+port+c[0])).GET().build(),HttpResponse.BodyHandlers.ofString());
+            assertEquals(Integer.parseInt(c[1]),response.statusCode(),response.body());
+            assertEquals(c[2],JSON.readTree(response.body()).get("error").get("code").asString());
+        }
     }
     private String readFrame(BufferedReader reader) throws Exception {
         StringBuilder b = new StringBuilder(); String line;
