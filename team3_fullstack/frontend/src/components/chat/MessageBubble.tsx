@@ -29,7 +29,10 @@ export default function MessageBubble({ message, isLast, onRetry, onOpenCitation
     <div className="flex items-start gap-3.5 max-[600px]:gap-2.5" data-testid="msg-assistant">
       <Seal size={30} className="mt-0.5" />
       <div className="min-w-0 flex-1">
-        {message.state === "pending" && <Pending />}
+        {message.state === "pending" && <>
+          {message.content && <p className="whitespace-pre-wrap text-[15.5px] leading-[1.7]" data-testid="answer-delta">{message.content}</p>}
+          <Pending />
+        </>}
         {message.state === "failed" && message.failure && (
           <Notice
             variant="error"

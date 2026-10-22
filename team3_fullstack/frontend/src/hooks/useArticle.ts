@@ -1,5 +1,5 @@
 // Tải nguyên văn một điều luật theo ID, phân biệt đang tải / có dữ liệu / không tìm thấy / lỗi.
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { ApiError } from "../api/client";
 import { getArticle } from "../api/documentApi";
 import type { ArticleResponse } from "../types";
@@ -13,14 +13,18 @@ export type ArticleState =
 export function useArticle(documentId: string, articleId: string) {
   const [state, setState] = useState<ArticleState>({ status: "loading" });
   const [attempt, setAttempt] = useState(0);
+  const key = `${documentId}/${articleId}`;
+  const selected = useRef(key); selected.current = key;
+  const [loadedFor, setLoadedFor] = useState(key);
 
   useEffect(() => {
     const controller = new AbortController();
     setState({ status: "loading" });
+    setLoadedFor(key);
     getArticle(documentId, articleId, controller.signal)
-      .then((article) => setState({ status: "ready", article }))
+      .then((article) => { if (!controller.signal.aborted && selected.current === key) setState({ status: "ready", article }); })
       .catch((error) => {
-        if (controller.signal.aborted) return;
+        if (controller.signal.aborted || selected.current !== key) return;
         if (error instanceof ApiError && (error.code === "DOCUMENT_NOT_FOUND" || error.code === "ARTICLE_NOT_FOUND")) {
           setState({ status: "not_found", message: error.message });
         } else if (error instanceof ApiError) {
@@ -30,7 +34,7 @@ export function useArticle(documentId: string, articleId: string) {
         }
       });
     return () => controller.abort();
-  }, [documentId, articleId, attempt]);
+  }, [documentId, articleId, attempt, key]);
 
-  return { state, retry: useCallback(() => setAttempt((n) => n + 1), []) };
+  return { state: loadedFor === key ? state : { status: "loading" } as ArticleState, retry: useCallback(() => setAttempt((n) => n + 1), []) };
 }

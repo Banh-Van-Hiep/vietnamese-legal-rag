@@ -51,7 +51,7 @@ export default function ChatPage() {
           >
             <p>
               {chat.loadError.notFound
-                ? "Hội thoại này đã bị xóa hoặc không còn trên máy chủ (dữ liệu thử nghiệm sẽ mất khi backend khởi động lại)."
+                ? "Hội thoại này đã bị xóa hoặc không còn trên máy chủ."
                 : chat.loadError.message}
             </p>
           </Notice>
@@ -65,6 +65,17 @@ export default function ChatPage() {
             onRetry={chat.retry}
             onOpenCitation={setOpenCitation}
           />
+          {chat.receiving && (
+            <div className="flex justify-center py-2">
+              <button className={noticeActionClass} type="button" onClick={chat.stopReceiving}>Dừng nhận</button>
+            </div>
+          )}
+          {chat.sending && !chat.receiving && chat.messages.some((m) => m.state === "pending") && (
+            <div className="px-6 py-2 text-center text-[13.5px] text-muted" role="status">
+              Lượt hỏi đang được xử lý trên máy chủ.{" "}
+              <button className={noticeActionClass} type="button" onClick={chat.reload}>Tải lại trạng thái</button>
+            </div>
+          )}
           <ChatInput onSend={chat.send} sending={chat.sending} />
         </>
       )}
