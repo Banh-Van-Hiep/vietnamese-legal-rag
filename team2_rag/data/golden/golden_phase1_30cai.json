@@ -451,5 +451,125 @@
     "citation": "Khoản 1, 2 Điều 60 - Nghị định 168/2025/NĐ-CP; khoản 5, 7 Điều 2 - Nghị định 288/2026/NĐ-CP",
     "category": "Tạm ngừng kinh doanh",
     "author": "Hậu"
+  },
+  {
+    "id": "gold_031",
+    "question": "Nếu Điều lệ không quy định khác, tổ chức sở hữu ít nhất 35% vốn điều lệ của công ty TNHH hai thành viên trở lên được cử tối đa bao nhiêu người đại diện theo ủy quyền?",
+    "expected_status": "answered",
+    "ground_truth": "Tổ chức là thành viên sở hữu ít nhất 35% vốn điều lệ được ủy quyền tối đa 3 người đại diện, nếu Điều lệ công ty không có quy định khác.",
+    "gold_chunk_ids": [
+      "vbhn-67-vbhn-vpqh-v1__dieu-14__k2__0"
+    ],
+    "citation": "Khoản 2 Điều 14 - Luật Doanh nghiệp, Văn bản hợp nhất 67/VBHN-VPQH ngày 15/08/2025",
+    "category": "Đại diện theo ủy quyền",
+    "author": "Đỗ Đức Đạt"
+  },
+  {
+    "id": "gold_032",
+    "question": "Văn bản cử người đại diện theo ủy quyền của thành viên là tổ chức có hiệu lực đối với công ty từ lúc ký hay từ lúc công ty nhận được?",
+    "expected_status": "answered",
+    "ground_truth": "Văn bản cử người đại diện theo ủy quyền phải được thông báo cho công ty và chỉ có hiệu lực đối với công ty kể từ ngày công ty nhận được văn bản.",
+    "gold_chunk_ids": [
+      "vbhn-67-vbhn-vpqh-v1__dieu-14__k4__0"
+    ],
+    "citation": "Khoản 4 Điều 14 - Luật Doanh nghiệp, Văn bản hợp nhất 67/VBHN-VPQH ngày 15/08/2025",
+    "category": "Đại diện theo ủy quyền",
+    "author": "Đỗ Đức Đạt"
+  },
+  {
+    "id": "gold_033",
+    "question": "Tài sản góp vốn không phải Đồng Việt Nam, ngoại tệ tự do chuyển đổi hoặc vàng phải được định giá thế nào?",
+    "expected_status": "answered",
+    "ground_truth": "Tài sản đó phải được các thành viên, cổ đông sáng lập hoặc tổ chức thẩm định giá định giá và được thể hiện thành Đồng Việt Nam.",
+    "gold_chunk_ids": [
+      "vbhn-67-vbhn-vpqh-v1__dieu-36__k1__0"
+    ],
+    "citation": "Khoản 1 Điều 36 - Luật Doanh nghiệp, Văn bản hợp nhất 67/VBHN-VPQH ngày 15/08/2025",
+    "category": "Tài sản góp vốn",
+    "author": "Đỗ Đức Đạt"
+  },
+  {
+    "id": "gold_034",
+    "question": "Dấu của doanh nghiệp có thể tồn tại dưới hình thức chữ ký số hay bắt buộc là dấu khắc?",
+    "expected_status": "answered",
+    "ground_truth": "Dấu bao gồm dấu được làm tại cơ sở khắc dấu hoặc dấu dưới hình thức chữ ký số theo quy định của pháp luật về giao dịch điện tử.",
+    "gold_chunk_ids": [
+      "vbhn-67-vbhn-vpqh-v1__dieu-43__k1__0"
+    ],
+    "citation": "Khoản 1 Điều 43 - Luật Doanh nghiệp, Văn bản hợp nhất 67/VBHN-VPQH ngày 15/08/2025",
+    "category": "Dấu doanh nghiệp",
+    "author": "Đỗ Đức Đạt"
+  },
+  {
+    "id": "gold_035",
+    "question": "Công ty TNHH một thành viên muốn hoàn trả một phần vốn góp để giảm vốn điều lệ thì phải đáp ứng điều kiện nào?",
+    "expected_status": "answered",
+    "ground_truth": "Công ty phải hoạt động kinh doanh liên tục từ 2 năm trở lên kể từ ngày đăng ký thành lập doanh nghiệp và bảo đảm thanh toán đủ các khoản nợ, nghĩa vụ tài sản khác sau khi hoàn trả phần vốn góp cho chủ sở hữu.",
+    "gold_chunk_ids": [
+      "vbhn-67-vbhn-vpqh-v1__dieu-87__k3__0"
+    ],
+    "citation": "Khoản 3 Điều 87 - Luật Doanh nghiệp, Văn bản hợp nhất 67/VBHN-VPQH ngày 15/08/2025",
+    "category": "Giảm vốn điều lệ",
+    "author": "Đỗ Đức Đạt"
+  },
+  {
+    "id": "gold_036",
+    "question": "Công ty cổ phần có bắt buộc phải có cổ phần phổ thông không và người sở hữu loại cổ phần này được gọi là gì?",
+    "expected_status": "answered",
+    "ground_truth": "Công ty cổ phần phải có cổ phần phổ thông. Người sở hữu cổ phần phổ thông là cổ đông phổ thông.",
+    "gold_chunk_ids": [
+      "vbhn-67-vbhn-vpqh-v1__dieu-114__k1__0"
+    ],
+    "citation": "Khoản 1 Điều 114 - Luật Doanh nghiệp, Văn bản hợp nhất 67/VBHN-VPQH ngày 15/08/2025",
+    "category": "Các loại cổ phần",
+    "author": "Đỗ Đức Đạt"
+  },
+  {
+    "id": "gold_037",
+    "question": "Cổ tức cố định của cổ phần ưu đãi cổ tức có phụ thuộc vào kết quả kinh doanh của công ty không?",
+    "expected_status": "answered",
+    "ground_truth": "Cổ tức cố định không phụ thuộc vào kết quả kinh doanh của công ty. Mức cổ tức cố định cụ thể và phương thức xác định cổ tức thưởng được ghi rõ trong cổ phiếu của cổ phần ưu đãi cổ tức.",
+    "gold_chunk_ids": [
+      "vbhn-67-vbhn-vpqh-v1__dieu-117__k1__0"
+    ],
+    "citation": "Khoản 1 Điều 117 - Luật Doanh nghiệp, Văn bản hợp nhất 67/VBHN-VPQH ngày 15/08/2025",
+    "category": "Cổ phần ưu đãi cổ tức",
+    "author": "Đỗ Đức Đạt"
+  },
+  {
+    "id": "gold_038",
+    "question": "Khi đăng ký thành lập doanh nghiệp, các cổ đông sáng lập phải cùng đăng ký mua tối thiểu bao nhiêu phần trăm cổ phần phổ thông được quyền chào bán?",
+    "expected_status": "answered",
+    "ground_truth": "Các cổ đông sáng lập phải cùng nhau đăng ký mua ít nhất 20% tổng số cổ phần phổ thông được quyền chào bán khi đăng ký thành lập doanh nghiệp.",
+    "gold_chunk_ids": [
+      "vbhn-67-vbhn-vpqh-v1__dieu-120__k2__0"
+    ],
+    "citation": "Khoản 2 Điều 120 - Luật Doanh nghiệp, Văn bản hợp nhất 67/VBHN-VPQH ngày 15/08/2025",
+    "category": "Cổ đông sáng lập",
+    "author": "Đỗ Đức Đạt"
+  },
+  {
+    "id": "gold_039",
+    "question": "Công ty cổ phần có thể trả cổ tức bằng tài sản khác ngoài tiền mặt không? Nếu trả bằng tiền mặt thì dùng đồng tiền nào?",
+    "expected_status": "answered",
+    "ground_truth": "Cổ tức có thể được chi trả bằng tiền mặt, bằng cổ phần của công ty hoặc bằng tài sản khác quy định tại Điều lệ công ty. Nếu chi trả bằng tiền mặt thì phải thực hiện bằng Đồng Việt Nam và theo các phương thức thanh toán theo quy định của pháp luật.",
+    "gold_chunk_ids": [
+      "vbhn-67-vbhn-vpqh-v1__dieu-135__k3__0"
+    ],
+    "citation": "Khoản 3 Điều 135 - Luật Doanh nghiệp, Văn bản hợp nhất 67/VBHN-VPQH ngày 15/08/2025",
+    "category": "Chi trả cổ tức",
+    "author": "Đỗ Đức Đạt"
+  },
+  {
+    "id": "gold_040",
+    "question": "Cổ đông chuyển nhượng cổ phần sau khi chốt danh sách nhận cổ tức nhưng trước ngày trả cổ tức thì ai nhận cổ tức từ công ty?",
+    "expected_status": "answered",
+    "ground_truth": "Trong trường hợp chuyển nhượng giữa thời điểm kết thúc lập danh sách cổ đông và thời điểm trả cổ tức, người chuyển nhượng là người nhận cổ tức từ công ty.",
+    "gold_chunk_ids": [
+      "vbhn-67-vbhn-vpqh-v1__dieu-135__k5__0"
+    ],
+    "citation": "Khoản 5 Điều 135 - Luật Doanh nghiệp, Văn bản hợp nhất 67/VBHN-VPQH ngày 15/08/2025",
+    "category": "Chi trả cổ tức",
+    "author": "Đỗ Đức Đạt"
   }
 ]
