@@ -77,11 +77,17 @@ public class ChatStore {
         Instant now = Instant.now().truncatedTo(java.time.temporal.ChronoUnit.MICROS);
         jdbc.update("INSERT INTO chat_receipts(client_request_id,fingerprint,state,created_at) VALUES(?,?,'pending',?)",
                 input.clientRequestId(), hash(input.question()), Timestamp.from(now));
-        long conversation = input.conversationId() == null ? createInTransaction("Hội thoại mới", now).id() : input.conversationId();
+        long conversation = input.conversationId() == null ? createInTransaction(questionTitle(input.question()), now).id() : input.conversationId();
         lock(conversation);
         checkBusy(conversation);
         int sequence = jdbc.queryForObject("SELECT COALESCE(MAX(sequence_no),0)+1 FROM chat_messages WHERE conversation_id=?",
                 Integer.class, conversation);
+        // An explicitly created, empty conversation may still have the default title.
+        // Set it only for its first accepted turn; preserve custom titles and all later turns.
+        if (sequence == 1) {
+            jdbc.update("UPDATE chat_conversations SET title=? WHERE id=? AND title=?",
+                    questionTitle(input.question()), conversation, "Hội thoại mới");
+        }
         long user = insert("INSERT INTO chat_messages(conversation_id,client_request_id,sequence_no,role,state,content,created_at)"
                 + " VALUES(?,?,?,'user','completed',?,?)", conversation, input.clientRequestId(), sequence, input.question(), Timestamp.from(now));
         long assistant = insert("INSERT INTO chat_messages(conversation_id,client_request_id,sequence_no,role,state,created_at,pending_conversation_id)"
@@ -147,6 +153,12 @@ public class ChatStore {
     }
     public Conversation create(String title) {
         return tx.execute(s -> createInTransaction(title, Instant.now().truncatedTo(java.time.temporal.ChronoUnit.MICROS)));
+    }
+    private static String questionTitle(String question) {
+        String text = question.replaceAll("(?U)\\s+", " ").strip();
+        if (text.isEmpty()) { return "Hội thoại mới"; }
+        int count = text.codePointCount(0, text.length());
+        return text.substring(0, text.offsetByCodePoints(0, Math.min(count, 100))).stripTrailing();
     }
     private Conversation createInTransaction(String title, Instant now) {
         return new Conversation(insert("INSERT INTO chat_conversations(title,created_at,updated_at) VALUES(?,?,?)",

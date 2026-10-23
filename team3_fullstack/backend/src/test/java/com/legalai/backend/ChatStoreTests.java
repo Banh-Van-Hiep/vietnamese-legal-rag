@@ -38,6 +38,49 @@ class ChatStoreTests {
         return new DriverManagerDataSource("jdbc:h2:mem:" + UUID.randomUUID() + ";MODE=PostgreSQL;DB_CLOSE_DELAY=-1", "sa", "");
     }
     private Request request(Long conv) { return new Request("Câu hỏi", UUID.randomUUID(), conv); }
+    @Test void firstQuestionTitleIsBoundedUnicodeAndSurvivesReplayFollowupAndReload() {
+        String firstQuestion = "\u00a0Điều kiện\n  thành lập doanh nghiệp " + "😀".repeat(100);
+        String normalized = "Điều kiện thành lập doanh nghiệp " + "😀".repeat(100);
+        String expected = normalized.substring(0, normalized.offsetByCodePoints(0, 100));
+        var input = new Request(firstQuestion, UUID.randomUUID(), null);
+        var turn = store.accept(input);
+        long id = turn.meta().conversationId();
+        assertEquals(expected, store.conversation(id).title());
+        assertEquals(100, expected.codePointCount(0, expected.length()));
+        assertEquals(firstQuestion, store.messages(id).getFirst().content());
+        store.complete(turn, answer);
+        store.accept(input); // Replay must not change the title or duplicate the turn.
+        var followup = store.accept(new Request("Câu hỏi tiếp theo", UUID.randomUUID(), id));
+        store.complete(followup, answer);
+        var fresh = new ChatStore(jdbc, new DataSourceTransactionManager(source));
+        assertEquals(expected, fresh.conversation(id).title());
+        assertEquals(expected, fresh.conversations().stream().filter(c -> c.id() == id).findFirst().orElseThrow().title());
+        assertEquals(4, fresh.messages(id).size());
+    }
+    @Test void emptyDefaultConversationTakesFirstAcceptedQuestionEvenIfRagFails() {
+        long id = store.create("Hội thoại mới").id();
+        var input = new Request("Cần bao nhiêu vốn?", UUID.randomUUID(), id);
+        var turn = store.accept(input);
+        store.fail(turn, new ApiException(503, "SERVICE_UNAVAILABLE", "Tạm thời không sẵn sàng.", true));
+        assertCode("SERVICE_UNAVAILABLE", () -> store.accept(input));
+        var retry = store.accept(new Request("Câu hỏi khác", UUID.randomUUID(), id));
+        store.complete(retry, answer);
+        assertEquals("Cần bao nhiêu vốn?", store.conversation(id).title());
+    }
+    @Test void customAndExistingNonemptyTitlesArePreserved() {
+        long custom = store.create("Thủ tục doanh nghiệp").id();
+        store.complete(store.accept(request(custom)), answer);
+        assertEquals("Thủ tục doanh nghiệp", store.conversation(custom).title());
+        var oldTurn = store.accept(request(null));
+        long existing = oldTurn.meta().conversationId();
+        store.complete(oldTurn, answer);
+        // Simulate a conversation saved before the title decision; no automatic migration.
+        jdbc.update("UPDATE chat_conversations SET title='Hội thoại mới' WHERE id=?", existing);
+        store.complete(store.accept(request(existing)), answer);
+        assertEquals("Hội thoại mới", store.conversation(existing).title());
+        var whitespace = store.accept(new Request("\u00a0", UUID.randomUUID(), null));
+        assertEquals("Hội thoại mới", store.conversation(whitespace.meta().conversationId()).title());
+    }
     @Test void persistsPairReplaysWithAnotherRepositoryAndStableTimestamp() {
         var request = request(null);
         var turn = store.accept(request);

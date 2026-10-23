@@ -95,6 +95,9 @@ Người dùng chọn một hội thoại hoặc mở citation và nhận dữ l
 - **FR-007**: Parser/state phải xử lý meta/delta/complete/error, frame/UTF-8 bị chia,
   đúng một terminal và replay theo Docs v2.0 §9.4–9.7; lấy answer/citation chuẩn từ
   complete. Dừng nhận stream không được báo là đã hủy AI hoặc tự gửi lượt mới.
+- **FR-008**: Theo quyết định W4-Q2 bên dưới, hội thoại tạo từ chat lấy câu hỏi đầu
+  làm title; lưu ở Backend và hiển thị nhất quán trên sidebar/header sau reload.
+  Câu hỏi tiếp theo/retry không đổi title; tên đặt riêng được giữ nguyên.
 
 ### Key Entities *(include if feature involves data)*
 
@@ -166,3 +169,21 @@ Hiện có `src/api/chatApi.ts`, `client.ts`, `conversationApi.ts`, `documentApi
   đang dùng string/snake_case. View model không phải wire contract và không gửi ra network.
 - API Viewer v2.0 chưa đăng ký trong rag: bổ sung proxy/mapping tối thiểu đúng Docs §9.11–12
   để kiểm chứng request mở nguồn; không thiết kế lại Viewer hoặc làm thay VLRA-43.
+
+### W4-Q2 — tiêu đề hội thoại (2026-10-23)
+
+- **Khác nguồn:** Docs v2.0 §9.2 quy định POST conversation `{}` dùng “Hội thoại mới”,
+  không tự đổi title theo câu hỏi. Đây là quy định gốc trước quyết định này, không phải lỗi code.
+- **Người dùng đã xác nhận:** “Cho phép lấy câu hỏi đầu làm tiêu đề; ghi rõ quyết định
+  thay đổi so với v2.0.” Không chỉnh Google Docs/Jira thay người dùng.
+- **Áp dụng:** tạo conversation trong chat dùng câu hỏi đầu đã nhận hợp lệ, gộp các
+  khoảng trắng thành một dấu cách, lấy tối đa 100 code point, bỏ khoảng trắng cuối.
+  Nếu chuỗi sau chuẩn hóa rỗng thì giữ “Hội thoại mới”, không lưu title rỗng.
+  Lưu cùng transaction nhận lượt, không gọi LLM để đặt tên và không sửa nội dung câu hỏi.
+- POST conversation `{}` vẫn trả tên mặc định khi chưa có tin nhắn; lượt đầu đổi tên
+  mặc định của conversation rỗng. Title đặt riêng giữ nguyên. Lượt đầu thất bại sau
+  khi đã nhận vẫn xác định title; follow-up/replay không đổi lại.
+- **Không đổi wire:** endpoint, fields, SSE/IDs và giới hạn title 1–100 giữ nguyên.
+  Chỉ đổi giá trị title theo quyết định trên; không sửa contract liên Team1/2.
+- Không tự backfill database đang triển khai. Với database preview local riêng, có thể
+  cập nhật tên mặc định từ tin nhắn đầu để người dùng xem ngay; ghi kết quả vào verification.

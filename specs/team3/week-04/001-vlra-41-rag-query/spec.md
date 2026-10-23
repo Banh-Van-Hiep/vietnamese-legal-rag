@@ -167,3 +167,6 @@ trong [Clarifications](#clarifications); phụ thuộc live nằm trong mục n�
 
 - Q: VLRA-41 dùng route Jira cũ hay Docs v2.0? → A: Người dùng: “làm theo đặc tả v2.0 nhé bây giờ hãy triển khai task 41”. Áp dụng SSE public, JSON nội bộ; chưa cập nhật Jira.
 - Tái kiểm tra origin/develop sau git fetch ngày 23/10: 3d64c4d38b93f11ac321623159f74e5202d1e953. HttpAiClient rỗng, Python service.query vẫn mock, không thấy HTTP server. Không sửa implementation Team 2 thay họ.
+- Bổ sung W4-Q2 cùng ngày: người dùng cho phép lấy câu hỏi đầu làm title, thay quy tắc
+  không tự đổi title của Docs v2.0 §9.2. Endpoint/schema/ID/SSE không đổi; xem
+  [quyết định và kiểm chứng VLRA-42](../002-vlra-42-fe-be-integration/spec.md#w4-q2--tiêu-đề-hội-thoại-2026-10-23).

@@ -84,6 +84,12 @@ và dừng đúng PostgreSQL cluster test nếu bạn đã tạo riêng.
 
 ## Live và rollback
 
+**Bổ sung W4-Q2 (23/10):** người dùng cho phép lấy câu hỏi đầu làm title, thay quy tắc
+không tự đổi title của Docs v2.0 §9.2; quyết định chi tiết trong spec.md. Bấm Câu hỏi mới,
+gửi câu đầu → sidebar/header hiển thị câu đầu (tối đa 100 code point). Hỏi tiếp và reload
+→ giữ title đó. Không dùng LLM đặt tên; tên custom giữ nguyên. Các hội thoại cũ không
+tự đổi hàng loạt; chỉ database preview local đã được cập nhật riêng theo verification.md.
+
 Khi Team2 bàn giao, giữ public contract và đổi RAG_BASE_URL sang service thật; cấu hình
 retrieval/model/key bên Team2. Chạy lại AC41/44; VITE_MOCK_MODE=false chỉ khi dữ liệu
 đã là thật. T014 live vẫn mở; xem [verification.md](verification.md).

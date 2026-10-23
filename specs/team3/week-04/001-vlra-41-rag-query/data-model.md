@@ -1,6 +1,8 @@
 # Data model — chat v2.0
 
 - Conversation: BIGINT identity id, title 1–100 code point, createdAt/updatedAt UTC.
+  Quyết định W4-Q2 ngày 23/10 thay quy tắc title mặc định theo câu hỏi đầu;
+  xem [quyết định và giới hạn](../002-vlra-42-fe-be-integration/spec.md#w4-q2--tiêu-đề-hội-thoại-2026-10-23).
 - Message: BIGINT identity id (JS safe), conversationId FK cascade, clientRequestId UUID,
   sequenceNo ≥1 unique/conv, role user/assistant, state pending/completed/failed,
   content/answerStatus/errorCode nullable theo state, createdAt immutable.

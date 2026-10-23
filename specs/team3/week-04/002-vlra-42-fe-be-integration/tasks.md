@@ -31,6 +31,7 @@ không push hoặc sửa Team2. Checklist chất lượng16/16 đạt, không c�
 
 - [x] T013 Cập nhật spec/tasks/quickstart/verification/analysis feature này, `frontend/README.md`, `.env.example`; ghi hashes commit1–3 và thứ tự revert; commit4 tài liệu riêng VLRA42.
 - [ ] T014 Khi Team2 bàn giao service, xác minh lại cấu hình và chạy live RAG/UI trong VLRA41/44; hiện để mở, không tạo Python service thay họ.
+- [x] T015 Theo W4-Q2, cập nhật `backend/.../conversation/persistence/ChatStore.java`, thêm ca title trong `backend/.../ChatStoreTests.java` (chạy cả PostgreSQL), bổ sung assertion sidebar/header/reload trong `frontend/tests/browser/vlra42-smoke.mjs`; package44/44 và browser11/11 PASS, cập nhật verification; bàn giao trong một commit riêng. Độc lập T014; không backfill database khác.
 
 Thứ tự T001→T002→T003→T004→T005→T006→T007→T008→T009→T010→T011→T012→T013.
 T014 là dependency live ngoài nghiệm thu cơ chế42. Không gắn[P] do cùng modules/API tests

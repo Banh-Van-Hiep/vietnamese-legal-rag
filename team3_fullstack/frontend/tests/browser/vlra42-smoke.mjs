@@ -68,6 +68,8 @@ try {
   await caseRun("answered + follow-up/history + original source",async()=>{
     await navigate();const q=`Answered smoke ${suffix}`;await ask(q);await answered(q);
     firstConv=await evaluate("location.pathname.split('/').pop()");assert.match(firstConv,/^[1-9][0-9]*$/);
+    await until(`document.querySelector('h1')?.textContent===${JSON.stringify(q)}`);
+    await until(`Array.from(document.querySelectorAll('aside a')).some(a=>a.getAttribute('href')==='/c/'+${JSON.stringify(firstConv)}&&a.textContent.includes(${JSON.stringify(q)}))`);
     assert.equal((await calls(q)).length,1);assert.equal((await calls(q))[0].history.length,0);
     assert.equal(await evaluate("!!document.querySelector('[data-testid=mock-badge]')"),true);
     await evaluate("document.querySelector('[data-testid=cite-ref]').click()");
@@ -75,10 +77,12 @@ try {
     assert.match(await evaluate("document.querySelector('[data-testid=article-content]').textContent"),/Nguyên văn đầy đủ/);
     await evaluate("document.querySelector('button[aria-label=Đóng]').click()");
     const q2=`Follow-up smoke ${suffix}`;await ask(q2);await answered(q2);assert.equal((await calls(q2))[0].history.length,2);
+    assert.equal(await evaluate("document.querySelector('h1').textContent"),q);
   });
   await caseRun("reload history without calling RAG again",async()=>{
     const before=(await (await fetch(`${stub}/__test/state`)).json()).calls.length;
     await navigate(`/c/${firstConv}`);await answered(`Follow-up smoke ${suffix}`);
+    await until(`document.querySelector('h1')?.textContent===${JSON.stringify(`Answered smoke ${suffix}`)}`);
     assert.equal((await (await fetch(`${stub}/__test/state`)).json()).calls.length,before);
   });
   await caseRun("insufficient context is separate from service errors",async()=>{

@@ -48,3 +48,15 @@ Browser Edge riêng qua DevTools Protocol có sẵn, Node builtin WebSocket; kh�
 công cụ E2E runtime. Chạy Vite + Java rag + PostgreSQL riêng + HTTP stub (không Python
 service giả production), kiểm success/insufficient/error/retry/reload/switch/source/CORS.
 Live pipeline của Team2/AC VLRA44 giữ mở.
+
+## Bổ sung W4-Q2 — tiêu đề từ câu hỏi đầu
+
+Quyết định người dùng trong spec thay quy định không tự đổi title tại Docs v2.0 §9.2.
+Sửa `backend/.../conversation/persistence/ChatStore.java` trong transaction accept có
+khóa conversation: tạo title từ câu đầu, chỉ đổi default khi sequence đầu tiên, giữ
+title custom/follow-up/replay. Giới hạn 100 code point; không thêm API/dependency/LLM.
+Tận dụng `ChatStoreTests` (kế thừa trên PostgreSQL) để kiểm Unicode, persistence, retry,
+failure và tên custom/cũ; mở rộng assertion B01/B02 của browser harness hiện có.
+Build/package bằng Maven Wrapper, chạy lại browser với Java mới; ghi evidence và tạo
+một commit riêng sau khi pass. Dữ liệu preview local được xử lý riêng, không có migration
+ngầm cho database khác. T014 live không phụ thuộc thay đổi title và vẫn mở.

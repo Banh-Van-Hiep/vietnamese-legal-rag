@@ -101,3 +101,37 @@ hoặc force push. Revert3 khôi phục main UI JSON v1.2; lúc đó cần backe
   UUID sau reload trước meta; hạn chế này được ghi rõ, không tự lưu question vĩnh viễn.
 - Trang /try-backend là công cụ JSON v1.2 lịch sử, dùng profile mock riêng; không là
   main chat v2.0 hoặc bằng chứng RAG thật.
+
+## Bổ sung W4-Q2 — tiêu đề từ câu hỏi đầu (23/10/2026)
+
+Quyết định người dùng tại spec.md thay quy định không tự đổi title theo câu hỏi của
+Docs v2.0 §9.2. `ChatStore` lưu title từ câu đầu trong transaction accept, chuẩn hóa
+khoảng trắng/Unicode, tối đa 100 code point. Giữ title khi hỏi tiếp/replay/lỗi/reload,
+giữ tên custom; conversation rỗng chưa hỏi vẫn dùng tên mặc định. Không thêm LLM/API.
+
+- Ba ca mới trong `ChatStoreTests`, chạy lại cả H2 và PostgreSQL: Unicode/100codepoint,
+  reload/replay/follow-up, default conversation rỗng, failed/retry, custom và dữ liệu cũ.
+- Full suite ban đầu: **125/125 PASS**, nhưng package thất bại tại repackage vì backend
+  preview đang giữ JAR trên Windows. Đây không phải build thành công.
+- Sau khi dừng đúng preview và bổ sung guard title rỗng sau chuẩn hóa Unicode: chạy
+  `mvnw.cmd -B -ntp -Dtest=ChatStoreTests,PostgresChatStoreTests,StreamApiTests
+  -Dtest.postgres.url=jdbc:postgresql://127.0.0.1:55442/postgres -Dtest.postgres.user=vlra42 package`
+  với JAVA_HOME trỏ JDK25: **44/44 PASS,0skip, BUILD SUCCESS** (16H2+16PG+12HTTP).
+  Không tuyên bố full125 được chạy lại sau guard cuối; các ca liên quan đã chạy đủ.
+- Khởi động lại Java từ JAR mới và chạy `node tests/browser/vlra42-smoke.mjs` với
+  `EVIDENCE_DIR=../backend/target/vlra42-title-browser`: **11/11 PASS,0JS exception**.
+  B01 xác minh title trên sidebar/header theo câu đầu và giữ sau follow-up; B02 xác
+  minh title sau reload. Các ca source/retry/abort/pending/CORS vẫn đạt.
+- Không đổi code FE/dependency nên không chạy lại npm build/unit cho thay đổi này;
+  browser kiểm tra cùng bundle dev đã build/kiểm chứng ở baseline trên.
+- Chỉ database preview `legal_rag_preview` ở cluster riêng127.0.0.1:55442 đã được cập
+  nhật **4** title mặc định từ tin nhắn user sequence1. Không đổi timestamps/messages,
+  không áp migration lên database khác. Dọn riêng hội thoại do browser test tạo qua
+  request UUID của chính bài test; giữ các hội thoại có sẵn.
+- Preview tiếp tục chạy FE15173/Java18043/fixture18042 cho người dùng. Edge headless
+  kiểm thử đã dừng; dữ liệu trả lời vẫn là HTTP fixture, T014 live tiếp tục mở.
+
+Evidence ignored: `backend/target/vlra42-title-{package,repackage}.log`,
+`target/vlra42-title-browser/{results.json,browser.png}`, surefire reports và
+`target/vlra42-preview/update-preview-titles.sql`. Lần này không sửa Google Docs/Jira,
+Team1/Team2/shared contracts hoặc gom những thay đổi docs chung đang có.
