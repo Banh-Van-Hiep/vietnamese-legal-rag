@@ -23,13 +23,17 @@ OUT = ROOT / "processed" / "chunks.jsonl"
 
 RE_CHAPTER = re.compile(r"^(Chương|CHƯƠNG)\s+([IVXLCDM]+)\b\.?\s*(.*)$")
 RE_SECTION = re.compile(r"^(Mục|MỤC)\s+(\d+)\b\.?\s*(.*)$")
-RE_ARTICLE = re.compile(r"^Điều\s+(\d+[a-z]?)\.\s*(.*)$")
+RE_ARTICLE = re.compile(r"^Điều\s+(\d+[a-z]?)[.:]\s*(.*)$")  # một số bản gốc ghi "Điều 122:"
 RE_CLAUSE = re.compile(r"^(\d{1,2}[a-z]?)\.\s+(\S.*)$")
 RE_FOOTNOTE = re.compile(r"^\[\d+\]\s+")
 RE_STOP = re.compile(
     r"^(CHỦ TỊCH|CHỦ NHIỆM|BỘ TRƯỞNG|TM\. CHÍNH PHỦ|KT\. THỦ TƯỚNG|PHÓ THỦ TƯỚNG)\b"
     r"|^Luật này được Quốc hội\b"
     r"|^Nghị định này được Chính phủ\b"
+    # Khối chữ ký thừa lệnh/ký thay/thay mặt của thông tư, nghị định ("KT. BỘ TRƯỞNG", "TM. ỦY BAN…").
+    r"|^(KT|TM|TL|Q)\.\s"
+    # Tiêu đề phụ lục (chữ hoa) mở đầu biểu mẫu, điều lệ mẫu sau phần quy phạm.
+    r"|^PHỤ LỤC\b"
 )
 RE_CHUNK_ID = re.compile(r"^[A-Za-z0-9_-]+$")
 
@@ -226,6 +230,7 @@ class Parser:
         self.article = None
         self.chunks = []
         self.stopped = False
+        self.seen_articles = 0
 
     def feed(self, line: str) -> None:
         if self.stopped:
@@ -270,6 +275,13 @@ class Parser:
 
         article = RE_ARTICLE.match(line)
         if article:
+            # Số Điều quay lại 1 sau khi đã có Điều khác: đó là mẫu quyết định/điều lệ mẫu trong phụ lục,
+            # không phải phần quy phạm của văn bản. Dừng để không sinh chunk_id trùng.
+            if article.group(1) == "1" and self.seen_articles:
+                self.flush_article()
+                self.stopped = True
+                return
+            self.seen_articles += 1
             self.flush_article()
             self.article = {
                 "num": article.group(1),

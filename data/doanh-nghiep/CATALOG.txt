@@ -76,3 +76,33 @@ Làm sạch áp dụng lúc sinh chunk (chunk_documents.py, file text giữ nguy
    kèm ghi chú thiếu nội dung; muốn đủ thì phải thu lại văn bản này.
 
 scripts/validate_chunks.py kiểm lại cả hai bước sau mỗi lần sinh chunk.
+
+----------------------------------------------------------------------
+Đợt thử mở rộng phạm vi (24/10/2026) — 20 văn bản, nguồn Hugging Face
+----------------------------------------------------------------------
+
+Lý do đổi nguồn: cổng vbpl.vn mới (Next.js) chỉ trả toàn văn sau Google reCAPTCHA,
+nên không tải tự động. Dùng bộ dữ liệu th1nhng0/vietnamese-legal-documents (thu từ
+vbpl.vn, CC BY 4.0), revision 8977887f17be2defae4c5171d55562e1cde7d695.
+Script: scripts/fetch_hf_legal_docs.py; danh mục: sources/pilot_30.csv;
+kết quả từng dòng: sources/pilot_30_report.csv; hướng dẫn: sources/README.md.
+
+Tiêu chí: văn bản trung ương, trạng thái theo bộ dữ liệu là "Còn hiệu lực" hoặc
+"Hết hiệu lực một phần"; ưu tiên P0 theo Docs v2.0 §1.4 (18 P0 / 12 P1 trong danh mục).
+Lấy được 20/30. Bỏ qua 10: 9 văn bản bộ dữ liệu ghi "Hết hiệu lực toàn bộ"
+(56/2024/QH15, 153/2020/NĐ-CP, 159/2020/NĐ-CP, 126/2017/NĐ-CP, 61/2020/QH14,
+31/2021/NĐ-CP, 41/2024/QH15, 51/2014/QH13) và Luật Thương mại 36/2005/QH11 chỉ có
+"Bản dịch văn bản"; Luật Quản lý thuế 38/2019/QH14 có toàn văn rỗng. Cần thay bằng
+văn bản đang có hiệu lực ở đợt sau.
+
+Lưu ý cho Team 1:
+- source_url mới có dạng https://vbpl.vn/van-ban/chi-tiet/{vbpl_id}. Các link cũ
+  vbpq-toanvan.aspx?ItemID=... của 8 văn bản đầu hiện chuyển về trang chủ; ItemID cũ
+  vẫn dùng được làm id, ví dụ https://vbpl.vn/van-ban/chi-tiet/142881.
+- Trạng thái hiệu lực lấy từ bộ dữ liệu (snapshot đến 23/07/2026), chưa xác minh lại
+  trên vbpl.vn; nhiều văn bản "Hết hiệu lực một phần" cần đối chiếu đơn vị bị sửa.
+- Chưa có VBHN tương ứng cho các luật đã sửa; phần sửa đổi sau gốc chưa được hợp nhất.
+- chunk_documents.py dừng thêm ở khối chữ ký "KT./TM./TL./Q.", tiêu đề "PHỤ LỤC" và
+  khi số Điều quay về 1 (mẫu quyết định, điều lệ mẫu trong phụ lục); nhận "Điều N:".
+  8 văn bản cũ cho ra chunks.jsonl không đổi.
+- 49 chunk mới dài hơn 512 token (khoản dài, chưa tách); 8 văn bản cũ có 11 chunk như vậy.
