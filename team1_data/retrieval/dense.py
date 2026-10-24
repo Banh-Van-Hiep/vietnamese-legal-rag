@@ -179,21 +179,51 @@ class DenseRetriever:
         self.embeddings = None
         return self
 
-    def retrieve(self, question: str, top_k: int = 20) -> dict:
-        """Trả {question, results}; dense luôn có hàng xóm gần nhất nên không tự cắt theo ngưỡng cosine."""
-        question = validate_query(question, top_k)
+    def _search(self, question: str, limit: int = 100) -> list[dict]:
+        """Lấy danh sách candidate Dense cho Hybrid RRF."""
+        if isinstance(limit, bool) or not isinstance(limit, int) or not 1 <= limit <= 100:
+            raise ValueError("limit must be an integer from 1 to 100")
+
+        question = validate_query(question, min(limit, 50))
         vector = l2_normalize(self.embedder.embed_query(question))
+
         hits = _qdrant(
-            "query_points", self.client.query_points, self.collection,
-            query=vector.tolist(), using=VECTOR_NAME, limit=top_k, with_payload=True,
-            query_filter=models.Filter(must=[
-                models.FieldCondition(key="legal_status", match=models.MatchAny(any=self.legal_status)),
-            ]),
+            "query_points",
+            self.client.query_points,
+            self.collection,
+            query=vector.tolist(),
+            using=VECTOR_NAME,
+            limit=limit,
+            with_payload=True,
+            query_filter=models.Filter(
+                must=[
+                    models.FieldCondition(
+                        key="legal_status",
+                        match=models.MatchAny(any=self.legal_status),
+                    ),
+                ],
+            ),
         ).points
+
         results = []
         for hit in hits:
             score = float(hit.score)
             if not math.isfinite(score):
                 continue
-            results.append(output_row(hit.payload, score, len(results) + 1, "dense"))
+
+            results.append(
+                output_row(
+                    hit.payload,
+                    score,
+                    len(results) + 1,
+                    "dense",
+                )
+            )
+
+        return results
+
+    def retrieve(self, question: str, top_k: int = 20) -> dict:
+        """Trả {question, results}; dense luôn có hàng xóm gần nhất nên không tự cắt theo ngưỡng cosine."""
+        question = validate_query(question, top_k)
+        results = self._search(question, limit=top_k)
         return {"question": question, "results": results}
