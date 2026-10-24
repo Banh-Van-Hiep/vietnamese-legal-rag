@@ -1,0 +1,119 @@
+[
+  {
+    "id": "gold_001",
+    "question": "Luật Doanh nghiệp quy định về những vấn đề gì?",
+    "expected_status": "answered",
+    "ground_truth": "Luật Doanh nghiệp quy định về việc thành lập, tổ chức quản lý, tổ chức lại, giải thể và hoạt động có liên quan của doanh nghiệp, bao gồm công ty trách nhiệm hữu hạn, công ty cổ phần, công ty hợp danh, doanh nghiệp tư nhân và nhóm công ty.",
+    "gold_chunk_ids": ["luat-59-2020-qh14-v1__dieu-1__k0__0"],
+    "citation": "Điều 1 - Luật Doanh nghiệp 2020",
+    "category": "Phạm vi điều chỉnh",
+    "author": "Bành Văn Hiệp",
+    "gold_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-1__k0__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-1",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 1",
+        "clause": null,
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      }
+    ]
+  },
+  {
+    "id": "gold_002",
+    "question": "Những ai thuộc đối tượng áp dụng của Luật Doanh nghiệp?",
+    "expected_status": "answered",
+    "ground_truth": "Đối tượng áp dụng gồm doanh nghiệp và cơ quan, tổ chức, cá nhân có liên quan đến việc thành lập, tổ chức quản lý, tổ chức lại, giải thể và hoạt động có liên quan của doanh nghiệp.",
+    "gold_chunk_ids": [
+      "luat-59-2020-qh14-v1__dieu-2__k1__0",
+      "luat-59-2020-qh14-v1__dieu-2__k2__0"
+    ],
+    "citation": "Điều 2 - Luật Doanh nghiệp 2020",
+    "category": "Đối tượng áp dụng",
+    "author": "Bành Văn Hiệp",
+    "gold_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-2__k1__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-2",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 2",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-2__k2__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-2",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 2",
+        "clause": "Khoản 2",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      }
+    ]
+  },
+  {
+    "id": "gold_003",
+    "question": "Theo Luật Doanh nghiệp, cổ đông là ai?",
+    "expected_status": "answered",
+    "ground_truth": "Cổ đông là cá nhân, tổ chức sở hữu ít nhất một cổ phần của công ty cổ phần.",
+    "gold_chunk_ids": ["luat-59-2020-qh14-v1__dieu-4__k3__0"],
+    "citation": "Khoản 3 Điều 4 - Luật Doanh nghiệp 2020",
+    "category": "Giải thích thuật ngữ",
+    "author": "Bành Văn Hiệp",
+    "gold_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-4__k3__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-4",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 4",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      }
+    ]
+  },
+  {
+    "id": "gold_004",
+    "question": "Vốn điều lệ của công ty trách nhiệm hữu hạn được xác định như thế nào?",
+    "expected_status": "answered",
+    "ground_truth": "Vốn điều lệ của công ty trách nhiệm hữu hạn là tổng giá trị tài sản do các thành viên công ty hoặc chủ sở hữu công ty đã góp hoặc cam kết góp khi thành lập công ty.",
+    "gold_chunk_ids": ["luat-59-2020-qh14-v1__dieu-4__k34__0"],
+    "citation": "Khoản 34 Điều 4 - Luật Doanh nghiệp 2020",
+    "category": "Vốn",
+    "author": "Bành Văn Hiệp",
+    "gold_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-4__k34__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-4",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 4",
+        "clause": "Khoản 34",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      }
+    ]
+  },
+  {
+    "id": "gold_031",
+    "question": "Mức thuế suất thuế thu nhập cá nhân hiện hành là bao nhiêu?",
+    "expected_status": "insufficient_context",
+    "ground_truth": "Tài liệu được truy xuất chưa đủ căn cứ để trả lời.",
+    "gold_chunk_ids": [],
+    "citation": "",
+    "category": "Ngoài phạm vi",
+    "author": "Team 2",
+    "gold_citations": []
+  }
+]
