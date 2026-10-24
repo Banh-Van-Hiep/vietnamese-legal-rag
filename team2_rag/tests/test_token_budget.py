@@ -7,7 +7,8 @@ from team2_rag.config.settings import ConfigError, load_settings
 from team2_rag.llm.errors import CitationInvalidError, LLMConfigError
 from team2_rag.llm.fake import FakeLLMProvider
 from team2_rag.llm.service import LLMService
-from team2_rag.llm.tokens import TiktokenCounter, TokenBudget, TokenCounter, token_budget_from_settings
+from team2_rag.llm.tokens import (ConservativeByteCounter, TiktokenCounter, TokenBudget, TokenCounter,
+                                  token_budget_from_settings)
 from team2_rag.prompts import ContextBudgetError, build_context
 from team2_rag.tests.helpers import QUESTION, good_output
 from team2_rag.tests.test_context_builder import candidate
@@ -106,12 +107,50 @@ class FinalPromptGuardTests(unittest.TestCase):
 
 
 class TokenizerFactoryTests(unittest.TestCase):
-    def test_missing_window_and_unsupported_provider_raise_not_guess(self):
+    def test_missing_window_raises_config_error(self):
         env = {"LLM_PROVIDER": "openai", "LLM_MODEL": "gpt-4o", "OPENAI_API_KEY": "k"}
         with self.assertRaises(ConfigError): token_budget_from_settings(load_settings(env=env))
         for prov in ("gemini", "qwen"):
-            s = load_settings(env=env | {"LLM_PROVIDER": prov, "LLM_CONTEXT_WINDOW_TOKENS": "100000"})
-            with self.assertRaises(ConfigError): token_budget_from_settings(s)
+            with self.assertRaises(ConfigError): token_budget_from_settings(load_settings(env=env | {"LLM_PROVIDER": prov}))
+
+    def test_gemini_and_qwen_get_conservative_counter_instead_of_startup_failure(self):
+        # Regression: these providers used to raise ConfigError here, which left the service permanently 503.
+        env = {"LLM_MODEL": "m", "OPENAI_API_KEY": "k", "GEMINI_API_KEY": "k", "QWEN_API_KEY": "k",
+               "LLM_CONTEXT_WINDOW_TOKENS": "8000"}
+        for prov in ("gemini", "qwen"):
+            with self.assertLogs("team2_rag.tokens", "WARNING"):
+                b = token_budget_from_settings(load_settings(env=env | {"LLM_PROVIDER": prov}))
+            self.assertIsInstance(b.counter, ConservativeByteCounter)
+            self.assertEqual((b.context_window_tokens, b.output_reserve_tokens, b.safety_margin_tokens), (8000, 1500, 256))
+
+    def test_conservative_counter_is_upper_bound_never_below_word_or_char_count(self):
+        c = ConservativeByteCounter()
+        text = "Người lao động được nghỉ hằng năm"
+        self.assertEqual(c.count(text), len(text.encode("utf-8")))
+        self.assertGreaterEqual(c.count(text), len(text))
+        self.assertEqual(c.count(""), 0)
+
+    def test_conservative_budget_never_exceeds_prompt_limit(self):
+        b = TokenBudget(ConservativeByteCounter(), context_window_tokens=8000, max_context_tokens=3000)
+        results = cands(*([40] * 6))                     # each chunk is well over 100 bytes
+        p, resp = run(results, b)
+        prompt = p.calls[0][0]
+        total = b.counter.count(prompt.system) + b.counter.count(prompt.user)
+        self.assertLessEqual(total, b.prompt_limit)
+
+    def test_conservative_budget_with_too_small_window_refuses_instead_of_overflowing(self):
+        # The fixed Vietnamese prompt alone is ~3k bytes: a 4k window cannot hold it plus output reserve and margin.
+        b = TokenBudget(ConservativeByteCounter(), context_window_tokens=4000, max_context_tokens=3000)
+        p = FakeLLMProvider([])
+        with self.assertRaises(ContextBudgetError):
+            answer_from_rerank({"question": QUESTION, "results": cands(10)}, LLMService(p), token_budget=b)
+        self.assertEqual(p.calls, [])
+
+    def test_window_too_small_for_output_and_margin_is_rejected_at_startup(self):
+        env = {"LLM_PROVIDER": "gemini", "LLM_MODEL": "m", "GEMINI_API_KEY": "k"}
+        edge = 1500 + 256                                 # default max output + safety margin
+        with self.assertRaises(ConfigError): load_settings(env=env | {"LLM_CONTEXT_WINDOW_TOKENS": str(edge)}).validate()
+        load_settings(env=env | {"LLM_CONTEXT_WINDOW_TOKENS": str(edge + 1)}).validate()
 
     def test_openai_without_tiktoken_raises_config_error(self):
         with patch.dict(sys.modules, {"tiktoken": None}):

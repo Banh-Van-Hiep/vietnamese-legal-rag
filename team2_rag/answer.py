@@ -152,7 +152,10 @@ _ERROR_MESSAGES = {
 
 
 def to_error_response(exc: BaseException) -> Optional[dict]:
-    """ErrorResponse {"error": {code, message, retryable}} cho lỗi LLM; None nếu không phải LLMError.
+    """ErrorResponse NỘI BỘ {"error": {code, message, retryable}} cho lỗi LLM; None nếu không phải LLMError.
+
+    Dùng mã VLRA-29 cũ (LLM_TIMEOUT, ...) cho log/CLI. KHÔNG dùng cho HTTP: mã công khai của API nằm ở
+    `team2_rag.errors` (`classify` + `build_error_response`).
 
     `retryable` theo bảng lỗi trong docs/team2_rag/rag-io-specification.md. Message an toàn: không chứa lỗi thô của
     provider, prompt hay API key. ValueError/ContextBuildError/ContextBudgetError (input nội bộ sai) trả None:

@@ -7,7 +7,7 @@ from __future__ import annotations
 
 import json
 import os
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 
 from .config.settings import ConfigError, load_settings, read_dotenv
@@ -21,8 +21,13 @@ from .reranker import BGEScorer
 class Runtime:
     pipeline: RAGPipeline
     client: object
+    _closed: bool = field(default=False, init=False, repr=False, compare=False)
 
     def close(self):
+        """Idempotent: the underlying client is closed at most once, however many callers close the runtime."""
+        if self._closed:
+            return
+        self._closed = True
         self.client.close()
 
 

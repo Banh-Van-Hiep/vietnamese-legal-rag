@@ -10,47 +10,27 @@ import logging
 import threading
 from contextlib import asynccontextmanager
 from pathlib import Path
-from uuid import uuid4
 
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
-from jsonschema import Draft202012Validator, FormatChecker, ValidationError
-from pydantic import ValidationError as ModelValidationError
+from jsonschema import Draft202012Validator, FormatChecker
 
-from team1_data.retrieval.errors import RetrievalUnavailableError
-from ..answer import to_error_response
 from ..config.settings import ConfigError
+from ..errors import ErrorCode, build_error_response
+from ..models.response import RAGResponse
 from ..pipeline import validate_input, validate_generated_response
-from ..reranker import RerankModelError
 from ..runtime import build_runtime
+from .handlers import install_error_handlers, resolve_request_id
 
 log = logging.getLogger(__name__)
 ROOT = Path(__file__).resolve().parents[2]
 BODY_LIMIT = 256 * 1024
 
 
-def _error(status, code, message, retryable=False, request_id=None):
-    return JSONResponse({"error": {"code": code, "message": message, "retryable": retryable}},
-                        status_code=status, headers={"X-Request-ID": request_id or str(uuid4())})
-
-
-def _exception_response(exc, request_id):
-    # Reuse Person 2's error body; only HTTP transport mapping belongs here.
-    body = to_error_response(exc)
-    if body is not None:
-        status = {"LLM_TIMEOUT": 504, "LLM_UNAVAILABLE": 503,
-                  "INVALID_LLM_OUTPUT": 502, "CITATION_INVALID": 502}[body["error"]["code"]]
-        return JSONResponse(body, status_code=status, headers={"X-Request-ID": request_id})
-    if isinstance(exc, RetrievalUnavailableError):
-        timeout = isinstance(exc.__cause__, TimeoutError)
-        return _error(504 if timeout else 503, "RETRIEVAL_TIMEOUT" if timeout else "RETRIEVAL_UNAVAILABLE",
-                      "Dịch vụ truy xuất chưa phản hồi." if timeout else "Dịch vụ truy xuất chưa sẵn sàng.",
-                      True, request_id)
-    if isinstance(exc, (RerankModelError, ConfigError)):
-        return _error(503, "SERVICE_UNAVAILABLE", "Dịch vụ xử lý chưa sẵn sàng.", True, request_id)
-    # Do not emit provider messages, validation details, questions, or keys.
-    log.error("rag_failed request_id=%s error_type=%s", request_id, type(exc).__name__)
-    return _error(500, "INTERNAL_ERROR", "Không thể xử lý yêu cầu.", False, request_id)
+def _error(code, request_id):
+    """Early (pre-pipeline) rejection; status/message/retryable come from the single public table in errors.py."""
+    status, body = build_error_response(code)
+    return JSONResponse(body.model_dump(mode="json"), status_code=status, headers={"X-Request-ID": request_id})
 
 
 def _pairs(pairs):
@@ -62,8 +42,25 @@ def _pairs(pairs):
     return obj
 
 
-def create_app(pipeline=None, *, runtime_factory=build_runtime, timeout_seconds=45,
+def _close_runtime(runtime) -> None:
+    """Best-effort close at shutdown/cleanup: never raises, never logs exception text (only its type)."""
+    try:
+        runtime.close()
+    except Exception as exc:
+        log.error("rag_shutdown_failed error_type=%s", type(exc).__name__)
+
+
+def create_app(pipeline=None, *, runtime_factory=None, timeout_seconds=45,
                error_installer=None, response_model=None):
+    """`response_model` defaults to the shared Pydantic `RAGResponse`; the JSON Schema stays the contract guard.
+
+    Where the pipeline comes from:
+    - neither argument: `build_runtime` runs at startup (the `--factory` uvicorn entry point);
+    - `pipeline` only: it is served as-is and owned by the caller (the app never builds or closes anything);
+    - `runtime_factory` given (with or without `pipeline`): the factory is authoritative. It runs at startup, its
+      runtime is closed exactly once at shutdown, and if it fails the injected `pipeline` is NOT served, so a
+      broken startup can never be masked by a stand-in (readiness 503, queries 503).
+    """
     if not 0 < timeout_seconds <= 45:
         raise ValueError("timeout_seconds must be in (0, 45]")
     validator = Draft202012Validator(
@@ -71,39 +68,44 @@ def create_app(pipeline=None, *, runtime_factory=build_runtime, timeout_seconds=
         format_checker=FormatChecker(),
     )
 
+    use_factory = runtime_factory is not None or pipeline is None
+    factory = runtime_factory if runtime_factory is not None else build_runtime
+
     @asynccontextmanager
     async def lifespan(app):
         runtime = None
-        app.state.pipeline = pipeline
-        if pipeline is None:
+        # Reset on every startup so a previous run's state can never leak into this one.
+        app.state.startup_error = None
+        app.state.pipeline = None if use_factory else pipeline
+        if use_factory:
             try:
-                runtime = await asyncio.to_thread(runtime_factory)
+                runtime = await asyncio.to_thread(factory)
                 app.state.pipeline = runtime.pipeline
             except Exception as exc:
-                log.error("rag_startup_failed error_type=%s", type(exc).__name__)
-        yield
-        if runtime is not None:
-            runtime.close()
+                # ConfigError texts only name settings (never values), so they are safe and make a startup failure diagnosable.
+                detail = f" detail={exc}" if isinstance(exc, ConfigError) else ""
+                log.error("rag_startup_failed error_type=%s%s", type(exc).__name__, detail)
+                app.state.startup_error = type(exc).__name__
+                app.state.pipeline = None  # fail safe: /ready and /query answer 503, nothing half-initialised is served
+                if runtime is not None:  # built but unusable (e.g. no pipeline): do not leak its resources
+                    broken, runtime = runtime, None
+                    _close_runtime(broken)
+        served = app.state.pipeline if runtime is not None else None
+        try:
+            yield
+        finally:
+            if runtime is not None:
+                owned, runtime = runtime, None  # cleared before closing: close runs at most once per runtime
+                if app.state.pipeline is served:
+                    app.state.pipeline = None  # nothing new may start on a closed runtime
+                _close_runtime(owned)
 
     app = FastAPI(title="Legal RAG internal service", version="0.1.0", lifespan=lifespan)
-    # VLRA-47 is owned by Person 2 and has not been pushed at this baseline.
-    # Use it automatically once present; never create a competing handlers.py.
-    if error_installer is None:
-        try:
-            from .handlers import install_error_handlers
-        except ModuleNotFoundError as exc:
-            if exc.name != "team2_rag.api.handlers":
-                raise
-            log.warning("shared_error_handlers_pending task=VLRA-47")
-        else:
-            install_error_handlers(app)
-            error_installer = install_error_handlers
-    else:
-        error_installer(app)
-    # The shared Pydantic model can be injected without guessing its future
-    # module path. TypedDict in types.py is NOT this validation model.
-    if response_model is not None and not callable(getattr(response_model, "model_validate", None)):
-        raise TypeError("response_model must be Person 2's validating RAGResponse model")
+    (error_installer or install_error_handlers)(app)
+    if response_model is None:
+        response_model = RAGResponse
+    if not callable(getattr(response_model, "model_validate", None)):
+        raise TypeError("response_model must be a Pydantic model with model_validate (default: RAGResponse)")
     # One inference at a time. A timed-out thread keeps its slot until it
     # really finishes, preventing repeated requests from accumulating work.
     slot = threading.Lock()
@@ -113,25 +115,23 @@ def create_app(pipeline=None, *, runtime_factory=build_runtime, timeout_seconds=
         return {"status": "up"}
 
     @app.get("/internal/v1/ready")
-    def ready():
+    def ready(request: Request):
         if getattr(app.state, "pipeline", None) is None:
-            return _error(503, "SERVICE_UNAVAILABLE", "Dịch vụ chưa tải xong cấu hình hoặc mô hình.", True)
+            return _error(ErrorCode.SERVICE_UNAVAILABLE, resolve_request_id(request))
         return {"status": "ready"}
 
     @app.post("/internal/v1/query")
     async def query(request: Request):
-        incoming = request.headers.get("x-request-id", "")
-        request_id = incoming if 0 < len(incoming) <= 128 and incoming.isascii() and incoming.isprintable() else str(uuid4())
-        request.state.request_id = request_id
+        request_id = resolve_request_id(request)
         if request.url.query:
-            return _error(400, "INVALID_REQUEST", "Không hỗ trợ query parameter.", request_id=request_id)
+            return _error(ErrorCode.INVALID_REQUEST, request_id)
         if request.headers.get("content-type", "").split(";")[0].strip().lower() != "application/json":
-            return _error(415, "UNSUPPORTED_MEDIA_TYPE", "Yêu cầu phải dùng JSON.", request_id=request_id)
+            return _error(ErrorCode.UNSUPPORTED_MEDIA_TYPE, request_id)
         raw = bytearray()
         async for block in request.stream():
             raw.extend(block)
             if len(raw) > BODY_LIMIT:
-                return _error(413, "PAYLOAD_TOO_LARGE", "Nội dung yêu cầu quá lớn.", request_id=request_id)
+                return _error(ErrorCode.PAYLOAD_TOO_LARGE, request_id)
         try:
             data = json.loads(raw.decode("utf-8"), object_pairs_hook=_pairs,
                               parse_constant=lambda _: (_ for _ in ()).throw(ValueError("nonfinite JSON")))
@@ -141,16 +141,15 @@ def create_app(pipeline=None, *, runtime_factory=build_runtime, timeout_seconds=
             if data["history"] is None:
                 raise ValueError("history must be an array")
         except (UnicodeError, ValueError):
-            return _error(400, "INVALID_REQUEST", "Câu hỏi hoặc lịch sử không hợp lệ.", request_id=request_id)
+            return _error(ErrorCode.INVALID_REQUEST, request_id)
         active = getattr(app.state, "pipeline", None)
         if active is None or not slot.acquire(blocking=False):
-            return _error(503, "SERVICE_UNAVAILABLE", "Dịch vụ chưa sẵn sàng hoặc đang bận.", True, request_id)
+            return _error(ErrorCode.SERVICE_UNAVAILABLE, request_id)
 
         def run():
             try:
                 out = active.query(question, history, request_id=request_id)
-                if response_model is None:
-                    validator.validate(out)
+                validator.validate(out)  # JSON Schema = authoritative contract; RAGResponse adds marker/order checks.
                 return validate_generated_response(out, response_model=response_model)
             finally:
                 slot.release()
@@ -162,14 +161,8 @@ def create_app(pipeline=None, *, runtime_factory=build_runtime, timeout_seconds=
             out = await asyncio.wait_for(asyncio.shield(work), timeout=timeout_seconds)
             return JSONResponse(out, headers={"X-Request-ID": request_id})
         except asyncio.TimeoutError:
-            return _error(504, "UPSTREAM_TIMEOUT", "Dịch vụ xử lý chưa phản hồi trong thời hạn.", True, request_id)
-        except (ValidationError, ModelValidationError):
-            if error_installer is not None:
-                raise
-            return _error(502, "INVALID_LLM_OUTPUT", "Phản hồi từ dịch vụ xử lý không hợp lệ.", request_id=request_id)
-        except Exception as exc:
-            if error_installer is not None:
-                raise
-            return _exception_response(exc, request_id)
+            return _error(ErrorCode.UPSTREAM_TIMEOUT, request_id)
+        # Every other exception propagates to the handlers installed above (errors.classify -> public body with
+        # X-Request-ID); nothing is swallowed or answered twice here.
 
     return app

@@ -106,7 +106,7 @@
     ]
   },
   {
-    "id": "gold_031",
+    "id": "gold_041",
     "question": "Mức thuế suất thuế thu nhập cá nhân hiện hành là bao nhiêu?",
     "expected_status": "insufficient_context",
     "ground_truth": "Tài liệu được truy xuất chưa đủ căn cứ để trả lời.",
