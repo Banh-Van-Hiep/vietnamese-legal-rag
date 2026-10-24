@@ -11,5 +11,6 @@ Ngày 24/10/2026. Đường dẫn tính từ `team3_fullstack/frontend/`. Không
 - [x] T007 `src/components/common/ScopeNote.tsx`, `.env.example`: phạm vi dữ liệu (FR-09).
 - [x] T008 `tests/browser/vlra42-smoke.mjs`: cập nhật ca 404 theo nội dung mới và kiểm link nguồn dự phòng.
 - [x] T009 Kiểm tra kiểu, unit test và trình duyệt desktop/360px với API giả lập; ghi `verification.md`, cập nhật `README.md`.
-- [ ] T010 Chạy `npm test`, `npm run build` và `node tests/browser/vlra42-smoke.mjs` trên máy có Vite đầy đủ (xem verification §3).
+- [x] T010 Chạy `npm test` (72/72) và `npm run build` trên Windows; PASS (verification §3).
+- [ ] T010b Chạy `node tests/browser/vlra42-smoke.mjs` với Java profile `rag` + PostgreSQL test riêng.
 - [ ] T011 Kiểm lại với nguyên văn thật khi Team 2 có `/internal/v1/documents/.../articles/...` (gắn VLRA-44/47).

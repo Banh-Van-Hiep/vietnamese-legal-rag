@@ -1,8 +1,8 @@
 # Kiểm chứng VLRA-43 — UI câu trả lời, căn cứ và Viewer
 
 **Ngày:** 24/10/2026. **Kết luận:** giao diện đáp ứng FR-01…FR-11 khi kiểm bằng API public giả lập đúng shape Docs v2.0.
-**Chưa nghiệm thu với RAG thật** (chờ Team 2, VLRA-44). Còn chạy lại `npm test`, `npm run build` và smoke VLRA-42
-trên máy có Vite đầy đủ (mục 3) trước khi chuyển Jira.
+**Chưa nghiệm thu với RAG thật** (chờ Team 2, VLRA-44). `npm test` và `npm run build` đã PASS trên Windows (mục 3);
+còn smoke VLRA-42 với Java profile `rag`.
 
 ## 1. Môi trường
 
@@ -38,14 +38,16 @@ Chạy ở 1280×860 và 360×760 (Chromium headless). Không có lỗi JavaScri
 Unit test bao phủ thêm: điểm `đ)`, khoản cuối Điều, Điều chỉ có điểm, số trong câu không bị nhận nhầm là đầu khoản,
 nhãn lạ/không tồn tại/trùng vị trí trả về "không tô", ký tự HTML giữ nguyên dạng văn bản, CRLF.
 
-## 3. Cần chạy lại trên máy Windows của nhóm
+## 3. Chạy lại trên máy Windows của nhóm
 
-Từ `team3_fullstack/frontend`:
+Ngày 24/10/2026, từ `team3_fullstack/frontend`, npm 10.9.3, commit `e315550`:
 
-```powershell
-npm test          # toàn bộ vitest: 56 test cũ + 16 test mới
-npm run build     # tsc -b + vite build thật (Tailwind plugin)
-```
+| Lệnh | Kết quả |
+| --- | --- |
+| `npm test` | Vitest 2.1.9: 7 file, **72/72 PASS** (56 test cũ + 16 test mới) |
+| `npm run build` | `tsc -b` + Vite 5.4.21: PASS, 78 modules; CSS 36.89 kB, JS 231.95 kB |
+
+Còn lại:
 
 Smoke VLRA-42 (Edge/CDP, Java profile `rag`, PostgreSQL test riêng) theo
 [quickstart VLRA-42](../002-vlra-42-fe-be-integration/quickstart.md): ca B09 của VLRA-42 đã đổi nội dung chờ
