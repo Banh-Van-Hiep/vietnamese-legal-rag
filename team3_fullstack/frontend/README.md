@@ -1,7 +1,7 @@
 # Frontend Team 3
 
 React + TypeScript + Vite + **Tailwind CSS v4** (plugin `@tailwindcss/vite`, không cần file cấu hình riêng).
-Main chat dùng API public SSE v2.0 theo [Docs v2.0](https://docs.google.com/document/d/1uDCSGNfzWXIaCSdggRrxcSuRREJ3StS278r4vZWNYPM/edit?tab=t.0). Hồ sơ: [VLRA42](../../specs/team3/week-04/002-vlra-42-fe-be-integration/verification.md).
+Main chat dùng API public SSE v2.0 theo [Docs v2.0](https://docs.google.com/document/d/1uDCSGNfzWXIaCSdggRrxcSuRREJ3StS278r4vZWNYPM/edit?tab=t.0). Hồ sơ: [VLRA42](../../specs/team3/week-04/002-vlra-42-fe-be-integration/verification.md), [VLRA43](../../specs/team3/week-04/003-vlra-43-answer-citation-viewer/verification.md).
 
 ## Style
 
@@ -38,11 +38,25 @@ Main UI cần Backend profile `rag` v2.0 và PostgreSQL: xem [quickstart VLRA41]
 | `/` | Hỏi đáp, hội thoại mới |
 | `/c/:conversationId` | Mở lại hội thoại đã lưu |
 | `/search` | Tra cứu (khung): tìm trong vài mục mẫu, chưa có API Search |
-| `/documents/:documentId?articleId=...` | Nguyên văn theo v2.0, mở và tải lại được; route nested cũ vẫn là alias |
+| `/documents/:documentId?articleId=...[&clause=...&point=...&cite=C2]` | Nguyên văn theo v2.0, mở và tải lại được; `clause`/`point`/`cite` chỉ để tô sáng phần được trích. Route nested cũ vẫn là alias |
 | `/try-backend` | Trang thử backend tạm của Team 3, không thuộc UI chính thức |
 
-Bấm số tham chiếu `[C1]` trong câu trả lời hoặc nút "Xem nguyên văn điều luật" để mở điều luật ở ngăn bên phải
-mà không rời hội thoại.
+Bấm số tham chiếu `[C1]` trong câu trả lời hoặc nút "Xem nguyên văn" trên thẻ căn cứ để mở điều luật ở ngăn bên phải
+mà không rời hội thoại; "Mở trang riêng" trong ngăn mở cùng điều luật ở trang có link chia sẻ được.
+
+## Hiển thị câu trả lời và căn cứ (VLRA-43)
+
+- Câu trả lời được phân tích ở `src/utils/answerFormat.ts` rồi render bằng React, không chèn HTML: đoạn, tiêu đề
+  `**...**`, danh sách `- `, `1. `, `a) ` (kể cả có một dòng dẫn phía trước), chữ đậm và dấu `[Cn]`.
+- `[Cn]` chỉ mở citation có trong array đã kiểm tra; marker và thẻ của căn cứ đang mở được đánh dấu.
+- Thẻ căn cứ: số Cn, "Điều …, Khoản …, Điểm …", tên văn bản, "Xem nguyên văn" và "Nguồn chính thức" (`sourceUrl`).
+- Viewer kiểm tra ID trả về khớp yêu cầu (adapter VLRA42), tô sáng khoản/điểm được trích khi nhãn chuẩn
+  ("Khoản 2", "Điểm a") và vị trí là duy nhất trong nguyên văn (`src/utils/legalCitation.ts`); nếu không chắc chắn thì
+  báo người dùng đối chiếu toàn Điều, không tô đoán. 404 vẫn giữ câu trả lời và cho mở nguồn chính thức của citation.
+- Ngăn xem là hộp thoại modal: focus ở trong ngăn, Escape đóng và trả focus về nút đã mở.
+- Nút sao chép lấy câu trả lời kèm danh sách căn cứ và nguồn.
+- Màn hình chào có "Phạm vi dữ liệu": lĩnh vực (`VITE_CORPUS_SCOPE`), bản dữ liệu (`VITE_CORPUS_SNAPSHOT`, trống thì
+  "Chưa công bố") và chế độ thử nghiệm/thật theo `VITE_MOCK_MODE`.
 
 ## Hành vi cần biết
 
@@ -65,7 +79,7 @@ mà không rời hội thoại.
 
 ## Giới hạn
 
-- Vitest kiểm SSE framing/UTF8/contracts/timeout/retry/adapters/receipt. Browser harness ở `tests/browser/` dùng Edge/Chrome CDP; đọc quickstart VLRA42. Kết quả dùng HTTP fixture, chưa phải live RAG. Thiết kế UI đầy đủ/VLRA43 và E2E pipeline thật/VLRA44 vẫn riêng.
+- Vitest kiểm SSE framing/UTF8/contracts/timeout/retry/adapters/receipt. Browser harness ở `tests/browser/` dùng Edge/Chrome CDP; đọc quickstart VLRA42. Kết quả dùng HTTP fixture, chưa phải live RAG. UI câu trả lời/căn cứ/Viewer của VLRA43 mới kiểm bằng dữ liệu giả lập; E2E pipeline thật/VLRA44 vẫn riêng.
 - Chưa cấu hình nginx cho tải lại các route con trong Docker (`Dockerfile` hiện chỉ phục vụ file tĩnh);
   `npm run dev` và `npm run preview` tải lại được.
 - Chưa build thử image Docker sau khi thêm Tailwind (máy kiểm tra không chạy Docker). `package-lock.json` đã có
