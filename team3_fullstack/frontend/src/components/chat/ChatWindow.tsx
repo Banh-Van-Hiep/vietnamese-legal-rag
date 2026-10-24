@@ -4,6 +4,7 @@ import type { Citation, UiMessage } from "../../types";
 import { suggestions } from "../../data/suggestions";
 import { statusTextClass } from "../common/classes";
 import Seal from "../common/Seal";
+import ScopeNote from "../common/ScopeNote";
 import MessageBubble from "./MessageBubble";
 
 interface Props {
@@ -11,10 +12,12 @@ interface Props {
   loading: boolean;
   onSuggestion: (question: string) => void;
   onRetry: (assistantKey: string) => void;
-  onOpenCitation: (citation: Citation) => void;
+  /** Căn cứ đang mở trong Viewer: key của tin assistant và citation_id. */
+  openCitation?: { messageKey: string; citationId: string } | null;
+  onOpenCitation: (messageKey: string, citation: Citation) => void;
 }
 
-export default function ChatWindow({ messages, loading, onSuggestion, onRetry, onOpenCitation }: Props) {
+export default function ChatWindow({ messages, loading, onSuggestion, onRetry, openCitation = null, onOpenCitation }: Props) {
   const end = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -34,8 +37,9 @@ export default function ChatWindow({ messages, loading, onSuggestion, onRetry, o
               key={m.key}
               message={m}
               isLast={i === messages.length - 1}
+              activeCitationId={openCitation?.messageKey === m.key ? openCitation.citationId : null}
               onRetry={onRetry}
-              onOpenCitation={onOpenCitation}
+              onOpenCitation={(citation) => onOpenCitation(m.key, citation)}
             />
           ))}
           <div ref={end} />
@@ -71,6 +75,7 @@ function Welcome({ onSuggestion }: { onSuggestion: (question: string) => void })
           </li>
         ))}
       </ul>
+      <ScopeNote className="mt-7" />
     </div>
   );
 }

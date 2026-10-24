@@ -125,7 +125,8 @@ try {
   });
   await caseRun("source404 does not remove answer",async()=>{
     await navigate();const q=`Missing source smoke ${suffix}`;await ask(q);await answered(q);
-    await evaluate("document.querySelector('[data-testid=cite-ref]').click()");await until("document.querySelector('[data-testid=drawer]')?.textContent.includes('Không tìm thấy điều luật')");
+    await evaluate("document.querySelector('[data-testid=cite-ref]').click()");await until("document.querySelector('[data-testid=drawer]')?.textContent.includes('Không mở được nguyên văn')");
+    assert.equal(await evaluate("document.querySelector('[data-testid=fallback-source-link]')?.getAttribute('href')"),"https://example.com/mock-law");
     await answered(q);
   });
   await caseRun("CORS allowlist works in browser and rejects other origin",async()=>{
