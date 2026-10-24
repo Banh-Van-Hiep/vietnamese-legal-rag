@@ -12,9 +12,10 @@ _LAZY = {
     "tokenize_vi": ".tokenizer",
     "DenseRetriever": ".dense",
     "SentenceTransformerEmbedder": ".embedding",
+    "HybridRetriever": ".hybrid",
 }
 
-__all__ = ["BM25Retriever", "DenseRetriever", "RetrievalUnavailableError",
+__all__ = ["BM25Retriever", "DenseRetriever", "HybridRetriever", "RetrievalUnavailableError",
            "SentenceTransformerEmbedder", "tokenize_vi"]
 
 

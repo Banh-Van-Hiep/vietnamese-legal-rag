@@ -1,5 +1,11 @@
 # team2_rag — Context → LLM → Answer + chunk_id
 
+## Week 4 integration draft
+
+Pipeline/HTTP entry points, real-run setup, tests and pending VLRA-39/47 handoff:
+[week4-integration.md](../docs/team2_rag/week4-integration.md).
+The new API is `team2_rag.api.create_app`; `service.query()` below remains the older mock.
+
 ```python
 from team2_rag.llm import create_llm_service
 from team2_rag.answer import answer_from_rerank, cited_chunk_ids
@@ -45,8 +51,9 @@ Candidate vi phạm contract (thiếu trường, ID không ASCII, `source_url` k
 `python3 -m unittest discover -s team2_rag/tests -t .` (cần `pip install jsonschema` để các test schema chạy; không cần API key).
 
 ## Chờ xác nhận (Người 1 / Team 1 / Team 2 / Team 3)
-1. Chưa có Reranker và `retrieve()` trong repo (mọi nhánh); `query()` trong `service.py` vẫn là mock. Chưa chạy integration test thật.
-2. Người 1 xác nhận output Reranker = 12 trường Team 1 (đã xếp theo rerank, có thể kèm `rerank_score`).
+1. Reranker, BM25/Dense/Hybrid và pipeline draft đã có. `query()` trong `service.py` vẫn là mock; API mới dùng `RAGPipeline.query()`. Chưa nghiệm thu chạy model + LLM thật toàn luồng.
+2. Output Reranker giữ nguyên 12 trường Team 1, điểm rerank lưu riêng; Context Builder dùng thứ tự danh sách, không sort lại `rank`.
 3. Chốt model/provider chính thức + context window; tokenizer cho Gemini/Qwen nếu dùng. Chưa kiểm chứng `tiktoken` với model thật.
-4. Golden (`golden_phase1_30cai.json` trên `main`) có 7/30 mẫu cần 6–11 chunk nguồn, vượt giới hạn context 5 chunk; nhánh `feature/team2-rag` đã rút golden còn 15 mẫu.
+4. Golden trên bản draft này có 40 mẫu (30 mẫu cũ + `gold_031`–`gold_040`); 7 mẫu cũ cần hơn 5 chunk nguồn, vượt giới hạn context mặc định. Bộ validate đã kiểm tra tham chiếu chunk nhưng chưa chứng minh chất lượng trả lời.
 5. Kiểm tra citation chỉ chứng minh nguồn khớp chunk đã gửi; việc nguồn có thật sự hỗ trợ câu trả lời cần đánh giá thủ công.
+6. `team2_rag.api.handlers` và model `RAGResponse` mới của Người 2 chưa được push ở baseline đang triển khai; phần cài handler/validate model dùng chung còn chờ mã nguồn, không tính test double là đã nghiệm thu.
