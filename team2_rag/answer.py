@@ -19,6 +19,7 @@ from team2_rag.prompts.builder import PromptBuilder
 from team2_rag.prompts.context import ContextBudgetError, ContextBuildError, build_context
 from team2_rag.prompts.render import render_prompt
 from team2_rag.types import RAGResponse
+from team2_rag.models.response import validate_response_payload
 
 logger = logging.getLogger("team2_rag.answer")
 logger.addHandler(logging.NullHandler())
@@ -33,7 +34,7 @@ def cited_chunk_ids(response: Mapping) -> list[str]:
 
 
 def _insufficient(answer: str = NO_CONTEXT_ANSWER) -> RAGResponse:
-    return {"status": STATUS_INSUFFICIENT, "answer": answer, "citations": []}
+    return validate_response_payload({"status": STATUS_INSUFFICIENT, "answer": answer, "citations": []})
 
 
 def answer_from_rerank(
@@ -115,7 +116,7 @@ def answer_from_rerank(
     for old in order:
         meta = by_label[old].source_metadata()
         citations.append({"citation_id": new_id[old], **meta})
-    return {"status": STATUS_ANSWERED, "answer": answer, "citations": citations}
+    return validate_response_payload({"status": STATUS_ANSWERED, "answer": answer, "citations": citations})
 
 
 def generate_answer(
