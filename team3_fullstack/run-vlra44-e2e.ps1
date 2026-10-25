@@ -32,9 +32,10 @@ $started = @()
 
 function Step($text) { Write-Host "`n== $text" -ForegroundColor Cyan }
 function Fail($text) { Write-Host "LỖI: $text" -ForegroundColor Red; throw $text }
-function Wait-Url($url, $seconds, $name) {
+function Wait-Url($url, $seconds, $name, $proc = $null) {
   $end = (Get-Date).AddSeconds($seconds)
   while ((Get-Date) -lt $end) {
+    if ($proc -and $proc.HasExited) { Fail "$name đã dừng (mã $($proc.ExitCode)) trước khi sẵn sàng. Xem log trong $Evidence" }
     try { $r = Invoke-WebRequest -UseBasicParsing -Uri $url -TimeoutSec 3; if ($r.StatusCode -lt 500) { return } } catch { }
     Start-Sleep -Milliseconds 500
   }
@@ -95,18 +96,20 @@ try {
   $env:SPRING_DATASOURCE_URL = $DbUrl; $env:SPRING_DATASOURCE_USERNAME = $DbUser; $env:SPRING_DATASOURCE_PASSWORD = $DbPassword
   $env:RAG_BASE_URL = "http://127.0.0.1:$RagPort"; $env:SERVER_PORT = "$BePort"
   $env:CORS_ALLOWED_ORIGINS = "http://127.0.0.1:$FePort"
-  $java = Start-Process cmd.exe -ArgumentList "/c", "mvnw.cmd -q spring-boot:run" -WorkingDirectory $Backend -PassThru -NoNewWindow `
+  # UTC: Windows ở Việt Nam báo múi giờ "Asia/Saigon", tên cũ mà PostgreSQL 16 từ chối khi kết nối
+  # (FATAL: invalid value for parameter "TimeZone"). API vẫn trả thời gian UTC như trước.
+  $java = Start-Process cmd.exe -ArgumentList "/c", "mvnw.cmd -q spring-boot:run `"-Dspring-boot.run.jvmArguments=-Duser.timezone=UTC`"" -WorkingDirectory $Backend -PassThru -NoNewWindow `
     -RedirectStandardOutput (Join-Path $Evidence "backend.log") -RedirectStandardError (Join-Path $Evidence "backend.err.log")
   $started += $java
   # Lần đầu Maven tải thư viện nên có thể mất vài phút.
-  Wait-Url "http://127.0.0.1:$BePort/api/v1/health" 600 "Java backend"
+  Wait-Url "http://127.0.0.1:$BePort/api/v1/health" 600 "Java backend" $java
 
   Step "Frontend Vite ở cổng $FePort"
   $env:VITE_API_URL = "http://127.0.0.1:$BePort"; $env:VITE_MOCK_MODE = "true"
   $vite = Start-Process cmd.exe -ArgumentList "/c", "npm run dev -- --host 127.0.0.1 --port $FePort --strictPort" -WorkingDirectory $Frontend `
     -PassThru -NoNewWindow -RedirectStandardOutput (Join-Path $Evidence "vite.log") -RedirectStandardError (Join-Path $Evidence "vite.err.log")
   $started += $vite
-  Wait-Url "http://127.0.0.1:$FePort/" 120 "Vite"
+  Wait-Url "http://127.0.0.1:$FePort/" 120 "Vite" $vite
 
   Step "Trình duyệt headless (profile riêng, không dùng profile cá nhân)"
   $profileDir = (New-Item -ItemType Directory -Force (Join-Path $Evidence "browser-profile")).FullName
