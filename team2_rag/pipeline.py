@@ -12,8 +12,9 @@ from typing import Protocol
 
 from .answer import NO_CONTEXT_ANSWER, generate_answer
 from .llm.service import LLMService
-from .models.response import RAGResponse, validate_response_payload
-from .reranker import PairScorer, RerankInputError, rerank_with_details
+from .llm.errors import LLMBadOutputError
+from .llm.output_parser import parse_llm_output
+from .reranker import PairScorer, rerank_with_details
 
 log = logging.getLogger(__name__)
 _REFERENCE = re.compile(
@@ -23,8 +24,32 @@ _REFERENCE = re.compile(
 
 
 def validate_generated_response(response, *, response_model=None):
-    """Compatibility entry point for the shared RAGResponse validator."""
-    return validate_response_payload(response, response_model=response_model)
+    """Check the final boundary and optionally use Person 2's shared model.
+
+    The legacy parser only recognizes positive markers, so explicitly reject
+    malformed C-markers rather than overlooking [C0]/[C01] next to [C1].
+    This guard supplements, and does not impersonate, the pending RAGResponse.
+    """
+    import json
+    if response_model is not None:
+        checked = response_model.model_validate(response)
+        response = checked.model_dump(mode="json")
+    if not isinstance(response, Mapping):
+        raise LLMBadOutputError("RAG output must be an object")
+    parsed = parse_llm_output(json.dumps(response, ensure_ascii=False))
+    markers = re.findall(r"\[\s*[Cc][^\[\]\r\n]*\]", parsed.answer)
+    if any(not re.fullmatch(r"\[C[1-9][0-9]*\]", marker) for marker in markers):
+        raise LLMBadOutputError("Invalid citation marker")
+    without_markers = re.sub(r"\[C[1-9][0-9]*\]", "", parsed.answer)
+    if re.search(r"\[\s*[Cc](?:\d|\s|$)", without_markers):
+        raise LLMBadOutputError("Unclosed citation marker")
+    order = list(dict.fromkeys(re.findall(r"\[C([1-9][0-9]*)\]", parsed.answer)))
+    expected = [str(i) for i in range(1, len(parsed.citations) + 1)]
+    if order != expected or [c.citation_id for c in parsed.citations] != [f"C{i}" for i in expected]:
+        raise LLMBadOutputError("Citation markers must be exact, consecutive and in appearance order")
+    if len({c.chunk_id for c in parsed.citations}) != len(parsed.citations):
+        raise LLMBadOutputError("Duplicate cited chunk")
+    return dict(response)
 
 
 class Retriever(Protocol):
@@ -60,27 +85,23 @@ class RAGPipeline:
         self.retriever, self.llm_service = retriever, llm_service
         self.scorer, self.top_k = scorer, top_k
         self.settings, self.token_budget = settings, token_budget
-        self.response_model = response_model if response_model is not None else RAGResponse
+        self.response_model = response_model
 
     def query(self, question: str, history: Sequence[Mapping] | None = None, *, request_id=None):
         question, history = validate_input(question, history)
         # No query rewriter has been agreed yet. Ask instead of inventing a
         # referent or treating a previous assistant answer as legal evidence.
         if _REFERENCE.search(question):
-            return validate_generated_response(
-                {"status": "insufficient_context", "citations": [],
-                 "answer": "Bạn hãy nêu rõ doanh nghiệp hoặc tình huống pháp lý cần hỏi để tra cứu đúng nguồn."},
-                response_model=self.response_model)
+            return {"status": "insufficient_context", "citations": [],
+                    "answer": "Bạn hãy nêu rõ doanh nghiệp hoặc tình huống pháp lý cần hỏi để tra cứu đúng nguồn."}
         retrieved = self.retriever.retrieve(question, top_k=self.top_k)
         if not isinstance(retrieved, Mapping) or retrieved.get("question") != question:
-            raise RerankInputError("retrieval must echo the actual query")
+            raise ValueError("retrieval must echo the actual query")
         # strict=True is deliberate: this real pipeline never silently labels
         # the original retrieval order as a successful BGE rerank.
         details = rerank_with_details(retrieved, scorer=self.scorer, strict=True)
         if not details.output["results"]:
-            return validate_generated_response(
-                {"status": "insufficient_context", "answer": NO_CONTEXT_ANSWER, "citations": []},
-                response_model=self.response_model)
+            return {"status": "insufficient_context", "answer": NO_CONTEXT_ANSWER, "citations": []}
         response = generate_answer(details.output, history, llm_service=self.llm_service,
                                    settings=self.settings, token_budget=self.token_budget,
                                    request_id=request_id)

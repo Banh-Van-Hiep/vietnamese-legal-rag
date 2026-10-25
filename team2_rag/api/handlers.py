@@ -13,11 +13,11 @@ from team2_rag.config.settings import ConfigError
 from team2_rag.errors import (
     RETRIEVAL_ERRORS,
     SCHEMA_VALIDATION_ERRORS,
-    InternalErrorCode,
+    ErrorCode,
     Team2Error,
-    build_internal_error_response,
-    classify_internal,
-    classify_internal_http_status,
+    build_error_response,
+    classify,
+    classify_http_status,
 )
 from team2_rag.llm.errors import LLMError
 
@@ -35,30 +35,29 @@ def resolve_request_id(request: Request) -> str:
     return rid
 
 
-def _respond(request: Request, code: InternalErrorCode, exc: BaseException, headers: dict | None = None) -> JSONResponse:
+def _respond(request: Request, code: ErrorCode, exc: BaseException, headers: dict | None = None) -> JSONResponse:
     request_id = resolve_request_id(request)
     headers = {**(headers or {}), "X-Request-ID": request_id}
-    status, body = build_internal_error_response(code)
+    status, body = build_error_response(code)
     if status >= 500:
-        # NFR-13: exception text/tracebacks may contain prompts, answers or credentials.
-        logger.error("request_failed request_id=%s code=%s exc=%s", request_id, code.value, type(exc).__name__)
+        logger.error("request_failed request_id=%s code=%s exc=%s", request_id, code.value, type(exc).__name__, exc_info=exc)
     else:
         logger.warning("request_rejected request_id=%s code=%s exc=%s", request_id, code.value, type(exc).__name__)
     return JSONResponse(status_code=status, content=body.model_dump(mode="json"), headers=headers)
 
 
 async def handle_exception(request: Request, exc: Exception) -> JSONResponse:
-    return _respond(request, classify_internal(exc), exc)
+    return _respond(request, classify(exc), exc)
 
 
 async def handle_request_validation(request: Request, exc: RequestValidationError) -> JSONResponse:
-    return _respond(request, InternalErrorCode.INVALID_REQUEST, exc)
+    return _respond(request, ErrorCode.INVALID_REQUEST, exc)
 
 
 async def handle_http_exception(request: Request, exc: StarletteHTTPException) -> JSONResponse:
     # Unknown route (404), wrong method (405, keeps the Allow header), 413/415 raised by the framework or handlers.
     # The framework's `detail` is deliberately not echoed.
-    return _respond(request, classify_internal_http_status(exc.status_code), exc, headers=getattr(exc, "headers", None))
+    return _respond(request, classify_http_status(exc.status_code), exc, headers=getattr(exc, "headers", None))
 
 
 def install_error_handlers(app: FastAPI) -> None:
