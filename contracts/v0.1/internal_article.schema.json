@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Internal ArticleResponse v0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["document_id", "document_title", "article_id", "article", "content", "source_url"],
+  "properties": {
+    "document_id": {"type": "string", "minLength": 1, "maxLength": 200, "pattern": "^[A-Za-z0-9_-]+$"},
+    "document_title": {"type": "string", "minLength": 1, "maxLength": 500},
+    "article_id": {"type": "string", "minLength": 1, "maxLength": 100, "pattern": "^[A-Za-z0-9_-]+$"},
+    "article": {"type": "string", "minLength": 1, "maxLength": 100},
+    "content": {"type": "string", "minLength": 1, "maxLength": 200000},
+    "source_url": {"type": "string", "format": "uri", "pattern": "^https://", "maxLength": 2048}
+  },
+  "description": "Spec v2.0 section 9.12. Complete article from an article repository, never reconstructed from retrieval chunks; preserve exact requested version and line breaks."
+}

@@ -17,6 +17,7 @@ retrieval = ["bm25s>=0.3,<0.4", "underthesea>=9,<10"]
 # qdrant-client đủ cho test (fake embedder + ":memory:"); sentence-transformers kéo theo torch (vài GB) để chạy model thật.
 dense = ["numpy>=1.26", "qdrant-client>=1.12,<2", "sentence-transformers>=3,<6"]
 reranker = ["torch>=2.6,<3", "transformers>=4.51,<5", "sentencepiece>=0.2,<1"]
+api = ["fastapi>=0.115,<1", "uvicorn>=0.30,<1", "httpx>=0.27,<1", "jsonschema[format]>=4.25,<5"]
 
 [tool.setuptools.packages.find]
 include = ["team1_data*", "team2_rag*"]

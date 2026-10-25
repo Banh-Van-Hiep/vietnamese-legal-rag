@@ -1,4 +1,5 @@
 from team2_rag.config.settings import (
+    DEFAULT_OLLAMA_BASE_URL,
     DEFAULT_QWEN_BASE_URL,
     PROVIDERS,
     ConfigError,
@@ -8,6 +9,7 @@ from team2_rag.config.settings import (
 )
 
 __all__ = [
+    "DEFAULT_OLLAMA_BASE_URL",
     "DEFAULT_QWEN_BASE_URL",
     "PROVIDERS",
     "ConfigError",
