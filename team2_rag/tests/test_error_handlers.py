@@ -102,6 +102,15 @@ HTTP_CASES = [
     (504, "UPSTREAM_TIMEOUT"),
 ]
 
+# Internal Python -> Java codes; the public helper expectations above stay unchanged.
+INTERNAL_CASES = {
+    "timeout": "LLM_TIMEOUT", "rate": "LLM_UNAVAILABLE", "provider": "LLM_UNAVAILABLE",
+    "auth": "LLM_UNAVAILABLE", "config": "LLM_UNAVAILABLE",
+    "bad_output": "INVALID_LLM_OUTPUT", "citation": "CITATION_INVALID",
+    "rerank_model": "RETRIEVAL_UNAVAILABLE", "retrieval_down": "RETRIEVAL_UNAVAILABLE",
+    "retrieval_timeout": "RETRIEVAL_TIMEOUT", "schema": "INVALID_LLM_OUTPUT",
+}
+
 
 @pytest.fixture(scope="module")
 def client():
@@ -134,15 +143,18 @@ def assert_error_body(r, status, code, retryable):
 
 
 @pytest.mark.parametrize("kind", list(CASES))
-def test_exception_to_standard_json(client, kind):
+def test_exception_to_standard_json(client, kind, caplog):
     _, status, code, retryable = CASES[kind]
-    assert_error_body(client.get(f"/raise/{kind}"), status, code, retryable)
+    assert classify(CASES[kind][0]()).value == code
+    assert_error_body(client.get(f"/raise/{kind}"), status, INTERNAL_CASES.get(kind, code), retryable)
+    assert SECRET not in caplog.text
 
 
 @pytest.mark.parametrize("raised,code", HTTP_CASES)
 def test_http_exception_to_standard_json(client, raised, code):
     status, retryable = REFERENCE[code]
-    assert_error_body(client.get(f"/http/{raised}"), status, code, retryable)
+    internal_code = {502: "INVALID_LLM_OUTPUT", 503: "LLM_UNAVAILABLE", 504: "LLM_TIMEOUT"}.get(raised, code)
+    assert_error_body(client.get(f"/http/{raised}"), status, internal_code, retryable)
 
 
 def test_unknown_route_is_404_not_found(client):
