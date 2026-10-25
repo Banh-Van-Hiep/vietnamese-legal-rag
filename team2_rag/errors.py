@@ -41,10 +41,29 @@ class ErrorCode(str, Enum):
     UPSTREAM_TIMEOUT = "UPSTREAM_TIMEOUT"
 
 
+class InternalErrorCode(str, Enum):
+    """Python -> Spring Boot vocabulary (spec v2.0 sections 9.13-9.14)."""
+
+    INVALID_REQUEST = "INVALID_REQUEST"
+    NOT_FOUND = "NOT_FOUND"
+    DOCUMENT_NOT_FOUND = "DOCUMENT_NOT_FOUND"
+    ARTICLE_NOT_FOUND = "ARTICLE_NOT_FOUND"
+    METHOD_NOT_ALLOWED = "METHOD_NOT_ALLOWED"
+    PAYLOAD_TOO_LARGE = "PAYLOAD_TOO_LARGE"
+    UNSUPPORTED_MEDIA_TYPE = "UNSUPPORTED_MEDIA_TYPE"
+    INTERNAL_ERROR = "INTERNAL_ERROR"
+    INVALID_LLM_OUTPUT = "INVALID_LLM_OUTPUT"
+    CITATION_INVALID = "CITATION_INVALID"
+    RETRIEVAL_UNAVAILABLE = "RETRIEVAL_UNAVAILABLE"
+    RETRIEVAL_TIMEOUT = "RETRIEVAL_TIMEOUT"
+    LLM_UNAVAILABLE = "LLM_UNAVAILABLE"
+    LLM_TIMEOUT = "LLM_TIMEOUT"
+
+
 class ErrorDetail(BaseModel):
     model_config = ConfigDict(extra="forbid", frozen=True)
 
-    code: ErrorCode
+    code: ErrorCode | InternalErrorCode
     message: str
     retryable: bool
 
@@ -88,7 +107,7 @@ _HTTP_STATUS_CODES: dict[int, ErrorCode] = {
 
 
 class Team2Error(Exception):
-    code: ClassVar[ErrorCode] = ErrorCode.INTERNAL_ERROR
+    code: ClassVar[ErrorCode | InternalErrorCode] = ErrorCode.INTERNAL_ERROR
 
     def __init__(self, detail: str = "") -> None:
         super().__init__(detail)
@@ -105,6 +124,9 @@ class InternalError(Team2Error):
 
 def classify(exc: BaseException) -> ErrorCode:
     if isinstance(exc, Team2Error):
+        if isinstance(exc.code, InternalErrorCode):
+            public = _INTERNAL_PUBLIC.get(exc.code)
+            return public if public is not None else ErrorCode(exc.code.value)
         return exc.code
     if isinstance(exc, LLMError):
         public = _LLM_PUBLIC_CODES.get(exc.error_code)
@@ -142,4 +164,72 @@ def classify_http_status(status_code: int) -> ErrorCode:
 
 def build_error_response(code: ErrorCode) -> tuple[int, ErrorResponse]:
     status, message, retryable = ERROR_SPECS[code]
+    return status, ErrorResponse(error=ErrorDetail(code=code, message=message, retryable=retryable))
+
+
+_INTERNAL_PUBLIC = {
+    InternalErrorCode.INVALID_LLM_OUTPUT: ErrorCode.UPSTREAM_INVALID_RESPONSE,
+    InternalErrorCode.CITATION_INVALID: ErrorCode.UPSTREAM_INVALID_RESPONSE,
+    InternalErrorCode.RETRIEVAL_UNAVAILABLE: ErrorCode.SERVICE_UNAVAILABLE,
+    InternalErrorCode.RETRIEVAL_TIMEOUT: ErrorCode.UPSTREAM_TIMEOUT,
+    InternalErrorCode.LLM_UNAVAILABLE: ErrorCode.SERVICE_UNAVAILABLE,
+    InternalErrorCode.LLM_TIMEOUT: ErrorCode.UPSTREAM_TIMEOUT,
+    InternalErrorCode.DOCUMENT_NOT_FOUND: ErrorCode.NOT_FOUND,
+    InternalErrorCode.ARTICLE_NOT_FOUND: ErrorCode.NOT_FOUND,
+}
+_PUBLIC_INTERNAL = {
+    ErrorCode.UPSTREAM_INVALID_RESPONSE: InternalErrorCode.INVALID_LLM_OUTPUT,
+    ErrorCode.SERVICE_UNAVAILABLE: InternalErrorCode.LLM_UNAVAILABLE,
+    ErrorCode.UPSTREAM_TIMEOUT: InternalErrorCode.LLM_TIMEOUT,
+}
+
+
+class DocumentNotFoundError(Team2Error):
+    code = InternalErrorCode.DOCUMENT_NOT_FOUND
+
+
+class ArticleNotFoundError(Team2Error):
+    code = InternalErrorCode.ARTICLE_NOT_FOUND
+
+
+class ArticleStoreUnavailableError(Team2Error):
+    code = InternalErrorCode.RETRIEVAL_UNAVAILABLE
+
+
+class ArticleStoreTimeoutError(Team2Error):
+    code = InternalErrorCode.RETRIEVAL_TIMEOUT
+
+
+def _internal_code(code: ErrorCode | InternalErrorCode) -> InternalErrorCode:
+    if isinstance(code, InternalErrorCode):
+        return code
+    return _PUBLIC_INTERNAL[code] if code in _PUBLIC_INTERNAL else InternalErrorCode(code.value)
+
+
+def classify_internal(exc: BaseException) -> InternalErrorCode:
+    """Preserve the failure's phase; only Java translates these codes for FE."""
+    if isinstance(exc, LLMError):
+        try:
+            return InternalErrorCode(exc.error_code)
+        except ValueError:
+            return InternalErrorCode.LLM_UNAVAILABLE
+    if RetrievalUnavailableError is not None and isinstance(exc, RetrievalUnavailableError):
+        return (InternalErrorCode.RETRIEVAL_TIMEOUT if isinstance(exc.__cause__, TimeoutError)
+                else InternalErrorCode.RETRIEVAL_UNAVAILABLE)
+    if isinstance(exc, RerankModelError):
+        return InternalErrorCode.RETRIEVAL_UNAVAILABLE
+    if isinstance(exc, Team2Error):
+        return _internal_code(exc.code)
+    return _internal_code(classify(exc))
+
+
+def classify_internal_http_status(status_code: int) -> InternalErrorCode:
+    return _internal_code(classify_http_status(status_code))
+
+
+def build_internal_error_response(code: InternalErrorCode) -> tuple[int, ErrorResponse]:
+    public = _INTERNAL_PUBLIC.get(code)
+    if public is None:
+        public = ErrorCode(code.value)
+    status, message, retryable = ERROR_SPECS[public]
     return status, ErrorResponse(error=ErrorDetail(code=code, message=message, retryable=retryable))
