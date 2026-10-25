@@ -84,12 +84,3 @@ Các nội dung chưa đưa vào bốn schema v0.1: multi-turn/history nội b�
 ## 5. Tiêu chí chốt
 
 Team 1 xác nhận cung cấp đủ các field trong `retrieval_output`. Team 2 xác nhận marker/citation và status. Team 3 xác nhận public request, RagResponse và error mapping. Sau đó mới tạo mock payload và bắt đầu implementation Week 2–3. Không push trực tiếp vào `develop` hoặc `main`.
-
-## Internal HTTP integration theo đặc tả v2.0
-
-- `internal_query_request.schema.json`: Java → Python, bắt buộc `question` và `history`; code kiểm tra thêm các cặp history và giới hạn tổng.
-- `internal_article.schema.json`: Python → Java, nguyên văn đầy đủ của Điều với đúng 6 field; lookup giữ đúng phiên bản.
-- `query_request.schema.json` vẫn là public request cũ, không dùng validate request SSE/camelCase hiện tại.
-- Mã lỗi wire của Python là `INVALID_LLM_OUTPUT`/`CITATION_INVALID`, `RETRIEVAL_UNAVAILABLE`/`LLM_UNAVAILABLE`, `RETRIEVAL_TIMEOUT`/`LLM_TIMEOUT`. Java ánh xạ sang mã public.
-- Article source chưa sẵn sàng trả 503, khác với 404 `DOCUMENT_NOT_FOUND` hoặc `ARTICLE_NOT_FOUND` khi source đã có.
-- HTTP mock và live dùng cùng routes và schemas. Xem `docs/team2_rag/week4-integration.md`.

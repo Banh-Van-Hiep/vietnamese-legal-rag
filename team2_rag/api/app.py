@@ -15,9 +15,8 @@ from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from jsonschema import Draft202012Validator, FormatChecker
 
-from ..articles import ArticleResponse, JsonlArticleStore, validate_article_ids
-from ..errors import ArticleStoreTimeoutError, InternalErrorCode, build_internal_error_response
-from ..llm.errors import LLMBadOutputError
+from ..config.settings import ConfigError
+from ..errors import ErrorCode, build_error_response
 from ..models.response import RAGResponse
 from ..pipeline import validate_input, validate_generated_response
 from ..runtime import build_runtime
@@ -29,10 +28,8 @@ BODY_LIMIT = 256 * 1024
 
 
 def _error(code, request_id):
-    """Early rejection using the same internal error vocabulary as exception handlers."""
-    status, body = build_internal_error_response(code)
-    log.log(logging.ERROR if status >= 500 else logging.WARNING,
-            "rag_rejected request_id=%s code=%s http_status=%s", request_id, code.value, status)
+    """Early (pre-pipeline) rejection; status/message/retryable come from the single public table in errors.py."""
+    status, body = build_error_response(code)
     return JSONResponse(body.model_dump(mode="json"), status_code=status, headers={"X-Request-ID": request_id})
 
 
@@ -54,7 +51,7 @@ def _close_runtime(runtime) -> None:
 
 
 def create_app(pipeline=None, *, runtime_factory=None, timeout_seconds=45,
-               error_installer=None, response_model=None, article_store=None, article_timeout_seconds=10):
+               error_installer=None, response_model=None):
     """`response_model` defaults to the shared Pydantic `RAGResponse`; the JSON Schema stays the contract guard.
 
     Where the pipeline comes from:
@@ -66,14 +63,10 @@ def create_app(pipeline=None, *, runtime_factory=None, timeout_seconds=45,
     """
     if not 0 < timeout_seconds <= 45:
         raise ValueError("timeout_seconds must be in (0, 45]")
-    if not 0 < article_timeout_seconds <= 10:
-        raise ValueError("article_timeout_seconds must be in (0, 10]")
     validator = Draft202012Validator(
         json.loads((ROOT / "contracts/v0.1/rag_response.schema.json").read_text(encoding="utf-8")),
         format_checker=FormatChecker(),
     )
-    request_schema = json.loads(
-        (ROOT / "contracts/v0.1/internal_query_request.schema.json").read_text(encoding="utf-8"))
 
     use_factory = runtime_factory is not None or pipeline is None
     factory = runtime_factory if runtime_factory is not None else build_runtime
@@ -89,7 +82,9 @@ def create_app(pipeline=None, *, runtime_factory=None, timeout_seconds=45,
                 runtime = await asyncio.to_thread(factory)
                 app.state.pipeline = runtime.pipeline
             except Exception as exc:
-                log.error("rag_startup_failed error_type=%s", type(exc).__name__)
+                # ConfigError texts only name settings (never values), so they are safe and make a startup failure diagnosable.
+                detail = f" detail={exc}" if isinstance(exc, ConfigError) else ""
+                log.error("rag_startup_failed error_type=%s%s", type(exc).__name__, detail)
                 app.state.startup_error = type(exc).__name__
                 app.state.pipeline = None  # fail safe: /ready and /query answer 503, nothing half-initialised is served
                 if runtime is not None:  # built but unusable (e.g. no pipeline): do not leak its resources
@@ -114,7 +109,6 @@ def create_app(pipeline=None, *, runtime_factory=None, timeout_seconds=45,
     # One inference at a time. A timed-out thread keeps its slot until it
     # really finishes, preventing repeated requests from accumulating work.
     slot = threading.Lock()
-    source = article_store if article_store is not None else JsonlArticleStore.from_environment()
 
     @app.get("/internal/v1/health")
     def health():
@@ -123,45 +117,21 @@ def create_app(pipeline=None, *, runtime_factory=None, timeout_seconds=45,
     @app.get("/internal/v1/ready")
     def ready(request: Request):
         if getattr(app.state, "pipeline", None) is None:
-            return _error(InternalErrorCode.LLM_UNAVAILABLE, resolve_request_id(request))
+            return _error(ErrorCode.SERVICE_UNAVAILABLE, resolve_request_id(request))
         return {"status": "ready"}
 
-    @app.get("/internal/v1/documents/{document_id}/articles/{article_id}", response_model=ArticleResponse)
-    async def article(document_id: str, article_id: str, request: Request):
-        request_id = resolve_request_id(request)
-        if request.url.query:
-            return _error(InternalErrorCode.INVALID_REQUEST, request_id)
-        async for block in request.stream():
-            if block:
-                return _error(InternalErrorCode.INVALID_REQUEST, request_id)
-        try:
-            validate_article_ids(document_id, article_id)
-        except ValueError:
-            return _error(InternalErrorCode.INVALID_REQUEST, request_id)
-        try:
-            raw = await asyncio.wait_for(
-                asyncio.to_thread(source.get_article, document_id, article_id), timeout=article_timeout_seconds)
-        except asyncio.TimeoutError:
-            raise ArticleStoreTimeoutError() from None
-        result = ArticleResponse.model_validate(raw)
-        if (result.document_id, result.article_id) != (document_id, article_id):
-            raise LLMBadOutputError("Article response identity does not match the requested version")
-        return JSONResponse(result.model_dump(mode="json"), headers={"X-Request-ID": request_id})
-
-    @app.post("/internal/v1/query", response_model=RAGResponse, openapi_extra={
-        "requestBody": {"required": True, "content": {"application/json": {"schema": request_schema}}},
-    })
+    @app.post("/internal/v1/query")
     async def query(request: Request):
         request_id = resolve_request_id(request)
         if request.url.query:
-            return _error(InternalErrorCode.INVALID_REQUEST, request_id)
+            return _error(ErrorCode.INVALID_REQUEST, request_id)
         if request.headers.get("content-type", "").split(";")[0].strip().lower() != "application/json":
-            return _error(InternalErrorCode.UNSUPPORTED_MEDIA_TYPE, request_id)
+            return _error(ErrorCode.UNSUPPORTED_MEDIA_TYPE, request_id)
         raw = bytearray()
         async for block in request.stream():
             raw.extend(block)
             if len(raw) > BODY_LIMIT:
-                return _error(InternalErrorCode.PAYLOAD_TOO_LARGE, request_id)
+                return _error(ErrorCode.PAYLOAD_TOO_LARGE, request_id)
         try:
             data = json.loads(raw.decode("utf-8"), object_pairs_hook=_pairs,
                               parse_constant=lambda _: (_ for _ in ()).throw(ValueError("nonfinite JSON")))
@@ -171,10 +141,10 @@ def create_app(pipeline=None, *, runtime_factory=None, timeout_seconds=45,
             if data["history"] is None:
                 raise ValueError("history must be an array")
         except (UnicodeError, ValueError):
-            return _error(InternalErrorCode.INVALID_REQUEST, request_id)
+            return _error(ErrorCode.INVALID_REQUEST, request_id)
         active = getattr(app.state, "pipeline", None)
         if active is None or not slot.acquire(blocking=False):
-            return _error(InternalErrorCode.LLM_UNAVAILABLE, request_id)
+            return _error(ErrorCode.SERVICE_UNAVAILABLE, request_id)
 
         def run():
             try:
@@ -191,8 +161,8 @@ def create_app(pipeline=None, *, runtime_factory=None, timeout_seconds=45,
             out = await asyncio.wait_for(asyncio.shield(work), timeout=timeout_seconds)
             return JSONResponse(out, headers={"X-Request-ID": request_id})
         except asyncio.TimeoutError:
-            return _error(InternalErrorCode.LLM_TIMEOUT, request_id)
-        # Every other exception propagates to the handlers installed above (internal error body with
+            return _error(ErrorCode.UPSTREAM_TIMEOUT, request_id)
+        # Every other exception propagates to the handlers installed above (errors.classify -> public body with
         # X-Request-ID); nothing is swallowed or answered twice here.
 
     return app

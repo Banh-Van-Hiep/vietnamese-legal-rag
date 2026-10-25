@@ -2,7 +2,7 @@
 
 ## Week 4 integration draft
 
-Pipeline/HTTP entry points, explicit HTTP mock, ArticleRepositoryPort, tests and live handoff:
+Pipeline/HTTP entry points, real-run setup, tests and pending VLRA-39/47 handoff:
 [week4-integration.md](../docs/team2_rag/week4-integration.md).
 The new API is `team2_rag.api.create_app`; `service.query()` below remains the older mock.
 
@@ -88,27 +88,15 @@ Behaviour notes
 - Request uses JSON mode (`response_format: json_object`) and `max_tokens`; `max_completion_tokens` is OpenAI-only and not sent. Checked against docs.ollama.com/openai.
 - Ollama truncates over-long prompts silently, and `/v1` ignores `num_ctx`. If `OLLAMA_CONTEXT_LENGTH` is smaller than `LLM_CONTEXT_WINDOW_TOKENS`, citations/JSON break; keep them equal.
 - Token counting for Ollama uses the existing conservative byte counter (always over-counts, so context is cut early; roughly 1000-1500 Vietnamese characters per 3000 "tokens"). Raise `LLM_MAX_CONTEXT_TOKENS` (default 3000) only together with the window; not tuned against a real model yet.
-- Failures map to the existing codes: server down/connection dropped -> `LLM_UNAVAILABLE` (503); timeout -> `LLM_TIMEOUT` (504); model not pulled -> `LLM_UNAVAILABLE` (log text says `ollama pull ...`); non-JSON/wrong-shape reply -> `INVALID_LLM_OUTPUT` (502). No retries.
+- Failures map to the existing codes: server down/connection dropped -> `SERVICE_UNAVAILABLE` (503); timeout -> `UPSTREAM_TIMEOUT` (504); model not pulled -> `SERVICE_UNAVAILABLE` (log text says `ollama pull ...`); non-JSON/wrong-shape reply -> `UPSTREAM_INVALID_RESPONSE` (502). No retries.
 - `create_app` has its own 45 s request limit (unchanged); a slow CPU can hit it (504) even when `LLM_TIMEOUT_SECONDS` is larger. The smoke test and `run_query` are not subject to it.
-- `create_app()` startup: with no arguments it builds the runtime in the lifespan. An explicit `runtime_factory=` is authoritative: if it fails, `/internal/v1/ready` and `/internal/v1/query` answer 503 `LLM_UNAVAILABLE` (an injected `pipeline=` is never served as a stand-in) and the runtime is closed exactly once at shutdown. A bare `pipeline=` is served as-is and stays owned by the caller (tests/embedding).
+- `create_app()` startup: with no arguments it builds the runtime in the lifespan. An explicit `runtime_factory=` is authoritative: if it fails, `/internal/v1/ready` and `/internal/v1/query` answer 503 `SERVICE_UNAVAILABLE` (an injected `pipeline=` is never served as a stand-in) and the runtime is closed exactly once at shutdown. A bare `pipeline=` is served as-is and stays owned by the caller (tests/embedding).
 - A 3B model follows the strict JSON + `[Ck]` citation contract less reliably than hosted models; bad output is rejected, never repaired.
-
-## HTTP mock và Viewer cho Team 3
-
-Chạy không cần corpus/index/API key:
-```bash
-python -m pip install -e ".[test,api]"
-python -m uvicorn team2_rag.api.mock_app:create_mock_app --factory --host 127.0.0.1 --port 8001
-```
-Query trả fixture `mock_v1/art1`; Viewer dùng `GET /internal/v1/documents/mock_v1/articles/art1`. Header `X-RAG-Mode: mock` và nội dung cho biết đây là giả lập.
-`RAG_MOCK_SCENARIO=insufficient_context` chọn tình huống còn lại qua cấu hình, không qua request.
-Live dùng `create_app`, article source do Team 1 bàn giao qua `get_article` hoặc `RAG_ARTICLES`; không ghép chunks thành nguyên văn Điều.
-Python giữ mã lỗi nội bộ; Java ánh xạ public theo đặc tả v2.0 mục 9.14.
 
 ## Chạy test (từ gốc repo)
 ```
 pip install -r team2_rag/requirements-dev.txt
-python -m pytest team2_rag/tests tests/test_team2*.py -q
+python -m pytest team2_rag/tests -q
 ```
 `pytest` là lệnh chuẩn: chạy được cả test dạng `unittest.TestCase` lẫn test dạng hàm/fixture của pytest. Các module `test_error_handlers`, `test_llm_config`, `test_response_models`,
 `test_answer_citation_accuracy`, `test_internal_query_api` chỉ có hàm pytest, nên `python -m unittest ...` **không thu thập được** chúng (báo `Ran 0 tests` hoặc `ModuleNotFoundError: pytest`).
