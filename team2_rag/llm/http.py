@@ -5,6 +5,7 @@ không cần mạng hay API key.
 """
 from __future__ import annotations
 
+import http.client
 import json
 import socket
 import urllib.error
@@ -57,3 +58,6 @@ class UrllibTransport:
                 raise LLMTimeoutError("Hết thời gian chờ phản hồi từ LLM provider.") from None
             # Không đưa chi tiết URL/header vào thông báo.
             raise LLMProviderError("Không kết nối được tới LLM provider.") from None
+        except (ConnectionError, http.client.HTTPException):
+            # Server đóng/reset kết nối giữa chừng (vd. Ollama bị OOM/crash khi đang sinh): urllib không bọc thành URLError.
+            raise LLMProviderError("Kết nối tới LLM provider bị ngắt.") from None
