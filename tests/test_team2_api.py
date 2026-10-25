@@ -45,7 +45,7 @@ class APITests(unittest.TestCase):
             self.assertEqual(client.get("/internal/v1/health").json(), {"status": "up"})
             self.assertEqual(client.get("/internal/v1/ready").status_code, 503)
             response = client.post("/internal/v1/query", json=BODY)
-            self.check_error(response, 503, "SERVICE_UNAVAILABLE")
+            self.check_error(response, 503, "LLM_UNAVAILABLE")
             self.assertNotIn("SECRET", response.text)
         factory.assert_called_once()
 
@@ -85,11 +85,11 @@ class APITests(unittest.TestCase):
             (LLMBadOutputError("SECRET"), 502, "INVALID_LLM_OUTPUT"),
             (CitationInvalidError("SECRET"), 502, "CITATION_INVALID"),
             (RetrievalUnavailableError("SECRET"), 503, "RETRIEVAL_UNAVAILABLE"),
-            (RerankModelError("SECRET"), 503, "SERVICE_UNAVAILABLE"),
+            (RerankModelError("SECRET"), 503, "RETRIEVAL_UNAVAILABLE"),
             (RuntimeError("SECRET"), 500, "INTERNAL_ERROR"),
         ]:
             self.pipeline.query.side_effect = exc
-            with self.subTest(code=code), TestClient(create_app(self.pipeline)) as client:
+            with self.subTest(code=code), TestClient(create_app(self.pipeline), raise_server_exceptions=False) as client:
                 response = client.post("/internal/v1/query", json=BODY)
                 self.check_error(response, status, code)
                 self.assertNotIn("SECRET", response.text)
@@ -151,8 +151,8 @@ class APITests(unittest.TestCase):
         self.pipeline.query.side_effect = blocked
         with TestClient(create_app(self.pipeline, timeout_seconds=.02)) as client:
             try:
-                self.check_error(client.post("/internal/v1/query", json=BODY), 504, "UPSTREAM_TIMEOUT")
-                self.check_error(client.post("/internal/v1/query", json=BODY), 503, "SERVICE_UNAVAILABLE")
+                self.check_error(client.post("/internal/v1/query", json=BODY), 504, "LLM_TIMEOUT")
+                self.check_error(client.post("/internal/v1/query", json=BODY), 503, "LLM_UNAVAILABLE")
                 self.assertEqual(self.pipeline.query.call_count, 1)
             finally:
                 release.set()

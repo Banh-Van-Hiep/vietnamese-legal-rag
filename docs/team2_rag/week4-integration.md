@@ -1,144 +1,155 @@
-# VLRA-38 / VLRA-45 — Pipeline and internal FastAPI draft
+# Tích hợp Team 2 theo đặc tả v2.0
 
-Base: `develop` at `3d64c4d`; work branch: `feature/team2/datdo-week4`.
-Scope: wire existing Hybrid Retrieval, reranker, Context Builder and generation;
-expose the Python service to Spring Boot; add 10 Golden QA pairs.
+Phạm vi: VLRA-38/VLRA-45 và hai điểm nối với VLRA-39/VLRA-47. Module cung cấp
+HTTP mock để Team 3 tích hợp độc lập, cùng contract với live. Kiểm thử live toàn
+luồng còn chờ dữ liệu/index/article store của Team 1 và cấu hình model thực tế.
 
-## Entry points
+## Đối chiếu yêu cầu
 
-- `team2_rag.pipeline.RAGPipeline.query(question, history, request_id=...)`
-- `team2_rag.runtime.build_runtime()` loads indexes, embedding, BGE and existing LLM configuration once.
-- `team2_rag.api.create_app()` is a FastAPI factory.
-- `python -m team2_rag.run_query "..."` runs one configured real query.
-- `team2_rag.service.query()` remains the Week 2 mock; it is not this service's handler.
-
-The runtime uses Hybrid RRF from Team 1 and `generate_answer()` from Person 2.
-Reranking uses strict mode: missing packages, oversized pairs or inference errors
-raise instead of silently claiming BGE succeeded. Model limits remain documented
-in [reranker-prototype.md](reranker-prototype.md).
-
-The BM25 `_search` currently returns an envelope while Hybrid's `rrf_fuse` needs
-a list. `BM25SearchAdapter` unwraps this at the Team 2 boundary; it also accepts a
-future corrected list. No Team 1 ranking source is changed in this branch.
-
-## Internal API
-
-| Method | Path | Behavior |
+| Đặc tả v2.0 | Implementation | Bằng chứng |
 | --- | --- | --- |
-| POST | `/internal/v1/query` | `{question, history}` to `{status, answer, citations}` |
-| GET | `/internal/v1/health` | Process liveness; does not prove models are ready |
-| GET | `/internal/v1/ready` | 503 until runtime loads successfully |
+| 7.6, 9.9: status, marker, citation/provenance | `models.response.RAGResponse`; generation và mọi nhánh pipeline dùng validator chung | Model, generation, pipeline và HTTP regressions |
+| 9.14: Python trả mã nội bộ, Java ánh xạ public | `errors.classify_internal`, `api.handlers` | Test cũ và mới dùng cùng bảng mã |
+| NFR-13, 5.6: không log raw question/answer/prompt/secret | Handler chỉ ghi request ID, code, tên exception; startup không ghi exception text | Kiểm tra log bằng chuỗi giả |
+| 7.7-7.8: HTTP mock độc lập | `api.mock_app.create_mock_app` | Query và Viewer cùng routes với live, không tải runtime/models |
+| 7.2, 9.11-9.12: mở toàn Điều đúng phiên bản | `articles.ArticleRepository`, `JsonlArticleStore` | Source lookup, 404/503/504, version, newline và schema tests |
+| 9.8, 9.12: internal schemas | `contracts/v0.1/internal_query_request.schema.json`, `internal_article.schema.json` | JSON Schema và semantic validation |
 
-No browser CORS is needed: Spring Boot calls this service. Public chat, SSE,
-conversation IDs, storage and the document viewer stay with Team 3. There is no
-new public `/api/v1/query` in this Python application.
+## Điểm vào và API
 
-Input is strict JSON: exactly `question` and `history`, no duplicate keys or
-nonfinite numbers. Question: 1–2000 Unicode characters after trimming. History:
-at most five complete user/assistant pairs and 20000 content characters. Body:
-256 KiB. No scenario, model, top_k or IDs in the request. Trace is carried by
-`X-Request-ID`, including safe error responses.
+- `RAGPipeline.query(question, history, request_id=...)`: retrieval → strict rerank → context → generation → shared validation.
+- `build_runtime()`: tải các index/model theo cấu hình; không tự rebuild collection.
+- `create_app()`: live FastAPI factory; luôn gọi `install_error_handlers(app)` và dùng `RAGResponse` mặc định.
+- `create_mock_app()`: HTTP mock được chọn tường minh bằng lệnh chạy riêng; không có fallback từ live sang mock.
+- `service.query()` là mock thư viện cũ, không phải handler live.
 
-The HTTP wait is capped at 45 seconds, with one active inference at a time.
-This is an HTTP deadline, **not cancellation of a CPU/model/provider call**.
-A timed-out thread keeps its slot until it finishes; subsequent requests receive
-503 rather than accumulating model work. Run one Uvicorn worker for this MVP.
-For the overall deadline the draft returns 504 `UPSTREAM_TIMEOUT`; Person 2 and
-Team 3 must confirm this whole-pipeline mapping alongside VLRA-47 before release.
+| Method | Path | Kết quả |
+| --- | --- | --- |
+| POST | `/internal/v1/query` | `{question, history}` → `{status, answer, citations}` |
+| GET | `/internal/v1/documents/{document_id}/articles/{article_id}` | ArticleResponse đủ 6 field, toàn Điều |
+| GET | `/internal/v1/health` | Liveness; không chứng minh models đã sẵn sàng |
+| GET | `/internal/v1/ready` | Query runtime sẵn sàng; 503 khi khởi động thất bại |
 
-Explicit follow-up references such as "trường hợp vừa nêu" receive a request for
-clarification. General history-based query rewriting has not been implemented or
-claimed; previous answers never become legal source material.
+Python không lưu hội thoại hoặc cấp public IDs. Public SSE, camelCase mapping,
+idempotency và DB thuộc Team 3. Query chỉ nhận `question` và `history`; scenario,
+model, context và public IDs không được gửi trong request. Các giới hạn là 2000
+code point sau trim, tối đa 5 cặp history/20000 ký tự và body 256 KiB.
 
-## Required handoff from Person 2 — not yet present on GitHub
+## Chạy HTTP mock cho Team 3
 
-The current `team2_rag.types.RAGResponse` is a `TypedDict`, not a Pydantic model.
-At the checked baseline, `team2_rag.api.handlers` and the new validating
-`RAGResponse` model have **not been pushed** (confirmed by the user).
-
-1. The factory automatically imports and calls
-   `install_error_handlers(app)` from `team2_rag.api.handlers` once available.
-   The package structure reserves that path; no competing `handlers.py` is added.
-   When installed, pipeline exceptions are re-raised to those handlers rather
-   than swallowed by the draft's local mapping. Tests currently inject an
-   installer double; they do not prove the unpublished implementation works.
-2. Pass Person 2's class as `create_app(response_model=RAGResponse)` and/or
-   `RAGPipeline(..., response_model=RAGResponse)`. The final result then goes
-   through `RAGResponse.model_validate(...).model_dump(mode="json")`.
-   Its module path is still pending; do not guess it or duplicate the model.
-3. Without these modules, the service remains a development draft: shared JSON
-   Schema plus a final marker guard and legacy safe error mapping are used.
-   Do not mark shared handler/model integration complete.
-
-The audit reproduced this gap in the existing generator: a valid `[C1]` together
-with `[C0]` or `[C01]` was accepted. The new final guard rejects these, lowercase,
-spaced/unclosed markers, missing/extra citations, duplicate chunk IDs and numbering
-that is not consecutive in first-appearance order. Malformed output returns
-`INVALID_LLM_OUTPUT` / 502 in the legacy adapter. Citation provenance errors from
-the existing generator remain `CITATION_INVALID` / 502.
-
-Once Person 2 pushes, run the same regressions with the **real shared classes**,
-including Team2Error, LLMError and output validation exceptions. An injected test
-double is not acceptance evidence for VLRA-47 or VLRA-39.
-
-## Local installation and real smoke run
-
-Run from the repository root (Python 3.10+; Python 3.12 recommended):
+Từ gốc repo, Python 3.12 được khuyến nghị:
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-python -m pip install -e ".[test,api,rag,retrieval,dense,reranker]"
-```
-
-Use the Team 1 CLI to build BM25 and Dense indexes from the same corpus, with
-the same final directory name (`week4-v1` in the example). Dense build requires
-Qdrant and its actual embedding model. Existing indexes may be reused when their
-manifests agree. This draft does not rebuild a live Qdrant collection on startup.
-
-```bash
-python -m team1_data.retrieval build --out data/index/bm25/week4-v1
-python -m team1_data.retrieval dense-build --out data/index/dense/week4-v1
-```
-
-Copy the entries from `configs/team2-api.env.example` into local `.env`; Person 2
-provides LLM model/key settings. Do not overwrite another person's `.env`.
-The runtime uses the embedding model/revision and prefixes recorded in the dense
-manifest. API keys and `.env` are not included in evidence or commits.
-
-```bash
-python -m team2_rag.run_query "Công ty cổ phần có bắt buộc phải có cổ phần phổ thông không?"
-python -m uvicorn team2_rag.api:create_app --factory --host 127.0.0.1 --port 8001 --workers 1
+python -m pip install -e ".[test,api]"
+python -m uvicorn team2_rag.api.mock_app:create_mock_app --factory --host 127.0.0.1 --port 8001
 ```
 
 ```bash
 curl -i http://127.0.0.1:8001/internal/v1/ready
-curl -i http://127.0.0.1:8001/internal/v1/query \
-  -H 'Content-Type: application/json' -H 'X-Request-ID: local-smoke-1' \
-  -d '{"question":"Công ty cổ phần có bắt buộc phải có cổ phần phổ thông không?","history":[]}'
+curl -i http://127.0.0.1:8001/internal/v1/query -H 'Content-Type: application/json' -H 'X-Request-ID: mock-query-1' -d '{"question":"Kiểm thử tích hợp","history":[]}'
+curl -i http://127.0.0.1:8001/internal/v1/documents/mock_v1/articles/art1 -H 'X-Request-ID: mock-article-1'
 ```
 
-Real BGE and LLM execution are still pending on a configured machine. No API key
-or model/index cache is available in the review environment. Passing fake-provider
-tests must not be reported as real inference or legal-answer quality evaluation.
-OpenAI token budgeting additionally needs `tiktoken`; Gemini/Qwen counters and
-model/context settings remain Person 2's work. Without a token counter the existing
-generator uses its documented development-only character approximation.
+Java đặt `RAG_BASE_URL=http://localhost:8001`. Fixture trả `mock_v1/art1`, nguồn
+HTTPS `example.com`, nội dung ghi rõ giả lập và header `X-RAG-Mode: mock`.
+Fixture article là dữ liệu kiểm thử riêng, không phải bản ghép chunk hay văn bản
+pháp luật. Team 3 cần hiển thị nhãn môi trường mock trong demo.
 
-## Validation performed
-
-- 104 existing tests in `team2_rag/tests` passed.
-- 44 root Team 2 tests passed (22 existing plus 22 new pipeline/API regressions).
-- Actual BM25, Dense/Qdrant in-memory and Hybrid RRF were wired through the
-  pipeline and FastAPI TestClient: HTTP 200, original source metadata, trace kept.
-  This check used deterministic test embeddings, fake scoring and a fake LLM.
-- Golden validator passed 40 samples; new IDs `gold_031` through `gold_040`.
-- New QA answers are grounded in the pinned `67/VBHN-VPQH` corpus (15/08/2025),
-  each with one existing source chunk. They are not a claim of a fresh review of
-  all legal changes through the current date. The original 30 samples are retained.
+Để thử `insufficient_context`, khởi động lại server với cấu hình môi trường:
 
 ```bash
-python -m unittest discover -s tests -p 'test_team2*.py'
-python -m unittest discover -s team2_rag/tests -t .
+RAG_MOCK_SCENARIO=insufficient_context python -m uvicorn team2_rag.api.mock_app:create_mock_app --factory --host 127.0.0.1 --port 8001
+```
+
+Mock chỉ có hai tình huống này theo mục 7.7; không bổ sung field scenario hoặc
+backdoor gây lỗi vào request. Các nhánh lỗi kỹ thuật được kiểm thử bằng dependency
+injection. Fixture không được tính vào Golden Dataset hoặc chất lượng pháp lý.
+
+## Mã lỗi nội bộ
+
+| Python HTTP/code | Java public code | Retryable |
+| --- | --- | --- |
+| 502 `INVALID_LLM_OUTPUT` / `CITATION_INVALID` | `UPSTREAM_INVALID_RESPONSE` | false |
+| 503 `RETRIEVAL_UNAVAILABLE` / `LLM_UNAVAILABLE` | `SERVICE_UNAVAILABLE` | true |
+| 504 `RETRIEVAL_TIMEOUT` / `LLM_TIMEOUT` | `UPSTREAM_TIMEOUT` | true |
+| 404 `DOCUMENT_NOT_FOUND` / `ARTICLE_NOT_FOUND` | Giữ nguyên khi lookup article | false |
+
+Unready/busy trả `LLM_UNAVAILABLE`; lỗi retrieval/reranker trả
+`RETRIEVAL_UNAVAILABLE`; hết deadline xử lý AI 45 giây trả `LLM_TIMEOUT`.
+Request sai trả 400/413/415, route/method sai trả 404/405; lỗi ngoài dự kiến trả
+500. Envelope chỉ có `error.code/message/retryable`, kèm `X-Request-ID`.
+Các helper mã public cũ vẫn được giữ cho compatibility, nhưng không dùng làm wire
+code của service nội bộ Python.
+
+## ArticleRepositoryPort và bàn giao Team 1
+
+Team 1 cung cấp `get_article(document_id, article_id)` hoặc snapshot articles
+JSONL. Truyền repository qua `create_app(article_store=repository)`, hoặc cấu hình
+`RAG_ARTICLES` trỏ tới snapshot có nguyên văn Điều. Mặc định là
+`data/doanh-nghiep/processed/articles.jsonl`.
+
+Mỗi record có `document_id`, `document_title`, `article_id`, `article`, `content`,
+`source_url`; metadata lưu trữ bổ sung được bỏ khỏi HTTP response. Nội dung giữ
+nguyên xuống dòng. Store nạp snapshot hợp lệ một lần, giữ phiên bản bất biến;
+khởi động lại service khi chuyển snapshot. Cùng identity bị trùng hoặc source
+hỏng/thiếu → 503; không tự đọc chunks để thay thế. Source chưa sẵn sàng không bị
+báo nhầm là document/article không tồn tại. Khi đã có source, thiếu document và
+thiếu article được phân biệt bằng hai mã 404. Lookup không gọi LLM; deadline 10s.
+
+Chưa tạo corpus/articles thay Team 1. Trong lúc chờ, Team 3 dùng HTTP mock ở trên.
+
+## Chạy live
+
+```bash
+python -m pip install -e ".[test,api,rag,retrieval,dense,reranker]"
+python -m team1_data.retrieval build --out data/index/bm25/week4-v1
+python -m team1_data.retrieval dense-build --out data/index/dense/week4-v1
+python -m team2_rag.run_query "Công ty cổ phần có bắt buộc phải có cổ phần phổ thông không?"
+python -m uvicorn team2_rag.api:create_app --factory --host 127.0.0.1 --port 8001 --workers 1
+```
+
+Copy các biến cần thiết từ `configs/team2-api.env.example` vào `.env` hiện có,
+không ghi đè API key của người khác. BM25/Dense phải cùng version/chunk IDs;
+Qdrant và embedding phải khớp manifest. `BM25SearchAdapter` tương thích envelope
+hiện tại của Team 1 tại biên Hybrid; không sửa thuật toán ranking Team 1.
+
+LLM provider/model/window/key do cấu hình quyết định. Ollama có hướng dẫn riêng
+trong README; smoke Ollama chỉ chứng minh đoạn Context → LLM, không chứng minh
+retrieval/BGE live. Ngân sách target là retrieval 5s, rerank 5s, LLM 30s và AI 45s.
+API deadline 45s không hủy được thread CPU/provider đang chạy; slot giữ đến khi
+công việc thật sự kết thúc. Chọn timeout LLM ≤30s khi nghiệm thu live; Ollama
+120s chỉ phục vụ smoke/dev riêng. Chưa có bằng chứng benchmark latency target.
+
+History không được dùng làm chứng cứ. Tham chiếu mơ hồ yêu cầu làm rõ; query
+rewriting tổng quát và applicability theo đơn vị luật còn chờ các lớp tương ứng,
+không tính là đã hoàn tất target system.
+
+## Kiểm thử và giới hạn nghiệm thu
+
+```bash
+python -m pip install -r team2_rag/requirements-dev.txt
+python -m pytest team2_rag/tests tests/test_team2_mock.py tests/test_team2_reranker.py tests/test_team2_pipeline.py tests/test_team2_api.py -q
 python -m team2_rag.validate_golden
 ```
+
+Bộ test gồm cả các TestCase cũ và pytest mới. Các test về generation/retrieval
+boundary dùng scorer/provider giả; không tính thành chất lượng AI thật. Golden
+chính có 40 mẫu, 10 mẫu `gold_031`–`gold_040` giữ nguyên; 5 mẫu evaluation fixture
+riêng tái dùng 4 câu cũ và thêm `gold_041`, không được báo là 5 QA mới đã gộp.
+
+Kiểm tra bản sửa ngày 25/10/2026, nền `feature/team2-rag` tại `beae8ee`:
+
+- 415 test pass, 147 subtest pass, không skip trong lệnh Team 2 ở trên.
+- HTTP qua socket/Uvicorn thật ở loopback: query 200, citation → article 200,
+  đúng 6 field và giữ newline; document/article vắng trả đúng hai mã 404;
+  request thêm scenario bị chặn 400; request ID và header mock được giữ.
+- OpenAPI hiển thị question/history và model response; HTTP mock không tải
+  retrieval, BGE hoặc provider. Kiểm tra này không phải Java/React end-to-end.
+- Golden chính 40 mẫu giữ nguyên và vượt qua validator. Không phát sinh QA
+  luật mới từ fixture hoặc kết quả fake-provider.
+
+Chưa nghiệm thu VLRA-38 live toàn luồng, chỉ tiêu citation/answer/latency hoặc
+báo cáo benchmark VLRA-40. Các lỗi BM25/preprocessing đã tái hiện ở baseline
+`develop` cần Team 1 sửa; không đưa mock/fake vào báo cáo như live thành công.

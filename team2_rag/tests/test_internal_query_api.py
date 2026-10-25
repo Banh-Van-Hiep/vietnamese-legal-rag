@@ -1,7 +1,7 @@
 """Real `POST /internal/v1/query` through `create_app` with a fake pipeline (no models, no network, no API key).
 
 pytest-style (needs: pytest, fastapi, httpx, pydantic, jsonschema). Run: python -m pytest team2_rag/tests -q
-Covers HTTP mapping, public error bodies, request-id propagation and response validation of the REAL app wiring.
+Covers HTTP mapping, internal error bodies, request-id propagation and response validation of the REAL app wiring.
 It does not prove retrieval/rerank/LLM quality; those are faked.
 """
 import json
@@ -31,8 +31,9 @@ from team2_rag.tests.helpers import citation  # noqa: E402
 URL = "/internal/v1/query"
 SECRET = "sk-very-secret-raw-provider-error"
 VALID = {"question": "Luật Doanh nghiệp quy định về những vấn đề gì?", "history": []}
-PUBLIC_CODES = {"INVALID_REQUEST", "NOT_FOUND", "METHOD_NOT_ALLOWED", "PAYLOAD_TOO_LARGE", "UNSUPPORTED_MEDIA_TYPE",
-                "INTERNAL_ERROR", "UPSTREAM_INVALID_RESPONSE", "SERVICE_UNAVAILABLE", "UPSTREAM_TIMEOUT"}
+INTERNAL_CODES = {"INVALID_REQUEST", "NOT_FOUND", "METHOD_NOT_ALLOWED", "PAYLOAD_TOO_LARGE", "UNSUPPORTED_MEDIA_TYPE",
+                "INTERNAL_ERROR", "INVALID_LLM_OUTPUT", "CITATION_INVALID", "LLM_UNAVAILABLE", "LLM_TIMEOUT",
+                "RETRIEVAL_UNAVAILABLE", "RETRIEVAL_TIMEOUT"}
 
 
 def good():
@@ -75,7 +76,7 @@ def assert_error(r, status, code, retryable):
     assert r.status_code == status, r.text
     body = r.json()
     assert set(body) == {"error"} and set(body["error"]) == {"code", "message", "retryable"}
-    assert body["error"]["code"] == code and code in PUBLIC_CODES
+    assert body["error"]["code"] == code and code in INTERNAL_CODES
     assert body["error"]["retryable"] is retryable
     assert r.headers.get("x-request-id")                      # present on errors, not only on success
     assert SECRET not in r.text and "Traceback" not in r.text
@@ -189,16 +190,17 @@ def test_startup_failure_keeps_service_up_but_unavailable_and_is_diagnosable(cap
         raise ConfigError("LLM_MODEL chưa được cấu hình.")
     with caplog.at_level(logging.ERROR), client(make(runtime_factory=broken)) as c:
         assert c.get("/internal/v1/health").status_code == 200
-        assert_error(c.get("/internal/v1/ready"), 503, "SERVICE_UNAVAILABLE", True)
-        assert_error(post(c, VALID), 503, "SERVICE_UNAVAILABLE", True)
-    assert any("rag_startup_failed" in r.getMessage() and "LLM_MODEL" in r.getMessage() for r in caplog.records)
+        assert_error(c.get("/internal/v1/ready"), 503, "LLM_UNAVAILABLE", True)
+        assert_error(post(c, VALID), 503, "LLM_UNAVAILABLE", True)
+    assert any("rag_startup_failed" in r.getMessage() and "ConfigError" in r.getMessage() for r in caplog.records)
+    assert "LLM_MODEL" not in caplog.text
 
 
 def test_non_config_startup_failure_does_not_log_exception_text(caplog):
     def broken():
         raise RuntimeError(SECRET)
     with caplog.at_level(logging.ERROR), client(make(runtime_factory=broken)) as c:
-        assert_error(post(c, VALID), 503, "SERVICE_UNAVAILABLE", True)
+        assert_error(post(c, VALID), 503, "LLM_UNAVAILABLE", True)
     assert "rag_startup_failed" in caplog.text and SECRET not in caplog.text
 
 
@@ -221,7 +223,7 @@ def test_busy_service_returns_503_then_recovers():
         t = threading.Thread(target=lambda: first.setdefault("r", post(c1, VALID)))
         t.start()
         assert started.wait(5)
-        assert_error(post(c2, VALID), 503, "SERVICE_UNAVAILABLE", True)
+        assert_error(post(c2, VALID), 503, "LLM_UNAVAILABLE", True)
         release.set()
         t.join(10)
         assert first["r"].status_code == 200
@@ -232,9 +234,9 @@ def test_timeout_is_504_and_slot_stays_held_until_work_finishes():
     started, release = threading.Event(), threading.Event()
     app = make(FakePipeline(started=started, release=release), timeout_seconds=0.05)
     with client(app) as c:
-        assert_error(post(c, VALID), 504, "UPSTREAM_TIMEOUT", True)
+        assert_error(post(c, VALID), 504, "LLM_TIMEOUT", True)
         assert started.wait(2)
-        assert_error(post(c, VALID), 503, "SERVICE_UNAVAILABLE", True)   # no pile-up of abandoned inferences
+        assert_error(post(c, VALID), 503, "LLM_UNAVAILABLE", True)   # no pile-up of abandoned inferences
         release.set()
 
 
@@ -248,14 +250,14 @@ def test_app_factory_argument_validation():
 
 # ---------------------------------------------------------------- exception mapping through the REAL endpoint
 RAISED = [
-    (lambda: LLMTimeoutError(SECRET, provider="openai"), 504, "UPSTREAM_TIMEOUT", True),
-    (lambda: LLMRateLimitError(SECRET), 503, "SERVICE_UNAVAILABLE", True),
-    (lambda: LLMProviderError(SECRET), 503, "SERVICE_UNAVAILABLE", True),
-    (lambda: LLMAuthError(SECRET), 503, "SERVICE_UNAVAILABLE", True),
-    (lambda: LLMBadOutputError(SECRET, raw_text=SECRET), 502, "UPSTREAM_INVALID_RESPONSE", False),
-    (lambda: CitationInvalidError(SECRET), 502, "UPSTREAM_INVALID_RESPONSE", False),
-    (lambda: ConfigError(SECRET), 503, "SERVICE_UNAVAILABLE", True),
-    (lambda: RerankModelError(SECRET), 503, "SERVICE_UNAVAILABLE", True),
+    (lambda: LLMTimeoutError(SECRET, provider="openai"), 504, "LLM_TIMEOUT", True),
+    (lambda: LLMRateLimitError(SECRET), 503, "LLM_UNAVAILABLE", True),
+    (lambda: LLMProviderError(SECRET), 503, "LLM_UNAVAILABLE", True),
+    (lambda: LLMAuthError(SECRET), 503, "LLM_UNAVAILABLE", True),
+    (lambda: LLMBadOutputError(SECRET, raw_text=SECRET), 502, "INVALID_LLM_OUTPUT", False),
+    (lambda: CitationInvalidError(SECRET), 502, "CITATION_INVALID", False),
+    (lambda: ConfigError(SECRET), 503, "LLM_UNAVAILABLE", True),
+    (lambda: RerankModelError(SECRET), 503, "RETRIEVAL_UNAVAILABLE", True),
     (lambda: RerankInputError(SECRET), 500, "INTERNAL_ERROR", False),
     (lambda: ContextBuildError(SECRET), 500, "INTERNAL_ERROR", False),
     (lambda: ContextBudgetError(SECRET), 500, "INTERNAL_ERROR", False),
@@ -274,7 +276,7 @@ def test_pipeline_exceptions_map_to_public_errors_with_request_id(make_exc, stat
 
 def test_retrieval_errors_map_to_503_and_504():
     mod = pytest.importorskip("team1_data.retrieval.errors")
-    for cause, status, code in ((None, 503, "SERVICE_UNAVAILABLE"), (TimeoutError(), 504, "UPSTREAM_TIMEOUT")):
+    for cause, status, code in ((None, 503, "RETRIEVAL_UNAVAILABLE"), (TimeoutError(), 504, "RETRIEVAL_TIMEOUT")):
         exc = mod.RetrievalUnavailableError.__new__(mod.RetrievalUnavailableError)   # avoid Team 1 constructor
         exc.__cause__ = cause
         with client(make(FakePipeline(exc=exc))) as c:
@@ -291,7 +293,7 @@ def test_retrieval_errors_map_to_503_and_504():
 ])
 def test_invalid_generated_output_is_502_not_200(bad):
     with client(make(FakePipeline(bad))) as c:
-        assert_error(post(c, VALID), 502, "UPSTREAM_INVALID_RESPONSE", False)
+        assert_error(post(c, VALID), 502, "INVALID_LLM_OUTPUT", False)
 
 
 # ---------------------------------------------------------------- Pydantic model vs JSON Schema must not drift
