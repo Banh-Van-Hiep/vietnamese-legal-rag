@@ -7,6 +7,7 @@ from team2_rag.config.settings import ConfigError, LLMSettings, load_settings
 from team2_rag.llm.base import LLMProvider
 from team2_rag.llm.gemini_client import GeminiProvider
 from team2_rag.llm.http import Transport
+from team2_rag.llm.ollama_client import OllamaProvider
 from team2_rag.llm.openai_client import OpenAIProvider
 from team2_rag.llm.qwen_client import QwenProvider
 from team2_rag.llm.service import LLMService
@@ -24,7 +25,11 @@ def _qwen(s: LLMSettings, t: Optional[Transport]) -> LLMProvider:
     return QwenProvider(s.qwen_api_key, s.model, s.timeout_seconds, base_url=s.qwen_base_url, transport=t)
 
 
-_REGISTRY = {"openai": _openai, "gemini": _gemini, "qwen": _qwen}
+def _ollama(s: LLMSettings, t: Optional[Transport]) -> LLMProvider:
+    return OllamaProvider(s.model, s.timeout_seconds, base_url=s.ollama_base_url, transport=t)
+
+
+_REGISTRY = {"openai": _openai, "gemini": _gemini, "qwen": _qwen, "ollama": _ollama}
 
 
 def create_provider(settings: LLMSettings, transport: Optional[Transport] = None) -> LLMProvider:
