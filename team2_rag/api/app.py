@@ -15,12 +15,11 @@ from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from jsonschema import Draft202012Validator, FormatChecker
 
-from ..config.settings import ConfigError
-from ..errors import ErrorCode, build_error_response
+from ..errors import ErrorCode
 from ..models.response import RAGResponse
 from ..pipeline import validate_input, validate_generated_response
 from ..runtime import build_runtime
-from .handlers import install_error_handlers, resolve_request_id
+from .handlers import install_error_handlers, internal_error_payload, resolve_request_id
 
 log = logging.getLogger(__name__)
 ROOT = Path(__file__).resolve().parents[2]
@@ -28,9 +27,9 @@ BODY_LIMIT = 256 * 1024
 
 
 def _error(code, request_id):
-    """Early (pre-pipeline) rejection; status/message/retryable come from the single public table in errors.py."""
-    status, body = build_error_response(code)
-    return JSONResponse(body.model_dump(mode="json"), status_code=status, headers={"X-Request-ID": request_id})
+    """Early rejection using the same internal wire codes as the exception handlers."""
+    status, body = internal_error_payload(code)
+    return JSONResponse(body, status_code=status, headers={"X-Request-ID": request_id})
 
 
 def _pairs(pairs):
@@ -82,9 +81,7 @@ def create_app(pipeline=None, *, runtime_factory=None, timeout_seconds=45,
                 runtime = await asyncio.to_thread(factory)
                 app.state.pipeline = runtime.pipeline
             except Exception as exc:
-                # ConfigError texts only name settings (never values), so they are safe and make a startup failure diagnosable.
-                detail = f" detail={exc}" if isinstance(exc, ConfigError) else ""
-                log.error("rag_startup_failed error_type=%s%s", type(exc).__name__, detail)
+                log.error("rag_startup_failed error_type=%s", type(exc).__name__)
                 app.state.startup_error = type(exc).__name__
                 app.state.pipeline = None  # fail safe: /ready and /query answer 503, nothing half-initialised is served
                 if runtime is not None:  # built but unusable (e.g. no pipeline): do not leak its resources
@@ -162,7 +159,7 @@ def create_app(pipeline=None, *, runtime_factory=None, timeout_seconds=45,
             return JSONResponse(out, headers={"X-Request-ID": request_id})
         except asyncio.TimeoutError:
             return _error(ErrorCode.UPSTREAM_TIMEOUT, request_id)
-        # Every other exception propagates to the handlers installed above (errors.classify -> public body with
+        # Every other exception propagates to the handlers installed above (internal error body with
         # X-Request-ID); nothing is swallowed or answered twice here.
 
     return app
