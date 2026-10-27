@@ -1,12 +1,15 @@
 """Ollama (local, free) qua API tương thích OpenAI `/v1/chat/completions`.
 
-Đã đối chiếu tài liệu Ollama (docs.ollama.com/openai): `/v1/chat/completions` hỗ trợ `response_format` (JSON mode),
+Đã đối chiếu tài liệu Ollama (docs.ollama.com): `/v1/chat/completions` hỗ trợ `response_format` (JSON Schema),
 `max_tokens`, `temperature`; `max_completion_tokens` KHÔNG nằm trong danh sách hỗ trợ nên không dùng (khác OpenAI).
 API key "required but ignored" -> gửi placeholder, không cần key trả phí. `/v1` không nhận `num_ctx`: cửa sổ context
 do server quyết định (OLLAMA_CONTEXT_LENGTH hoặc Modelfile) và phải khớp LLM_CONTEXT_WINDOW_TOKENS.
 """
 from __future__ import annotations
 
+import copy
+import json
+from pathlib import Path
 from typing import Optional
 
 from team2_rag.config.settings import DEFAULT_OLLAMA_BASE_URL
@@ -32,6 +35,27 @@ class OllamaProvider(OpenAICompatibleProvider):
     def __init__(self, model: str, timeout_seconds: float = 120.0, *, base_url: Optional[str] = None,
                  transport: Optional[Transport] = None):
         super().__init__(_PLACEHOLDER_KEY, model, timeout_seconds, base_url=base_url, transport=transport)
+
+    def build_payload(self, prompt: RenderedPrompt, params: LLMParams) -> dict:
+        payload = super().build_payload(prompt, params)
+        # Ollama JSON mode alone does not enforce the citation marker in answer.
+        # Keep both statuses possible; provenance is still checked after generation.
+        path = Path(__file__).resolve().parents[2] / "contracts/v0.1/rag_response.schema.json"
+        base = json.loads(path.read_text(encoding="utf-8"))
+        base.pop("allOf", None)
+        base.pop("$schema", None)
+        answered = copy.deepcopy(base)
+        answered["properties"]["status"] = {"enum": ["answered"]}
+        answered["properties"]["answer"]["pattern"] = r"^.*\[C[1-9][0-9]*\].*$"
+        answered["properties"]["citations"]["minItems"] = 1
+        insufficient = copy.deepcopy(base)
+        insufficient["properties"]["status"] = {"enum": ["insufficient_context"]}
+        insufficient["properties"]["citations"]["maxItems"] = 0
+        payload["response_format"] = {
+            "type": "json_schema",
+            "json_schema": {"name": "rag_response", "schema": {"anyOf": [answered, insufficient]}},
+        }
+        return payload
 
     def complete(self, prompt: RenderedPrompt, params: LLMParams) -> ProviderReply:
         resp = self.transport.post_json(f"{self.base_url}/chat/completions", {"Authorization": f"Bearer {self._api_key}"},

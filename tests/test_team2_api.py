@@ -30,6 +30,15 @@ class APITests(unittest.TestCase):
         Draft202012Validator(ERROR_SCHEMA).validate(response.json())
         self.assertTrue(response.headers["x-request-id"])
 
+    def test_swagger_declares_json_body_and_example_can_be_submitted(self):
+        with TestClient(create_app(self.pipeline)) as client:
+            operation = client.get("/openapi.json").json()["paths"]["/internal/v1/query"]["post"]
+            body = operation["requestBody"]
+            self.assertTrue(body["required"])
+            media = body["content"]["application/json"]
+            Draft202012Validator(media["schema"]).validate(media["example"])
+            self.assertEqual(client.post("/internal/v1/query", json=media["example"]).status_code, 200)
+
     def test_real_endpoint_uses_pipeline_and_preserves_request_trace(self):
         with TestClient(create_app(self.pipeline)) as client:
             response = client.post("/internal/v1/query", json=BODY, headers={"X-Request-ID": "trace-123"})

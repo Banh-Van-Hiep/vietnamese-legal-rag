@@ -117,7 +117,22 @@ def create_app(pipeline=None, *, runtime_factory=None, timeout_seconds=45,
             return _error(ErrorCode.SERVICE_UNAVAILABLE, resolve_request_id(request))
         return {"status": "ready"}
 
-    @app.post("/internal/v1/query")
+    @app.post("/internal/v1/query", openapi_extra={
+        "requestBody": {
+            "required": True,
+            "content": {"application/json": {
+                "schema": {
+                    "type": "object", "required": ["question", "history"],
+                    "additionalProperties": False,
+                    "properties": {
+                        "question": {"type": "string", "minLength": 1, "maxLength": 2000},
+                        "history": {"type": "array", "items": {"type": "object"}},
+                    },
+                },
+                "example": {"question": "Luật Doanh nghiệp quy định những nội dung gì?", "history": []},
+            }},
+        },
+    })
     async def query(request: Request):
         request_id = resolve_request_id(request)
         if request.url.query:

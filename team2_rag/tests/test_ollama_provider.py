@@ -116,7 +116,17 @@ class OllamaRequestTests(unittest.TestCase):
         self.assertEqual(call["timeout"], 77.0)
         body = call["body"]
         self.assertEqual(body["model"], "qwen2.5:3b")
-        self.assertEqual(body["response_format"], {"type": "json_object"})  # documented as supported by Ollama /v1
+        self.assertEqual(body["response_format"]["type"], "json_schema")
+        from jsonschema import Draft202012Validator
+        schema = body["response_format"]["json_schema"]["schema"]
+        Draft202012Validator.check_schema(schema)
+        validator = Draft202012Validator(schema)
+        good = json.loads(openai_ok().json["choices"][0]["message"]["content"])
+        self.assertTrue(validator.is_valid(good))
+        self.assertFalse(validator.is_valid({**good, "answer": "Nội dung không có marker."}))
+        self.assertFalse(validator.is_valid({**good, "citations": []}))
+        self.assertTrue(validator.is_valid({"status": "insufficient_context", "answer": "Chưa đủ căn cứ.", "citations": []}))
+        self.assertFalse(validator.is_valid({**good, "status": "insufficient_context"}))
         self.assertEqual((body["max_tokens"], body["temperature"]), (800, 0.2))
         self.assertNotIn("max_completion_tokens", body)  # OpenAI-only parameter, not in Ollama's supported list
         self.assertNotIn("stream", body)
