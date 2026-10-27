@@ -379,6 +379,19 @@ class Parser:
                 "pipeline_version": "1.0.0",
             })
         )
+def chunk_document(meta: dict, cleaned: str) -> list[dict]:
+    lines = [
+        repair_split_words(line.strip())
+        for line in cleaned.splitlines()
+    ]
+
+    parser = Parser(meta, read_footnotes(cleaned))
+
+    for line in lines:
+        parser.feed(line)
+
+    parser.flush_article()
+    return parser.chunks
 
 
 def main() -> None:
