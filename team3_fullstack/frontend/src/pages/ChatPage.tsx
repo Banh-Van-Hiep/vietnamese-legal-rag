@@ -14,7 +14,7 @@ export default function ChatPage() {
   const { conversationId } = useParams();
   const navigate = useNavigate();
   const { conversations, refresh } = useApp();
-  const [openCitation, setOpenCitation] = useState<Citation | null>(null);
+  const [openCitation, setOpenCitation] = useState<{ messageKey: string; citation: Citation } | null>(null);
 
   const chat = useChat({
     conversationId,
@@ -25,6 +25,7 @@ export default function ChatPage() {
   // Đổi hội thoại thì đóng ngăn xem điều luật của hội thoại trước.
   useEffect(() => setOpenCitation(null), [conversationId]);
   const closeCitation = useCallback(() => setOpenCitation(null), []);
+  const openSource = useCallback((messageKey: string, citation: Citation) => setOpenCitation({ messageKey, citation }), []);
 
   const title = conversationId
     ? conversations.find((c) => c.conversation_id === conversationId)?.title ?? "Hội thoại"
@@ -51,7 +52,7 @@ export default function ChatPage() {
           >
             <p>
               {chat.loadError.notFound
-                ? "Hội thoại này đã bị xóa hoặc không còn trên máy chủ (dữ liệu thử nghiệm sẽ mất khi backend khởi động lại)."
+                ? "Hội thoại này đã bị xóa hoặc không còn trên máy chủ."
                 : chat.loadError.message}
             </p>
           </Notice>
@@ -63,12 +64,24 @@ export default function ChatPage() {
             loading={chat.loading}
             onSuggestion={chat.send}
             onRetry={chat.retry}
-            onOpenCitation={setOpenCitation}
+            openCitation={openCitation && { messageKey: openCitation.messageKey, citationId: openCitation.citation.citation_id }}
+            onOpenCitation={openSource}
           />
+          {chat.receiving && (
+            <div className="flex justify-center py-2">
+              <button className={noticeActionClass} type="button" onClick={chat.stopReceiving}>Dừng nhận</button>
+            </div>
+          )}
+          {chat.sending && !chat.receiving && chat.messages.some((m) => m.state === "pending") && (
+            <div className="px-6 py-2 text-center text-[13.5px] text-muted" role="status">
+              Lượt hỏi đang được xử lý trên máy chủ.{" "}
+              <button className={noticeActionClass} type="button" onClick={chat.reload}>Tải lại trạng thái</button>
+            </div>
+          )}
           <ChatInput onSend={chat.send} sending={chat.sending} />
         </>
       )}
-      {openCitation && <DocumentDrawer citation={openCitation} onClose={closeCitation} />}
+      {openCitation && <DocumentDrawer citation={openCitation.citation} onClose={closeCitation} />}
     </>
   );
 }

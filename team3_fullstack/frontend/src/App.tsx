@@ -14,6 +14,7 @@ export default function App() {
         <Route path="/" element={<ChatPage />} />
         <Route path="/c/:conversationId" element={<ChatPage />} />
         <Route path="/search" element={<SearchPage />} />
+        <Route path="/documents/:documentId" element={<DocumentPage />} />
         <Route path="/documents/:documentId/articles/:articleId" element={<DocumentPage />} />
       </Route>
     </Routes>

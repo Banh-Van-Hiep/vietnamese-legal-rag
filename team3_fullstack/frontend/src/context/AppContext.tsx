@@ -31,8 +31,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const controller = new AbortController();
     listConversations(controller.signal)
-      .then((page) => {
-        setConversations(page.items);
+      .then((items) => {
+        if (controller.signal.aborted) return;
+        setConversations(items);
         setListStatus("ready");
         setListError(null);
       })

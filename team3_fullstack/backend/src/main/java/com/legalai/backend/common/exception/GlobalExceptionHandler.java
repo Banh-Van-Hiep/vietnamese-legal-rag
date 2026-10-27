@@ -20,8 +20,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ApiException.class)
     public ResponseEntity<ApiError> api(ApiException error) {
         var response = ResponseEntity.status(error.status()).contentType(MediaType.APPLICATION_JSON);
-        if (error.conversationId() != null) {
-            response.header("X-Conversation-ID", error.conversationId().toString());
+        if (error.conversationHeader() != null) {
+            response.header("X-Conversation-ID", error.conversationHeader());
         }
         return response.body(error.body());
     }
@@ -57,5 +57,10 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ApiError> unexpected(Exception error) {
         LOG.error("Unhandled API error", error);
         return api(new ApiException(500, "INTERNAL_ERROR", "Hệ thống gặp lỗi khi xử lý yêu cầu.", false));
+    }
+
+    @ExceptionHandler(org.springframework.dao.DataAccessException.class)
+    public ResponseEntity<ApiError> persistence() {
+        return api(new ApiException(503, "PERSISTENCE_UNAVAILABLE", "Không thể truy cập dữ liệu hội thoại.", true));
     }
 }

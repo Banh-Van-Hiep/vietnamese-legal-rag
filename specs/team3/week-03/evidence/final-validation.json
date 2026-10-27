@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "head_unchanged": true,
+  "index_empty": true,
+  "preserved_existing_files_outside_scope": true,
+  "changed_existing_files": [
+    "specs/team3/README.md",
+    "specs/team3/week-03/001-vlra-28-bm25-tests/spec.md",
+    "specs/team3/week-03/002-vlra-29-dense-hybrid-tests/spec.md",
+    "specs/team3/week-03/requirements.md",
+    "specs/team3/week-03/tasks.md",
+    "tests/test_bm25_retrieval.py",
+    "tests/test_dense_retrieval.py"
+  ],
+  "unexpected_changes": [],
+  "local_links_checked": 69,
+  "link_encoding_privacy_issues": [],
+  "git_diff_check_exit": 0,
+  "application_data_contract_and_other_team_docs_unchanged": true,
+  "artifact_counts_and_source_hashes_match": true,
+  "task_progress": {
+    "VLRA-28": {
+      "done": 12,
+      "open": 0
+    },
+    "VLRA-29": {
+      "done": 7,
+      "open": 2,
+      "remaining": [
+        "T005 real Dense model/server benchmark",
+        "T007 Hybrid runtime/benchmark"
+      ]
+    }
+  }
+}

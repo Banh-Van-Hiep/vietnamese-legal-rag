@@ -1,0 +1,556 @@
+{
+  "run_at": "2026-10-18T20:19:33.669073+00:00",
+  "environment": {
+    "python": "3.12.15",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "packages": {
+      "bm25s": "0.3.14",
+      "underthesea": "9.5.0",
+      "numpy": "2.5.4",
+      "qdrant-client": "1.19.1",
+      "jsonschema": "4.26.0",
+      "torch": "2.14.1+cpu",
+      "sentence-transformers": "5.7.0"
+    }
+  },
+  "pattern": "test*.py",
+  "tests_run": 81,
+  "counts": {
+    "pass": 76,
+    "fail": 3,
+    "error": 2,
+    "skip": 0
+  },
+  "cases": [
+    {
+      "id": "test_bm25_retrieval.BM25PersistenceTest.test_load_missing_index_raises",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.0019896000158041716
+    },
+    {
+      "id": "test_bm25_retrieval.BM25PersistenceTest.test_load_rejects_chunk_store_that_does_not_match",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.284294500015676
+    },
+    {
+      "id": "test_bm25_retrieval.BM25PersistenceTest.test_save_and_load_give_same_results",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.029634200036525726
+    },
+    {
+      "id": "test_bm25_retrieval.BM25RetrieverTest.test_article_reference_query",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.0006007000338286161
+    },
+    {
+      "id": "test_bm25_retrieval.BM25RetrieverTest.test_basic_query_ranks_matching_chunk_first",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.0006459999713115394
+    },
+    {
+      "id": "test_bm25_retrieval.BM25RetrieverTest.test_contract_rejects_eight_invalid_inputs",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.0001427999814040959
+    },
+    {
+      "id": "test_bm25_retrieval.BM25RetrieverTest.test_contract_schema_and_semantics",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.015512600017245859
+    },
+    {
+      "id": "test_bm25_retrieval.BM25RetrieverTest.test_contract_trim_and_boundaries",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.0008687999797984958
+    },
+    {
+      "id": "test_bm25_retrieval.BM25RetrieverTest.test_index_skips_chunks_outside_default_legal_status",
+      "status": "PASS",
+      "details": [],
+      "seconds": 2.1199986804276705e-05
+    },
+    {
+      "id": "test_bm25_retrieval.BM25RetrieverTest.test_no_matching_word_returns_empty_results",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.00010659999679774046
+    },
+    {
+      "id": "test_bm25_retrieval.BM25RetrieverTest.test_rejects_empty_or_duplicate_corpus",
+      "status": "PASS",
+      "details": [],
+      "seconds": 3.840000135824084e-05
+    },
+    {
+      "id": "test_bm25_retrieval.BM25RetrieverTest.test_result_has_chunk_id_content_and_score",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.0002750999992713332
+    },
+    {
+      "id": "test_bm25_retrieval.TokenizerTest.test_does_not_treat_common_words_as_references",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.0002595999976620078
+    },
+    {
+      "id": "test_bm25_retrieval.TokenizerTest.test_keeps_legal_references_as_single_tokens",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.00036860001273453236
+    },
+    {
+      "id": "test_bm25_retrieval.TokenizerTest.test_normalises_tone_placement_only_at_syllable_end",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.00039410003228113055
+    },
+    {
+      "id": "test_bm25_retrieval.TokenizerTest.test_segments_words_and_drops_punctuation",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.00025260000256821513
+    },
+    {
+      "id": "test_dense_retrieval.DenseIndexingTest.test_collection_uses_named_cosine_vector_and_alias",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.0001556000206619501
+    },
+    {
+      "id": "test_dense_retrieval.DenseIndexingTest.test_embeddings_are_l2_normalised",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.00021870003547519445
+    },
+    {
+      "id": "test_dense_retrieval.DenseIndexingTest.test_index_skips_chunks_outside_default_legal_status",
+      "status": "PASS",
+      "details": [],
+      "seconds": 5.050003528594971e-05
+    },
+    {
+      "id": "test_dense_retrieval.DenseIndexingTest.test_points_use_uuid5_ids_and_full_chunk_payload",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.00014760001795366406
+    },
+    {
+      "id": "test_dense_retrieval.DenseIndexingTest.test_rebuilding_existing_collection_is_refused",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.0002443999983370304
+    },
+    {
+      "id": "test_dense_retrieval.DenseIndexingTest.test_rejects_embedder_with_wrong_dimension",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.005397800006903708
+    },
+    {
+      "id": "test_dense_retrieval.DenseIndexingTest.test_rejects_empty_or_duplicate_corpus",
+      "status": "PASS",
+      "details": [],
+      "seconds": 3.8300000596791506e-05
+    },
+    {
+      "id": "test_dense_retrieval.DensePersistenceTest.test_collection_dropped_after_connect_raises_on_retrieve",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.017751899955328554
+    },
+    {
+      "id": "test_dense_retrieval.DensePersistenceTest.test_connect_gives_same_results",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.013156900007743388
+    },
+    {
+      "id": "test_dense_retrieval.DensePersistenceTest.test_connect_missing_index_or_collection_raises",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.01685780001571402
+    },
+    {
+      "id": "test_dense_retrieval.DensePersistenceTest.test_connect_rejects_collection_that_does_not_match_manifest",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.011447200027760118
+    },
+    {
+      "id": "test_dense_retrieval.DensePersistenceTest.test_connect_rejects_different_embedding_model",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.010673300013877451
+    },
+    {
+      "id": "test_dense_retrieval.DensePersistenceTest.test_save_writes_manifest_and_embedding_cache",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.022545099956914783
+    },
+    {
+      "id": "test_dense_retrieval.DensePersistenceTest.test_unreachable_qdrant_raises_retrieval_unavailable",
+      "status": "PASS",
+      "details": [],
+      "seconds": 1.1132707999786362
+    },
+    {
+      "id": "test_dense_retrieval.DenseRetrieverTest.test_basic_query_ranks_matching_chunk_first",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.00045689998660236597
+    },
+    {
+      "id": "test_dense_retrieval.DenseRetrieverTest.test_contract_rejects_eight_invalid_inputs",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.00011860002996399999
+    },
+    {
+      "id": "test_dense_retrieval.DenseRetrieverTest.test_contract_schema_and_semantics",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.003046700032427907
+    },
+    {
+      "id": "test_dense_retrieval.DenseRetrieverTest.test_contract_trim_and_boundaries",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.0006553999846801162
+    },
+    {
+      "id": "test_dense_retrieval.DenseRetrieverTest.test_query_filter_excludes_chunks_outside_legal_status",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.008886300027370453
+    },
+    {
+      "id": "test_dense_retrieval.DenseRetrieverTest.test_rejects_invalid_input_before_embedding",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.0077609000145457685
+    },
+    {
+      "id": "test_dense_retrieval.DenseRetrieverTest.test_result_has_chunk_id_content_and_cosine_score",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.00048640003660693765
+    },
+    {
+      "id": "test_dense_retrieval.DenseRetrieverTest.test_top_k_limits_results_and_unrelated_query_still_returns_neighbours",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.0011158999986946583
+    },
+    {
+      "id": "test_eval_retrieval.MetricTests.test_cli_setup_failure_still_writes_json_and_nonzero_exit",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.25990429997909814
+    },
+    {
+      "id": "test_eval_retrieval.MetricTests.test_cutoff_and_miss",
+      "status": "PASS",
+      "details": [],
+      "seconds": 5.8100034948438406e-05
+    },
+    {
+      "id": "test_eval_retrieval.MetricTests.test_duplicate_candidate_is_error_not_extra_hit",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.0011226999922655523
+    },
+    {
+      "id": "test_eval_retrieval.MetricTests.test_empty_gold_is_not_perfect_recall",
+      "status": "PASS",
+      "details": [],
+      "seconds": 2.759997732937336e-05
+    },
+    {
+      "id": "test_eval_retrieval.MetricTests.test_errors_are_reported_and_run_fails",
+      "status": "PASS",
+      "details": [],
+      "seconds": 6.639998173341155e-05
+    },
+    {
+      "id": "test_eval_retrieval.MetricTests.test_macro_average_and_empty_gold_denominator",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.001880900003015995
+    },
+    {
+      "id": "test_eval_retrieval.MetricTests.test_partial_recall_and_first_relevant_rr",
+      "status": "PASS",
+      "details": [],
+      "seconds": 3.99000127799809e-05
+    },
+    {
+      "id": "test_eval_retrieval.MetricTests.test_percentile_linear_interpolation",
+      "status": "PASS",
+      "details": [],
+      "seconds": 3.519997699186206e-05
+    },
+    {
+      "id": "test_eval_retrieval.MetricTests.test_unknown_gold_duplicate_cases_and_invalid_status_are_rejected",
+      "status": "PASS",
+      "details": [],
+      "seconds": 6.19000056758523e-05
+    },
+    {
+      "id": "test_preprocess_legal_data.PreprocessTests.test_chunk_document_splits_article_and_clause",
+      "status": "ERROR",
+      "details": [
+        "Traceback (most recent call last):\n  File \"<repo>\\tests\\test_preprocess_legal_data.py\", line 48, in test_chunk_document_splits_article_and_clause\n    chunks = pipeline.chunk_documents.chunk_document(meta, SAMPLE)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'enterprise_chunk_documents' has no attribute 'chunk_document'\n"
+      ],
+      "seconds": 0.0022726000170223415
+    },
+    {
+      "id": "test_preprocess_legal_data.PreprocessTests.test_clean_text_removes_invisible_and_keeps_words",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.00030229997355490923
+    },
+    {
+      "id": "test_preprocess_legal_data.PreprocessTests.test_run_writes_chunks_and_report",
+      "status": "ERROR",
+      "details": [
+        "Traceback (most recent call last):\n  File \"<repo>\\tests\\test_preprocess_legal_data.py\", line 80, in test_run_writes_chunks_and_report\n    report = pipeline.run(data_dir)\n             ^^^^^^^^^^^^^^^^^^^^^^\n  File \"<repo>\\scripts\\preprocess_legal_data.py\", line 143, in run\n    chunks = chunk_documents.chunk_document(meta, cleaned)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: module 'enterprise_chunk_documents' has no attribute 'chunk_document'\n"
+      ],
+      "seconds": 0.020725799957290292
+    },
+    {
+      "id": "test_retrieval_edge_cases.BM25EdgeTests.test_nfc_and_nfd_queries_retrieve_same_ids",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.013487500022165477
+    },
+    {
+      "id": "test_retrieval_edge_cases.DenseIntegrityTests.test_connect_rejects_changed_query_prefix",
+      "status": "FAIL",
+      "details": [
+        "Traceback (most recent call last):\n  File \"<repo>\\tests\\test_retrieval_edge_cases.py\", line 91, in test_connect_rejects_changed_query_prefix\n    with self.assertRaises(RetrievalUnavailableError):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: RetrievalUnavailableError not raised\n"
+      ],
+      "seconds": 0.043764400004874915
+    },
+    {
+      "id": "test_retrieval_edge_cases.DenseIntegrityTests.test_connect_rejects_duplicate_physical_point_for_same_chunk",
+      "status": "FAIL",
+      "details": [
+        "Traceback (most recent call last):\n  File \"<repo>\\tests\\test_retrieval_edge_cases.py\", line 98, in test_connect_rejects_duplicate_physical_point_for_same_chunk\n    with self.assertRaises(RetrievalUnavailableError):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: RetrievalUnavailableError not raised\n"
+      ],
+      "seconds": 0.025368599977809936
+    },
+    {
+      "id": "test_retrieval_edge_cases.DenseIntegrityTests.test_manifest_id_hash_mismatch_rejected",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.03318609995767474
+    },
+    {
+      "id": "test_retrieval_edge_cases.DenseIntegrityTests.test_query_dimension_mismatch_is_not_empty_success",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.023427699983585626
+    },
+    {
+      "id": "test_retrieval_edge_cases.EmbeddingEdgeTests.test_adapter_nfc_trim_case_and_prefix_without_loading_model",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.0016139000072143972
+    },
+    {
+      "id": "test_retrieval_edge_cases.EmbeddingEdgeTests.test_large_finite_vectors_never_silently_become_zero",
+      "status": "FAIL",
+      "details": [
+        "Traceback (most recent call last):\n  File \"<repo>\\tests\\test_retrieval_edge_cases.py\", line 40, in test_large_finite_vectors_never_silently_become_zero\n    self.assertAlmostEqual(float(np.linalg.norm(normalized)), 1.0, places=5)\nAssertionError: 0.0 != 1.0 within 5 places (1.0 difference)\n"
+      ],
+      "seconds": 0.0006711999885737896
+    },
+    {
+      "id": "test_retrieval_edge_cases.EmbeddingEdgeTests.test_normal_vectors_have_unit_length",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.0003491999814286828
+    },
+    {
+      "id": "test_retrieval_edge_cases.EmbeddingEdgeTests.test_zero_and_nonfinite_vectors_rejected",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.00019530003191903234
+    },
+    {
+      "id": "test_team2_mock.MockContractTests.test_both_scenarios_match_shared_contract",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.0007389999809674919
+    },
+    {
+      "id": "test_team2_mock.MockContractTests.test_calls_do_not_share_mutable_citations",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.000546499970369041
+    },
+    {
+      "id": "test_team2_mock.MockContractTests.test_citation_markers_match_ids",
+      "status": "PASS",
+      "details": [],
+      "seconds": 3.63999861292541e-05
+    },
+    {
+      "id": "test_team2_mock.MockContractTests.test_history_accepted_without_affecting_mock",
+      "status": "PASS",
+      "details": [],
+      "seconds": 5.879998207092285e-05
+    },
+    {
+      "id": "test_team2_mock.MockContractTests.test_invalid_question_and_scenario_rejected",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.0013904999941587448
+    },
+    {
+      "id": "test_team2_mock.MockContractTests.test_schema_rejects_wrong_boundaries_and_invalid_citations",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.0016941999783739448
+    },
+    {
+      "id": "test_team2_reranker.BGEAdapterTests.test_configuration_limits",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.0001246000174432993
+    },
+    {
+      "id": "test_team2_reranker.BGEAdapterTests.test_empty_adapter_call_does_not_load_model",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.00042799999937415123
+    },
+    {
+      "id": "test_team2_reranker.BGEAdapterTests.test_oversized_pair_rejected_before_inference",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.0006258999928832054
+    },
+    {
+      "id": "test_team2_reranker.BGEAdapterTests.test_token_length_includes_whole_pair_and_disables_truncation",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.000741700001526624
+    },
+    {
+      "id": "test_team2_reranker.RerankerTests.test_bad_score_count_values_and_partial_scores_fall_back",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.009933600027579814
+    },
+    {
+      "id": "test_team2_reranker.RerankerTests.test_descending_scores_and_pairs_use_original_question_and_content",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.0006355000077746809
+    },
+    {
+      "id": "test_team2_reranker.RerankerTests.test_duplicate_ids_or_noncontiguous_ranks_are_rejected",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.0016196999931707978
+    },
+    {
+      "id": "test_team2_reranker.RerankerTests.test_empty_pool_never_loads_model",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.001265500031877309
+    },
+    {
+      "id": "test_team2_reranker.RerankerTests.test_entire_pool_reaches_context_builder",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.0014926999574527144
+    },
+    {
+      "id": "test_team2_reranker.RerankerTests.test_input_and_output_field_types_match_shared_json_schema",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.020717000006698072
+    },
+    {
+      "id": "test_team2_reranker.RerankerTests.test_invalid_candidates_not_hidden_by_fallback",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.005516499979421496
+    },
+    {
+      "id": "test_team2_reranker.RerankerTests.test_invalid_payloads_fail_before_scorer_or_fallback",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.0010520999785512686
+    },
+    {
+      "id": "test_team2_reranker.RerankerTests.test_model_exception_falls_back_and_logs_without_user_content",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.0005840999656356871
+    },
+    {
+      "id": "test_team2_reranker.RerankerTests.test_preserves_all_twelve_fields_input_and_independent_copies",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.0002969999914057553
+    },
+    {
+      "id": "test_team2_reranker.RerankerTests.test_strict_mode_exposes_failure_instead_of_fake_success",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.0009349000174552202
+    },
+    {
+      "id": "test_team2_reranker.RerankerTests.test_ties_keep_original_retrieval_rank",
+      "status": "PASS",
+      "details": [],
+      "seconds": 0.00041009997949004173
+    }
+  ],
+  "sources": [
+    {
+      "path": "tests/retriever_contract.py",
+      "sha256": "1900ffb39ca7ddf13ac359a7437e38ee4024d33e0ae8416e5084f7c602eddc19"
+    },
+    {
+      "path": "tests/test_bm25_retrieval.py",
+      "sha256": "efc8d4a236c79137cc25fe479136fd478da8d1f6f11349586d08d32667ba22d0"
+    },
+    {
+      "path": "tests/test_dense_retrieval.py",
+      "sha256": "beb3d1f457fe569232c8fbbf061c4ec600428a2b30d144aa966c84c0df7bb0d1"
+    },
+    {
+      "path": "tests/test_eval_retrieval.py",
+      "sha256": "331aca06aade0381095f4f824eac9aef518d3aa2c98a59bd7c53541ed9b57c28"
+    },
+    {
+      "path": "tests/test_preprocess_legal_data.py",
+      "sha256": "e159e075d5d49674b8a3c466f3bd6f8d0b38dadf32a6c0a7e3f48b7026e963a3"
+    },
+    {
+      "path": "tests/test_retrieval_edge_cases.py",
+      "sha256": "c558e478196cb18be1dd0703100befea21eb8172727ca1370c14c89d176e6963"
+    },
+    {
+      "path": "tests/test_team2_mock.py",
+      "sha256": "546d0250680ec119e291bdd523c17aa350aa6a05811142dd399b2ad19ba524d7"
+    },
+    {
+      "path": "tests/test_team2_reranker.py",
+      "sha256": "a9ec46253065d516c16fb48a488f58f47241005cd9f07968cb7d00f1e587382b"
+    }
+  ]
+}

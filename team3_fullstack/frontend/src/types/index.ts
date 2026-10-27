@@ -1,4 +1,5 @@
-// Kiểu dữ liệu khớp với API Team 3 v1.2 (docs/team3_fullstack/team3.md): field snake_case, ID dạng UUID.
+// Presentation models. Public v2.0 wire types live in publicApi.ts; adapters map numeric
+// IDs to route strings and camelCase to these existing component fields.
 
 export type AnswerStatus = "answered" | "insufficient_context";
 
@@ -77,6 +78,7 @@ export interface UiMessage {
   content: string | null;
   answerStatus: AnswerStatus | null;
   citations: Citation[];
+  clientRequestId?: string;
   /** Chỉ có ở tin assistant failed. */
   failure?: {
     message: string;
@@ -84,5 +86,6 @@ export interface UiMessage {
     requestId: string | null;
     /** Có thể bấm "Thử lại" (lỗi tạm thời hoặc chưa rõ kết quả). */
     retryable: boolean;
+    outcomeUnknown?: boolean;
   };
 }
