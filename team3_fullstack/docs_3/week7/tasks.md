@@ -87,3 +87,8 @@ data: {"conversationId":101,"clientRequestId":"44444444-4444-4444-8444-444444444
 | **Team 3 $\rightarrow$ Cả nhóm (G4)** | - Bản demo hệ thống Live RAG MVP hoạt động End-to-End đầy đủ tính năng.<br>- File Golden Dataset v1 (100–150 câu) đã phân tầng và đóng băng chính thức. | Mốc nghiệm thu kỹ thuật quan trọng nhất giữa kỳ; cung cấp tập dữ liệu để Team 1 và Team 2 bước vào tối ưu tuần 8–10. | Buổi báo cáo tiến độ chung & Git commit hash. |
 | **Team 2 $\rightarrow$ Team 3 (AI Service)** | - Dịch vụ RAG Live ổn định, phản hồi trong ngân sách 45 giây.<br>- Không bị lỗi sai cấu trúc JSON hoặc trích dẫn rác. | Backend Java ánh xạ an toàn và phát stream ra ngoài giao diện cho người dùng cuối. | Endpoint `/internal/v1/query`. |
 | **Team 1 $\rightarrow$ Team 3 (Viewer)** | - Dịch vụ tra cứu Điều luật siêu tốc `get_article()` đã test p95 $\le 200$ms. | Frontend Document Viewer hiển thị toàn văn Điều luật ngay tức thì khi người dùng nhấp vào trích dẫn. | API `/api/v1/documents/{documentId}?articleId={articleId}`. |
+
+## 6. Kết quả kiểm chứng hiện hành
+
+Đối chiếu từng task/DoD và phần còn thiếu tại [verification.md](verification.md), ngày 28/10/2026.
+Không suy hoàn thành từ kế hoạch hoặc từ số test PASS; mock và live được kết luận riêng.

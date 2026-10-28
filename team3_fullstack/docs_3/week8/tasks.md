@@ -112,3 +112,8 @@ data: {"error":{"code":"UPSTREAM_TIMEOUT","message":"Hệ thống xử lý AI v�
 | **Team 3 $\rightarrow$ Team 1 & Team 2** | - Báo cáo phân tích độ trễ thực tế qua từng pha (`phases_breakdown_p95`).<br>- Cảnh báo các ca truy vấn có thời gian vượt ngưỡng 35 giây. | Team 1 và Team 2 tập trung tối ưu hóa các điểm nghẽn hiệu năng (bottlenecks) trong pipeline truy hồi và prompt. | Báo cáo hiệu năng tuần 8. |
 | **Team 1 $\rightarrow$ Team 3 (Retrieval)** | - Bản phát hành Retrieval v2 để kiểm thử hồi quy trên môi trường staging của Backend. | Team 3 xác nhận API Contract của thư viện không bị thay đổi và chạy ổn định. | Python library update. |
 | **Team 2 $\rightarrow$ Team 3 (AI Service)** | - Báo cáo thời gian chạy của Reranker và token usage tương ứng. | Team 3 theo dõi và đối soát chi phí token cùng độ trễ mạng giữa các container Docker. | Log trace theo `X-Request-ID`. |
+
+## 6. Kết quả kiểm chứng hiện hành
+
+Đối chiếu từng task/DoD và phần còn thiếu tại [verification.md](verification.md), ngày 28/10/2026.
+Không suy hoàn thành từ kế hoạch hoặc từ số test PASS; mock và live được kết luận riêng.

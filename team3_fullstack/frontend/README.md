@@ -1,7 +1,7 @@
 # Frontend Team 3
 
 React + TypeScript + Vite + **Tailwind CSS v4** (plugin `@tailwindcss/vite`, không cần file cấu hình riêng).
-Main chat dùng API public SSE v2.0 theo [Docs v2.0](https://docs.google.com/document/d/1uDCSGNfzWXIaCSdggRrxcSuRREJ3StS278r4vZWNYPM/edit?tab=t.0). Hồ sơ: [VLRA42](../../specs/team3/week-04/002-vlra-42-fe-be-integration/verification.md), [VLRA43](../../specs/team3/week-04/003-vlra-43-answer-citation-viewer/verification.md).
+Main chat dùng API public SSE v2.0 theo [Docs v2.0](https://docs.google.com/document/d/1uDCSGNfzWXIaCSdggRrxcSuRREJ3StS278r4vZWNYPM/edit?tab=t.0). Nhiệm vụ và nghiệm thu: [tuần 5](../docs_3/week5/verification.md), [tuần 6](../docs_3/week6/verification.md), [tuần 7](../docs_3/week7/verification.md).
 
 ## Style
 
@@ -29,7 +29,7 @@ npm run build               # kiểm tra kiểu + build
 npm test                    # test đơn vị (vitest), không cần backend
 ```
 
-Main UI cần Backend profile `rag` v2.0 và PostgreSQL: xem [quickstart VLRA41](../../specs/team3/week-04/001-vlra-41-rag-query/quickstart.md). Backend mock cũ trả JSON v1.2 chỉ phù hợp trang `/try-backend`, không dùng cho main chat mới. Service thật còn chờ Team2; cách kiểm thử bằng fixture tại [quickstart VLRA42](../../specs/team3/week-04/002-vlra-42-fe-be-integration/quickstart.md).
+Main UI cần Backend profile `rag` v2.0 và PostgreSQL. Backend mock cũ trả JSON v1.2 chỉ phù hợp trang `/try-backend`, không dùng cho main chat mới. Team 2 đã có app HTTP và mock; pipeline live cần index/model/provider được cấu hình. Cách chạy kiểm thử và giới hạn tại [nghiệm thu tuần 5](../docs_3/week5/verification.md#3-lệnh-chạy-lại) và [tuần 7](../docs_3/week7/verification.md).
 
 ## Các trang
 

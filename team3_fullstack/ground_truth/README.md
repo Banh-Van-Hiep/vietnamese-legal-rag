@@ -97,17 +97,12 @@ Kết quả ngày **12/10/2026** cho `team3_ground_truth.json` sau khi gộp:
 - Nội dung 8 mẫu ban đầu giữ nguyên; 5 mẫu bổ sung đã đối chiếu từng đáp án với chunk nguồn.
 - **Chưa nghiệm thu pháp lý**; kết quả trên không đánh dấu T05 hoàn thành.
 
-## Việc còn lại
+## Nhiệm vụ và nghiệm thu hiện hành
 
-- Reviewer nhóm chỉ định xác nhận từng mẫu và ghi kết quả review. Theo dõi phần đóng góp
-  từng thành viên trong bàn giao nội bộ; file công khai dùng tên nhóm.
-- [Nhiệm vụ tuần 2](../../docs/team3_fullstack/week2.md) đã đồng bộ chỉ tiêu VLRA-24:
-  5–10 câu mỗi thành viên, không giới hạn 10 mẫu cho cả file gộp. Còn xác nhận đóng góp từng
-  thành viên trong bàn giao nội bộ. Mẫu `insufficient_context` (không có căn cứ để đối chiếu)
-  chưa tính vào chỉ tiêu có Ground Truth và chunk_id khi chưa được nhóm chấp thuận.
-- Team 2 xác nhận có nhận `expected_status = insufficient_context` và `gold_chunk_ids` rỗng trong định dạng golden
-  (hiện bộ của họ chỉ có mẫu `answered`).
-
-Lần kiểm chứng tổng hợp ngày 12/10/2026: cả hai validator PASS 13/13; kiểm tra regression
-10/10 ca (1 hợp lệ, 9 trường hợp phải bị từ chối) PASS. Xem
-[báo cáo nghiệm thu tuần 2](../../specs/team3-week2/verification.md). Kết quả này chưa thay review pháp lý.
+- [Tuần 5](../docs_3/week5/tasks.md): Phase 1 và đóng góp; [kết quả kiểm tra](../docs_3/week5/verification.md).
+- [Tuần 7](../docs_3/week7/tasks.md): bộ v1 100–150 câu, stratified split và freeze manifest;
+  [phần còn thiếu](../docs_3/week7/verification.md).
+- Validator chỉ kiểm tra format/trùng/chunk ID, không xác nhận đáp án đúng về pháp lý.
+  Mẫu `answered` cần chunk ID; mẫu `insufficient_context` dùng danh sách rỗng theo quy chuẩn.
+- Bộ riêng Team 3 không tự là bản gộp chính thức của dự án; cần thống nhất review, phân chia
+  và phiên bản dữ liệu trước khi dùng cho benchmark hoặc tuyên bố nghiệm thu.

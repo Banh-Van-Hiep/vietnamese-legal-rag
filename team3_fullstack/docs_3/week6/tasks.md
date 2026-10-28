@@ -137,3 +137,8 @@ data: {"conversationId":101,"clientRequestId":"99999999-9999-4999-9999-999999999
 | **Team 3 $\rightarrow$ Team 2 (RAG)** | - Kết nối thành công `HttpAiClient` sang dịch vụ FastAPI nội bộ tại `http://localhost:8001/internal/v1/query`.<br>- Báo cáo kết quả kiểm thử gọi hàm trực tiếp. | Team 2 theo dõi log xử lý của Reranker và LLM tương ứng với từng `X-Request-ID`. | Mạng nội bộ HTTP / Docker Network. |
 | **Team 2 $\rightarrow$ Team 3 (AI Service)** | - Cung cấp endpoint proxy `GET /internal/v1/documents/{document_id}/articles/{article_id}` để Backend lấy Điều luật. | Backend Team 3 phục vụ API Document Viewer cho giao diện Frontend. | REST Endpoint JSON UTF-8. |
 | **Team 1 $\rightarrow$ Team 3 (Data)** | - Kiểm tra danh mục văn bản và các đường link HTTPS `source_url` hiển thị đúng trên UI. | Đảm bảo người dùng nhấp mở nguồn bên ngoài trỏ đúng về trang văn bản quy phạm pháp luật của nhà nước. | Kiểm tra đối soát trên database. |
+
+## 6. Kết quả kiểm chứng hiện hành
+
+Đối chiếu từng task/DoD và phần còn thiếu tại [verification.md](verification.md), ngày 28/10/2026.
+Không suy hoàn thành từ kế hoạch hoặc từ số test PASS; mock và live được kết luận riêng.

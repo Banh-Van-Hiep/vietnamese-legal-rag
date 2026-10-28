@@ -145,3 +145,8 @@ data: {"conversationId":101,"clientRequestId":"44444444-4444-4444-8444-444444444
 | **Team 3 $\rightarrow$ Cả nhóm (G2)** | - Khung ứng dụng Web chạy hoàn chỉnh trên nền Mock Data.<br>- Video / Ảnh chụp minh chứng nghiệm thu Gate G2: người dùng gửi câu hỏi, nhận stream text, nhấp citation xem toàn văn Điều luật. | Cả nhóm có sản phẩm demo sớm để báo cáo tiến độ và kiểm chứng trải nghiệm người dùng (UX). | Demo trực tiếp trong buổi họp nghiệm thu tuần 5. |
 | **Team 2 $\rightarrow$ Team 3 (AI Mock)** | - Triển khai FastAPI Mock Server cổng 8001 của Team 2 trả về 2 kịch bản `answered` và `insufficient_context`. | Team 3 kiểm thử kết nối Backend Java $\leftrightarrow$ AI Service qua mạng HTTP nội bộ. | Endpoint `POST /internal/v1/query`. |
 | **Team 1 $\rightarrow$ Team 3 (Viewer Mock)** | - Hàm mock `get_article(..., is_mock=True)` với cặp dữ liệu mẫu `mock_v1` / `art1`. | Team 3 kết nối và hiển thị nội dung nguyên văn trên component Document Viewer. | Endpoint tra cứu Điều luật nội bộ. |
+
+## 6. Kết quả kiểm chứng hiện hành
+
+Đối chiếu từng task/DoD và phần còn thiếu tại [verification.md](verification.md), ngày 28/10/2026.
+Không suy hoàn thành từ kế hoạch hoặc từ số test PASS; mock và live được kết luận riêng.
