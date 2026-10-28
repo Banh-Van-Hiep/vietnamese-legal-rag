@@ -1,0 +1,8 @@
+# Dev/test dependencies for team2_rag (runtime dependencies are declared elsewhere in the repo).
+pytest>=8
+httpx>=0.27        # fastapi.testclient
+fastapi>=0.110
+pydantic>=2.6
+pydantic-settings>=2.2
+jsonschema>=4.18
+tiktoken           # optional: exact OpenAI token counting

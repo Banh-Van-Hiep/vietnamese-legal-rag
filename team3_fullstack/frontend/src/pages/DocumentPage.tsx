@@ -1,4 +1,7 @@
-// Trang xem nguyên văn điều luật: /documents/:documentId/articles/:articleId (mở và tải lại được).
+// Trang xem nguyên văn điều luật (mở và tải lại được):
+//   /documents/:documentId?articleId=…[&clause=…&point=…&cite=C2]  (route Viewer v2.0, Docs §8.6)
+//   /documents/:documentId/articles/:articleId                       (route cũ, giữ cho trang tra cứu)
+// clause/point/cite chỉ dùng để tô sáng phần được trích, không dùng để tra cứu.
 import { Link, useLocation, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import Icon from "../components/common/Icon";
 import DocumentViewer from "../components/document/DocumentViewer";
@@ -10,6 +13,9 @@ export default function DocumentPage() {
   const { documentId = "", articleId: legacyArticleId = "" } = useParams();
   const [parameters] = useSearchParams();
   const articleId = parameters.get("articleId") ?? legacyArticleId;
+  const clause = parameters.get("clause");
+  const point = parameters.get("point");
+  const focus = clause || point ? { citationId: validCite(parameters.get("cite")), clause, point } : null;
   const navigate = useNavigate();
   // location.key là "default" khi trang này là mục đầu tiên của phiên duyệt (mở thẳng bằng link).
   // Tải lại thì trình duyệt giữ lịch sử nên vẫn quay lại được.
@@ -31,9 +37,13 @@ export default function DocumentPage() {
               Về trang tra cứu
             </Link>
           )}
-          <DocumentViewer documentId={documentId} articleId={articleId} />
+          <DocumentViewer documentId={documentId} articleId={articleId} focus={focus} />
         </div>
       </div>
     </>
   );
+}
+
+function validCite(value: string | null): string | null {
+  return value && /^C(?:[1-9]|10)$/.test(value) ? value : null;
 }

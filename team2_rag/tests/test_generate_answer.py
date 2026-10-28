@@ -86,14 +86,16 @@ class GenerateAnswerTests(unittest.TestCase):
         with self.assertRaises(ConfigError): generate_answer(SAMPLE, settings=load_settings(env={"LLM_MODEL": "m"}))
 
     def test_settings_limits_and_token_budget_are_wired(self):
-        p = FakeLLMProvider([reply(0)])
+        p = FakeLLMProvider([reply(0), reply(0)])
         with patch("team2_rag.answer.create_llm_service", return_value=LLMService(p)):
             generate_answer(SAMPLE, settings=settings_for("openai", LLM_MAX_CONTEXT_CHUNKS="1"))
             user = p.calls[0][0].user
             self.assertIn(SAMPLE["results"][0]["chunk_id"], user); self.assertNotIn(SAMPLE["results"][1]["chunk_id"], user)
-            # có context window nhưng provider chưa có counter -> lỗi cấu hình rõ ràng, không rơi về đếm ký tự
-            with self.assertRaises(ConfigError):
+            # có context window nhưng provider chưa có counter chính xác -> dùng chặn trên theo byte (có log cảnh báo),
+            # KHÔNG rơi về đếm ký tự xấp xỉ và không từ chối khởi động.
+            with self.assertLogs("team2_rag.tokens", "WARNING"):
                 generate_answer(SAMPLE, settings=settings_for("gemini", LLM_CONTEXT_WINDOW_TOKENS="100000"))
+            self.assertEqual(len(p.calls), 2)
 
 
 class ErrorResponseTests(unittest.TestCase):
