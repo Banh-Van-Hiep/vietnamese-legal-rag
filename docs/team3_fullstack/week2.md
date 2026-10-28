@@ -2,6 +2,12 @@
 
 **Dự án:** Vietnamese Legal RAG Assistant. **Cập nhật:** 12/10/2026.
 
+**Vai trò nguồn, làm rõ ngày 23/10/2026:** đây là hồ sơ thứ cấp trích nội dung Jira
+đã được cung cấp cho tuần 2, không phải nguồn yêu cầu gốc. Nguồn gốc chỉ gồm Docs v2.0
+và Jira theo [quy tắc Team 3](README.md#nguồn-yêu-cầu-gốc). Các nhận định mock/JSON,
+phạm vi và kiểm chứng dưới đây gắn đợt bàn giao cũ, không chứng minh đã đạt đích v2.0
+và không thay yêu cầu của nhiệm vụ mới. Không thay đổi kết quả nghiệm thu lịch sử.
+
 Tuần 2 có **3 nhiệm vụ Jira**: VLRA-22, VLRA-23 và VLRA-24.
 Tài liệu này ghi mục tiêu, phạm vi và đầu ra của các nhiệm vụ chung.
 Việc chia nhỏ, thứ tự thực hiện và kiểm chứng thuộc `specs/`.

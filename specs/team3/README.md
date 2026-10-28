@@ -2,20 +2,32 @@
 
 ## 1. Điểm đọc
 
+- [Tuần 4: VLRA-41–44](week-04/requirements.md): API gọi RAG, FE–BE, Answer/Citation UI và E2E; [phân rã](week-04/tasks.md). W4-Q1 đã được người dùng chốt v2.0 ngày 23/10; VLRA-41 đang triển khai, live RAG còn phụ thuộc Team2.
+- Đặc tả tuần 4: [VLRA-41](week-04/001-vlra-41-rag-query/spec.md), [VLRA-42](week-04/002-vlra-42-fe-be-integration/spec.md), [VLRA-43](week-04/003-vlra-43-answer-citation-ui/spec.md), [VLRA-44](week-04/004-vlra-44-mvp-e2e/spec.md). Tất cả Draft, chưa phân thành viên, chưa plan/implementation.
 - [Tuần 3: VLRA-28 / VLRA-29](week-03/README.md): biên bản, testcase, evidence và bàn giao kiểm thử retrieval của Team 1.
 - [Tuần 2 đã lưu trong repository](../team3-week2/tasks.md): giữ nguyên vị trí trong lần bàn giao kiểm thử này.
-- [Tài liệu Team 3 hiện có](../../docs/team3_fullstack/README.md): tài liệu JSON/mock lịch sử; không dùng làm bằng chứng đã triển khai yêu cầu đích v2.0.
+- [Tài liệu chức năng Team 3](../../docs/team3_fullstack/README.md): bản diễn giải thứ cấp từ Docs v2.0/Jira, không là nguồn yêu cầu độc lập hoặc bằng chứng đã triển khai.
 
-Lần bàn giao kiểm thử không bao gồm việc tổ chức lại tài liệu đang làm ở máy local. Đọc đặc tả
-Team 1 và contract được liên kết trong requirements của tuần 3 khi sửa retrieval.
+Không đổi cấu trúc tài liệu của team khác trong lần chuẩn hóa này. Đọc thiết kế
+Team 1/contract liên quan khi sửa retrieval để hiểu implementation và khác biệt cần báo.
 
 ## 2. Nguồn và ranh giới
 
-Nguồn yêu cầu đích: [đặc tả chính thức v2.0](https://docs.google.com/document/d/1uDCSGNfzWXIaCSdggRrxcSuRREJ3StS278r4vZWNYPM/edit?tab=t.9c432bmgzvck).
-Các quyết định dưới đã được người dùng xác nhận trước đợt kiểm thử ngày 19/10/2026;
-chỉ ghi ngữ cảnh cần thiết, không thay đổi contract, code hoặc tài liệu Team 1/2.
+**Quy tắc nguồn được người dùng xác nhận ngày 23/10/2026:** chỉ
+[Docs v2.0](https://docs.google.com/document/d/1uDCSGNfzWXIaCSdggRrxcSuRREJ3StS278r4vZWNYPM/edit?tab=t.0)
+và các ticket Jira là nguồn yêu cầu gốc. Không tự cho một nguồn ưu tiên hơn nguồn kia.
+Nếu hai nguồn gốc xung đột, nêu chính xác mục/ticket và ảnh hưởng, báo người dùng,
+giữ phần phụ thuộc chờ quyết định; tiếp tục phần độc lập.
+
+Docs trong repo, specs, báo cáo phối hợp, checklist, các tóm tắt C1–C5 và ghi chú
+triển khai đều là thứ cấp, được sửa để bám hai nguồn gốc. Code/cấu hình/test là căn cứ
+hiện trạng triển khai, không tự tạo yêu cầu hay chứng minh yêu cầu đã hoàn thành.
+Các bộ tuần cũ giữ kết quả ở snapshot đã kiểm chứng; không sửa kết quả lịch sử để
+tuyên bố đã đạt yêu cầu mới. Không chỉnh Team 1/2 hoặc shared contracts trong phạm vi này.
 
 ## 3. Quyết định kế thừa và ranh giới
+
+Các mã dưới là tóm tắt để tra cứu, không thay thế việc đối chiếu Docs v2.0/Jira.
 
 | Mã | Quyết định đã xác nhận |
 | --- | --- |
@@ -28,3 +40,8 @@ chỉ ghi ngữ cảnh cần thiết, không thay đổi contract, code hoặc t
 Team 3 kiểm thử theo VLRA-28/29; Team 1 sở hữu BM25/Dense/Hybrid. Không sửa production,
 schema hoặc nhãn golden để chuyển FAIL thành PASS. Kết quả phải gắn snapshot, nguồn
 evidence và phần chưa chạy; nghiệm thu task trước khi tổng hợp Jira và tuần.
+
+Tuần 4 Team 3 được giao VLRA-41–44 trong phạm vi fullstack/tích hợp/E2E. Trách nhiệm
+retrieval/LLM vẫn thuộc Team 1/2; chỉ package `ai/` Backend giao tiếp dịch vụ Python.
+Nhiệm vụ theo tuần nằm trong `specs/team3/week-NN/`; tài liệu chức năng chung trong
+docs được đọc làm căn cứ, không chuyển bộ nhiệm vụ tuần vào docs.
