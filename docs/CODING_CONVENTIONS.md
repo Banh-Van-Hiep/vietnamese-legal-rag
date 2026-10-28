@@ -6,18 +6,22 @@ QUY CHUẨN KỸ THUẬT, LẬP TRÌNH & QUY TRÌNH PHỐI HỢP
 ---
 1. NGUYÊN TẮC CỐT LÕI "DOCUMENTS-FIRST" & TỔ CHỨC REPO
 1.1. Thứ Bậc Nguồn Chuẩn (Single Source of Truth)
-Nghiệp vụ & Hành vi: Tài liệu BRD/FRD/NFR baseline v2.0 là căn cứ cao nhất. Không tự ý thay đổi phạm vi nghiệp vụ nếu chưa qua xét duyệt.
+Nghiệp vụ & Hành vi: [docs/ARCHITECTURE.md](ARCHITECTURE.md) là đặc tả chính hiện hành, hợp nhất BRD/FRD/NFR và thiết kế hệ thống (người dùng xác nhận ngày 28/10/2026). Không tự ý thay đổi phạm vi nghiệp vụ nếu chưa qua xét duyệt.
+Tài liệu này quy định cách triển khai, phối hợp và Definition of Done. Jira quản lý công việc; `tasks.md` theo tuần cụ thể hóa mục tiêu/DoD theo đặc tả chính. Không lấy mô tả Jira hoặc Google Docs cũ để ghi đè baseline hiện hành; khi nội dung giao việc, baseline hoặc schema lệch nhau, ghi rõ khác biệt để thống nhất trước khi sửa phần phụ thuộc.
 Dữ liệu luật & Provenance: File registry chính thức kèm mã băm SHA-256 từ nguồn cơ quan nhà nước là nguồn chuẩn. Không dùng bài viết tổng hợp thay thế văn bản quy phạm pháp luật.
 Giao tiếp liên team: File JSON Schema (Draft 2020-12) và OpenAPI trong thư mục `contracts/` là nguồn chuẩn duy nhất về cấu trúc trao đổi máy tính. Khi có sự sai lệch giữa tài liệu Word/Markdown và Schema, tuyệt đối không tự chọn một bên để code mà phải ghi nhận discrepancy, họp thống nhất và cập nhật đồng bộ cả hai.
 Mức độ hoàn thành: Test report tự động và artefact chạy thực tế là thước đo tiến độ duy nhất. Không dùng số lượng file tạo ra hay số package đã cài đặt để báo cáo hoàn thành.
 1.2. Tổ Chức Thư Mục Tài Liệu Co-location
-Thư mục gốc `docs/` chỉ lưu đúng 2 file quy chuẩn toàn dự án:
+Thư mục `docs/` lưu đặc tả dùng chung của dự án, không lưu nhiệm vụ hoặc báo cáo tiến độ theo tuần. Hai tài liệu nền là:
 `docs/ARCHITECTURE.md`: Kiến trúc tổng thể, luồng dữ liệu liên team và chỉ tiêu kỹ thuật.
 `docs/CODING_CONVENTIONS.md`: Bộ quy chuẩn này.
+`docs/README.md` là mục lục; các thư mục `docs/team1_data/`, `docs/team2_rag/`, `docs/team3_fullstack/` chứa thiết kế chức năng, interface và trách nhiệm của từng team trong hệ thống chung.
 Tài liệu theo tuần của từng team được đặt ngay trong thư mục nguồn của team đó theo lộ trình học phần Tuần 4 đến Tuần 12 (`Tuần mới = Tuần cũ + 3`):
 `team1_data/docs/week_XX/tasks.md`
 `team2_rag/docs/week_XX/tasks.md`
-`team3_fullstack/docs/week_XX/tasks.md`
+`team3_fullstack/docs_3/weekN/tasks.md` (ví dụ `week4`, `week5`; theo quyết định tổ chức tài liệu ngày 28/10/2026).
+Với Team 3, nhiệm vụ và bộ spec/plan/tasks/verification đặt cùng tuần trong `docs_3/`. Chỉ duy trì bộ nhiệm vụ tuần hiện hành, không giữ bản nhiệm vụ cũ song song trong `specs/`. Báo cáo nghiệm thu `verification.md` nằm ngay trong thư mục tuần tương ứng; không đánh dấu đạt chỉ bằng cách chuyển tài liệu.
+Mỗi task Team 3 vẫn thực hiện theo Spec Kit: specify → clarify → plan → tasks → analyze → sửa vấn đề → implement → validate. Bộ chi tiết nằm tại `team3_fullstack/docs_3/weekN/<jira>-<chuc-nang>/`; lưu kết quả validate tại `validation.md` trong bộ task, tổng hợp nghiệm thu vào `weekN/verification.md`. Cách bố trí và nội dung validate tại [quy trình Team 3](../team3_fullstack/docs_3/README.md#quy-trình-thực-hiện-nhiệm-vụ). Đây là quy trình công việc, không yêu cầu cài Spec Kit để người khác đọc được tài liệu.
 Cấu trúc bắt buộc của mỗi file `tasks.md` hàng tuần:
 Task list: Ghi rõ mã Jira (ví dụ `VLRA16`), người phụ trách, mục tiêu và Definition of Done cụ thể.
 Technical Details: Ý tưởng giải thuật, công thức tính toán, thư viện và tham số cấu hình.
@@ -91,8 +95,8 @@ Mọi marker `[Cn]` xuất hiện trong `answer` phải tương ứng với đú
 Thứ tự citation trong mảng phải liên tục và tăng dần theo lần xuất hiện đầu tiên của marker trong câu trả lời.
 Nếu LLM sinh câu trả lời bịa đặt nguồn hoặc vi phạm schema, ném lỗi upstream (`502 UPSTREAM_INVALID_RESPONSE`), không tự động chèn nguồn giả để "sửa" câu trả lời.
 3.3. Team 3: Backend & Frontend (Java & React)
-Backend Stack: Java 17/21 LTS, Spring Boot 3.x, Maven, PostgreSQL.  
-*(Lưu ý: Nhánh develop hiện tại trong `pom.xml` đang để cấu hình thử nghiệm Java 25 / Spring Boot 4.1.1; Team 3 cần điều chỉnh lại `pom.xml` về Java 17 hoặc 21 LTS theo đúng quy chuẩn này để đảm bảo khả năng build và tích hợp CI/CD ổn định).*
+Backend Stack: Java 25, Spring Boot 4.1.1, Maven Wrapper, PostgreSQL.
+*(Quyết định ngày 28/10/2026: giữ Java 25 / Spring Boot 4.1.1 theo `team3_fullstack/backend/pom.xml`; sửa quy chuẩn và kế hoạch cho thống nhất, không hạ phiên bản hoặc sửa code trong đợt chuẩn hóa tài liệu này. JAVA_HOME phải trỏ JDK 25 khi chạy Maven Wrapper.)*
 Quản lý cấu hình: Đọc từ biến môi trường (`.env`), không commit credential mật vào code/repo.
 Database Transaction: Tuyệt đối không giữ DB connection/transaction trong lúc đang gọi HTTP xuống AI Service để tránh làm cạn kiệt connection pool.
 Transport SSE: Sử dụng `SseEmitter` bất đồng bộ, thiết lập worker pool có giới hạn, async timeout 55 giây, `Cache-Control: no-store`.

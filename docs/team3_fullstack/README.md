@@ -1,47 +1,50 @@
-# Team 3 — Fullstack
+# Team 3 — Backend & Frontend
 
-Điểm đọc đặc tả chức năng chung của Team 3. **Tài liệu thứ cấp**, đối chiếu ngày 23/10/2026.
+Thiết kế chức năng chung của phân hệ Fullstack. Đối chiếu source `62c3556` ngày 28/10/2026;
+không phải danh sách nhiệm vụ hoặc báo cáo tiến độ theo tuần.
 
-## Nguồn yêu cầu gốc
+## Trách nhiệm và công nghệ
 
-Chỉ [Docs v2.0](https://docs.google.com/document/d/1uDCSGNfzWXIaCSdggRrxcSuRREJ3StS278r4vZWNYPM/edit?tab=t.0)
-và các ticket Jira là nguồn gốc theo xác nhận của người dùng. Tài liệu trong repo,
-specs và báo cáo phối hợp diễn giải hai nguồn này; có thể sửa khi khác nguồn gốc.
-Code/test/config là căn cứ hiện trạng, không phải yêu cầu đã phê duyệt.
-Nếu Docs v2.0 và Jira xung đột, báo người dùng và chờ quyết định ở phần phụ thuộc;
-không tự đổi một nguồn để khớp nguồn kia.
+Team 3 sở hữu Java public gateway, hội thoại/persistence/idempotency, React UI và Viewer.
+Team 1 sở hữu data/retrieval/article store; Team 2 sở hữu RAG/LLM và HTTP nội bộ.
+Backend giữ Java 25/Spring Boot 4.1.1/Maven Wrapper/PostgreSQL; Frontend dùng
+React 18/TypeScript/Vite/Tailwind 4. Không đổi stack hoặc implementation của team khác
+để làm một bản mô tả thiết kế khớp code.
 
-## Tài liệu chung
+## Tài liệu thiết kế theo chức năng
 
-| Tài liệu | Dùng để |
+| Tài liệu | Nội dung / nhiệm vụ cần đọc |
 | --- | --- |
-| [team3.md](team3.md) | Kiến trúc/API/luồng Team 3 diễn giải từ Docs v2.0; phân biệt đích thiết kế với implementation JSON/mock |
-| [week2.md](week2.md) | Hồ sơ tiếp nhận Jira tuần 2 đã có; không thay thế Docs v2.0 hoặc ticket gốc |
+| [fullstack-architecture.md](fullstack-architecture.md) |Phạm vi, luồng liên team, package, profile và cấu hình |
+| [public-api-specification.md](public-api-specification.md) |Endpoint, DTO, input, SSE, CORS và public errors |
+| [persistence-design.md](persistence-design.md) |ERD, đủ4 bảng/cột, keys/constraints, snapshot, cascade/tombstone |
+| [conversation-design.md](conversation-design.md) |State machine, transaction/locks, IDEM-01–12, history/title/recovery |
+| [rag-integration-specification.md](rag-integration-specification.md) |AI boundary, validation, snake/camel mapping, timeout và lỗi upstream |
+| [frontend-design.md](frontend-design.md) |Component/routes, wireframe desktop/mobile, states, Viewer và render an toàn |
 
-Các file ở đây đủ để đọc bối cảnh và đầu ra chung. Phân rã task, dependency, tiêu chí
-kỹ thuật và báo cáo kiểm chứng thuộc `specs/`; không đặt bảng task hoặc test count trong `docs/`.
+[team3.md](team3.md) là điểm đọc ngắn tới các phần trên, không duy trì một bản đặc tả
+thứ hai. Khi thay API/schema/state/citation phải đọc đúng phần chi tiết và cập nhật
+nguồn liên quan, không đọc lại toàn bộ docs theo thói quen.
 
-## Theo dõi triển khai
+## Nguồn và xử lý khác biệt
 
-- [Phân rã task tuần 2](../../specs/team3-week2/tasks.md): task và ánh xạ tới Jira.
-- [Nghiệm thu tuần 2](../../specs/team3-week2/verification.md): kiểm tra từng task, rồi đối chiếu VLRA.
-- [Yêu cầu tuần 4](../../specs/team3/week-04/requirements.md): VLRA-41–44 và quyết định W4-Q1 áp dụng v2.0 cho VLRA-41 ngày 23/10.
-- [Mục lục specs](../../specs/README.md): bộ chi tiết từng chức năng và bàn giao sau merge.
+[ARCHITECTURE](../ARCHITECTURE.md) là đặc tả chính hiện hành;
+[CODING_CONVENTIONS](../CODING_CONVENTIONS.md) quy định triển khai/phối hợp/DoD.
+Tra schema/version tại [contracts](../../contracts/README.md) khi sửa giao tiếp.
+Jira theo dõi công việc, không dùng ticket hoặc Google Docs cũ ghi đè baseline mới.
+Khi baseline, schema, quyết định và code lệch nhau: ghi hai nội dung/vị trí/ảnh hưởng,
+báo người phụ trách để thống nhất; không tự nâng hành vi code thành contract mới.
 
-Các liên kết là điểm truy vết; nội dung triển khai chỉ được duy trì ở specs.
-Hướng dẫn cá nhân nằm ở `.local/team3/`, không được push. Quy trình tiếp nhận VLRA và thực hiện
-task đã được ghi trong [specs README](../../specs/README.md#quy-trình-nhận-vlra-và-thực-hiện-task).
-Các nhiệm vụ mới theo tuần nằm trong `specs/team3/week-NN/requirements.md`; phân rã
-và đặc tả riêng cũng đặt trong tuần đó. `week2.md` giữ hồ sơ tiếp nhận cũ, không tạo
-thêm bản nhiệm vụ tuần trùng trong docs. Kiểm chứng task trước khi tổng hợp nghiệm thu VLRA.
+Các tài liệu phân biệt quy tắc đã chốt, implementation đọc từ source và khoảng thiếu.
+Những điểm đã nhận diện gồm recovery chưa định kỳ, NFC/legal ID validation cần đối chiếu,
+các phần UI chưa có. DDL đã có CHECK JS-safe cho cả conversation.id và message.id.
+Ghi nhận không đồng nghĩa đã sửa code.
+Wireframe và ERD đã được đại diện Team 3 xác nhận ngày 29/10/2026; quyết định G1 theo
+hồ sơ tuần, không tự suy từ việc tạo tài liệu hoặc build/test đạt.
 
-## Nguồn và ranh giới
+## Ranh giới hồ sơ
 
-Dùng Docs v2.0/Jira cho yêu cầu; `team3.md` là bản diễn giải chức năng, specs là hồ sơ
-nhiệm vụ/triển khai/nghiệm thu. `contracts/` là hiện trạng artifact phối hợp liên team,
-không được ưu tiên hơn nguồn gốc khi khác biệt. Không tự sửa shared schema hoặc
-phần Team 1/2 để khớp mock; ghi khoảng thiếu/xung đột và phối hợp đúng owner.
-
-Controller nhận HTTP, service điều phối, DTO biểu diễn interface; chỉ package ai/ giao tiếp Python
-khi tích hợp được triển khai. Giữ project Spring Boot/Maven và React/TypeScript/Vite hiện có.
-Đọc kết quả và phần còn mở trong specs trước khi tiếp tục một task sau merge.
+Nhiệm vụ, phân công, Spec Kit, validation, bằng chứng và phê duyệt theo tuần nằm tại
+[team3_fullstack/docs_3](../../team3_fullstack/docs_3/README.md).
+Không đưa bảng task/tiến độ/test count vào tài liệu chung. Lượt tách tài liệu không sửa
+code/Team 1/Team 2/shared contracts, không chạy lại build/test hoặc tạo kết quả nghiệm thu mới.

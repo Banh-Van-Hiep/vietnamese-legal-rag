@@ -3,6 +3,7 @@
 > **Dự án:** Vietnamese Legal RAG Assistant (Project 1 · Pháp luật Doanh nghiệp Việt Nam)
 > **Tài liệu tham chiếu:** Baseline v2.0 hợp nhất BRD -> FRD -> NFR -> System Design -> App Design
 > **Lịch trình học phần:** 9 tuần thực hiện (Tuần 4 đến Tuần 12 theo quy đổi: Tuần mới = Tuần cũ + 3)
+> **Vai trò nguồn, xác nhận 28/10/2026:** Đây là đặc tả chính hiện hành về yêu cầu, hành vi và kiến trúc hệ thống. Quy chuẩn triển khai/nghiệm thu tại [CODING_CONVENTIONS.md](CODING_CONVENTIONS.md); tài liệu nhiệm vụ theo tuần phải bám đặc tả này. Nội dung thiết kế không tự chứng minh đã triển khai hoặc đã được nghiệm thu.
 
 ---
 
@@ -202,7 +203,7 @@ Cấu trúc JSON phản hồi sự cố:
 #### A. Cấu trúc Golden Dataset
 - **Quy mô:** Tuần 5 có 30–50 câu (khởi đầu); Tuần 7 đóng băng Golden Dataset v1 gồm 100–150 câu. Phân tầng xấp xỉ 60% Dev / 40% Test (tỷ lệ khoảng 75% answerable, 25% unanswerable).
 - **Cấu trúc bản ghi (File `golden_phase1_30cai.json` hiện hữu gồm 8 trường):**
-  - `id`: Định danh duy nhất và ổn định (cho phép tiền tố thành viên, VD: `gold_datdo_001`).
+  - `id`: Định danh duy nhất và ổn định (cho phép tiền tố đóng góp, VD: `gold_team3_001`; ví dụ công khai không dùng danh tính cá nhân).
   - `question`: Câu hỏi tiếng Việt thực tế từ người dùng.
   - `expected_status`: `"answered"` hoặc `"insufficient_context"`.
   - `ground_truth`: Đáp án chuẩn mực hoặc lý do giải thích thiếu căn cứ.

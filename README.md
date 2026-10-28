@@ -1,6 +1,6 @@
 # Vietnamese Legal RAG Assistant
 
-Project xây dựng trợ lý hỏi đáp pháp luật Việt Nam dựa trên Retrieval-Augmented Generation (RAG). Repository có tài liệu phân công/thiết kế và implementation theo từng team; Backend mock T01/T02 cùng FE thử của Team 3 đã được bàn giao. Hiện trạng từng chức năng được ghi trong [specs/](specs/README.md) và [tài liệu team](docs/README.md).
+Project xây dựng trợ lý hỏi đáp pháp luật Việt Nam dựa trên Retrieval-Augmented Generation (RAG). Đặc tả chung nằm trong [docs/](docs/README.md); nhiệm vụ và kết quả nghiệm thu Team 3 nằm trong [docs_3/](team3_fullstack/docs_3/README.md). Kết quả mock được phân biệt với pipeline RAG thật.
 
 ## System Flow
 
@@ -57,13 +57,13 @@ Phụ trách backend, REST API, frontend, UI/UX, document viewer, integration v�
 │   └── team3_fullstack/
 ├── evaluation/       # Evaluation dùng chung (chưa có code)
 ├── scripts/          # Script dùng chung, hiện có preprocess_legal_data.py
-├── specs/            # Đặc tả và bàn giao chức năng dùng chung, xem specs/README.md
+├── specs/            # Mục lục vị trí hồ sơ; task Team 3 ở team3_fullstack/docs_3/
 ├── team2_rag/        # Code RAG/LLM của Team 2
 ├── team3_fullstack/  # Backend/Frontend của Team 3
 └── tests/            # Test dùng chung
 ```
 
-Các thư mục team độc lập về implementation. Project chạy của Team 3 ở `team3_fullstack/`; xem [mục lục Team 3](docs/team3_fullstack/README.md). Đọc [specs/README.md](specs/README.md) sau khi nhận/merge code để biết yêu cầu, quyết định, commit và giới hạn của phần đã bàn giao; không suy ra trạng thái team khác từ mock Team 3.
+Các thư mục team độc lập về implementation. Project chạy của Team 3 ở `team3_fullstack/`; xem [mục lục Team 3](docs/team3_fullstack/README.md). Đọc [nhiệm vụ và nghiệm thu Team 3](team3_fullstack/docs_3/README.md) sau khi nhận/merge code; không suy ra trạng thái RAG thật từ mock hoặc từ một báo cáo cũ.
 
 ## Shared Contracts
 
