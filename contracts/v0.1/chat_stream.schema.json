@@ -1,0 +1,286 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Public Chat Stream — event payloads",
+  "description": "JSON data payloads for /api/v1/chat/stream. This adds SSE schemas; it does not replace the internal rag_response schema. See CONTRACT.md for framing and field mapping.",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/Meta"
+    },
+    {
+      "$ref": "#/$defs/Delta"
+    },
+    {
+      "$ref": "#/$defs/Complete"
+    },
+    {
+      "$ref": "#/$defs/ErrorResponse"
+    }
+  ],
+  "$defs": {
+    "SafeId": {
+      "$ref": "query_request.schema.json#/$defs/SafeId"
+    },
+    "ClientRequestId": {
+      "$ref": "query_request.schema.json#/$defs/ClientRequestId"
+    },
+    "UtcTimestamp": {
+      "type": "string",
+      "format": "date-time",
+      "pattern": "Z$"
+    },
+    "LegalId": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[a-z0-9_-]+$",
+      "description": "Lowercase ASCII legal IDs per CODING_CONVENTIONS; immutable source versions. Current runtime permissiveness is not a wider contract."
+    },
+    "Meta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "conversationId",
+        "clientRequestId",
+        "userMessageId",
+        "assistantMessageId",
+        "createdAt"
+      ],
+      "properties": {
+        "conversationId": {
+          "$ref": "#/$defs/SafeId"
+        },
+        "clientRequestId": {
+          "$ref": "#/$defs/ClientRequestId"
+        },
+        "userMessageId": {
+          "$ref": "#/$defs/SafeId"
+        },
+        "assistantMessageId": {
+          "$ref": "#/$defs/SafeId"
+        },
+        "createdAt": {
+          "$ref": "#/$defs/UtcTimestamp"
+        }
+      }
+    },
+    "Delta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "text"
+      ],
+      "properties": {
+        "text": {
+          "type": "string",
+          "maxLength": 12000
+        }
+      }
+    },
+    "PublicCitation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "citationId",
+        "chunkId",
+        "documentId",
+        "articleId",
+        "documentTitle",
+        "article",
+        "clause",
+        "point",
+        "sourceUrl"
+      ],
+      "properties": {
+        "citationId": {
+          "type": "string",
+          "pattern": "^C(?:[1-9]|10)$"
+        },
+        "chunkId": {
+          "$ref": "#/$defs/LegalId",
+          "maxLength": 200
+        },
+        "documentId": {
+          "$ref": "#/$defs/LegalId",
+          "maxLength": 200
+        },
+        "articleId": {
+          "$ref": "#/$defs/LegalId",
+          "maxLength": 100
+        },
+        "documentTitle": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500,
+          "pattern": "\\S"
+        },
+        "article": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100,
+          "pattern": "\\S"
+        },
+        "clause": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100,
+              "pattern": "\\S"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "point": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 100,
+              "pattern": "\\S"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "sourceUrl": {
+          "type": "string",
+          "format": "uri",
+          "maxLength": 2048,
+          "pattern": "^[Hh][Tt][Tt][Pp][Ss]://[^/?#\\s]+"
+        }
+      }
+    },
+    "Complete": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "conversationId",
+        "clientRequestId",
+        "userMessageId",
+        "assistantMessageId",
+        "status",
+        "answer",
+        "citations",
+        "createdAt"
+      ],
+      "properties": {
+        "conversationId": {
+          "$ref": "#/$defs/SafeId"
+        },
+        "clientRequestId": {
+          "$ref": "#/$defs/ClientRequestId"
+        },
+        "userMessageId": {
+          "$ref": "#/$defs/SafeId"
+        },
+        "assistantMessageId": {
+          "$ref": "#/$defs/SafeId"
+        },
+        "createdAt": {
+          "$ref": "#/$defs/UtcTimestamp"
+        },
+        "status": {
+          "enum": [
+            "answered",
+            "insufficient_context"
+          ]
+        },
+        "answer": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 12000,
+          "pattern": "\\S"
+        },
+        "citations": {
+          "type": "array",
+          "maxItems": 10,
+          "items": {
+            "$ref": "#/$defs/PublicCitation"
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "answered"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "citations": {
+                "minItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "const": "insufficient_context"
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "citations": {
+                "maxItems": 0
+              },
+              "answer": {
+                "not": {
+                  "pattern": "\\[C[0-9]+\\]"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "ErrorResponse": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "error"
+      ],
+      "properties": {
+        "error": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "code",
+            "message",
+            "retryable"
+          ],
+          "properties": {
+            "code": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 60,
+              "pattern": "\\S"
+            },
+            "message": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 2000,
+              "pattern": "\\S"
+            },
+            "retryable": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    }
+  }
+}

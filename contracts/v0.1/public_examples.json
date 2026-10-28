@@ -1,0 +1,56 @@
+{
+  "notice": "Chỉ là dữ liệu mock kiểm thử contract; không phải tư vấn pháp luật hoặc Golden Dataset.",
+  "ChatRequest": {
+    "question": "Câu hỏi kiểm thử giao tiếp",
+    "clientRequestId": "44444444-4444-4444-8444-444444444444"
+  },
+  "Meta": {
+    "conversationId": 101,
+    "clientRequestId": "44444444-4444-4444-8444-444444444444",
+    "userMessageId": 201,
+    "assistantMessageId": 202,
+    "createdAt": "2026-10-29T00:00:00Z"
+  },
+  "Delta": {
+    "text": "Nội dung mock kiểm thử [C1]."
+  },
+  "Complete": {
+    "conversationId": 101,
+    "clientRequestId": "44444444-4444-4444-8444-444444444444",
+    "userMessageId": 201,
+    "assistantMessageId": 202,
+    "createdAt": "2026-10-29T00:00:00Z",
+    "status": "answered",
+    "answer": "Nội dung mock kiểm thử [C1].",
+    "citations": [
+      {
+        "citationId": "C1",
+        "chunkId": "mock_v1__dieu-1__k1__0",
+        "documentId": "mock_v1",
+        "articleId": "dieu-1",
+        "documentTitle": "Văn bản mock kiểm thử",
+        "article": "Điều 1",
+        "clause": "Khoản 1",
+        "point": null,
+        "sourceUrl": "https://example.com/mock-law"
+      }
+    ]
+  },
+  "InsufficientComplete": {
+    "conversationId": 101,
+    "clientRequestId": "44444444-4444-4444-8444-444444444444",
+    "userMessageId": 201,
+    "assistantMessageId": 202,
+    "createdAt": "2026-10-29T00:00:00Z",
+    "status": "insufficient_context",
+    "answer": "Dữ liệu mock không đủ căn cứ trả lời.",
+    "citations": []
+  },
+  "ErrorResponse": {
+    "error": {
+      "code": "UPSTREAM_TIMEOUT",
+      "message": "Dịch vụ xử lý chưa phản hồi trong thời hạn.",
+      "retryable": true
+    }
+  }
+}
