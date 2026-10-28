@@ -6,6 +6,7 @@ public class ApiException extends RuntimeException {
     private final int status;
     private final ApiError body;
     private final UUID conversationId;
+    private Long numericConversationId;
 
     public ApiException(int status, String code, String message, boolean retryable) {
         this(status, code, message, retryable, null);
@@ -21,6 +22,15 @@ public class ApiException extends RuntimeException {
     public int status() { return status; }
     public ApiError body() { return body; }
     public UUID conversationId() { return conversationId; }
+    public String conversationHeader() {
+        return numericConversationId != null ? numericConversationId.toString()
+                : conversationId == null ? null : conversationId.toString();
+    }
+    public ApiException inNumericConversation(long id) {
+        var copy = new ApiException(status, body.error().code(), getMessage(), body.error().retryable());
+        copy.numericConversationId = id;
+        return copy;
+    }
 
     public ApiException inConversation(UUID id) {
         return new ApiException(status, body.error().code(), getMessage(), body.error().retryable(), id);

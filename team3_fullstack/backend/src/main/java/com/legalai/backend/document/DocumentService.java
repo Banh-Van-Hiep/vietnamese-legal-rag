@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 @Service
-@Profile("mock")
+@Profile({"mock", "rag"})
 public class DocumentService {
     private final AiClient ai;
 
@@ -15,5 +15,8 @@ public class DocumentService {
 
     public ArticleResponse article(String documentId, String articleId) {
         return AiResponseValidator.article(ai.article(documentId, articleId), documentId, articleId);
+    }
+    public ArticleResponse article(String documentId, String articleId, String requestId) {
+        return AiResponseValidator.article(ai.article(documentId, articleId, requestId), documentId, articleId);
     }
 }

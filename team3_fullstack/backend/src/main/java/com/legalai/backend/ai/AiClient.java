@@ -8,7 +8,14 @@ import com.legalai.backend.ai.dto.RagAnswer;
  * Các lớp khác chỉ phụ thuộc interface này, không biết là mock hay HTTP.
  */
 public interface AiClient {
-    // Mock boundary only. Internal multi-turn/history must be agreed before HTTP integration.
     RagAnswer query(String question);
+    /** v2.0 internal boundary. Legacy mock intentionally ignores history and trace. */
+    default RagAnswer query(String question, java.util.List<com.legalai.backend.ai.dto.HistoryMessage> history,
+            String requestId) {
+        return query(question);
+    }
     ArticleResponse article(String documentId, String articleId);
+    default ArticleResponse article(String documentId, String articleId, String requestId) {
+        return article(documentId, articleId);
+    }
 }

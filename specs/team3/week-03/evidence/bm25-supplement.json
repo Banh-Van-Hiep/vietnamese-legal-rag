@@ -1,0 +1,1260 @@
+{
+  "report_version": 1,
+  "run_at": "2026-10-18T20:12:58.941190+00:00",
+  "method": "bm25",
+  "status": "COMPLETE",
+  "environment": {
+    "python": "3.12.15",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "packages": {
+      "bm25s": "0.3.14",
+      "underthesea": "9.5.0",
+      "numpy": "2.5.4",
+      "qdrant-client": "1.19.1",
+      "jsonschema": "4.26.0",
+      "torch": "2.14.1+cpu",
+      "sentence-transformers": "5.7.0"
+    }
+  },
+  "head": "5a9af42e734391e00dfc0f7ede304506fdd5a28f",
+  "dirty": true,
+  "sources": [
+    {
+      "path": "specs/team3/week-03/data/golden_retrieval_additions.json",
+      "sha256": "33c9ab1b9ff2abd86b2ca5580a9f167b7f338404ee9b05de716d3930b7e82116"
+    },
+    {
+      "path": "data/doanh-nghiep/processed/chunks.jsonl",
+      "sha256": "37aa6dea2b33a94f9ecc5020796d150f43f8a1dc5ef4d3e797fa9cb1d1707d66"
+    },
+    {
+      "path": "scripts/eval_retrieval.py",
+      "sha256": "91ad405911fbdcccb119ff40243e6b105dee8bf033889f03abc487c11b2bbd0c"
+    },
+    {
+      "path": "contracts/v0.1/retrieval_output.schema.json",
+      "sha256": "b7745fc7cba9404db688d890a8d70e5ff4dc70f07732adf006a48c0a97445b2a"
+    },
+    {
+      "path": "specs/team3/week-03/data/query_groups.json",
+      "sha256": "c18d5916243aa3ead780355ad88916bda082d65133deee2ab2f6c67666b899cd"
+    }
+  ],
+  "runtime_sources": [
+    {
+      "path": "team1_data/retrieval/__init__.py",
+      "sha256": "a4e139878f89aa93f88d37cbef6e78a3c221856b935575bd83e2dc600c0063ad"
+    },
+    {
+      "path": "team1_data/retrieval/__main__.py",
+      "sha256": "8b9e97241064fe81c9a7f4edc18a6a9fc4884634ca6c8c2bca1dc60788c43b74"
+    },
+    {
+      "path": "team1_data/retrieval/bm25.py",
+      "sha256": "8060a78b4f2ed303a04f501c368e94060b78c66773e42f1b6607e9fe644c1693"
+    },
+    {
+      "path": "team1_data/retrieval/common.py",
+      "sha256": "02392145da321054455c227243944f3282e01f28d26d7f415a0305ad433ef4fd"
+    },
+    {
+      "path": "team1_data/retrieval/dense.py",
+      "sha256": "349584022380f49c47e1ac269b770062a8a26bc07eb762daead9f6dccce05df7"
+    },
+    {
+      "path": "team1_data/retrieval/embedding.py",
+      "sha256": "18ef07d6cd93e93efd9388f016fd7319d6c00a01aaa08ffb9835be493762dc41"
+    },
+    {
+      "path": "team1_data/retrieval/errors.py",
+      "sha256": "b21368f8b2d1775d3fc123db20970bfab97e46675c393e17ba9051faa530af8a"
+    },
+    {
+      "path": "team1_data/retrieval/tokenizer.py",
+      "sha256": "bbf03862ccf0bcc53416925b526b40c649d16e4edb02f0294d8527027df109d8"
+    }
+  ],
+  "setup_ms": 18661.717300012242,
+  "index_version": "qa-20261019-01",
+  "model": {
+    "name": null,
+    "revision": null
+  },
+  "corpus_chunk_count": 2576,
+  "index_manifest": {
+    "index_version": "qa-20261019-01",
+    "built_at": "2026-10-18T20:12:38+00:00",
+    "method": "lucene",
+    "k1": 1.2,
+    "b": 0.75,
+    "tokenizer": "tokenize_vi/underthesea",
+    "legal_status": [
+      "con_hieu_luc",
+      "het_hieu_luc_mot_phan"
+    ],
+    "chunk_count": 2576,
+    "chunk_ids_sha256": "eaa413bdaefa72e4e30ddbef1456b9f7f25d4211846c4ac9ad0f1244fbdd53d7"
+  },
+  "manifest_source": {
+    "path": ".local/team3/retrieval-audit-20261019/bm25/index_manifest.json",
+    "sha256": "882dbbfab56e952eaabd9b726a28fcb4cf19fc6c7650331a23c29ef0a6481fa9"
+  },
+  "counts": {
+    "total": 8,
+    "scored": 6,
+    "errors": 0,
+    "empty_gold": 2
+  },
+  "metrics": {
+    "recall_at_5": 0.8333333333333334,
+    "recall_at_20": 0.8333333333333334,
+    "mrr_at_10": 0.8333333333333334
+  },
+  "latency_ms": {
+    "p50": 1.654949999647215,
+    "p95": 138.70704998844292,
+    "samples": 8,
+    "percentile": "linear interpolation",
+    "scope": "retrieve only; successful calls"
+  },
+  "cases": [
+    {
+      "id": "retrieval_qa_031",
+      "question": "Điều 1 Nghị định 168/2025/NĐ-CP quy định phạm vi đăng ký doanh nghiệp và hộ kinh doanh như thế nào?",
+      "group": "legal_reference",
+      "expected_chunk_ids": [
+        "nd-168-2025-nd-cp-v1__dieu-1__k0__0"
+      ],
+      "status": "OK",
+      "elapsed_ms": 212.18079997925088,
+      "recall_at_5": 1.0,
+      "recall_at_20": 1.0,
+      "rr_at_10": 1.0,
+      "results": [
+        {
+          "chunk_id": "nd-168-2025-nd-cp-v1__dieu-1__k0__0",
+          "rank": 1,
+          "score": 9.170204162597656,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "tt-68-2025-tt-btc-v1__dieu-1__k2__0",
+          "rank": 2,
+          "score": 8.86767578125,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "tt-68-2025-tt-btc-v1__dieu-1__k1__0",
+          "rank": 3,
+          "score": 7.975411891937256,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-168-2025-nd-cp-v1__dieu-83__k1__0",
+          "rank": 4,
+          "score": 7.36641263961792,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-168-2025-nd-cp-v1__dieu-22__k4__0",
+          "rank": 5,
+          "score": 6.693881034851074,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-168-2025-nd-cp-v1__dieu-3__k7__0",
+          "rank": 6,
+          "score": 6.685330390930176,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-168-2025-nd-cp-v1__dieu-88__k2__0",
+          "rank": 7,
+          "score": 6.546295166015625,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-168-2025-nd-cp-v1__dieu-87__k2__0",
+          "rank": 8,
+          "score": 6.44926118850708,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-168-2025-nd-cp-v1__dieu-22__k3__0",
+          "rank": 9,
+          "score": 6.357746601104736,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-168-2025-nd-cp-v1__dieu-86__k6__0",
+          "rank": 10,
+          "score": 6.284987449645996,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-168-2025-nd-cp-v1__dieu-23__k6__0",
+          "rank": 11,
+          "score": 6.264682292938232,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "vbhn-7566-vbhn-bkhdt-v1__dieu-1__k2__0",
+          "rank": 12,
+          "score": 6.078793048858643,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-168-2025-nd-cp-v1__dieu-82__k3__0",
+          "rank": 13,
+          "score": 6.043229579925537,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-122-2021-nd-cp-v1__dieu-1__k3__0",
+          "rank": 14,
+          "score": 5.952780246734619,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-122-2021-nd-cp-v1__dieu-1__k1__0",
+          "rank": 15,
+          "score": 5.894496440887451,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "vbhn-7566-vbhn-bkhdt-v1__dieu-1__k1__0",
+          "rank": 16,
+          "score": 5.825660705566406,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-168-2025-nd-cp-v1__dieu-23__k4__0",
+          "rank": 17,
+          "score": 5.823553085327148,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-168-2025-nd-cp-v1__dieu-23__k5__0",
+          "rank": 18,
+          "score": 5.736952781677246,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-168-2025-nd-cp-v1__dieu-21__k4__0",
+          "rank": 19,
+          "score": 5.61358118057251,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-168-2025-nd-cp-v1__dieu-3__k2__0",
+          "rank": 20,
+          "score": 5.586763381958008,
+          "retrieval_method": "bm25"
+        }
+      ]
+    },
+    {
+      "id": "retrieval_qa_032",
+      "question": "Nghị định 122/2021/NĐ-CP khoản 1 Điều 1 xử phạt vi phạm hành chính trong lĩnh vực nào?",
+      "group": "legal_reference",
+      "expected_chunk_ids": [
+        "nd-122-2021-nd-cp-v1__dieu-1__k1__0"
+      ],
+      "status": "OK",
+      "elapsed_ms": 1.5793000347912312,
+      "recall_at_5": 1.0,
+      "recall_at_20": 1.0,
+      "rr_at_10": 1.0,
+      "results": [
+        {
+          "chunk_id": "nd-122-2021-nd-cp-v1__dieu-1__k1__0",
+          "rank": 1,
+          "score": 14.459390640258789,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-122-2021-nd-cp-v1__dieu-1__k3__0",
+          "rank": 2,
+          "score": 14.209532737731934,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-122-2021-nd-cp-v1__dieu-1__k2__0",
+          "rank": 3,
+          "score": 11.890031814575195,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-122-2021-nd-cp-v1__dieu-5__k3__0",
+          "rank": 4,
+          "score": 11.49618148803711,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-122-2021-nd-cp-v1__dieu-5__k1__0",
+          "rank": 5,
+          "score": 11.48210334777832,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-122-2021-nd-cp-v1__dieu-2__k1__0",
+          "rank": 6,
+          "score": 11.307315826416016,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-288-2026-nd-cp-v1__dieu-7__k0__0",
+          "rank": 7,
+          "score": 11.175080299377441,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-122-2021-nd-cp-v1__dieu-55__k2__0",
+          "rank": 8,
+          "score": 11.041097640991211,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-122-2021-nd-cp-v1__dieu-56__k2__0",
+          "rank": 9,
+          "score": 10.972959518432617,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-122-2021-nd-cp-v1__dieu-4__k1__0",
+          "rank": 10,
+          "score": 10.602922439575195,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-122-2021-nd-cp-v1__dieu-54__k2__0",
+          "rank": 11,
+          "score": 10.519716262817383,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-122-2021-nd-cp-v1__dieu-47__k6__0",
+          "rank": 12,
+          "score": 10.519716262817383,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-288-2026-nd-cp-v1__dieu-6__k2__0",
+          "rank": 13,
+          "score": 10.50228214263916,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-122-2021-nd-cp-v1__dieu-45__k2__0",
+          "rank": 14,
+          "score": 10.45816421508789,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-288-2026-nd-cp-v1__dieu-8__k1__0",
+          "rank": 15,
+          "score": 10.42564868927002,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-288-2026-nd-cp-v1__dieu-8__k2__0",
+          "rank": 16,
+          "score": 10.354759216308594,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-122-2021-nd-cp-v1__dieu-3__k2__0",
+          "rank": 17,
+          "score": 10.200180053710938,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-122-2021-nd-cp-v1__dieu-3__k1__0",
+          "rank": 18,
+          "score": 10.152290344238281,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-122-2021-nd-cp-v1__dieu-58__k2__0",
+          "rank": 19,
+          "score": 10.1262845993042,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-122-2021-nd-cp-v1__dieu-62__k3__0",
+          "rank": 20,
+          "score": 10.10029411315918,
+          "retrieval_method": "bm25"
+        }
+      ]
+    },
+    {
+      "id": "retrieval_qa_033",
+      "question": "Biểu mẫu để đăng ký công ty được đặt trong phụ lục nào của thông tư về biểu mẫu đăng ký?",
+      "group": "everyday",
+      "expected_chunk_ids": [
+        "tt-68-2025-tt-btc-v1__dieu-2__k1__0"
+      ],
+      "status": "OK",
+      "elapsed_ms": 2.2558000055141747,
+      "recall_at_5": 1.0,
+      "recall_at_20": 1.0,
+      "rr_at_10": 1.0,
+      "results": [
+        {
+          "chunk_id": "tt-68-2025-tt-btc-v1__dieu-2__k1__0",
+          "rank": 1,
+          "score": 17.61911964416504,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "tt-68-2025-tt-btc-v1__dieu-2__k2__0",
+          "rank": 2,
+          "score": 17.540815353393555,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "tt-68-2025-tt-btc-v1__dieu-3__k2__0",
+          "rank": 3,
+          "score": 15.825371742248535,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "tt-68-2025-tt-btc-v1__dieu-1__k1__0",
+          "rank": 4,
+          "score": 14.101140022277832,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "tt-68-2025-tt-btc-v1__dieu-3__k1__0",
+          "rank": 5,
+          "score": 12.333481788635254,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "tt-68-2025-tt-btc-v1__dieu-1__k2__0",
+          "rank": 6,
+          "score": 11.958208084106445,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "tt-68-2025-tt-btc-v1__dieu-3__k3__0",
+          "rank": 7,
+          "score": 11.825643539428711,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "tt-68-2025-tt-btc-v1__dieu-3__k4__0",
+          "rank": 8,
+          "score": 11.18370532989502,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-168-2025-nd-cp-v1__dieu-124__k5__0",
+          "rank": 9,
+          "score": 8.85057544708252,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-168-2025-nd-cp-v1__dieu-86__k3__0",
+          "rank": 10,
+          "score": 5.54584264755249,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "luat-59-2020-qh14-v1__dieu-201__k4__0",
+          "rank": 11,
+          "score": 5.503534317016602,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "luat-59-2020-qh14-v1__dieu-198__k5__0",
+          "rank": 12,
+          "score": 5.494217395782471,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-201__k4__0",
+          "rank": 13,
+          "score": 5.461423873901367,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-198__k5__0",
+          "rank": 14,
+          "score": 5.446924209594727,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "luat-59-2020-qh14-v1__dieu-200__k5__0",
+          "rank": 15,
+          "score": 5.433773040771484,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-200__k5__0",
+          "rank": 16,
+          "score": 5.392912864685059,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "vbhn-7566-vbhn-bkhdt-v1__dieu-20__k3__0",
+          "rank": 17,
+          "score": 5.2921929359436035,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-168-2025-nd-cp-v1__dieu-86__k2__0",
+          "rank": 18,
+          "score": 5.125448703765869,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "luat-59-2020-qh14-v1__dieu-177__k3__0",
+          "rank": 19,
+          "score": 4.916011333465576,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-177__k3__0",
+          "rank": 20,
+          "score": 4.809978485107422,
+          "retrieval_method": "bm25"
+        }
+      ]
+    },
+    {
+      "id": "retrieval_qa_034",
+      "question": "Theo khoản 2 Điều 2 Thông tư 68/2025/TT-BTC, biểu mẫu đăng ký hộ kinh doanh nằm ở đâu?",
+      "group": "legal_reference",
+      "expected_chunk_ids": [
+        "tt-68-2025-tt-btc-v1__dieu-2__k2__0"
+      ],
+      "status": "OK",
+      "elapsed_ms": 1.7305999645031989,
+      "recall_at_5": 1.0,
+      "recall_at_20": 1.0,
+      "rr_at_10": 1.0,
+      "results": [
+        {
+          "chunk_id": "tt-68-2025-tt-btc-v1__dieu-2__k2__0",
+          "rank": 1,
+          "score": 17.4036865234375,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "tt-68-2025-tt-btc-v1__dieu-2__k1__0",
+          "rank": 2,
+          "score": 17.277738571166992,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "tt-68-2025-tt-btc-v1__dieu-1__k2__0",
+          "rank": 3,
+          "score": 14.494607925415039,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "tt-68-2025-tt-btc-v1__dieu-1__k1__0",
+          "rank": 4,
+          "score": 14.375495910644531,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "tt-68-2025-tt-btc-v1__dieu-3__k1__0",
+          "rank": 5,
+          "score": 13.19240665435791,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "tt-68-2025-tt-btc-v1__dieu-3__k2__0",
+          "rank": 6,
+          "score": 13.102197647094727,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "tt-68-2025-tt-btc-v1__dieu-3__k4__0",
+          "rank": 7,
+          "score": 12.566279411315918,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "tt-68-2025-tt-btc-v1__dieu-3__k3__0",
+          "rank": 8,
+          "score": 11.569957733154297,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-168-2025-nd-cp-v1__dieu-124__k5__0",
+          "rank": 9,
+          "score": 6.154664039611816,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-168-2025-nd-cp-v1__dieu-2__k3__0",
+          "rank": 10,
+          "score": 5.816961288452148,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-168-2025-nd-cp-v1__dieu-2__k1__0",
+          "rank": 11,
+          "score": 5.758546829223633,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-168-2025-nd-cp-v1__dieu-2__k9__0",
+          "rank": 12,
+          "score": 5.43425178527832,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-288-2026-nd-cp-v1__dieu-2__k5__0",
+          "rank": 13,
+          "score": 5.326303482055664,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-168-2025-nd-cp-v1__dieu-20__k2__0",
+          "rank": 14,
+          "score": 5.301001071929932,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-288-2026-nd-cp-v1__dieu-2__k1__0",
+          "rank": 15,
+          "score": 5.2978010177612305,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-288-2026-nd-cp-v1__dieu-2__k4__0",
+          "rank": 16,
+          "score": 5.21442985534668,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-288-2026-nd-cp-v1__dieu-2__k2__0",
+          "rank": 17,
+          "score": 5.200836658477783,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-288-2026-nd-cp-v1__dieu-2__k3__0",
+          "rank": 18,
+          "score": 5.200836658477783,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-288-2026-nd-cp-v1__dieu-2__k7__0",
+          "rank": 19,
+          "score": 5.147295951843262,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-168-2025-nd-cp-v1__dieu-107__k2__0",
+          "rank": 20,
+          "score": 4.886224746704102,
+          "retrieval_method": "bm25"
+        }
+      ]
+    },
+    {
+      "id": "retrieval_qa_035",
+      "question": "Theo Điều 3 Văn bản hợp nhất 67/VBHN-VPQH, nếu luật khác có quy định đặc thù về thành lập doanh nghiệp thì áp dụng quy định nào?",
+      "group": "legal_reference",
+      "expected_chunk_ids": [
+        "vbhn-67-vbhn-vpqh-v1__dieu-3__k0__0"
+      ],
+      "status": "OK",
+      "elapsed_ms": 2.113599970471114,
+      "recall_at_5": 1.0,
+      "recall_at_20": 1.0,
+      "rr_at_10": 1.0,
+      "results": [
+        {
+          "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-3__k0__0",
+          "rank": 1,
+          "score": 15.572235107421875,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "luat-59-2020-qh14-v1__dieu-3__k0__0",
+          "rank": 2,
+          "score": 13.691672325134277,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-89__k1__0",
+          "rank": 3,
+          "score": 7.418027877807617,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "luat-76-2025-qh15-v1__dieu-3__k1__0",
+          "rank": 4,
+          "score": 6.7881999015808105,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-2__k2__0",
+          "rank": 5,
+          "score": 6.650622844696045,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-188__k2__0",
+          "rank": 6,
+          "score": 6.54331111907959,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-177__k3__0",
+          "rank": 7,
+          "score": 6.542622089385986,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-161__k2__0",
+          "rank": 8,
+          "score": 6.4537529945373535,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-149__k2__0",
+          "rank": 9,
+          "score": 6.417721271514893,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-157__k12__0",
+          "rank": 10,
+          "score": 6.3991475105285645,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-158__k5__0",
+          "rank": 11,
+          "score": 6.3566060066223145,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-150__k4__0",
+          "rank": 12,
+          "score": 6.3566060066223145,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-149__k8__0",
+          "rank": 13,
+          "score": 6.343564033508301,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-148__k4__0",
+          "rank": 14,
+          "score": 6.275069713592529,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-120__k4__0",
+          "rank": 15,
+          "score": 6.233509063720703,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-135__k3__0",
+          "rank": 16,
+          "score": 6.114344596862793,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-149__k1__0",
+          "rank": 17,
+          "score": 6.1115312576293945,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-61__k2__0",
+          "rank": 18,
+          "score": 6.086577415466309,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-18__k3__0",
+          "rank": 19,
+          "score": 6.069173336029053,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-61__k1__0",
+          "rank": 20,
+          "score": 5.996922969818115,
+          "retrieval_method": "bm25"
+        }
+      ]
+    },
+    {
+      "id": "retrieval_qa_036",
+      "question": "Bản hợp nhất nghị định hướng dẫn luật doanh nghiệp có quy định về công bố thông tin của doanh nghiệp nhà nước không?",
+      "group": "everyday",
+      "expected_chunk_ids": [
+        "vbhn-7566-vbhn-bkhdt-v1__dieu-1__k1__0"
+      ],
+      "status": "OK",
+      "elapsed_ms": 1.4482000260613859,
+      "recall_at_5": 0.0,
+      "recall_at_20": 0.0,
+      "rr_at_10": 0.0,
+      "results": [
+        {
+          "chunk_id": "vbhn-7566-vbhn-bkhdt-v1__dieu-32__k2__0",
+          "rank": 1,
+          "score": 7.4774909019470215,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-122-2021-nd-cp-v1__dieu-61__k1__0",
+          "rank": 2,
+          "score": 6.270389556884766,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "vbhn-7566-vbhn-bkhdt-v1__dieu-35__k3__0",
+          "rank": 3,
+          "score": 6.23067569732666,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "vbhn-7566-vbhn-bkhdt-v1__dieu-22__k1__0",
+          "rank": 4,
+          "score": 6.166121959686279,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "vbhn-7566-vbhn-bkhdt-v1__dieu-28__k3__0",
+          "rank": 5,
+          "score": 5.567355155944824,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-122-2021-nd-cp-v1__dieu-61__k2__0",
+          "rank": 6,
+          "score": 5.520567417144775,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "vbhn-7566-vbhn-bkhdt-v1__dieu-33__k2__0",
+          "rank": 7,
+          "score": 5.4684343338012695,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-168-2025-nd-cp-v1__dieu-74__k5__0",
+          "rank": 8,
+          "score": 5.387914657592773,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "vbhn-7566-vbhn-bkhdt-v1__dieu-28__k2__0",
+          "rank": 9,
+          "score": 5.36454963684082,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "vbhn-7566-vbhn-bkhdt-v1__dieu-32__k3__0",
+          "rank": 10,
+          "score": 5.168627738952637,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "vbhn-7566-vbhn-bkhdt-v1__dieu-19__k0__0",
+          "rank": 11,
+          "score": 4.969870090484619,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "vbhn-7566-vbhn-bkhdt-v1__dieu-20__k1__0",
+          "rank": 12,
+          "score": 4.9002366065979,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "luat-59-2020-qh14-v1__dieu-109__k4__0",
+          "rank": 13,
+          "score": 4.886204719543457,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-122-2021-nd-cp-v1__dieu-61__k3__0",
+          "rank": 14,
+          "score": 4.851616859436035,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "vbhn-7566-vbhn-bkhdt-v1__dieu-27__k2__0",
+          "rank": 15,
+          "score": 4.8389787673950195,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-109__k4__0",
+          "rank": 16,
+          "score": 4.828576564788818,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-168-2025-nd-cp-v1__dieu-124__k3__0",
+          "rank": 17,
+          "score": 4.8030476570129395,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-168-2025-nd-cp-v1__dieu-23__k1__0",
+          "rank": 18,
+          "score": 4.799898147583008,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-168-2025-nd-cp-v1__dieu-74__k3__0",
+          "rank": 19,
+          "score": 4.789437294006348,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "luat-59-2020-qh14-v1__dieu-109__k3__0",
+          "rank": 20,
+          "score": 4.73484992980957,
+          "retrieval_method": "bm25"
+        }
+      ]
+    },
+    {
+      "id": "retrieval_qa_037",
+      "question": "Thủ tục nhận con nuôi có yếu tố nước ngoài gồm những giấy tờ nào?",
+      "group": "out_of_corpus",
+      "expected_chunk_ids": [],
+      "status": "OK",
+      "elapsed_ms": 1.0855000000447035,
+      "recall_at_5": null,
+      "recall_at_20": null,
+      "rr_at_10": null,
+      "results": [
+        {
+          "chunk_id": "luat-59-2020-qh14-v1__dieu-4__k2__0",
+          "rank": 1,
+          "score": 5.058907985687256,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-4__k2__0",
+          "rank": 2,
+          "score": 4.970355033874512,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-168-2025-nd-cp-v1__dieu-46__k1__0",
+          "rank": 3,
+          "score": 4.818061351776123,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-168-2025-nd-cp-v1__dieu-11__k2__0",
+          "rank": 4,
+          "score": 4.730578422546387,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-168-2025-nd-cp-v1__dieu-51__k1__0",
+          "rank": 5,
+          "score": 4.58116340637207,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-168-2025-nd-cp-v1__dieu-55__k1__0",
+          "rank": 6,
+          "score": 4.478290557861328,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-168-2025-nd-cp-v1__dieu-11__k3__0",
+          "rank": 7,
+          "score": 4.377927303314209,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-168-2025-nd-cp-v1__dieu-30__k4__0",
+          "rank": 8,
+          "score": 4.280400276184082,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-168-2025-nd-cp-v1__dieu-10__k3__0",
+          "rank": 9,
+          "score": 4.276639461517334,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-168-2025-nd-cp-v1__dieu-15__k3__0",
+          "rank": 10,
+          "score": 4.249070167541504,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-168-2025-nd-cp-v1__dieu-45__k2__0",
+          "rank": 11,
+          "score": 4.24521541595459,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-168-2025-nd-cp-v1__dieu-124__k3__0",
+          "rank": 12,
+          "score": 4.208653926849365,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "luat-59-2020-qh14-v1__dieu-22__k4__0",
+          "rank": 13,
+          "score": 4.173311233520508,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-22__k4__0",
+          "rank": 14,
+          "score": 4.14847469329834,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-168-2025-nd-cp-v1__dieu-45__k3__0",
+          "rank": 15,
+          "score": 4.079595565795898,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "luat-59-2020-qh14-v1__dieu-188__k2__0",
+          "rank": 16,
+          "score": 4.031794548034668,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "luat-59-2020-qh14-v1__dieu-177__k3__0",
+          "rank": 17,
+          "score": 4.031794548034668,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-168-2025-nd-cp-v1__dieu-11__k4__0",
+          "rank": 18,
+          "score": 3.9618759155273438,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-168-2025-nd-cp-v1__dieu-27__k2__0",
+          "rank": 19,
+          "score": 3.956620693206787,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-188__k2__0",
+          "rank": 20,
+          "score": 3.9399118423461914,
+          "retrieval_method": "bm25"
+        }
+      ]
+    },
+    {
+      "id": "retrieval_qa_038",
+      "question": "Người lao động nghỉ thai sản được hưởng bảo hiểm xã hội trong bao lâu?",
+      "group": "out_of_corpus",
+      "expected_chunk_ids": [],
+      "status": "OK",
+      "elapsed_ms": 1.0035000159405172,
+      "recall_at_5": null,
+      "recall_at_20": null,
+      "rr_at_10": null,
+      "results": [
+        {
+          "chunk_id": "luat-59-2020-qh14-v1__dieu-8__k5__0",
+          "rank": 1,
+          "score": 6.543529987335205,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-8__k5__0",
+          "rank": 2,
+          "score": 6.483956336975098,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "luat-59-2020-qh14-v1__dieu-206__k3__0",
+          "rank": 3,
+          "score": 6.015115261077881,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-206__k3__0",
+          "rank": 4,
+          "score": 5.929569721221924,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "luat-59-2020-qh14-v1__dieu-208__k5__0",
+          "rank": 5,
+          "score": 5.769526481628418,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-168-2025-nd-cp-v1__dieu-81__k2__0",
+          "rank": 6,
+          "score": 5.719109535217285,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-208__k5__0",
+          "rank": 7,
+          "score": 5.701761722564697,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "vbhn-7566-vbhn-bkhdt-v1__dieu-8__k3__0",
+          "rank": 8,
+          "score": 5.692009925842285,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-168-2025-nd-cp-v1__dieu-81__k3__0",
+          "rank": 9,
+          "score": 5.687968730926514,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-168-2025-nd-cp-v1__dieu-81__k4__0",
+          "rank": 10,
+          "score": 5.513007164001465,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-168-2025-nd-cp-v1__dieu-81__k1__0",
+          "rank": 11,
+          "score": 5.326667785644531,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "luat-59-2020-qh14-v1__dieu-210__k1__0",
+          "rank": 12,
+          "score": 4.741988182067871,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-210__k1__0",
+          "rank": 13,
+          "score": 4.662353515625,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "luat-59-2020-qh14-v1__dieu-6__k2__0",
+          "rank": 14,
+          "score": 4.512876033782959,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-6__k2__0",
+          "rank": 15,
+          "score": 4.472506523132324,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "vbhn-7566-vbhn-bkhdt-v1__dieu-21__k3__0",
+          "rank": 16,
+          "score": 4.390339374542236,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-168-2025-nd-cp-v1__dieu-80__k1__0",
+          "rank": 17,
+          "score": 4.331629753112793,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "nd-168-2025-nd-cp-v1__dieu-2__k7__0",
+          "rank": 18,
+          "score": 4.057512283325195,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "luat-59-2020-qh14-v1__dieu-200__k4__0",
+          "rank": 19,
+          "score": 4.054654121398926,
+          "retrieval_method": "bm25"
+        },
+        {
+          "chunk_id": "luat-59-2020-qh14-v1__dieu-201__k2__0",
+          "rank": 20,
+          "score": 4.0220255851745605,
+          "retrieval_method": "bm25"
+        }
+      ]
+    }
+  ],
+  "groups": {
+    "everyday": {
+      "counts": {
+        "total": 2,
+        "scored": 2,
+        "errors": 0,
+        "empty_gold": 0
+      },
+      "metrics": {
+        "recall_at_5": 0.5,
+        "recall_at_20": 0.5,
+        "mrr_at_10": 0.5
+      },
+      "latency_ms": {
+        "p50": 1.8520000157877803,
+        "p95": 2.2154200065415353,
+        "samples": 2,
+        "percentile": "linear interpolation",
+        "scope": "retrieve only; successful calls"
+      }
+    },
+    "legal_reference": {
+      "counts": {
+        "total": 4,
+        "scored": 4,
+        "errors": 0,
+        "empty_gold": 0
+      },
+      "metrics": {
+        "recall_at_5": 1.0,
+        "recall_at_20": 1.0,
+        "mrr_at_10": 1.0
+      },
+      "latency_ms": {
+        "p50": 1.9220999674871564,
+        "p95": 180.67071997793383,
+        "samples": 4,
+        "percentile": "linear interpolation",
+        "scope": "retrieve only; successful calls"
+      }
+    },
+    "out_of_corpus": {
+      "counts": {
+        "total": 2,
+        "scored": 0,
+        "errors": 0,
+        "empty_gold": 2
+      },
+      "metrics": {
+        "recall_at_5": null,
+        "recall_at_20": null,
+        "mrr_at_10": null
+      },
+      "latency_ms": {
+        "p50": 1.0445000079926103,
+        "p95": 1.0814000008394942,
+        "samples": 2,
+        "percentile": "linear interpolation",
+        "scope": "retrieve only; successful calls"
+      }
+    }
+  }
+}

@@ -28,7 +28,7 @@ Metadata và sha256 nằm ở raw/{id}/fetch_info.json và registry/documents.js
    Nghị định 168/2025/NĐ-CP về đăng ký doanh nghiệp, hiệu lực 01/7/2025.
    Thay thế Nghị định 01/2021/NĐ-CP. Điều 1-124.
 
-6. nd-122-2021-nd-cp-dang-ky-doanh-nghiep-v1
+6. nd-122-2021-nd-cp-v1
    Phần đăng ký doanh nghiệp của Nghị định 122/2021/NĐ-CP (xử phạt VPHC):
    quy định chung và Điều 43-63. Không gồm đấu thầu, đầu tư công, PPP, hợp tác xã, quy hoạch.
 
@@ -50,6 +50,29 @@ Chưa thu (nửa còn lại, đưa vào đợt sau nếu cần):
 - Thông tư 121/2026/TT-BTC (sửa biểu mẫu)
 - Phụ lục biểu mẫu của Thông tư 68/2025
 
-Làm sạch đã áp dụng: NFC, xóa ký tự vô hình, bỏ menu web, bản tiếng Anh, nơi nhận,
-dòng gạch trang trí; nối cụm "chứng khoán" bị tách; khôi phục tiêu đề Điều 119 và Điều 129
-trong văn bản hợp nhất. Không sửa chính tả và không đổi nội dung quy phạm.
+Làm sạch đã áp dụng vào chính file text (raw/*/source.txt và interim/*.txt):
+NFC, xóa ký tự vô hình, bỏ menu web, bản tiếng Anh, nơi nhận, dòng gạch trang trí;
+nối cụm "chứng khoán" bị tách; khôi phục tiêu đề Điều 119 và Điều 129 trong văn bản
+hợp nhất. Không sửa chính tả và không đổi nội dung quy phạm.
+
+Làm sạch áp dụng lúc sinh chunk (chunk_documents.py, file text giữ nguyên):
+
+1. Nối từ bị chèn dấu cách — hằng SPLIT_WORDS, hàm repair_split_words().
+   Bản HTML của VBHN 67 chèn một dấu cách vào giữa bốn từ, tổng 20 chỗ, chỉ ở văn
+   bản này: "ngườ i" x14, "Ngườ i" x2, "dướ i" x2, "T rong" x2. Dò ra bằng phép thử
+   tần số trên chính corpus (mảnh bên trái hiếm, nối lại ra từ phổ biến) rồi soát
+   tay cả 20 chỗ. Hàm report_split_words() chạy lại phép thử đó sau mỗi lần build
+   và cảnh báo nếu nguồn mới có mẫu lỗi khác.
+   Lưu ý khi đọc kết quả dò: "điểm c khoản 1", "các điểm a, b và c" là văn bản
+   ĐÚNG, không phải lỗi — "c" ở đây là chữ cái của Điểm. Chỉ nối khi mảnh bên trái
+   tự nó không phải một âm tiết tiếng Việt.
+
+2. Tách chú thích hợp nhất — Data Processing Flow C8, hàm strip_footnote_marks().
+   Marker [n] nằm rải trong thân Điều và trong tên Điều được bỏ khỏi content và
+   article_title, nội dung chú thích tương ứng (đọc từ các dòng "[n] ..." ở cuối
+   file) chuyển vào amendment_notes của chunk. Kết quả: 72 chunk có
+   amendment_notes — 58 ở VBHN 67 và 14 ở VBHN 7566. Riêng VBHN 7566 không có dòng
+   định nghĩa chú thích trong bản đã thu, nên 14 chunk đó chỉ ghi được số chú thích
+   kèm ghi chú thiếu nội dung; muốn đủ thì phải thu lại văn bản này.
+
+scripts/validate_chunks.py kiểm lại cả hai bước sau mỗi lần sinh chunk.

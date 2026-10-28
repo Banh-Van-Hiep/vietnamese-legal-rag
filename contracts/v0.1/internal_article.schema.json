@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "InternalArticleResponse",
+  "type": "object",
+  "required": [
+    "document_id",
+    "document_title",
+    "article_id",
+    "article",
+    "content",
+    "source_url"
+  ],
+  "properties": {
+    "document_id": { "type": "string" },
+    "document_title": { "type": "string" },
+    "article_id": { "type": "string" },
+    "article": { "type": "string" },
+    "content": { "type": "string" },
+    "source_url": { "type": "string" }
+  },
+  "additionalProperties": false
+}

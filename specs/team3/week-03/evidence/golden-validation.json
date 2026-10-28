@@ -1,0 +1,20 @@
+{
+  "datasets": [
+    {
+      "dataset": "baseline",
+      "path": "team2_rag/data/golden/golden_phase1_30cai.json",
+      "samples": 30,
+      "validator_pass": true,
+      "independent_structure_pass": true
+    },
+    {
+      "dataset": "supplement",
+      "path": "specs/team3/week-03/data/golden_retrieval_additions.json",
+      "samples": 8,
+      "validator_pass": true,
+      "independent_structure_pass": true
+    }
+  ],
+  "cross_dataset_unique": true,
+  "limitations": "Validator checks fields/status/ID existence, not legal applicability or completeness of relevance labels."
+}

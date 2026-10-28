@@ -1,4 +1,5 @@
 import json
+import sys
 from pathlib import Path
 
 CHUNKS_FILE = Path("data/doanh-nghiep/processed/chunks.jsonl")
@@ -8,8 +9,8 @@ VALID_STATUSES = {"answered", "insufficient_context"}
 
 def validate_golden_dataset():
     if not CHUNKS_FILE.exists() or not GOLDEN_FILE.exists():
-        print("❌ Không tìm thấy file corpus hoặc file golden!")
-        return
+        print("❌ Không tìm thấy file corpus hoặc file golden!", file=sys.stderr)
+        return False  # thiếu dữ liệu kiểm tra KHÔNG được báo là đạt
 
     # 1. Load toàn bộ corpus của Team 1
     print("⏳ Đang tải cơ sở dữ liệu chunks...")
@@ -102,7 +103,8 @@ def validate_golden_dataset():
         )
     else:
         print("⚠️ PHÁT HIỆN LỖI! Vui lòng sửa lại các điểm báo lỗi ở trên.")
+    return all_passed
 
 
 if __name__ == "__main__":
-    validate_golden_dataset()
+    sys.exit(0 if validate_golden_dataset() else 1)
