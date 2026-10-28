@@ -93,7 +93,8 @@ class BM25Retriever:
         return self
 
     
-    def _search(self, question: str, limit: int = 100) -> dict:
+   
+    def _search(self, question: str, limit: int = 100) -> list[dict]:
         """Tìm kiếm nội bộ cho Hybrid RRF."""
         if isinstance(limit, bool) or not isinstance(limit, int) or not 1 <= limit <= 100:
             raise ValueError("limit must be an integer from 1 to 100")
@@ -103,7 +104,7 @@ class BM25Retriever:
         tokens = [t for t in tokenize_vi(question) if t in vocab]
 
         if not tokens:
-            return {"question": question, "results": []}
+            return []
 
         k = min(limit, len(self.chunks))
         docs, scores = self._bm25.retrieve(
@@ -125,7 +126,7 @@ class BM25Retriever:
                 )
             )
 
-        return {"question": question, "results": results}
+        return results
 
     def retrieve(self, question: str, top_k: int = 20) -> dict:
         """Trả {question, results}; results rỗng khi không chunk nào trùng từ."""
