@@ -79,6 +79,15 @@ class PipelineFlowTests(unittest.TestCase):
             p.query(QUESTION, [])
         self.assertEqual(llm.calls, [])
 
+    def test_reranker_graceful_degradation_when_not_strict(self):
+        def broken(pairs): raise RuntimeError("GPU OOM or timeout")
+        # When strict_rerank=False, falls back to original retrieval order without failing
+        p, llm, retriever = pipeline([reply_for(retrieval_output(4)["results"], 0)], scorer=broken, strict_rerank=False)
+        out = p.query(QUESTION, [])
+        self.assertEqual(out["status"], "answered")
+        self.assertEqual(out["citations"][0]["chunk_id"], "chunk_0")  # original retrieval top rank
+        self.assertEqual(len(llm.calls), 1)
+
     def test_llm_citing_chunk_outside_supplied_context_is_rejected(self):
         bad = reply_for(reranked(), 0)
         bad["citations"][0]["chunk_id"] = "chunk_not_in_context"
