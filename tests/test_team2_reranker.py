@@ -129,7 +129,7 @@ class RerankerTests(unittest.TestCase):
 
     def test_input_and_output_field_types_match_shared_json_schema(self):
         import jsonschema
-        schema = json.loads((ROOT / "contracts/v0.1/retrieval_output.schema.json").read_text())
+        schema = json.loads((ROOT / "contracts/v0.1/retrieval_output.schema.json").read_text(encoding="utf-8"))
         jsonschema.validate(payload(), schema, format_checker=jsonschema.FormatChecker())
         # Same fields, but results order is now rerank order, not retrieval rank order.
         jsonschema.validate(rerank(payload(), scorer=lambda pairs: [1, 3, 2]), schema)
