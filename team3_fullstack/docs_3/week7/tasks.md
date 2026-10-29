@@ -8,7 +8,7 @@
 - **Mục tiêu trọng tâm:**
   - Hoàn thiện toàn diện cơ chế **Idempotency** và kiểm soát đồng thời trên bảng `RequestReceipt` (đáp ứng 100% bộ kiểm thử 12 kịch bản `IDEM-01` đến `IDEM-12`).
   - Hoàn thiện component **Legal Document Viewer** dạng side-panel trên React kết nối với API Backend `GET /api/v1/documents/{documentId}?articleId={articleId}` (hỗ trợ hiển thị Markdown, cuộn mượt mà, tải nội dung tức thì).
-  - Chủ trì điều phối, deduplicate, phân tầng (tỷ lệ 60% Dev / 40% Test, xấp xỉ 75% answerable / 25% unanswerable) và **đóng băng chính thức bộ dữ liệu Golden Dataset v1 (100–150 câu hỏi)**.
+  - Theo phân công29/10: Team1 bổ sung150 câu, Team2 kiểm chứng; Team3 **chỉ phân chia90 Dev/60 Test** và bàn giao split report, không tự phê duyệt/freeze.
   - Tổng duyệt và tích hợp toàn hệ thống, nghiệm thu thành công **Gate G2 (Mock Integration)** và **Gate G4 (Live RAG MVP)**.
 
 ---
@@ -19,7 +19,7 @@
 | :--- | :--- | :--- |
 | **VLRA-T3-11** | **Triển khai Cơ chế Chống Gửi Trùng & Tái Phát Kết Quả (Idempotency Engine)**<br>- Tra cứu `clientRequestId` trên bảng `RequestReceipt` trước khi tạo transaction hội thoại.<br>- Nếu trùng ID và đang xử lý $\rightarrow$ Trả về HTTP 409 `REQUEST_IN_PROGRESS`.<br>- Nếu trùng ID nhưng khác nội dung câu hỏi/hội thoại $\rightarrow$ Trả về HTTP 409 `REQUEST_ID_CONFLICT`.<br>- Nếu trùng ID và đã `completed` $\rightarrow$ Mở SSE phát lại (replay) toàn bộ các frame `meta`, `delta`, `complete` từ `response_snapshot` mà không gọi lại AI. | - Bộ kiểm thử tự động `IdempotencyIntegrationTest` (12 test cases) pass 100%.<br>- Tuyệt đối không tạo bản ghi hội thoại hoặc tin nhắn trùng lặp khi người dùng click liên tục nút "Gửi". |
 | **VLRA-T3-12** | **Hoàn thiện Document Viewer & Tối ưu Trải nghiệm Tra cứu Điều luật**<br>- Nâng cấp component Document Viewer: slide-over panel bên phải, hỗ trợ hiển thị tiêu đề văn bản, số Điều, tên Điều và toàn bộ nội dung nguyên văn.<br>- Kiểm tra xác thực khớp nối: `documentId` và `articleId` trả về từ API phải trùng khớp chính xác với tham số yêu cầu.<br>- Bổ sung nút "Mở nguồn gốc" mở trực tiếp liên kết HTTPS của cơ quan nhà nước trên tab mới an toàn (`rel="noopener noreferrer"`). | - Document Viewer tải nội dung mượt mà dưới 1 giây.<br>- Xử lý chuẩn xác mã HTTP 404 khi người dùng truy cập Điều luật không tồn tại.<br>- Giao diện co giãn tốt trên màn hình tablet và mobile. |
-| **VLRA-T3-13** | **Chủ trì Phân Tầng, Đánh Giá & Đóng Băng Golden Dataset v1 (100–150 câu)**<br>- Tập hợp câu hỏi từ 3 team, mở rộng quy mô từ 30–50 câu lên 100–150 câu đã qua rà soát nghiệp vụ.<br>- Thực hiện phân chia ngẫu nhiên có phân tầng (Stratified Split): 60% Dev Set (phục vụ tối ưu tuần 8–10) và 40% Test Set (khóa chặt phục vụ benchmark tuần 11).<br>- Sinh mã băm SHA-256 và đóng băng manifest `team2_rag/data/golden/golden_dataset_v1.manifest.json`. | - Golden Dataset v1 đạt quy mô 100–150 câu, tỷ lệ phân chia đúng chuẩn.<br>- Toàn bộ thành viên ký biên bản đóng băng dữ liệu đánh giá.<br>- Sửa lỗi validator của repo để kiểm tra đúng trạng thái `answered`. |
+| **VLRA-T3-13** | **Phân chia Golden Dataset v1 theo phân công đã chốt29/10**<br>- Team1 bổ sung đủ150 câu; Team2 kiểm chứng nội dung.<br>- Team3 chỉ chia ngẫu nhiên có phân tầng theo expected_status:90 Dev/60 Test, giữ nguyên record và ID.<br>- Xuất seed/thống kê và SHA256 của nguồn/hai tập vào split report. | - Công cụ chia đúng90/60, không mất/trùng/sửa record, kết quả tái lập được.<br>- Chạy trên bộ150 đã được bàn giao và xuất hai tập đúng phân bố đầu vào.<br>- Không tự tạo câu/review/phê duyệt/freeze hoặc sửa validator enum đã đúng. |
 | **VLRA-T3-14** | **Điều phối Kiểm thử Toàn trình E2E & Nghiệm thu Gate G4 (Live RAG MVP)**<br>- Tổ chức buổi tổng duyệt kịch bản demo trực tiếp luồng người dùng trên môi trường local.<br>- Demo thành công 3 trường hợp: (1) Câu hỏi nghiệp vụ P0 có trích dẫn nhấp mở được Điều luật; (2) Câu hỏi ngoài phạm vi trả về `insufficient_context`; (3) Thử nghiệm gửi trùng UUID nhận kết quả replay tức thì. | - Cả 3 team nghiệm thu đạt yêu cầu Gate G4.<br>- Có video và ảnh chụp lưu trữ làm bằng chứng kỹ thuật. |
 
 ---
@@ -84,11 +84,19 @@ data: {"conversationId":101,"clientRequestId":"44444444-4444-4444-8444-444444444
 
 | Chiều phối hợp | Hạng mục bàn giao | Mục đích sử dụng | Định dạng / Kênh giao tiếp |
 | :--- | :--- | :--- | :--- |
-| **Team 3 $\rightarrow$ Cả nhóm (G4)** | - Bản demo hệ thống Live RAG MVP hoạt động End-to-End đầy đủ tính năng.<br>- File Golden Dataset v1 (100–150 câu) đã phân tầng và đóng băng chính thức. | Mốc nghiệm thu kỹ thuật quan trọng nhất giữa kỳ; cung cấp tập dữ liệu để Team 1 và Team 2 bước vào tối ưu tuần 8–10. | Buổi báo cáo tiến độ chung & Git commit hash. |
+| **Team 3 $\rightarrow$ Cả nhóm (G4)** | - Bản demo hệ thống Live RAG MVP hoạt động End-to-End đầy đủ tính năng.<br>- Hai tập Dev/Test từ bộ150 đã được Team1/2 bàn giao; phần phê duyệt/freeze do nhóm chốt, không tự suy từ split report. | Mốc nghiệm thu kỹ thuật quan trọng nhất giữa kỳ; cung cấp tập dữ liệu để Team 1 và Team 2 bước vào tối ưu tuần 8–10. | Buổi báo cáo tiến độ chung & Git commit hash. |
 | **Team 2 $\rightarrow$ Team 3 (AI Service)** | - Dịch vụ RAG Live ổn định, phản hồi trong ngân sách 45 giây.<br>- Không bị lỗi sai cấu trúc JSON hoặc trích dẫn rác. | Backend Java ánh xạ an toàn và phát stream ra ngoài giao diện cho người dùng cuối. | Endpoint `/internal/v1/query`. |
 | **Team 1 $\rightarrow$ Team 3 (Viewer)** | - Dịch vụ tra cứu Điều luật siêu tốc `get_article()` đã test p95 $\le 200$ms. | Frontend Document Viewer hiển thị toàn văn Điều luật ngay tức thì khi người dùng nhấp vào trích dẫn. | API `/api/v1/documents/{documentId}?articleId={articleId}`. |
 
 ## 6. Kết quả kiểm chứng hiện hành
 
-Đối chiếu từng task/DoD và phần còn thiếu tại [verification.md](verification.md), ngày 28/10/2026.
+Đối chiếu từng task/DoD và phần còn thiếu tại [verification.md](verification.md), ngày 29/10/2026.
 Không suy hoàn thành từ kế hoạch hoặc từ số test PASS; mock và live được kết luận riêng.
+
+Hồ sơ nghiệm thu11–14: [spec](vlra-t3-11-14-acceptance/spec.md),
+[validation](vlra-t3-11-14-acceptance/validation.md). Idempotency đạt kỹ thuật; Viewer
+đạt mock. Phân chia dữ liệu thật còn chờ nguồn150; tổng duyệt G4 vẫn mở theo T3-14.
+
+T3-13 triển khai riêng: [spec](vlra-t3-13-golden-split/spec.md),
+[validation](vlra-t3-13-golden-split/validation.md). Công cụ13 test đạt; chờ nguồn150
+đã kiểm chứng để chạy thật. Phân công này thay phần thu thập/phê duyệt/freeze cũ của T3-13.
