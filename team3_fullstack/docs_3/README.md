@@ -1,20 +1,18 @@
 # Team 3 — Nhiệm vụ và nghiệm thu theo tuần
 
-**Cập nhật:** 29/10/2026. Chỉ giữ bộ nhiệm vụ tuần hiện hành; không lưu các bản nhiệm vụ cũ.
+**Cập nhật:** 30/10/2026. Chỉ giữ bộ nhiệm vụ tuần hiện hành; không lưu các bản nhiệm vụ cũ.
 Đặc tả chung của dự án/phân hệ nằm trong [docs/](../../docs/README.md).
 
 ## Bộ nhiệm vụ hiện hành
 
-| Tuần | Nhiệm vụ | Báo cáo nghiệm thu (ngày ghi trong biên bản) |
+| Tuần | Nhiệm vụ | Nghiệm thu |
 | --- | --- | --- |
-| 4 | [tasks.md](week4/tasks.md) | [verification.md](week4/verification.md) — 29/10: đủ điều kiện G1 nội bộ theo kiểm chứng và xác nhận nhóm; schema mới đạt76/76, HTTP12/12; bàn giao bằng commit local; chưa push/PR |
-| 5 | [tasks.md](week5/tasks.md) | [verification.md](week5/verification.md) — 29/10: VLRA22/23/T3-06 đủ điều kiện chốt kỹ thuật mock; VLRA24 đã bàn giao50 mẫu (49/1), Team2 phụ trách kiểm chứng |
-| 6 | [tasks.md](week6/tasks.md) | [verification.md](week6/verification.md) — 29/10: Backend94/94, FE72/72, E2E10/10;09/10 đạt kỹ thuật; G3 chờ runtime index và endpoint article Team2 |
-| 7 | [tasks.md](week7/tasks.md) | [verification.md](week7/verification.md) — 29/10: IDEM12/12 có evidence; Viewer7ca/p9554.30ms mock; T3-13 tool13test đạt, chờ nguồn150; G4 live còn mở |
-| 8 | [tasks.md](week8/tasks.md) | [verification.md](week8/verification.md) — mock 5 phiên/50 query đạt; chưa đủ benchmark live và tối ưu frontend |
+| 4 | [tasks.md](week4/tasks.md) | [Đạt G1 — thiết kế và nền tảng](week4/verification.md) |
+| 5 | [tasks.md](week5/tasks.md) | [Chưa chốt toàn tuần — mock đạt, Golden còn thiếu điều kiện](week5/verification.md) |
+| 6 | [tasks.md](week6/tasks.md) | [Chưa đạt G3 — query/article thật chưa thông](week6/verification.md) |
+| 7 | [tasks.md](week7/tasks.md) | [Chưa đạt G4 — chờ dữ liệu150 và demo live](week7/verification.md) |
+| 8 | [tasks.md](week8/tasks.md) | [Chưa chốt — thiếu benchmark live, recovery và tối ưu Frontend](week8/verification.md) |
 
-Các kết quả là kiểm chứng kỹ thuật của source hiện tại, không thay phê duyệt nhóm,
-không cập nhật trạng thái Jira và không chứng minh RAG thật từ một response mock.
 Backend giữ Java 25 / Spring Boot 4.1.1 theo quyết định 28/10/2026;
 quy chuẩn tại [CODING_CONVENTIONS.md](../../docs/CODING_CONVENTIONS.md).
 
@@ -42,15 +40,17 @@ không tự sửa API hoặc biến kết quả mock thành nghiệm thu live.
 4. Giữ spec/plan/tasks/quickstart và tài liệu bổ trợ trong cùng bộ nhiệm vụ;
    schema/interface chung tham chiếu phiên bản trong `contracts/`, không tạo chuẩn khác.
 5. Lưu kết quả validate của task tại **`weekN/<jira>-<chuc-nang>/validation.md`**:
-   kết quả analyze, các vấn đề đã sửa/còn mở, lệnh build/test/schema và expected/actual,
+   kết quả analyze, các vấn đề đã sửa/còn mở, kết quả build/test/schema và expected/actual,
    trạng thái pass/fail/chưa chạy, môi trường/source và giới hạn mock/live.
    Checklist, analysis và evidence chia sẻ được đặt trong cùng bộ task thuộc tuần đó;
    loại secret/dữ liệu cá nhân, không đưa cache/build/browser profile vào tài liệu.
    Không tạo thêm bản validate hoặc bộ Spec Kit trong `specs/`.
 6. Báo cáo nghiệm thu tổng hợp tại **`weekN/verification.md`**, dẫn kết quả validate
    của từng task thay vì chép lại toàn bộ, đối chiếu từng task/DoD,
-   ghi expected/actual, source/commit, lệnh, môi trường, evidence, giới hạn và việc cần làm.
+   ghi expected/actual, source/commit, môi trường, evidence, giới hạn và việc cần làm.
    Chỉ tổng hợp lên Jira/gate khi đủ bằng chứng; mock và live được kết luận riêng.
+7. Lệnh chạy và kiểm tra đặt trong `quickstart.md` của nhiệm vụ; biên bản nghiệm thu
+   không có mục “Lệnh đã chạy”.
 
 Ví dụ bố trí khi triển khai một task mới (không tạo trước thư mục rỗng):
 

@@ -1,8 +1,6 @@
-# Validation — tuần6, VLRA-T3-07–10
+# Validation — tuần6, T3-07–10
 
-**Ngày:**29/10/2026. [Spec](spec.md), [plan](plan.md), [tasks](tasks.md),
-[analyze](analysis.md). Source: `26c4649478956fd588a7f2d165cccbb33ac2f541`; develop đã fetch: `eea5604251afd4d8605fed510d6bf4de31d629bb`.
-Không đổi app/test/schema/corpus hoặc triển khai thay Team1/2.
+**Ngày kiểm chứng:**30/10/2026. **Kết quả:** phần Team3 đạt với mock; G3 chờ dữ liệu thật.
 
 ## Expected / Actual
 
@@ -14,69 +12,42 @@ Không đổi app/test/schema/corpus hoặc triển khai thay Team1/2.
 | AC10 UI | FE72/72, build đạt; browser10/10: URL/history/reload/citation/thiếu căn cứ/lỗi/thử lại,0 uncaught exception. Parser unit test fragmented UTF8/CRLF/multiline/timeout/abort; HTML được giữ như text. | Đạt kỹ thuật UI/mock |
 | AC-G3 | Factory thật health200, ready/query503; không có route article trong OpenAPI, article404 NOT_FOUND. Java trả meta→error SERVICE_UNAVAILABLE, replay503; Viewer502 UPSTREAM_CONTRACT_ERROR. | Chưa đạt dữ liệu thật |
 
-Tổng Maven5 suite là94, không cộng lại các nhóm con. Không tái sử dụng tổng125 tuần5
-như thể đã chạy125 trong lượt này. Mapping/transaction boundary có phần đối chiếu
-source; không đo DB pool riêng trong lúc một provider thật chạy. Không đo55s manual,
-mobile/latency benchmark hoặc streaming token provider trong lượt kiểm tra này.
-Java hiện phát1 delta chứa answer đã validate; không gọi đó là streaming từng token.
+## Readiness thật và phụ thuộc bàn giao
 
-## Readiness thật và hai phụ thuộc bàn giao
+| Kiểm tra | Kết quả |
+| --- | --- |
+| FastAPI health | 200 |
+| FastAPI ready/query | 503 LLM_UNAVAILABLE; runtime thiếu đường dẫn index |
+| FastAPI article | 404 NOT_FOUND; lookup chưa được tích hợp |
+| Java query | Meta→error SERVICE_UNAVAILABLE; lưu user completed/assistant failed; replay503 |
+| Java Viewer | 502 UPSTREAM_CONTRACT_ERROR |
 
-1. `team2_rag.runtime.build_runtime`: RAG_BM25_INDEX/RAG_DENSE_INDEX không được cấu
-   hình trong process + root dotenv mà runtime đọc. Startup ghi ConfigError. Đây là
-   thiếu bàn giao/cấu hình ở môi trường kiểm tra, không chứng minh module retrieval
-   chưa viết. Chưa đi xa đến xác minh model/provider; không kết luận API key sai.
-2. `team2_rag.api.app.create_app`/OpenAPI chỉ có health/ready/query, thiếu
-   GET /internal/v1/documents/{document_id}/articles/{article_id}. Gọi một ID thật
-   trả404 NOT_FOUND. Java từ chối lỗi ngoài mã404 được thỏa thuận và trả502
-   UPSTREAM_CONTRACT_ERROR; không tráo nguồn hoặc trả nguyên văn giả.
+## Môi trường và bằng chứng
 
-Team1 cần bàn giao index BM25/Dense cùng index_version/chunk_ids và article snapshot;
-Team2 cấu hình runtime/model/provider và bổ sung proxy article theo interface đã có.
-Team3 tiếp tục AC-G3 sau ready200 và article hoạt động, không sửa code bên họ.
+JDK25, Node24.21, Python3.12, PostgreSQL18 và Edge headless.
 
-## Lệnh, môi trường, evidence
-
-[Quickstart](quickstart.md) ghi lệnh Maven/FE/factory. JDK25, Node24.21, Python3.12
-venv kiểm thử riêng, PostgreSQL18 cluster local test cổng55442. Database:
-legal_rag_week6_20261029. FE15173, Java18043, FastAPI mock18044, Edge CDP19242;
-factory probe18049. HF_HUB_OFFLINE/TRANSFORMERS_OFFLINE bật để không tải model;
-index key thiếu xảy ra trước khâu model. Không sửa .env hoặc in secret.
-
-Evidence ignored: backend/target/week6-acceptance-20261029/ gồm summary.json,
-backend-package.log, frontend-unit.json/log, frontend-build.log, e2e/results.json,
-e2e/browser.png và logs, live-readiness.json, live-runtime.log, live-through-java.json,
-live-through-java-stream.txt, process-cleanup.json, preservation.json.
-Runners probe-live.py/run-integration.py là helper ignored của lần kiểm tra, không
-thêm dependency/script nguồn vào project. Surefire XML ghi kết quả5 suite đã chạy.
+Bằng chứng tại `backend/target/final-acceptance-20261030/`.
 
 ## Bàn giao
 
-Nguồn đã hash không đổi (bỏ cache Python biên dịch); tất cả tiến trình audit mở và
-cluster test riêng đã dừng.6 cổng test đóng. Không đụng dịch vụ/database thật.
-W6-01–05 hoàn thành sau kiểm link/diff; W6-06 còn mở vì phụ thuộc runtime/article thật.
-Không có xung đột API cần tự chọn; không tự hạ G3 hoặc báo mock thành live.
+- **Team1:** index/snapshot cùng phiên bản, registry hiệu lực và Article Store nguyên văn.
+- **Team2:** runtime/model/provider, query/article đúng contract và token budget.
+- **Team3:** kiểm query/history/Viewer trên dịch vụ thật để chốt G3.
 
-Kiểm bàn giao: 9 file Markdown/33 tham chiếu local không lỗi; diff --check PASS.
-W6-01–05 đã đánh dấu theo evidence thực tế; W6-06 giữ mở.
+## Rà toàn tuyến
 
-## Bổ sung review toàn tuyến29/10
+Nhóm API/mock/pipeline/reranker/Hybrid:48 test +81 subtest đạt với dependency giả.
+Bộ mở rộng Team2:388 đạt,1 lỗi Golden gold_041,147 subtest đạt; theo dõi tại tuần5.
+Còn thiếu unit applicability, giải tham chiếu history và bảo đảm token budget của cấu hình live.
 
-Đối chiếu thêm retrieval/LLM/article và cấu hình của cả3 team:
-[biên bản §6](../verification.md#6-rà-toàn-tuyến-mã-nguồn-liên-team--bổ-sung2910).
-Mới chạy125 test +40 subtest Team2 và3 test Hybrid, tất cả đạt; đều dùng dependency
-ngoài giả lập. Probe trong bộ nhớ xác nhận filter chưa xét applicability và câu hỏi
-tham chiếu bị chặn trước retrieval dù có history. Evidence ở
-backend/target/source-audit-20261029/, không sửa app/test/schema/corpus.
-
-Ngoài runtime/article, cần bàn giao registry/filter cấp đơn vị, hoàn thiện xử lý
-tham chiếu và cấu hình token budget khi nghiệm thu đầy đủ theo baseline. Không tự
-sửa phần Team1/2. W6-06 vẫn mở; không chạy model/provider thật hoặc coi mock là live.
+[Phần thiếu và phụ trách](../verification.md#6-rà-toàn-tuyến-mã-nguồn-liên-team).
+Bằng chứng tại `backend/target/final-acceptance-20261030/`.
 
 ## Đối chiếu mốc tuần liên team
 
-[Biên bản §7](../verification.md#7-đối-chiếu-phần-thiếu-với-nhiệm-vụ-theo-tuần-của-team12)
-ánh xạ S1–S6 sang docs_1/docs_2 tuần4–8. Phân biệt Article Store/mock tuần5, lookup
-và query thật tuần6, freeze/tối ưu/demo G4 tuần7. Query coreference chỉ thấy task
-thiết kế tuần4; chưa tự gán nhiệm vụ triển khai tuần6. Không đổi DoD/gán Jira/team
-khác hoặc chạy lại test khi chỉ bổ sung đối chiếu tài liệu.
+- Registry/articles: Team1 tuần5; lookup/index/filter thật: Team1 tuần6.
+- Live query/article/token budget: Team2 tuần6.
+- Query coreference: có thiết kế Team2 tuần4, chưa có task triển khai riêng rõ ràng.
+- Tổng duyệt E2E/G4: tuần7.
+
+[Nghiệm thu tuần6](../verification.md) · [Tasks](tasks.md).

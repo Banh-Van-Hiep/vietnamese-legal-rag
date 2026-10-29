@@ -1,51 +1,31 @@
-# Validation — hợp nhất Golden Dataset VLRA24
+# Validation — Golden Dataset Phase1
 
-**Ngày:**29/10/2026. [Spec](spec.md), [plan](plan.md), [tasks](tasks.md),
-[analyze](analysis.md). Thay kết quả chọn subset riêng trước đó.
+**Ngày kiểm chứng:**30/10/2026. **Kết quả:** validator Phase1 đạt; chưa chốt do ID gold_041 xung đột fixture và cơ cấu/chứng thực còn thiếu.
 
 ## Expected / Actual
 
 | Tiêu chí | Kết quả |
 | --- | --- |
-| AC01 | Đúng50 record tại file chung, không trùng ID/câu hỏi sau chuẩn hóa |
-| AC02 |49 answered/1 insufficient, chunk tồn tại trong2576 chunk; field/type/NFC đạt |
-| AC03 | Rà50 câu/đáp án, thay4 cặp trùng và thu hẹp2 câu tổng hợp; bảng dưới |
-| AC04 | Validator Team2 exit0; giữ38/40 nội dung record chung (không tính author) và6/10 đóng góp; corpus/validator giữ nguyên hash |
-| AC05 | Xóa3 file ground_truth Team3 sau PASS; sửa lệnh/tham chiếu; kiểm link/diff ở cuối |
+| Số lượng/định dạng | 50 record theo8 field hiện hành |
+| Phân loại | 49 answered/1 insufficient_context |
+| ID/câu hỏi sau chuẩn hóa | Không trùng trong Phase1; gold_041 xung đột nội dung với fixture5 câu |
+| Nội dung câu hỏi | Đã rà ý chính và xử lý các cặp trùng |
+| UTF-8/NFC/chunk ID | Đạt; căn cứ tham chiếu tồn tại trong corpus |
+| Validator | 50/50, exit0 |
 
-## Thay đổi có chủ đích
+## Nội dung đã hoàn tất
 
-- Bỏ gt_t3_001/003/011/013, lần lượt lặp gold_006/009/007/010.
-- Bổ sung gold_041–044: chuyển nhượng cổ phần ưu đãi biểu quyết; cấp lại cổ phiếu;
-  thông báo mời họp Hội đồng thành viên; cỡ chữ tên doanh nghiệp tiếng nước ngoài.
-- Thu hẹp gold_016 về trách nhiệm chủ sở hữu TNHH một thành viên, dùng Điều74 khoản1
-  bản vbhn-67-vbhn-vpqh-v1; gold_021 về thời hạn lưu thông tin sau giải thể/phá sản,
-  dùng Điều1 khoản26 Luật76/2025. Không còn câu so sánh bao trùm các câu riêng.
-- Giữ nguyên gt_t3_004/005/008/009/010/012. Không tái dùng ID câu bị loại cho câu mới.
-  Không đổi answered thành insufficient để đạt tỷ lệ.
-- Tác giả câu mới chỉ ghi vai trò; metadata record chung cũ được giữ.
+- Hợp nhất các đóng góp vào một file chung.
+- Hoàn thiện câu hỏi độc lập về ý chính, đáp án và căn cứ tương ứng.
+- Phân biệt answered và insufficient_context theo dữ liệu nguồn.
 
-## Lệnh, kết quả và evidence
+## Kết quả và bằng chứng
 
-Từ gốc repository:
-
-```powershell
-python -X utf8 team2_rag/validate_golden.py
-```
-
-Kết quả50/50, exit0. Kiểm bổ sung: đủ8 field/đúng type/không rỗng, NFC, ID/câu hỏi
-không trùng sau casefold/gộp khoảng trắng, chunk thật,49/1,38+6 nội dung record nguyên bản (không tính author),
-hash corpus/validator không đổi. Đã kiểm dấu tiếng Việt trên cả6 record sửa/tạo mới.
-Validator không kiểm ngữ nghĩa; bảng dưới là rà soát thủ công, không tuyên bố có bộ
-phát hiện ngữ nghĩa tự động hoặc xác nhận đáp án đúng luật hiện hành.
-
-Evidence ignored: backend/target/week5-golden-merge-20261029/ chứa before-team2.json,
-before-team3.json, preservation.json, checks.json, semantic-review.json,
-validator-team2.log. Không ghi đè log audit cũ40/13/10 thành kết quả50.
+Validator50/50. Bộ test mở rộng:388 đạt,1 lỗi,147 subtest đạt.
+Lỗi: `test_sample_ids_do_not_collide_with_full_golden`, do gold_041 chỉ hai câu hỏi khác nhau.
+Bằng chứng tại `backend/target/final-acceptance-20261030/`: golden-validator.log, extra-checks.json, internal-regression-rerun.log và internal-regression.xml.
 
 ## Bảng rà ý định toàn bộ50 câu
-
-Cùng lĩnh vực/chunk không tự là trùng; đối chiếu câu hỏi và thông tin cần trả lời.
 
 | ID | Ý định kiểm tra |
 | --- | --- |
@@ -100,25 +80,21 @@ Cùng lĩnh vực/chunk không tự là trùng; đối chiếu câu hỏi và th
 | gold_043 | Phương tiện/nội dung thông báo mời họp HĐTV |
 | gold_044 | Cỡ chữ tên doanh nghiệp tiếng nước ngoài |
 
-## Giới hạn và nghiệm thu
+## Điều kiện nghiệm thu còn lại
 
-Hợp nhất, kiểm format và rà các ý định trên đạt. Cơ cấu Phase1 vẫn thiếu9 mẫu
-insufficient so với DoD10; đã ở trần50 nên phải thay/bố trí lại trong bước điều phối,
-không cộng thêm9 để vượt50. Mapping P0 và review pháp lý/hiệu lực vẫn chờ nhóm.
-Không chạy lại FE/BE vì không sửa app/config/schema; commit theo yêu cầu bàn giao; không push.
+Theo DoD10 mẫu insufficient hiện có1, còn thiếu9; nhóm P0/căn cứ bộ chung cần được
+Team2 xác nhận. Cần thống nhất ID gold_041 giữa Phase1 và fixture5 câu rồi chạy lại test lỗi.
 
-## Kiểm tra bàn giao cuối
+## Kiểm tra bàn giao
 
-14 file Markdown,40 tham chiếu local và1 anchor: không lỗi. git diff --check PASS.
-Thư mục ground_truth đã xóa đúng3 file được kiểm kê; không xóa file ngoài phạm vi.
-T001–T004 hoàn thành theo kiểm chứng trên; chưa nghiệm thu pháp lý/cơ cấu Phase1.
+- [x] File chung50 câu, validator đạt.
+- [x] ID/câu hỏi không trùng sau chuẩn hóa; ý chính đã rà.
+- [x] Chunk tham chiếu tồn tại.
+- [ ] Team3/Team2 thống nhất ID gold_041 và test không xung đột đạt.
+- [ ] Team2 xác nhận nội dung/căn cứ và cơ cấu bộ chung.
 
-## Trách nhiệm kiểm chứng đã chốt
+## Trách nhiệm kiểm chứng
 
-Theo xác nhận người dùng ngày29/10/2026, Team2 phụ trách kiểm chứng/nghiệm thu bộ
-Golden chung. Kết quả trên là kiểm tra trước bàn giao của Team3, không phải Team2
-đã duyệt. Phần đóng góp/hợp nhất của Team3 hoàn tất; chờ Team2 kết luận dataset.
+Team3 hoàn tất đóng góp/hợp nhất và phối hợp xử lý ID. Team2 kiểm chứng nội dung, căn cứ, cơ cấu và fixture liên quan.
 
-Đã thay author mang danh tính người dùng bằng vai trò Nhóm đóng góp theo yêu cầu
-riêng tư đã chốt; không đổi nội dung pháp lý. Số liệu bảo toàn38/40 tính không gồm
-metadata author; IDs điều chỉnh metadata được lưu trong checks.json ignored.
+[Spec](spec.md) · [Tasks](tasks.md) · [Nghiệm thu tuần5](../verification.md).
