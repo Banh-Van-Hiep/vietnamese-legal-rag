@@ -1,59 +1,83 @@
 # Biên bản kiểm chứng nhiệm vụ Team 3 — Tuần 6
 
-**Ngày kiểm tra:** 28/10/2026 (Asia/Saigon).
-**Căn cứ hiện hành:** [ARCHITECTURE.md](../../../docs/ARCHITECTURE.md) (đặc tả chính),
-[CODING_CONVENTIONS.md](../../../docs/CODING_CONVENTIONS.md) (quy chuẩn/DoD),
-[tasks.md](tasks.md) (phân rã nhiệm vụ tuần). Jira phục vụ theo dõi công việc.
-**Source kiểm tra:** `62c3556bab16e106e2e6ff29b0280a96fb738146` cùng thay đổi tài liệu chưa commit; không sửa code nghiệp vụ/test hoặc dataset để làm kết quả đạt.
-**Môi trường:** Windows, JDK25/Spring Boot4.1.1, Maven Wrapper3.9.16, Node24.21,
-Python3.12 trong venv kiểm thử riêng, PostgreSQL18 database riêng, Edge headless profile riêng.
-**Phạm vi kết luận:** kiểm chứng kỹ thuật; chưa thay phê duyệt nhóm/gate hoặc trạng thái Jira.
-
-**Đối chiếu nguồn ngày 28/10:** ARCHITECTURE §3/§6/§7/§8.1 và CODING_CONVENTIONS §2/§3.3/§4.2/§7 cho HTTP, mapping, persistence, lỗi, timeout và nghiệm thu. G3 là mốc kế hoạch tuần6; test mock chưa chứng minh dữ liệu thật.
-Kết luận dựa trên baseline/quy chuẩn/task hiện hành, không loại tiêu chí chỉ vì Jira cũ
-chưa ghi. Lượt cập nhật nguồn này không chạy lại build/test hoặc thay số liệu đã đo.
+**Ngày kiểm tra:**29/10/2026 (Asia/Saigon), thay kết quả tổng hợp28/10.
+**Nguồn:** [ARCHITECTURE](../../../docs/ARCHITECTURE.md),
+[CODING_CONVENTIONS](../../../docs/CODING_CONVENTIONS.md), [tasks](tasks.md).
+**Source:** `26c4649478956fd588a7f2d165cccbb33ac2f541`; **develop đã fetch:** `eea5604251afd4d8605fed510d6bf4de31d629bb`.
+Code Team3/Team2 HTTP/runtime/contracts liên quan không khác develop; không merge
+worktree. Thay đổi tuần5 là dữ liệu và hồ sơ, không đổi implementation được kiểm tra.
+[Hồ sơ chi tiết](vlra-t3-07-10-integration/spec.md),
+[validation](vlra-t3-07-10-integration/validation.md).
 
 ## 1. Kết luận
 
-**Cơ chế tích hợp HTTP, mapping, persistence và UI được kiểm chứng với mock; chưa chốt G3/real data.**
-Team2 **đã có app HTTP thật** (`team2_rag.api:create_app`), không còn kết luận “chưa có endpoint”.
-App mặc định chạy health 200 nhưng ready/query 503 trong môi trường kiểm tra do thiếu cấu hình index.
+**Tuần6 chưa đủ điều kiện nghiệm thu G3 dữ liệu thật.** Phần adapter/mapping,
+persistence/history và UI đã đạt kiểm chứng độc lập với mock. Hai phụ thuộc thật còn
+thiếu: runtime chưa có đường dẫn index hợp lệ và app Team2 chưa có route đọc Điều luật.
+Không có lỗi test mới ở code Team3 trong các suite đã chạy; không tự chốt toàn bộ
+07/08 bằng kết quả mock. Không sửa app Team1/2, schema, corpus hoặc cấu hình shared.
 
-## 2. Đối chiếu từng task
+## 2. Expected / Actual theo task
 
-| Task | Expected / DoD | Actual và căn cứ | Kết luận |
+| Task | Expected / DoD | Actual29/10 | Kết luận |
 | --- | --- | --- | --- |
-| VLRA-T3-07 | Gọi FastAPI, trace, timeout≤2/50s, map502/503/504, không giữ DB tx khi chờ | `HttpAiClientTests`7/7, StreamApiTests12/12, E2E 10/10; header trace và query/history được kiểm. `StreamService` kết thúc store.accept trước khi worker gọi AI; JDK HttpClient connect2s/wait≤50s. HTTP app live ready 503, chưa gọi pipeline thật thành công. | Đạt adapter/mock, chưa đạt live |
-| VLRA-T3-08 | Citation/Article map đủ trường, giữ IDs/URL và unit test đạt | `StreamDtos.PublicCitation.from`/`Complete.from`, `PublicDocumentController`/`DocumentService` đảm nhiệm mapping (không có class tên AiContractMapper). Tests kiểm9 field citation,6 field article, nullable và sai phiên bản; FE adapters cũng kiểm shape/IDs. | Đạt chức năng mapping |
-| VLRA-T3-09 | Pending→completed/failed atomic, history chỉ5 cặp answered/completed |16 ca PostgreSQL và16 ca H2 đạt: atomic citation/snapshot, failed/insufficient không vào history, chronological/max5 cặp/20000 code point, terminal không ghi đè, lock/rollback. E2E lưu4 tin nhắn khi hỏi tiếp, reload không gọi lại AI. | Đạt persistence/history |
-| VLRA-T3-10 | Bind URL từ meta, disable pending, render an toàn, thiếu căn cứ riêng | FE 72/72 và E2E 10/10; parser UTF8/frame split, errors/timeout/abort; format giữ HTML như text, Viewer xác minh IDs. E07 không có citation khi thiếu căn cứ; UI360/768 và mạng3G kiểm chức năng đạt. | Đạt kỹ thuật UI/mock |
+| VLRA-T3-07 | Java gọi FastAPI thật thành công; trace/timeouts/error mapping/không giữ DB tx | HttpAiClient7/7 và StreamHTTP12/12; source connect2s/wait≤50s, transaction kết thúc trước HTTP. Factory thật query503; qua Java meta→error SERVICE_UNAVAILABLE, lưu failed và replay503. | Adapter/xử lý lỗi đạt; còn chờ pipeline thật để nghiệm thu toàn task |
+| VLRA-T3-08 | Citation/article map đủ trường, giữ ID/URL, proxy article đúng snapshot | Validator43/43 và HTTP tests/FE adapters đạt; Viewer E03/E06 mock đạt. Factory thật không có route article; upstream404 NOT_FOUND → Java502 UPSTREAM_CONTRACT_ERROR. | Mapping đạt; proxy dữ liệu thật còn chờ endpoint Team2 |
+| VLRA-T3-09 | State/citations nhất quán PostgreSQL; history chỉ5 cặp answered/completed≤20000 code point | PostgreSQL16/16 và H2 16/16; chronological/whole pairs/rollback/terminal/replay đạt; E2E tiếp nối/reload đạt. Factory thật lỗi vẫn lưu completed/failed đúng. | Đủ điều kiện chốt kỹ thuật persistence/history |
+| VLRA-T3-10 | URL từ meta, khóa pending, delta, render an toàn, insufficient không citation rỗng | FE72/72/build; E2E10/10 và0 exception. Parser unit kiểm UTF8/frame/error/timeout/abort; output HTML là text. | Đủ điều kiện chốt kỹ thuật UI trong phạm vi đã kiểm; không chứng minh chất lượng live |
 
-Không coi khác tên class hoặc JDK HttpClient thay RestClient/WebClient là thay wire contract.
-Nếu nhóm yêu cầu bắt buộc tên/libraries trong phần thiết kế thì cần thống nhất riêng;
-lượt này không refactor implementation chỉ để khớp ví dụ.
+Không bắt buộc thêm class/libraries trùng ví dụ: JDK HttpClient, DTO/controller và
+ChatStore đã thực hiện trách nhiệm. Không phát sinh thay đổi công nghệ/API.
 
-## 3. Readiness live và giới hạn
+## 3. Readiness thật và trách nhiệm bàn giao
 
-Chạy app factory mặc định, không inject fake pipeline, không gọi provider ngoài:
+| Kiểm tra app factory thật | Kết quả |
+| --- | --- |
+| GET /internal/v1/health |200 up |
+| GET /internal/v1/ready |503 LLM_UNAVAILABLE |
+| POST /internal/v1/query |503 LLM_UNAVAILABLE, không có answer giả |
+| Runtime config |RAG_BM25_INDEX/RAG_DENSE_INDEX chưa cấu hình; startup ConfigError |
+| OpenAPI |Chỉ health/ready/query; thiếu endpoint article |
+| GET article với ID snapshot thật |404 NOT_FOUND |
+| Java gọi query factory thật |SSE200 meta→error SERVICE_UNAVAILABLE; DB user completed/assistant failed; replay503 |
+| Java proxy article factory thật |502 UPSTREAM_CONTRACT_ERROR, không thay phiên bản hoặc tạo nguyên văn |
 
-```powershell
-python -m uvicorn team2_rag.api:create_app --factory --host 127.0.0.1 --port 18049
-```
+Mã LLM_UNAVAILABLE không đủ để kết luận thiếu/sai API key: startup dừng ở cấu hình
+index trước khi kiểm model/provider. Probe bật offline guard, không tải model/index.
+Cần Team1 bàn giao index/snapshot tương thích; Team2 cấu hình runtime và phục vụ
+article theo hợp đồng. Đây là khoảng thiếu bàn giao, không phải xung đột yêu cầu.
+Không tự triển khai bên họ. Golden đã chuyển Team2 kiểm chứng, không lẫn vào audit này.
 
-- `GET /internal/v1/health`: **200**, status up.
-- `GET /internal/v1/ready`: **503**, LLM_UNAVAILABLE.
-- `POST /internal/v1/query` với question/history hợp lệ: **503**, LLM_UNAVAILABLE, không answer giả.
-- Log startup ghi `ConfigError`; kiểm tra chỉ tên key/trạng thái không lộ secret:
-  `RAG_BM25_INDEX` và `RAG_DENSE_INDEX` **chưa cấu hình** trong process/root dotenv được runtime đọc.
-- Chưa xác minh index/snapshot/article store/model/provider cho live; không tự tạo hoặc tải
-  model/index lớn, sửa pipeline Team1/2 hoặc sử dụng mock để nhận nghiệm thu real data.
+## 4. Kiểm thử và evidence
 
-## 4. Kiểm thử, evidence và việc tiếp tục
+- Maven Wrapper package: **94/94**,0 fail/error/skip;5 suite liên quan, bao gồm16 ca
+  PostgreSQL thật và16 H2. Không cộng các nhóm con vào tổng94.
+- Frontend: **72/72**, tsc/Vite build PASS.
+- Browser E2E: **10/10**,0 uncaught exception, React→Java→PostgreSQL→FastAPI HTTP mock.
+- Factory probe và Java gọi factory thật đã chạy riêng; kết quả503/404 là bằng chứng
+  blocker G3, không ghi thành ca trả lời thành công hoặc fallback mock.
 
-Maven package 125/125 và FE 72/72 + build đạt; G2 E2E 10/10 đạt. Lệnh/setup ở
-[tuần5 §3](../week5/verification.md#3-lệnh-chạy-lại).
-Evidence ignored: `backend/target/week-acceptance-20261028/{live-readiness.json,live-startup-error.log,inventory.json,backend-package.log}`,
-`e2e/results.json` và surefire reports. Không có lỗi test được che bằng đổi schema/dataset.
+Lệnh/setup tại [quickstart](vlra-t3-07-10-integration/quickstart.md).
+DB test legal_rag_week6_20261029 ở127.0.0.1:55442; Java18043/FE15173/Python18044,
+factory probe18049/CDP19242. Python venv riêng, JDK25, Node24.21, PostgreSQL18.
+Không thay .env, không in credential/danh tính. Không đo mobile/latency/token-stream
+provider hoặc chờ55s manual lần này; không lấy kết quả cũ gán PASS mới.
 
-Cần Team1/2 bàn giao index tương thích phiên bản, article snapshot và cấu hình runtime/model/provider;
-sau đó kiểm ready 200 và query thật → Java → UI. Chỉ khi có bằng chứng dữ liệu thật mới chốt phần G3.
+Evidence ignored: backend/target/week6-acceptance-20261029/ có summary.json,
+backend-package.log, frontend-unit.json/log, frontend-build.log, e2e/results.json,
+ảnh browser và logs, live-readiness.json, live-through-java.json/stream.txt,
+live-runtime.log, preservation.json, process-cleanup.json.
+Đã dừng đúng tiến trình/cluster test audit mở;6 cổng đã đóng, không đụng dịch vụ thật.
+
+## 5. Điều kiện khép tuần6
+
+1. Team1/2 bàn giao index BM25/Dense cùng phiên bản/chunk IDs, article snapshot và
+   cấu hình runtime/model/provider dùng được; ready200.
+2. Team2 bổ sung endpoint article đúng6 field và mã404 DOCUMENT_NOT_FOUND/
+   ARTICLE_NOT_FOUND; không dùng NOT_FOUND cho lookup cần phân biệt này.
+3. Team3 chạy lại query thật qua Java/UI→Answer+Citation, click Viewer đúng document/
+   article/version, kiểm nối tiếp/history và lỗi liên quan. Sau đó mới nghiệm thu G3.
+
+W6-06 trong [tasks kiểm chứng](vlra-t3-07-10-integration/tasks.md) còn mở.
+Không tự sửa Jira, xác nhận nhóm đã duyệt gate, hoặc báo tuần6 hoàn tất khi thiếu
+luồng thật. Phần độc lập09/10 có thể chốt kỹ thuật theo bằng chứng trên.

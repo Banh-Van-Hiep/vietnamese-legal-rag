@@ -9,7 +9,7 @@
 | --- | --- | --- |
 | 4 | [tasks.md](week4/tasks.md) | [verification.md](week4/verification.md) — 29/10: đủ điều kiện G1 nội bộ theo kiểm chứng và xác nhận nhóm; schema mới đạt76/76, HTTP12/12; bàn giao bằng commit local; chưa push/PR |
 | 5 | [tasks.md](week5/tasks.md) | [verification.md](week5/verification.md) — 29/10: VLRA22/23/T3-06 đủ điều kiện chốt kỹ thuật mock; VLRA24 đã bàn giao50 mẫu (49/1), Team2 phụ trách kiểm chứng |
-| 6 | [tasks.md](week6/tasks.md) | [verification.md](week6/verification.md) — cơ chế HTTP/mapping/state/UI đạt với mock; G3 dữ liệu thật chưa xác minh |
+| 6 | [tasks.md](week6/tasks.md) | [verification.md](week6/verification.md) — 29/10: Backend94/94, FE72/72, E2E10/10;09/10 đạt kỹ thuật; G3 chờ runtime index và endpoint article Team2 |
 | 7 | [tasks.md](week7/tasks.md) | [verification.md](week7/verification.md) — idempotency và Viewer mock đạt; thiếu dataset v1 và G4 live |
 | 8 | [tasks.md](week8/tasks.md) | [verification.md](week8/verification.md) — mock 5 phiên/50 query đạt; chưa đủ benchmark live và tối ưu frontend |
 

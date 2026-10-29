@@ -140,5 +140,9 @@ data: {"conversationId":101,"clientRequestId":"99999999-9999-4999-9999-999999999
 
 ## 6. Kết quả kiểm chứng hiện hành
 
-Đối chiếu từng task/DoD và phần còn thiếu tại [verification.md](verification.md), ngày 28/10/2026.
+Đối chiếu từng task/DoD và phần còn thiếu tại [verification.md](verification.md), ngày 29/10/2026.
 Không suy hoàn thành từ kế hoạch hoặc từ số test PASS; mock và live được kết luận riêng.
+
+Hồ sơ kiểm chứng07–10: [spec/plan/tasks](vlra-t3-07-10-integration/spec.md),
+[validation](vlra-t3-07-10-integration/validation.md).09/10 đạt kỹ thuật;07/08 còn
+phụ thuộc query/article thật và G3. Không giao lại implementation đã được kiểm chứng.
