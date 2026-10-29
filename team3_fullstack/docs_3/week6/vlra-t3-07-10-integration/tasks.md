@@ -9,3 +9,7 @@
 
 W6-02→W6-03; W6-04 độc lập với test mock nhưng chạy riêng để không lẫn cổng/nguồn.
 W6-05 sau02–04; W6-06 phụ thuộc readiness và bàn giao thật, không đánh dấu từ mock.
+
+Phân định29/10: implementation thuộc Team3 đã sẵn sàng nhận bàn giao; phần còn thiếu
+ở Team1/2 để team sở hữu tự làm. W6-06 là việc Team3 chạy sau bàn giao, không phải
+nhiệm vụ triển khai thay runtime/index/article của team khác. Chưa chốt G3 bằng mock.

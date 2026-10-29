@@ -59,3 +59,24 @@ Không có xung đột API cần tự chọn; không tự hạ G3 hoặc báo mo
 
 Kiểm bàn giao: 9 file Markdown/33 tham chiếu local không lỗi; diff --check PASS.
 W6-01–05 đã đánh dấu theo evidence thực tế; W6-06 giữ mở.
+
+## Bổ sung review toàn tuyến29/10
+
+Đối chiếu thêm retrieval/LLM/article và cấu hình của cả3 team:
+[biên bản §6](../verification.md#6-rà-toàn-tuyến-mã-nguồn-liên-team--bổ-sung2910).
+Mới chạy125 test +40 subtest Team2 và3 test Hybrid, tất cả đạt; đều dùng dependency
+ngoài giả lập. Probe trong bộ nhớ xác nhận filter chưa xét applicability và câu hỏi
+tham chiếu bị chặn trước retrieval dù có history. Evidence ở
+backend/target/source-audit-20261029/, không sửa app/test/schema/corpus.
+
+Ngoài runtime/article, cần bàn giao registry/filter cấp đơn vị, hoàn thiện xử lý
+tham chiếu và cấu hình token budget khi nghiệm thu đầy đủ theo baseline. Không tự
+sửa phần Team1/2. W6-06 vẫn mở; không chạy model/provider thật hoặc coi mock là live.
+
+## Đối chiếu mốc tuần liên team
+
+[Biên bản §7](../verification.md#7-đối-chiếu-phần-thiếu-với-nhiệm-vụ-theo-tuần-của-team12)
+ánh xạ S1–S6 sang docs_1/docs_2 tuần4–8. Phân biệt Article Store/mock tuần5, lookup
+và query thật tuần6, freeze/tối ưu/demo G4 tuần7. Query coreference chỉ thấy task
+thiết kế tuần4; chưa tự gán nhiệm vụ triển khai tuần6. Không đổi DoD/gán Jira/team
+khác hoặc chạy lại test khi chỉ bổ sung đối chiếu tài liệu.
