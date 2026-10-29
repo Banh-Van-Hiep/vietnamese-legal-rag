@@ -216,18 +216,14 @@
   },
   {
     "id": "gold_016",
-    "question": "So sánh các loại hình doanh nghiệp theo Luật Doanh nghiệp 2020: công ty trách nhiệm hữu hạn hai thành viên trở lên, công ty trách nhiệm hữu hạn một thành viên, công ty cổ phần, công ty hợp danh và doanh nghiệp tư nhân khác nhau thế nào về chủ sở hữu và mức chịu trách nhiệm về nợ?",
+    "question": "Chủ sở hữu công ty TNHH một thành viên chịu trách nhiệm về các khoản nợ và nghĩa vụ tài sản khác của công ty trong phạm vi nào?",
     "expected_status": "answered",
-    "ground_truth": "Công ty TNHH hai thành viên trở lên có từ 02 đến 50 thành viên là tổ chức, cá nhân, thành viên chịu trách nhiệm trong phạm vi số vốn đã góp (trừ trường hợp khoản 4 Điều 47). Công ty TNHH một thành viên do một tổ chức hoặc một cá nhân làm chủ sở hữu, chủ sở hữu chịu trách nhiệm trong phạm vi số vốn điều lệ. Công ty cổ phần có vốn điều lệ chia thành các cổ phần bằng nhau, cổ đông là tổ chức, cá nhân, tối thiểu 03 và không hạn chế tối đa, chỉ chịu trách nhiệm trong phạm vi số vốn đã góp. Công ty hợp danh có ít nhất 02 thành viên hợp danh là chủ sở hữu chung, thành viên hợp danh là cá nhân chịu trách nhiệm bằng toàn bộ tài sản, có thể có thêm thành viên góp vốn chỉ chịu trách nhiệm trong phạm vi vốn đã cam kết góp. Doanh nghiệp tư nhân do một cá nhân làm chủ và tự chịu trách nhiệm bằng toàn bộ tài sản của mình.",
+    "ground_truth": "Chủ sở hữu chịu trách nhiệm về các khoản nợ và nghĩa vụ tài sản khác của công ty trong phạm vi số vốn điều lệ của công ty.",
     "gold_chunk_ids": [
-      "luat-59-2020-qh14-v1__dieu-46__k1__0",
-      "luat-59-2020-qh14-v1__dieu-74__k1__0",
-      "luat-59-2020-qh14-v1__dieu-111__k1__0",
-      "luat-59-2020-qh14-v1__dieu-177__k1__0",
-      "luat-59-2020-qh14-v1__dieu-188__k1__0"
+      "vbhn-67-vbhn-vpqh-v1__dieu-74__k1__0"
     ],
-    "citation": "Khoản 1 Điều 46, khoản 1 Điều 74, khoản 1 Điều 111, khoản 1 Điều 177, khoản 1 Điều 188 - Luật Doanh nghiệp 2020",
-    "category": "Loại hình doanh nghiệp",
+    "citation": "Khoản 1 Điều 74 - Văn bản hợp nhất 67/VBHN-VPQH (Luật Doanh nghiệp)",
+    "category": "Trách nhiệm chủ sở hữu công ty TNHH một thành viên",
     "author": "Phương Anh"
   },
   {
@@ -297,24 +293,15 @@
   },
   {
     "id": "gold_021",
-    "question": "Luật số 76/2025/QH15 sửa đổi Luật Doanh nghiệp theo hướng nào để quản lý thông tin về chủ sở hữu hưởng lợi?",
+    "question": "Thông tin về chủ sở hữu hưởng lợi phải được lưu giữ ít nhất bao nhiêu năm kể từ ngày doanh nghiệp giải thể hoặc phá sản?",
     "expected_status": "answered",
-    "ground_truth": "Luật 76/2025/QH15 bổ sung thông tin chủ sở hữu hưởng lợi vào nhiều điều của Luật Doanh nghiệp: bổ sung khoản 5a Điều 8 (doanh nghiệp có nghĩa vụ thu thập, cập nhật, lưu giữ thông tin về chủ sở hữu hưởng lợi và cung cấp cho cơ quan nhà nước có thẩm quyền khi được yêu cầu); bổ sung điểm h khoản 1 Điều 11 (hồ sơ có danh sách chủ sở hữu hưởng lợi, nếu có); bổ sung danh sách chủ sở hữu hưởng lợi (nếu có) vào khoản 3 Điều 20, Điều 21, Điều 22 và thông tin về chủ sở hữu hưởng lợi vào khoản 10 Điều 23; thêm thông tin chủ sở hữu hưởng lợi vào nội dung phải thông báo thay đổi tại khoản 1 Điều 31; bổ sung khoản 1a Điều 33 (cơ quan nhà nước có thẩm quyền được đề nghị cung cấp thông tin chủ sở hữu hưởng lợi lưu trên Hệ thống thông tin quốc gia về đăng ký doanh nghiệp để phục vụ phòng, chống rửa tiền và không phải trả phí); bổ sung điểm h khoản 1 Điều 216 (lưu giữ thông tin ít nhất 05 năm kể từ ngày doanh nghiệp giải thể, phá sản); bổ sung khoản 6 Điều 217 (Chính phủ quy định chi tiết tiêu chí xác định, chủ thể kê khai, việc kê khai, cung cấp, lưu giữ, chia sẻ thông tin).",
+    "ground_truth": "Thông tin về chủ sở hữu hưởng lợi của doanh nghiệp phải được lưu giữ ít nhất 05 năm kể từ ngày doanh nghiệp giải thể hoặc phá sản.",
     "gold_chunk_ids": [
-      "luat-76-2025-qh15-v1__dieu-1__k2__0",
-      "luat-76-2025-qh15-v1__dieu-1__k3__0",
-      "luat-76-2025-qh15-v1__dieu-1__k7__0",
-      "luat-76-2025-qh15-v1__dieu-1__k8__0",
-      "luat-76-2025-qh15-v1__dieu-1__k9__0",
-      "luat-76-2025-qh15-v1__dieu-1__k10__0",
-      "luat-76-2025-qh15-v1__dieu-1__k13__0",
-      "luat-76-2025-qh15-v1__dieu-1__k14__0",
-      "luat-76-2025-qh15-v1__dieu-1__k26__0",
-      "luat-76-2025-qh15-v1__dieu-1__k27__0"
+      "luat-76-2025-qh15-v1__dieu-1__k26__0"
     ],
-    "citation": "Khoản 2, 3, 7, 8, 9, 10, 13, 14, 26, 27 Điều 1 - Luật số 76/2025/QH15",
-    "category": "Chủ sở hữu hưởng lợi",
-    "author": "Tuấn"
+    "citation": "Khoản 26 Điều 1 Luật 76/2025/QH15, bổ sung điểm h khoản 1 Điều 216 Luật Doanh nghiệp",
+    "category": "Lưu giữ thông tin sau giải thể, phá sản",
+    "author": "Nhóm đóng góp"
   },
   {
     "id": "gold_022",
@@ -328,7 +315,7 @@
     ],
     "citation": "Điều 2, Điều 3 - Luật số 76/2025/QH15",
     "category": "Hiệu lực và chuyển tiếp",
-    "author": "Tuấn"
+    "author": "Nhóm đóng góp"
   },
   {
     "id": "gold_023",
@@ -342,7 +329,7 @@
     ],
     "citation": "Khoản 1 Điều 2, Điều 3 - Nghị định hướng dẫn Luật Doanh nghiệp (VBHN 7566/VBHN-BKHĐT)",
     "category": "Doanh nghiệp xã hội",
-    "author": "Tuấn"
+    "author": "Nhóm đóng góp"
   },
   {
     "id": "gold_024",
@@ -357,7 +344,7 @@
     ],
     "citation": "Khoản 1, 2 Điều 21, khoản 4, 5 Điều 20 - Nghị định hướng dẫn Luật Doanh nghiệp (VBHN 7566/VBHN-BKHĐT)",
     "category": "Công bố thông tin doanh nghiệp nhà nước",
-    "author": "Tuấn"
+    "author": "Nhóm đóng góp"
   },
   {
     "id": "gold_025",
@@ -373,7 +360,7 @@
     ],
     "citation": "Điều 3, Điều 4, khoản 1 Điều 5 - Nghị định 122/2021/NĐ-CP",
     "category": "Xử phạt vi phạm hành chính",
-    "author": "Tuấn"
+    "author": "Nhóm đóng góp"
   },
   {
     "id": "gold_026",
@@ -571,5 +558,123 @@
     "citation": "Khoản 5 Điều 135 - Luật Doanh nghiệp, Văn bản hợp nhất 67/VBHN-VPQH ngày 15/08/2025",
     "category": "Chi trả cổ tức",
     "author": "Đỗ Đức Đạt"
+  },
+  {
+    "id": "gt_t3_004",
+    "question": "Một cá nhân có được thành lập nhiều doanh nghiệp tư nhân không?",
+    "expected_status": "answered",
+    "ground_truth": "Không. Mỗi cá nhân chỉ được quyền thành lập một doanh nghiệp tư nhân. Chủ doanh nghiệp tư nhân cũng không được đồng thời là chủ hộ kinh doanh hoặc thành viên hợp danh của công ty hợp danh.",
+    "gold_chunk_ids": [
+      "luat-59-2020-qh14-v1__dieu-188__k3__0"
+    ],
+    "citation": "Khoản 3 Điều 188 - Luật Doanh nghiệp 2020",
+    "category": "Doanh nghiệp tư nhân",
+    "author": "Team 3 (bản nháp, chờ review)"
+  },
+  {
+    "id": "gt_t3_005",
+    "question": "Thành viên hợp danh của công ty hợp danh phải là cá nhân hay tổ chức, và chịu trách nhiệm như thế nào?",
+    "expected_status": "answered",
+    "ground_truth": "Thành viên hợp danh phải là cá nhân, chịu trách nhiệm bằng toàn bộ tài sản của mình về các nghĩa vụ của công ty.",
+    "gold_chunk_ids": [
+      "luat-59-2020-qh14-v1__dieu-177__k1__0"
+    ],
+    "citation": "Điểm b khoản 1 Điều 177 - Luật Doanh nghiệp 2020",
+    "category": "Công ty hợp danh",
+    "author": "Team 3 (bản nháp, chờ review)"
+  },
+  {
+    "id": "gt_t3_008",
+    "question": "Thuế suất thuế thu nhập doanh nghiệp phổ thông hiện nay là bao nhiêu phần trăm?",
+    "expected_status": "insufficient_context",
+    "ground_truth": "Dữ liệu hiện có (Luật Doanh nghiệp và các văn bản hướng dẫn) không quy định thuế suất thuế thu nhập doanh nghiệp, chỉ dẫn chiếu tới pháp luật về thuế. Hệ thống phải trả lời là chưa đủ căn cứ và không được nêu một con số cụ thể.",
+    "gold_chunk_ids": [],
+    "citation": "Không có căn cứ trong corpus hiện tại",
+    "category": "Ngoài phạm vi corpus",
+    "author": "Team 3 (bản nháp, chờ review)"
+  },
+  {
+    "id": "gt_t3_009",
+    "question": "Tôi muốn đặt trụ sở chính của doanh nghiệp ở nước ngoài thay vì Việt Nam, có được không?",
+    "expected_status": "answered",
+    "ground_truth": "Không. Theo Điều 42, trụ sở chính của doanh nghiệp phải nằm trên lãnh thổ Việt Nam. Đây là địa chỉ liên lạc của doanh nghiệp, được xác định theo địa giới đơn vị hành chính.",
+    "gold_chunk_ids": [
+      "vbhn-67-vbhn-vpqh-v1__dieu-42__k0__0"
+    ],
+    "citation": "Điều 42 - Luật Doanh nghiệp, hợp nhất tại Văn bản hợp nhất 67/VBHN-VPQH ngày 15/08/2025",
+    "category": "Trụ sở doanh nghiệp",
+    "author": "Team 3 (bản nháp, chờ review)"
+  },
+  {
+    "id": "gt_t3_010",
+    "question": "Công ty tôi muốn dùng văn phòng đại diện để thực hiện hoạt động kinh doanh của công ty, có được không?",
+    "expected_status": "answered",
+    "ground_truth": "Không. Văn phòng đại diện không có chức năng kinh doanh của doanh nghiệp. Đơn vị này thực hiện việc đại diện theo ủy quyền và bảo vệ lợi ích của doanh nghiệp.",
+    "gold_chunk_ids": [
+      "vbhn-67-vbhn-vpqh-v1__dieu-44__k2__0"
+    ],
+    "citation": "Khoản 2 Điều 44 - Luật Doanh nghiệp, hợp nhất tại Văn bản hợp nhất 67/VBHN-VPQH ngày 15/08/2025",
+    "category": "Văn phòng đại diện",
+    "author": "Team 3 (bản nháp, chờ review)"
+  },
+  {
+    "id": "gt_t3_012",
+    "question": "Sau khi chuyển nhượng phần vốn góp, công ty TNHH hai thành viên trở lên của tôi chỉ còn một thành viên. Công ty phải chuyển sang loại hình nào và đăng ký thay đổi trong bao lâu?",
+    "expected_status": "answered",
+    "ground_truth": "Công ty phải tổ chức quản lý theo loại hình công ty TNHH một thành viên. Việc đăng ký thay đổi nội dung đăng ký doanh nghiệp phải được thực hiện trong 15 ngày, tính từ ngày hoàn thành việc chuyển nhượng.",
+    "gold_chunk_ids": [
+      "vbhn-67-vbhn-vpqh-v1__dieu-52__k3__0"
+    ],
+    "citation": "Khoản 3 Điều 52 - Luật Doanh nghiệp, hợp nhất tại Văn bản hợp nhất 67/VBHN-VPQH ngày 15/08/2025",
+    "category": "Chuyển nhượng phần vốn góp",
+    "author": "Team 3 (bản nháp, chờ review)"
+  },
+  {
+    "id": "gold_041",
+    "question": "Cổ đông sở hữu cổ phần ưu đãi biểu quyết có được tự do chuyển nhượng loại cổ phần này cho người khác không?",
+    "expected_status": "answered",
+    "ground_truth": "Không. Cổ đông sở hữu cổ phần ưu đãi biểu quyết không được chuyển nhượng cổ phần đó cho người khác, trừ trường hợp chuyển nhượng theo bản án, quyết định của Tòa án đã có hiệu lực pháp luật hoặc thừa kế.",
+    "gold_chunk_ids": [
+      "vbhn-67-vbhn-vpqh-v1__dieu-116__k3__0"
+    ],
+    "citation": "Khoản 3 Điều 116 - Văn bản hợp nhất 67/VBHN-VPQH (Luật Doanh nghiệp)",
+    "category": "Chuyển nhượng cổ phần ưu đãi biểu quyết",
+    "author": "Team 3"
+  },
+  {
+    "id": "gold_042",
+    "question": "Tôi làm mất cổ phiếu của công ty cổ phần. Tôi có được đề nghị công ty cấp lại không và đề nghị cần có nội dung gì?",
+    "expected_status": "answered",
+    "ground_truth": "Cổ đông được công ty cấp lại cổ phiếu theo đề nghị khi cổ phiếu bị mất. Đề nghị phải có thông tin về cổ phiếu đã bị mất và cam kết chịu trách nhiệm về những tranh chấp phát sinh từ việc cấp lại cổ phiếu mới.",
+    "gold_chunk_ids": [
+      "vbhn-67-vbhn-vpqh-v1__dieu-121__k3__0"
+    ],
+    "citation": "Khoản 3 Điều 121 - Văn bản hợp nhất 67/VBHN-VPQH (Luật Doanh nghiệp)",
+    "category": "Cấp lại cổ phiếu bị mất",
+    "author": "Team 3"
+  },
+  {
+    "id": "gold_043",
+    "question": "Thông báo mời họp Hội đồng thành viên có thể gửi bằng phương tiện điện tử không và phải nêu những nội dung nào?",
+    "expected_status": "answered",
+    "ground_truth": "Có thể gửi bằng phương tiện điện tử và phải gửi trực tiếp đến từng thành viên Hội đồng thành viên. Nội dung thông báo phải xác định rõ thời gian, địa điểm và chương trình họp.",
+    "gold_chunk_ids": [
+      "vbhn-67-vbhn-vpqh-v1__dieu-57__k4__0"
+    ],
+    "citation": "Khoản 4 Điều 57 - Văn bản hợp nhất 67/VBHN-VPQH (Luật Doanh nghiệp)",
+    "category": "Thông báo mời họp Hội đồng thành viên",
+    "author": "Team 3"
+  },
+  {
+    "id": "gold_044",
+    "question": "Tên doanh nghiệp bằng tiếng nước ngoài có được in lớn hơn tên tiếng Việt trên giấy tờ giao dịch của doanh nghiệp không?",
+    "expected_status": "answered",
+    "ground_truth": "Không. Tên bằng tiếng nước ngoài phải được in hoặc viết với khổ chữ nhỏ hơn tên tiếng Việt trên giấy tờ giao dịch, hồ sơ tài liệu và ấn phẩm do doanh nghiệp phát hành.",
+    "gold_chunk_ids": [
+      "vbhn-67-vbhn-vpqh-v1__dieu-39__k2__0"
+    ],
+    "citation": "Khoản 2 Điều 39 - Văn bản hợp nhất 67/VBHN-VPQH (Luật Doanh nghiệp)",
+    "category": "Cỡ chữ tên doanh nghiệp bằng tiếng nước ngoài",
+    "author": "Team 3"
   }
 ]
