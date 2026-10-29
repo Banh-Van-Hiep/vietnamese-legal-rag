@@ -23,6 +23,17 @@
 | **VLRA24** | **Chủ trì Thu thập, Hợp nhất & Đóng gói Golden Dataset Phase 1**<br>- Thu thập các câu hỏi đóng góp từ thành viên Team 1, Team 2 và Team 3.<br>- Thực hiện deduplicate, chuẩn hóa chính tả và kiểm tra tính nhất quán giữa `expected_status`, `ground_truth` và `gold_chunk_ids`.<br>- Đóng gói thành file `team2_rag/data/golden/golden_phase1_30cai.json` đạt quy mô từ 30 đến 50 câu. | - File JSON Golden Dataset hoàn thiện, pass qua schema validator.<br>- Đảm bảo phân bổ đều các nhóm nghiệp vụ P0: thành lập (10 câu), vốn/cổ đông (8 câu), quản trị (8 câu), giải thể (4 câu), thiếu dữ kiện (10 câu). |
 | **VLRA-T3-06** | **Cấu hình CORS, Môi trường & Script Kiểm Thử Tự Động Mock**<br>- Cấu hình Spring Security / WebMvcConfigurer cho phép CORS từ origin `http://localhost:5173`, expose các header `X-Request-ID`, `X-Conversation-ID`.<br>- Viết script kiểm thử tự động `test_sse_mock.sh` hoặc test suite JUnit 5 kiểm tra tính toàn vẹn của chuỗi frame SSE. | - Frontend gọi API Backend không bị chặn CORS.<br>- Toàn bộ test integration mock pass 100%. |
 
+VLRA24 là công việc phối hợp cả3 team. Phần đóng góp Team3 được người dùng chốt
+2 thành viên ×5 câu;10 mẫu có cả2 trạng thái đã hợp nhất vào file chung
+`team2_rag/data/golden/golden_phase1_30cai.json`, không duy trì dữ liệu riêng Team3.
+Cơ cấu30–50 câu và10/8/8/4/10 trong DoD áp cho bộ Phase1 chung, không cho riêng Team3.
+[Hồ sơ hợp nhất Golden](vlra24-team3-golden/spec.md).
+
+**Phân công xác nhận ngày29/10/2026:** Team3 hoàn tất đóng góp, hợp nhất và bàn giao
+bộ Golden; Team2 phụ trách kiểm chứng và kết luận nghiệm thu dataset chung. Các lần
+chạy validator của Team3 là kiểm tra trước bàn giao, không thay xác nhận của Team2.
+VLRA22, VLRA23 và VLRA-T3-06 được kết luận riêng theo DoD tích hợp mock.
+
 ---
 
 ## 3. Thiết Kế Kiến Trúc, State Machine & Luồng SSE Frame
@@ -148,5 +159,5 @@ data: {"conversationId":101,"clientRequestId":"44444444-4444-4444-8444-444444444
 
 ## 6. Kết quả kiểm chứng hiện hành
 
-Đối chiếu từng task/DoD và phần còn thiếu tại [verification.md](verification.md), ngày 28/10/2026.
+Đối chiếu từng task/DoD và phần còn thiếu tại [verification.md](verification.md), ngày 29/10/2026.
 Không suy hoàn thành từ kế hoạch hoặc từ số test PASS; mock và live được kết luận riêng.

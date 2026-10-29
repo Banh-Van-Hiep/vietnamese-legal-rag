@@ -9,6 +9,11 @@ không phải các cổng chất lượng Recall/Citation của ARCHITECTURE §8
 Không sửa code ứng dụng/test hoặc dataset; public contract được sửa theo quyết định.
 Commit local được yêu cầu, chưa push/PR hoặc merge develop.
 
+> Cập nhật đường dẫn ngày29/10/2026: Golden hiện hợp nhất50 mẫu tại
+> `team2_rag/data/golden/golden_phase1_30cai.json`; thư mục riêng Team3 đã xóa.
+> Số liệu13/40 bên dưới là evidence tuần4, không phải kiểm chứng bộ50.
+> Kết quả hiện hành: [tuần5](../week5/vlra24-team3-golden/validation.md).
+
 ## 1. Kết luận
 
 **Đủ điều kiện nghiệm thu G1 nội bộ theo phần kỹ thuật và xác nhận nhóm.** Sơ đồ DB
@@ -92,7 +97,6 @@ Từ gốc repository, dùng Python đã cài dependency:
 ```powershell
 .\team3_fullstack\backend\src\test\powershell\RunLocalConfigurationTests.ps1 -JavaHome D:/Java/jdk-25
 python -X utf8 team2_rag/validate_golden.py
-python -X utf8 team3_fullstack/ground_truth/validate_ground_truth.py
 ```
 
 DB test phải sẵn sàng trước lệnh Maven; không trỏ vào dữ liệu thật.
