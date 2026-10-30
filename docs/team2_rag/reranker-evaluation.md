@@ -109,3 +109,9 @@ Không tải model hay build index trên máy hiện tại vì người dùng ch
 Người 2 dùng raw candidates, scores và các ca mất nhóm đúng để phân tích
 nguyên nhân trong VLRA-56/57. Chưa chốt cấu hình tối ưu VLRA-58 và chưa
 đánh giá chất lượng answer/citation hoặc B0/T0 toàn hệ thống.
+
+Kiểm tra trước khi push nhánh Team 2: đã hợp nhất commit `c947fac` đang có
+trên `feature/team2-rag`, giữ endpoint Điều luật và tùy chọn fallback của
+pipeline. Runner đánh giá vẫn dùng `strict=True`. Bộ 7 module test liên quan
+đạt 123 test và 88 subtest bằng pytest, gồm API mock, pipeline, Article Store,
+runtime config và đánh giá reranker. Đây vẫn là kiểm thử offline; chưa chạy model thật.

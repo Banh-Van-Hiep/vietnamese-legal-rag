@@ -15,6 +15,7 @@ from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from jsonschema import Draft202012Validator, FormatChecker
 
+from ..articles import ArticleLookupError, get_article
 from ..errors import ErrorCode
 from ..models.response import RAGResponse
 from ..pipeline import validate_input, validate_generated_response
@@ -117,6 +118,22 @@ def create_app(pipeline=None, *, runtime_factory=None, timeout_seconds=45,
             return _error(ErrorCode.SERVICE_UNAVAILABLE, resolve_request_id(request))
         return {"status": "ready"}
 
+    @app.get("/internal/v1/documents/{document_id}/articles/{article_id}")
+    def get_article_endpoint(document_id: str, article_id: str, request: Request):
+        request_id = resolve_request_id(request)
+        try:
+            art = get_article(document_id, article_id)
+            return JSONResponse(art, headers={"X-Request-ID": request_id})
+        except ArticleLookupError as exc:
+            return JSONResponse(
+                {"error": {"code": exc.code, "message": exc.message, "retryable": False}},
+                status_code=exc.status_code,
+                headers={"X-Request-ID": request_id},
+            )
+        except Exception as exc:
+            log.error("get_article_failed error_type=%s", type(exc).__name__)
+            return _error(ErrorCode.INTERNAL_ERROR, request_id)
+
     @app.post("/internal/v1/query", openapi_extra={
         "requestBody": {
             "required": True,
@@ -129,7 +146,10 @@ def create_app(pipeline=None, *, runtime_factory=None, timeout_seconds=45,
                         "history": {"type": "array", "items": {"type": "object"}},
                     },
                 },
-                "example": {"question": "Luật Doanh nghiệp quy định những nội dung gì?", "history": []},
+                "example": {
+                    "question": "Luật Doanh nghiệp quy định những nội dung gì?",
+                    "history": [],
+                },
             }},
         },
     })
