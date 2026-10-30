@@ -100,3 +100,17 @@ class RerankerEvaluationReport(BaseModel):
 | **Team 2 $\rightarrow$ Team 1 (Retrieval)** | - Báo cáo phân tích các ca bị Reranker đánh tụt hạng (Demoted cases).<br>- Yêu cầu về cấu trúc `Search Text` và tiêu đề văn bản để Cross-Encoder đọc hiểu tốt hơn. | Team 1 tinh chỉnh lại cách sinh `context_header` và thử nghiệm các tham số tiền xử lý trong Retrieval v2. | File báo cáo kỹ thuật & họp review tuần 8. |
 | **Team 2 $\rightarrow$ Team 3 (Backend)** | - Thống kê thời gian xử lý thực tế của Reranker ($\sim 2.5$s) và LLM ($\sim 18$s).<br>- Xác nhận tổng thời gian AI luôn nằm trong ngưỡng an toàn 45 giây. | Team 3 điều chỉnh cấu hình async timeout trên Spring MVC (`50` giây) và frontend timeout (`60` giây) cho phù hợp. | Tài liệu tham số cấu hình `.env`. |
 | **Team 1 $\rightarrow$ Team 2** | - Bộ ứng viên chất lượng cao từ bản cập nhật Retrieval v2 (Recall@5 $\ge 85\%$). | Team 2 nạp kết quả để chuẩn bị cho tuần 9: Tinh chỉnh Prompt và Module thẩm định trích dẫn chuyên sâu. | Gọi trực tiếp qua thư viện `team1_data`. |
+
+
+## Cập nhật phần Người 1 — 30/10/2026
+
+- VLRA-54/55: đã thêm `scripts/eval_reranker.py` để đo Hybrid và Hybrid +
+  Reranker trên cùng pool top 20, xuất Recall@5/@10/@20, MRR@20, latency,
+  ca tăng/mất nhóm đúng và lỗi từng câu.
+- Hướng dẫn và giới hạn: [Đánh giá Hybrid và Reranker](../../../../docs/team2_rag/reranker-evaluation.md).
+- Kiểm thử offline: 37 test liên quan đạt, có cả đường CLI dùng runtime giả.
+- Chưa hoàn thành thực nghiệm thật: máy chưa có index/model, Golden hiện
+  chưa có Dev split và gold group đã review. Các số liệu ở phần fixture và
+  bảng ước tính phía trên không phải kết quả chạy của lần cập nhật này.
+- VLRA-58: đã có runner để cung cấp bằng chứng; chưa chốt cấu hình tối ưu.
+  Phần phân tích nguyên nhân và tối ưu của Người 2 không thay đổi.
