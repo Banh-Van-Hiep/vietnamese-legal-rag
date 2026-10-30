@@ -2,6 +2,7 @@
 import copy
 import json
 import math
+import sys
 from contextlib import nullcontext
 from pathlib import Path
 import unittest
@@ -161,6 +162,41 @@ class BGEAdapterTests(unittest.TestCase):
         scorer._model.assert_not_called()
         scorer._tokenizer.pad.assert_not_called()
 
+    def test_cuda_moves_inputs_before_inference(self):
+        scorer = self.scorer([8, 7])
+        scorer.device = "cuda"
+        tensor = Mock()
+        scorer._tokenizer.pad.return_value = {"input_ids": tensor}
+        self.assertEqual(scorer([("Q", "A"), ("Q", "B")]), [0.3, 0.7])
+        tensor.to.assert_called_once_with("cuda")
+        scorer._model.assert_called_once_with(input_ids=tensor.to.return_value, return_dict=True)
+
+    def test_load_uses_requested_device_and_same_revision_for_model_and_tokenizer(self):
+        for device in ("cpu", "cuda"):
+            with self.subTest(device=device):
+                torch, transformers = Mock(), Mock()
+                torch.cuda.is_available.return_value = True
+                scorer = BGEScorer(device=device, revision="a" * 40)
+                with patch.dict(sys.modules, torch=torch, transformers=transformers):
+                    scorer._load()
+                    scorer._load()  # Reuse the loaded model.
+                transformers.AutoTokenizer.from_pretrained.assert_called_once_with(
+                    "BAAI/bge-reranker-v2-m3", revision="a" * 40, trust_remote_code=False)
+                transformers.AutoModelForSequenceClassification.from_pretrained.assert_called_once_with(
+                    "BAAI/bge-reranker-v2-m3", revision="a" * 40,
+                    trust_remote_code=False, use_safetensors=True)
+                scorer._model.to.assert_called_once_with(device)
+                scorer._model.eval.assert_called_once()
+
+    def test_unavailable_cuda_fails_before_downloading_model(self):
+        torch, transformers = Mock(), Mock()
+        torch.cuda.is_available.return_value = False
+        with patch.dict(sys.modules, torch=torch, transformers=transformers):
+            with self.assertRaisesRegex(RerankModelError, "CUDA"):
+                BGEScorer(device="cuda")._load()
+        transformers.AutoTokenizer.from_pretrained.assert_not_called()
+        transformers.AutoModelForSequenceClassification.from_pretrained.assert_not_called()
+
     def test_empty_adapter_call_does_not_load_model(self):
         scorer = BGEScorer()
         with patch.object(scorer, "_load") as load:
@@ -168,7 +204,8 @@ class BGEAdapterTests(unittest.TestCase):
         load.assert_not_called()
 
     def test_configuration_limits(self):
-        for kw in ({"batch_size": 0}, {"batch_size": True}, {"max_length": 0}, {"max_length": 513}):
+        for kw in ({"batch_size": 0}, {"batch_size": True}, {"max_length": 0}, {"max_length": 513},
+                   {"device": "auto"}, {"device": "mps"}):
             with self.subTest(kw=kw), self.assertRaises(ValueError):
                 BGEScorer(**kw)
 

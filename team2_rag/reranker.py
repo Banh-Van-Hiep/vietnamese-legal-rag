@@ -87,19 +87,23 @@ def _validate(payload: Mapping) -> None:
 
 
 class BGEScorer:
-    """Lazy CPU adapter for BAAI/bge-reranker-v2-m3; no silent truncation.
+    """Lazy BGE adapter; CPU by default, optional CUDA for experiments.
 
     The first nonempty call downloads/loads the model. Unit tests inject a
     scorer instead, so importing this module never loads torch or a model.
     """
 
-    def __init__(self, *, batch_size: int = 2, max_length: int = 512):
+    def __init__(self, *, batch_size: int = 2, max_length: int = 512,
+                 device: str = "cpu", revision: str | None = None):
         if type(batch_size) is not int or batch_size < 1:
             raise ValueError("batch_size must be a positive integer.")
         if type(max_length) is not int or not 1 <= max_length <= 512:
             raise ValueError("max_length must be between 1 and 512.")
+        if device not in ("cpu", "cuda"):
+            raise ValueError("device must be cpu or cuda.")
         self.batch_size = batch_size
         self.max_length = max_length
+        self.device, self.revision = device, revision
         self._tokenizer = self._model = self._torch = None
 
     def _load(self) -> None:
@@ -110,12 +114,14 @@ class BGEScorer:
             from transformers import AutoModelForSequenceClassification, AutoTokenizer
         except ImportError as exc:
             raise RerankModelError('Install model packages with pip install -e ".[reranker]".') from exc
+        if self.device == "cuda" and not torch.cuda.is_available():
+            raise RerankModelError("CUDA was requested but is not available.")
         name = "BAAI/bge-reranker-v2-m3"
-        tokenizer = AutoTokenizer.from_pretrained(name, trust_remote_code=False)
+        tokenizer = AutoTokenizer.from_pretrained(name, revision=self.revision, trust_remote_code=False)
         model = AutoModelForSequenceClassification.from_pretrained(
-            name, trust_remote_code=False, use_safetensors=True,
+            name, revision=self.revision, trust_remote_code=False, use_safetensors=True,
         )
-        model.to("cpu")
+        model.to(self.device)
         model.eval()
         self._torch, self._tokenizer, self._model = torch, tokenizer, model
 
@@ -133,8 +139,11 @@ class BGEScorer:
             if any(len(ids) > self.max_length for ids in encoded["input_ids"]):
                 raise RerankModelError("A question/content pair exceeds the model token limit.")
             inputs = self._tokenizer.pad(encoded, padding=True, return_tensors="pt")
+            if self.device != "cpu":
+                inputs = {key: value.to(self.device) for key, value in inputs.items()}
             with self._torch.inference_mode():
                 logits = self._model(**inputs, return_dict=True).logits
+            # Copying scores to CPU also waits for CUDA inference to finish.
             scores.extend(logits.reshape(-1).float().cpu().tolist())
         return scores
 

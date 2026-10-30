@@ -136,7 +136,8 @@ def build_retriever(args, corpus):
     try:
         embedder = SentenceTransformerEmbedder(
             name=dense["embedding_model"], revision=dense["embedding_revision"],
-            query_prefix=dense.get("query_prefix", ""), passage_prefix=dense.get("passage_prefix", ""), device="cpu")
+            query_prefix=dense.get("query_prefix", ""), passage_prefix=dense.get("passage_prefix", ""),
+            device=args.embedding_device)
         sparse = BM25Retriever.load(args.bm25_index, args.chunks)
         vectors = DenseRetriever.connect(args.dense_index, embedder, client=client)
         return HybridRetriever(BM25SearchAdapter(sparse), vectors), client
@@ -195,11 +196,16 @@ def main(argv=None):
     connection.add_argument("--qdrant-url", default="http://localhost:6333")
     parser.add_argument("--output", type=Path, required=True, help="JSON report; Markdown uses the same stem")
     parser.add_argument("--exploratory", action="store_true", help="Allow unsplit legacy gold; not an acceptance run")
+    parser.add_argument("--device", choices=("cpu", "cuda"), default="cpu", help="Reranker device")
+    parser.add_argument("--embedding-device", choices=("cpu", "cuda"), default="cpu")
+    parser.add_argument("--reranker-revision", help="Hugging Face commit hash for repeatable experiments")
     args = parser.parse_args(argv)
     report = dict(status="BLOCKED", scope="exploratory" if args.exploratory else "dev",
                   run_at=datetime.now(timezone.utc).isoformat(), environment=environment(),
                   config=dict(candidate_k=20, context_cutoff=5, rrf_k=60, weights=[1, 1],
-                              reranker="BAAI/bge-reranker-v2-m3", device="cpu", batch_size=2, max_length=512))
+                              reranker="BAAI/bge-reranker-v2-m3", device=args.device,
+                              embedding_device=args.embedding_device, reranker_revision=args.reranker_revision,
+                              batch_size=2, max_length=512))
     client = None
     try:
         report["head"] = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
@@ -221,8 +227,11 @@ def main(argv=None):
                                          manifest={k: v for k, v in manifest.items() if k != "chunk_ids"}))
         start = time.perf_counter()
         retriever, client = build_retriever(args, corpus)
-        scorer = BGEScorer()
+        scorer = BGEScorer(device=args.device, revision=args.reranker_revision)
         scorer([("Khởi động mô hình", "Đây là nội dung khởi động mô hình.")])
+        if "cuda" in (args.device, args.embedding_device):
+            report["accelerator"] = dict(name=scorer._torch.cuda.get_device_name(),
+                                         cuda_version=scorer._torch.version.cuda)
         warmup_start = time.perf_counter()
         warmup = retriever.retrieve(cases[0]["question"], top_k=20)
         validate_output(warmup, cases[0]["question"], "hybrid_rrf", corpus)

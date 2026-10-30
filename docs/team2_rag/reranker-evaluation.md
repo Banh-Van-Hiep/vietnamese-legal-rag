@@ -115,3 +115,35 @@ trên `feature/team2-rag`, giữ endpoint Điều luật và tùy chọn fallbac
 pipeline. Runner đánh giá vẫn dùng `strict=True`. Bộ 7 module test liên quan
 đạt 123 test và 88 subtest bằng pytest, gồm API mock, pipeline, Article Store,
 runtime config và đánh giá reranker. Đây vẫn là kiểm thử offline; chưa chạy model thật.
+
+## Tự chạy trên Colab
+
+Mở [notebook Colab](https://colab.research.google.com/github/Banh-Van-Hiep/vietnamese-legal-rag/blob/feature/team2-rag/notebooks/reranker_evaluation_colab.ipynb),
+chọn Runtime → Change runtime type → GPU rồi chạy từng ô. Notebook lấy code,
+cài thư viện, dựng BM25 và Dense/Qdrant local bằng thư viện Team 1, chạy
+runner rồi tải ZIP bằng chứng. Không cần cài model/index trên máy cá nhân.
+Không cần Drive mount, API key, Ollama hoặc Docker.
+
+Mặc định khảo sát 40 câu hiện có bằng `--exploratory`. Muốn đo Dev chính thức,
+cần file đã review/đóng băng với split và gold groups; sửa MODE/GOLDEN ở ô 3.
+Notebook không tự gán nhãn review hoặc chia Test từ dữ liệu đã dùng tối ưu.
+
+CLI có thêm `--device cuda`, `--embedding-device cuda` và
+`--reranker-revision <SHA>`. Mặc định vẫn CPU; ứng dụng không tự bật GPU.
+Nếu yêu cầu CUDA mà máy không có, BGE báo lỗi, không âm thầm chuyển CPU.
+GPU xử lý cả model lẫn tensor đầu vào; điểm được chép về CPU trước khi trả
+kết quả, nên wall time bao gồm hoàn tất inference và chuyển dữ liệu.
+
+Notebook ghi commit code, revision hai model, hash corpus/Golden, manifest,
+tên GPU, CUDA và danh sách thư viện. Index mới mang version riêng, không
+mặc định là snapshot MVP cũ. Không đổi model, passage, batch rerank hoặc
+timeout giữa hai nhánh. Latency Colab không chứng minh deadline trên Mac
+hoặc E2E sản phẩm. [Colab miễn phí không bảo đảm tài nguyên](https://research.google.com/colaboratory/faq.html#resource-limits).
+
+ZIP tải về chứa JSON/Markdown, raw candidates/scores, Golden và metadata;
+không gồm weights/vector index lớn. Tải trước khi phiên kết thúc. Nếu build
+index dở, chạy lại từ ô 3 để tạo run mới; không ghi đè index đã có.
+
+Kiểm tra lần bổ sung Colab: 126 test và 92 subtest offline đạt. Các ô code
+compile thành công; luồng build index được kiểm tra bằng fake, gồm đóng
+Qdrant và chặn ghi đè khi chạy lại. Chưa có bằng chứng chạy CUDA/model thật.

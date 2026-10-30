@@ -114,3 +114,11 @@ class RerankerEvaluationReport(BaseModel):
   bảng ước tính phía trên không phải kết quả chạy của lần cập nhật này.
 - VLRA-58: đã có runner để cung cấp bằng chứng; chưa chốt cấu hình tối ưu.
   Phần phân tích nguyên nhân và tối ưu của Người 2 không thay đổi.
+
+### Bổ sung Colab cho Người 1
+
+- Có notebook `notebooks/reranker_evaluation_colab.ipynb`: dựng index và chạy
+  so sánh trên máy Colab, tải báo cáo về máy cá nhân.
+- Runner hỗ trợ CUDA và ghim revision BGE; mặc định ứng dụng vẫn CPU.
+- 126 test và 92 subtest offline đạt. Chưa có kết quả CUDA/model thật;
+  VLRA-54/55 và phần kết quả thực nghiệm VLRA-58 vẫn chưa được ghi Done.

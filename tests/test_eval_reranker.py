@@ -126,16 +126,22 @@ class EvaluationTests(unittest.TestCase):
             client = Mock()
             scorer = Mock(side_effect=lambda pairs: list(range(len(pairs))))
             scorer._model = SimpleNamespace(config=SimpleNamespace(_commit_hash="test-revision"))
+            scorer._torch = SimpleNamespace(cuda=SimpleNamespace(get_device_name=lambda: "fake-gpu"),
+                                             version=SimpleNamespace(cuda="test-cuda"))
             with patch("scripts.eval_reranker.build_retriever", return_value=(self.retriever, client)), \
-                    patch("scripts.eval_reranker.BGEScorer", return_value=scorer):
+                    patch("scripts.eval_reranker.BGEScorer", return_value=scorer) as factory:
                 code = main(["--golden", str(golden), "--chunks", str(chunks), "--bm25-index", temp,
-                             "--dense-index", temp, "--output", str(output)])
+                             "--dense-index", temp, "--output", str(output), "--device", "cuda",
+                             "--embedding-device", "cuda", "--reranker-revision", "test-revision"])
             self.assertEqual(code, 0)
+            factory.assert_called_once_with(device="cuda", revision="test-revision")
             client.close.assert_called_once()
             self.assertEqual(self.calls, 2)  # One warm-up, one measured pool.
             report = json.loads(output.read_text())
             self.assertEqual(report["status"], "COMPLETE")
             self.assertEqual(report["reranker_revision"], "test-revision")
+            self.assertEqual(report["config"]["embedding_device"], "cuda")
+            self.assertEqual(report["accelerator"], dict(name="fake-gpu", cuda_version="test-cuda"))
             self.assertEqual(report["summary"]["promoted"]["count"], 1)
             self.assertIn("recall_at_5", output.with_suffix(".md").read_text())
 
@@ -146,6 +152,7 @@ class EvaluationTests(unittest.TestCase):
                          "--dense-index", temp, "--output", str(output)])
             self.assertEqual(code, 2)
             self.assertEqual(json.loads(output.read_text())["status"], "BLOCKED")
+            self.assertEqual(json.loads(output.read_text())["config"]["device"], "cpu")
             self.assertIn("Chưa chạy được", output.with_suffix(".md").read_text())
 
 
