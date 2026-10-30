@@ -70,7 +70,7 @@ def summarize(rows):
         count = sum(r["impact"] == name for r in paired)
         result[name] = dict(count=count, rate=count / len(paired) if paired else None)
     result["latency_ms"] = {
-        stage: latency([r[stage] for r in rows if stage in r])
+        stage: latency([r[stage] for r in rows if stage in r and (stage != "total_ms" or r["status"] == "OK")])
         for stage in ("retrieval_ms", "rerank_ms", "total_ms")
     }
     return result

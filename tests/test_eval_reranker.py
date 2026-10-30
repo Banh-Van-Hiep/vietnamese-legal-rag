@@ -85,6 +85,7 @@ class EvaluationTests(unittest.TestCase):
         self.assertIsNone(result["summary"]["after"]["recall_at_5"])
         self.assertIn("before", result["cases"][0])
         self.assertIn("rerank_failed_ms", result["cases"][0])
+        self.assertEqual(result["summary"]["latency_ms"]["total_ms"]["samples"], 0)
 
     def test_provenance_mismatch_is_retrieval_error(self):
         self.corpus = copy.deepcopy(self.corpus)

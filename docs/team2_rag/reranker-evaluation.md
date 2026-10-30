@@ -147,3 +147,15 @@ index dở, chạy lại từ ô 3 để tạo run mới; không ghi đè index 
 Kiểm tra lần bổ sung Colab: 126 test và 92 subtest offline đạt. Các ô code
 compile thành công; luồng build index được kiểm tra bằng fake, gồm đóng
 Qdrant và chặn ghi đè khi chạy lại. Chưa có bằng chứng chạy CUDA/model thật.
+
+Lượt thử Colab thực tế đã gặp OOM khi các framework dùng chung VRAM.
+Notebook hiện đặt `USE_TF=0`, `USE_FLAX=0` và
+`XLA_PYTHON_CLIENT_PREALLOCATE=false` trước khi import model; bước build
+chạy trong tiến trình riêng để trả GPU khi kết thúc. Không đổi weights,
+dtype, batch rerank, giới hạn token hoặc timeout để xử lý lỗi bộ nhớ.
+[XLA có cơ chế cấp trước bộ nhớ GPU](https://docs.jax.dev/en/latest/gpu_memory_allocation.html).
+Nếu đã chạy notebook cũ, restart Python session trước khi dùng cấu hình mới.
+
+ZIP có thêm cấu hình framework và kiểm tra token độc lập cho các ca lỗi
+reranker. Thống kê tổng latency chỉ lấy các câu hoàn tất cả hai bước;
+thời gian của từng bước lỗi vẫn được giữ trong raw JSON.
