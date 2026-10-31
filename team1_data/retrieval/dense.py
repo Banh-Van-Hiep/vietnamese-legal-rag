@@ -158,17 +158,21 @@ class DenseRetriever:
             raise RetrievalUnavailableError(
                 f"embedder {embedder.name}@{embedder.revision} (dim {embedder.dim}) does not match the index "
                 f"({expected[0]}@{expected[1]}, dim {expected[2]})")
+        for key in ("query_prefix", "passage_prefix"):
+            if getattr(embedder, key, "") != manifest.get(key, ""):
+                raise RetrievalUnavailableError(f"embedder {key} does not match the index")
         client = client if client is not None else QdrantClient(url=url)
         if not _qdrant("collection_exists", client.collection_exists, name):
             raise RetrievalUnavailableError(f"collection {name} does not exist")
-        points, offset, stored = [], None, set()
+        points, offset, stored = [], None, []
         while True:
             points, offset = _qdrant("scroll", client.scroll, name, limit=1024, offset=offset,
                                      with_payload=["chunk_id"], with_vectors=False)
-            stored.update(p.payload["chunk_id"] for p in points)
+            stored.extend(p.payload["chunk_id"] for p in points)
             if offset is None:
                 break
-        if stored != set(ids):
+        # Mỗi chunk_id đúng một point: point trùng sẽ làm Reranker nhận chunk_id lặp.
+        if len(stored) != len(ids) or set(stored) != set(ids):
             raise RetrievalUnavailableError(
                 f"collection {name} does not match the manifest ({len(stored)} points, {len(ids)} chunk_id)")
         self = cls.__new__(cls)

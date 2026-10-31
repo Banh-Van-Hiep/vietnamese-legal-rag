@@ -1,0 +1,7 @@
+[
+ {"name": "bm25", "method": "bm25"},
+ {"name": "dense_lsa384", "method": "dense", "embedder": {"type": "lsa", "dim": 384}},
+ {"name": "hybrid_k60_lsa256", "method": "hybrid_rrf", "rrf_k": 60, "embedder": {"type": "lsa", "dim": 256}},
+ {"name": "hybrid_k60_lsa384", "method": "hybrid_rrf", "rrf_k": 60, "embedder": {"type": "lsa", "dim": 384}},
+ {"name": "hybrid_k60_lsa768", "method": "hybrid_rrf", "rrf_k": 60, "embedder": {"type": "lsa", "dim": 768}}
+]
