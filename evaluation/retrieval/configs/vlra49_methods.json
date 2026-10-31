@@ -1,0 +1,5 @@
+[
+ {"name": "bm25", "method": "bm25", "bm25": {"k1": 1.2, "b": 0.75}},
+ {"name": "dense_lsa256", "method": "dense", "embedder": {"type": "lsa", "dim": 256}},
+ {"name": "hybrid_rrf_k60", "method": "hybrid_rrf", "rrf_k": 60, "embedder": {"type": "lsa", "dim": 256}}
+]
