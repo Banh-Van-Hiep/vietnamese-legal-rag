@@ -1,0 +1,1635 @@
+[
+ {
+  "id": "gold_001",
+  "question": "Luật Doanh nghiệp quy định về những vấn đề gì?",
+  "expected_status": "answered",
+  "ground_truth": "Luật Doanh nghiệp quy định về việc thành lập, tổ chức quản lý, tổ chức lại, giải thể và hoạt động có liên quan của doanh nghiệp, bao gồm công ty trách nhiệm hữu hạn, công ty cổ phần, công ty hợp danh, doanh nghiệp tư nhân và nhóm công ty.",
+  "gold_chunk_ids": [
+   "luat-59-2020-qh14-v1__dieu-1__k0__0"
+  ],
+  "citation": "Điều 1 - Luật Doanh nghiệp 2020",
+  "category": "Phạm vi điều chỉnh",
+  "author": "Bành Văn Hiệp",
+  "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_001",
+  "review_status": "team2_reviewed"
+ },
+ {
+  "id": "gold_002",
+  "question": "Những ai thuộc đối tượng áp dụng của Luật Doanh nghiệp?",
+  "expected_status": "answered",
+  "ground_truth": "Đối tượng áp dụng gồm doanh nghiệp và cơ quan, tổ chức, cá nhân có liên quan đến việc thành lập, tổ chức quản lý, tổ chức lại, giải thể và hoạt động có liên quan của doanh nghiệp.",
+  "gold_chunk_ids": [
+   "luat-59-2020-qh14-v1__dieu-2__k1__0",
+   "luat-59-2020-qh14-v1__dieu-2__k2__0"
+  ],
+  "citation": "Điều 2 - Luật Doanh nghiệp 2020",
+  "category": "Đối tượng áp dụng",
+  "author": "Bành Văn Hiệp",
+  "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_002",
+  "review_status": "team2_reviewed"
+ },
+ {
+  "id": "gold_003",
+  "question": "Theo Luật Doanh nghiệp, cổ đông là ai?",
+  "expected_status": "answered",
+  "ground_truth": "Cổ đông là cá nhân, tổ chức sở hữu ít nhất một cổ phần của công ty cổ phần.",
+  "gold_chunk_ids": [
+   "luat-59-2020-qh14-v1__dieu-4__k3__0"
+  ],
+  "citation": "Khoản 3 Điều 4 - Luật Doanh nghiệp 2020",
+  "category": "Giải thích thuật ngữ",
+  "author": "Bành Văn Hiệp",
+  "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_003",
+  "review_status": "team2_reviewed"
+ },
+ {
+  "id": "gold_004",
+  "question": "Vốn điều lệ của công ty trách nhiệm hữu hạn được xác định như thế nào?",
+  "expected_status": "answered",
+  "ground_truth": "Vốn điều lệ của công ty trách nhiệm hữu hạn là tổng giá trị tài sản do các thành viên công ty hoặc chủ sở hữu công ty đã góp hoặc cam kết góp khi thành lập công ty.",
+  "gold_chunk_ids": [
+   "luat-59-2020-qh14-v1__dieu-4__k34__0"
+  ],
+  "citation": "Khoản 34 Điều 4 - Luật Doanh nghiệp 2020",
+  "category": "Vốn",
+  "author": "Bành Văn Hiệp",
+  "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_004",
+  "review_status": "team2_reviewed"
+ },
+ {
+  "id": "gold_005",
+  "question": "Doanh nghiệp có những quyền gì theo Điều 7 Luật Doanh nghiệp?",
+  "expected_status": "answered",
+  "ground_truth": "Doanh nghiệp có quyền: tự do kinh doanh ngành, nghề mà luật không cấm; tự chủ kinh doanh và lựa chọn hình thức tổ chức, ngành nghề, địa bàn, quy mô; lựa chọn hình thức, phương thức huy động, phân bổ và sử dụng vốn; tự do tìm kiếm thị trường, khách hàng và ký kết hợp đồng; kinh doanh xuất khẩu, nhập khẩu; tuyển dụng, thuê và sử dụng lao động theo quy định của pháp luật; chủ động ứng dụng khoa học và công nghệ và được bảo hộ quyền sở hữu trí tuệ; chiếm hữu, sử dụng, định đoạt tài sản của doanh nghiệp; từ chối yêu cầu của cơ quan, tổ chức, cá nhân về cung cấp nguồn lực không theo quy định của pháp luật; khiếu nại, tham gia tố tụng theo quy định của pháp luật; và các quyền khác theo quy định của pháp luật.",
+  "gold_chunk_ids": [
+   "luat-59-2020-qh14-v1__dieu-7__k1__0",
+   "luat-59-2020-qh14-v1__dieu-7__k2__0",
+   "luat-59-2020-qh14-v1__dieu-7__k3__0",
+   "luat-59-2020-qh14-v1__dieu-7__k4__0",
+   "luat-59-2020-qh14-v1__dieu-7__k5__0",
+   "luat-59-2020-qh14-v1__dieu-7__k6__0",
+   "luat-59-2020-qh14-v1__dieu-7__k7__0",
+   "luat-59-2020-qh14-v1__dieu-7__k8__0",
+   "luat-59-2020-qh14-v1__dieu-7__k9__0",
+   "luat-59-2020-qh14-v1__dieu-7__k10__0",
+   "luat-59-2020-qh14-v1__dieu-7__k11__0"
+  ],
+  "citation": "Điều 7 - Luật Doanh nghiệp 2020",
+  "category": "Quyền của doanh nghiệp",
+  "author": "Bành Văn Hiệp",
+  "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_005",
+  "review_status": "team2_reviewed"
+ },
+ {
+  "id": "gold_006",
+  "question": "Công ty TNHH hai thành viên trở lên được có tối thiểu và tối đa bao nhiêu thành viên? Thành viên có thể là tổ chức không?",
+  "expected_status": "answered",
+  "ground_truth": "Công ty TNHH hai thành viên trở lên có từ 2 đến 50 thành viên. Thành viên có thể là tổ chức hoặc cá nhân.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-46__k1__0"
+  ],
+  "citation": "Khoản 1 Điều 46 - Luật Doanh nghiệp, theo Văn bản hợp nhất 67/VBHN-VPQH năm 2025",
+  "category": "Công ty TNHH hai thành viên trở lên",
+  "author": "Đỗ Đức Đạt",
+  "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_006",
+  "review_status": "team2_reviewed"
+ },
+ {
+  "id": "gold_007",
+  "question": "Thành viên công ty TNHH hai thành viên trở lên phải góp đủ vốn đã cam kết trong bao lâu? Thời gian vận chuyển, nhập khẩu tài sản góp vốn và làm thủ tục chuyển quyền sở hữu có tính vào thời hạn này không?",
+  "expected_status": "answered",
+  "ground_truth": "Thành viên phải góp đủ vốn và đúng loại tài sản đã cam kết trong 90 ngày tính từ ngày công ty được cấp Giấy chứng nhận đăng ký doanh nghiệp. Thời gian vận chuyển, nhập khẩu tài sản góp vốn và thực hiện thủ tục hành chính để chuyển quyền sở hữu tài sản không được tính vào 90 ngày này.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-47__k2__0"
+  ],
+  "citation": "Khoản 2 Điều 47 - Luật Doanh nghiệp, theo Văn bản hợp nhất 67/VBHN-VPQH năm 2025",
+  "category": "Thời hạn góp vốn",
+  "author": "Đỗ Đức Đạt",
+  "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_007",
+  "review_status": "team2_reviewed"
+ },
+ {
+  "id": "gold_008",
+  "question": "Khi thành viên góp vốn vào công ty TNHH bằng tài sản có đăng ký quyền sở hữu, việc chuyển quyền sở hữu tài sản đó cho công ty có phải chịu lệ phí trước bạ không?",
+  "expected_status": "answered",
+  "ground_truth": "Không phải chịu lệ phí trước bạ khi chuyển quyền sở hữu tài sản góp vốn cho công ty. Người góp vốn vẫn phải thực hiện thủ tục chuyển quyền sở hữu tài sản có đăng ký quyền sở hữu theo quy định pháp luật.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-35__k1__0"
+  ],
+  "citation": "Điểm a Khoản 1 Điều 35 - Luật Doanh nghiệp, theo Văn bản hợp nhất 67/VBHN-VPQH năm 2025",
+  "category": "Chuyển quyền sở hữu tài sản góp vốn",
+  "author": "Đỗ Đức Đạt",
+  "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_008",
+  "review_status": "team2_reviewed"
+ },
+ {
+  "id": "gold_009",
+  "question": "Công ty cổ phần phải có ít nhất bao nhiêu cổ đông và có giới hạn số lượng cổ đông tối đa không?",
+  "expected_status": "answered",
+  "ground_truth": "Công ty cổ phần cần tối thiểu 3 cổ đông và không bị giới hạn số cổ đông tối đa. Cổ đông có thể là tổ chức hoặc cá nhân.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-111__k1__0"
+  ],
+  "citation": "Điểm b Khoản 1 Điều 111 - Luật Doanh nghiệp, theo Văn bản hợp nhất 67/VBHN-VPQH năm 2025",
+  "category": "Công ty cổ phần",
+  "author": "Đỗ Đức Đạt",
+  "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_009",
+  "review_status": "team2_reviewed"
+ },
+ {
+  "id": "gold_010",
+  "question": "Doanh nghiệp tư nhân có được phát hành chứng khoán để huy động vốn không?",
+  "expected_status": "answered",
+  "ground_truth": "Không. Doanh nghiệp tư nhân không được huy động vốn bằng cách phát hành bất kỳ loại chứng khoán nào.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-188__k2__0"
+  ],
+  "citation": "Khoản 2 Điều 188 - Luật Doanh nghiệp, theo Văn bản hợp nhất 67/VBHN-VPQH năm 2025",
+  "category": "Doanh nghiệp tư nhân",
+  "author": "Đỗ Đức Đạt",
+  "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_010",
+  "review_status": "team2_reviewed"
+ },
+ {
+  "id": "gold_011",
+  "question": "Theo Điều 16 Luật Doanh nghiệp, những hành vi nào bị nghiêm cấm trong đăng ký doanh nghiệp và hoạt động kinh doanh?",
+  "expected_status": "answered",
+  "ground_truth": "Các hành vi bị nghiêm cấm bao gồm: cấp hoặc từ chối cấp Giấy chứng nhận đăng ký doanh nghiệp trái quy định; yêu cầu nộp thêm giấy tờ trái luật; gây chậm trễ, phiền hà, cản trở hoặc sách nhiễu; ngăn cản chủ sở hữu, thành viên, cổ đông thực hiện quyền và nghĩa vụ; kinh doanh không đăng ký hoặc tiếp tục kinh doanh khi đã bị thu hồi giấy chứng nhận hoặc đang bị tạm dừng; kê khai không trung thực, không chính xác; kê khai khống vốn điều lệ, không góp đủ vốn hoặc cố ý định giá sai tài sản góp vốn; kinh doanh ngành, nghề bị cấm hoặc chưa đủ điều kiện; lừa đảo, rửa tiền và tài trợ khủng bố.",
+  "gold_chunk_ids": [
+   "luat-59-2020-qh14-v1__dieu-16__k1__0",
+   "luat-59-2020-qh14-v1__dieu-16__k2__0",
+   "luat-59-2020-qh14-v1__dieu-16__k3__0",
+   "luat-59-2020-qh14-v1__dieu-16__k4__0",
+   "luat-59-2020-qh14-v1__dieu-16__k5__0",
+   "luat-59-2020-qh14-v1__dieu-16__k6__0",
+   "luat-59-2020-qh14-v1__dieu-16__k7__0"
+  ],
+  "citation": "Điều 16 - Các hành vi bị nghiêm cấm",
+  "category": "Hành vi bị nghiêm cấm",
+  "author": "Trần Anh Dũng",
+  "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_011",
+  "review_status": "team2_reviewed"
+ },
+ {
+  "id": "gold_012",
+  "question": "Hồ sơ đăng ký công ty hợp danh gồm những giấy tờ gì theo Điều 20 Luật Doanh nghiệp?",
+  "expected_status": "answered",
+  "ground_truth": "Hồ sơ đăng ký công ty hợp danh gồm: (1) Giấy đề nghị đăng ký doanh nghiệp; (2) Điều lệ công ty; (3) Danh sách thành viên; (4) Bản sao giấy tờ pháp lý của cá nhân đối với thành viên; (5) Bản sao Giấy chứng nhận đăng ký đầu tư đối với nhà đầu tư nước ngoài theo quy định của Luật Đầu tư.",
+  "gold_chunk_ids": [
+   "luat-59-2020-qh14-v1__dieu-20__k1__0",
+   "luat-59-2020-qh14-v1__dieu-20__k2__0",
+   "luat-59-2020-qh14-v1__dieu-20__k3__0",
+   "luat-59-2020-qh14-v1__dieu-20__k4__0",
+   "luat-59-2020-qh14-v1__dieu-20__k5__0"
+  ],
+  "citation": "Điều 20 - Hồ sơ đăng ký công ty hợp danh",
+  "category": "Hồ sơ đăng ký doanh nghiệp",
+  "author": "Trần Anh Dũng",
+  "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_012",
+  "review_status": "team2_reviewed"
+ },
+ {
+  "id": "gold_013",
+  "question": "Giấy đề nghị đăng ký doanh nghiệp phải có những nội dung chủ yếu nào theo Điều 23 Luật Doanh nghiệp?",
+  "expected_status": "answered",
+  "ground_truth": "Giấy đề nghị đăng ký doanh nghiệp gồm các nội dung chủ yếu: tên doanh nghiệp; địa chỉ trụ sở chính và thông tin liên hệ; ngành, nghề kinh doanh; vốn điều lệ hoặc vốn đầu tư của chủ doanh nghiệp tư nhân; thông tin về cổ phần đối với công ty cổ phần; thông tin đăng ký thuế; số lượng lao động dự kiến; thông tin cá nhân và chữ ký của chủ doanh nghiệp tư nhân, thành viên hợp danh và người đại diện theo pháp luật của công ty trách nhiệm hữu hạn, công ty cổ phần theo quy định tại Điều 23.",
+  "gold_chunk_ids": [
+   "luat-59-2020-qh14-v1__dieu-23__k1__0",
+   "luat-59-2020-qh14-v1__dieu-23__k2__0",
+   "luat-59-2020-qh14-v1__dieu-23__k3__0",
+   "luat-59-2020-qh14-v1__dieu-23__k4__0",
+   "luat-59-2020-qh14-v1__dieu-23__k5__0",
+   "luat-59-2020-qh14-v1__dieu-23__k6__0",
+   "luat-59-2020-qh14-v1__dieu-23__k7__0",
+   "luat-59-2020-qh14-v1__dieu-23__k8__0",
+   "luat-59-2020-qh14-v1__dieu-23__k9__0"
+  ],
+  "citation": "Điều 23 - Nội dung giấy đề nghị đăng ký doanh nghiệp",
+  "category": "Nội dung đăng ký doanh nghiệp",
+  "author": "Trần Anh Dũng",
+  "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_013",
+  "review_status": "team2_reviewed"
+ },
+ {
+  "id": "gold_014",
+  "question": "Điều lệ công ty phải quy định những nội dung chủ yếu nào theo Điều 24 Luật Doanh nghiệp?",
+  "expected_status": "answered",
+  "ground_truth": "Điều lệ công ty phải có các nội dung chủ yếu như: tên và địa chỉ trụ sở chính, chi nhánh và văn phòng đại diện nếu có; ngành, nghề kinh doanh; vốn điều lệ và thông tin cổ phần đối với công ty cổ phần; thông tin thành viên, chủ sở hữu hoặc cổ đông sáng lập và phần vốn góp hoặc cổ phần tương ứng; quyền và nghĩa vụ của thành viên, cổ đông; cơ cấu tổ chức quản lý; số lượng, chức danh, quyền và nghĩa vụ của người đại diện theo pháp luật; thể thức thông qua quyết định và giải quyết tranh chấp nội bộ; căn cứ xác định lương, thù lao, thưởng; trường hợp mua lại phần vốn góp hoặc cổ phần; nguyên tắc phân chia lợi nhuận và xử lý lỗ; trường hợp, trình tự giải thể và thanh lý tài sản; thể thức sửa đổi, bổ sung Điều lệ.",
+  "gold_chunk_ids": [
+   "luat-59-2020-qh14-v1__dieu-24__k1__0",
+   "luat-59-2020-qh14-v1__dieu-24__k2__0",
+   "luat-59-2020-qh14-v1__dieu-24__k3__0",
+   "luat-59-2020-qh14-v1__dieu-24__k4__0"
+  ],
+  "citation": "Khoản 2 Điều 24 - Điều lệ công ty",
+  "category": "Điều lệ công ty",
+  "author": "Trần Anh Dũng",
+  "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_014",
+  "review_status": "team2_reviewed"
+ },
+ {
+  "id": "gold_015",
+  "question": "Giấy chứng nhận đăng ký doanh nghiệp gồm những nội dung chủ yếu nào theo Điều 28 Luật Doanh nghiệp?",
+  "expected_status": "answered",
+  "ground_truth": "Giấy chứng nhận đăng ký doanh nghiệp gồm: (1) Tên doanh nghiệp và mã số doanh nghiệp; (2) Địa chỉ trụ sở chính; (3) Thông tin cá nhân của người đại diện theo pháp luật, thành viên hợp danh hoặc chủ doanh nghiệp tư nhân; đối với công ty trách nhiệm hữu hạn còn có thông tin của thành viên là cá nhân hoặc thông tin tên, mã số doanh nghiệp và địa chỉ trụ sở chính của thành viên là tổ chức; (4) Vốn điều lệ đối với công ty hoặc vốn đầu tư đối với doanh nghiệp tư nhân.",
+  "gold_chunk_ids": [
+   "luat-59-2020-qh14-v1__dieu-28__k1__0",
+   "luat-59-2020-qh14-v1__dieu-28__k2__0",
+   "luat-59-2020-qh14-v1__dieu-28__k3__0",
+   "luat-59-2020-qh14-v1__dieu-28__k4__0"
+  ],
+  "citation": "Điều 28 - Nội dung Giấy chứng nhận đăng ký doanh nghiệp",
+  "category": "Giấy chứng nhận đăng ký doanh nghiệp",
+  "author": "Trần Anh Dũng",
+  "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_015",
+  "review_status": "team2_reviewed"
+ },
+ {
+  "id": "gold_016",
+  "question": "So sánh các loại hình doanh nghiệp theo Luật Doanh nghiệp 2020: công ty trách nhiệm hữu hạn hai thành viên trở lên, công ty trách nhiệm hữu hạn một thành viên, công ty cổ phần, công ty hợp danh và doanh nghiệp tư nhân khác nhau thế nào về chủ sở hữu và mức chịu trách nhiệm về nợ?",
+  "expected_status": "answered",
+  "ground_truth": "Công ty TNHH hai thành viên trở lên có từ 02 đến 50 thành viên là tổ chức, cá nhân, thành viên chịu trách nhiệm trong phạm vi số vốn đã góp (trừ trường hợp khoản 4 Điều 47). Công ty TNHH một thành viên do một tổ chức hoặc một cá nhân làm chủ sở hữu, chủ sở hữu chịu trách nhiệm trong phạm vi số vốn điều lệ. Công ty cổ phần có vốn điều lệ chia thành các cổ phần bằng nhau, cổ đông là tổ chức, cá nhân, tối thiểu 03 và không hạn chế tối đa, chỉ chịu trách nhiệm trong phạm vi số vốn đã góp. Công ty hợp danh có ít nhất 02 thành viên hợp danh là chủ sở hữu chung, thành viên hợp danh là cá nhân chịu trách nhiệm bằng toàn bộ tài sản, có thể có thêm thành viên góp vốn chỉ chịu trách nhiệm trong phạm vi vốn đã cam kết góp. Doanh nghiệp tư nhân do một cá nhân làm chủ và tự chịu trách nhiệm bằng toàn bộ tài sản của mình.",
+  "gold_chunk_ids": [
+   "luat-59-2020-qh14-v1__dieu-46__k1__0",
+   "luat-59-2020-qh14-v1__dieu-74__k1__0",
+   "luat-59-2020-qh14-v1__dieu-111__k1__0",
+   "luat-59-2020-qh14-v1__dieu-177__k1__0",
+   "luat-59-2020-qh14-v1__dieu-188__k1__0"
+  ],
+  "citation": "Khoản 1 Điều 46, khoản 1 Điều 74, khoản 1 Điều 111, khoản 1 Điều 177, khoản 1 Điều 188 - Luật Doanh nghiệp 2020",
+  "category": "Loại hình doanh nghiệp",
+  "author": "Phương Anh",
+  "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_016",
+  "review_status": "team2_reviewed"
+ },
+ {
+  "id": "gold_017",
+  "question": "Cổ đông công ty cổ phần chịu trách nhiệm về nợ của công ty trong phạm vi nào và có những nghĩa vụ gì?",
+  "expected_status": "answered",
+  "ground_truth": "Cổ đông chỉ chịu trách nhiệm về các khoản nợ và nghĩa vụ tài sản khác của công ty trong phạm vi số vốn đã góp vào doanh nghiệp. Cổ đông có nghĩa vụ: thanh toán đủ và đúng hạn số cổ phần cam kết mua; không được rút vốn đã góp bằng cổ phần phổ thông ra khỏi công ty dưới mọi hình thức, trừ trường hợp được công ty hoặc người khác mua lại cổ phần (nếu rút trái quy định thì cổ đông và người có lợi ích liên quan liên đới chịu trách nhiệm về nợ và nghĩa vụ tài sản trong phạm vi giá trị cổ phần bị rút và các thiệt hại); tuân thủ Điều lệ và quy chế quản lý nội bộ; chấp hành nghị quyết, quyết định của Đại hội đồng cổ đông, Hội đồng quản trị; bảo mật thông tin do công ty cung cấp và chỉ dùng để bảo vệ quyền, lợi ích hợp pháp của mình; thực hiện nghĩa vụ khác theo Luật và Điều lệ công ty.",
+  "gold_chunk_ids": [
+   "luat-59-2020-qh14-v1__dieu-111__k1__0",
+   "luat-59-2020-qh14-v1__dieu-119__k1__0",
+   "luat-59-2020-qh14-v1__dieu-119__k2__0",
+   "luat-59-2020-qh14-v1__dieu-119__k3__0",
+   "luat-59-2020-qh14-v1__dieu-119__k4__0",
+   "luat-59-2020-qh14-v1__dieu-119__k5__0",
+   "luat-59-2020-qh14-v1__dieu-119__k6__0"
+  ],
+  "citation": "Điểm c khoản 1 Điều 111, Điều 119 - Luật Doanh nghiệp 2020",
+  "category": "Cổ đông công ty cổ phần",
+  "author": "Phương Anh",
+  "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_017",
+  "review_status": "team2_reviewed"
+ },
+ {
+  "id": "gold_018",
+  "question": "Công ty trách nhiệm hữu hạn và công ty cổ phần có thể có bao nhiêu người đại diện theo pháp luật, và người đại diện theo pháp luật phải thực hiện những trách nhiệm gì?",
+  "expected_status": "answered",
+  "ground_truth": "Công ty TNHH và công ty cổ phần có thể có một hoặc nhiều người đại diện theo pháp luật; Điều lệ công ty quy định cụ thể số lượng, chức danh quản lý, quyền và nghĩa vụ của họ. Nếu có nhiều hơn một người mà Điều lệ chưa phân chia rõ quyền, nghĩa vụ thì mỗi người đều là đại diện đủ thẩm quyền của doanh nghiệp trước bên thứ ba và tất cả cùng chịu trách nhiệm liên đới đối với thiệt hại gây ra cho doanh nghiệp. Người đại diện theo pháp luật phải: thực hiện quyền và nghĩa vụ được giao một cách trung thực, cẩn trọng, tốt nhất vì lợi ích hợp pháp của doanh nghiệp; trung thành với lợi ích của doanh nghiệp, không lạm dụng địa vị, chức vụ, thông tin, bí quyết, cơ hội kinh doanh, tài sản của doanh nghiệp để tư lợi hoặc phục vụ người khác; thông báo kịp thời, đầy đủ, chính xác về doanh nghiệp mà mình và người có liên quan làm chủ hoặc có cổ phần, phần vốn góp. Người đại diện chịu trách nhiệm cá nhân đối với thiệt hại cho doanh nghiệp do vi phạm các trách nhiệm này.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-12__k2__0",
+   "vbhn-67-vbhn-vpqh-v1__dieu-13__k1__0",
+   "vbhn-67-vbhn-vpqh-v1__dieu-13__k2__0"
+  ],
+  "citation": "Khoản 2 Điều 12, Điều 13 - Luật Doanh nghiệp (Văn bản hợp nhất 67/VBHN-VPQH)",
+  "category": "Người đại diện theo pháp luật",
+  "author": "Phương Anh",
+  "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_018",
+  "review_status": "team2_reviewed"
+ },
+ {
+  "id": "gold_019",
+  "question": "Doanh nghiệp bị giải thể trong những trường hợp nào, phải đáp ứng điều kiện gì, và với trường hợp tự giải thể thì phải gửi hồ sơ cho cơ quan đăng ký kinh doanh theo các mốc thời hạn nào?",
+  "expected_status": "answered",
+  "ground_truth": "Theo khoản 1 Điều 207 Luật Doanh nghiệp (bản hợp nhất), doanh nghiệp bị giải thể khi: kết thúc thời hạn hoạt động ghi trong Điều lệ mà không gia hạn; có nghị quyết, quyết định giải thể của chủ doanh nghiệp tư nhân, Hội đồng thành viên, chủ sở hữu công ty hoặc Đại hội đồng cổ đông tùy loại hình; công ty không còn đủ số lượng thành viên, cổ đông tối thiểu trong 06 tháng liên tục mà không chuyển đổi loại hình; hoặc bị thu hồi Giấy chứng nhận đăng ký doanh nghiệp (trừ trường hợp Luật Quản lý thuế quy định khác). Doanh nghiệp chỉ được giải thể khi bảo đảm thanh toán hết nợ và nghĩa vụ tài sản khác và không trong quá trình giải quyết tranh chấp tại Tòa án hoặc Trọng tài. Với ba trường hợp đầu (điểm a, b, c), theo Điều 64 Nghị định 168/2025/NĐ-CP: trong 07 ngày làm việc kể từ ngày thông qua nghị quyết hoặc quyết định giải thể, doanh nghiệp gửi giấy tờ (gồm nghị quyết, quyết định giải thể) đến Cơ quan đăng ký kinh doanh cấp tỉnh nơi đặt trụ sở chính; trong 05 ngày làm việc kể từ ngày thanh toán hết nợ, doanh nghiệp gửi hồ sơ đăng ký giải thể; trước khi nộp hồ sơ đăng ký giải thể phải làm thủ tục chấm dứt hoạt động chi nhánh, văn phòng đại diện, địa điểm kinh doanh.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-207__k1__0",
+   "vbhn-67-vbhn-vpqh-v1__dieu-207__k2__0",
+   "nd-168-2025-nd-cp-v1__dieu-64__k1__0",
+   "nd-168-2025-nd-cp-v1__dieu-64__k3__0",
+   "nd-168-2025-nd-cp-v1__dieu-64__k4__0"
+  ],
+  "citation": "Khoản 1, 2 Điều 207 - Luật Doanh nghiệp (VBHN 67/VBHN-VPQH); khoản 1, 3, 4 Điều 64 - Nghị định 168/2025/NĐ-CP",
+  "category": "Giải thể doanh nghiệp",
+  "author": "Phương Anh",
+  "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_019",
+  "review_status": "team2_reviewed"
+ },
+ {
+  "id": "gold_020",
+  "question": "Chủ sở hữu hưởng lợi của doanh nghiệp được xác định theo tiêu chí nào, doanh nghiệp phải kê khai những thông tin gì và lưu giữ danh sách này ra sao?",
+  "expected_status": "answered",
+  "ground_truth": "Chủ sở hữu hưởng lợi là cá nhân sở hữu trực tiếp hoặc gián tiếp từ 25% vốn điều lệ hoặc 25% tổng số cổ phần có quyền biểu quyết trở lên của doanh nghiệp, hoặc cá nhân có quyền chi phối việc thông qua ít nhất một trong các vấn đề như bổ nhiệm, miễn nhiệm, bãi nhiệm đa số hoặc tất cả thành viên hội đồng quản trị, chủ tịch hội đồng quản trị, chủ tịch hội đồng thành viên, người đại diện theo pháp luật, giám đốc hoặc tổng giám đốc; sửa đổi, bổ sung điều lệ; thay đổi cơ cấu tổ chức quản lý; tổ chức lại, giải thể công ty. Sở hữu gián tiếp là sở hữu từ 25% trở lên thông qua tổ chức khác. Doanh nghiệp kê khai, thông báo với Cơ quan đăng ký kinh doanh cấp tỉnh: cá nhân là cổ đông sở hữu từ 25% tổng số cổ phần có quyền biểu quyết trở lên; cá nhân là thành viên sở hữu từ 25% vốn điều lệ trở lên của công ty hợp danh, công ty TNHH hai thành viên trở lên; cá nhân là chủ sở hữu công ty TNHH một thành viên; chủ sở hữu hưởng lợi theo tiêu chí quyền chi phối thì doanh nghiệp tự xác định và kê khai (nếu có); và thông tin cổ đông là tổ chức sở hữu từ 25% tổng số cổ phần có quyền biểu quyết trở lên (tên tổ chức, mã số doanh nghiệp hoặc số quyết định thành lập, ngày cấp, nơi cấp, địa chỉ trụ sở chính, tỷ lệ sở hữu). Doanh nghiệp lưu giữ danh sách chủ sở hữu hưởng lợi đã kê khai dưới dạng văn bản giấy hoặc văn bản điện tử.",
+  "gold_chunk_ids": [
+   "nd-168-2025-nd-cp-v1__dieu-17__k1__0",
+   "nd-168-2025-nd-cp-v1__dieu-17__k2__0",
+   "nd-168-2025-nd-cp-v1__dieu-18__k1__0",
+   "nd-168-2025-nd-cp-v1__dieu-18__k2__0",
+   "nd-168-2025-nd-cp-v1__dieu-18__k3__0",
+   "nd-168-2025-nd-cp-v1__dieu-19__k0__0"
+  ],
+  "citation": "Điều 17, Điều 18, Điều 19 - Nghị định 168/2025/NĐ-CP",
+  "category": "Chủ sở hữu hưởng lợi",
+  "author": "Phương Anh",
+  "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_020",
+  "review_status": "team2_reviewed"
+ },
+ {
+  "id": "gold_021",
+  "question": "Luật số 76/2025/QH15 sửa đổi Luật Doanh nghiệp theo hướng nào để quản lý thông tin về chủ sở hữu hưởng lợi?",
+  "expected_status": "answered",
+  "ground_truth": "Luật 76/2025/QH15 bổ sung thông tin chủ sở hữu hưởng lợi vào nhiều điều của Luật Doanh nghiệp: bổ sung khoản 5a Điều 8 (doanh nghiệp có nghĩa vụ thu thập, cập nhật, lưu giữ thông tin về chủ sở hữu hưởng lợi và cung cấp cho cơ quan nhà nước có thẩm quyền khi được yêu cầu); bổ sung điểm h khoản 1 Điều 11 (hồ sơ có danh sách chủ sở hữu hưởng lợi, nếu có); bổ sung danh sách chủ sở hữu hưởng lợi (nếu có) vào khoản 3 Điều 20, Điều 21, Điều 22 và thông tin về chủ sở hữu hưởng lợi vào khoản 10 Điều 23; thêm thông tin chủ sở hữu hưởng lợi vào nội dung phải thông báo thay đổi tại khoản 1 Điều 31; bổ sung khoản 1a Điều 33 (cơ quan nhà nước có thẩm quyền được đề nghị cung cấp thông tin chủ sở hữu hưởng lợi lưu trên Hệ thống thông tin quốc gia về đăng ký doanh nghiệp để phục vụ phòng, chống rửa tiền và không phải trả phí); bổ sung điểm h khoản 1 Điều 216 (lưu giữ thông tin ít nhất 05 năm kể từ ngày doanh nghiệp giải thể, phá sản); bổ sung khoản 6 Điều 217 (Chính phủ quy định chi tiết tiêu chí xác định, chủ thể kê khai, việc kê khai, cung cấp, lưu giữ, chia sẻ thông tin).",
+  "gold_chunk_ids": [
+   "luat-76-2025-qh15-v1__dieu-1__k2__0",
+   "luat-76-2025-qh15-v1__dieu-1__k3__0",
+   "luat-76-2025-qh15-v1__dieu-1__k7__0",
+   "luat-76-2025-qh15-v1__dieu-1__k8__0",
+   "luat-76-2025-qh15-v1__dieu-1__k9__0",
+   "luat-76-2025-qh15-v1__dieu-1__k10__0",
+   "luat-76-2025-qh15-v1__dieu-1__k13__0",
+   "luat-76-2025-qh15-v1__dieu-1__k14__0",
+   "luat-76-2025-qh15-v1__dieu-1__k26__0",
+   "luat-76-2025-qh15-v1__dieu-1__k27__0"
+  ],
+  "citation": "Khoản 2, 3, 7, 8, 9, 10, 13, 14, 26, 27 Điều 1 - Luật số 76/2025/QH15",
+  "category": "Chủ sở hữu hưởng lợi",
+  "author": "Tuấn",
+  "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_021",
+  "review_status": "team2_reviewed"
+ },
+ {
+  "id": "gold_022",
+  "question": "Luật số 76/2025/QH15 có hiệu lực từ khi nào, doanh nghiệp thành lập trước ngày luật có hiệu lực phải bổ sung thông tin chủ sở hữu hưởng lợi vào thời điểm nào, và các đợt chào bán trái phiếu riêng lẻ đã công bố thông tin trước đó áp dụng quy định nào?",
+  "expected_status": "answered",
+  "ground_truth": "Luật có hiệu lực thi hành từ ngày 01 tháng 7 năm 2025. Doanh nghiệp đăng ký thành lập trước thời điểm này bổ sung thông tin về chủ sở hữu hưởng lợi (nếu có) và thông tin để xác định chủ sở hữu hưởng lợi (nếu có) đồng thời tại thời điểm thực hiện thủ tục đăng ký thay đổi hoặc thông báo thay đổi nội dung đăng ký doanh nghiệp gần nhất, trừ khi doanh nghiệp yêu cầu bổ sung sớm hơn. Các đợt chào bán trái phiếu doanh nghiệp riêng lẻ đã gửi nội dung công bố thông tin trước đợt chào bán cho Sở giao dịch chứng khoán trước ngày luật có hiệu lực thì tiếp tục thực hiện theo Luật Doanh nghiệp số 59/2020/QH14 đã được sửa đổi, bổ sung theo Luật số 03/2022/QH15.",
+  "gold_chunk_ids": [
+   "luat-76-2025-qh15-v1__dieu-2__k0__0",
+   "luat-76-2025-qh15-v1__dieu-3__k1__0",
+   "luat-76-2025-qh15-v1__dieu-3__k2__0"
+  ],
+  "citation": "Điều 2, Điều 3 - Luật số 76/2025/QH15",
+  "category": "Hiệu lực và chuyển tiếp",
+  "author": "Tuấn",
+  "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_022",
+  "review_status": "team2_reviewed"
+ },
+ {
+  "id": "gold_023",
+  "question": "Theo văn bản hợp nhất Nghị định hướng dẫn Luật Doanh nghiệp (7566/VBHN-BKHĐT), doanh nghiệp xã hội được xác định theo quy định nào, phải duy trì những cam kết gì và ai phải chịu trách nhiệm liên đới khi doanh nghiệp xã hội vi phạm?",
+  "expected_status": "answered",
+  "ground_truth": "Doanh nghiệp xã hội là doanh nghiệp đáp ứng tiêu chí quy định tại khoản 1 Điều 10 Luật Doanh nghiệp. Doanh nghiệp xã hội phải duy trì mục tiêu xã hội, môi trường, mức lợi nhuận giữ lại để tái đầu tư và các nội dung khác ghi trong Cam kết thực hiện mục tiêu xã hội, môi trường trong suốt quá trình hoạt động. Trừ trường hợp chấm dứt mục tiêu xã hội, môi trường trước thời hạn đã cam kết, doanh nghiệp phải hoàn lại toàn bộ ưu đãi, khoản viện trợ, tài trợ đã tiếp nhận và lợi nhuận giữ lại để tái đầu tư. Nếu vi phạm, chủ doanh nghiệp tư nhân, thành viên hợp danh, thành viên công ty TNHH, cổ đông có liên quan đối với công ty cổ phần, thành viên Hội đồng quản trị, Giám đốc, Tổng Giám đốc ở nhiệm kỳ hoặc thời gian có liên quan chịu trách nhiệm liên đới đối với thiệt hại phát sinh.",
+  "gold_chunk_ids": [
+   "vbhn-7566-vbhn-bkhdt-v1__dieu-2__k1__0",
+   "vbhn-7566-vbhn-bkhdt-v1__dieu-3__k1__0",
+   "vbhn-7566-vbhn-bkhdt-v1__dieu-3__k2__0"
+  ],
+  "citation": "Khoản 1 Điều 2, Điều 3 - Nghị định hướng dẫn Luật Doanh nghiệp (VBHN 7566/VBHN-BKHĐT)",
+  "category": "Doanh nghiệp xã hội",
+  "author": "Tuấn",
+  "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_023",
+  "review_status": "team2_reviewed"
+ },
+ {
+  "id": "gold_024",
+  "question": "Doanh nghiệp nhà nước công bố thông tin bằng hình thức và phương tiện nào, báo cáo công bố qua mạng điện tử có giá trị pháp lý ra sao và phải được duy trì tối thiểu bao lâu?",
+  "expected_status": "answered",
+  "ground_truth": "Hình thức công bố thông tin gồm văn bản và dữ liệu điện tử. Phương tiện báo cáo, công bố gồm trang thông tin điện tử của doanh nghiệp, cổng hoặc trang thông tin điện tử của cơ quan đại diện chủ sở hữu và Cổng thông tin doanh nghiệp. Báo cáo công bố thông tin qua mạng điện tử có giá trị pháp lý như bản giấy, là cơ sở đối chiếu, so sánh, xác thực thông tin phục vụ thu thập, tổng hợp, kiểm tra, giám sát. Báo cáo phải được duy trì trên các kênh trên (trang thông tin điện tử của doanh nghiệp, cổng hoặc trang của cơ quan đại diện chủ sở hữu và Cổng thông tin doanh nghiệp) tối thiểu 05 năm.",
+  "gold_chunk_ids": [
+   "vbhn-7566-vbhn-bkhdt-v1__dieu-21__k1__0",
+   "vbhn-7566-vbhn-bkhdt-v1__dieu-21__k2__0",
+   "vbhn-7566-vbhn-bkhdt-v1__dieu-20__k4__0",
+   "vbhn-7566-vbhn-bkhdt-v1__dieu-20__k5__0"
+  ],
+  "citation": "Khoản 1, 2 Điều 21, khoản 4, 5 Điều 20 - Nghị định hướng dẫn Luật Doanh nghiệp (VBHN 7566/VBHN-BKHĐT)",
+  "category": "Công bố thông tin doanh nghiệp nhà nước",
+  "author": "Tuấn",
+  "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_024",
+  "review_status": "team2_reviewed"
+ },
+ {
+  "id": "gold_025",
+  "question": "Theo Nghị định 122/2021/NĐ-CP, vi phạm hành chính trong lĩnh vực đăng ký doanh nghiệp bị xử phạt bằng những hình thức nào, mức phạt tiền tối đa là bao nhiêu, mức phạt đối với cá nhân so với tổ chức ra sao và thời hiệu xử phạt là bao lâu?",
+  "expected_status": "answered",
+  "ground_truth": "Hình thức xử phạt chính gồm phạt cảnh cáo và phạt tiền; ngoài ra tùy tính chất, mức độ vi phạm còn bị áp dụng một hoặc nhiều biện pháp khắc phục hậu quả quy định tại các điều từ Chương II đến Chương V của Nghị định. Mức phạt tiền tối đa trong lĩnh vực đăng ký doanh nghiệp là 100.000.000 đồng. Mức phạt tiền quy định tại Nghị định là mức áp dụng đối với tổ chức (trừ một số điều được nêu rõ là áp dụng cho cá nhân); với cùng một hành vi, mức phạt đối với cá nhân bằng 1/2 mức phạt đối với tổ chức. Thời hiệu xử phạt vi phạm hành chính trong lĩnh vực đăng ký doanh nghiệp là 01 năm.",
+  "gold_chunk_ids": [
+   "nd-122-2021-nd-cp-v1__dieu-3__k1__0",
+   "nd-122-2021-nd-cp-v1__dieu-3__k2__0",
+   "nd-122-2021-nd-cp-v1__dieu-4__k1__0",
+   "nd-122-2021-nd-cp-v1__dieu-4__k2__0",
+   "nd-122-2021-nd-cp-v1__dieu-5__k1__0"
+  ],
+  "citation": "Điều 3, Điều 4, khoản 1 Điều 5 - Nghị định 122/2021/NĐ-CP",
+  "category": "Xử phạt vi phạm hành chính",
+  "author": "Tuấn",
+  "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_025",
+  "review_status": "team2_reviewed"
+ },
+ {
+  "id": "gold_026",
+  "question": "Công ty hết thời hạn hoạt động ghi trong Điều lệ mà không thực hiện thủ tục giải thể thì bị phạt bao nhiêu, phải khắc phục hậu quả thế nào và mức phạt đó áp dụng cho tổ chức hay cá nhân?",
+  "expected_status": "answered",
+  "ground_truth": "Hành vi không thực hiện thủ tục giải thể khi kết thúc thời hạn hoạt động ghi trong Điều lệ công ty mà không có quyết định gia hạn bị phạt tiền từ 20.000.000 đồng đến 30.000.000 đồng; biện pháp khắc phục hậu quả là buộc thực hiện thủ tục giải thể doanh nghiệp. Mức phạt này là mức áp dụng đối với tổ chức; với cùng một hành vi, mức phạt đối với cá nhân bằng 1/2 mức phạt đối với tổ chức.",
+  "gold_chunk_ids": [
+   "nd-122-2021-nd-cp-v1__dieu-58__k1__0",
+   "nd-122-2021-nd-cp-v1__dieu-58__k2__0",
+   "nd-122-2021-nd-cp-v1__dieu-4__k2__0"
+  ],
+  "citation": "Khoản 1, 2 Điều 58, khoản 2 Điều 4 - Nghị định 122/2021/NĐ-CP",
+  "category": "Xử phạt vi phạm hành chính",
+  "author": "Hậu",
+  "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_026",
+  "review_status": "team2_reviewed"
+ },
+ {
+  "id": "gold_027",
+  "question": "Theo Nghị định 288/2026/NĐ-CP, kê khai không trung thực hồ sơ đăng ký doanh nghiệp và chậm đăng ký thay đổi nội dung đăng ký doanh nghiệp bị xử phạt như thế nào?",
+  "expected_status": "answered",
+  "ground_truth": "Nghị định 288/2026/NĐ-CP sửa đổi Điều 43 Nghị định 122/2021: kê khai không trung thực, không chính xác nội dung hồ sơ đăng ký doanh nghiệp (và các hồ sơ liên quan, kể cả thông tin chủ sở hữu hưởng lợi) bị phạt tiền từ 30.000.000 đến 70.000.000 đồng. Sửa đổi Điều 44: vi phạm thời hạn đăng ký thay đổi nội dung đăng ký doanh nghiệp quá hạn từ 01 đến 10 ngày bị cảnh cáo; từ 11 đến 30 ngày bị phạt 10.000.000 đến 20.000.000 đồng; từ 31 đến 90 ngày bị phạt 30.000.000 đến 40.000.000 đồng; từ 91 ngày trở lên bị phạt 50.000.000 đến 60.000.000 đồng.",
+  "gold_chunk_ids": [
+   "nd-288-2026-nd-cp-v1__dieu-1__k0__0",
+   "nd-288-2026-nd-cp-v1__dieu-2__k1__0",
+   "nd-288-2026-nd-cp-v1__dieu-2__k2__0",
+   "nd-288-2026-nd-cp-v1__dieu-2__k3__0",
+   "nd-288-2026-nd-cp-v1__dieu-2__k4__0"
+  ],
+  "citation": "Điều 1, khoản 1, 2, 3, 4 Điều 2 - Nghị định 288/2026/NĐ-CP (sửa đổi Điều 43, Điều 44 Nghị định 122/2021/NĐ-CP)",
+  "category": "Xử phạt vi phạm hành chính",
+  "author": "Hậu",
+  "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_027",
+  "review_status": "team2_reviewed"
+ },
+ {
+  "id": "gold_028",
+  "question": "Nghị định 288/2026/NĐ-CP bãi bỏ những quy định nào của Nghị định 122/2021/NĐ-CP, có hiệu lực từ khi nào và ai chịu trách nhiệm hướng dẫn thi hành?",
+  "expected_status": "answered",
+  "ground_truth": "Nghị định 288/2026/NĐ-CP bãi bỏ Điều 49 và điểm a, điểm b khoản 1 và điểm a, điểm b khoản 2 Điều 50 (của Nghị định 122/2021/NĐ-CP). Nghị định có hiệu lực thi hành kể từ ngày ký ban hành. Bộ trưởng Bộ Tài chính có trách nhiệm hướng dẫn và tổ chức thi hành.",
+  "gold_chunk_ids": [
+   "nd-288-2026-nd-cp-v1__dieu-7__k0__0",
+   "nd-288-2026-nd-cp-v1__dieu-8__k1__0",
+   "nd-288-2026-nd-cp-v1__dieu-8__k2__0"
+  ],
+  "citation": "Điều 7, khoản 1, 2 Điều 8 - Nghị định 288/2026/NĐ-CP",
+  "category": "Hiệu lực và chuyển tiếp",
+  "author": "Hậu",
+  "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_028",
+  "review_status": "team2_reviewed"
+ },
+ {
+  "id": "gold_029",
+  "question": "Thông tư 68/2025/TT-BTC ban hành biểu mẫu cho những hoạt động nào, áp dụng cho đối tượng nào, có hiệu lực từ khi nào và làm hết hiệu lực hoặc bãi bỏ những văn bản nào?",
+  "expected_status": "answered",
+  "ground_truth": "Thông tư ban hành biểu mẫu sử dụng trong đăng ký doanh nghiệp (Phụ lục I) và đăng ký hộ kinh doanh (Phụ lục II), áp dụng cho các đối tượng quy định tại Điều 2 Nghị định 168/2025/NĐ-CP về đăng ký doanh nghiệp. Thông tư có hiệu lực từ ngày 01 tháng 7 năm 2025. Thông tư bãi bỏ biểu mẫu tại Phụ lục I của Thông tư 43/2025/TT-BTC; đồng thời Thông tư 01/2021/TT-BKHĐT và Thông tư 02/2023/TT-BKHĐT hết hiệu lực kể từ ngày Thông tư này có hiệu lực.",
+  "gold_chunk_ids": [
+   "tt-68-2025-tt-btc-v1__dieu-1__k1__0",
+   "tt-68-2025-tt-btc-v1__dieu-1__k2__0",
+   "tt-68-2025-tt-btc-v1__dieu-2__k1__0",
+   "tt-68-2025-tt-btc-v1__dieu-2__k2__0",
+   "tt-68-2025-tt-btc-v1__dieu-3__k1__0",
+   "tt-68-2025-tt-btc-v1__dieu-3__k2__0",
+   "tt-68-2025-tt-btc-v1__dieu-3__k3__0"
+  ],
+  "citation": "Điều 1, Điều 2, khoản 1, 2, 3 Điều 3 - Thông tư 68/2025/TT-BTC",
+  "category": "Biểu mẫu đăng ký doanh nghiệp",
+  "author": "Hậu",
+  "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_029",
+  "review_status": "team2_reviewed"
+ },
+ {
+  "id": "gold_030",
+  "question": "Doanh nghiệp tạm ngừng kinh doanh phải gửi thông báo trước ít nhất mấy ngày làm việc, hồ sơ gồm những giấy tờ nào, và hành vi không thông báo tạm ngừng kinh doanh bị xử phạt thế nào?",
+  "expected_status": "answered",
+  "ground_truth": "Doanh nghiệp gửi hồ sơ thông báo đến Cơ quan đăng ký kinh doanh cấp tỉnh chậm nhất 03 ngày làm việc trước ngày tạm ngừng kinh doanh. Hồ sơ gồm thông báo tạm ngừng kinh doanh và bản sao hoặc bản chính nghị quyết, quyết định về việc tạm ngừng kinh doanh của chủ sở hữu công ty (TNHH một thành viên), Hội đồng thành viên (TNHH hai thành viên trở lên, công ty hợp danh) hoặc Hội đồng quản trị (công ty cổ phần). Theo Điều 44 Nghị định 122/2021/NĐ-CP đã được Nghị định 288/2026/NĐ-CP sửa đổi, hành vi không thông báo tạm ngừng kinh doanh hoặc tiếp tục kinh doanh bị phạt từ 30.000.000 đến 70.000.000 đồng và bị buộc thực hiện thông báo tạm ngừng kinh doanh hoặc tiếp tục kinh doanh.",
+  "gold_chunk_ids": [
+   "nd-168-2025-nd-cp-v1__dieu-60__k1__0",
+   "nd-168-2025-nd-cp-v1__dieu-60__k2__0",
+   "nd-288-2026-nd-cp-v1__dieu-2__k5__0",
+   "nd-288-2026-nd-cp-v1__dieu-2__k7__0"
+  ],
+  "citation": "Khoản 1, 2 Điều 60 - Nghị định 168/2025/NĐ-CP; khoản 5, 7 Điều 2 - Nghị định 288/2026/NĐ-CP",
+  "category": "Tạm ngừng kinh doanh",
+  "author": "Hậu",
+  "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_030",
+  "review_status": "team2_reviewed"
+ },
+ {
+  "id": "gold_031",
+  "question": "Nếu Điều lệ không quy định khác, tổ chức sở hữu ít nhất 35% vốn điều lệ của công ty TNHH hai thành viên trở lên được cử tối đa bao nhiêu người đại diện theo ủy quyền?",
+  "expected_status": "answered",
+  "ground_truth": "Tổ chức là thành viên sở hữu ít nhất 35% vốn điều lệ được ủy quyền tối đa 3 người đại diện, nếu Điều lệ công ty không có quy định khác.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-14__k2__0"
+  ],
+  "citation": "Khoản 2 Điều 14 - Luật Doanh nghiệp, Văn bản hợp nhất 67/VBHN-VPQH ngày 15/08/2025",
+  "category": "Đại diện theo ủy quyền",
+  "author": "Đỗ Đức Đạt",
+  "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_031",
+  "review_status": "team2_reviewed"
+ },
+ {
+  "id": "gold_032",
+  "question": "Văn bản cử người đại diện theo ủy quyền của thành viên là tổ chức có hiệu lực đối với công ty từ lúc ký hay từ lúc công ty nhận được?",
+  "expected_status": "answered",
+  "ground_truth": "Văn bản cử người đại diện theo ủy quyền phải được thông báo cho công ty và chỉ có hiệu lực đối với công ty kể từ ngày công ty nhận được văn bản.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-14__k4__0"
+  ],
+  "citation": "Khoản 4 Điều 14 - Luật Doanh nghiệp, Văn bản hợp nhất 67/VBHN-VPQH ngày 15/08/2025",
+  "category": "Đại diện theo ủy quyền",
+  "author": "Đỗ Đức Đạt",
+  "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_032",
+  "review_status": "team2_reviewed"
+ },
+ {
+  "id": "gold_033",
+  "question": "Tài sản góp vốn không phải Đồng Việt Nam, ngoại tệ tự do chuyển đổi hoặc vàng phải được định giá thế nào?",
+  "expected_status": "answered",
+  "ground_truth": "Tài sản đó phải được các thành viên, cổ đông sáng lập hoặc tổ chức thẩm định giá định giá và được thể hiện thành Đồng Việt Nam.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-36__k1__0"
+  ],
+  "citation": "Khoản 1 Điều 36 - Luật Doanh nghiệp, Văn bản hợp nhất 67/VBHN-VPQH ngày 15/08/2025",
+  "category": "Tài sản góp vốn",
+  "author": "Đỗ Đức Đạt",
+  "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_033",
+  "review_status": "team2_reviewed"
+ },
+ {
+  "id": "gold_034",
+  "question": "Dấu của doanh nghiệp có thể tồn tại dưới hình thức chữ ký số hay bắt buộc là dấu khắc?",
+  "expected_status": "answered",
+  "ground_truth": "Dấu bao gồm dấu được làm tại cơ sở khắc dấu hoặc dấu dưới hình thức chữ ký số theo quy định của pháp luật về giao dịch điện tử.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-43__k1__0"
+  ],
+  "citation": "Khoản 1 Điều 43 - Luật Doanh nghiệp, Văn bản hợp nhất 67/VBHN-VPQH ngày 15/08/2025",
+  "category": "Dấu doanh nghiệp",
+  "author": "Đỗ Đức Đạt",
+  "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_034",
+  "review_status": "team2_reviewed"
+ },
+ {
+  "id": "gold_035",
+  "question": "Công ty TNHH một thành viên muốn hoàn trả một phần vốn góp để giảm vốn điều lệ thì phải đáp ứng điều kiện nào?",
+  "expected_status": "answered",
+  "ground_truth": "Công ty phải hoạt động kinh doanh liên tục từ 2 năm trở lên kể từ ngày đăng ký thành lập doanh nghiệp và bảo đảm thanh toán đủ các khoản nợ, nghĩa vụ tài sản khác sau khi hoàn trả phần vốn góp cho chủ sở hữu.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-87__k3__0"
+  ],
+  "citation": "Khoản 3 Điều 87 - Luật Doanh nghiệp, Văn bản hợp nhất 67/VBHN-VPQH ngày 15/08/2025",
+  "category": "Giảm vốn điều lệ",
+  "author": "Đỗ Đức Đạt",
+  "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_035",
+  "review_status": "team2_reviewed"
+ },
+ {
+  "id": "gold_036",
+  "question": "Công ty cổ phần có bắt buộc phải có cổ phần phổ thông không và người sở hữu loại cổ phần này được gọi là gì?",
+  "expected_status": "answered",
+  "ground_truth": "Công ty cổ phần phải có cổ phần phổ thông. Người sở hữu cổ phần phổ thông là cổ đông phổ thông.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-114__k1__0"
+  ],
+  "citation": "Khoản 1 Điều 114 - Luật Doanh nghiệp, Văn bản hợp nhất 67/VBHN-VPQH ngày 15/08/2025",
+  "category": "Các loại cổ phần",
+  "author": "Đỗ Đức Đạt",
+  "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_036",
+  "review_status": "team2_reviewed"
+ },
+ {
+  "id": "gold_037",
+  "question": "Cổ tức cố định của cổ phần ưu đãi cổ tức có phụ thuộc vào kết quả kinh doanh của công ty không?",
+  "expected_status": "answered",
+  "ground_truth": "Cổ tức cố định không phụ thuộc vào kết quả kinh doanh của công ty. Mức cổ tức cố định cụ thể và phương thức xác định cổ tức thưởng được ghi rõ trong cổ phiếu của cổ phần ưu đãi cổ tức.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-117__k1__0"
+  ],
+  "citation": "Khoản 1 Điều 117 - Luật Doanh nghiệp, Văn bản hợp nhất 67/VBHN-VPQH ngày 15/08/2025",
+  "category": "Cổ phần ưu đãi cổ tức",
+  "author": "Đỗ Đức Đạt",
+  "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_037",
+  "review_status": "team2_reviewed"
+ },
+ {
+  "id": "gold_038",
+  "question": "Khi đăng ký thành lập doanh nghiệp, các cổ đông sáng lập phải cùng đăng ký mua tối thiểu bao nhiêu phần trăm cổ phần phổ thông được quyền chào bán?",
+  "expected_status": "answered",
+  "ground_truth": "Các cổ đông sáng lập phải cùng nhau đăng ký mua ít nhất 20% tổng số cổ phần phổ thông được quyền chào bán khi đăng ký thành lập doanh nghiệp.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-120__k2__0"
+  ],
+  "citation": "Khoản 2 Điều 120 - Luật Doanh nghiệp, Văn bản hợp nhất 67/VBHN-VPQH ngày 15/08/2025",
+  "category": "Cổ đông sáng lập",
+  "author": "Đỗ Đức Đạt",
+  "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_038",
+  "review_status": "team2_reviewed"
+ },
+ {
+  "id": "gold_039",
+  "question": "Công ty cổ phần có thể trả cổ tức bằng tài sản khác ngoài tiền mặt không? Nếu trả bằng tiền mặt thì dùng đồng tiền nào?",
+  "expected_status": "answered",
+  "ground_truth": "Cổ tức có thể được chi trả bằng tiền mặt, bằng cổ phần của công ty hoặc bằng tài sản khác quy định tại Điều lệ công ty. Nếu chi trả bằng tiền mặt thì phải thực hiện bằng Đồng Việt Nam và theo các phương thức thanh toán theo quy định của pháp luật.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-135__k3__0"
+  ],
+  "citation": "Khoản 3 Điều 135 - Luật Doanh nghiệp, Văn bản hợp nhất 67/VBHN-VPQH ngày 15/08/2025",
+  "category": "Chi trả cổ tức",
+  "author": "Đỗ Đức Đạt",
+  "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_039",
+  "review_status": "team2_reviewed"
+ },
+ {
+  "id": "gold_040",
+  "question": "Cổ đông chuyển nhượng cổ phần sau khi chốt danh sách nhận cổ tức nhưng trước ngày trả cổ tức thì ai nhận cổ tức từ công ty?",
+  "expected_status": "answered",
+  "ground_truth": "Trong trường hợp chuyển nhượng giữa thời điểm kết thúc lập danh sách cổ đông và thời điểm trả cổ tức, người chuyển nhượng là người nhận cổ tức từ công ty.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-135__k5__0"
+  ],
+  "citation": "Khoản 5 Điều 135 - Luật Doanh nghiệp, Văn bản hợp nhất 67/VBHN-VPQH ngày 15/08/2025",
+  "category": "Chi trả cổ tức",
+  "author": "Đỗ Đức Đạt",
+  "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_040",
+  "review_status": "team2_reviewed"
+ },
+ {
+  "id": "gold_041",
+  "question": "Báo cáo hằng năm của công ty cổ phần phải gửi Ban kiểm soát thẩm định chậm nhất bao nhiêu ngày trước ngày khai mạc họp Đại hội đồng cổ đông thường niên?",
+  "expected_status": "answered",
+  "ground_truth": "3. Báo cáo quy định tại các điểm a, b và c khoản 1 Điều này phải được gửi đến Ban kiểm soát để thẩm định chậm nhất là 30 ngày trước ngày khai mạc cuộc họp Đại hội đồng cổ đông thường niên nếu Điều lệ công ty không có quy định khác.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-175__k3__0"
+  ],
+  "citation": "Khoản 3 Điều 175 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Báo cáo hằng năm",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-175__k3__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_042",
+  "question": "Trước hạn thanh toán đủ cổ phần đã đăng ký mua, số phiếu biểu quyết của cổ đông được tính như thế nào?",
+  "expected_status": "answered",
+  "ground_truth": "2. Trong thời hạn từ ngày công ty được cấp Giấy chứng nhận đăng ký doanh nghiệp đến ngày cuối cùng phải thanh toán đủ số cổ phần đã đăng ký mua quy định tại khoản 1 Điều này, số phiếu biểu quyết của các cổ đông được tính theo số cổ phần phổ thông đã được đăng ký mua, trừ trường hợp Điều lệ công ty có quy định khác.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-113__k2__0"
+  ],
+  "citation": "Khoản 2 Điều 113 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Công ty cổ phần",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-113__k2__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_043",
+  "question": "Chủ tọa cuộc họp Đại hội đồng cổ đông có quyền gì để điều hành cuộc họp?",
+  "expected_status": "answered",
+  "ground_truth": "Trong trường hợp Điều lệ công ty không có quy định khác thì thể thức họp và biểu quyết tại cuộc họp Đại hội đồng cổ đông được tiến hành như sau:\n\n4. Chủ tọa có quyền thực hiện các biện pháp cần thiết và hợp lý để điều hành cuộc họp một cách có trật tự, đúng theo chương trình đã được thông qua và phản ánh được mong muốn của đa số người dự họp;",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-146__k4__0"
+  ],
+  "citation": "Khoản 4 Điều 146 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Đại hội đồng cổ đông",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-146__k4__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_044",
+  "question": "Người đại diện theo ủy quyền của cổ đông là tổ chức có trách nhiệm gì khi tham dự họp?",
+  "expected_status": "answered",
+  "ground_truth": "2. Người đại diện theo ủy quyền có trách nhiệm tham dự đầy đủ cuộc họp Hội đồng thành viên, Đại hội đồng cổ đông; thực hiện quyền và nghĩa vụ được ủy quyền một cách trung thực, cẩn trọng, tốt nhất, bảo vệ lợi ích hợp pháp của chủ sở hữu, thành viên, cổ đông cử đại diện.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-15__k2__0"
+  ],
+  "citation": "Khoản 2 Điều 15 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Người đại diện theo ủy quyền",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-15__k2__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_045",
+  "question": "Cổ phần đã bán của công ty cổ phần được hiểu như thế nào?",
+  "expected_status": "answered",
+  "ground_truth": "2. Cổ phần đã bán là cổ phần được quyền chào bán đã được các cổ đông thanh toán đủ cho công ty. Khi đăng ký thành lập doanh nghiệp, cổ phần đã bán là tổng số cổ phần các loại đã được đăng ký mua.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-112__k2__0"
+  ],
+  "citation": "Khoản 2 Điều 112 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Vốn công ty cổ phần",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-112__k2__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_046",
+  "question": "Số lượng và quyền hạn của Phó giám đốc công ty TNHH một thành viên do nhà nước nắm giữ 100% vốn được quy định ở đâu?",
+  "expected_status": "answered",
+  "ground_truth": "3. Công ty có một hoặc một số Phó giám đốc hoặc Phó Tổng giám đốc. Số lượng, thẩm quyền bổ nhiệm Phó giám đốc hoặc Phó Tổng giám đốc quy định tại Điều lệ công ty. Quyền và nghĩa vụ của Phó giám đốc hoặc Phó Tổng giám đốc quy định tại Điều lệ công ty, hợp đồng lao động.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-100__k3__0"
+  ],
+  "citation": "Khoản 3 Điều 100 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Doanh nghiệp nhà nước",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-100__k3__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_047",
+  "question": "Doanh nghiệp bị mất Giấy chứng nhận đăng ký doanh nghiệp thì có được cấp lại không?",
+  "expected_status": "answered",
+  "ground_truth": "2. Trường hợp Giấy chứng nhận đăng ký doanh nghiệp bị mất, bị hư hỏng hoặc bị hủy hoại dưới hình thức khác, doanh nghiệp được cấp lại Giấy chứng nhận đăng ký doanh nghiệp và phải nộp lệ phí theo quy định của pháp luật.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-27__k2__0"
+  ],
+  "citation": "Khoản 2 Điều 27 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Đăng ký doanh nghiệp",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-27__k2__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_048",
+  "question": "Chủ tịch Hội đồng quản trị phải triệu tập họp Hội đồng quản trị trong những trường hợp nào?",
+  "expected_status": "answered",
+  "ground_truth": "3. Chủ tịch Hội đồng quản trị triệu tập họp Hội đồng quản trị trong trường hợp sau đây:\na) Có đề nghị của Ban kiểm soát hoặc thành viên độc lập Hội đồng quản trị;\n\nb) Có đề nghị của Giám đốc hoặc Tổng giám đốc hoặc ít nhất 05 người quản lý khác;\n\nc) Có đề nghị của ít nhất 02 thành viên Hội đồng quản trị;\n\nd) Trường hợp khác do Điều lệ công ty quy định.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-157__k3__0"
+  ],
+  "citation": "Khoản 3 Điều 157 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Hội đồng quản trị",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-157__k3__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_049",
+  "question": "Chủ doanh nghiệp tư nhân bị mất năng lực hành vi dân sự thì quyền và nghĩa vụ của họ được thực hiện thế nào?",
+  "expected_status": "answered",
+  "ground_truth": "4. Trường hợp chủ doanh nghiệp tư nhân bị hạn chế hoặc mất năng lực hành vi dân sự, có khó khăn trong nhận thức, làm chủ hành vi thì quyền và nghĩa vụ của chủ doanh nghiệp tư nhân được thực hiện thông qua người đại diện.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-193__k4__0"
+  ],
+  "citation": "Khoản 4 Điều 193 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Doanh nghiệp tư nhân",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-193__k4__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_050",
+  "question": "Tiền lương, thù lao của Giám đốc công ty TNHH hai thành viên được hạch toán như thế nào?",
+  "expected_status": "answered",
+  "ground_truth": "2. Tiền lương, thù lao, thưởng và lợi ích khác của Chủ tịch Hội đồng thành viên, Giám đốc hoặc Tổng giám đốc và người quản lý khác được tính vào chi phí kinh doanh theo quy định của pháp luật về thuế thu nhập doanh nghiệp, pháp luật có liên quan và phải được thể hiện thành mục riêng trong báo cáo tài chính hằng năm của công ty.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-66__k2__0"
+  ],
+  "citation": "Khoản 2 Điều 66 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Công ty TNHH hai thành viên",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-66__k2__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_051",
+  "question": "Nghị quyết Đại hội đồng cổ đông lấy ý kiến bằng văn bản được thông qua khi đạt tỷ lệ tán thành bao nhiêu?",
+  "expected_status": "answered",
+  "ground_truth": "4. Trường hợp thông qua nghị quyết dưới hình thức lấy ý kiến bằng văn bản thì nghị quyết Đại hội đồng cổ đông được thông qua nếu được số cổ đông sở hữu trên 50% tổng số phiếu biểu quyết của tất cả cổ đông có quyền biểu quyết tán thành; tỷ lệ cụ thể do Điều lệ công ty quy định.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-148__k4__0"
+  ],
+  "citation": "Khoản 4 Điều 148 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Đại hội đồng cổ đông",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-148__k4__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_052",
+  "question": "Hợp đồng, giao dịch giữa công ty mẹ và công ty con phải được thực hiện theo nguyên tắc nào?",
+  "expected_status": "answered",
+  "ground_truth": "2. Hợp đồng, giao dịch và quan hệ khác giữa công ty mẹ và công ty con đều phải được thiết lập và thực hiện độc lập, bình đẳng theo điều kiện áp dụng đối với chủ thể pháp lý độc lập.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-196__k2__0"
+  ],
+  "citation": "Khoản 2 Điều 196 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Nhóm công ty",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-196__k2__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_053",
+  "question": "Sau khi chuyển đổi công ty TNHH thành công ty cổ phần, công ty phải đăng ký chuyển đổi trong thời hạn bao lâu?",
+  "expected_status": "answered",
+  "ground_truth": "3. Công ty phải đăng ký chuyển đổi công ty với Cơ quan đăng ký kinh doanh trong thời hạn 10 ngày kể từ ngày hoàn thành việc chuyển đổi. Trong thời hạn 03 ngày làm việc kể từ ngày nhận hồ sơ chuyển đổi, Cơ quan đăng ký kinh doanh cấp lại Giấy chứng nhận đăng ký doanh nghiệp và cập nhật tình trạng pháp lý của công ty trên Cơ sở dữ liệu quốc gia về đăng ký doanh nghiệp.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-202__k3__0"
+  ],
+  "citation": "Khoản 3 Điều 202 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Chuyển đổi loại hình",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-202__k3__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_054",
+  "question": "Cơ quan đăng ký kinh doanh có nghĩa vụ gì trong việc cung cấp thông tin về nội dung đăng ký doanh nghiệp?",
+  "expected_status": "answered",
+  "ground_truth": "2. Cơ quan quản lý nhà nước về đăng ký kinh doanh và Cơ quan đăng ký kinh doanh có nghĩa vụ cung cấp đầy đủ và kịp thời thông tin theo quy định tại khoản 1 Điều này.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-33__k2__0"
+  ],
+  "citation": "Khoản 2 Điều 33 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Đăng ký doanh nghiệp",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-33__k2__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_055",
+  "question": "Chủ tịch Hội đồng thành viên công ty do nhà nước nắm 100% vốn có thể bị miễn nhiệm, cách chức khi nào?",
+  "expected_status": "answered",
+  "ground_truth": "3. Ngoài trường hợp quy định tại Điều 94 của Luật này, Chủ tịch Hội đồng thành viên có thể bị miễn nhiệm, cách chức nếu không thực hiện quyền và nghĩa vụ quy định tại khoản 2 Điều này.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-95__k3__0"
+  ],
+  "citation": "Khoản 3 Điều 95 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Doanh nghiệp nhà nước",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-95__k3__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_056",
+  "question": "Sau khi được cấp Giấy chứng nhận đăng ký doanh nghiệp, doanh nghiệp phải công bố những nội dung gì?",
+  "expected_status": "answered",
+  "ground_truth": "1. Doanh nghiệp sau khi được cấp Giấy chứng nhận đăng ký doanh nghiệp phải thông báo công khai trên Cổng thông tin quốc gia về đăng ký doanh nghiệp và phải nộp phí theo quy định của pháp luật. Nội dung công bố bao gồm các nội dung Giấy chứng nhận đăng ký doanh nghiệp và các thông tin sau đây:\na) Ngành, nghề kinh doanh;\n\nb) Danh sách cổ đông sáng lập; danh sách cổ đông là nhà đầu tư nước ngoài đối với công ty cổ phần (nếu có).",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-32__k1__0"
+  ],
+  "citation": "Khoản 1 Điều 32 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Đăng ký doanh nghiệp",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-32__k1__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_057",
+  "question": "Tên doanh nghiệp phải được gắn và in ở những đâu?",
+  "expected_status": "answered",
+  "ground_truth": "4. Tên doanh nghiệp phải được gắn tại trụ sở chính, chi nhánh, văn phòng đại diện, địa điểm kinh doanh của doanh nghiệp. Tên doanh nghiệp phải được in hoặc viết trên các giấy tờ giao dịch, hồ sơ tài liệu và ấn phẩm do doanh nghiệp phát hành.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-37__k4__0"
+  ],
+  "citation": "Khoản 4 Điều 37 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Tên doanh nghiệp",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-37__k4__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_058",
+  "question": "Nghị quyết của Hội đồng thành viên công ty TNHH hai thành viên có hiệu lực từ khi nào?",
+  "expected_status": "answered",
+  "ground_truth": "1. Trường hợp Điều lệ công ty không có quy định khác, nghị quyết, quyết định của Hội đồng thành viên có hiệu lực thi hành kể từ ngày được thông qua hoặc từ ngày có hiệu lực được ghi tại nghị quyết, quyết định đó.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-62__k1__0"
+  ],
+  "citation": "Khoản 1 Điều 62 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Công ty TNHH hai thành viên",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-62__k1__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_059",
+  "question": "Nhà nước bảo đảm những quyền gì đối với doanh nghiệp và chủ sở hữu doanh nghiệp?",
+  "expected_status": "answered",
+  "ground_truth": "2. Nhà nước công nhận và bảo hộ quyền sở hữu tài sản, vốn đầu tư, thu nhập, quyền và lợi ích hợp pháp khác của doanh nghiệp và chủ sở hữu doanh nghiệp.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-5__k2__0"
+  ],
+  "citation": "Khoản 2 Điều 5 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Bảo đảm của Nhà nước",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-5__k2__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_060",
+  "question": "Sau khi mua lại cổ phần, nếu tổng giá trị tài sản giảm hơn 10% thì công ty cổ phần phải làm gì?",
+  "expected_status": "answered",
+  "ground_truth": "4. Sau khi thanh toán hết số cổ phần được mua lại, nếu tổng giá trị tài sản được ghi trong sổ kế toán của công ty giảm hơn 10% thì công ty phải thông báo cho tất cả chủ nợ biết trong thời hạn 15 ngày kể từ ngày thanh toán hết số cổ phần được mua lại.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-134__k4__0"
+  ],
+  "citation": "Khoản 4 Điều 134 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Mua lại cổ phần",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-134__k4__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_061",
+  "question": "Khi doanh nghiệp tư nhân chuyển đổi thành công ty, chủ doanh nghiệp tư nhân chịu trách nhiệm thế nào với khoản nợ phát sinh trước đó?",
+  "expected_status": "answered",
+  "ground_truth": "3. Công ty được chuyển đổi đương nhiên kế thừa quyền, nghĩa vụ của doanh nghiệp tư nhân kể từ ngày được cấp Giấy chứng nhận đăng ký doanh nghiệp. Chủ doanh nghiệp tư nhân chịu trách nhiệm cá nhân bằng toàn bộ tài sản của mình đối với tất cả khoản nợ phát sinh trước ngày công ty được chuyển đổi được cấp Giấy chứng nhận đăng ký doanh nghiệp.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-205__k3__0"
+  ],
+  "citation": "Khoản 3 Điều 205 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Chuyển đổi loại hình",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-205__k3__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_062",
+  "question": "Tài liệu họp Hội đồng thành viên về sửa đổi Điều lệ phải gửi cho thành viên trước bao nhiêu ngày?",
+  "expected_status": "answered",
+  "ground_truth": "5. Chương trình và tài liệu họp phải được gửi cho thành viên công ty trước khi họp. Tài liệu sử dụng trong cuộc họp liên quan đến quyết định về sửa đổi, bổ sung Điều lệ công ty, thông qua chiến lược phát triển công ty, thông qua báo cáo tài chính hằng năm, tổ chức lại hoặc giải thể công ty phải được gửi đến các thành viên chậm nhất là 07 ngày làm việc trước ngày họp. Thời hạn gửi các tài liệu khác do Điều lệ công ty quy định.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-57__k5__0"
+  ],
+  "citation": "Khoản 5 Điều 57 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Công ty TNHH hai thành viên",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-57__k5__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_063",
+  "question": "Cổ phần có được tự do chuyển nhượng không và hạn chế chuyển nhượng trong Điều lệ có hiệu lực khi nào?",
+  "expected_status": "answered",
+  "ground_truth": "1. Cổ phần được tự do chuyển nhượng, trừ trường hợp quy định tại khoản 3 Điều 120 của Luật này và Điều lệ công ty có quy định hạn chế chuyển nhượng cổ phần. Trường hợp Điều lệ công ty có quy định hạn chế về chuyển nhượng cổ phần thì các quy định này chỉ có hiệu lực khi được nêu rõ trong cổ phiếu của cổ phần tương ứng.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-127__k1__0"
+  ],
+  "citation": "Khoản 1 Điều 127 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Chuyển nhượng cổ phần",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-127__k1__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_064",
+  "question": "Đại hội đồng cổ đông miễn nhiệm thành viên Hội đồng quản trị trong những trường hợp nào?",
+  "expected_status": "answered",
+  "ground_truth": "1. Đại hội đồng cổ đông miễn nhiệm thành viên Hội đồng quản trị trong trường hợp sau đây:\na) Không có đủ tiêu chuẩn và điều kiện theo quy định tại Điều 155 của Luật này;\n\nb) Có đơn từ chức và được chấp thuận;\n\nc) Trường hợp khác quy định tại Điều lệ công ty.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-160__k1__0"
+  ],
+  "citation": "Khoản 1 Điều 160 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Hội đồng quản trị",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-160__k1__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_065",
+  "question": "Doanh nghiệp có được thành lập nhiều chi nhánh, văn phòng đại diện tại một địa phương không?",
+  "expected_status": "answered",
+  "ground_truth": "1. Doanh nghiệp có quyền thành lập chi nhánh, văn phòng đại diện ở trong nước và nước ngoài. Doanh nghiệp có thể đặt một hoặc nhiều chi nhánh, văn phòng đại diện tại một địa phương theo địa giới đơn vị hành chính.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-45__k1__0"
+  ],
+  "citation": "Khoản 1 Điều 45 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Chi nhánh, văn phòng đại diện",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-45__k1__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_066",
+  "question": "Doanh nghiệp do Nhà nước nắm giữ 100% vốn điều lệ được tổ chức quản lý dưới hình thức nào?",
+  "expected_status": "answered",
+  "ground_truth": "1. Doanh nghiệp do Nhà nước nắm giữ 100% vốn điều lệ theo quy định tại điểm a khoản 1 Điều 88 của Luật này được tổ chức quản lý dưới hình thức công ty trách nhiệm hữu hạn một thành viên theo quy định tại Chương này và các quy định khác có liên quan của Luật này; trường hợp có sự khác nhau giữa các quy định của Luật này thì áp dụng quy định tại Chương này.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-89__k1__0"
+  ],
+  "citation": "Khoản 1 Điều 89 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Doanh nghiệp nhà nước",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-89__k1__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_067",
+  "question": "Cổ đông khởi kiện thành viên Hội đồng quản trị có quyền tra cứu thông tin công ty không?",
+  "expected_status": "answered",
+  "ground_truth": "3. Cổ đông, nhóm cổ đông theo quy định tại Điều này có quyền xem xét, tra cứu, trích lục thông tin cần thiết theo quyết định của Tòa án, Trọng tài trước hoặc trong quá trình khởi kiện.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-166__k3__0"
+  ],
+  "citation": "Khoản 3 Điều 166 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Khởi kiện người quản lý",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-166__k3__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_068",
+  "question": "Nghị quyết Hội đồng thành viên doanh nghiệp nhà nước có hiệu lực từ khi nào?",
+  "expected_status": "answered",
+  "ground_truth": "12. Nghị quyết Hội đồng thành viên có hiệu lực kể từ ngày được thông qua hoặc từ ngày có hiệu lực ghi trong nghị quyết, trừ trường hợp phải được cơ quan đại diện chủ sở hữu chấp thuận.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-98__k12__0"
+  ],
+  "citation": "Khoản 12 Điều 98 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Doanh nghiệp nhà nước",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-98__k12__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_069",
+  "question": "Thành viên hợp danh có được làm chủ doanh nghiệp tư nhân không?",
+  "expected_status": "answered",
+  "ground_truth": "1. Thành viên hợp danh không được làm chủ doanh nghiệp tư nhân; không được làm thành viên hợp danh của công ty hợp danh khác trừ trường hợp được sự nhất trí của các thành viên hợp danh còn lại.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-180__k1__0"
+  ],
+  "citation": "Khoản 1 Điều 180 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Công ty hợp danh",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-180__k1__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_070",
+  "question": "Phần vốn góp của thành viên công ty TNHH đã chết mà không có người thừa kế được giải quyết thế nào?",
+  "expected_status": "answered",
+  "ground_truth": "5. Trường hợp phần vốn góp của thành viên công ty là cá nhân chết mà không có người thừa kế, người thừa kế từ chối nhận thừa kế hoặc bị truất quyền thừa kế thì phần vốn góp đó được giải quyết theo quy định của pháp luật về dân sự.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-53__k5__0"
+  ],
+  "citation": "Khoản 5 Điều 53 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Công ty TNHH hai thành viên",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-53__k5__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_071",
+  "question": "Kiểm soát viên doanh nghiệp nhà nước phải tuân thủ những gì khi thực hiện nhiệm vụ?",
+  "expected_status": "answered",
+  "ground_truth": "1. Tuân thủ pháp luật, Điều lệ công ty, quyết định của cơ quan đại diện chủ sở hữu và đạo đức nghề nghiệp trong thực hiện quyền và nghĩa vụ của Kiểm soát viên.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-107__k1__0"
+  ],
+  "citation": "Khoản 1 Điều 107 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Doanh nghiệp nhà nước",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-107__k1__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_072",
+  "question": "Ban kiểm soát doanh nghiệp nhà nước có quyền xem xét những tài liệu nào của công ty?",
+  "expected_status": "answered",
+  "ground_truth": "2. Xem xét sổ sách kế toán, báo cáo, hợp đồng, giao dịch và tài liệu khác của công ty; kiểm tra công việc quản lý, điều hành của Hội đồng thành viên, thành viên Hội đồng thành viên, Chủ tịch công ty, Giám đốc hoặc Tổng giám đốc khi xét thấy cần thiết hoặc theo yêu cầu của cơ quan đại diện chủ sở hữu.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-105__k2__0"
+  ],
+  "citation": "Khoản 2 Điều 105 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Doanh nghiệp nhà nước",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-105__k2__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_073",
+  "question": "Hội đồng thành viên của doanh nghiệp nhà nước có vai trò gì?",
+  "expected_status": "answered",
+  "ground_truth": "1. Hội đồng thành viên nhân danh công ty thực hiện quyền và nghĩa vụ của công ty theo quy định của Luật này và quy định khác của pháp luật có liên quan.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-91__k1__0"
+  ],
+  "citation": "Khoản 1 Điều 91 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Doanh nghiệp nhà nước",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-91__k1__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_074",
+  "question": "Giám đốc doanh nghiệp nhà nước không được có quan hệ gia đình với những ai?",
+  "expected_status": "answered",
+  "ground_truth": "3. Không phải là người có quan hệ gia đình của người đứng đầu, cấp phó của người đứng đầu cơ quan đại diện chủ sở hữu; thành viên Hội đồng thành viên, Chủ tịch công ty; Phó Tổng giám đốc, Phó giám đốc và Kế toán trưởng của công ty; Kiểm soát viên công ty.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-101__k3__0"
+  ],
+  "citation": "Khoản 3 Điều 101 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Doanh nghiệp nhà nước",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-101__k3__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_075",
+  "question": "Công ty TNHH phải cập nhật sổ đăng ký thành viên khi nào?",
+  "expected_status": "answered",
+  "ground_truth": "3. Công ty phải cập nhật kịp thời thay đổi thành viên trong sổ đăng ký thành viên theo yêu cầu của thành viên có liên quan theo quy định tại Điều lệ công ty.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-48__k3__0"
+  ],
+  "citation": "Khoản 3 Điều 48 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Công ty TNHH hai thành viên",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-48__k3__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_076",
+  "question": "Cổ đông sở hữu cổ phần ưu đãi biểu quyết có những quyền gì?",
+  "expected_status": "answered",
+  "ground_truth": "2. Cổ đông sở hữu cổ phần ưu đãi biểu quyết có quyền sau đây:\na) Biểu quyết về các vấn đề thuộc thẩm quyền của Đại hội đồng cổ đông với số phiếu biểu quyết theo quy định tại khoản 1 Điều này;\n\nb) Quyền khác như cổ đông phổ thông, trừ trường hợp quy định tại khoản 3 Điều này.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-116__k2__0"
+  ],
+  "citation": "Khoản 2 Điều 116 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Cổ phần ưu đãi",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-116__k2__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_077",
+  "question": "Kiểm soát viên công ty đại chúng không được có quan hệ gia đình với những người nào?",
+  "expected_status": "answered",
+  "ground_truth": "2. Ngoài các tiêu chuẩn, điều kiện quy định tại khoản 1 Điều này, Kiểm soát viên công ty đại chúng, doanh nghiệp nhà nước theo quy định tại điểm b khoản 1 Điều 88 của Luật này không được là người có quan hệ gia đình của người quản lý doanh nghiệp của công ty và công ty mẹ; người đại diện phần vốn của doanh nghiệp, người đại diện phần vốn nhà nước tại công ty mẹ và tại công ty.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-169__k2__0"
+  ],
+  "citation": "Khoản 2 Điều 169 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Ban kiểm soát",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-169__k2__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_078",
+  "question": "Chia công ty là gì và loại hình công ty nào được chia?",
+  "expected_status": "answered",
+  "ground_truth": "1. Công ty trách nhiệm hữu hạn, công ty cổ phần có thể chia các tài sản, quyền và nghĩa vụ, thành viên, cổ đông của công ty hiện có (sau đây gọi là công ty bị chia) để thành lập hai hoặc nhiều công ty mới.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-198__k1__0"
+  ],
+  "citation": "Khoản 1 Điều 198 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Tổ chức lại doanh nghiệp",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-198__k1__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_079",
+  "question": "Chi phí khởi kiện khi thành viên công ty TNHH khởi kiện người quản lý nhân danh công ty do ai chịu?",
+  "expected_status": "answered",
+  "ground_truth": "3. Chi phí khởi kiện trong trường hợp thành viên khởi kiện nhân danh công ty được tính vào chi phí của công ty, trừ trường hợp bị bác yêu cầu khởi kiện.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-72__k3__0"
+  ],
+  "citation": "Khoản 3 Điều 72 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Khởi kiện người quản lý",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-72__k3__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_080",
+  "question": "Công ty hợp danh tiếp nhận thành viên mới cần sự chấp thuận của ai?",
+  "expected_status": "answered",
+  "ground_truth": "1. Công ty có thể tiếp nhận thêm thành viên hợp danh hoặc thành viên góp vốn; việc tiếp nhận thành viên mới của công ty phải được Hội đồng thành viên chấp thuận.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-186__k1__0"
+  ],
+  "citation": "Khoản 1 Điều 186 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Công ty hợp danh",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-186__k1__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_081",
+  "question": "Ban kiểm soát công ty cổ phần có quyền kiến nghị những gì với Hội đồng quản trị?",
+  "expected_status": "answered",
+  "ground_truth": "7. Kiến nghị Hội đồng quản trị hoặc Đại hội đồng cổ đông biện pháp sửa đổi, bổ sung, cải tiến cơ cấu tổ chức quản lý, giám sát và điều hành hoạt động kinh doanh của công ty.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-170__k7__0"
+  ],
+  "citation": "Khoản 7 Điều 170 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Ban kiểm soát",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-170__k7__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_082",
+  "question": "Doanh nghiệp phải lưu giữ tài liệu ở đâu và trong thời hạn bao lâu?",
+  "expected_status": "answered",
+  "ground_truth": "2. Doanh nghiệp phải lưu giữ các tài liệu quy định tại khoản 1 Điều này tại trụ sở chính hoặc địa điểm khác được quy định trong Điều lệ công ty; thời hạn lưu giữ thực hiện theo quy định của pháp luật.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-11__k2__0"
+  ],
+  "citation": "Khoản 2 Điều 11 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Lưu giữ tài liệu",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-11__k2__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_083",
+  "question": "Chủ tịch Hội đồng quản trị công ty đại chúng có được kiêm Tổng giám đốc không?",
+  "expected_status": "answered",
+  "ground_truth": "2. Chủ tịch Hội đồng quản trị công ty đại chúng và công ty cổ phần quy định tại điểm b khoản 1 Điều 88 của Luật này không được kiêm Giám đốc hoặc Tổng giám đốc.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-156__k2__0"
+  ],
+  "citation": "Khoản 2 Điều 156 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Hội đồng quản trị",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-156__k2__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_084",
+  "question": "Tên chi nhánh in trên giấy tờ giao dịch phải có khổ chữ như thế nào so với tên doanh nghiệp?",
+  "expected_status": "answered",
+  "ground_truth": "3. Tên chi nhánh, văn phòng đại diện, địa điểm kinh doanh phải được viết hoặc gắn tại trụ sở chi nhánh, văn phòng đại diện và địa điểm kinh doanh. Tên chi nhánh, văn phòng đại diện được in hoặc viết với khổ chữ nhỏ hơn tên tiếng Việt của doanh nghiệp trên các giấy tờ giao dịch, hồ sơ tài liệu và ấn phẩm do chi nhánh, văn phòng đại diện phát hành.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-40__k3__0"
+  ],
+  "citation": "Khoản 3 Điều 40 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Tên doanh nghiệp",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-40__k3__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_085",
+  "question": "Ai là người đại diện theo pháp luật và điều hành kinh doanh hằng ngày của công ty hợp danh?",
+  "expected_status": "answered",
+  "ground_truth": "1. Các thành viên hợp danh là người đại diện theo pháp luật của công ty và tổ chức điều hành hoạt động kinh doanh hằng ngày của công ty. Mọi hạn chế đối với thành viên hợp danh trong thực hiện công việc kinh doanh hằng ngày của công ty chỉ có hiệu lực đối với bên thứ ba khi người đó được biết về hạn chế đó.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-184__k1__0"
+  ],
+  "citation": "Khoản 1 Điều 184 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Công ty hợp danh",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-184__k1__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_086",
+  "question": "Doanh nghiệp xã hội phải thông báo cho cơ quan có thẩm quyền khi nào?",
+  "expected_status": "answered",
+  "ground_truth": "3. Doanh nghiệp xã hội phải thông báo với cơ quan có thẩm quyền khi chấm dứt thực hiện mục tiêu xã hội, môi trường hoặc không sử dụng lợi nhuận để tái đầu tư theo quy định tại điểm b và điểm c khoản 1 Điều này.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-10__k3__0"
+  ],
+  "citation": "Khoản 3 Điều 10 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Doanh nghiệp xã hội",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-10__k3__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_087",
+  "question": "Hội đồng quản trị thông qua nghị quyết bằng những hình thức nào và mỗi thành viên có mấy phiếu biểu quyết?",
+  "expected_status": "answered",
+  "ground_truth": "3. Hội đồng quản trị thông qua nghị quyết, quyết định bằng biểu quyết tại cuộc họp, lấy ý kiến bằng văn bản hoặc hình thức khác do Điều lệ công ty quy định. Mỗi thành viên Hội đồng quản trị có một phiếu biểu quyết.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-153__k3__0"
+  ],
+  "citation": "Khoản 3 Điều 153 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Hội đồng quản trị",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-153__k3__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_088",
+  "question": "Danh sách cổ đông có quyền dự họp Đại hội đồng cổ đông phải có những thông tin gì?",
+  "expected_status": "answered",
+  "ground_truth": "2. Danh sách cổ đông có quyền dự họp Đại hội đồng cổ đông phải có họ, tên, địa chỉ liên lạc, quốc tịch, số giấy tờ pháp lý của cá nhân đối với cổ đông là cá nhân; tên, mã số doanh nghiệp hoặc số giấy tờ pháp lý của tổ chức, địa chỉ trụ sở chính đối với cổ đông là tổ chức; số lượng cổ phần từng loại, số và ngày đăng ký cổ đông của từng cổ đông.",
+  "gold_chunk_ids": [
+   "vbhn-67-vbhn-vpqh-v1__dieu-141__k2__0"
+  ],
+  "citation": "Khoản 2 Điều 141 - Hợp nhất Luật Doanh nghiệp 67/VBHN-VPQH",
+  "category": "Đại hội đồng cổ đông",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-141__k2__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_089",
+  "question": "Cơ quan đăng ký kinh doanh cấp xã chịu trách nhiệm gì đối với hồ sơ đăng ký hộ kinh doanh?",
+  "expected_status": "answered",
+  "ground_truth": "3. Cơ quan đăng ký kinh doanh cấp xã chịu trách nhiệm về tính hợp lệ của hồ sơ đăng ký hộ kinh doanh, không chịu trách nhiệm về những vi phạm pháp luật của người thành lập hộ kinh doanh, hộ kinh doanh xảy ra trước và sau khi đăng ký hộ kinh doanh.\nHồ sơ đăng ký hộ kinh doanh hợp lệ là hồ sơ có đầy đủ giấy tờ và nội dung các giấy tờ đó được kê khai đầy đủ theo quy định của Nghị định này.",
+  "gold_chunk_ids": [
+   "nd-168-2025-nd-cp-v1__dieu-88__k3__0"
+  ],
+  "citation": "Khoản 3 Điều 88 - Nghị định về đăng ký doanh nghiệp 168/2025/NĐ-CP",
+  "category": "Hộ kinh doanh",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk nd-168-2025-nd-cp-v1__dieu-88__k3__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_090",
+  "question": "Cơ quan bảo hiểm xã hội có được yêu cầu doanh nghiệp nộp bản sao Giấy chứng nhận đăng ký doanh nghiệp không?",
+  "expected_status": "answered",
+  "ground_truth": "4. Cơ quan quản lý nhà nước về lao động, cơ quan bảo hiểm xã hội không yêu cầu doanh nghiệp, chi nhánh, văn phòng đại diện cung cấp bản sao Giấy chứng nhận đăng ký doanh nghiệp, Giấy chứng nhận đăng ký hoạt động chi nhánh, văn phòng đại diện, các thông tin về đăng ký doanh nghiệp đã được chia sẻ từ Cơ quan đăng ký kinh doanh cấp tỉnh trừ tên, mã số doanh nghiệp, chi nhánh, văn phòng đại diện khi thực hiện các thủ tục hành chính có liên quan.",
+  "gold_chunk_ids": [
+   "nd-168-2025-nd-cp-v1__dieu-81__k4__0"
+  ],
+  "citation": "Khoản 4 Điều 81 - Nghị định về đăng ký doanh nghiệp 168/2025/NĐ-CP",
+  "category": "Chia sẻ thông tin",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk nd-168-2025-nd-cp-v1__dieu-81__k4__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_091",
+  "question": "Trụ sở của hộ kinh doanh được hiểu như thế nào và hộ kinh doanh có được kinh doanh ngoài trụ sở không?",
+  "expected_status": "answered",
+  "ground_truth": "1. Trụ sở của hộ kinh doanh là nơi hộ kinh doanh thực hiện hoạt động kinh doanh và là địa chỉ liên lạc do hộ kinh doanh đăng ký để cơ quan quản lý nhà nước liên hệ, được xác định theo địa giới đơn vị hành chính trên lãnh thổ Việt Nam. Hộ kinh doanh có thể hoạt động kinh doanh ngoài trụ sở.",
+  "gold_chunk_ids": [
+   "nd-168-2025-nd-cp-v1__dieu-87__k1__0"
+  ],
+  "citation": "Khoản 1 Điều 87 - Nghị định về đăng ký doanh nghiệp 168/2025/NĐ-CP",
+  "category": "Hộ kinh doanh",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk nd-168-2025-nd-cp-v1__dieu-87__k1__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_092",
+  "question": "Theo quy trình dự phòng, hồ sơ đăng ký hộ kinh doanh được luân chuyển giữa cơ quan đăng ký và cơ quan thuế như thế nào?",
+  "expected_status": "answered",
+  "ground_truth": "3. Việc phối hợp giải quyết thủ tục cấp đăng ký hộ kinh doanh theo quy trình dự phòng giữa Cơ quan đăng ký kinh doanh cấp xã và Cơ quan thuế thực hiện theo quy trình luân chuyển hồ sơ bằng bản giấy.",
+  "gold_chunk_ids": [
+   "nd-168-2025-nd-cp-v1__dieu-96__k3__0"
+  ],
+  "citation": "Khoản 3 Điều 96 - Nghị định về đăng ký doanh nghiệp 168/2025/NĐ-CP",
+  "category": "Hộ kinh doanh",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk nd-168-2025-nd-cp-v1__dieu-96__k3__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_093",
+  "question": "Cơ quan đăng ký kinh doanh cấp tỉnh có nhiệm vụ gì đối với Cơ sở dữ liệu quốc gia về đăng ký doanh nghiệp?",
+  "expected_status": "answered",
+  "ground_truth": "3. Phối hợp xây dựng, quản lý, vận hành Hệ thống thông tin quốc gia về đăng ký doanh nghiệp; thực hiện việc chuyển đổi dữ liệu, chuẩn hóa dữ liệu, cập nhật dữ liệu đăng ký doanh nghiệp tại địa phương vào Cơ sở dữ liệu quốc gia về đăng ký doanh nghiệp.",
+  "gold_chunk_ids": [
+   "nd-168-2025-nd-cp-v1__dieu-21__k3__0"
+  ],
+  "citation": "Khoản 3 Điều 21 - Nghị định về đăng ký doanh nghiệp 168/2025/NĐ-CP",
+  "category": "Cơ quan đăng ký kinh doanh",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk nd-168-2025-nd-cp-v1__dieu-21__k3__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_094",
+  "question": "Phát hiện thông tin đăng ký hộ kinh doanh trong cơ sở dữ liệu bị sai, cơ quan đăng ký cấp xã phải hiệu đính trong bao lâu?",
+  "expected_status": "answered",
+  "ground_truth": "4. Trường hợp Cơ quan đăng ký kinh doanh cấp xã phát hiện thông tin đăng ký hộ kinh doanh trong Cơ sở dữ liệu về đăng ký hộ kinh doanh bị thiếu hoặc không chính xác so với bản giấy của giấy chứng nhận đăng ký hộ kinh doanh, giấy chứng nhận đăng ký thuế, trong thời hạn 03 ngày làm việc kể từ khi phát hiện, Cơ quan đăng ký kinh doanh cấp xã bổ sung, hiệu đính thông tin đăng ký hộ kinh doanh trong Cơ sở dữ liệu về đăng ký hộ kinh doanh.",
+  "gold_chunk_ids": [
+   "nd-168-2025-nd-cp-v1__dieu-115__k4__0"
+  ],
+  "citation": "Khoản 4 Điều 115 - Nghị định về đăng ký doanh nghiệp 168/2025/NĐ-CP",
+  "category": "Hộ kinh doanh",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk nd-168-2025-nd-cp-v1__dieu-115__k4__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_095",
+  "question": "Giấy chứng nhận đăng ký địa điểm kinh doanh được cấp cho ai?",
+  "expected_status": "answered",
+  "ground_truth": "1. Giấy chứng nhận đăng ký doanh nghiệp, Giấy chứng nhận đăng ký hoạt động chi nhánh, văn phòng đại diện, Giấy chứng nhận đăng ký địa điểm kinh doanh được cấp cho doanh nghiệp, chi nhánh, văn phòng đại diện, địa điểm kinh doanh của doanh nghiệp.",
+  "gold_chunk_ids": [
+   "nd-168-2025-nd-cp-v1__dieu-6__k1__0"
+  ],
+  "citation": "Khoản 1 Điều 6 - Nghị định về đăng ký doanh nghiệp 168/2025/NĐ-CP",
+  "category": "Đăng ký doanh nghiệp",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk nd-168-2025-nd-cp-v1__dieu-6__k1__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_096",
+  "question": "Người bán hàng rong, kinh doanh thời vụ có phải đăng ký hộ kinh doanh không?",
+  "expected_status": "answered",
+  "ground_truth": "3. Hộ gia đình sản xuất nông, lâm, ngư nghiệp, làm muối và những người bán hàng rong, quà vặt, buôn chuyến, kinh doanh lưu động, kinh doanh thời vụ, làm dịch vụ có thu nhập thấp không phải đăng ký hộ kinh doanh, trừ trường hợp kinh doanh các ngành, nghề đầu tư kinh doanh có điều kiện. Ủy ban nhân dân tỉnh, thành phố trực thuộc trung ương quy định mức thu nhập thấp áp dụng trên phạm vi địa phương.",
+  "gold_chunk_ids": [
+   "nd-168-2025-nd-cp-v1__dieu-82__k3__0"
+  ],
+  "citation": "Khoản 3 Điều 82 - Nghị định về đăng ký doanh nghiệp 168/2025/NĐ-CP",
+  "category": "Hộ kinh doanh",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk nd-168-2025-nd-cp-v1__dieu-82__k3__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_097",
+  "question": "Doanh nghiệp được quyền hoạt động kinh doanh từ ngày nào?",
+  "expected_status": "answered",
+  "ground_truth": "2. Doanh nghiệp có quyền hoạt động kinh doanh kể từ ngày được cấp Giấy chứng nhận đăng ký doanh nghiệp, trừ trường hợp kinh doanh ngành, nghề đầu tư kinh doanh có điều kiện. Trường hợp doanh nghiệp đăng ký ngày bắt đầu hoạt động kinh doanh sau ngày được cấp Giấy chứng nhận đăng ký doanh nghiệp thì doanh nghiệp được quyền hoạt động kinh doanh kể từ ngày doanh nghiệp đăng ký, trừ trường hợp kinh doanh ngành, nghề đầu tư kinh doanh có điều kiện.",
+  "gold_chunk_ids": [
+   "nd-168-2025-nd-cp-v1__dieu-33__k2__0"
+  ],
+  "citation": "Khoản 2 Điều 33 - Nghị định về đăng ký doanh nghiệp 168/2025/NĐ-CP",
+  "category": "Đăng ký doanh nghiệp",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk nd-168-2025-nd-cp-v1__dieu-33__k2__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_098",
+  "question": "Thành viên công ty hợp danh đã kê khai số định danh cá nhân thì hồ sơ đăng ký có cần bản sao giấy tờ pháp lý không?",
+  "expected_status": "answered",
+  "ground_truth": "2. Hồ sơ đăng ký công ty hợp danh quy định tại Điều 20 Luật Doanh nghiệp năm 2020 được sửa đổi, bổ sung năm 2025. Trường hợp thành viên là cá nhân, người đại diện theo ủy quyền của thành viên là tổ chức kê khai số định danh cá nhân theo quy định tại khoản 1 Điều 11 Nghị định này thì hồ sơ đăng ký doanh nghiệp không bao gồm bản sao giấy tờ pháp lý của các cá nhân này.",
+  "gold_chunk_ids": [
+   "nd-168-2025-nd-cp-v1__dieu-24__k2__0"
+  ],
+  "citation": "Khoản 2 Điều 24 - Nghị định về đăng ký doanh nghiệp 168/2025/NĐ-CP",
+  "category": "Hồ sơ đăng ký doanh nghiệp",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk nd-168-2025-nd-cp-v1__dieu-24__k2__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_099",
+  "question": "Thông tin kết nối, chia sẻ với Cơ sở dữ liệu quốc gia về đăng ký doanh nghiệp phải bảo đảm yêu cầu gì?",
+  "expected_status": "answered",
+  "ground_truth": "1. Thông tin kết nối, chia sẻ với Cơ sở dữ liệu quốc gia về đăng ký doanh nghiệp nhằm nâng cao hiệu lực quản lý nhà nước về doanh nghiệp phải bảo đảm tính cập nhật, chính xác theo quy định của pháp luật.",
+  "gold_chunk_ids": [
+   "nd-168-2025-nd-cp-v1__dieu-79__k1__0"
+  ],
+  "citation": "Khoản 1 Điều 79 - Nghị định về đăng ký doanh nghiệp 168/2025/NĐ-CP",
+  "category": "Chia sẻ thông tin",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk nd-168-2025-nd-cp-v1__dieu-79__k1__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_100",
+  "question": "Quá hạn mà cơ quan đăng ký không cấp Giấy chứng nhận đăng ký hộ kinh doanh thì người thành lập có quyền gì?",
+  "expected_status": "answered",
+  "ground_truth": "6. Trường hợp sau thời hạn quy định tại Nghị định này mà Cơ quan đăng ký kinh doanh cấp xã không cấp Giấy chứng nhận đăng ký hộ kinh doanh hoặc không ra thông báo yêu cầu sửa đổi, bổ sung hồ sơ thì người thành lập hộ kinh doanh hoặc hộ kinh doanh có quyền khiếu nại, tố cáo theo quy định của pháp luật về khiếu nại, tố cáo.",
+  "gold_chunk_ids": [
+   "nd-168-2025-nd-cp-v1__dieu-85__k6__0"
+  ],
+  "citation": "Khoản 6 Điều 85 - Nghị định về đăng ký doanh nghiệp 168/2025/NĐ-CP",
+  "category": "Hộ kinh doanh",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk nd-168-2025-nd-cp-v1__dieu-85__k6__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_101",
+  "question": "Hộ kinh doanh được kinh doanh những ngành, nghề nào?",
+  "expected_status": "answered",
+  "ground_truth": "1. Hộ kinh doanh được quyền tự do kinh doanh ngành, nghề mà luật không cấm. Đối với những ngành, nghề đầu tư kinh doanh có điều kiện, hộ kinh doanh chỉ được kinh doanh khi đáp ứng đủ các điều kiện đầu tư kinh doanh và phải đảm bảo duy trì đủ điều kiện đó trong suốt quá trình hoạt động kinh doanh.",
+  "gold_chunk_ids": [
+   "nd-168-2025-nd-cp-v1__dieu-89__k1__0"
+  ],
+  "citation": "Khoản 1 Điều 89 - Nghị định về đăng ký doanh nghiệp 168/2025/NĐ-CP",
+  "category": "Hộ kinh doanh",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk nd-168-2025-nd-cp-v1__dieu-89__k1__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_102",
+  "question": "Hồ sơ đăng ký doanh nghiệp qua mạng nộp vào ngày nghỉ thì thời hạn trả kết quả được tính từ khi nào?",
+  "expected_status": "answered",
+  "ground_truth": "3. Trường hợp hồ sơ được tiếp nhận trên Hệ thống thông tin quốc gia về đăng ký doanh nghiệp sau giờ hành chính hoặc vào ngày nghỉ, ngày lễ, Tết theo quy định thì thời hạn trả kết quả giải quyết thủ tục đăng ký doanh nghiệp quy định tại Nghị định này được tính từ ngày làm việc kế tiếp của ngày hồ sơ được tiếp nhận.",
+  "gold_chunk_ids": [
+   "nd-168-2025-nd-cp-v1__dieu-38__k3__0"
+  ],
+  "citation": "Khoản 3 Điều 38 - Nghị định về đăng ký doanh nghiệp 168/2025/NĐ-CP",
+  "category": "Đăng ký qua mạng",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk nd-168-2025-nd-cp-v1__dieu-38__k3__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_103",
+  "question": "Tên hộ kinh doanh gồm những thành tố nào?",
+  "expected_status": "answered",
+  "ground_truth": "1. Hộ kinh doanh có tên gọi riêng. Tên hộ kinh doanh bao gồm hai thành tố theo thứ tự sau đây:\na) Cụm từ \"Hộ kinh doanh\";\n\nb) Tên riêng của hộ kinh doanh.\n\nTên riêng được viết bằng các chữ cái trong bảng chữ cái tiếng Việt, các chữ F, J, z, w, có thể kèm theo chữ số, ký hiệu.",
+  "gold_chunk_ids": [
+   "nd-168-2025-nd-cp-v1__dieu-86__k1__0"
+  ],
+  "citation": "Khoản 1 Điều 86 - Nghị định về đăng ký doanh nghiệp 168/2025/NĐ-CP",
+  "category": "Hộ kinh doanh",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk nd-168-2025-nd-cp-v1__dieu-86__k1__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_104",
+  "question": "Doanh nghiệp phải gửi hồ sơ thông báo lập địa điểm kinh doanh trong thời hạn bao lâu?",
+  "expected_status": "answered",
+  "ground_truth": "2. Thông báo lập địa điểm kinh doanh\na) Doanh nghiệp có thể lập địa điểm kinh doanh tại địa chỉ khác nơi doanh nghiệp đặt trụ sở chính hoặc đặt chi nhánh;\n\nb) Trong thời hạn 10 ngày kể từ ngày quyết định lập địa điểm kinh doanh, doanh nghiệp gửi hồ sơ thông báo lập địa điểm kinh doanh đến Cơ quan đăng ký kinh doanh cấp tỉnh nơi đặt địa điểm kinh doanh. Hồ sơ thông báo lập địa điểm kinh doanh bao gồm thông báo lập địa điểm kinh doanh.",
+  "gold_chunk_ids": [
+   "nd-168-2025-nd-cp-v1__dieu-30__k2__0"
+  ],
+  "citation": "Khoản 2 Điều 30 - Nghị định về đăng ký doanh nghiệp 168/2025/NĐ-CP",
+  "category": "Địa điểm kinh doanh",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk nd-168-2025-nd-cp-v1__dieu-30__k2__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_105",
+  "question": "Mã số địa điểm kinh doanh gồm bao nhiêu chữ số và có phải mã số thuế không?",
+  "expected_status": "answered",
+  "ground_truth": "6. Mã số địa điểm kinh doanh là mã số gồm 5 chữ số được cấp theo số thứ tự từ 00001 đến 99999. Mã số này không phải là mã số thuế của địa điểm kinh doanh.",
+  "gold_chunk_ids": [
+   "nd-168-2025-nd-cp-v1__dieu-8__k6__0"
+  ],
+  "citation": "Khoản 6 Điều 8 - Nghị định về đăng ký doanh nghiệp 168/2025/NĐ-CP",
+  "category": "Mã số doanh nghiệp",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk nd-168-2025-nd-cp-v1__dieu-8__k6__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_106",
+  "question": "Nộp hồ sơ đăng ký hộ kinh doanh bằng bản giấy thì người nộp phải xuất trình giấy tờ gì?",
+  "expected_status": "answered",
+  "ground_truth": "2. Trường hợp nộp hồ sơ đăng ký hộ kinh doanh bằng bản giấy, người nộp hồ sơ xuất trình thẻ Căn cước công dân, thẻ Căn cước hoặc sử dụng căn cước điện tử để thực hiện thủ tục đăng ký hộ kinh doanh.",
+  "gold_chunk_ids": [
+   "nd-168-2025-nd-cp-v1__dieu-92__k2__0"
+  ],
+  "citation": "Khoản 2 Điều 92 - Nghị định về đăng ký doanh nghiệp 168/2025/NĐ-CP",
+  "category": "Hộ kinh doanh",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk nd-168-2025-nd-cp-v1__dieu-92__k2__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_107",
+  "question": "Ngành nghề kinh doanh chưa có trong Hệ thống ngành kinh tế Việt Nam thì được ghi nhận như thế nào?",
+  "expected_status": "answered",
+  "ground_truth": "5. Đối với những ngành, nghề kinh doanh không có trong Hệ thống ngành kinh tế Việt Nam và chưa được quy định tại các văn bản quy phạm pháp luật khác thì Cơ quan đăng ký kinh doanh ghi nhận bổ sung ngành, nghề kinh doanh này cho doanh nghiệp nếu không thuộc ngành, nghề cấm đầu tư kinh doanh, đồng thời thông báo cho Bộ Tài chính để bổ sung ngành, nghề kinh doanh mới.",
+  "gold_chunk_ids": [
+   "nd-168-2025-nd-cp-v1__dieu-7__k5__0"
+  ],
+  "citation": "Khoản 5 Điều 7 - Nghị định về đăng ký doanh nghiệp 168/2025/NĐ-CP",
+  "category": "Ngành, nghề kinh doanh",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk nd-168-2025-nd-cp-v1__dieu-7__k5__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_108",
+  "question": "Cơ quan đăng ký cấp xã khôi phục Giấy chứng nhận đăng ký hộ kinh doanh bị thu hồi trong thời hạn bao lâu?",
+  "expected_status": "answered",
+  "ground_truth": "2. Cơ quan đăng ký kinh doanh cấp xã ra quyết định hủy bỏ quyết định thu hồi và khôi phục Giấy chứng nhận đăng ký hộ kinh doanh cho hộ kinh doanh trong thời hạn 03 ngày làm việc kể từ ngày xác định hộ kinh doanh không thuộc trường hợp bị thu hồi Giấy chứng nhận đăng ký hộ kinh doanh hoặc nhận được văn bản đề nghị của Cơ quan quản lý thuế.",
+  "gold_chunk_ids": [
+   "nd-168-2025-nd-cp-v1__dieu-108__k2__0"
+  ],
+  "citation": "Khoản 2 Điều 108 - Nghị định về đăng ký doanh nghiệp 168/2025/NĐ-CP",
+  "category": "Hộ kinh doanh",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk nd-168-2025-nd-cp-v1__dieu-108__k2__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_109",
+  "question": "Thay đổi nội dung đăng ký hoạt động chi nhánh thì doanh nghiệp phải đăng ký trong thời hạn bao lâu?",
+  "expected_status": "answered",
+  "ground_truth": "1. Trường hợp thay đổi các nội dung đăng ký hoạt động chi nhánh, văn phòng đại diện, địa điểm kinh doanh, doanh nghiệp thực hiện thủ tục đăng ký thay đổi với Cơ quan đăng ký kinh doanh cấp tỉnh nơi đặt chi nhánh, văn phòng đại diện, địa điểm kinh doanh trong thời hạn 10 ngày kể từ ngày có thay đổi.",
+  "gold_chunk_ids": [
+   "nd-168-2025-nd-cp-v1__dieu-56__k1__0"
+  ],
+  "citation": "Khoản 1 Điều 56 - Nghị định về đăng ký doanh nghiệp 168/2025/NĐ-CP",
+  "category": "Chi nhánh, văn phòng đại diện",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk nd-168-2025-nd-cp-v1__dieu-56__k1__0",
+  "review_status": "draft_needs_legal_review"
+ },
+ {
+  "id": "gold_110",
+  "question": "Với hồ sơ đăng ký doanh nghiệp bằng bản giấy, Cơ quan đăng ký kinh doanh cấp tỉnh phải làm gì trên Hệ thống thông tin quốc gia?",
+  "expected_status": "answered",
+  "ground_truth": "4. Cơ quan đăng ký kinh doanh cấp tỉnh nhập đầy đủ, chính xác thông tin trong hồ sơ đăng ký doanh nghiệp, số hóa, đặt tên văn bản điện tử tương ứng với tên loại giấy tờ trong hồ sơ đăng ký bằng bản giấy và đính kèm lên Hệ thống thông tin quốc gia về đăng ký doanh nghiệp.",
+  "gold_chunk_ids": [
+   "nd-168-2025-nd-cp-v1__dieu-31__k4__0"
+  ],
+  "citation": "Khoản 4 Điều 31 - Nghị định về đăng ký doanh nghiệp 168/2025/NĐ-CP",
+  "category": "Đăng ký doanh nghiệp",
+  "author": "Team 1 (Claude soạn, chờ rà soát)",
+  "source": "chunk nd-168-2025-nd-cp-v1__dieu-31__k4__0",
+  "review_status": "draft_needs_legal_review"
+ }
+]
