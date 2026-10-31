@@ -122,3 +122,14 @@ class RerankerEvaluationReport(BaseModel):
 - Runner hỗ trợ CUDA và ghim revision BGE; mặc định ứng dụng vẫn CPU.
 - 126 test và 92 subtest offline đạt. Chưa có kết quả CUDA/model thật;
   VLRA-54/55 và phần kết quả thực nghiệm VLRA-58 vẫn chưa được ghi Done.
+
+### Kết quả thực nghiệm Người 1 — 31/10/2026
+
+- Đã chạy trên Colab T4, lưu đủ 40 raw cases và metadata trong
+  `team2_rag/data/evaluation/colab-20261031/`.
+- 38 cặp hoàn tất, 2 lỗi cặp query–passage vượt 512 token; failure rate 5%.
+  Recall@5: Hybrid 73,77%, Hybrid + Reranker 66,29% trên cùng 38 cặp.
+- [Báo cáo VLRA-54/55](../../../../docs/team2_rag/reranker_impact_analysis.md)
+  ghi latency, ca nâng/hạ hạng, lỗi và đầu vào VLRA-58.
+- Kết quả là exploratory trên Golden cũ; chưa đủ điều kiện Done theo Dev
+  đã review/đóng băng. Chưa chốt cấu hình tối ưu hoặc sửa phần Người 2.

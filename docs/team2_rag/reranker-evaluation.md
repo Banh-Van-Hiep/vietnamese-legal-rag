@@ -159,3 +159,12 @@ Nếu đã chạy notebook cũ, restart Python session trước khi dùng cấu 
 ZIP có thêm cấu hình framework và kiểm tra token độc lập cho các ca lỗi
 reranker. Thống kê tổng latency chỉ lấy các câu hoàn tất cả hai bước;
 thời gian của từng bước lỗi vẫn được giữ trong raw JSON.
+
+## Kết quả khảo sát đã lưu ngày 31/10/2026
+
+Đã chạy notebook trên Tesla T4 và tải raw output về repo. Lượt tại commit
+`fa93cdf` có 38/40 cặp hoàn tất và 2 lỗi passage dài; không có lỗi retrieval.
+Recall@5 giảm từ 73,77% xuống 66,29% trên cùng 38 cặp. Đây là khảo sát, chưa
+thay benchmark Dev/Test chính thức. Xem
+[báo cáo tác động](reranker_impact_analysis.md) và
+[bằng chứng](../../team2_rag/data/evaluation/colab-20261031/).

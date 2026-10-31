@@ -1,0 +1,5 @@
+{
+  "USE_TF": "0",
+  "USE_FLAX": "0",
+  "XLA_PYTHON_CLIENT_PREALLOCATE": "false"
+}

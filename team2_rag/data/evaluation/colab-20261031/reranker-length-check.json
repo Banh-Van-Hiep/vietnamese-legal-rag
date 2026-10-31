@@ -1,0 +1,30 @@
+[
+  {
+    "id": "gold_027",
+    "max_pair_tokens": 975,
+    "oversized": [
+      {
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-63__k2__0",
+        "tokens": 975
+      },
+      {
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-69__k1__0",
+        "tokens": 715
+      },
+      {
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-71__k2__0",
+        "tokens": 913
+      }
+    ]
+  },
+  {
+    "id": "gold_032",
+    "max_pair_tokens": 532,
+    "oversized": [
+      {
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-43__k2__0",
+        "tokens": 532
+      }
+    ]
+  }
+]
