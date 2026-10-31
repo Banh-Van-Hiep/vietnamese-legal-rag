@@ -95,6 +95,27 @@ class BM25RetrieverTest(RetrieverContractTests, unittest.TestCase):
         self.assertIsInstance(row["score"], float)
         self.assertGreater(row["score"], 0)
         self.assertEqual(row["retrieval_method"], "bm25")
+
+    def test_search_returns_flat_list_of_rows(self):
+        # Hồi quy: _search từng trả dict khiến retrieve()/Hybrid RRF nhận sai kiểu.
+        rows = self.retriever._search("tạm ngừng kinh doanh", limit=3)
+        self.assertIsInstance(rows, list)
+        self.assertTrue(rows and all(isinstance(r, dict) and "chunk_id" in r for r in rows))
+        results = self.retriever.retrieve("tạm ngừng kinh doanh", top_k=3)["results"]
+        self.assertEqual(results, rows)
+
+    def test_hybrid_rrf_receives_all_bm25_rows(self):
+        from team1_data.retrieval import HybridRetriever
+
+        class EmptyDense:
+            def _search(self, question, limit):
+                return []
+
+        question = "doanh nghiệp"
+        bm25_ids = [r["chunk_id"] for r in self.retriever._search(question, limit=4)]
+        hybrid = HybridRetriever(self.retriever, EmptyDense()).retrieve(question, top_k=4)
+        self.assertEqual([r["chunk_id"] for r in hybrid["results"]], bm25_ids)
+
     def test_no_matching_word_returns_empty_results(self):
         self.assertEqual(self.retriever.retrieve("xyz qwerty", top_k=5),
                          {"question": "xyz qwerty", "results": []})
