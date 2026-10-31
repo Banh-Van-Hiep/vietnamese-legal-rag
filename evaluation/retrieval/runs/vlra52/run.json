@@ -1,0 +1,392 @@
+{
+ "run_id": "vlra52",
+ "started_at": "2026-10-31T11:07:16+00:00",
+ "head": "f60c9cfa3638540fc7b798eb67c043cc60ac1c8d",
+ "inputs": {
+  "dev_set": {
+   "path": "team1_data/golden/golden_phase1.json",
+   "sha256": "f89956d5d61bcf78e9fe080cc825f3f259ec3d36dd633bbedea4188c92e29fb2",
+   "cases": 110,
+   "answered": 110,
+   "gold_ids": 203
+  },
+  "corpus": {
+   "path": "data/doanh-nghiep/processed/chunks.jsonl",
+   "sha256": "042bd7f1696e4ef1acea90dbc6dc179c782515af04b5fdd4da5104b9158c5466",
+   "chunks": 2576,
+   "indexed": 2576,
+   "merged_equivalent_units": 860
+  },
+  "gold_by_document": {
+   "luat-59-2020-qh14-v1": 57,
+   "luat-76-2025-qh15-v1": 13,
+   "nd-122-2021-nd-cp-v1": 8,
+   "nd-168-2025-nd-cp-v1": 33,
+   "nd-288-2026-nd-cp-v1": 10,
+   "tt-68-2025-tt-btc-v1": 7,
+   "vbhn-67-vbhn-vpqh-v1": 68,
+   "vbhn-7566-vbhn-bkhdt-v1": 7
+  }
+ },
+ "environment": {
+  "python": "3.13.18",
+  "platform": "Linux-6.18.44-fc-v185-x86_64-with-glibc2.39",
+  "packages": {
+   "bm25s": "0.3.16",
+   "underthesea": "9.5.0",
+   "numpy": "2.5.3",
+   "qdrant-client": "1.20.0",
+   "jsonschema": "4.26.0",
+   "torch": null,
+   "sentence-transformers": null
+  }
+ },
+ "top_k": 20,
+ "configs": [
+  "dense_hash512",
+  "hybrid_k60_hash512",
+  "dense_hash1024",
+  "hybrid_k60_hash1024",
+  "dense_lsa128",
+  "hybrid_k60_lsa128",
+  "dense_lsa256",
+  "hybrid_k60_lsa256",
+  "dense_lsa384",
+  "hybrid_k60_lsa384",
+  "dense_lsa768",
+  "hybrid_k60_lsa768"
+ ],
+ "finished_at": "2026-10-31T11:09:05+00:00",
+ "summary": [
+  {
+   "name": "dense_hash512",
+   "metrics": {
+    "recall_at_5": 0.7159,
+    "recall_at_10": 0.8109,
+    "recall_at_20": 0.8516,
+    "mrr_at_20": 0.6688
+   },
+   "metrics_strict_chunk_id": {
+    "recall_at_5": 0.6528,
+    "recall_at_10": 0.7378,
+    "recall_at_20": 0.8426,
+    "mrr_at_20": 0.4987
+   },
+   "latency_ms": {
+    "p50": 33.11,
+    "p95": 43.0
+   },
+   "setup_ms": {
+    "dense_build_ms": 704.8
+   },
+   "counts": {
+    "cases": 110,
+    "scored": 110,
+    "corpus_chunks": 2576
+   }
+  },
+  {
+   "name": "hybrid_k60_hash512",
+   "metrics": {
+    "recall_at_5": 0.8358,
+    "recall_at_10": 0.9136,
+    "recall_at_20": 0.9202,
+    "mrr_at_20": 0.805
+   },
+   "metrics_strict_chunk_id": {
+    "recall_at_5": 0.749,
+    "recall_at_10": 0.8818,
+    "recall_at_20": 0.9202,
+    "mrr_at_20": 0.5509
+   },
+   "latency_ms": {
+    "p50": 37.34,
+    "p95": 61.82
+   },
+   "setup_ms": {
+    "bm25_build_ms": 10357.3,
+    "dense_build_ms": 704.8
+   },
+   "counts": {
+    "cases": 110,
+    "scored": 110,
+    "corpus_chunks": 2576
+   }
+  },
+  {
+   "name": "dense_hash1024",
+   "metrics": {
+    "recall_at_5": 0.7268,
+    "recall_at_10": 0.8253,
+    "recall_at_20": 0.8615,
+    "mrr_at_20": 0.6809
+   },
+   "metrics_strict_chunk_id": {
+    "recall_at_5": 0.6516,
+    "recall_at_10": 0.7724,
+    "recall_at_20": 0.8524,
+    "mrr_at_20": 0.4949
+   },
+   "latency_ms": {
+    "p50": 35.39,
+    "p95": 45.75
+   },
+   "setup_ms": {
+    "dense_build_ms": 1011.8
+   },
+   "counts": {
+    "cases": 110,
+    "scored": 110,
+    "corpus_chunks": 2576
+   }
+  },
+  {
+   "name": "hybrid_k60_hash1024",
+   "metrics": {
+    "recall_at_5": 0.853,
+    "recall_at_10": 0.91,
+    "recall_at_20": 0.922,
+    "mrr_at_20": 0.794
+   },
+   "metrics_strict_chunk_id": {
+    "recall_at_5": 0.7471,
+    "recall_at_10": 0.883,
+    "recall_at_20": 0.922,
+    "mrr_at_20": 0.5393
+   },
+   "latency_ms": {
+    "p50": 41.86,
+    "p95": 65.42
+   },
+   "setup_ms": {
+    "bm25_build_ms": 10357.3,
+    "dense_build_ms": 1011.8
+   },
+   "counts": {
+    "cases": 110,
+    "scored": 110,
+    "corpus_chunks": 2576
+   }
+  },
+  {
+   "name": "dense_lsa128",
+   "metrics": {
+    "recall_at_5": 0.7738,
+    "recall_at_10": 0.8885,
+    "recall_at_20": 0.9243,
+    "mrr_at_20": 0.7305
+   },
+   "metrics_strict_chunk_id": {
+    "recall_at_5": 0.6842,
+    "recall_at_10": 0.8217,
+    "recall_at_20": 0.9152,
+    "mrr_at_20": 0.4999
+   },
+   "latency_ms": {
+    "p50": 33.69,
+    "p95": 45.45
+   },
+   "setup_ms": {
+    "dense_build_ms": 2727.9
+   },
+   "counts": {
+    "cases": 110,
+    "scored": 110,
+    "corpus_chunks": 2576
+   }
+  },
+  {
+   "name": "hybrid_k60_lsa128",
+   "metrics": {
+    "recall_at_5": 0.8744,
+    "recall_at_10": 0.9171,
+    "recall_at_20": 0.9315,
+    "mrr_at_20": 0.8271
+   },
+   "metrics_strict_chunk_id": {
+    "recall_at_5": 0.7916,
+    "recall_at_10": 0.8959,
+    "recall_at_20": 0.9315,
+    "mrr_at_20": 0.57
+   },
+   "latency_ms": {
+    "p50": 39.11,
+    "p95": 53.86
+   },
+   "setup_ms": {
+    "bm25_build_ms": 10357.3,
+    "dense_build_ms": 2727.9
+   },
+   "counts": {
+    "cases": 110,
+    "scored": 110,
+    "corpus_chunks": 2576
+   }
+  },
+  {
+   "name": "dense_lsa256",
+   "metrics": {
+    "recall_at_5": 0.8518,
+    "recall_at_10": 0.9196,
+    "recall_at_20": 0.9291,
+    "mrr_at_20": 0.7566
+   },
+   "metrics_strict_chunk_id": {
+    "recall_at_5": 0.7602,
+    "recall_at_10": 0.8855,
+    "recall_at_20": 0.9291,
+    "mrr_at_20": 0.5167
+   },
+   "latency_ms": {
+    "p50": 41.41,
+    "p95": 56.86
+   },
+   "setup_ms": {
+    "dense_build_ms": 3185.5
+   },
+   "counts": {
+    "cases": 110,
+    "scored": 110,
+    "corpus_chunks": 2576
+   }
+  },
+  {
+   "name": "hybrid_k60_lsa256",
+   "metrics": {
+    "recall_at_5": 0.8756,
+    "recall_at_10": 0.9152,
+    "recall_at_20": 0.9328,
+    "mrr_at_20": 0.829
+   },
+   "metrics_strict_chunk_id": {
+    "recall_at_5": 0.8024,
+    "recall_at_10": 0.9043,
+    "recall_at_20": 0.9328,
+    "mrr_at_20": 0.5842
+   },
+   "latency_ms": {
+    "p50": 44.58,
+    "p95": 60.65
+   },
+   "setup_ms": {
+    "bm25_build_ms": 10357.3,
+    "dense_build_ms": 3185.5
+   },
+   "counts": {
+    "cases": 110,
+    "scored": 110,
+    "corpus_chunks": 2576
+   }
+  },
+  {
+   "name": "dense_lsa384",
+   "metrics": {
+    "recall_at_5": 0.8644,
+    "recall_at_10": 0.9196,
+    "recall_at_20": 0.9291,
+    "mrr_at_20": 0.7837
+   },
+   "metrics_strict_chunk_id": {
+    "recall_at_5": 0.7921,
+    "recall_at_10": 0.9046,
+    "recall_at_20": 0.9291,
+    "mrr_at_20": 0.5425
+   },
+   "latency_ms": {
+    "p50": 49.35,
+    "p95": 61.07
+   },
+   "setup_ms": {
+    "dense_build_ms": 4878.1
+   },
+   "counts": {
+    "cases": 110,
+    "scored": 110,
+    "corpus_chunks": 2576
+   }
+  },
+  {
+   "name": "hybrid_k60_lsa384",
+   "metrics": {
+    "recall_at_5": 0.8761,
+    "recall_at_10": 0.9174,
+    "recall_at_20": 0.9346,
+    "mrr_at_20": 0.8391
+   },
+   "metrics_strict_chunk_id": {
+    "recall_at_5": 0.835,
+    "recall_at_10": 0.9034,
+    "recall_at_20": 0.9346,
+    "mrr_at_20": 0.5821
+   },
+   "latency_ms": {
+    "p50": 57.2,
+    "p95": 118.45
+   },
+   "setup_ms": {
+    "bm25_build_ms": 10357.3,
+    "dense_build_ms": 4878.1
+   },
+   "counts": {
+    "cases": 110,
+    "scored": 110,
+    "corpus_chunks": 2576
+   }
+  },
+  {
+   "name": "dense_lsa768",
+   "metrics": {
+    "recall_at_5": 0.8639,
+    "recall_at_10": 0.9084,
+    "recall_at_20": 0.9291,
+    "mrr_at_20": 0.8345
+   },
+   "metrics_strict_chunk_id": {
+    "recall_at_5": 0.8047,
+    "recall_at_10": 0.8824,
+    "recall_at_20": 0.9291,
+    "mrr_at_20": 0.5821
+   },
+   "latency_ms": {
+    "p50": 69.37,
+    "p95": 91.94
+   },
+   "setup_ms": {
+    "dense_build_ms": 10631.8
+   },
+   "counts": {
+    "cases": 110,
+    "scored": 110,
+    "corpus_chunks": 2576
+   }
+  },
+  {
+   "name": "hybrid_k60_lsa768",
+   "metrics": {
+    "recall_at_5": 0.8857,
+    "recall_at_10": 0.9158,
+    "recall_at_20": 0.9383,
+    "mrr_at_20": 0.8592
+   },
+   "metrics_strict_chunk_id": {
+    "recall_at_5": 0.841,
+    "recall_at_10": 0.909,
+    "recall_at_20": 0.9383,
+    "mrr_at_20": 0.5979
+   },
+   "latency_ms": {
+    "p50": 86.13,
+    "p95": 273.3
+   },
+   "setup_ms": {
+    "bm25_build_ms": 10357.3,
+    "dense_build_ms": 10631.8
+   },
+   "counts": {
+    "cases": 110,
+    "scored": 110,
+    "corpus_chunks": 2576
+   }
+  }
+ ]
+}
