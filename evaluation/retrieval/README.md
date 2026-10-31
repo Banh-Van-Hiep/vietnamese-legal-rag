@@ -35,6 +35,7 @@ Kết quả: `evaluation/retrieval/runs/<run-id>/`
 Recall@5/10/20, MRR@20 trên top-20, tính theo **Khoản** (chunk_id bỏ `__<chunk_index>`), các Khoản nội dung
 nguyên văn giống nhau cùng Điều/Khoản (vd Luật 59/2020 ↔ VBHN 67) coi là một — để so được các cách chunk
 khác nhau và không phạt khi trả bản hợp nhất thay bản gốc. `metrics_strict_chunk_id` = so khớp chunk_id gốc.
+Kèm hai chỉ số nới: `hit_at_5` (có ít nhất một gold trong top-5) và `article_recall_at_5` (Recall@5 tính theo Điều), và `metrics_by_group` tách theo trường `review_status` của câu hỏi (vd `team2_reviewed` = 40 câu Team 2, `draft_needs_legal_review` = 70 câu Team 1 soạn).
 Mỗi đầu ra đều được kiểm tra theo `contracts/v0.1/retrieval_output.schema.json` (`scripts/eval_retrieval.py::validate_output`).
 
 Phụ thuộc thêm: `pip install scikit-learn` (embedder `lsa`). Embedder `lsa`/`hash` chạy offline (không tải model); model thật dùng `sentence_transformers` khi có mạng tới HuggingFace.

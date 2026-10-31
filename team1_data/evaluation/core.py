@@ -61,6 +61,11 @@ def equivalence(chunks: Iterable[Mapping]) -> dict[str, str]:
     return {u: min(units) for units in groups.values() for u in units}
 
 
+def article_of(unit: str) -> str:
+    """doc__dieu-x__kN → doc__dieu-x (Điều)."""
+    return unit.rsplit("__", 1)[0]
+
+
 def canon_list(ids: Sequence[str], mapping: Callable[[str], str]) -> list[str]:
     seen, out = set(), []
     for i in ids:
@@ -272,14 +277,27 @@ def evaluate_config(cfg: Mapping, cases: list[dict], base_chunks: list[dict], eq
         row = dict(id=case["id"], elapsed_ms=round(elapsed, 2), top5=units[:5],
                    gold_units=canon_list(case["gold_chunk_ids"], to_unit),
                    strict=score(ids, case["gold_chunk_ids"]))
-        row.update(score(units, row["gold_units"]))
+        row.update(score(units, row["gold_units"]), group=case.get("review_status", "all"))
+        if row["gold_units"]:
+            gold_articles = set(map(article_of, row["gold_units"]))
+            top5_articles = set(map(article_of, units[:5]))
+            row["hit_at_5"] = float(any(u in row["gold_units"] for u in units[:5]))
+            row["article_recall_at_5"] = len(gold_articles & top5_articles) / len(gold_articles)
+        else:
+            row["hit_at_5"] = row["article_recall_at_5"] = None
         rows.append(row)
     scored = [r for r in rows if r["recall_at_5"] is not None]
     mean = lambda key, rs: round(sum(rs) / len(rs), 4) if rs else None  # noqa: E731
     keys = [f"recall_at_{k}" for k in KS] + ["mrr_at_20"]
+    extra = ["hit_at_5", "article_recall_at_5"]
     lat = [r["elapsed_ms"] for r in rows]
+    by_group = {}
+    for group in sorted({r["group"] for r in scored}):
+        rs = [r for r in scored if r["group"] == group]
+        by_group[group] = {"cases": len(rs), **{k: mean(k, [r[k] for r in rs]) for k in keys + extra}}
     return dict(config=dict(cfg), counts=dict(cases=len(rows), scored=len(scored), corpus_chunks=len(chunks)),
-                metrics={k: mean(k, [r[k] for r in scored]) for k in keys},
+                metrics={k: mean(k, [r[k] for r in scored]) for k in keys + extra},
+                metrics_by_group=by_group,
                 metrics_strict_chunk_id={k: mean(k, [r["strict"][k] for r in scored]) for k in keys},
                 latency_ms=dict(p50=round(percentile(lat, .5), 2), p95=round(percentile(lat, .95), 2)),
                 setup_ms={k: round(v, 1) for k, v in setup.items()},
@@ -326,7 +344,8 @@ def run(configs: list[dict], out_dir: Path, *, dev_set: Path = DEV_SET, chunks_p
                 log("config %s done metrics=%s latency=%s setup=%s", cfg["name"], result["metrics"],
                          result["latency_ms"], result["setup_ms"])
                 summary.append(dict(name=cfg["name"], **{k: result[k] for k in
-                               ("metrics", "metrics_strict_chunk_id", "latency_ms", "setup_ms", "counts")}))
+                               ("metrics", "metrics_strict_chunk_id", "metrics_by_group", "latency_ms", "setup_ms",
+                                "counts")}))
         finally:
             client.close()
         meta["finished_at"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
@@ -342,12 +361,19 @@ def summary_table(summary: list[dict], inputs: Mapping) -> str:
     ds = inputs["dev_set"]
     lines = [f"Dev Set `{ds['path']}` sha256 `{ds['sha256'][:12]}` · {ds['answered']} câu có gold · "
              f"corpus {inputs['corpus']['indexed']} chunk được index\n",
-             "| Cấu hình | R@5 | R@10 | R@20 | MRR@20 | R@5 strict | p50 ms | p95 ms | build ms | chunk |",
-             "|---|---|---|---|---|---|---|---|---|---|"]
+             "| Cấu hình | R@5 | R@10 | R@20 | MRR@20 | hit@5 | R@5 theo Điều | R@5 strict | p50 ms | p95 ms | build ms | chunk |",
+             "|---|---|---|---|---|---|---|---|---|---|---|---|"]
     for s in summary:
         m, st = s["metrics"], s["metrics_strict_chunk_id"]
         build = sum(s["setup_ms"].values())
         lines.append(f"| {s['name']} | {m['recall_at_5']:.3f} | {m['recall_at_10']:.3f} | {m['recall_at_20']:.3f} | "
-                     f"{m['mrr_at_20']:.3f} | {st['recall_at_5']:.3f} | {s['latency_ms']['p50']:.1f} | "
+                     f"{m['mrr_at_20']:.3f} | {m['hit_at_5']:.3f} | {m['article_recall_at_5']:.3f} | "
+                     f"{st['recall_at_5']:.3f} | {s['latency_ms']['p50']:.1f} | "
                      f"{s['latency_ms']['p95']:.1f} | {build:.0f} | {s['counts']['corpus_chunks']} |")
+    lines += ["", "Theo nhóm câu hỏi (`review_status`):", "",
+              "| Cấu hình | Nhóm | Số câu | R@5 | R@20 | MRR@20 | hit@5 | R@5 theo Điều |", "|---|---|---|---|---|---|---|---|"]
+    for s in summary:
+        for group, g in s["metrics_by_group"].items():
+            lines.append(f"| {s['name']} | {group} | {g['cases']} | {g['recall_at_5']:.3f} | {g['recall_at_20']:.3f} | "
+                         f"{g['mrr_at_20']:.3f} | {g['hit_at_5']:.3f} | {g['article_recall_at_5']:.3f} |")
     return "\n".join(lines) + "\n"

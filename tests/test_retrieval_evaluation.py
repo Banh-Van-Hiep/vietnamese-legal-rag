@@ -80,11 +80,31 @@ class PipelineRunTest(unittest.TestCase):
             result = json.loads((run_dir / f"{cfg['name']}.json").read_text(encoding="utf-8"))
             self.assertEqual(result["config"], cfg)
             self.assertEqual(len(result["cases"]), 4)
-            self.assertEqual(set(result["metrics"]), {"recall_at_5", "recall_at_10", "recall_at_20", "mrr_at_20"})
+            self.assertEqual(set(result["metrics"]), {"recall_at_5", "recall_at_10", "recall_at_20", "mrr_at_20",
+                                                      "hit_at_5", "article_recall_at_5"})
+            self.assertEqual(result["metrics_by_group"]["all"]["cases"], 4)
             self.assertTrue(all(0 <= v <= 1 for v in result["metrics"].values()))
         self.assertEqual(json.loads((run_dir / "bm25.json").read_text())["metrics"]["recall_at_5"], 1.0)
         self.assertGreater(json.loads((run_dir / "bm25_c32.json").read_text())["counts"]["corpus_chunks"], 80)
-        self.assertIn("| hybrid |", (run_dir / "summary.md").read_text(encoding="utf-8"))
+        summary = (run_dir / "summary.md").read_text(encoding="utf-8")
+        self.assertIn("| hybrid |", summary)
+        self.assertIn("| hybrid | all | 4 |", summary)
+
+    def test_hit_and_article_recall_are_looser_than_clause_recall(self):
+        cases = json.loads(self.dev.read_text(encoding="utf-8"))
+        lines = [json.loads(line) for line in self.chunks.read_text(encoding="utf-8").splitlines()]
+        same_article = [c["chunk_id"] for c in lines if c["article_id"] == "dieu-4"][:8]
+        cases[0].update(question="Giải thích từ ngữ " + cases[0]["question"], gold_chunk_ids=same_article,
+                        review_status="nhom_a")
+        self.dev.write_text(json.dumps(cases, ensure_ascii=False), encoding="utf-8")
+        run_dir = run([{"name": "bm25", "method": "bm25"}], self.tmp / "runs", dev_set=self.dev,
+                      chunks_path=self.chunks, run_id="g")
+        result = json.loads((run_dir / "bm25.json").read_text(encoding="utf-8"))
+        row = next(r for r in result["cases"] if r["id"] == cases[0]["id"])
+        self.assertLessEqual(row["recall_at_5"], 5 / 8)
+        self.assertGreaterEqual(row["article_recall_at_5"], row["recall_at_5"])
+        self.assertGreaterEqual(row["hit_at_5"], row["recall_at_5"])
+        self.assertEqual(set(result["metrics_by_group"]), {"nhom_a", "all"})
 
     def test_check_inputs_rejects_unknown_gold(self):
         cases = json.loads(self.dev.read_text(encoding="utf-8"))
