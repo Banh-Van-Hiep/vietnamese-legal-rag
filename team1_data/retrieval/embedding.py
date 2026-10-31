@@ -27,11 +27,12 @@ class Embedder(Protocol):
 
 def l2_normalize(vectors: np.ndarray) -> np.ndarray:
     """Chuẩn hóa L2 theo hàng để cosine = dot product; vector 0 thì raise."""
-    vectors = np.asarray(vectors, dtype=np.float32)
+    vectors = np.asarray(vectors, dtype=np.float64)
     norms = np.linalg.norm(vectors, axis=-1, keepdims=True)
     if not np.all(np.isfinite(vectors)) or np.any(norms == 0):
         raise ValueError("embedding contains a zero or non-finite vector")
-    return vectors / norms
+    # Tính trên float64 để vector float32 rất lớn không tràn norm thành inf rồi thành vector 0.
+    return (vectors / norms).astype(np.float32)
 
 
 class SentenceTransformerEmbedder:

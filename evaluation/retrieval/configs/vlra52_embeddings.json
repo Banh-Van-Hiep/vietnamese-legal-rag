@@ -1,0 +1,104 @@
+[
+ {
+  "name": "dense_hash512",
+  "method": "dense",
+  "embedder": {
+   "type": "hash",
+   "dim": 512
+  }
+ },
+ {
+  "name": "hybrid_k60_hash512",
+  "method": "hybrid_rrf",
+  "rrf_k": 60,
+  "embedder": {
+   "type": "hash",
+   "dim": 512
+  }
+ },
+ {
+  "name": "dense_hash1024",
+  "method": "dense",
+  "embedder": {
+   "type": "hash",
+   "dim": 1024
+  }
+ },
+ {
+  "name": "hybrid_k60_hash1024",
+  "method": "hybrid_rrf",
+  "rrf_k": 60,
+  "embedder": {
+   "type": "hash",
+   "dim": 1024
+  }
+ },
+ {
+  "name": "dense_lsa128",
+  "method": "dense",
+  "embedder": {
+   "type": "lsa",
+   "dim": 128
+  }
+ },
+ {
+  "name": "hybrid_k60_lsa128",
+  "method": "hybrid_rrf",
+  "rrf_k": 60,
+  "embedder": {
+   "type": "lsa",
+   "dim": 128
+  }
+ },
+ {
+  "name": "dense_lsa256",
+  "method": "dense",
+  "embedder": {
+   "type": "lsa",
+   "dim": 256
+  }
+ },
+ {
+  "name": "hybrid_k60_lsa256",
+  "method": "hybrid_rrf",
+  "rrf_k": 60,
+  "embedder": {
+   "type": "lsa",
+   "dim": 256
+  }
+ },
+ {
+  "name": "dense_lsa384",
+  "method": "dense",
+  "embedder": {
+   "type": "lsa",
+   "dim": 384
+  }
+ },
+ {
+  "name": "hybrid_k60_lsa384",
+  "method": "hybrid_rrf",
+  "rrf_k": 60,
+  "embedder": {
+   "type": "lsa",
+   "dim": 384
+  }
+ },
+ {
+  "name": "dense_lsa768",
+  "method": "dense",
+  "embedder": {
+   "type": "lsa",
+   "dim": 768
+  }
+ },
+ {
+  "name": "hybrid_k60_lsa768",
+  "method": "hybrid_rrf",
+  "rrf_k": 60,
+  "embedder": {
+   "type": "lsa",
+   "dim": 768
+  }
+ }
+]

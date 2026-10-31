@@ -1,0 +1,107 @@
+[
+ {
+  "name": "bm25_orig",
+  "method": "bm25",
+  "chunking": {
+   "size": null,
+   "overlap": 0
+  }
+ },
+ {
+  "name": "hybrid_k60_orig",
+  "method": "hybrid_rrf",
+  "rrf_k": 60,
+  "embedder": {
+   "type": "lsa",
+   "dim": 256
+  },
+  "chunking": {
+   "size": null,
+   "overlap": 0
+  }
+ },
+ {
+  "name": "bm25_c384o32",
+  "method": "bm25",
+  "chunking": {
+   "size": 384,
+   "overlap": 32
+  }
+ },
+ {
+  "name": "hybrid_k60_c384o32",
+  "method": "hybrid_rrf",
+  "rrf_k": 60,
+  "embedder": {
+   "type": "lsa",
+   "dim": 256
+  },
+  "chunking": {
+   "size": 384,
+   "overlap": 32
+  }
+ },
+ {
+  "name": "bm25_c384o64",
+  "method": "bm25",
+  "chunking": {
+   "size": 384,
+   "overlap": 64
+  }
+ },
+ {
+  "name": "hybrid_k60_c384o64",
+  "method": "hybrid_rrf",
+  "rrf_k": 60,
+  "embedder": {
+   "type": "lsa",
+   "dim": 256
+  },
+  "chunking": {
+   "size": 384,
+   "overlap": 64
+  }
+ },
+ {
+  "name": "bm25_c512o32",
+  "method": "bm25",
+  "chunking": {
+   "size": 512,
+   "overlap": 32
+  }
+ },
+ {
+  "name": "hybrid_k60_c512o32",
+  "method": "hybrid_rrf",
+  "rrf_k": 60,
+  "embedder": {
+   "type": "lsa",
+   "dim": 256
+  },
+  "chunking": {
+   "size": 512,
+   "overlap": 32
+  }
+ },
+ {
+  "name": "bm25_c512o64",
+  "method": "bm25",
+  "chunking": {
+   "size": 512,
+   "overlap": 64
+  }
+ },
+ {
+  "name": "hybrid_k60_c512o64",
+  "method": "hybrid_rrf",
+  "rrf_k": 60,
+  "embedder": {
+   "type": "lsa",
+   "dim": 256
+  },
+  "chunking": {
+   "size": 512,
+   "overlap": 64
+  }
+ }
+]

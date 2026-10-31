@@ -1,0 +1,335 @@
+{
+ "run_id": "vlra50",
+ "started_at": "2026-10-31T11:02:51+00:00",
+ "head": "148a6ee2f0bee2493b420235c3b8b651a658bd54",
+ "inputs": {
+  "dev_set": {
+   "path": "team1_data/golden/golden_phase1.json",
+   "sha256": "f89956d5d61bcf78e9fe080cc825f3f259ec3d36dd633bbedea4188c92e29fb2",
+   "cases": 110,
+   "answered": 110,
+   "gold_ids": 203
+  },
+  "corpus": {
+   "path": "data/doanh-nghiep/processed/chunks.jsonl",
+   "sha256": "042bd7f1696e4ef1acea90dbc6dc179c782515af04b5fdd4da5104b9158c5466",
+   "chunks": 2576,
+   "indexed": 2576,
+   "merged_equivalent_units": 860
+  },
+  "gold_by_document": {
+   "luat-59-2020-qh14-v1": 57,
+   "luat-76-2025-qh15-v1": 13,
+   "nd-122-2021-nd-cp-v1": 8,
+   "nd-168-2025-nd-cp-v1": 33,
+   "nd-288-2026-nd-cp-v1": 10,
+   "tt-68-2025-tt-btc-v1": 7,
+   "vbhn-67-vbhn-vpqh-v1": 68,
+   "vbhn-7566-vbhn-bkhdt-v1": 7
+  }
+ },
+ "environment": {
+  "python": "3.13.18",
+  "platform": "Linux-6.18.44-fc-v185-x86_64-with-glibc2.39",
+  "packages": {
+   "bm25s": "0.3.16",
+   "underthesea": "9.5.0",
+   "numpy": "2.5.3",
+   "qdrant-client": "1.20.0",
+   "jsonschema": "4.26.0",
+   "torch": null,
+   "sentence-transformers": null
+  }
+ },
+ "top_k": 20,
+ "configs": [
+  "bm25_orig",
+  "hybrid_k60_orig",
+  "bm25_c384o32",
+  "hybrid_k60_c384o32",
+  "bm25_c384o64",
+  "hybrid_k60_c384o64",
+  "bm25_c512o32",
+  "hybrid_k60_c512o32",
+  "bm25_c512o64",
+  "hybrid_k60_c512o64"
+ ],
+ "finished_at": "2026-10-31T11:04:41+00:00",
+ "summary": [
+  {
+   "name": "bm25_orig",
+   "metrics": {
+    "recall_at_5": 0.863,
+    "recall_at_10": 0.9118,
+    "recall_at_20": 0.9286,
+    "mrr_at_20": 0.8136
+   },
+   "metrics_strict_chunk_id": {
+    "recall_at_5": 0.781,
+    "recall_at_10": 0.8847,
+    "recall_at_20": 0.9286,
+    "mrr_at_20": 0.5713
+   },
+   "latency_ms": {
+    "p50": 1.23,
+    "p95": 2.15
+   },
+   "setup_ms": {
+    "bm25_build_ms": 10051.5
+   },
+   "counts": {
+    "cases": 110,
+    "scored": 110,
+    "corpus_chunks": 2576
+   }
+  },
+  {
+   "name": "hybrid_k60_orig",
+   "metrics": {
+    "recall_at_5": 0.8756,
+    "recall_at_10": 0.9152,
+    "recall_at_20": 0.9328,
+    "mrr_at_20": 0.829
+   },
+   "metrics_strict_chunk_id": {
+    "recall_at_5": 0.8024,
+    "recall_at_10": 0.9043,
+    "recall_at_20": 0.9328,
+    "mrr_at_20": 0.5842
+   },
+   "latency_ms": {
+    "p50": 50.96,
+    "p95": 68.59
+   },
+   "setup_ms": {
+    "bm25_build_ms": 10051.5,
+    "dense_build_ms": 4069.8
+   },
+   "counts": {
+    "cases": 110,
+    "scored": 110,
+    "corpus_chunks": 2576
+   }
+  },
+  {
+   "name": "bm25_c384o32",
+   "metrics": {
+    "recall_at_5": 0.863,
+    "recall_at_10": 0.9118,
+    "recall_at_20": 0.9286,
+    "mrr_at_20": 0.8136
+   },
+   "metrics_strict_chunk_id": {
+    "recall_at_5": 0.781,
+    "recall_at_10": 0.8847,
+    "recall_at_20": 0.9286,
+    "mrr_at_20": 0.5713
+   },
+   "latency_ms": {
+    "p50": 1.4,
+    "p95": 2.35
+   },
+   "setup_ms": {
+    "bm25_build_ms": 12090.8
+   },
+   "counts": {
+    "cases": 110,
+    "scored": 110,
+    "corpus_chunks": 2592
+   }
+  },
+  {
+   "name": "hybrid_k60_c384o32",
+   "metrics": {
+    "recall_at_5": 0.8738,
+    "recall_at_10": 0.9158,
+    "recall_at_20": 0.9328,
+    "mrr_at_20": 0.8336
+   },
+   "metrics_strict_chunk_id": {
+    "recall_at_5": 0.8236,
+    "recall_at_10": 0.9058,
+    "recall_at_20": 0.9328,
+    "mrr_at_20": 0.5841
+   },
+   "latency_ms": {
+    "p50": 43.62,
+    "p95": 59.6
+   },
+   "setup_ms": {
+    "bm25_build_ms": 12090.8,
+    "dense_build_ms": 3096.2
+   },
+   "counts": {
+    "cases": 110,
+    "scored": 110,
+    "corpus_chunks": 2592
+   }
+  },
+  {
+   "name": "bm25_c384o64",
+   "metrics": {
+    "recall_at_5": 0.863,
+    "recall_at_10": 0.9118,
+    "recall_at_20": 0.9268,
+    "mrr_at_20": 0.8136
+   },
+   "metrics_strict_chunk_id": {
+    "recall_at_5": 0.781,
+    "recall_at_10": 0.8847,
+    "recall_at_20": 0.9268,
+    "mrr_at_20": 0.5713
+   },
+   "latency_ms": {
+    "p50": 1.39,
+    "p95": 2.39
+   },
+   "setup_ms": {
+    "bm25_build_ms": 12169.0
+   },
+   "counts": {
+    "cases": 110,
+    "scored": 110,
+    "corpus_chunks": 2593
+   }
+  },
+  {
+   "name": "hybrid_k60_c384o64",
+   "metrics": {
+    "recall_at_5": 0.8756,
+    "recall_at_10": 0.9158,
+    "recall_at_20": 0.9328,
+    "mrr_at_20": 0.8336
+   },
+   "metrics_strict_chunk_id": {
+    "recall_at_5": 0.8297,
+    "recall_at_10": 0.9058,
+    "recall_at_20": 0.9328,
+    "mrr_at_20": 0.5811
+   },
+   "latency_ms": {
+    "p50": 45.42,
+    "p95": 65.39
+   },
+   "setup_ms": {
+    "bm25_build_ms": 12169.0,
+    "dense_build_ms": 2885.6
+   },
+   "counts": {
+    "cases": 110,
+    "scored": 110,
+    "corpus_chunks": 2593
+   }
+  },
+  {
+   "name": "bm25_c512o32",
+   "metrics": {
+    "recall_at_5": 0.863,
+    "recall_at_10": 0.9118,
+    "recall_at_20": 0.9268,
+    "mrr_at_20": 0.8136
+   },
+   "metrics_strict_chunk_id": {
+    "recall_at_5": 0.781,
+    "recall_at_10": 0.8847,
+    "recall_at_20": 0.9268,
+    "mrr_at_20": 0.5698
+   },
+   "latency_ms": {
+    "p50": 1.81,
+    "p95": 2.89
+   },
+   "setup_ms": {
+    "bm25_build_ms": 13179.2
+   },
+   "counts": {
+    "cases": 110,
+    "scored": 110,
+    "corpus_chunks": 2585
+   }
+  },
+  {
+   "name": "hybrid_k60_c512o32",
+   "metrics": {
+    "recall_at_5": 0.8738,
+    "recall_at_10": 0.9158,
+    "recall_at_20": 0.9328,
+    "mrr_at_20": 0.8168
+   },
+   "metrics_strict_chunk_id": {
+    "recall_at_5": 0.8115,
+    "recall_at_10": 0.9058,
+    "recall_at_20": 0.9328,
+    "mrr_at_20": 0.5719
+   },
+   "latency_ms": {
+    "p50": 45.61,
+    "p95": 56.11
+   },
+   "setup_ms": {
+    "bm25_build_ms": 13179.2,
+    "dense_build_ms": 3112.8
+   },
+   "counts": {
+    "cases": 110,
+    "scored": 110,
+    "corpus_chunks": 2585
+   }
+  },
+  {
+   "name": "bm25_c512o64",
+   "metrics": {
+    "recall_at_5": 0.863,
+    "recall_at_10": 0.9118,
+    "recall_at_20": 0.9286,
+    "mrr_at_20": 0.8136
+   },
+   "metrics_strict_chunk_id": {
+    "recall_at_5": 0.781,
+    "recall_at_10": 0.8847,
+    "recall_at_20": 0.9286,
+    "mrr_at_20": 0.5698
+   },
+   "latency_ms": {
+    "p50": 1.8,
+    "p95": 3.36
+   },
+   "setup_ms": {
+    "bm25_build_ms": 13028.0
+   },
+   "counts": {
+    "cases": 110,
+    "scored": 110,
+    "corpus_chunks": 2585
+   }
+  },
+  {
+   "name": "hybrid_k60_c512o64",
+   "metrics": {
+    "recall_at_5": 0.8738,
+    "recall_at_10": 0.9158,
+    "recall_at_20": 0.9328,
+    "mrr_at_20": 0.8229
+   },
+   "metrics_strict_chunk_id": {
+    "recall_at_5": 0.8297,
+    "recall_at_10": 0.9058,
+    "recall_at_20": 0.9328,
+    "mrr_at_20": 0.5729
+   },
+   "latency_ms": {
+    "p50": 46.47,
+    "p95": 61.61
+   },
+   "setup_ms": {
+    "bm25_build_ms": 13028.0,
+    "dense_build_ms": 2753.1
+   },
+   "counts": {
+    "cases": 110,
+    "scored": 110,
+    "corpus_chunks": 2585
+   }
+  }
+ ]
+}

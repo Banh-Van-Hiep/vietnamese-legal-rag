@@ -1,0 +1,2775 @@
+{
+ "config": {
+  "name": "hybrid_k60_c384o64",
+  "method": "hybrid_rrf",
+  "rrf_k": 60,
+  "embedder": {
+   "type": "lsa",
+   "dim": 256
+  },
+  "chunking": {
+   "size": 384,
+   "overlap": 64
+  }
+ },
+ "counts": {
+  "cases": 110,
+  "scored": 110,
+  "corpus_chunks": 2593
+ },
+ "metrics": {
+  "recall_at_5": 0.8756,
+  "recall_at_10": 0.9158,
+  "recall_at_20": 0.9328,
+  "mrr_at_20": 0.8336
+ },
+ "metrics_strict_chunk_id": {
+  "recall_at_5": 0.8297,
+  "recall_at_10": 0.9058,
+  "recall_at_20": 0.9328,
+  "mrr_at_20": 0.5811
+ },
+ "latency_ms": {
+  "p50": 45.42,
+  "p95": 65.39
+ },
+ "setup_ms": {
+  "bm25_build_ms": 12169.0,
+  "dense_build_ms": 2885.6
+ },
+ "cases": [
+  {
+   "id": "gold_001",
+   "elapsed_ms": 63.97,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-4__k33",
+    "luat-59-2020-qh14-v1__dieu-98__k1",
+    "luat-59-2020-qh14-v1__dieu-157__k4",
+    "luat-59-2020-qh14-v1__dieu-182__k4",
+    "luat-59-2020-qh14-v1__dieu-98__k7"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-1__k0"
+   ],
+   "strict": {
+    "recall_at_5": 0.0,
+    "recall_at_10": 0.0,
+    "recall_at_20": 0.0,
+    "mrr_at_20": 0.0
+   },
+   "recall_at_5": 0.0,
+   "recall_at_10": 0.0,
+   "recall_at_20": 0.0,
+   "mrr_at_20": 0.0
+  },
+  {
+   "id": "gold_002",
+   "elapsed_ms": 57.06,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-2__k1",
+    "nd-168-2025-nd-cp-v1__dieu-2__k2",
+    "nd-168-2025-nd-cp-v1__dieu-2__k3",
+    "nd-168-2025-nd-cp-v1__dieu-2__k8",
+    "vbhn-7566-vbhn-bkhdt-v1__dieu-1__k2"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-2__k1",
+    "luat-59-2020-qh14-v1__dieu-2__k2"
+   ],
+   "strict": {
+    "recall_at_5": 0.5,
+    "recall_at_10": 0.5,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 1.0
+   },
+   "recall_at_5": 0.5,
+   "recall_at_10": 0.5,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_003",
+   "elapsed_ms": 341.31,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-25__k3",
+    "luat-59-2020-qh14-v1__dieu-127__k3",
+    "vbhn-67-vbhn-vpqh-v1__dieu-25__k3",
+    "luat-59-2020-qh14-v1__dieu-22__k4",
+    "luat-59-2020-qh14-v1__dieu-31__k3"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-4__k3"
+   ],
+   "strict": {
+    "recall_at_5": 0.0,
+    "recall_at_10": 0.0,
+    "recall_at_20": 0.0,
+    "mrr_at_20": 0.0
+   },
+   "recall_at_5": 0.0,
+   "recall_at_10": 0.0,
+   "recall_at_20": 0.0,
+   "mrr_at_20": 0.0
+  },
+  {
+   "id": "gold_004",
+   "elapsed_ms": 49.54,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-87__k1",
+    "luat-59-2020-qh14-v1__dieu-77__k1",
+    "luat-59-2020-qh14-v1__dieu-68__k1",
+    "luat-59-2020-qh14-v1__dieu-68__k6",
+    "luat-59-2020-qh14-v1__dieu-75__k1"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-4__k34"
+   ],
+   "strict": {
+    "recall_at_5": 0.0,
+    "recall_at_10": 0.0,
+    "recall_at_20": 0.0,
+    "mrr_at_20": 0.0
+   },
+   "recall_at_5": 0.0,
+   "recall_at_10": 0.0,
+   "recall_at_20": 0.0,
+   "mrr_at_20": 0.0
+  },
+  {
+   "id": "gold_005",
+   "elapsed_ms": 41.87,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-7__k11",
+    "luat-59-2020-qh14-v1__dieu-7__k5",
+    "luat-59-2020-qh14-v1__dieu-7__k10",
+    "luat-59-2020-qh14-v1__dieu-7__k8",
+    "luat-59-2020-qh14-v1__dieu-7__k9"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-7__k1",
+    "luat-59-2020-qh14-v1__dieu-7__k2",
+    "luat-59-2020-qh14-v1__dieu-7__k3",
+    "luat-59-2020-qh14-v1__dieu-7__k4",
+    "luat-59-2020-qh14-v1__dieu-7__k5",
+    "luat-59-2020-qh14-v1__dieu-7__k6",
+    "luat-59-2020-qh14-v1__dieu-7__k7",
+    "luat-59-2020-qh14-v1__dieu-7__k8",
+    "luat-59-2020-qh14-v1__dieu-7__k9",
+    "luat-59-2020-qh14-v1__dieu-7__k10",
+    "luat-59-2020-qh14-v1__dieu-7__k11"
+   ],
+   "strict": {
+    "recall_at_5": 0.2727272727272727,
+    "recall_at_10": 0.6363636363636364,
+    "recall_at_20": 0.9090909090909091,
+    "mrr_at_20": 1.0
+   },
+   "recall_at_5": 0.45454545454545453,
+   "recall_at_10": 0.8181818181818182,
+   "recall_at_20": 0.9090909090909091,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_006",
+   "elapsed_ms": 50.86,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-14__k2",
+    "luat-59-2020-qh14-v1__dieu-46__k1",
+    "luat-59-2020-qh14-v1__dieu-54__k1",
+    "luat-59-2020-qh14-v1__dieu-46__k3",
+    "luat-59-2020-qh14-v1__dieu-46__k2"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-46__k1"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.2
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 0.5
+  },
+  {
+   "id": "gold_007",
+   "elapsed_ms": 55.33,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-47__k2",
+    "luat-59-2020-qh14-v1__dieu-75__k2",
+    "luat-59-2020-qh14-v1__dieu-113__k1",
+    "luat-59-2020-qh14-v1__dieu-35__k1",
+    "luat-59-2020-qh14-v1__dieu-47__k4"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-47__k2"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_008",
+   "elapsed_ms": 40.07,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-35__k1",
+    "luat-59-2020-qh14-v1__dieu-35__k3",
+    "luat-59-2020-qh14-v1__dieu-35__k4",
+    "luat-59-2020-qh14-v1__dieu-179__k1",
+    "luat-59-2020-qh14-v1__dieu-35__k2"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-35__k1"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_009",
+   "elapsed_ms": 52.65,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-111__k1",
+    "luat-59-2020-qh14-v1__dieu-14__k2",
+    "luat-59-2020-qh14-v1__dieu-120__k1",
+    "luat-59-2020-qh14-v1__dieu-124__k3",
+    "luat-59-2020-qh14-v1__dieu-124__k1"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-111__k1"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 1.0
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_010",
+   "elapsed_ms": 62.69,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-188__k2",
+    "luat-59-2020-qh14-v1__dieu-177__k3",
+    "luat-59-2020-qh14-v1__dieu-188__k4",
+    "luat-76-2025-qh15-v1__dieu-1__k19",
+    "luat-59-2020-qh14-v1__dieu-111__k3"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-188__k2"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_011",
+   "elapsed_ms": 59.02,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-16__k3",
+    "luat-59-2020-qh14-v1__dieu-16__k7",
+    "luat-59-2020-qh14-v1__dieu-16__k1",
+    "vbhn-67-vbhn-vpqh-v1__dieu-16__k1",
+    "luat-59-2020-qh14-v1__dieu-16__k4"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-16__k1",
+    "luat-59-2020-qh14-v1__dieu-16__k2",
+    "luat-59-2020-qh14-v1__dieu-16__k3",
+    "luat-59-2020-qh14-v1__dieu-16__k4",
+    "luat-59-2020-qh14-v1__dieu-16__k5",
+    "luat-59-2020-qh14-v1__dieu-16__k6",
+    "luat-59-2020-qh14-v1__dieu-16__k7"
+   ],
+   "strict": {
+    "recall_at_5": 0.42857142857142855,
+    "recall_at_10": 0.8571428571428571,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 1.0
+   },
+   "recall_at_5": 0.5714285714285714,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_012",
+   "elapsed_ms": 57.03,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-20__k2",
+    "luat-59-2020-qh14-v1__dieu-20__k4",
+    "luat-59-2020-qh14-v1__dieu-20__k3",
+    "luat-59-2020-qh14-v1__dieu-20__k1",
+    "luat-59-2020-qh14-v1__dieu-20__k5"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-20__k1",
+    "luat-59-2020-qh14-v1__dieu-20__k2",
+    "luat-59-2020-qh14-v1__dieu-20__k3",
+    "luat-59-2020-qh14-v1__dieu-20__k4",
+    "luat-59-2020-qh14-v1__dieu-20__k5"
+   ],
+   "strict": {
+    "recall_at_5": 0.6,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 1.0
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_013",
+   "elapsed_ms": 58.94,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-23__k6",
+    "luat-59-2020-qh14-v1__dieu-23__k1",
+    "luat-59-2020-qh14-v1__dieu-23__k3",
+    "luat-59-2020-qh14-v1__dieu-23__k7",
+    "vbhn-67-vbhn-vpqh-v1__dieu-23__k10"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-23__k1",
+    "luat-59-2020-qh14-v1__dieu-23__k2",
+    "luat-59-2020-qh14-v1__dieu-23__k3",
+    "luat-59-2020-qh14-v1__dieu-23__k4",
+    "luat-59-2020-qh14-v1__dieu-23__k5",
+    "luat-59-2020-qh14-v1__dieu-23__k6",
+    "luat-59-2020-qh14-v1__dieu-23__k7",
+    "luat-59-2020-qh14-v1__dieu-23__k8",
+    "luat-59-2020-qh14-v1__dieu-23__k9"
+   ],
+   "strict": {
+    "recall_at_5": 0.4444444444444444,
+    "recall_at_10": 0.5555555555555556,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 1.0
+   },
+   "recall_at_5": 0.4444444444444444,
+   "recall_at_10": 0.8888888888888888,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_014",
+   "elapsed_ms": 46.39,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-24__k1",
+    "luat-59-2020-qh14-v1__dieu-24__k4",
+    "luat-59-2020-qh14-v1__dieu-24__k3",
+    "luat-59-2020-qh14-v1__dieu-167__k4",
+    "luat-59-2020-qh14-v1__dieu-28__k4"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-24__k1",
+    "luat-59-2020-qh14-v1__dieu-24__k2",
+    "luat-59-2020-qh14-v1__dieu-24__k3",
+    "luat-59-2020-qh14-v1__dieu-24__k4"
+   ],
+   "strict": {
+    "recall_at_5": 0.75,
+    "recall_at_10": 0.75,
+    "recall_at_20": 0.75,
+    "mrr_at_20": 1.0
+   },
+   "recall_at_5": 0.75,
+   "recall_at_10": 0.75,
+   "recall_at_20": 0.75,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_015",
+   "elapsed_ms": 61.15,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-28__k1",
+    "luat-59-2020-qh14-v1__dieu-28__k2",
+    "luat-59-2020-qh14-v1__dieu-28__k4",
+    "luat-59-2020-qh14-v1__dieu-30__k1",
+    "luat-59-2020-qh14-v1__dieu-23__k1"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-28__k1",
+    "luat-59-2020-qh14-v1__dieu-28__k2",
+    "luat-59-2020-qh14-v1__dieu-28__k3",
+    "luat-59-2020-qh14-v1__dieu-28__k4"
+   ],
+   "strict": {
+    "recall_at_5": 0.75,
+    "recall_at_10": 0.75,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 1.0
+   },
+   "recall_at_5": 0.75,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_016",
+   "elapsed_ms": 59.44,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-74__k1",
+    "luat-59-2020-qh14-v1__dieu-46__k1",
+    "luat-59-2020-qh14-v1__dieu-46__k3",
+    "luat-59-2020-qh14-v1__dieu-87__k2",
+    "luat-59-2020-qh14-v1__dieu-46__k2"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-46__k1",
+    "luat-59-2020-qh14-v1__dieu-74__k1",
+    "luat-59-2020-qh14-v1__dieu-111__k1",
+    "luat-59-2020-qh14-v1__dieu-177__k1",
+    "luat-59-2020-qh14-v1__dieu-188__k1"
+   ],
+   "strict": {
+    "recall_at_5": 0.4,
+    "recall_at_10": 0.4,
+    "recall_at_20": 0.4,
+    "mrr_at_20": 1.0
+   },
+   "recall_at_5": 0.4,
+   "recall_at_10": 0.4,
+   "recall_at_20": 0.4,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_017",
+   "elapsed_ms": 46.79,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-111__k1",
+    "luat-59-2020-qh14-v1__dieu-119__k2",
+    "luat-59-2020-qh14-v1__dieu-187__k2",
+    "luat-59-2020-qh14-v1__dieu-50__k1",
+    "luat-59-2020-qh14-v1__dieu-136__k0"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-111__k1",
+    "luat-59-2020-qh14-v1__dieu-119__k1",
+    "luat-59-2020-qh14-v1__dieu-119__k2",
+    "luat-59-2020-qh14-v1__dieu-119__k3",
+    "luat-59-2020-qh14-v1__dieu-119__k4",
+    "luat-59-2020-qh14-v1__dieu-119__k5",
+    "luat-59-2020-qh14-v1__dieu-119__k6"
+   ],
+   "strict": {
+    "recall_at_5": 0.2857142857142857,
+    "recall_at_10": 0.2857142857142857,
+    "recall_at_20": 0.2857142857142857,
+    "mrr_at_20": 1.0
+   },
+   "recall_at_5": 0.2857142857142857,
+   "recall_at_10": 0.2857142857142857,
+   "recall_at_20": 0.2857142857142857,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_018",
+   "elapsed_ms": 74.91,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-12__k2",
+    "luat-59-2020-qh14-v1__dieu-24__k4",
+    "luat-59-2020-qh14-v1__dieu-12__k4",
+    "nd-168-2025-nd-cp-v1__dieu-4__k2",
+    "luat-59-2020-qh14-v1__dieu-24__k3"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-12__k2",
+    "luat-59-2020-qh14-v1__dieu-13__k1",
+    "vbhn-67-vbhn-vpqh-v1__dieu-13__k2"
+   ],
+   "strict": {
+    "recall_at_5": 0.3333333333333333,
+    "recall_at_10": 0.3333333333333333,
+    "recall_at_20": 0.3333333333333333,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 0.3333333333333333,
+   "recall_at_10": 0.3333333333333333,
+   "recall_at_20": 0.3333333333333333,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_019",
+   "elapsed_ms": 49.66,
+   "top5": [
+    "nd-168-2025-nd-cp-v1__dieu-65__k2",
+    "luat-59-2020-qh14-v1__dieu-209__k4",
+    "luat-59-2020-qh14-v1__dieu-208__k7",
+    "nd-168-2025-nd-cp-v1__dieu-64__k5",
+    "nd-168-2025-nd-cp-v1__dieu-99__k3"
+   ],
+   "gold_units": [
+    "vbhn-67-vbhn-vpqh-v1__dieu-207__k1",
+    "luat-59-2020-qh14-v1__dieu-207__k2",
+    "nd-168-2025-nd-cp-v1__dieu-64__k1",
+    "nd-168-2025-nd-cp-v1__dieu-64__k3",
+    "nd-168-2025-nd-cp-v1__dieu-64__k4"
+   ],
+   "strict": {
+    "recall_at_5": 0.0,
+    "recall_at_10": 0.0,
+    "recall_at_20": 0.2,
+    "mrr_at_20": 0.07142857142857142
+   },
+   "recall_at_5": 0.0,
+   "recall_at_10": 0.2,
+   "recall_at_20": 0.2,
+   "mrr_at_20": 0.1111111111111111
+  },
+  {
+   "id": "gold_020",
+   "elapsed_ms": 48.41,
+   "top5": [
+    "nd-168-2025-nd-cp-v1__dieu-19__k0",
+    "vbhn-67-vbhn-vpqh-v1__dieu-217__k6",
+    "luat-76-2025-qh15-v1__dieu-1__k27",
+    "nd-168-2025-nd-cp-v1__dieu-18__k2",
+    "vbhn-67-vbhn-vpqh-v1__dieu-8__k5a"
+   ],
+   "gold_units": [
+    "nd-168-2025-nd-cp-v1__dieu-17__k1",
+    "nd-168-2025-nd-cp-v1__dieu-17__k2",
+    "nd-168-2025-nd-cp-v1__dieu-18__k1",
+    "nd-168-2025-nd-cp-v1__dieu-18__k2",
+    "nd-168-2025-nd-cp-v1__dieu-18__k3",
+    "nd-168-2025-nd-cp-v1__dieu-19__k0"
+   ],
+   "strict": {
+    "recall_at_5": 0.3333333333333333,
+    "recall_at_10": 0.8333333333333334,
+    "recall_at_20": 0.8333333333333334,
+    "mrr_at_20": 1.0
+   },
+   "recall_at_5": 0.3333333333333333,
+   "recall_at_10": 0.8333333333333334,
+   "recall_at_20": 0.8333333333333334,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_021",
+   "elapsed_ms": 46.74,
+   "top5": [
+    "luat-76-2025-qh15-v1__dieu-1__k27",
+    "luat-76-2025-qh15-v1__dieu-1__k2",
+    "luat-76-2025-qh15-v1__dieu-1__k10",
+    "luat-76-2025-qh15-v1__dieu-1__k26",
+    "luat-76-2025-qh15-v1__dieu-3__k1"
+   ],
+   "gold_units": [
+    "luat-76-2025-qh15-v1__dieu-1__k2",
+    "luat-76-2025-qh15-v1__dieu-1__k3",
+    "luat-76-2025-qh15-v1__dieu-1__k7",
+    "luat-76-2025-qh15-v1__dieu-1__k8",
+    "luat-76-2025-qh15-v1__dieu-1__k9",
+    "luat-76-2025-qh15-v1__dieu-1__k10",
+    "luat-76-2025-qh15-v1__dieu-1__k13",
+    "luat-76-2025-qh15-v1__dieu-1__k14",
+    "luat-76-2025-qh15-v1__dieu-1__k26",
+    "luat-76-2025-qh15-v1__dieu-1__k27"
+   ],
+   "strict": {
+    "recall_at_5": 0.4,
+    "recall_at_10": 0.9,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 1.0
+   },
+   "recall_at_5": 0.4,
+   "recall_at_10": 0.9,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_022",
+   "elapsed_ms": 45.02,
+   "top5": [
+    "luat-76-2025-qh15-v1__dieu-3__k2",
+    "luat-59-2020-qh14-v1__dieu-129__k2",
+    "luat-59-2020-qh14-v1__dieu-129__k3",
+    "luat-76-2025-qh15-v1__dieu-3__k1",
+    "luat-59-2020-qh14-v1__dieu-129__k4"
+   ],
+   "gold_units": [
+    "luat-76-2025-qh15-v1__dieu-2__k0",
+    "luat-76-2025-qh15-v1__dieu-3__k1",
+    "luat-76-2025-qh15-v1__dieu-3__k2"
+   ],
+   "strict": {
+    "recall_at_5": 0.3333333333333333,
+    "recall_at_10": 0.6666666666666666,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 1.0
+   },
+   "recall_at_5": 0.6666666666666666,
+   "recall_at_10": 0.6666666666666666,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_023",
+   "elapsed_ms": 48.1,
+   "top5": [
+    "vbhn-7566-vbhn-bkhdt-v1__dieu-3__k1",
+    "vbhn-7566-vbhn-bkhdt-v1__dieu-6__k2",
+    "vbhn-7566-vbhn-bkhdt-v1__dieu-3__k2",
+    "vbhn-7566-vbhn-bkhdt-v1__dieu-6__k1",
+    "vbhn-7566-vbhn-bkhdt-v1__dieu-5__k3"
+   ],
+   "gold_units": [
+    "vbhn-7566-vbhn-bkhdt-v1__dieu-2__k1",
+    "vbhn-7566-vbhn-bkhdt-v1__dieu-3__k1",
+    "vbhn-7566-vbhn-bkhdt-v1__dieu-3__k2"
+   ],
+   "strict": {
+    "recall_at_5": 0.6666666666666666,
+    "recall_at_10": 0.6666666666666666,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 1.0
+   },
+   "recall_at_5": 0.6666666666666666,
+   "recall_at_10": 0.6666666666666666,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_024",
+   "elapsed_ms": 43.86,
+   "top5": [
+    "vbhn-7566-vbhn-bkhdt-v1__dieu-20__k4",
+    "nd-168-2025-nd-cp-v1__dieu-112__k1",
+    "vbhn-7566-vbhn-bkhdt-v1__dieu-20__k5",
+    "vbhn-7566-vbhn-bkhdt-v1__dieu-21__k2",
+    "luat-59-2020-qh14-v1__dieu-26__k2"
+   ],
+   "gold_units": [
+    "vbhn-7566-vbhn-bkhdt-v1__dieu-21__k1",
+    "vbhn-7566-vbhn-bkhdt-v1__dieu-21__k2",
+    "vbhn-7566-vbhn-bkhdt-v1__dieu-20__k4",
+    "vbhn-7566-vbhn-bkhdt-v1__dieu-20__k5"
+   ],
+   "strict": {
+    "recall_at_5": 0.75,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 1.0
+   },
+   "recall_at_5": 0.75,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_025",
+   "elapsed_ms": 47.56,
+   "top5": [
+    "nd-122-2021-nd-cp-v1__dieu-4__k2",
+    "nd-122-2021-nd-cp-v1__dieu-4__k1",
+    "nd-122-2021-nd-cp-v1__dieu-5__k1",
+    "nd-122-2021-nd-cp-v1__dieu-5__k3",
+    "nd-122-2021-nd-cp-v1__dieu-1__k1"
+   ],
+   "gold_units": [
+    "nd-122-2021-nd-cp-v1__dieu-3__k1",
+    "nd-122-2021-nd-cp-v1__dieu-3__k2",
+    "nd-122-2021-nd-cp-v1__dieu-4__k1",
+    "nd-122-2021-nd-cp-v1__dieu-4__k2",
+    "nd-122-2021-nd-cp-v1__dieu-5__k1"
+   ],
+   "strict": {
+    "recall_at_5": 0.6,
+    "recall_at_10": 0.8,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 1.0
+   },
+   "recall_at_5": 0.6,
+   "recall_at_10": 0.8,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_026",
+   "elapsed_ms": 50.17,
+   "top5": [
+    "nd-122-2021-nd-cp-v1__dieu-3__k2",
+    "nd-122-2021-nd-cp-v1__dieu-58__k1",
+    "nd-122-2021-nd-cp-v1__dieu-2__k2",
+    "nd-122-2021-nd-cp-v1__dieu-4__k2",
+    "nd-122-2021-nd-cp-v1__dieu-58__k2"
+   ],
+   "gold_units": [
+    "nd-122-2021-nd-cp-v1__dieu-58__k1",
+    "nd-122-2021-nd-cp-v1__dieu-58__k2",
+    "nd-122-2021-nd-cp-v1__dieu-4__k2"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 0.5
+  },
+  {
+   "id": "gold_027",
+   "elapsed_ms": 46.27,
+   "top5": [
+    "vbhn-67-vbhn-vpqh-v1__dieu-16__k4",
+    "nd-288-2026-nd-cp-v1__dieu-1__k0",
+    "nd-122-2021-nd-cp-v1__dieu-43__k0",
+    "luat-59-2020-qh14-v1__dieu-16__k4",
+    "nd-168-2025-nd-cp-v1__dieu-63__k2"
+   ],
+   "gold_units": [
+    "nd-288-2026-nd-cp-v1__dieu-1__k0",
+    "nd-288-2026-nd-cp-v1__dieu-2__k1",
+    "nd-288-2026-nd-cp-v1__dieu-2__k2",
+    "nd-288-2026-nd-cp-v1__dieu-2__k3",
+    "nd-288-2026-nd-cp-v1__dieu-2__k4"
+   ],
+   "strict": {
+    "recall_at_5": 0.2,
+    "recall_at_10": 0.2,
+    "recall_at_20": 0.4,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 0.2,
+   "recall_at_10": 0.2,
+   "recall_at_20": 0.4,
+   "mrr_at_20": 0.5
+  },
+  {
+   "id": "gold_028",
+   "elapsed_ms": 48.36,
+   "top5": [
+    "nd-288-2026-nd-cp-v1__dieu-8__k2",
+    "nd-288-2026-nd-cp-v1__dieu-8__k1",
+    "nd-288-2026-nd-cp-v1__dieu-8__k3",
+    "nd-288-2026-nd-cp-v1__dieu-7__k0",
+    "vbhn-7566-vbhn-bkhdt-v1__dieu-34__k1"
+   ],
+   "gold_units": [
+    "nd-288-2026-nd-cp-v1__dieu-7__k0",
+    "nd-288-2026-nd-cp-v1__dieu-8__k1",
+    "nd-288-2026-nd-cp-v1__dieu-8__k2"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 1.0
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_029",
+   "elapsed_ms": 44.74,
+   "top5": [
+    "tt-68-2025-tt-btc-v1__dieu-3__k1",
+    "tt-68-2025-tt-btc-v1__dieu-3__k2",
+    "tt-68-2025-tt-btc-v1__dieu-1__k1",
+    "tt-68-2025-tt-btc-v1__dieu-1__k2",
+    "tt-68-2025-tt-btc-v1__dieu-3__k3"
+   ],
+   "gold_units": [
+    "tt-68-2025-tt-btc-v1__dieu-1__k1",
+    "tt-68-2025-tt-btc-v1__dieu-1__k2",
+    "tt-68-2025-tt-btc-v1__dieu-2__k1",
+    "tt-68-2025-tt-btc-v1__dieu-2__k2",
+    "tt-68-2025-tt-btc-v1__dieu-3__k1",
+    "tt-68-2025-tt-btc-v1__dieu-3__k2",
+    "tt-68-2025-tt-btc-v1__dieu-3__k3"
+   ],
+   "strict": {
+    "recall_at_5": 0.7142857142857143,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 1.0
+   },
+   "recall_at_5": 0.7142857142857143,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_030",
+   "elapsed_ms": 45.52,
+   "top5": [
+    "nd-168-2025-nd-cp-v1__dieu-60__k1",
+    "nd-168-2025-nd-cp-v1__dieu-103__k1",
+    "nd-168-2025-nd-cp-v1__dieu-60__k2",
+    "luat-59-2020-qh14-v1__dieu-206__k1",
+    "nd-168-2025-nd-cp-v1__dieu-60__k3"
+   ],
+   "gold_units": [
+    "nd-168-2025-nd-cp-v1__dieu-60__k1",
+    "nd-168-2025-nd-cp-v1__dieu-60__k2",
+    "nd-288-2026-nd-cp-v1__dieu-2__k5",
+    "nd-288-2026-nd-cp-v1__dieu-2__k7"
+   ],
+   "strict": {
+    "recall_at_5": 0.5,
+    "recall_at_10": 0.5,
+    "recall_at_20": 0.5,
+    "mrr_at_20": 1.0
+   },
+   "recall_at_5": 0.5,
+   "recall_at_10": 0.5,
+   "recall_at_20": 0.5,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_031",
+   "elapsed_ms": 44.65,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-14__k2",
+    "luat-59-2020-qh14-v1__dieu-14__k3",
+    "luat-59-2020-qh14-v1__dieu-14__k4",
+    "luat-59-2020-qh14-v1__dieu-54__k3",
+    "luat-59-2020-qh14-v1__dieu-55__k1"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-14__k2"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_032",
+   "elapsed_ms": 45.29,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-14__k4",
+    "luat-59-2020-qh14-v1__dieu-21__k4",
+    "luat-59-2020-qh14-v1__dieu-14__k1",
+    "luat-59-2020-qh14-v1__dieu-15__k1",
+    "luat-59-2020-qh14-v1__dieu-14__k2"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-14__k4"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_033",
+   "elapsed_ms": 44.18,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-36__k1",
+    "luat-59-2020-qh14-v1__dieu-34__k1",
+    "luat-59-2020-qh14-v1__dieu-131__k0",
+    "luat-59-2020-qh14-v1__dieu-189__k1",
+    "luat-59-2020-qh14-v1__dieu-36__k2"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-36__k1"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_034",
+   "elapsed_ms": 42.2,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-43__k1",
+    "luat-59-2020-qh14-v1__dieu-43__k2",
+    "luat-59-2020-qh14-v1__dieu-43__k3",
+    "luat-59-2020-qh14-v1__dieu-60__k1",
+    "nd-168-2025-nd-cp-v1__dieu-3__k9"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-43__k1"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_035",
+   "elapsed_ms": 43.75,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-87__k3",
+    "luat-59-2020-qh14-v1__dieu-68__k3",
+    "luat-59-2020-qh14-v1__dieu-68__k2",
+    "luat-59-2020-qh14-v1__dieu-70__k0",
+    "luat-59-2020-qh14-v1__dieu-87__k1"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-87__k3"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.3333333333333333
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_036",
+   "elapsed_ms": 45.89,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-114__k6",
+    "luat-59-2020-qh14-v1__dieu-114__k1",
+    "luat-59-2020-qh14-v1__dieu-114__k2",
+    "luat-59-2020-qh14-v1__dieu-120__k1",
+    "luat-59-2020-qh14-v1__dieu-120__k4"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-114__k1"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.25
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 0.5
+  },
+  {
+   "id": "gold_037",
+   "elapsed_ms": 48.75,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-117__k1",
+    "luat-59-2020-qh14-v1__dieu-117__k3",
+    "luat-59-2020-qh14-v1__dieu-117__k2",
+    "luat-59-2020-qh14-v1__dieu-114__k2",
+    "luat-59-2020-qh14-v1__dieu-114__k3"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-117__k1"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_038",
+   "elapsed_ms": 50.23,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-120__k2",
+    "luat-59-2020-qh14-v1__dieu-120__k4",
+    "luat-59-2020-qh14-v1__dieu-120__k1",
+    "luat-59-2020-qh14-v1__dieu-120__k3",
+    "luat-59-2020-qh14-v1__dieu-112__k3"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-120__k2"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_039",
+   "elapsed_ms": 40.21,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-135__k3",
+    "luat-59-2020-qh14-v1__dieu-135__k6",
+    "luat-59-2020-qh14-v1__dieu-35__k5",
+    "luat-59-2020-qh14-v1__dieu-4__k5",
+    "luat-59-2020-qh14-v1__dieu-135__k2"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-135__k3"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_040",
+   "elapsed_ms": 41.11,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-135__k5",
+    "luat-59-2020-qh14-v1__dieu-135__k4",
+    "luat-59-2020-qh14-v1__dieu-117__k1",
+    "luat-59-2020-qh14-v1__dieu-135__k6",
+    "luat-59-2020-qh14-v1__dieu-135__k2"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-135__k5"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_041",
+   "elapsed_ms": 46.94,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-175__k3",
+    "luat-59-2020-qh14-v1__dieu-175__k4",
+    "luat-59-2020-qh14-v1__dieu-170__k3",
+    "luat-59-2020-qh14-v1__dieu-175__k1",
+    "luat-59-2020-qh14-v1__dieu-139__k3"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-175__k3"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_042",
+   "elapsed_ms": 42.15,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-113__k2",
+    "luat-59-2020-qh14-v1__dieu-113__k1",
+    "luat-59-2020-qh14-v1__dieu-113__k3",
+    "luat-59-2020-qh14-v1__dieu-113__k4",
+    "nd-168-2025-nd-cp-v1__dieu-50__k2"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-113__k2"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_043",
+   "elapsed_ms": 39.4,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-146__k9",
+    "luat-59-2020-qh14-v1__dieu-146__k4",
+    "luat-59-2020-qh14-v1__dieu-146__k2",
+    "luat-59-2020-qh14-v1__dieu-139__k1",
+    "luat-59-2020-qh14-v1__dieu-146__k7"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-146__k4"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.25
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 0.5
+  },
+  {
+   "id": "gold_044",
+   "elapsed_ms": 40.38,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-144__k1",
+    "luat-59-2020-qh14-v1__dieu-15__k2",
+    "luat-59-2020-qh14-v1__dieu-14__k2",
+    "luat-59-2020-qh14-v1__dieu-14__k1",
+    "nd-168-2025-nd-cp-v1__dieu-54__k3"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-15__k2"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.25
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 0.5
+  },
+  {
+   "id": "gold_045",
+   "elapsed_ms": 40.82,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-112__k2",
+    "luat-59-2020-qh14-v1__dieu-4__k34",
+    "luat-59-2020-qh14-v1__dieu-112__k1",
+    "luat-59-2020-qh14-v1__dieu-133__k1",
+    "luat-59-2020-qh14-v1__dieu-112__k4"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-112__k2"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_046",
+   "elapsed_ms": 39.24,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-88__k2",
+    "luat-59-2020-qh14-v1__dieu-88__k1",
+    "vbhn-7566-vbhn-bkhdt-v1__dieu-10__k3",
+    "luat-59-2020-qh14-v1__dieu-100__k3",
+    "vbhn-7566-vbhn-bkhdt-v1__dieu-8__k2"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-100__k3"
+   ],
+   "strict": {
+    "recall_at_5": 0.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.125
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 0.25
+  },
+  {
+   "id": "gold_047",
+   "elapsed_ms": 38.3,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-27__k2",
+    "nd-168-2025-nd-cp-v1__dieu-110__k0",
+    "luat-59-2020-qh14-v1__dieu-178__k5",
+    "nd-168-2025-nd-cp-v1__dieu-62__k0",
+    "luat-59-2020-qh14-v1__dieu-47__k7"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-27__k2"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_048",
+   "elapsed_ms": 37.97,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-157__k5",
+    "luat-59-2020-qh14-v1__dieu-140__k2",
+    "luat-59-2020-qh14-v1__dieu-157__k3",
+    "luat-59-2020-qh14-v1__dieu-140__k3",
+    "luat-59-2020-qh14-v1__dieu-157__k1"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-157__k3"
+   ],
+   "strict": {
+    "recall_at_5": 0.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.16666666666666666
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 0.3333333333333333
+  },
+  {
+   "id": "gold_049",
+   "elapsed_ms": 39.12,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-193__k4",
+    "luat-59-2020-qh14-v1__dieu-78__k5",
+    "luat-59-2020-qh14-v1__dieu-53__k3",
+    "luat-59-2020-qh14-v1__dieu-185__k4",
+    "nd-168-2025-nd-cp-v1__dieu-100__k4"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-193__k4"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_050",
+   "elapsed_ms": 38.94,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-66__k1",
+    "luat-59-2020-qh14-v1__dieu-66__k2",
+    "luat-59-2020-qh14-v1__dieu-163__k2",
+    "luat-59-2020-qh14-v1__dieu-163__k1",
+    "luat-59-2020-qh14-v1__dieu-163__k3"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-66__k2"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.25
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 0.5
+  },
+  {
+   "id": "gold_051",
+   "elapsed_ms": 38.77,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-148__k4",
+    "luat-59-2020-qh14-v1__dieu-149__k8",
+    "luat-59-2020-qh14-v1__dieu-149__k1",
+    "luat-59-2020-qh14-v1__dieu-149__k7",
+    "luat-59-2020-qh14-v1__dieu-147__k1"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-148__k4"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.3333333333333333
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_052",
+   "elapsed_ms": 38.72,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-196__k2",
+    "luat-59-2020-qh14-v1__dieu-197__k6",
+    "luat-59-2020-qh14-v1__dieu-67__k1",
+    "luat-59-2020-qh14-v1__dieu-167__k6",
+    "luat-59-2020-qh14-v1__dieu-196__k6"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-196__k2"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_053",
+   "elapsed_ms": 38.39,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-204__k2",
+    "luat-59-2020-qh14-v1__dieu-202__k3",
+    "luat-59-2020-qh14-v1__dieu-203__k3",
+    "luat-59-2020-qh14-v1__dieu-203__k1",
+    "luat-59-2020-qh14-v1__dieu-204__k1"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-202__k3"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.25
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 0.5
+  },
+  {
+   "id": "gold_054",
+   "elapsed_ms": 38.68,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-33__k2",
+    "luat-59-2020-qh14-v1__dieu-33__k1",
+    "nd-168-2025-nd-cp-v1__dieu-77__k3",
+    "nd-168-2025-nd-cp-v1__dieu-74__k2",
+    "nd-168-2025-nd-cp-v1__dieu-23__k1"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-33__k2"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_055",
+   "elapsed_ms": 38.79,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-95__k3",
+    "luat-59-2020-qh14-v1__dieu-91__k2",
+    "luat-59-2020-qh14-v1__dieu-94__k3",
+    "luat-59-2020-qh14-v1__dieu-102__k3",
+    "vbhn-7566-vbhn-bkhdt-v1__dieu-10__k3"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-95__k3"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_056",
+   "elapsed_ms": 44.02,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-32__k1",
+    "nd-168-2025-nd-cp-v1__dieu-118__k1",
+    "luat-59-2020-qh14-v1__dieu-30__k1",
+    "nd-168-2025-nd-cp-v1__dieu-118__k3",
+    "nd-168-2025-nd-cp-v1__dieu-110__k0"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-32__k1"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_057",
+   "elapsed_ms": 54.13,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-37__k4",
+    "luat-59-2020-qh14-v1__dieu-40__k3",
+    "luat-59-2020-qh14-v1__dieu-39__k2",
+    "luat-59-2020-qh14-v1__dieu-38__k1",
+    "nd-122-2021-nd-cp-v1__dieu-52__k2"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-37__k4"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_058",
+   "elapsed_ms": 48.77,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-62__k1",
+    "luat-59-2020-qh14-v1__dieu-62__k2",
+    "luat-59-2020-qh14-v1__dieu-62__k3",
+    "luat-59-2020-qh14-v1__dieu-98__k12",
+    "luat-59-2020-qh14-v1__dieu-80__k6"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-62__k1"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_059",
+   "elapsed_ms": 53.73,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-5__k2",
+    "luat-59-2020-qh14-v1__dieu-5__k1",
+    "luat-59-2020-qh14-v1__dieu-5__k3",
+    "luat-59-2020-qh14-v1__dieu-92__k1",
+    "vbhn-67-vbhn-vpqh-v1__dieu-4__k35"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-5__k2"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_060",
+   "elapsed_ms": 56.06,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-134__k4",
+    "luat-59-2020-qh14-v1__dieu-134__k1",
+    "luat-59-2020-qh14-v1__dieu-133__k2",
+    "luat-59-2020-qh14-v1__dieu-134__k2",
+    "luat-59-2020-qh14-v1__dieu-167__k3"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-134__k4"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_061",
+   "elapsed_ms": 55.12,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-192__k2",
+    "luat-59-2020-qh14-v1__dieu-205__k3",
+    "luat-59-2020-qh14-v1__dieu-205__k1",
+    "luat-59-2020-qh14-v1__dieu-193__k2",
+    "luat-59-2020-qh14-v1__dieu-190__k2"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-205__k3"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.2
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 0.5
+  },
+  {
+   "id": "gold_062",
+   "elapsed_ms": 48.21,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-57__k5",
+    "luat-59-2020-qh14-v1__dieu-98__k2",
+    "luat-59-2020-qh14-v1__dieu-57__k3",
+    "luat-59-2020-qh14-v1__dieu-183__k2",
+    "luat-59-2020-qh14-v1__dieu-157__k6"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-57__k5"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_063",
+   "elapsed_ms": 62.68,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-127__k1",
+    "luat-59-2020-qh14-v1__dieu-120__k3",
+    "luat-59-2020-qh14-v1__dieu-111__k1",
+    "luat-59-2020-qh14-v1__dieu-116__k3",
+    "luat-59-2020-qh14-v1__dieu-127__k2"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-127__k1"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_064",
+   "elapsed_ms": 69.73,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-160__k3",
+    "luat-59-2020-qh14-v1__dieu-160__k4",
+    "luat-59-2020-qh14-v1__dieu-160__k2",
+    "luat-59-2020-qh14-v1__dieu-160__k1",
+    "luat-59-2020-qh14-v1__dieu-140__k2"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-160__k1"
+   ],
+   "strict": {
+    "recall_at_5": 0.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.125
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 0.25
+  },
+  {
+   "id": "gold_065",
+   "elapsed_ms": 64.25,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-45__k1",
+    "luat-59-2020-qh14-v1__dieu-45__k2",
+    "luat-59-2020-qh14-v1__dieu-40__k2",
+    "luat-59-2020-qh14-v1__dieu-40__k3",
+    "luat-59-2020-qh14-v1__dieu-44__k2"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-45__k1"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_066",
+   "elapsed_ms": 59.0,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-88__k1",
+    "luat-59-2020-qh14-v1__dieu-89__k1",
+    "luat-59-2020-qh14-v1__dieu-88__k2",
+    "luat-59-2020-qh14-v1__dieu-89__k2",
+    "vbhn-7566-vbhn-bkhdt-v1__dieu-10__k3"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-89__k1"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.25
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 0.5
+  },
+  {
+   "id": "gold_067",
+   "elapsed_ms": 66.77,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-166__k3",
+    "luat-59-2020-qh14-v1__dieu-166__k2",
+    "luat-59-2020-qh14-v1__dieu-166__k1",
+    "luat-59-2020-qh14-v1__dieu-72__k3",
+    "luat-59-2020-qh14-v1__dieu-141__k3"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-166__k3"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_068",
+   "elapsed_ms": 58.43,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-98__k12",
+    "luat-59-2020-qh14-v1__dieu-62__k1",
+    "luat-59-2020-qh14-v1__dieu-62__k2",
+    "luat-59-2020-qh14-v1__dieu-152__k1",
+    "luat-59-2020-qh14-v1__dieu-62__k3"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-98__k12"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.3333333333333333
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_069",
+   "elapsed_ms": 66.76,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-180__k1",
+    "luat-59-2020-qh14-v1__dieu-188__k3",
+    "luat-59-2020-qh14-v1__dieu-188__k4",
+    "luat-59-2020-qh14-v1__dieu-188__k1",
+    "nd-122-2021-nd-cp-v1__dieu-55__k1"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-180__k1"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.3333333333333333
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_070",
+   "elapsed_ms": 66.05,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-53__k5",
+    "luat-59-2020-qh14-v1__dieu-127__k4",
+    "luat-59-2020-qh14-v1__dieu-78__k3",
+    "luat-59-2020-qh14-v1__dieu-53__k1",
+    "luat-59-2020-qh14-v1__dieu-193__k3"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-53__k5"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_071",
+   "elapsed_ms": 56.63,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-107__k1",
+    "luat-59-2020-qh14-v1__dieu-106__k2",
+    "luat-59-2020-qh14-v1__dieu-173__k1",
+    "vbhn-7566-vbhn-bkhdt-v1__dieu-9__k1",
+    "vbhn-7566-vbhn-bkhdt-v1__dieu-10__k4"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-107__k1"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_072",
+   "elapsed_ms": 61.49,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-105__k2",
+    "luat-59-2020-qh14-v1__dieu-171__k2",
+    "luat-59-2020-qh14-v1__dieu-105__k6",
+    "luat-59-2020-qh14-v1__dieu-170__k5",
+    "luat-59-2020-qh14-v1__dieu-103__k2"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-105__k2"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_073",
+   "elapsed_ms": 64.58,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-97__k5",
+    "luat-59-2020-qh14-v1__dieu-91__k1",
+    "luat-59-2020-qh14-v1__dieu-93__k6",
+    "luat-59-2020-qh14-v1__dieu-96__k1",
+    "luat-59-2020-qh14-v1__dieu-98__k5"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-91__k1"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.2
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 0.5
+  },
+  {
+   "id": "gold_074",
+   "elapsed_ms": 58.11,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-101__k3",
+    "luat-59-2020-qh14-v1__dieu-93__k3",
+    "luat-59-2020-qh14-v1__dieu-64__k3",
+    "luat-59-2020-qh14-v1__dieu-162__k5",
+    "luat-59-2020-qh14-v1__dieu-103__k3"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-101__k3"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_075",
+   "elapsed_ms": 59.68,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-48__k3",
+    "luat-59-2020-qh14-v1__dieu-122__k5",
+    "luat-59-2020-qh14-v1__dieu-48__k1",
+    "luat-59-2020-qh14-v1__dieu-122__k1",
+    "luat-59-2020-qh14-v1__dieu-122__k4"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-48__k3"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_076",
+   "elapsed_ms": 40.5,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-116__k2",
+    "luat-59-2020-qh14-v1__dieu-116__k3",
+    "luat-59-2020-qh14-v1__dieu-116__k1",
+    "luat-59-2020-qh14-v1__dieu-116__k4",
+    "luat-59-2020-qh14-v1__dieu-117__k3"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-116__k2"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_077",
+   "elapsed_ms": 41.71,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-169__k2",
+    "luat-59-2020-qh14-v1__dieu-162__k5",
+    "luat-59-2020-qh14-v1__dieu-103__k3",
+    "luat-59-2020-qh14-v1__dieu-101__k3",
+    "luat-59-2020-qh14-v1__dieu-93__k3"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-169__k2"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_078",
+   "elapsed_ms": 39.36,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-198__k3",
+    "luat-59-2020-qh14-v1__dieu-198__k2",
+    "luat-59-2020-qh14-v1__dieu-198__k1",
+    "luat-59-2020-qh14-v1__dieu-198__k4",
+    "luat-59-2020-qh14-v1__dieu-177__k3"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-198__k1"
+   ],
+   "strict": {
+    "recall_at_5": 0.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.14285714285714285
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 0.3333333333333333
+  },
+  {
+   "id": "gold_079",
+   "elapsed_ms": 43.34,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-72__k3",
+    "luat-59-2020-qh14-v1__dieu-166__k2",
+    "luat-59-2020-qh14-v1__dieu-72__k1",
+    "luat-59-2020-qh14-v1__dieu-72__k2",
+    "luat-59-2020-qh14-v1__dieu-166__k1"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-72__k3"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_080",
+   "elapsed_ms": 53.61,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-186__k1",
+    "luat-59-2020-qh14-v1__dieu-186__k2",
+    "luat-59-2020-qh14-v1__dieu-186__k3",
+    "luat-59-2020-qh14-v1__dieu-180__k3",
+    "nd-122-2021-nd-cp-v1__dieu-55__k1"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-186__k1"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_081",
+   "elapsed_ms": 41.33,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-170__k11",
+    "luat-59-2020-qh14-v1__dieu-170__k7",
+    "luat-59-2020-qh14-v1__dieu-170__k1",
+    "luat-59-2020-qh14-v1__dieu-137__k1",
+    "luat-59-2020-qh14-v1__dieu-171__k3"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-170__k7"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.25
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 0.5
+  },
+  {
+   "id": "gold_082",
+   "elapsed_ms": 49.3,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-11__k2",
+    "luat-59-2020-qh14-v1__dieu-11__k1",
+    "luat-59-2020-qh14-v1__dieu-158__k4",
+    "luat-59-2020-qh14-v1__dieu-197__k5",
+    "vbhn-67-vbhn-vpqh-v1__dieu-11__k1"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-11__k2"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_083",
+   "elapsed_ms": 44.0,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-156__k2",
+    "luat-59-2020-qh14-v1__dieu-95__k1",
+    "luat-59-2020-qh14-v1__dieu-82__k1",
+    "luat-59-2020-qh14-v1__dieu-182__k1",
+    "luat-59-2020-qh14-v1__dieu-56__k1"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-156__k2"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_084",
+   "elapsed_ms": 46.52,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-37__k4",
+    "luat-59-2020-qh14-v1__dieu-40__k3",
+    "luat-59-2020-qh14-v1__dieu-39__k2",
+    "luat-59-2020-qh14-v1__dieu-40__k2",
+    "nd-168-2025-nd-cp-v1__dieu-15__k3"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-40__k3"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.25
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 0.5
+  },
+  {
+   "id": "gold_085",
+   "elapsed_ms": 41.78,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-184__k1",
+    "luat-59-2020-qh14-v1__dieu-184__k4",
+    "luat-59-2020-qh14-v1__dieu-137__k2",
+    "luat-59-2020-qh14-v1__dieu-24__k3",
+    "luat-59-2020-qh14-v1__dieu-162__k4"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-184__k1"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_086",
+   "elapsed_ms": 40.55,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-10__k3",
+    "vbhn-7566-vbhn-bkhdt-v1__dieu-6__k2",
+    "nd-168-2025-nd-cp-v1__dieu-28__k4",
+    "luat-59-2020-qh14-v1__dieu-10__k2",
+    "nd-168-2025-nd-cp-v1__dieu-28__k3"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-10__k3"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_087",
+   "elapsed_ms": 39.82,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-153__k3",
+    "luat-59-2020-qh14-v1__dieu-80__k5",
+    "luat-59-2020-qh14-v1__dieu-148__k4",
+    "luat-59-2020-qh14-v1__dieu-147__k1",
+    "luat-59-2020-qh14-v1__dieu-157__k9"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-153__k3"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_088",
+   "elapsed_ms": 41.15,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-141__k1",
+    "vbhn-67-vbhn-vpqh-v1__dieu-141__k1",
+    "luat-59-2020-qh14-v1__dieu-141__k3",
+    "luat-59-2020-qh14-v1__dieu-140__k5",
+    "luat-76-2025-qh15-v1__dieu-1__k21"
+   ],
+   "gold_units": [
+    "luat-59-2020-qh14-v1__dieu-141__k2"
+   ],
+   "strict": {
+    "recall_at_5": 0.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.1111111111111111
+   },
+   "recall_at_5": 0.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 0.16666666666666666
+  },
+  {
+   "id": "gold_089",
+   "elapsed_ms": 40.9,
+   "top5": [
+    "nd-168-2025-nd-cp-v1__dieu-22__k1",
+    "nd-168-2025-nd-cp-v1__dieu-88__k3",
+    "nd-168-2025-nd-cp-v1__dieu-101__k2",
+    "nd-168-2025-nd-cp-v1__dieu-22__k2",
+    "nd-168-2025-nd-cp-v1__dieu-99__k3"
+   ],
+   "gold_units": [
+    "nd-168-2025-nd-cp-v1__dieu-88__k3"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 0.5
+  },
+  {
+   "id": "gold_090",
+   "elapsed_ms": 40.12,
+   "top5": [
+    "nd-168-2025-nd-cp-v1__dieu-81__k4",
+    "nd-168-2025-nd-cp-v1__dieu-81__k2",
+    "nd-168-2025-nd-cp-v1__dieu-74__k3",
+    "nd-168-2025-nd-cp-v1__dieu-80__k1",
+    "nd-168-2025-nd-cp-v1__dieu-107__k5"
+   ],
+   "gold_units": [
+    "nd-168-2025-nd-cp-v1__dieu-81__k4"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 1.0
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_091",
+   "elapsed_ms": 39.02,
+   "top5": [
+    "nd-168-2025-nd-cp-v1__dieu-87__k1",
+    "nd-168-2025-nd-cp-v1__dieu-87__k2",
+    "nd-168-2025-nd-cp-v1__dieu-87__k3",
+    "nd-168-2025-nd-cp-v1__dieu-88__k2",
+    "nd-168-2025-nd-cp-v1__dieu-101__k3"
+   ],
+   "gold_units": [
+    "nd-168-2025-nd-cp-v1__dieu-87__k1"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 1.0
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_092",
+   "elapsed_ms": 44.86,
+   "top5": [
+    "nd-168-2025-nd-cp-v1__dieu-13__k3",
+    "nd-168-2025-nd-cp-v1__dieu-96__k3",
+    "nd-168-2025-nd-cp-v1__dieu-96__k2",
+    "nd-168-2025-nd-cp-v1__dieu-96__k4",
+    "nd-168-2025-nd-cp-v1__dieu-96__k1"
+   ],
+   "gold_units": [
+    "nd-168-2025-nd-cp-v1__dieu-96__k3"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 0.5
+  },
+  {
+   "id": "gold_093",
+   "elapsed_ms": 43.31,
+   "top5": [
+    "nd-168-2025-nd-cp-v1__dieu-21__k3",
+    "nd-168-2025-nd-cp-v1__dieu-21__k4",
+    "nd-168-2025-nd-cp-v1__dieu-77__k4",
+    "nd-168-2025-nd-cp-v1__dieu-23__k1",
+    "nd-168-2025-nd-cp-v1__dieu-76__k3"
+   ],
+   "gold_units": [
+    "nd-168-2025-nd-cp-v1__dieu-21__k3"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 1.0
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_094",
+   "elapsed_ms": 40.53,
+   "top5": [
+    "nd-168-2025-nd-cp-v1__dieu-115__k4",
+    "nd-168-2025-nd-cp-v1__dieu-77__k4",
+    "nd-168-2025-nd-cp-v1__dieu-115__k3",
+    "nd-168-2025-nd-cp-v1__dieu-115__k2",
+    "nd-168-2025-nd-cp-v1__dieu-77__k2"
+   ],
+   "gold_units": [
+    "nd-168-2025-nd-cp-v1__dieu-115__k4"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 1.0
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_095",
+   "elapsed_ms": 52.73,
+   "top5": [
+    "nd-168-2025-nd-cp-v1__dieu-6__k1",
+    "nd-168-2025-nd-cp-v1__dieu-62__k0",
+    "nd-168-2025-nd-cp-v1__dieu-71__k4",
+    "nd-168-2025-nd-cp-v1__dieu-30__k3",
+    "nd-168-2025-nd-cp-v1__dieu-6__k2"
+   ],
+   "gold_units": [
+    "nd-168-2025-nd-cp-v1__dieu-6__k1"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 1.0
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_096",
+   "elapsed_ms": 53.74,
+   "top5": [
+    "nd-168-2025-nd-cp-v1__dieu-82__k3",
+    "nd-168-2025-nd-cp-v1__dieu-83__k2",
+    "nd-168-2025-nd-cp-v1__dieu-85__k6",
+    "nd-168-2025-nd-cp-v1__dieu-87__k3",
+    "nd-168-2025-nd-cp-v1__dieu-85__k4"
+   ],
+   "gold_units": [
+    "nd-168-2025-nd-cp-v1__dieu-82__k3"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 1.0
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_097",
+   "elapsed_ms": 57.08,
+   "top5": [
+    "nd-168-2025-nd-cp-v1__dieu-33__k2",
+    "nd-168-2025-nd-cp-v1__dieu-85__k4",
+    "luat-59-2020-qh14-v1__dieu-170__k6",
+    "luat-59-2020-qh14-v1__dieu-45__k5",
+    "nd-168-2025-nd-cp-v1__dieu-66__k6"
+   ],
+   "gold_units": [
+    "nd-168-2025-nd-cp-v1__dieu-33__k2"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 1.0
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_098",
+   "elapsed_ms": 54.91,
+   "top5": [
+    "nd-168-2025-nd-cp-v1__dieu-24__k2",
+    "nd-168-2025-nd-cp-v1__dieu-24__k1",
+    "nd-168-2025-nd-cp-v1__dieu-24__k3",
+    "luat-59-2020-qh14-v1__dieu-20__k4",
+    "nd-168-2025-nd-cp-v1__dieu-24__k4"
+   ],
+   "gold_units": [
+    "nd-168-2025-nd-cp-v1__dieu-24__k2"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 1.0
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_099",
+   "elapsed_ms": 45.33,
+   "top5": [
+    "nd-168-2025-nd-cp-v1__dieu-79__k3",
+    "nd-168-2025-nd-cp-v1__dieu-79__k1",
+    "nd-168-2025-nd-cp-v1__dieu-79__k4",
+    "nd-168-2025-nd-cp-v1__dieu-74__k3",
+    "nd-168-2025-nd-cp-v1__dieu-76__k3"
+   ],
+   "gold_units": [
+    "nd-168-2025-nd-cp-v1__dieu-79__k1"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 0.5
+  },
+  {
+   "id": "gold_100",
+   "elapsed_ms": 38.7,
+   "top5": [
+    "nd-168-2025-nd-cp-v1__dieu-85__k6",
+    "nd-168-2025-nd-cp-v1__dieu-85__k1",
+    "nd-168-2025-nd-cp-v1__dieu-107__k2",
+    "nd-168-2025-nd-cp-v1__dieu-105__k2",
+    "nd-168-2025-nd-cp-v1__dieu-33__k3"
+   ],
+   "gold_units": [
+    "nd-168-2025-nd-cp-v1__dieu-85__k6"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 1.0
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_101",
+   "elapsed_ms": 42.51,
+   "top5": [
+    "nd-168-2025-nd-cp-v1__dieu-89__k2",
+    "nd-168-2025-nd-cp-v1__dieu-89__k3",
+    "nd-168-2025-nd-cp-v1__dieu-7__k3",
+    "nd-168-2025-nd-cp-v1__dieu-89__k1",
+    "nd-168-2025-nd-cp-v1__dieu-7__k5"
+   ],
+   "gold_units": [
+    "nd-168-2025-nd-cp-v1__dieu-89__k1"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.25
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 0.25
+  },
+  {
+   "id": "gold_102",
+   "elapsed_ms": 43.01,
+   "top5": [
+    "nd-168-2025-nd-cp-v1__dieu-38__k3",
+    "nd-168-2025-nd-cp-v1__dieu-39__k2",
+    "nd-168-2025-nd-cp-v1__dieu-113__k3",
+    "nd-168-2025-nd-cp-v1__dieu-39__k4",
+    "nd-168-2025-nd-cp-v1__dieu-112__k3"
+   ],
+   "gold_units": [
+    "nd-168-2025-nd-cp-v1__dieu-38__k3"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 1.0
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_103",
+   "elapsed_ms": 38.51,
+   "top5": [
+    "nd-168-2025-nd-cp-v1__dieu-86__k1",
+    "luat-59-2020-qh14-v1__dieu-37__k1",
+    "nd-168-2025-nd-cp-v1__dieu-86__k6",
+    "nd-168-2025-nd-cp-v1__dieu-86__k8",
+    "nd-168-2025-nd-cp-v1__dieu-86__k7"
+   ],
+   "gold_units": [
+    "nd-168-2025-nd-cp-v1__dieu-86__k1"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 1.0
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_104",
+   "elapsed_ms": 39.58,
+   "top5": [
+    "nd-168-2025-nd-cp-v1__dieu-30__k2",
+    "nd-168-2025-nd-cp-v1__dieu-30__k4",
+    "nd-168-2025-nd-cp-v1__dieu-60__k1",
+    "nd-168-2025-nd-cp-v1__dieu-30__k3",
+    "nd-288-2026-nd-cp-v1__dieu-2__k1"
+   ],
+   "gold_units": [
+    "nd-168-2025-nd-cp-v1__dieu-30__k2"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 1.0
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_105",
+   "elapsed_ms": 40.8,
+   "top5": [
+    "nd-168-2025-nd-cp-v1__dieu-8__k6",
+    "nd-168-2025-nd-cp-v1__dieu-8__k1",
+    "nd-168-2025-nd-cp-v1__dieu-8__k7",
+    "nd-168-2025-nd-cp-v1__dieu-8__k5",
+    "nd-168-2025-nd-cp-v1__dieu-8__k9"
+   ],
+   "gold_units": [
+    "nd-168-2025-nd-cp-v1__dieu-8__k6"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 1.0
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  },
+  {
+   "id": "gold_106",
+   "elapsed_ms": 39.63,
+   "top5": [
+    "nd-168-2025-nd-cp-v1__dieu-112__k2",
+    "nd-168-2025-nd-cp-v1__dieu-92__k2",
+    "nd-168-2025-nd-cp-v1__dieu-90__k2",
+    "nd-168-2025-nd-cp-v1__dieu-95__k1",
+    "nd-168-2025-nd-cp-v1__dieu-38__k2"
+   ],
+   "gold_units": [
+    "nd-168-2025-nd-cp-v1__dieu-92__k2"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 0.5
+  },
+  {
+   "id": "gold_107",
+   "elapsed_ms": 40.18,
+   "top5": [
+    "nd-168-2025-nd-cp-v1__dieu-89__k3",
+    "nd-168-2025-nd-cp-v1__dieu-7__k5",
+    "nd-168-2025-nd-cp-v1__dieu-7__k6",
+    "nd-168-2025-nd-cp-v1__dieu-7__k4",
+    "nd-168-2025-nd-cp-v1__dieu-89__k2"
+   ],
+   "gold_units": [
+    "nd-168-2025-nd-cp-v1__dieu-7__k5"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 0.5
+  },
+  {
+   "id": "gold_108",
+   "elapsed_ms": 44.79,
+   "top5": [
+    "nd-168-2025-nd-cp-v1__dieu-108__k1",
+    "nd-168-2025-nd-cp-v1__dieu-108__k2",
+    "nd-168-2025-nd-cp-v1__dieu-108__k3",
+    "nd-168-2025-nd-cp-v1__dieu-107__k5",
+    "nd-168-2025-nd-cp-v1__dieu-107__k7"
+   ],
+   "gold_units": [
+    "nd-168-2025-nd-cp-v1__dieu-108__k2"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 0.5
+  },
+  {
+   "id": "gold_109",
+   "elapsed_ms": 45.13,
+   "top5": [
+    "luat-59-2020-qh14-v1__dieu-45__k4",
+    "nd-168-2025-nd-cp-v1__dieu-56__k1",
+    "nd-288-2026-nd-cp-v1__dieu-2__k1",
+    "nd-122-2021-nd-cp-v1__dieu-44__k1",
+    "nd-288-2026-nd-cp-v1__dieu-2__k2"
+   ],
+   "gold_units": [
+    "nd-168-2025-nd-cp-v1__dieu-56__k1"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.5
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 0.5
+  },
+  {
+   "id": "gold_110",
+   "elapsed_ms": 39.8,
+   "top5": [
+    "nd-168-2025-nd-cp-v1__dieu-31__k4",
+    "nd-168-2025-nd-cp-v1__dieu-95__k2",
+    "nd-168-2025-nd-cp-v1__dieu-31__k1",
+    "nd-168-2025-nd-cp-v1__dieu-31__k6",
+    "nd-168-2025-nd-cp-v1__dieu-31__k5"
+   ],
+   "gold_units": [
+    "nd-168-2025-nd-cp-v1__dieu-31__k4"
+   ],
+   "strict": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 1.0
+   },
+   "recall_at_5": 1.0,
+   "recall_at_10": 1.0,
+   "recall_at_20": 1.0,
+   "mrr_at_20": 1.0
+  }
+ ]
+}

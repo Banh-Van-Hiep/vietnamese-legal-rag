@@ -1,0 +1,338 @@
+{
+ "run_id": "vlra51",
+ "started_at": "2026-10-31T11:05:21+00:00",
+ "head": "2f81fd6e191c7e0d410284bb4ecfc3d5c2b9dafe",
+ "inputs": {
+  "dev_set": {
+   "path": "team1_data/golden/golden_phase1.json",
+   "sha256": "f89956d5d61bcf78e9fe080cc825f3f259ec3d36dd633bbedea4188c92e29fb2",
+   "cases": 110,
+   "answered": 110,
+   "gold_ids": 203
+  },
+  "corpus": {
+   "path": "data/doanh-nghiep/processed/chunks.jsonl",
+   "sha256": "042bd7f1696e4ef1acea90dbc6dc179c782515af04b5fdd4da5104b9158c5466",
+   "chunks": 2576,
+   "indexed": 2576,
+   "merged_equivalent_units": 860
+  },
+  "gold_by_document": {
+   "luat-59-2020-qh14-v1": 57,
+   "luat-76-2025-qh15-v1": 13,
+   "nd-122-2021-nd-cp-v1": 8,
+   "nd-168-2025-nd-cp-v1": 33,
+   "nd-288-2026-nd-cp-v1": 10,
+   "tt-68-2025-tt-btc-v1": 7,
+   "vbhn-67-vbhn-vpqh-v1": 68,
+   "vbhn-7566-vbhn-bkhdt-v1": 7
+  }
+ },
+ "environment": {
+  "python": "3.13.18",
+  "platform": "Linux-6.18.44-fc-v185-x86_64-with-glibc2.39",
+  "packages": {
+   "bm25s": "0.3.16",
+   "underthesea": "9.5.0",
+   "numpy": "2.5.3",
+   "qdrant-client": "1.20.0",
+   "jsonschema": "4.26.0",
+   "torch": null,
+   "sentence-transformers": null
+  }
+ },
+ "top_k": 20,
+ "configs": [
+  "bm25",
+  "dense_lsa256",
+  "hybrid_k1",
+  "hybrid_k5",
+  "hybrid_k10",
+  "hybrid_k20",
+  "hybrid_k30",
+  "hybrid_k60",
+  "hybrid_k100",
+  "hybrid_k200"
+ ],
+ "finished_at": "2026-10-31T11:06:25+00:00",
+ "summary": [
+  {
+   "name": "bm25",
+   "metrics": {
+    "recall_at_5": 0.863,
+    "recall_at_10": 0.9118,
+    "recall_at_20": 0.9286,
+    "mrr_at_20": 0.8136
+   },
+   "metrics_strict_chunk_id": {
+    "recall_at_5": 0.781,
+    "recall_at_10": 0.8847,
+    "recall_at_20": 0.9286,
+    "mrr_at_20": 0.5713
+   },
+   "latency_ms": {
+    "p50": 1.58,
+    "p95": 2.53
+   },
+   "setup_ms": {
+    "bm25_build_ms": 10641.5
+   },
+   "counts": {
+    "cases": 110,
+    "scored": 110,
+    "corpus_chunks": 2576
+   }
+  },
+  {
+   "name": "dense_lsa256",
+   "metrics": {
+    "recall_at_5": 0.8518,
+    "recall_at_10": 0.9196,
+    "recall_at_20": 0.9291,
+    "mrr_at_20": 0.7566
+   },
+   "metrics_strict_chunk_id": {
+    "recall_at_5": 0.7602,
+    "recall_at_10": 0.8855,
+    "recall_at_20": 0.9291,
+    "mrr_at_20": 0.5167
+   },
+   "latency_ms": {
+    "p50": 36.2,
+    "p95": 46.07
+   },
+   "setup_ms": {
+    "dense_build_ms": 3935.1
+   },
+   "counts": {
+    "cases": 110,
+    "scored": 110,
+    "corpus_chunks": 2576
+   }
+  },
+  {
+   "name": "hybrid_k1",
+   "metrics": {
+    "recall_at_5": 0.8602,
+    "recall_at_10": 0.9174,
+    "recall_at_20": 0.9328,
+    "mrr_at_20": 0.8028
+   },
+   "metrics_strict_chunk_id": {
+    "recall_at_5": 0.7963,
+    "recall_at_10": 0.8883,
+    "recall_at_20": 0.9328,
+    "mrr_at_20": 0.5572
+   },
+   "latency_ms": {
+    "p50": 44.33,
+    "p95": 65.6
+   },
+   "setup_ms": {
+    "bm25_build_ms": 10641.5,
+    "dense_build_ms": 3935.1
+   },
+   "counts": {
+    "cases": 110,
+    "scored": 110,
+    "corpus_chunks": 2576
+   }
+  },
+  {
+   "name": "hybrid_k5",
+   "metrics": {
+    "recall_at_5": 0.8761,
+    "recall_at_10": 0.9143,
+    "recall_at_20": 0.9359,
+    "mrr_at_20": 0.822
+   },
+   "metrics_strict_chunk_id": {
+    "recall_at_5": 0.791,
+    "recall_at_10": 0.8974,
+    "recall_at_20": 0.9359,
+    "mrr_at_20": 0.581
+   },
+   "latency_ms": {
+    "p50": 41.44,
+    "p95": 50.33
+   },
+   "setup_ms": {
+    "bm25_build_ms": 10641.5,
+    "dense_build_ms": 3935.1
+   },
+   "counts": {
+    "cases": 110,
+    "scored": 110,
+    "corpus_chunks": 2576
+   }
+  },
+  {
+   "name": "hybrid_k10",
+   "metrics": {
+    "recall_at_5": 0.8738,
+    "recall_at_10": 0.9143,
+    "recall_at_20": 0.9359,
+    "mrr_at_20": 0.8259
+   },
+   "metrics_strict_chunk_id": {
+    "recall_at_5": 0.791,
+    "recall_at_10": 0.9065,
+    "recall_at_20": 0.9359,
+    "mrr_at_20": 0.583
+   },
+   "latency_ms": {
+    "p50": 45.47,
+    "p95": 66.22
+   },
+   "setup_ms": {
+    "bm25_build_ms": 10641.5,
+    "dense_build_ms": 3935.1
+   },
+   "counts": {
+    "cases": 110,
+    "scored": 110,
+    "corpus_chunks": 2576
+   }
+  },
+  {
+   "name": "hybrid_k20",
+   "metrics": {
+    "recall_at_5": 0.8738,
+    "recall_at_10": 0.9143,
+    "recall_at_20": 0.9359,
+    "mrr_at_20": 0.8289
+   },
+   "metrics_strict_chunk_id": {
+    "recall_at_5": 0.791,
+    "recall_at_10": 0.9065,
+    "recall_at_20": 0.9359,
+    "mrr_at_20": 0.5834
+   },
+   "latency_ms": {
+    "p50": 43.14,
+    "p95": 57.36
+   },
+   "setup_ms": {
+    "bm25_build_ms": 10641.5,
+    "dense_build_ms": 3935.1
+   },
+   "counts": {
+    "cases": 110,
+    "scored": 110,
+    "corpus_chunks": 2576
+   }
+  },
+  {
+   "name": "hybrid_k30",
+   "metrics": {
+    "recall_at_5": 0.8738,
+    "recall_at_10": 0.9143,
+    "recall_at_20": 0.9328,
+    "mrr_at_20": 0.8289
+   },
+   "metrics_strict_chunk_id": {
+    "recall_at_5": 0.7933,
+    "recall_at_10": 0.9043,
+    "recall_at_20": 0.9328,
+    "mrr_at_20": 0.5836
+   },
+   "latency_ms": {
+    "p50": 45.46,
+    "p95": 62.87
+   },
+   "setup_ms": {
+    "bm25_build_ms": 10641.5,
+    "dense_build_ms": 3935.1
+   },
+   "counts": {
+    "cases": 110,
+    "scored": 110,
+    "corpus_chunks": 2576
+   }
+  },
+  {
+   "name": "hybrid_k60",
+   "metrics": {
+    "recall_at_5": 0.8756,
+    "recall_at_10": 0.9152,
+    "recall_at_20": 0.9328,
+    "mrr_at_20": 0.829
+   },
+   "metrics_strict_chunk_id": {
+    "recall_at_5": 0.8024,
+    "recall_at_10": 0.9043,
+    "recall_at_20": 0.9328,
+    "mrr_at_20": 0.5842
+   },
+   "latency_ms": {
+    "p50": 43.27,
+    "p95": 65.18
+   },
+   "setup_ms": {
+    "bm25_build_ms": 10641.5,
+    "dense_build_ms": 3935.1
+   },
+   "counts": {
+    "cases": 110,
+    "scored": 110,
+    "corpus_chunks": 2576
+   }
+  },
+  {
+   "name": "hybrid_k100",
+   "metrics": {
+    "recall_at_5": 0.8756,
+    "recall_at_10": 0.9152,
+    "recall_at_20": 0.9328,
+    "mrr_at_20": 0.829
+   },
+   "metrics_strict_chunk_id": {
+    "recall_at_5": 0.8092,
+    "recall_at_10": 0.9043,
+    "recall_at_20": 0.9328,
+    "mrr_at_20": 0.5847
+   },
+   "latency_ms": {
+    "p50": 40.17,
+    "p95": 51.55
+   },
+   "setup_ms": {
+    "bm25_build_ms": 10641.5,
+    "dense_build_ms": 3935.1
+   },
+   "counts": {
+    "cases": 110,
+    "scored": 110,
+    "corpus_chunks": 2576
+   }
+  },
+  {
+   "name": "hybrid_k200",
+   "metrics": {
+    "recall_at_5": 0.8756,
+    "recall_at_10": 0.9152,
+    "recall_at_20": 0.9351,
+    "mrr_at_20": 0.829
+   },
+   "metrics_strict_chunk_id": {
+    "recall_at_5": 0.8092,
+    "recall_at_10": 0.9043,
+    "recall_at_20": 0.9351,
+    "mrr_at_20": 0.5847
+   },
+   "latency_ms": {
+    "p50": 41.08,
+    "p95": 61.15
+   },
+   "setup_ms": {
+    "bm25_build_ms": 10641.5,
+    "dense_build_ms": 3935.1
+   },
+   "counts": {
+    "cases": 110,
+    "scored": 110,
+    "corpus_chunks": 2576
+   }
+  }
+ ]
+}
