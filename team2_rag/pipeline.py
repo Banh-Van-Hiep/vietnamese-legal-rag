@@ -79,13 +79,15 @@ def validate_input(question, history=None):
 class RAGPipeline:
     def __init__(self, retriever: Retriever, llm_service: LLMService, *,
                  scorer: PairScorer | None = None, top_k: int = 20,
-                 settings=None, token_budget=None, response_model=None):
+                 settings=None, token_budget=None, response_model=None,
+                 strict_rerank: bool = True):
         if type(top_k) is not int or not 1 <= top_k <= 50:
             raise ValueError("top_k must be an integer from 1 to 50")
         self.retriever, self.llm_service = retriever, llm_service
         self.scorer, self.top_k = scorer, top_k
         self.settings, self.token_budget = settings, token_budget
         self.response_model = response_model
+        self.strict_rerank = strict_rerank
 
     def query(self, question: str, history: Sequence[Mapping] | None = None, *, request_id=None):
         question, history = validate_input(question, history)
@@ -97,9 +99,11 @@ class RAGPipeline:
         retrieved = self.retriever.retrieve(question, top_k=self.top_k)
         if not isinstance(retrieved, Mapping) or retrieved.get("question") != question:
             raise ValueError("retrieval must echo the actual query")
-        # strict=True is deliberate: this real pipeline never silently labels
-        # the original retrieval order as a successful BGE rerank.
-        details = rerank_with_details(retrieved, scorer=self.scorer, strict=True)
+        # Graceful degradation (VLRA-T2-16): falls back to retrieval order when strict_rerank=False
+        details = rerank_with_details(retrieved, scorer=self.scorer, strict=self.strict_rerank)
+        if details.fallback_reason:
+            log.warning("reranker_degraded_fallback reason=%s request_id=%s degraded=true",
+                        details.fallback_reason, request_id)
         if not details.output["results"]:
             return {"status": "insufficient_context", "answer": NO_CONTEXT_ANSWER, "citations": []}
         response = generate_answer(details.output, history, llm_service=self.llm_service,
