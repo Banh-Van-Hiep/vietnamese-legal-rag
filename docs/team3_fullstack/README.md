@@ -1,7 +1,7 @@
 # Team 3 — Backend & Frontend
 
-Thiết kế chức năng chung của phân hệ Fullstack. Đối chiếu source `62c3556` ngày 28/10/2026;
-không phải danh sách nhiệm vụ hoặc báo cáo tiến độ theo tuần.
+Thiết kế chức năng chung của phân hệ Fullstack; từng tài liệu ghi căn cứ và ngày đối chiếu.
+Không phải danh sách nhiệm vụ hoặc báo cáo tiến độ theo tuần.
 
 ## Trách nhiệm và công nghệ
 
@@ -21,6 +21,7 @@ React 18/TypeScript/Vite/Tailwind 4. Không đổi stack hoặc implementation c
 | [conversation-design.md](conversation-design.md) |State machine, transaction/locks, IDEM-01–12, history/title/recovery |
 | [rag-integration-specification.md](rag-integration-specification.md) |AI boundary, validation, snake/camel mapping, timeout và lỗi upstream |
 | [frontend-design.md](frontend-design.md) |Component/routes, wireframe desktop/mobile, states, Viewer và render an toàn |
+| [performance-measurement.md](performance-measurement.md) |Runner độ trễ, timing/trace Backend, phân vị, chế độ và giới hạn báo cáo |
 
 [team3.md](team3.md) là điểm đọc ngắn tới các phần trên, không duy trì một bản đặc tả
 thứ hai. Khi thay API/schema/state/citation phải đọc đúng phần chi tiết và cập nhật
