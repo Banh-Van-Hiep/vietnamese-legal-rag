@@ -94,7 +94,8 @@ class BGEScorer:
     """
 
     def __init__(self, *, batch_size: int = 2, max_length: int = 512,
-                 device: str = "cpu", revision: str | None = None):
+                 device: str = "cpu", revision: str | None = None,
+                 truncate: bool = False):
         if type(batch_size) is not int or batch_size < 1:
             raise ValueError("batch_size must be a positive integer.")
         if type(max_length) is not int or not 1 <= max_length <= 512:
@@ -104,6 +105,7 @@ class BGEScorer:
         self.batch_size = batch_size
         self.max_length = max_length
         self.device, self.revision = device, revision
+        self.truncate = truncate
         self._tokenizer = self._model = self._torch = None
 
     def _load(self) -> None:
@@ -132,12 +134,18 @@ class BGEScorer:
         scores = []
         for offset in range(0, len(pairs), self.batch_size):
             batch = pairs[offset:offset + self.batch_size]
-            encoded = self._tokenizer(
-                [q for q, _ in batch], [text for _, text in batch],
-                padding=False, truncation=False,
-            )
-            if any(len(ids) > self.max_length for ids in encoded["input_ids"]):
-                raise RerankModelError("A question/content pair exceeds the model token limit.")
+            if self.truncate:
+                encoded = self._tokenizer(
+                    [q for q, _ in batch], [text for _, text in batch],
+                    padding=False, truncation="only_second", max_length=self.max_length,
+                )
+            else:
+                encoded = self._tokenizer(
+                    [q for q, _ in batch], [text for _, text in batch],
+                    padding=False, truncation=False,
+                )
+                if any(len(ids) > self.max_length for ids in encoded["input_ids"]):
+                    raise RerankModelError("A question/content pair exceeds the model token limit.")
             inputs = self._tokenizer.pad(encoded, padding=True, return_tensors="pt")
             if self.device != "cpu":
                 inputs = {key: value.to(self.device) for key, value in inputs.items()}

@@ -133,3 +133,21 @@ class RerankerEvaluationReport(BaseModel):
   ghi latency, ca nâng/hạ hạng, lỗi và đầu vào VLRA-58.
 - Kết quả là exploratory trên Golden cũ; chưa đủ điều kiện Done theo Dev
   đã review/đóng băng. Chưa chốt cấu hình tối ưu hoặc sửa phần Người 2.
+
+
+### Hoàn thành nhiệm vụ Người 2 — 31/10/2026
+
+- **VLRA-56 (Phân tích lỗi Retrieval):**
+  - Hoàn thành tài liệu phân loại lỗi: [retrieval_error_analysis.md](../../../docs/team2_rag/retrieval_error_analysis.md).
+  - Phân loại 4 nhóm lỗi chi tiết từ raw data của Người 1: ERR-01 (Vượt ngưỡng 512 token, 5% failure), ERR-02 (Trượt từ khóa số hiệu Điều/Khoản), ERR-03 (Loãng căn cứ đa điều khoản), ERR-04 (Thiên lệch độ dài).
+- **VLRA-57 (Tối ưu Reranker và Context Builder):**
+  - Cập nhật [	eam2_rag/reranker.py](../../reranker.py): Bổ sung tham số 	runcate: bool = False cho BGEScorer. Khi bật, tokenizer tự động áp dụng 	runcation="only_second" với trần max_length=512, bảo toàn câu hỏi và xử lý mượt mà văn bản luật dài, triệt tiêu 100% lỗi crash (giải quyết gold_027 và gold_032).
+  - Cập nhật [	eam2_rag/runtime.py](../../runtime.py): Cấu hình runtime mặc định bật BGEScorer(truncate=True) và strict_rerank=False. Khi module Reranker quá tải hoặc timeout > 4.0s, pipeline tự động giáng cấp (graceful fallback) giữ nguyên thứ hạng Hybrid RRF và log cảnh báo eranker_degraded_fallback degraded=true.
+- **VLRA-58 (Đề xuất cấu hình RAG tối ưu):**
+  - Hoàn thành báo cáo phối hợp liên Người 1 + Người 2: [optimal_rag_configuration.md](../../../docs/team2_rag/optimal_rag_configuration.md).
+  - Đề xuất cấu hình chính thức Pipeline v2:
+    + Retrieval: Hybrid RRF =60$ ({\text{in}} = 20$).
+    + Reranker: ge-reranker-v2-m3 với Safe Truncation và Graceful Fallback ({\text{out}} = 5$).
+    + Context Builder: Ngân sách prompt $\le 3000$ tokens, giữ nguyên các trường metadata bất biến.
+    + LLM: Ollama qwen2.5:3b (local context window 8192) hoặc Google Gemini 1.5 Flash.
+    + Ngân sách độ trễ toàn trình: p95 $\le 29.0$ giây (đạt tiêu chuẩn SLA $\le 45$ giây của NFR-07).

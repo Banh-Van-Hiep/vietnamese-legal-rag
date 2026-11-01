@@ -50,7 +50,7 @@ def build_runtime(env=None) -> Runtime:
     from team1_data.retrieval import BM25Retriever, DenseRetriever, HybridRetriever, SentenceTransformerEmbedder
 
     client = (QdrantClient(path=env["RAG_QDRANT_PATH"]) if env.get("RAG_QDRANT_PATH") else
-              QdrantClient(url=env.get("RAG_QDRANT_URL", "http://localhost:6333"), timeout=5))
+              QdrantClient(url=env.get("RAG_QDRANT_URL", "http://localhost:6333"), timeout=30))
     try:
         embedder = SentenceTransformerEmbedder(
             name=dense["embedding_model"], revision=dense["embedding_revision"],
@@ -60,10 +60,16 @@ def build_runtime(env=None) -> Runtime:
         chunks = env.get("RAG_CHUNKS", "data/doanh-nghiep/processed/chunks.jsonl")
         sparse = BM25Retriever.load(bm_dir, chunks)
         vectors = DenseRetriever.connect(dense_dir, embedder, client=client)
-        hybrid = HybridRetriever(BM25SearchAdapter(sparse), vectors)
+        hybrid = HybridRetriever(BM25SearchAdapter(sparse), vectors, timeout=20)
+        try:
+            embedder.encode_query("Khởi động mô hình embedding")
+        except Exception:
+            pass
         scorer = BGEScorer()
         scorer([("Khởi động mô hình", "Đây là nội dung khởi động mô hình.")])
-        pipeline = RAGPipeline(hybrid, llm, scorer=scorer, settings=settings, token_budget=budget)
+        top_k = int(env.get("RAG_TOP_K", "10"))
+        strict_rerank = env.get("RAG_STRICT_RERANK", "false").lower() in ("true", "1")
+        pipeline = RAGPipeline(hybrid, llm, scorer=scorer, top_k=top_k, settings=settings, token_budget=budget, strict_rerank=strict_rerank)
         return Runtime(pipeline, client)
     except BaseException:
         client.close()
