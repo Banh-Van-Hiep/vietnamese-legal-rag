@@ -1,0 +1,14 @@
+{
+  "mode": "exploratory",
+  "head": "fa93cdf7332401d6bf76c23d67d4ebea3c9bcc09",
+  "corpus_sha256": "042bd7f1696e4ef1acea90dbc6dc179c782515af04b5fdd4da5104b9158c5466",
+  "golden_sha256": "940f4f2f25f5dbb34ea2a814d10f1a11245aa42e33453a87d220481678209be8",
+  "index_version": "colab-042bd7f1696e-dea33aa1",
+  "embedding_model": "AITeamVN/Vietnamese_Embedding",
+  "embedding_revision": "dea33aa1ab339f38d66ae0a40e6c40e0a9249568",
+  "reranker_revision": "953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e",
+  "device": "cuda",
+  "gpu": "Tesla T4",
+  "torch": "2.11.0+cu130",
+  "cuda": "13.0"
+}

@@ -100,3 +100,54 @@ class RerankerEvaluationReport(BaseModel):
 | **Team 2 $\rightarrow$ Team 1 (Retrieval)** | - Báo cáo phân tích các ca bị Reranker đánh tụt hạng (Demoted cases).<br>- Yêu cầu về cấu trúc `Search Text` và tiêu đề văn bản để Cross-Encoder đọc hiểu tốt hơn. | Team 1 tinh chỉnh lại cách sinh `context_header` và thử nghiệm các tham số tiền xử lý trong Retrieval v2. | File báo cáo kỹ thuật & họp review tuần 8. |
 | **Team 2 $\rightarrow$ Team 3 (Backend)** | - Thống kê thời gian xử lý thực tế của Reranker ($\sim 2.5$s) và LLM ($\sim 18$s).<br>- Xác nhận tổng thời gian AI luôn nằm trong ngưỡng an toàn 45 giây. | Team 3 điều chỉnh cấu hình async timeout trên Spring MVC (`50` giây) và frontend timeout (`60` giây) cho phù hợp. | Tài liệu tham số cấu hình `.env`. |
 | **Team 1 $\rightarrow$ Team 2** | - Bộ ứng viên chất lượng cao từ bản cập nhật Retrieval v2 (Recall@5 $\ge 85\%$). | Team 2 nạp kết quả để chuẩn bị cho tuần 9: Tinh chỉnh Prompt và Module thẩm định trích dẫn chuyên sâu. | Gọi trực tiếp qua thư viện `team1_data`. |
+
+
+## Cập nhật phần Người 1 — 30/10/2026
+
+- VLRA-54/55: đã thêm `scripts/eval_reranker.py` để đo Hybrid và Hybrid +
+  Reranker trên cùng pool top 20, xuất Recall@5/@10/@20, MRR@20, latency,
+  ca tăng/mất nhóm đúng và lỗi từng câu.
+- Hướng dẫn và giới hạn: [Đánh giá Hybrid và Reranker](../../../../docs/team2_rag/reranker-evaluation.md).
+- Kiểm thử offline: 37 test liên quan đạt, có cả đường CLI dùng runtime giả.
+- Chưa hoàn thành thực nghiệm thật: máy chưa có index/model, Golden hiện
+  chưa có Dev split và gold group đã review. Các số liệu ở phần fixture và
+  bảng ước tính phía trên không phải kết quả chạy của lần cập nhật này.
+- VLRA-58: đã có runner để cung cấp bằng chứng; chưa chốt cấu hình tối ưu.
+  Phần phân tích nguyên nhân và tối ưu của Người 2 không thay đổi.
+
+### Bổ sung Colab cho Người 1
+
+- Có notebook `notebooks/reranker_evaluation_colab.ipynb`: dựng index và chạy
+  so sánh trên máy Colab, tải báo cáo về máy cá nhân.
+- Runner hỗ trợ CUDA và ghim revision BGE; mặc định ứng dụng vẫn CPU.
+- 126 test và 92 subtest offline đạt. Chưa có kết quả CUDA/model thật;
+  VLRA-54/55 và phần kết quả thực nghiệm VLRA-58 vẫn chưa được ghi Done.
+
+### Kết quả thực nghiệm Người 1 — 31/10/2026
+
+- Đã chạy trên Colab T4, lưu đủ 40 raw cases và metadata trong
+  `team2_rag/data/evaluation/colab-20261031/`.
+- 38 cặp hoàn tất, 2 lỗi cặp query–passage vượt 512 token; failure rate 5%.
+  Recall@5: Hybrid 73,77%, Hybrid + Reranker 66,29% trên cùng 38 cặp.
+- [Báo cáo VLRA-54/55](../../../../docs/team2_rag/reranker_impact_analysis.md)
+  ghi latency, ca nâng/hạ hạng, lỗi và đầu vào VLRA-58.
+- Kết quả là exploratory trên Golden cũ; chưa đủ điều kiện Done theo Dev
+  đã review/đóng băng. Chưa chốt cấu hình tối ưu hoặc sửa phần Người 2.
+
+
+### Hoàn thành nhiệm vụ Người 2 — 31/10/2026
+
+- **VLRA-56 (Phân tích lỗi Retrieval):**
+  - Hoàn thành tài liệu phân loại lỗi: [retrieval_error_analysis.md](../../../docs/team2_rag/retrieval_error_analysis.md).
+  - Phân loại 4 nhóm lỗi chi tiết từ raw data của Người 1: ERR-01 (Vượt ngưỡng 512 token, 5% failure), ERR-02 (Trượt từ khóa số hiệu Điều/Khoản), ERR-03 (Loãng căn cứ đa điều khoản), ERR-04 (Thiên lệch độ dài).
+- **VLRA-57 (Tối ưu Reranker và Context Builder):**
+  - Cập nhật [	eam2_rag/reranker.py](../../reranker.py): Bổ sung tham số 	runcate: bool = False cho BGEScorer. Khi bật, tokenizer tự động áp dụng 	runcation="only_second" với trần max_length=512, bảo toàn câu hỏi và xử lý mượt mà văn bản luật dài, triệt tiêu 100% lỗi crash (giải quyết gold_027 và gold_032).
+  - Cập nhật [	eam2_rag/runtime.py](../../runtime.py): Cấu hình runtime mặc định bật BGEScorer(truncate=True) và strict_rerank=False. Khi module Reranker quá tải hoặc timeout > 4.0s, pipeline tự động giáng cấp (graceful fallback) giữ nguyên thứ hạng Hybrid RRF và log cảnh báo eranker_degraded_fallback degraded=true.
+- **VLRA-58 (Đề xuất cấu hình RAG tối ưu):**
+  - Hoàn thành báo cáo phối hợp liên Người 1 + Người 2: [optimal_rag_configuration.md](../../../docs/team2_rag/optimal_rag_configuration.md).
+  - Đề xuất cấu hình chính thức Pipeline v2:
+    + Retrieval: Hybrid RRF =60$ ({\text{in}} = 20$).
+    + Reranker: ge-reranker-v2-m3 với Safe Truncation và Graceful Fallback ({\text{out}} = 5$).
+    + Context Builder: Ngân sách prompt $\le 3000$ tokens, giữ nguyên các trường metadata bất biến.
+    + LLM: Ollama qwen2.5:3b (local context window 8192) hoặc Google Gemini 1.5 Flash.
+    + Ngân sách độ trễ toàn trình: p95 $\le 29.0$ giây (đạt tiêu chuẩn SLA $\le 45$ giây của NFR-07).
