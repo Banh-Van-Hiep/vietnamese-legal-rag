@@ -170,7 +170,7 @@ class EvaluationTests(unittest.TestCase):
             factory.assert_called_once_with(device="cuda", revision="test-revision", truncate=False)
             client.close.assert_called_once()
             self.assertEqual(self.calls, 2)  # One warm-up, one measured pool.
-            report = json.loads(output.read_text())
+            report = json.loads(output.read_text(encoding="utf-8"))
             self.assertEqual(report["status"], "COMPLETE")
             self.assertEqual(report["reranker_revision"], "test-revision")
             self.assertEqual(report["config"]["embedding_device"], "cuda")
@@ -179,7 +179,7 @@ class EvaluationTests(unittest.TestCase):
             self.assertEqual(report["truncated"]["summary"]["paired_answerable"], 1)
             self.assertEqual(report["common_success"]["baseline"]["total"], 1)
             self.assertFalse(scorer.truncate)
-            self.assertIn("recall_at_5", output.with_suffix(".md").read_text())
+            self.assertIn("recall_at_5", output.with_suffix(".md").read_text(encoding="utf-8"))
 
     def test_blocked_cli_writes_both_reports(self):
         with tempfile.TemporaryDirectory() as temp:
@@ -187,9 +187,9 @@ class EvaluationTests(unittest.TestCase):
             code = main(["--golden", str(Path(temp) / "missing.json"), "--bm25-index", temp,
                          "--dense-index", temp, "--output", str(output)])
             self.assertEqual(code, 2)
-            self.assertEqual(json.loads(output.read_text())["status"], "BLOCKED")
-            self.assertEqual(json.loads(output.read_text())["config"]["device"], "cpu")
-            self.assertIn("Chưa chạy được", output.with_suffix(".md").read_text())
+            self.assertEqual(json.loads(output.read_text(encoding="utf-8"))["status"], "BLOCKED")
+            self.assertEqual(json.loads(output.read_text(encoding="utf-8"))["config"]["device"], "cpu")
+            self.assertIn("Chưa chạy được", output.with_suffix(".md").read_text(encoding="utf-8"))
 
 
 if __name__ == "__main__":
