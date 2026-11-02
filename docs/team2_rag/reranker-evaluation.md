@@ -200,3 +200,20 @@ ghi rõ chính sách và số nhãn review của dữ liệu. Notebook đóng g�
 đầu vào, hash và metadata; không tự chuyển bộ 110 câu còn draft thành Dev
 đã nghiệm thu. Những con số v2 trong báo cáo cấu hình phải chờ raw output
 của lượt chạy mới; test offline không thay thế kết quả GPU.
+
+## Lượt đo lại đã lưu ngày 02/11/2026
+
+Đã chạy commit `1f51f66` trên T4 với 110 câu, không sửa code lúc đo. BGE gốc
+có 13 lỗi passage dài; truncate hoàn tất 110/110. Trên 97 câu thành công
+chung, thứ tự hai chính sách trùng hoàn toàn; Recall@5 Hybrid 87,66% và BGE
+83,70%. Trên toàn bộ 110 câu, Hybrid 88,39% và BGE truncate 83,08%.
+
+Raw JSON/Markdown, Golden, manifests và metadata nằm tại
+[`colab-20261102`](../../team2_rag/data/evaluation/colab-20261102/).
+[Phân tích](reranker_impact_analysis.md) tách nhóm 40/70 câu, latency và ca
+khôi phục nhưng vẫn hạ hạng. Truncate xử lý lỗi độ dài trong lượt này,
+chưa đủ để chốt cấu hình tối ưu; 70 câu draft vẫn giữ nguyên nhãn review.
+Kiểm tra hash nguồn/index, pool hai chính sách, thứ tự theo điểm và tính
+lại Recall/MRR từ raw đều khớp. Bộ kiểm thử offline liên quan đạt 63 test,
+298 subtest; 1 test model được skip. Lượt Colab là bằng chứng model thật
+riêng, không biến test skip thành pass hoặc thay nghiệm thu Dev/Test.

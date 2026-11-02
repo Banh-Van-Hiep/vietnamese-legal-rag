@@ -5,7 +5,24 @@
 
 ## 1. Cơ Sở Thực Nghiệm & Tổng Hợp Dữ Liệu
 
-Báo cáo này tổng hợp kết quả thực nghiệm định lượng từ **Người 1** (chạy ngày 31/10/2026 trên Colab GPU Tesla T4, dữ liệu `team2_rag/data/evaluation/colab-20261031/`) và các cải tiến kỹ thuật, phân tích lỗi từ **Người 2** (nhiệm vụ VLRA-56 và VLRA-57) để đề xuất cấu hình RAG Pipeline v2. Chưa có raw output cho bản v2 trong repo; các chỉ số v2 phải được đo lại trước khi chốt.
+Báo cáo này tổng hợp kết quả thực nghiệm định lượng từ **Người 1** (chạy ngày 31/10/2026 trên Colab GPU Tesla T4, dữ liệu `team2_rag/data/evaluation/colab-20261031/`) và các cải tiến kỹ thuật, phân tích lỗi từ **Người 2** (nhiệm vụ VLRA-56 và VLRA-57) để đề xuất cấu hình RAG Pipeline v2. Lượt 02/11 đã kiểm chứng riêng tùy chọn truncate trên 110 câu; chưa kiểm chứng toàn bộ pipeline v2 hoặc SLA.
+
+### Kiểm chứng truncate ngày 02/11/2026
+
+[Raw output](../../team2_rag/data/evaluation/colab-20261102/) tại commit
+`1f51f66`: BGE gốc hoàn tất 97/110 câu; BGE truncate hoàn tất 110/110, không
+lỗi retrieval và không dùng fallback. Trên cùng 97 câu, cả hai chính sách
+BGE cho đúng cùng thứ tự; Recall@5 Hybrid 87,66%, BGE 83,70%.
+
+Trên **đủ 110 câu**: Hybrid Recall@5 88,39%, BGE truncate 83,08%; MRR@20
+0,6465 → 0,5968. Rerank truncate p50/p95 = 866,86/1.253,82 ms; tổng
+retrieval/kiểm tra + rerank p50/p95 = 1.009,03/1.371,46 ms trên T4.
+
+Truncate xử lý 13 ca quá dài trong lượt này nhưng chưa cho lợi ích chất
+lượng xếp hạng. **Chưa chọn nó làm cấu hình tối ưu; giữ Hybrid làm mốc.**
+Bộ 110 câu còn 70 câu draft, chưa có split/gold groups; các số trên là
+khảo sát, chưa thay nghiệm thu. Xem [phân tích và từng nhóm dữ liệu](reranker_impact_analysis.md).
+Không suy số liệu này thành kết quả toàn bộ pipeline v2 hoặc CPU/E2E.
 
 ### Bằng chứng hiện có trên bộ khảo sát 40 câu
 
