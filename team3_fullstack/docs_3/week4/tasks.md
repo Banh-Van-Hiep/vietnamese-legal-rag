@@ -181,8 +181,3 @@ data: {"error":{"code":"UPSTREAM_TIMEOUT","message":"Thời gian xử lý của 
 | **Team 3 $\rightarrow$ Team 2 (RAG)** | - Đặc tả yêu cầu giao tiếp nội bộ `POST /internal/v1/query` (JSON `snake_case`, Header `X-Request-ID`).<br>- Giới hạn lịch sử hội thoại: tối đa 5 cặp `(role, content)` gần nhất, tổng code points $\le 20.000$. | Team 2 xây dựng FastAPI adapter tiếp nhận request chuẩn xác từ Backend. | Tài liệu `docs/ARCHITECTURE.md` & họp kỹ thuật. |
 | **Team 3 $\rightarrow$ Team 1 (Retrieval)** | - Đặc tả yêu cầu tra cứu nguyên văn Điều luật: `GET /internal/v1/documents/{document_id}/articles/{article_id}`. | Team 1 tối ưu hàm `get_article()` trả về đủ 6 trường dữ liệu phục vụ Document Viewer. | [Contract internal article](../../../contracts/v0.1/internal_article.schema.json). |
 | **Team 3 $\rightarrow$ Cả nhóm (Golden Dataset)** | - Mẫu cấu trúc chuẩn và quy trình đóng góp câu hỏi Golden Dataset Phase 1 (30–50 câu). | Team 1 và Team 2 đóng góp câu hỏi kiểm thử chuyên sâu theo phân hệ phụ trách. | File mẫu `team2_rag/data/golden/golden_phase1_30cai.json`. |
-
-## 6. Kết quả kiểm chứng hiện hành
-
-Đối chiếu từng task/DoD và phần còn thiếu tại [verification.md](verification.md), ngày 29/10/2026.
-Không suy hoàn thành từ kế hoạch hoặc từ số test PASS; mock và live được kết luận riêng.

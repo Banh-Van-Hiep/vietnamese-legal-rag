@@ -87,16 +87,3 @@ data: {"conversationId":101,"clientRequestId":"44444444-4444-4444-8444-444444444
 | **Team 3 $\rightarrow$ Cả nhóm (G4)** | - Bản demo hệ thống Live RAG MVP hoạt động End-to-End đầy đủ tính năng.<br>- Hai tập Dev/Test từ bộ150 đã được Team1/2 bàn giao; phần phê duyệt/freeze do nhóm chốt, không tự suy từ split report. | Mốc nghiệm thu kỹ thuật quan trọng nhất giữa kỳ; cung cấp tập dữ liệu để Team 1 và Team 2 bước vào tối ưu tuần 8–10. | Buổi báo cáo tiến độ chung & Git commit hash. |
 | **Team 2 $\rightarrow$ Team 3 (AI Service)** | - Dịch vụ RAG Live ổn định, phản hồi trong ngân sách 45 giây.<br>- Không bị lỗi sai cấu trúc JSON hoặc trích dẫn rác. | Backend Java ánh xạ an toàn và phát stream ra ngoài giao diện cho người dùng cuối. | Endpoint `/internal/v1/query`. |
 | **Team 1 $\rightarrow$ Team 3 (Viewer)** | - Dịch vụ tra cứu Điều luật siêu tốc `get_article()` đã test p95 $\le 200$ms. | Frontend Document Viewer hiển thị toàn văn Điều luật ngay tức thì khi người dùng nhấp vào trích dẫn. | API `/api/v1/documents/{documentId}?articleId={articleId}`. |
-
-## 6. Kết quả kiểm chứng hiện hành
-
-Đối chiếu từng task/DoD và phần còn thiếu tại [verification.md](verification.md), ngày 29/10/2026.
-Không suy hoàn thành từ kế hoạch hoặc từ số test PASS; mock và live được kết luận riêng.
-
-Hồ sơ nghiệm thu11–14: [spec](vlra-t3-11-14-acceptance/spec.md),
-[validation](vlra-t3-11-14-acceptance/validation.md). Idempotency đạt kỹ thuật; Viewer
-đạt mock. Phân chia dữ liệu thật còn chờ nguồn150; tổng duyệt G4 vẫn mở theo T3-14.
-
-T3-13 triển khai riêng: [spec](vlra-t3-13-golden-split/spec.md),
-[validation](vlra-t3-13-golden-split/validation.md). Công cụ13 test đạt; chờ nguồn150
-đã kiểm chứng để chạy thật. Phân công này thay phần thu thập/phê duyệt/freeze cũ của T3-13.

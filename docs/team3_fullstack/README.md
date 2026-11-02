@@ -45,7 +45,7 @@ hồ sơ tuần, không tự suy từ việc tạo tài liệu hoặc build/test
 
 ## Ranh giới hồ sơ
 
-Nhiệm vụ, phân công, Spec Kit, validation, bằng chứng và phê duyệt theo tuần nằm tại
-[team3_fullstack/docs_3](../../team3_fullstack/docs_3/README.md).
-Không đưa bảng task/tiến độ/test count vào tài liệu chung. Lượt tách tài liệu không sửa
-code/Team 1/Team 2/shared contracts, không chạy lại build/test hoặc tạo kết quả nghiệm thu mới.
+Nhiệm vụ và DoD theo tuần nằm tại [team3_fullstack/docs_3](../../team3_fullstack/docs_3/README.md);
+mỗi thư mục tuần chỉ giữ `tasks.md`. Spec Kit và kết quả kiểm chứng chỉ lưu local
+trong `specs/local-team3/weekN/`, được Git bỏ qua. Không viết báo cáo nghiệm thu tổng hợp tuần.
+Không đưa bảng task/tiến độ/test count vào tài liệu chung.

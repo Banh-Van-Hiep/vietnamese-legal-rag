@@ -50,7 +50,7 @@ def response_trace(response):
         raise BenchmarkError('INVALID_RESPONSE_TRACE') from exc
 
 
-def request_sample(client, case, contract, timeout, warmup=False):
+def request_sample(client, case, contract, timeout, warmup=False, *, capture_response=False):
     from gevent import Timeout
     rid = str(uuid.uuid4())
     body = {'question':case['question'], 'clientRequestId':rid}
@@ -69,6 +69,8 @@ def request_sample(client, case, contract, timeout, warmup=False):
                     complete = read_sse(response.iter_content(chunk_size=None), body, contract)
                     row['elapsed_ms'] = (time.perf_counter()-start)*1000
                     row.update(outcome='completed', answer_status=complete['status'], conversation_id=complete['conversationId'])
+                    if capture_response:
+                        row['complete_response'] = complete
                     response.success()
                 except Exception as exc:
                     row['outcome'] = 'failed'; row['error_code'] = error_code(exc); response.failure(row['error_code'])
@@ -99,7 +101,10 @@ def request_sample(client, case, contract, timeout, warmup=False):
                         size+=len(chunk)
                         if size>2_000_000: raise BenchmarkError('RESPONSE_TOO_LARGE')
                         chunks.append(chunk)
-                    contract.article(strict_json(b''.join(chunks).decode('utf-8')), citation['documentId'], citation['articleId'])
+                    article_body = strict_json(b''.join(chunks).decode('utf-8'))
+                    contract.article(article_body, citation['documentId'], citation['articleId'])
+                    if capture_response:
+                        article['article_response'] = article_body
                     article.update(outcome='completed', elapsed_ms=(time.perf_counter()-start)*1000)
                     response.success()
                 except Exception as exc:
@@ -113,7 +118,7 @@ def request_sample(client, case, contract, timeout, warmup=False):
     return row
 
 
-def run_jobs(cases, base_url, users, timeout, contract, warmup=False):
+def run_jobs(cases, base_url, users, timeout, contract, warmup=False, *, capture_response=False):
     import gevent
     from gevent.event import Event
     from gevent.queue import Queue, Empty
@@ -131,7 +136,7 @@ def run_jobs(cases, base_url, users, timeout, contract, warmup=False):
         def consume(self):
             try: index,case=queue.get_nowait()
             except Empty: raise StopUser()
-            row=request_sample(self.client, case, contract, timeout, warmup)
+            row=request_sample(self.client, case, contract, timeout, warmup, capture_response=capture_response)
             row['job_index']=index;records.append(row)
             # Native Locust HTTP streaming metrics cover headers; never use their total for the report.
             self.environment.events.request.fire(request_type='SSE', name='terminal chat', response_time=row['elapsed_ms'],
