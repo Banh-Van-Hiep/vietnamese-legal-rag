@@ -1,14 +1,38 @@
 {
  "version": "retrieval-v2-2026-10-31",
- "status": "chờ chốt embedding (VLRA-52 cần chạy model thật)",
- "evidence": "docs/weekly-changes/2026-10-31.md (VLRA-49..53), evaluation/retrieval/runs/",
+ "status": "đã chốt (VLRA-53)",
+ "evidence": "docs/weekly-changes/2026-10-31.md (VLRA-49..53), evaluation/retrieval/runs/vlra52-*, vlra53-aiteamvn-weights",
  "method": "hybrid_rrf",
  "top_k": 20,
- "bm25": {"method": "lucene", "k1": 1.2, "b": 0.75, "tokenizer": "tokenize_vi/underthesea"},
- "dense": {"embedding_model": "AITeamVN/Vietnamese_Embedding", "embedding_revision": null,
-           "query_prefix": "", "passage_prefix": "", "distance": "cosine"},
- "hybrid": {"rrf_k": 60, "weights": [1.0, 1.0], "candidate_limit": 100},
- "chunking": {"unit": "Khoản", "max_tokens": null, "overlap": 0,
-              "note": "bật max_tokens=384, overlap=64 nếu model embedding giới hạn 512 subword (VLRA-50)"},
- "legal_status": ["con_hieu_luc", "het_hieu_luc_mot_phan"]
+ "bm25": {
+  "method": "lucene",
+  "k1": 1.2,
+  "b": 0.75,
+  "tokenizer": "tokenize_vi/underthesea"
+ },
+ "dense": {
+  "embedding_model": "AITeamVN/Vietnamese_Embedding",
+  "embedding_revision": "dea33aa1ab339f38d66ae0a40e6c40e0a9249568",
+  "query_prefix": "",
+  "passage_prefix": "",
+  "distance": "cosine"
+ },
+ "hybrid": {
+  "rrf_k": 60,
+  "weights": [
+   0.5,
+   1.0
+  ],
+  "candidate_limit": 100
+ },
+ "chunking": {
+  "unit": "Khoản",
+  "max_tokens": null,
+  "overlap": 0,
+  "note": "bật max_tokens=384, overlap=64 nếu model embedding giới hạn 512 subword (VLRA-50)"
+ },
+ "legal_status": [
+  "con_hieu_luc",
+  "het_hieu_luc_mot_phan"
+ ]
 }

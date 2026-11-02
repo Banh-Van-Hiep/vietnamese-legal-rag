@@ -1,0 +1,25 @@
+[
+ {
+  "name": "dense_e5small",
+  "method": "dense",
+  "embedder": {
+   "type": "sentence_transformers",
+   "name": "intfloat/multilingual-e5-small",
+   "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+   "query_prefix": "query: ",
+   "passage_prefix": "passage: "
+  }
+ },
+ {
+  "name": "hybrid_k60_e5small",
+  "method": "hybrid_rrf",
+  "rrf_k": 60,
+  "embedder": {
+   "type": "sentence_transformers",
+   "name": "intfloat/multilingual-e5-small",
+   "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+   "query_prefix": "query: ",
+   "passage_prefix": "passage: "
+  }
+ }
+]
