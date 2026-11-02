@@ -124,9 +124,12 @@ cài thư viện, dựng BM25 và Dense/Qdrant local bằng thư viện Team 1, 
 runner rồi tải ZIP bằng chứng. Không cần cài model/index trên máy cá nhân.
 Không cần Drive mount, API key, Ollama hoặc Docker.
 
-Mặc định khảo sát 40 câu hiện có bằng `--exploratory`. Muốn đo Dev chính thức,
+Mặc định notebook khảo sát 110 câu Team 1 bằng `--exploratory`, gồm 40 câu
+`team2_reviewed` và 70 câu `draft_needs_legal_review`. Muốn đo Dev chính thức,
 cần file đã review/đóng băng với split và gold groups; sửa MODE/GOLDEN ở ô 3.
 Notebook không tự gán nhãn review hoặc chia Test từ dữ liệu đã dùng tối ưu.
+Đổi GOLDEN về file 40 câu để tái lập lượt cũ; revision hai model đã ghim
+theo lượt 31/10.
 
 CLI có thêm `--device cuda`, `--embedding-device cuda` và
 `--reranker-revision <SHA>`. Mặc định vẫn CPU; ứng dụng không tự bật GPU.
@@ -168,3 +171,49 @@ Recall@5 giảm từ 73,77% xuống 66,29% trên cùng 38 cặp. Đây là khả
 thay benchmark Dev/Test chính thức. Xem
 [báo cáo tác động](reranker_impact_analysis.md) và
 [bằng chứng](../../team2_rag/data/evaluation/colab-20261031/).
+
+## Đo lại sau tùy chọn truncate (02/11/2026)
+
+Runner hỗ trợ `--compare-truncation`: mỗi câu chỉ truy xuất một pool top 20,
+đo BGE gốc và BGE `truncate=True` trên cùng pool. Hai nhánh dùng cùng weights,
+revision, batch và `strict=True`; không fallback hoặc sửa content/citation.
+Đây là kiểm chứng tùy chọn Người 2 đã thêm, không đổi cấu hình ứng dụng.
+
+```bash
+python -m scripts.eval_reranker \
+  --golden team1_data/golden/golden_phase1.json --exploratory \
+  --bm25-index /path/to/bm25 --dense-index /path/to/dense \
+  --qdrant-path /path/to/qdrant --device cuda --embedding-device cuda \
+  --reranker-revision 953dc6f6f85a1b2dbfca4c34a2796e7dde08d41e \
+  --compare-truncation --output /path/to/evidence/reranker-exploratory.json
+```
+
+Giữ lỗi bản gốc trong `cases`; kết quả truncate ở `truncated`. Bảng ba cột
+Hybrid/BGE gốc/BGE truncate dùng `common_success`, giao các câu thành công
+ở cả hai chính sách. Không so trực tiếp trung bình của 38 câu với 40 câu.
+Muốn chỉ đo nhánh truncate, dùng `--truncate` thay `--compare-truncation`.
+Exit 1 vẫn đúng nếu bản gốc lỗi passage dài dù nhánh truncate chạy đủ.
+
+`total_ms` từng nhánh là thời gian retrieval/kiểm tra đã đo cộng xử lý riêng
+nhánh đó; không gồm chạy chính sách còn lại, chưa phải request E2E. Raw JSON
+ghi rõ chính sách và số nhãn review của dữ liệu. Notebook đóng gói cả Golden
+đầu vào, hash và metadata; không tự chuyển bộ 110 câu còn draft thành Dev
+đã nghiệm thu. Những con số v2 trong báo cáo cấu hình phải chờ raw output
+của lượt chạy mới; test offline không thay thế kết quả GPU.
+
+## Lượt đo lại đã lưu ngày 02/11/2026
+
+Đã chạy commit `1f51f66` trên T4 với 110 câu, không sửa code lúc đo. BGE gốc
+có 13 lỗi passage dài; truncate hoàn tất 110/110. Trên 97 câu thành công
+chung, thứ tự hai chính sách trùng hoàn toàn; Recall@5 Hybrid 87,66% và BGE
+83,70%. Trên toàn bộ 110 câu, Hybrid 88,39% và BGE truncate 83,08%.
+
+Raw JSON/Markdown, Golden, manifests và metadata nằm tại
+[`colab-20261102`](../../team2_rag/data/evaluation/colab-20261102/).
+[Phân tích](reranker_impact_analysis.md) tách nhóm 40/70 câu, latency và ca
+khôi phục nhưng vẫn hạ hạng. Truncate xử lý lỗi độ dài trong lượt này,
+chưa đủ để chốt cấu hình tối ưu; 70 câu draft vẫn giữ nguyên nhãn review.
+Kiểm tra hash nguồn/index, pool hai chính sách, thứ tự theo điểm và tính
+lại Recall/MRR từ raw đều khớp. Bộ kiểm thử offline liên quan đạt 63 test,
+298 subtest; 1 test model được skip. Lượt Colab là bằng chứng model thật
+riêng, không biến test skip thành pass hoặc thay nghiệm thu Dev/Test.
