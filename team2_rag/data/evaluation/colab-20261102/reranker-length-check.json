@@ -1,0 +1,156 @@
+[
+  {
+    "id": "gold_027",
+    "max_pair_tokens": 975,
+    "oversized": [
+      {
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-63__k2__0",
+        "tokens": 975
+      },
+      {
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-69__k1__0",
+        "tokens": 715
+      },
+      {
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-71__k2__0",
+        "tokens": 913
+      }
+    ]
+  },
+  {
+    "id": "gold_032",
+    "max_pair_tokens": 532,
+    "oversized": [
+      {
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-43__k2__0",
+        "tokens": 532
+      }
+    ]
+  },
+  {
+    "id": "gold_054",
+    "max_pair_tokens": 758,
+    "oversized": [
+      {
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-23__k1__0",
+        "tokens": 697
+      },
+      {
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-23__k5__0",
+        "tokens": 758
+      }
+    ]
+  },
+  {
+    "id": "gold_064",
+    "max_pair_tokens": 621,
+    "oversized": [
+      {
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-153__k2__0",
+        "tokens": 621
+      }
+    ]
+  },
+  {
+    "id": "gold_065",
+    "max_pair_tokens": 891,
+    "oversized": [
+      {
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-71__k2__0",
+        "tokens": 891
+      }
+    ]
+  },
+  {
+    "id": "gold_089",
+    "max_pair_tokens": 746,
+    "oversized": [
+      {
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-107__k1__0",
+        "tokens": 529
+      },
+      {
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-109__k2__0",
+        "tokens": 746
+      }
+    ]
+  },
+  {
+    "id": "gold_090",
+    "max_pair_tokens": 805,
+    "oversized": [
+      {
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-119__k2__0",
+        "tokens": 805
+      }
+    ]
+  },
+  {
+    "id": "gold_092",
+    "max_pair_tokens": 754,
+    "oversized": [
+      {
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-107__k1__0",
+        "tokens": 537
+      },
+      {
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-109__k2__0",
+        "tokens": 754
+      }
+    ]
+  },
+  {
+    "id": "gold_093",
+    "max_pair_tokens": 699,
+    "oversized": [
+      {
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-23__k1__0",
+        "tokens": 699
+      }
+    ]
+  },
+  {
+    "id": "gold_094",
+    "max_pair_tokens": 754,
+    "oversized": [
+      {
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-109__k2__0",
+        "tokens": 754
+      },
+      {
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-107__k1__0",
+        "tokens": 537
+      }
+    ]
+  },
+  {
+    "id": "gold_100",
+    "max_pair_tokens": 749,
+    "oversized": [
+      {
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-109__k2__0",
+        "tokens": 749
+      }
+    ]
+  },
+  {
+    "id": "gold_108",
+    "max_pair_tokens": 533,
+    "oversized": [
+      {
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-107__k1__0",
+        "tokens": 533
+      }
+    ]
+  },
+  {
+    "id": "gold_109",
+    "max_pair_tokens": 893,
+    "oversized": [
+      {
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-71__k2__0",
+        "tokens": 893
+      }
+    ]
+  }
+]

@@ -1,0 +1,7 @@
+{
+  "HF_HOME": "/content/hf-cache",
+  "TORCH_HOME": "/content/torch-cache",
+  "USE_TF": "0",
+  "USE_FLAX": "0",
+  "XLA_PYTHON_CLIENT_PREALLOCATE": "false"
+}
