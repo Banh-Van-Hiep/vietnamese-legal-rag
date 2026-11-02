@@ -94,6 +94,36 @@ class EvaluationTests(unittest.TestCase):
         self.assertEqual(result["summary"]["retrieval_errors"], 1)
         self.assertEqual(result["summary"]["paired_answerable"], 0)
 
+    def test_compare_policies_reuses_pool_and_keeps_failures(self):
+        def baseline(pairs):
+            if pairs[0][0] == "question":
+                raise ValueError("long passage")
+            return list(range(len(pairs)))
+        cases = [self.case, dict(self.case, id="q2", question="short")]
+        self.retriever.retrieve = lambda question, top_k: dict(self.pool, question=question)
+        result = evaluate(self.retriever, baseline, cases, self.corpus,
+                          truncate_scorer=lambda pairs: [1] * len(pairs))
+        self.assertEqual(result["status"], "ERROR")
+        self.assertEqual(result["summary"]["paired_answerable"], 1)
+        self.assertEqual(result["truncated"]["summary"]["paired_answerable"], 2)
+        self.assertEqual(result["common_success"]["baseline"]["paired_answerable"], 1)
+        self.assertEqual(result["common_success"]["truncated"]["paired_answerable"], 1)
+        for a, b in zip(result["cases"], result["truncated"]["cases"]):
+            self.assertEqual(a["candidates"], b["candidates"])
+            self.assertEqual(a["retrieval_ms"], b["retrieval_ms"])
+        self.assertEqual(result["truncated"]["cases"][0]["reranked_ids"], list("abcdef"))
+
+    def test_comparison_retrieves_once_and_propagates_retrieval_errors(self):
+        result = evaluate(self.retriever, lambda pairs: [1] * len(pairs), [self.case], self.corpus,
+                          truncate_scorer=lambda pairs: list(range(len(pairs))))
+        self.assertEqual(self.calls, 1)
+        self.assertEqual(result["common_success"]["truncated"]["after"]["recall_at_5"], 1)
+        self.assertEqual(result["common_success"]["baseline"]["after"]["recall_at_5"], 0)
+        self.corpus["a"] = dict(self.corpus["a"], content="mismatch")
+        result = evaluate(self.retriever, Mock(), [self.case], self.corpus, truncate_scorer=Mock())
+        self.assertEqual(result["truncated"]["summary"]["retrieval_errors"], 1)
+        self.assertEqual(result["common_success"]["truncated"]["total"], 0)
+
     def test_unanswerable_excluded_and_paired_denominator(self):
         cases = [self.case, dict(id="q2", question="question", gold_chunk_ids=[])]
         result = evaluate(self.retriever, lambda pairs: list(range(6)), cases, self.corpus)
@@ -126,6 +156,7 @@ class EvaluationTests(unittest.TestCase):
             (root / "index_manifest.json").write_text(json.dumps(dict(index_version="test", chunk_ids=list(self.corpus))))
             client = Mock()
             scorer = Mock(side_effect=lambda pairs: list(range(len(pairs))))
+            scorer.truncate = False
             scorer._model = SimpleNamespace(config=SimpleNamespace(_commit_hash="test-revision"))
             scorer._torch = SimpleNamespace(cuda=SimpleNamespace(get_device_name=lambda: "fake-gpu"),
                                              version=SimpleNamespace(cuda="test-cuda"))
@@ -133,9 +164,10 @@ class EvaluationTests(unittest.TestCase):
                     patch("scripts.eval_reranker.BGEScorer", return_value=scorer) as factory:
                 code = main(["--golden", str(golden), "--chunks", str(chunks), "--bm25-index", temp,
                              "--dense-index", temp, "--output", str(output), "--device", "cuda",
-                             "--embedding-device", "cuda", "--reranker-revision", "test-revision"])
+                             "--embedding-device", "cuda", "--reranker-revision", "test-revision",
+                             "--compare-truncation"])
             self.assertEqual(code, 0)
-            factory.assert_called_once_with(device="cuda", revision="test-revision")
+            factory.assert_called_once_with(device="cuda", revision="test-revision", truncate=False)
             client.close.assert_called_once()
             self.assertEqual(self.calls, 2)  # One warm-up, one measured pool.
             report = json.loads(output.read_text())
@@ -144,6 +176,9 @@ class EvaluationTests(unittest.TestCase):
             self.assertEqual(report["config"]["embedding_device"], "cuda")
             self.assertEqual(report["accelerator"], dict(name="fake-gpu", cuda_version="test-cuda"))
             self.assertEqual(report["summary"]["promoted"]["count"], 1)
+            self.assertEqual(report["truncated"]["summary"]["paired_answerable"], 1)
+            self.assertEqual(report["common_success"]["baseline"]["total"], 1)
+            self.assertFalse(scorer.truncate)
             self.assertIn("recall_at_5", output.with_suffix(".md").read_text())
 
     def test_blocked_cli_writes_both_reports(self):

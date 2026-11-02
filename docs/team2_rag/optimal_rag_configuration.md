@@ -1,23 +1,28 @@
-# Đề Xuất Cấu Hình RAG Pipeline v2 Tối Ưu
+# Đề xuất cấu hình RAG Pipeline v2 — chờ kiểm chứng
 ## Phân Hệ: RAG & LLM (Team 2) — Nhiệm vụ VLRA-58 (Cả hai: Người 1 + Người 2)
 
 ---
 
 ## 1. Cơ Sở Thực Nghiệm & Tổng Hợp Dữ Liệu
 
-Báo cáo này tổng hợp kết quả thực nghiệm định lượng từ **Người 1** (chạy ngày 31/10/2026 trên Colab GPU Tesla T4, dữ liệu `team2_rag/data/evaluation/colab-20261031/`) và các cải tiến kỹ thuật, phân tích lỗi từ **Người 2** (nhiệm vụ VLRA-56 và VLRA-57) để chốt cấu hình chính thức cho phiên bản RAG Pipeline v2.
+Báo cáo này tổng hợp kết quả thực nghiệm định lượng từ **Người 1** (chạy ngày 31/10/2026 trên Colab GPU Tesla T4, dữ liệu `team2_rag/data/evaluation/colab-20261031/`) và các cải tiến kỹ thuật, phân tích lỗi từ **Người 2** (nhiệm vụ VLRA-56 và VLRA-57) để đề xuất cấu hình RAG Pipeline v2. Chưa có raw output cho bản v2 trong repo; các chỉ số v2 phải được đo lại trước khi chốt.
 
-### Bảng so sánh hiệu năng các phương án (trên tập mẫu 40 câu):
+### Bằng chứng hiện có trên bộ khảo sát 40 câu
+
+Chất lượng hai cột đầu tính trên cùng **38 cặp thành công**, không phải đủ
+40 câu. Cột v2 chưa có bằng chứng chạy model; không dùng số ước lượng làm
+kết quả thực nghiệm. Runner `--compare-truncation` đo riêng tác động của
+truncate, chưa kiểm chứng toàn bộ pipeline v2 hoặc SLA.
 
 | Chỉ Số / Tiêu Chí | Phương án 1: Hybrid RRF (Không Rerank) | Phương án 2: Hybrid + Reranker (Nguyên bản) | Phương án 3: Hybrid + Reranker v2 (Người 2 tối ưu) |
 | :--- | :---: | :---: | :---: |
-| **Recall@5** | **73,77%** | 66,29% (−7,48%) | **71,45%** (giữ căn cứ khóa) |
-| **Recall@10** | **85,15%** | 77,34% (−7,80%) | **83,20%** |
-| **Recall@20** | **87,42%** | **87,42%** | **87,42%** |
-| **MRR@20** | **0,6871** | 0,6037 (−0,0834) | **0,6650** |
-| **Tỷ lệ lỗi (Failure Rate)** | **0% (0/40)** | 5% (2/40 crash $> 512$ token) | **0% (0/40 — Safe Truncation)** |
-| **Độ trễ p50 (Retrieval + Rerank)** | **~ 106 ms** | ~ 849 ms | ~ 850 ms (GPU) / ~ 2.5s (CPU) |
-| **Tính sẵn sàng (Availability)** | Rất cao | Rủi ro sập khi gặp nghị định dài | **Rất cao (Graceful Fallback)** |
+| **Recall@5** | **73,77%** | 66,29% (−7,48%) | **Chưa đo** |
+| **Recall@10** | **85,15%** | 77,34% (−7,80%) | **Chưa đo** |
+| **Recall@20** | **87,42%** | **87,42%** | **Chưa đo** |
+| **MRR@20** | **0,6871** | 0,6037 (−0,0834) | **Chưa đo** |
+| **Tỷ lệ lỗi (Failure Rate)** | **0% (0/40)** | 5% (2/40 crash $> 512$ token) | **Chưa đo** |
+| **Độ trễ p50 (Retrieval + Rerank)** | **~ 106 ms** | ~ 849 ms | **Chưa đo** |
+| **Tính sẵn sàng (Availability)** | Rất cao | Rủi ro sập khi gặp nghị định dài | **Chưa đo** |
 
 ---
 
@@ -30,15 +35,15 @@ Báo cáo này tổng hợp kết quả thực nghiệm định lượng từ **
 
 2. **Về độ ổn định & rủi ro tràn độ dài:**
    - Các điều luật về thủ tục hành chính (Nghị định 168/2025/NĐ-CP) thường dài từ 500 đến 1.000 token.
-   - Bản cải tiến **VLRA-57** đã giải quyết triệt để vấn đề này nhờ cơ chế:
-     - `truncate=True` (`truncation="only_second"`): Giữ nguyên 100% câu hỏi, cắt phần đuôi văn bản luật nếu vượt 512 token để mô hình luôn chấm điểm được.
-     - `strict_rerank=False`: Khi module Reranker quá tải hoặc timeout $> 4.0$s, hệ thống tự động fallback giữ nguyên thứ hạng Hybrid RRF, phát log `reranker_degraded_fallback degraded=true` mà không làm gián đoạn người dùng.
+   - Bản **VLRA-57** bổ sung tùy chọn xử lý passage dài; cần chạy lại model để xác nhận tác động:
+     - `truncate=True` (`truncation="only_second"`): Giữ nguyên 100% câu hỏi, cắt phần đuôi văn bản luật nếu vượt 512 token trước khi chấm điểm. Vẫn có thể lỗi nếu riêng câu hỏi đã vượt giới hạn; cắt đuôi cũng có thể mất căn cứ.
+     - `strict_rerank=False`: Khi scorer báo lỗi, pipeline có thể giữ nguyên thứ hạng Hybrid RRF và ghi log fallback. Code hiện chưa có timer cưỡng chế dừng rerank sau 4 giây; không coi mốc này là hành vi đã triển khai.
 
 ---
 
-## 3. Đề Xuất Cấu Hình RAG Pipeline v2 Chính Thức
+## 3. Cấu hình đề xuất, chưa nghiệm thu
 
-Nhóm thống nhất đề xuất cấu hình tiêu chuẩn cho toàn hệ thống gồm các tham số chi tiết sau:
+Các tham số dưới đây là mục tiêu cần kiểm chứng, chưa phải toàn bộ giá trị mặc định đang chạy trong `runtime.py`:
 
 ### 3.1. Tầng 1 — Hybrid Retrieval (Team 1)
 - **Phương pháp hợp nhất:** Reciprocal Rank Fusion (RRF) với hằng số $k = 60$, tỷ lệ trọng số BM25 : Dense là $1 : 1$.
@@ -66,7 +71,7 @@ Nhóm thống nhất đề xuất cấu hình tiêu chuẩn cho toàn hệ thố
 
 ## 4. Ngân Sách Thời Gian Toàn Trình (Latency Budget SLA)
 
-Đối chiếu với chỉ tiêu thời gian phản hồi NFR-07 (ngân sách tầng AI $\le 45$ giây do Team 3 thiết lập):
+Đây là **ngân sách mục tiêu**, chưa có lượt đo E2E chứng minh các percentile. Không cộng p95 từng bước để suy ra p95 tổng đã đo. Đối chiếu với chỉ tiêu thời gian phản hồi NFR-07 (ngân sách tầng AI $\le 45$ giây do Team 3 thiết lập):
 
 ```text
 Request từ Java BE (POST /internal/v1/query)
@@ -84,5 +89,5 @@ Tổng thời gian toàn trình AI Layer: p95 <= 29.0 giây (Dư an toàn 16 gi�
 
 ## 5. Kết Luận Bàn Giao
 
-1. **Mã nguồn:** Cấu hình đã được cập nhật trực tiếp vào [`team2_rag/reranker.py`](../../team2_rag/reranker.py) và [`team2_rag/runtime.py`](../../team2_rag/runtime.py).
+1. **Mã nguồn:** `BGEScorer` đã có tùy chọn `truncate=True`, nhưng `runtime.py` vẫn gọi `BGEScorer()` với mặc định `truncate=False`, mặc định `RAG_TOP_K=10`. Cần Người 2 xác nhận cấu hình triển khai; runner khảo sát vẫn giữ top 20 để so sánh. Không tự đổi runtime bằng kết quả chưa đo.
 2. **Kế hoạch kiểm chứng lại:** Khi Team 1 đóng băng bộ Dev Set chuẩn 110 câu (`team1_data/golden/golden_phase1.json`), nhóm sẽ tái chạy bộ runner đo đạc chính thức để đối chiếu lần cuối trước buổi nghiệm thu Gate G4.

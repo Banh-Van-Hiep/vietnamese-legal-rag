@@ -6,6 +6,7 @@ import copy
 import json
 import subprocess
 import time
+from collections import Counter
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -76,8 +77,37 @@ def summarize(rows):
     return result
 
 
-def evaluate(retriever, scorer, cases, corpus):
-    rows = []
+def score_pool(pool, scorer, row, retrieval_ms):
+    """Score a copy of one measured pool; failed inference stays visible."""
+    row = copy.deepcopy(row)
+    start = time.perf_counter()
+    try:
+        details = rerank_with_details(pool, scorer=scorer, strict=True)
+        row["rerank_ms"] = (time.perf_counter() - start) * 1000
+        original = row["candidates"]
+        before_ids = [r["chunk_id"] for r in original]
+        after_ids = [r["chunk_id"] for r in details.output["results"]]
+        by_id = {r["chunk_id"]: r for r in original}
+        if (len(after_ids) != len(before_ids) or set(after_ids) != set(before_ids)
+                or any(r != by_id[r["chunk_id"]] for r in details.output["results"])):
+            raise ValueError("Reranker changed the candidate pool or metadata")
+        row.update(after=metrics(after_ids, row["groups"]), reranked_ids=after_ids, scores=details.scores)
+        before_hits = {i for i, g in enumerate(row["groups"]) if set(g) & set(before_ids[:5])}
+        after_hits = {i for i, g in enumerate(row["groups"]) if set(g) & set(after_ids[:5])}
+        gained, lost = sorted(after_hits - before_hits), sorted(before_hits - after_hits)
+        row.update(gained_groups=gained, lost_groups=lost,
+                   impact="mixed" if gained and lost else "promoted" if gained else "demoted" if lost else "unchanged",
+                   missing_from_pool=[i for i, g in enumerate(row["groups"]) if not set(g) & set(before_ids)])
+    except Exception as exc:
+        row.update(status="RERANK_ERROR", error_type=type(exc).__name__, error=str(exc),
+                   rerank_failed_ms=(time.perf_counter() - start) * 1000)
+    # Reuse the measured retrieval stage, excluding inference of the other policy.
+    row["total_ms"] = retrieval_ms + (time.perf_counter() - start) * 1000
+    return row
+
+
+def evaluate(retriever, scorer, cases, corpus, *, truncate_scorer=None):
+    rows, truncated = [], []
     for case in cases:
         row = dict(id=case["id"], question=case["question"], groups=unit_groups(case), status="OK")
         start = time.perf_counter()
@@ -93,31 +123,23 @@ def evaluate(retriever, scorer, cases, corpus):
             row.update(status="RETRIEVAL_ERROR", error_type=type(exc).__name__, error=str(exc),
                        retrieval_failed_ms=(time.perf_counter() - start) * 1000)
             rows.append(row)
+            if truncate_scorer is not None:
+                truncated.append(copy.deepcopy(row))
             continue
-        rerank_start = time.perf_counter()
-        try:
-            details = rerank_with_details(pool, scorer=scorer, strict=True)
-            row["rerank_ms"] = (time.perf_counter() - rerank_start) * 1000
-            after_ids = [r["chunk_id"] for r in details.output["results"]]
-            by_id = {r["chunk_id"]: r for r in original["results"]}
-            if (len(after_ids) != len(before_ids) or set(after_ids) != set(before_ids)
-                    or any(r != by_id[r["chunk_id"]] for r in details.output["results"])):
-                raise ValueError("Reranker changed the candidate pool or metadata")
-            row.update(after=metrics(after_ids, row["groups"]), reranked_ids=after_ids, scores=details.scores)
-            # A query may gain one required unit and lose another. Keep both events.
-            before_hits = {i for i, g in enumerate(row["groups"]) if set(g) & set(before_ids[:5])}
-            after_hits = {i for i, g in enumerate(row["groups"]) if set(g) & set(after_ids[:5])}
-            gained, lost = sorted(after_hits - before_hits), sorted(before_hits - after_hits)
-            row.update(gained_groups=gained, lost_groups=lost,
-                       impact="mixed" if gained and lost else "promoted" if gained else "demoted" if lost else "unchanged",
-                       missing_from_pool=[i for i, g in enumerate(row["groups"]) if not set(g) & set(before_ids)])
-        except Exception as exc:
-            row.update(status="RERANK_ERROR", error_type=type(exc).__name__, error=str(exc),
-                       rerank_failed_ms=(time.perf_counter() - rerank_start) * 1000)
-        row["total_ms"] = (time.perf_counter() - start) * 1000
-        rows.append(row)
-    return dict(status="ERROR" if any(r["status"] != "OK" for r in rows) else "COMPLETE",
-                summary=summarize(rows), cases=rows)
+        retrieval_ms = (time.perf_counter() - start) * 1000
+        rows.append(score_pool(pool, scorer, row, retrieval_ms))
+        if truncate_scorer is not None:
+            truncated.append(score_pool(pool, truncate_scorer, row, retrieval_ms))
+    result = dict(status="ERROR" if any(r["status"] != "OK" for r in rows) else "COMPLETE",
+                  summary=summarize(rows), cases=rows)
+    if truncate_scorer is not None:
+        common = [(a, b) for a, b in zip(rows, truncated) if a["status"] == b["status"] == "OK"]
+        result["truncated"] = dict(summary=summarize(truncated), cases=truncated)
+        result["common_success"] = dict(baseline=summarize([a for a, _ in common]),
+                                        truncated=summarize([b for _, b in common]))
+        if any(r["status"] != "OK" for r in truncated):
+            result["status"] = "ERROR"
+    return result
 
 
 def build_retriever(args, corpus):
@@ -151,6 +173,12 @@ def markdown(report):
              f"Phạm vi: {report['scope']}.", "",
              "So sánh Hybrid top 20 và BGE rerank trên cùng ứng viên; không gọi LLM.",
              "Đây là ablation retrieval, chưa phải đánh giá B0/T0 toàn hệ thống.", ""]
+    if "config" in report:
+        lines += [f"Cấu hình truncate: {report['config'].get('truncate', False)}; "
+                  f"so sánh hai chính sách: {report['config'].get('compare_truncation', False)}.", ""]
+    if "dataset" in report:
+        lines += [f"Nhãn review của dữ liệu nguồn: {report['dataset']['review_status']}. "
+                  "Runner không xác nhận thay cho review relevance/pháp lý.", ""]
     if "summary" not in report:
         return "\n".join(lines + [f"Chưa chạy được: {report.get('error', 'thiếu dữ liệu')}.", ""])
     s = report["summary"]
@@ -172,6 +200,26 @@ def markdown(report):
               "| Tác động ở top 5 | Số câu | Tỷ lệ trên cặp answerable |", "| --- | ---: | ---: |"]
     for name in ("promoted", "demoted", "mixed", "unchanged"):
         lines.append(f"| {name} | {s[name]['count']} | {fmt(s[name]['rate'])} |")
+    if "truncated" in report:
+        t = report["truncated"]["summary"]
+        common = report["common_success"]
+        lines += ["", "## Kiểm chứng truncate của Người 2", "",
+                  "Hai chính sách dùng đúng cùng pool; strict=True, không fallback. "
+                  "Chỉ bật truncation=only_second ở nhánh truncate, không sửa chunk gốc.",
+                  f"Nhánh truncate: {t['paired_answerable']} cặp answerable thành công; "
+                  f"{t['rerank_errors']} lỗi rerank, {t['retrieval_errors']} lỗi retrieval.", "",
+                  f"So sánh chất lượng trên cùng {common['baseline']['paired_answerable']} câu thành công ở cả hai chính sách:", "",
+                  "| Chỉ số | Hybrid | BGE gốc | BGE truncate |", "| --- | ---: | ---: | ---: |"]
+        for k in s["before"]:
+            lines.append(f"| {k} | {fmt(common['baseline']['before'][k])} | "
+                         f"{fmt(common['baseline']['after'][k])} | {fmt(common['truncated']['after'][k])} |")
+        lines += ["", "Metric trên toàn bộ cặp thành công của nhánh truncate nằm riêng trong JSON; "
+                  "không so trực tiếp hai trung bình có mẫu số khác nhau.", "",
+                  "| Độ trễ nhánh truncate (ms) | Mẫu | p50 | p95 |", "| --- | ---: | ---: | ---: |"]
+        for stage, values in t["latency_ms"].items():
+            lines.append(f"| {stage} | {values['samples']} | {fmt(values['p50'])} | {fmt(values['p95'])} |")
+        lines += ["", "total_ms cộng thời gian retrieval/kiểm tra đã đo một lần với xử lý riêng từng nhánh. "
+                  "Không cộng thời gian chạy chính sách còn lại; chưa phải request E2E."]
     lines += ["", "## Các ca cần xem lại", "",
               "Các dấu hiệu dưới đây phục vụ review; chưa khẳng định nguyên nhân lỗi ngữ nghĩa.", ""]
     for row in report["cases"]:
@@ -199,12 +247,17 @@ def main(argv=None):
     parser.add_argument("--device", choices=("cpu", "cuda"), default="cpu", help="Reranker device")
     parser.add_argument("--embedding-device", choices=("cpu", "cuda"), default="cpu")
     parser.add_argument("--reranker-revision", help="Hugging Face commit hash for repeatable experiments")
+    policy = parser.add_mutually_exclusive_group()
+    policy.add_argument("--truncate", action="store_true", help="Measure passage-only truncation explicitly")
+    policy.add_argument("--compare-truncation", action="store_true", help="Measure both policies on each shared pool")
     args = parser.parse_args(argv)
     report = dict(status="BLOCKED", scope="exploratory" if args.exploratory else "dev",
                   run_at=datetime.now(timezone.utc).isoformat(), environment=environment(),
                   config=dict(candidate_k=20, context_cutoff=5, rrf_k=60, weights=[1, 1],
                               reranker="BAAI/bge-reranker-v2-m3", device=args.device,
                               embedding_device=args.embedding_device, reranker_revision=args.reranker_revision,
+                              truncate=args.truncate, compare_truncation=args.compare_truncation, strict=True,
+                              total_latency="measured retrieval/validation + per-policy processing",
                               batch_size=2, max_length=512))
     client = None
     try:
@@ -216,6 +269,8 @@ def main(argv=None):
         if len(corpus) != len(chunks):
             raise ValueError("Duplicate corpus chunk IDs")
         validate_dataset(cases, corpus, exploratory=args.exploratory)
+        report["dataset"] = dict(count=len(cases), review_status=dict(Counter(c.get("review_status", "unspecified") for c in cases)),
+                                 splits=dict(Counter(c.get("split", "unsplit") for c in cases)))
         report["sources"] = [fingerprint(p) for p in (args.golden, args.chunks, Path(__file__),
                              ROOT / "team2_rag/reranker.py", ROOT / "team2_rag/pipeline.py")]
         report["sources"] += [fingerprint(p) for p in sorted((ROOT / "team1_data/retrieval").glob("*.py"))]
@@ -227,7 +282,7 @@ def main(argv=None):
                                          manifest={k: v for k, v in manifest.items() if k != "chunk_ids"}))
         start = time.perf_counter()
         retriever, client = build_retriever(args, corpus)
-        scorer = BGEScorer(device=args.device, revision=args.reranker_revision)
+        scorer = BGEScorer(device=args.device, revision=args.reranker_revision, truncate=args.truncate)
         scorer([("Khởi động mô hình", "Đây là nội dung khởi động mô hình.")])
         if "cuda" in (args.device, args.embedding_device):
             report["accelerator"] = dict(name=scorer._torch.cuda.get_device_name(),
@@ -238,7 +293,15 @@ def main(argv=None):
         report["retrieval_warmup_ms"] = (time.perf_counter() - warmup_start) * 1000
         report["setup_ms"] = (time.perf_counter() - start) * 1000
         report["reranker_revision"] = getattr(scorer._model.config, "_commit_hash", None)
-        report.update(evaluate(retriever, scorer, cases, corpus))
+        def truncate_scorer(pairs):
+            # Share weights and tokenizer; change only the existing adapter's input policy.
+            scorer.truncate = True
+            try:
+                return scorer(pairs)
+            finally:
+                scorer.truncate = False
+        report.update(evaluate(retriever, scorer, cases, corpus,
+                               truncate_scorer=truncate_scorer if args.compare_truncation else None))
     except Exception as exc:
         report.update(status="BLOCKED", error_type=type(exc).__name__, error=str(exc))
     finally:
