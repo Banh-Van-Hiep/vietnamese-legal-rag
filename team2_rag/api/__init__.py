@@ -1,5 +1,8 @@
-"""FastAPI package for Team 2 RAG API."""
-from .app import create_app
-from .handlers import install_error_handlers
+"""Team 2 RAG API package."""
+import os
+os.environ.setdefault("HF_HOME", "D:\\hf_cache")
+os.environ.setdefault("TORCH_HOME", "D:\\hf_cache\\torch")
 
-__all__ = ["create_app", "install_error_handlers"]
+from .app import create_app
+
+__all__ = ["create_app"]

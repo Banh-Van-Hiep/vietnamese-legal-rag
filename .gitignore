@@ -20,3 +20,5 @@ node_modules/
 
 # Index build artifacts (rebuild with python -m team1_data.retrieval build)
 /data/index/
+
+/data/qdrant_storage/

@@ -11,7 +11,7 @@ from team2_rag.pipeline import BM25SearchAdapter, RAGPipeline
 from team2_rag.reranker import RerankInputError, RerankModelError
 
 ROOT = Path(__file__).resolve().parents[1]
-SAMPLE = json.loads((ROOT / "team2_rag/data/samples/reranker_input.json").read_text())
+SAMPLE = json.loads((ROOT / "team2_rag/data/samples/reranker_input.json").read_text(encoding="utf-8"))
 META = ("chunk_id", "document_id", "article_id", "document_title", "article", "clause", "point", "source_url")
 
 
