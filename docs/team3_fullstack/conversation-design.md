@@ -96,10 +96,12 @@ mô tả quét mỗi30s. Source hiện tại:
 
 - recover được gắn ApplicationReadyEvent và gọi trong accept/list/detail/messages/delete.
 - Quét receipt pending có created_at cũ hơn60s, lock conv, lưu failed/PROCESSING_INTERRUPTED.
-- Chưa có scheduler recovery định kỳ. ScheduledThreadPoolExecutor hiện chỉ heartbeat.
-- Test gọi recover trực tiếp chứng minh xử lý stale/late output, không chứng minh job
-  tự chạy khi hệ thống không có request. Đây là khoảng thiếu implementation cần xử lý,
-  không sửa mô tả để coi đọc history là đủ thay background job.
+- `ChatRecovery` đăng ký lịch sau ApplicationReadyEvent, quét mặc định mỗi30s qua
+  `app.chat.recovery-interval-ms`. Executor1 thread riêng, không dùng chung heartbeat.
+- Mỗi tick tái sử dụng recover/transaction/row lock; lỗi tạm thời được ghi loại lỗi
+  và thử lại ở tick kế tiếp. Startup không tạo lịch trùng; đóng context hủy lịch/executor.
+- Kiểm thử Spring scheduler thực tế dùng polling JDBC, không gọi store API để kích
+  recover: stale chuyển failed, fresh/completed giữ nguyên, replay lỗi và bỏ kết quả muộn.
 
 ## 6. Frontend retry và kiểm chứng liên quan
 

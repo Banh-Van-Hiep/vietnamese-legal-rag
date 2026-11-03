@@ -30,4 +30,11 @@ public class StreamConfiguration {
         scheduler.setRemoveOnCancelPolicy(true);
         return scheduler;
     }
+    @Bean(destroyMethod = "shutdown")
+    public ScheduledThreadPoolExecutor chatRecoveryScheduler() {
+        var scheduler = new ScheduledThreadPoolExecutor(1);
+        scheduler.setRemoveOnCancelPolicy(true);
+        scheduler.setExecuteExistingDelayedTasksAfterShutdownPolicy(false);
+        return scheduler;
+    }
 }
