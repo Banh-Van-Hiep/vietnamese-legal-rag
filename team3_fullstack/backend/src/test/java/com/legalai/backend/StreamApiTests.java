@@ -51,6 +51,7 @@ class StreamApiTests {
     @DynamicPropertySource static void properties(DynamicPropertyRegistry r) {
         r.add("app.rag.base-url", () -> "http://127.0.0.1:" + UPSTREAM.getAddress().getPort());
         r.add("app.rag.timeout-ms", () -> 1500);
+        r.add("app.chat.latency-enabled", () -> true);
     }
     @AfterAll static void stop() { UPSTREAM.stop(0); }
     private static HttpServer server() {
@@ -277,6 +278,52 @@ class StreamApiTests {
             assertEquals(c[2],JSON.readTree(response.body()).get("error").get("code").asString());
         }
     }
+    @Test void timingLogMatchesTraceAndDistinguishesCompletionReplayAndFailure() throws Exception {
+        var logs = new java.util.concurrent.ConcurrentLinkedQueue<String>();
+        var logger = (ch.qos.logback.classic.Logger) org.slf4j.LoggerFactory.getLogger(
+                com.legalai.backend.chat.stream.StreamService.class);
+        var appender = new ch.qos.logback.core.AppenderBase<ch.qos.logback.classic.spi.ILoggingEvent>() {
+            @Override protected void append(ch.qos.logback.classic.spi.ILoggingEvent event) {
+                if (event.getFormattedMessage().startsWith("CHAT_LATENCY ")) { logs.add(event.getFormattedMessage()); }
+            }
+        };
+        appender.setContext(logger.getLoggerContext()); appender.start(); logger.addAppender(appender);
+        try {
+            UUID id = UUID.randomUUID(); String request = body("timed-completed", id, null);
+            var completed = send(request); var row = awaitTiming(logs, completed.headers().firstValue("X-Request-ID").orElseThrow());
+            assertEquals("completed", row.get("outcome").asString());
+            assertEquals(id.toString(), row.get("client_request_id").asString());
+            assertTrue(row.get("transport_connected").asBoolean());
+            double sum = 0;
+            for (String phase : java.util.List.of("backend_init", "ai_service", "db_persist", "stream_finish")) {
+                double value = row.get("phases_ms").get(phase).asDouble(); assertTrue(value >= 0); sum += value;
+            }
+            assertTrue(row.get("total_ms").asDouble() >= sum);
+            assertFalse(row.has("question")); assertFalse(row.has("answer"));
+            var replay = send(request); var replayRow = awaitTiming(logs, replay.headers().firstValue("X-Request-ID").orElseThrow());
+            assertEquals("replayed", replayRow.get("outcome").asString());
+            assertTrue(replayRow.get("phases_ms").get("ai_service").isNull());
+            assertTrue(replayRow.get("phases_ms").get("db_persist").isNull());
+            assertEquals(1, CALLS.get("timed-completed").get());
+            var failed = send(body("unavailable-timing", UUID.randomUUID(), null));
+            var failedRow = awaitTiming(logs, failed.headers().firstValue("X-Request-ID").orElseThrow());
+            assertEquals("failed", failedRow.get("outcome").asString());
+            assertFalse(failedRow.toString().contains("private-secret"));
+        } finally { logger.detachAppender(appender); appender.stop(); }
+    }
+
+    private JsonNode awaitTiming(java.util.Queue<String> logs, String trace) throws Exception {
+        long deadline = System.nanoTime() + TimeUnit.SECONDS.toNanos(3);
+        while (System.nanoTime() < deadline) {
+            for (String line : logs) {
+                JsonNode row = JSON.readTree(line.substring("CHAT_LATENCY ".length()));
+                if (trace.equals(row.get("trace_id").asString())) { return row; }
+            }
+            Thread.sleep(10);
+        }
+        throw new AssertionError("No timing for trace");
+    }
+
     private String readFrame(BufferedReader reader) throws Exception {
         StringBuilder b = new StringBuilder(); String line;
         while ((line=reader.readLine()) != null) { b.append(line).append('\n'); if (line.isEmpty()) { break; } }

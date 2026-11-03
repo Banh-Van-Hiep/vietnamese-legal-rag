@@ -79,6 +79,8 @@ export interface UiMessage {
   answerStatus: AnswerStatus | null;
   citations: Citation[];
   clientRequestId?: string;
+  /** Debug-only elapsed time of the current completed client attempt; never persisted. */
+  responseTimeMs?: number;
   /** Chỉ có ở tin assistant failed. */
   failure?: {
     message: string;
