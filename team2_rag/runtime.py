@@ -60,9 +60,10 @@ def build_runtime(env=None) -> Runtime:
         chunks = env.get("RAG_CHUNKS", "data/doanh-nghiep/processed/chunks.jsonl")
         sparse = BM25Retriever.load(bm_dir, chunks)
         vectors = DenseRetriever.connect(dense_dir, embedder, client=client)
-        hybrid = HybridRetriever(BM25SearchAdapter(sparse), vectors, timeout=20)
+        retrieval_timeout = float(env.get("RAG_RETRIEVAL_TIMEOUT", "35"))
+        hybrid = HybridRetriever(BM25SearchAdapter(sparse), vectors, timeout=retrieval_timeout)
         try:
-            embedder.encode_query("Khởi động mô hình embedding")
+            embedder.embed_query("Khởi động mô hình embedding")
         except Exception:
             pass
         scorer = BGEScorer()

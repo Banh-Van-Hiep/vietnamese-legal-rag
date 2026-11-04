@@ -1,0 +1,35 @@
+{
+  "metrics": {
+    "dataset_summary": {
+      "total_queries": 10,
+      "answered_queries": 0,
+      "insufficient_context_queries": 10,
+      "error_queries": 0
+    },
+    "claims_summary": {
+      "total_claims": 0,
+      "supported_claims": 0,
+      "unsupported_claims": 0
+    },
+    "citations_summary": {
+      "total_citations": 0,
+      "valid_citations": 0,
+      "invalid_citations": 0
+    },
+    "core_metrics": {
+      "citation_correctness": 1.0,
+      "citation_correctness_pct": "100.00%",
+      "citation_coverage": 1.0,
+      "citation_coverage_pct": "100.00%",
+      "hallucination_rate": 0.0,
+      "hallucination_rate_pct": "0.00%"
+    },
+    "targets_check": {
+      "citation_correctness_target_met": true,
+      "citation_coverage_target_met": true,
+      "hallucination_rate_target_met": true
+    }
+  },
+  "failed_cases": [],
+  "total_evaluated": 10
+}
