@@ -33,24 +33,41 @@ class GeminiProvider(LLMProvider):
 
     def complete(self, prompt: RenderedPrompt, params: LLMParams) -> ProviderReply:
         import time
-        # Mô hình chính và mô hình dự phòng khi Google Free Tier bị quá tải (503)
+        # Giới hạn ngân sách thời gian tổng (tối đa 25s) để không bao giờ vượt ngưỡng 30s LLM / 45s hệ thống
+        overall_deadline = time.monotonic() + min(self.timeout_seconds, 25.0)
         fallback_models = ["gemini-flash-lite-latest"] if self.model != "gemini-flash-lite-latest" else []
         models_to_try = [self.model] + fallback_models
         resp = None
+
         for m in models_to_try:
-            for attempt in range(2):
+            time_left = overall_deadline - time.monotonic()
+            if time_left < 3.0:
+                break
+
+            call_timeout = max(1.0, min(time_left, 12.0))
+            resp = self.transport.post_json(
+                f"{self.base_url}/models/{m}:generateContent",
+                {"x-goog-api-key": self._api_key},
+                self.build_payload(prompt, params),
+                call_timeout,
+            )
+
+            # Nếu gặp 503/429 và còn đủ thời gian (>= 4s), thử lại ngắn 1 lần
+            if resp.status in (503, 429) and (overall_deadline - time.monotonic()) >= 4.0:
+                time.sleep(1.2)
+                retry_timeout = max(1.0, overall_deadline - time.monotonic())
                 resp = self.transport.post_json(
                     f"{self.base_url}/models/{m}:generateContent",
                     {"x-goog-api-key": self._api_key},
                     self.build_payload(prompt, params),
-                    self.timeout_seconds,
+                    retry_timeout,
                 )
-                if resp.status in (503, 429):
-                    time.sleep(1.5 * (attempt + 1))
-                    continue
-                break
+
             if resp is not None and 200 <= resp.status < 300:
                 break
+
+        if resp is None:
+            raise LLMTimeoutError("Hết ngân sách thời gian chờ phản hồi từ LLM provider.", provider=self.name)
         raise_for_status(self.name, resp.status, resp.json)
         data = resp.json or {}
         if (data.get("promptFeedback") or {}).get("blockReason"):

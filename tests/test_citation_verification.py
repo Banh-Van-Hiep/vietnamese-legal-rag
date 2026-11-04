@@ -275,3 +275,33 @@ def test_benchmark_metrics_computation(sample_context):
     assert metrics["core_metrics"]["citation_coverage"] == 0.6667
     # Hallucination rate: 1 / 2 = 0.50
     assert metrics["core_metrics"]["hallucination_rate"] == 0.50
+
+
+def test_benchmark_metrics_all_refused_no_false_positive():
+    """Test khi toàn bộ câu bị từ chối hoặc không có citation/claim nào thì không được ghi nhận 100% đúng."""
+    eval_results = [
+        {
+            "query_id": "q1",
+            "status": "insufficient_context",
+            "verification_result": None
+        },
+        {
+            "query_id": "q2",
+            "status": "insufficient_context",
+            "verification_result": None
+        }
+    ]
+
+    metrics = compute_benchmark_metrics(eval_results)
+
+    assert metrics["dataset_summary"]["answered_queries"] == 0
+    assert metrics["dataset_summary"]["insufficient_context_queries"] == 2
+    # Phải trả về None và ghi rõ 'chưa đo', không được báo 100% ảo
+    assert metrics["core_metrics"]["citation_correctness"] is None
+    assert "chưa đo" in metrics["core_metrics"]["citation_correctness_pct"]
+    assert metrics["core_metrics"]["citation_coverage"] is None
+    assert "chưa đo" in metrics["core_metrics"]["citation_coverage_pct"]
+    assert metrics["core_metrics"]["query_hallucination_rate"] is None
+    assert "chưa đo" in metrics["core_metrics"]["query_hallucination_rate_pct"]
+    assert metrics["targets_check"]["citation_correctness_target_met"] is False
+

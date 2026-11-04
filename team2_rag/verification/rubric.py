@@ -1,5 +1,15 @@
 """Rubric chấm điểm ngữ nghĩa cho trích dẫn và phát hiện Hallucination (VLRA-T2-24).
 
+LƯU Ý VỀ PHƯƠNG PHÁP:
+Đây là phương pháp thẩm định ngữ nghĩa gần đúng tầng đầu (Fast Lexical-Semantic Heuristic Filter)
+kết hợp phân tích phân cực cấm đoán/quyền hạn và độ bao phủ từ vựng pháp lý. Phương pháp này có
+ưu điểm tốc độ siêu nhanh (<1ms/claim), chạy inline trong request mà không tốn chi phí gọi LLM
+lần 2, nhưng chưa phải Full Semantic NLI (Natural Language Inference) hay LLM-as-a-judge.
+
+ĐỊNH NGHĨA ẢO GIÁC (HALLUCINATION):
+- Claim-level Hallucination: Một nhận định pháp lý (claim) bị xếp vào UNSUPPORTED hoặc CONTRADICTED.
+- Query-level Hallucination: Câu trả lời có chứa ít nhất một claim bị xếp vào UNSUPPORTED/CONTRADICTED.
+
 Hệ thống đánh giá quan hệ Claim - Context Chunk theo chuẩn 4 mức độ:
 1. SUPPORTED (Điểm 1.0):
    - Mệnh đề được chứng thực hoàn toàn từ đoạn văn bản luật được trích dẫn.
