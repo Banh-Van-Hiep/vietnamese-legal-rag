@@ -38,8 +38,28 @@ class Runtime:
         self.client.close()
 
 
+class _NoClient:
+    def close(self):
+        pass
+
+
+def _build_bm25_only(env) -> Runtime:
+    """Bản nhẹ cho máy không có Qdrant/model BGE: BM25 + LLM thật, không rerank. Truy xuất kém Hybrid, chỉ để chạy thử."""
+    from team1_data.retrieval import BM25Retriever
+    settings = load_settings(env=env)
+    llm = create_llm_service(settings)
+    budget = token_budget_from_settings(settings) if settings.context_window_tokens else None
+    bm25 = BM25Retriever.from_jsonl(env.get("RAG_CHUNKS", "data/doanh-nghiep/processed/chunks.jsonl"))
+    pipeline = RAGPipeline(bm25, llm, top_k=int(env.get("RAG_TOP_K", "10")), settings=settings, token_budget=budget,
+                           strict_rerank=False, rerank_enabled=False)
+    log.info("rag_config retriever=bm25_only rerank=False top_k=%d", pipeline.top_k)
+    return Runtime(pipeline, _NoClient())
+
+
 def build_runtime(env=None) -> Runtime:
     env = {**read_dotenv(".env"), **os.environ} if env is None else env
+    if _flag(env, "RAG_BM25_ONLY", "false"):
+        return _build_bm25_only(env)
     required = ("RAG_BM25_INDEX", "RAG_DENSE_INDEX")
     if any(not env.get(k, "").strip() for k in required):
         raise ConfigError("Set RAG_BM25_INDEX and RAG_DENSE_INDEX to existing Team 1 indexes")
