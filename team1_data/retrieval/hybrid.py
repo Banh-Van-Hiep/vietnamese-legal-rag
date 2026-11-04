@@ -13,6 +13,7 @@ from .errors import RetrievalUnavailableError
 
 CANDIDATE_LIMIT = 100
 RETRIEVAL_TIMEOUT = 5
+DEFAULT_WEIGHTS = (0.5, 1.0)
 
 
 def rrf_fuse(

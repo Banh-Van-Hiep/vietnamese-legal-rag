@@ -55,7 +55,10 @@ def build_runtime(env=None) -> Runtime:
     budget = token_budget_from_settings(settings) if settings.context_window_tokens else None
     from qdrant_client import QdrantClient
     from team1_data.retrieval import BM25Retriever, DenseRetriever, HybridRetriever, SentenceTransformerEmbedder
-    from team1_data.retrieval.hybrid import DEFAULT_WEIGHTS
+    try:
+        from team1_data.retrieval.hybrid import DEFAULT_WEIGHTS
+    except ImportError:
+        DEFAULT_WEIGHTS = (0.5, 1.0)
 
     client = (QdrantClient(path=env["RAG_QDRANT_PATH"]) if env.get("RAG_QDRANT_PATH") else
               QdrantClient(url=env.get("RAG_QDRANT_URL", "http://localhost:6333"), timeout=30))
