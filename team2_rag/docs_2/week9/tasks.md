@@ -14,7 +14,7 @@ Bản nháp, chưa có chữ ký của Người 1 và Người 2. Số liệu l�
   - Ghép RAG Pipeline v2: Retrieval, Context Builder, LLM, Verification, rồi trả kết quả đúng contract với Team 3 (VLRA-67).
   - Viết Citation Verification và chạy benchmark trên Dev Set với Citation Correctness, Citation Coverage, Hallucination Rate (VLRA-67 nửa đầu, VLRA-68). Citation Correctness cần đạt ít nhất 90%.
 
-### Hiện trạng trên code
+### Hiện trạng trên code (tại 04/11, trước khi làm Tuần 9; trạng thái hiện tại ở mục 8)
 - `answer.py` kiểm tra metadata citation có khớp chunk đã gửi cho LLM hay không, kiểm tra marker và citation hai chiều, rồi đánh lại nhãn `C1..Cn`. `pipeline.validate_generated_response` kiểm tra thêm định dạng marker. Cả hai chỉ chứng minh nguồn nhất quán với context. Chúng chưa kiểm tra nguồn có thật sự hỗ trợ kết luận (xem [citation-specification.md](../../../docs/team2_rag/citation-specification.md)).
 - Prompt `prompt_v2` đã có nhánh `insufficient_context`. Hiện chỉ trường hợp context rỗng mới bị chặn trước khi gọi LLM.
 - `parse_llm_output` chỉ nhận đúng ba key `status, answer, citations`, và contract với Team 3 không cho thêm field.
@@ -173,3 +173,26 @@ Hai người cần trả lời:
   `.venv/bin/python -m pytest tests/test_eval_reranker.py tests/test_team2_reranker.py tests/test_team2_pipeline.py tests/test_team2_api.py tests/test_retrieval_reranker_contract.py tests/test_golden_phase1.py -q`
 - Model nặng chạy trên Colab bằng `notebooks/reranker_evaluation_colab.ipynb`. Ô setup vẫn clone nhánh `feature/team2-rag`, nên đọc SHA nó in ra trước khi đo.
 - Báo cáo chỉ ghi số đã chạy thật.
+
+---
+
+## 8. Trạng Thái Tại 05/11/2026
+
+Nhánh `feature/team2-rag` tại `bfa89a9`. 94 test Team 2 pass, contract validator 76/76.
+
+| Mã | Trạng thái | Bằng chứng hoặc việc còn lại |
+| :--- | :--- | :--- |
+| VLRA-T2-18 | Xong | Parser nhận `claims` tùy chọn, response gửi Team 3 vẫn chỉ có `status, answer, citations`. Đã chạy `claims` với Gemini thật (`gemini-3.1-flash-lite`), hai lần đều đúng schema. |
+| VLRA-T2-19 | Xong | `prompt_v3` và [prompt-design.md](../../../docs/team2_rag/prompt-design.md). Bộ thử tay 7 ca chạy với LLM thật, 7/7 đạt. |
+| VLRA-T2-20 | Xong một phần | Các nhánh từ chối có test và log lý do. Chưa có cổng từ chối theo điểm rerank vì chưa có Dev Set đóng băng để chọn ngưỡng (Blocker 4). |
+| VLRA-T2-21 | Xong | Context Builder giữ nhãn và metadata, test ngân sách token pass. |
+| VLRA-T2-22 | Xong một phần | Trọng số, `top_k`, `truncate`, rerank bật tắt và timeout 4 giây đều đặt tường minh và ghi vào log `rag_config`. Chưa có bản so sánh có và không rerank trên Dev Set. |
+| VLRA-T2-23 | Xong | API đúng contract. `CITATION_INVALID` ánh xạ sang HTTP 502 và mã công khai `UPSTREAM_INVALID_RESPONSE`. |
+| VLRA-T2-24 | Xong code | `verify_response` chạy được với đầu ra thật. Rubric là heuristic từ vựng, chưa phải NLI. |
+| VLRA-T2-25 | Chờ xác nhận | Công thức có trong code của Người 2, Người 1 chưa xác nhận. |
+| VLRA-T2-26 | Chưa xong | Báo cáo hiện tại chưa phản ánh pipeline thật (10 câu đều từ chối, 0 claim). Runner chưa chạy pipeline và chưa ghi commit, cấu hình, hash Golden. |
+| VLRA-T2-27 | Chưa bắt đầu | Cần lần chạy thật trước. |
+| VLRA-T2-28 | Chưa xong | Chưa thống nhất `truncate` và rerank mặc định. |
+| VLRA-T2-29 | Chờ Team 1 | Dev Set chưa đóng băng, hai file Golden còn lệch. |
+
+Chạy thử cả hệ thống (Frontend, Backend, Team 2 API, Gemini) dùng `RAG_BM25_ONLY=true`, chỉ BM25 và không rerank, nên chất lượng truy xuất thấp hơn Hybrid và không dùng để đo benchmark. LLM đang dùng `gemini-3.1-flash-lite`, tên model chưa được Người 2 xác nhận.

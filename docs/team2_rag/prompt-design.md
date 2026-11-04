@@ -72,6 +72,10 @@ Chạy `.venv/bin/python -m team2_rag.manual_prompt_check` ngày 05/11/2026, `pr
 
 Giới hạn: 7 ca, mỗi ca một lần chạy, một model, nên đây là kiểm tra hành vi chứ không phải số đo thống kê. Hai ca injection trong câu hỏi và history có vốn 200 triệu nhưng không có tuổi doanh nghiệp; model nêu cả điều kiện lẫn ngoại lệ thay vì kết luận, đúng với nguyên tắc 3 của prompt. Chưa thử câu hỏi mơ hồ kiểu đại từ ("điều đó") qua LLM vì pipeline chặn các câu này trước khi gọi LLM (`ambiguous_reference`).
 
+### Thử với `claims` và Verification thật
+
+`.venv/bin/python -m team2_rag.manual_prompt_check claims` chạy bốn ca `answered` ở trên qua `RAGPipeline` với `prompt_v3_claims`, `gemini-3.1-flash-lite` và `verify_response` của Người 2. Hai lần chạy (05/11/2026) cho cùng kết quả: model trả 1 đến 2 claim mỗi ca đúng schema, nhãn đã đánh lại khớp context, mọi claim `SUPPORTED`, không ca nào bị `CITATION_INVALID`. Giới hạn: verifier là heuristic từ vựng và nguồn thử rất ngắn, nên kết quả chứng minh luồng claims chạy được với model thật, chưa chứng minh Verification bắt được claim sai tinh vi. Ca claim sai mới chỉ được thử bằng FakeLLM trong `tests/test_team2_pipeline_v2.py`.
+
 ## Output nội bộ có `claims`
 
 Khi `LLMService(include_claims=True)`, prompt dùng `prompt_v3_claims`: cùng system prompt, phần định dạng yêu cầu thêm `claims`, mỗi claim một nhận định pháp lý và nhãn nguồn hỗ trợ nó.
