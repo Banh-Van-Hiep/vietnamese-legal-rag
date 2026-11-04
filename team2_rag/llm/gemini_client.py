@@ -32,12 +32,20 @@ class GeminiProvider(LLMProvider):
         }
 
     def complete(self, prompt: RenderedPrompt, params: LLMParams) -> ProviderReply:
-        resp = self.transport.post_json(
-            f"{self.base_url}/models/{self.model}:generateContent",
-            {"x-goog-api-key": self._api_key},
-            self.build_payload(prompt, params),
-            self.timeout_seconds,
-        )
+        import time
+        max_attempts = 3
+        resp = None
+        for attempt in range(max_attempts):
+            resp = self.transport.post_json(
+                f"{self.base_url}/models/{self.model}:generateContent",
+                {"x-goog-api-key": self._api_key},
+                self.build_payload(prompt, params),
+                self.timeout_seconds,
+            )
+            if resp.status in (503, 429) and attempt < max_attempts - 1:
+                time.sleep(1.2 * (attempt + 1))
+                continue
+            break
         raise_for_status(self.name, resp.status, resp.json)
         data = resp.json or {}
         if (data.get("promptFeedback") or {}).get("blockReason"):
