@@ -2,7 +2,7 @@
 from __future__ import annotations
 from typing import Optional
 from team2_rag.llm.base import LLMProvider, ProviderReply, raise_for_status
-from team2_rag.llm.errors import LLMBadOutputError, LLMContentBlockedError
+from team2_rag.llm.errors import LLMBadOutputError, LLMContentBlockedError, LLMTimeoutError
 from team2_rag.llm.http import Transport, UrllibTransport
 from team2_rag.llm.types import LLMParams, Usage
 from team2_rag.prompts.render import RenderedPrompt
@@ -33,8 +33,9 @@ class GeminiProvider(LLMProvider):
 
     def complete(self, prompt: RenderedPrompt, params: LLMParams) -> ProviderReply:
         import time
-        # Giới hạn ngân sách thời gian tổng (tối đa 25s) để không bao giờ vượt ngưỡng 30s LLM / 45s hệ thống
-        overall_deadline = time.monotonic() + min(self.timeout_seconds, 25.0)
+        # Ngân sách tổng = LLM_TIMEOUT_SECONDS (settings giới hạn ≤ 30s, đúng ngưỡng LLM). Trước đây cắt cứng 25s tổng
+        # và 12s mỗi lần gọi: Gemini free tier hay mất 13-30s cho một câu, nên bị LLM_TIMEOUT dù vẫn trong ngưỡng.
+        overall_deadline = time.monotonic() + self.timeout_seconds
         fallback_models = ["gemini-flash-lite-latest"] if self.model != "gemini-flash-lite-latest" else []
         models_to_try = [self.model] + fallback_models
         resp = None
@@ -44,12 +45,12 @@ class GeminiProvider(LLMProvider):
             if time_left < 3.0:
                 break
 
-            call_timeout = max(1.0, min(time_left, 12.0))
+            # Lần gọi được dùng hết thời gian còn lại; 503/429 trả về nhanh nên vẫn còn chỗ cho retry và model dự phòng.
             resp = self.transport.post_json(
                 f"{self.base_url}/models/{m}:generateContent",
                 {"x-goog-api-key": self._api_key},
                 self.build_payload(prompt, params),
-                call_timeout,
+                time_left,
             )
 
             # Nếu gặp 503/429 và còn đủ thời gian (>= 4s), thử lại ngắn 1 lần
