@@ -7,8 +7,13 @@ from typing import Any
 from urllib.parse import urlparse
 
 from team2_rag.llm.errors import LLMBadOutputError
-from team2_rag.llm.types import CitationCandidate, LLMOutput, STATUS_ANSWERED, STATUS_INSUFFICIENT
+from team2_rag.llm.types import CitationCandidate, Claim, LLMOutput, STATUS_ANSWERED, STATUS_INSUFFICIENT
 
+_CORE_KEYS = {"status", "answer", "citations"}
+_CLAIM_KEYS = {"claim_id", "text", "citation_ids"}
+_CLAIM_RE = re.compile(r"^K[1-9][0-9]*$")
+MAX_CLAIMS = 30
+MAX_CLAIM_CHARS = 2000
 _CITATION_RE = re.compile(r"^C[1-9][0-9]*$")
 _MARKER_RE = re.compile(r"\[C([1-9][0-9]*)\]")
 _REQUIRED_CITATION_FIELDS = {
@@ -28,13 +33,36 @@ def _str_field(obj: dict, name: str, provider: str, text: str, *, max_len: int) 
     return value
 
 
+def _parse_claims(raw: Any, citation_ids: set, status: str, provider: str, text: str) -> tuple[Claim, ...]:
+    """`claims` là tùy chọn; khi có thì mỗi claim phải trỏ về citation đã khai báo và id không trùng."""
+    if not isinstance(raw, list) or len(raw) > MAX_CLAIMS:
+        raise _bad("claims không hợp lệ.", provider, text)
+    if status == STATUS_INSUFFICIENT and raw:
+        raise _bad("insufficient_context phải có claims=[].", provider, text)
+    claims, seen = [], set()
+    for c in raw:
+        if not isinstance(c, dict) or set(c) != _CLAIM_KEYS:
+            raise _bad("claim có field sai hoặc thiếu.", provider, text)
+        claim_id, claim_text, refs = c["claim_id"], c["text"], c["citation_ids"]
+        if not isinstance(claim_id, str) or not _CLAIM_RE.fullmatch(claim_id) or claim_id in seen:
+            raise _bad("claim_id không hợp lệ hoặc bị trùng.", provider, text)
+        if not isinstance(claim_text, str) or not claim_text.strip() or len(claim_text) > MAX_CLAIM_CHARS:
+            raise _bad("claim.text không hợp lệ.", provider, text)
+        if (not isinstance(refs, list) or not refs or len(set(refs)) != len(refs)
+                or any(not isinstance(r, str) or r not in citation_ids for r in refs)):
+            raise _bad("claim.citation_ids phải là danh sách nhãn có trong citations, không trùng.", provider, text)
+        seen.add(claim_id)
+        claims.append(Claim(claim_id, claim_text, tuple(refs)))
+    return tuple(claims)
+
+
 def parse_llm_output(text: str, *, provider: str = "") -> LLMOutput:
     try:
         data = json.loads(text.strip())
     except (TypeError, ValueError):
         raise _bad("Output của LLM không phải JSON hợp lệ.", provider, text) from None
-    if not isinstance(data, dict) or set(data) != {"status", "answer", "citations"}:
-        raise _bad("Output phải chỉ có status, answer, citations.", provider, text)
+    if not isinstance(data, dict) or not _CORE_KEYS <= set(data) <= _CORE_KEYS | {"claims"}:
+        raise _bad("Output phải có status, answer, citations (và có thể có claims), không thêm field khác.", provider, text)
     status, answer, citations = data["status"], data["answer"], data["citations"]
     if status not in (STATUS_ANSWERED, STATUS_INSUFFICIENT):
         raise _bad("status không hợp lệ.", provider, text)
@@ -77,7 +105,8 @@ def parse_llm_output(text: str, *, provider: str = "") -> LLMOutput:
         raise _bad("answered phải có marker [Ck].", provider, text)
     if any(mid not in ids for mid in marker_ids):
         raise _bad("answer dùng citation_id không có trong citations.", provider, text)
-    return LLMOutput(status=status, answer=answer, citations=tuple(parsed))
+    claims = _parse_claims(data["claims"], ids, status, provider, text) if "claims" in data else ()
+    return LLMOutput(status=status, answer=answer, citations=tuple(parsed), claims=claims)
 
 
 def provider_output_schema() -> dict:

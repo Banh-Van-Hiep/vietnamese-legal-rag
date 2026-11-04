@@ -3,6 +3,7 @@ from team2_rag.llm.types import (  # noqa: I001  (types phải được import t
     STATUS_ANSWERED,
     STATUS_INSUFFICIENT,
     CitationCandidate,
+    Claim,
     HistoryTurn,
     LLMInput,
     LLMOutput,
@@ -27,7 +28,7 @@ from team2_rag.llm.service import LLMService
 from team2_rag.llm.factory import create_llm_service, create_provider
 
 __all__ = [
-    "STATUS_ANSWERED", "STATUS_INSUFFICIENT", "CitationCandidate", "HistoryTurn", "LLMInput",
+    "STATUS_ANSWERED", "STATUS_INSUFFICIENT", "CitationCandidate", "Claim", "HistoryTurn", "LLMInput",
     "LLMOutput", "LLMParams", "LLMResult", "Usage",
     "CitationInvalidError", "LLMAuthError", "LLMBadOutputError", "LLMConfigError", "LLMContentBlockedError", "LLMError",
     "LLMProviderError", "LLMRateLimitError", "LLMTimeoutError",
