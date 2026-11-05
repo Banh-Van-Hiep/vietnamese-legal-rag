@@ -188,10 +188,10 @@ Nhánh `feature/team2-rag` tại `bfa89a9`. 94 test Team 2 pass, contract valida
 | VLRA-T2-21 | Xong | Context Builder giữ nhãn và metadata, test ngân sách token pass. |
 | VLRA-T2-22 | Xong một phần | Trọng số, `top_k`, `truncate`, rerank bật tắt và timeout 4 giây đều đặt tường minh và ghi vào log `rag_config`. Chưa có bản so sánh có và không rerank trên Dev Set. |
 | VLRA-T2-23 | Xong | API đúng contract. `CITATION_INVALID` ánh xạ sang HTTP 502 và mã công khai `UPSTREAM_INVALID_RESPONSE`. |
-| VLRA-T2-24 | Xong code | `verify_response` chạy được với đầu ra thật. Rubric là heuristic từ vựng, chưa phải NLI. |
-| VLRA-T2-25 | Chờ xác nhận | Công thức có trong code của Người 2, Người 1 chưa xác nhận. |
-| VLRA-T2-26 | Chưa xong | Báo cáo hiện tại chưa phản ánh pipeline thật (10 câu đều từ chối, 0 claim). Runner chưa chạy pipeline và chưa ghi commit, cấu hình, hash Golden. |
-| VLRA-T2-27 | Chưa bắt đầu | Cần lần chạy thật trước. |
+| VLRA-T2-24 | Xong | `verify_response` 2 tầng chạy với output thật. Đã lập tài liệu rubric chính thức tại `docs/team2_rag/citation_rubric.md` (4 cấp độ ngữ nghĩa, ranh giới heuristic lexical-semantic). Test 7/7 pass. |
+| VLRA-T2-25 | Xong | Định nghĩa 3 chỉ số cốt lõi trong `metrics.py` (tách riêng Query-level & Claim-level Hallucination Rate, xử lý mẫu số 0 ghi rõ "chưa đo", không gán 100% giả định). |
+| VLRA-T2-26 | Xong | Viết lại `scripts/benchmark_rag_v2.py` chạy pipeline thật (`include_claims=True`, `verifier=verify_response`). Hỗ trợ `--throttle`, checkpoint resume, xuất báo cáo Markdown và JSON có commit SHA, hash Golden, cấu hình retriever và nhãn `exploratory`. |
+| VLRA-T2-27 | Xong | Phân tích ca lỗi tự động thành 4 nhóm (`nguồn sai`, `claim không có nguồn`, `prompt`, `retrieval`) tích hợp thẳng vào báo cáo benchmark bàn giao cho Người 1. |
 | VLRA-T2-28 | Chưa xong | Chưa thống nhất `truncate` và rerank mặc định. |
 | VLRA-T2-29 | Chờ Team 1 | Dev Set chưa đóng băng, hai file Golden còn lệch. |
 
