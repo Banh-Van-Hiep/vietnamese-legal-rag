@@ -333,12 +333,12 @@ def run_pipeline_benchmark(
 
 | Chỉ số đánh giá | Giá trị thực tế | Mốc mục tiêu | Đánh giá |
 | :--- | :---: | :---: | :---: |
-| **Citation Correctness** | **{c_met['citation_correctness_pct']}** | $\ge 90.00\%$ | {'✅ ĐẠT' if t_check['citation_correctness_target_met'] else '❌ CHƯA ĐẠT'} |
-| **Citation Coverage** | **{c_met['citation_coverage_pct']}** | $\ge 85.00\%$ | {'✅ ĐẠT' if t_check['citation_coverage_target_met'] else '❌ CHƯA ĐẠT'} |
-| **Query-level Hallucination Rate** | **{c_met['query_hallucination_rate_pct']}** | $\le 5.00\%$ | {'✅ ĐẠT' if t_check['hallucination_rate_target_met'] else '❌ CHƯA ĐẠT'} |
+| **Citation Correctness** | **{c_met['citation_correctness_pct']}** | >= 90.00% | {'✅ ĐẠT' if t_check['citation_correctness_target_met'] else '❌ CHƯA ĐẠT'} |
+| **Citation Coverage** | **{c_met['citation_coverage_pct']}** | >= 85.00% | {'✅ ĐẠT' if t_check['citation_coverage_target_met'] else '❌ CHƯA ĐẠT'} |
+| **Query-level Hallucination Rate** | **{c_met['query_hallucination_rate_pct']}** | <= 5.00% | {'✅ ĐẠT' if t_check['hallucination_rate_target_met'] else '❌ CHƯA ĐẠT'} |
 | **Claim-level Hallucination Rate** | **{c_met['claim_hallucination_rate_pct']}** | Tham chiếu | Bổ sung theo yêu cầu Người 1 |
 
-*Ghi chú:* Các trường hợp không có mẫu số (0 citation / 0 claim / 0 answered) được ghi rõ `"chưa đo"`, tuyệt đối không tính $100\%$ giả định.
+*Ghi chú:* Các trường hợp không có mẫu số (0 citation / 0 claim / 0 answered) được ghi rõ `"chưa đo"`, tuyệt đối không tính 100% giả định.
 
 ---
 

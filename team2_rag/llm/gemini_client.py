@@ -45,9 +45,6 @@ class GeminiProvider(LLMProvider):
         fallback_models = ["gemini-flash-lite-latest"] if (self.allow_fallback and self.model != "gemini-flash-lite-latest") else []
         models_to_try = [self.model] + fallback_models
         resp = None
-        successful_model = self.model (feat(team2): nâng cấp runner benchmark pipeline thật, checkpoint resume, rubric doc và actual model (VLRA-T2-24..27))
-        models_to_try = [self.model] + fallback_models
-        resp = None
         successful_model = self.model
 
         for m in models_to_try:

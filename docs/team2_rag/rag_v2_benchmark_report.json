@@ -1,10 +1,22 @@
 {
+  "metadata": {
+    "git_commit": "0a7c3520a80f10f2cd736572c38f2146657c8bfa",
+    "golden_dataset": "team2_rag\\data\\golden\\golden_phase1_30cai.json",
+    "golden_sha256": "298ae763fed0d32976d3c1967fa49601ebcce9276d0f393109c3536197dd6fdb",
+    "dataset_status": "exploratory (Dev Set chưa đóng băng hoàn toàn)",
+    "llm_model": "gemini-3.1-flash-lite",
+    "top_k": 5,
+    "rerank_enabled": false,
+    "strict_rerank": false,
+    "rerank_timeout": 4.0,
+    "weights": "(0.5, 1.0)"
+  },
   "metrics": {
     "dataset_summary": {
-      "total_queries": 10,
+      "total_queries": 3,
       "answered_queries": 0,
-      "insufficient_context_queries": 10,
-      "error_queries": 0
+      "insufficient_context_queries": 2,
+      "error_queries": 1
     },
     "claims_summary": {
       "total_claims": 0,
@@ -17,19 +29,40 @@
       "invalid_citations": 0
     },
     "core_metrics": {
-      "citation_correctness": 1.0,
-      "citation_correctness_pct": "100.00%",
-      "citation_coverage": 1.0,
-      "citation_coverage_pct": "100.00%",
-      "hallucination_rate": 0.0,
-      "hallucination_rate_pct": "0.00%"
+      "citation_correctness": null,
+      "citation_correctness_pct": "chưa đo (0 citation)",
+      "citation_coverage": null,
+      "citation_coverage_pct": "chưa đo (0 claim)",
+      "query_hallucination_rate": null,
+      "query_hallucination_rate_pct": "chưa đo (0 câu answered)",
+      "claim_hallucination_rate": null,
+      "claim_hallucination_rate_pct": "chưa đo (0 claim)",
+      "hallucination_rate": null,
+      "hallucination_rate_pct": "chưa đo (0 câu answered)"
     },
     "targets_check": {
-      "citation_correctness_target_met": true,
-      "citation_coverage_target_met": true,
-      "hallucination_rate_target_met": true
+      "citation_correctness_target_met": false,
+      "citation_coverage_target_met": false,
+      "hallucination_rate_target_met": false
     }
   },
-  "failed_cases": [],
-  "total_evaluated": 10
+  "failure_analysis": {
+    "total_failed": 1,
+    "categories": {
+      "prompt (lỗi sinh phản hồi từ LLM)": 1
+    },
+    "failed_cases": [
+      {
+        "query_id": "gold_002",
+        "question": "Những ai thuộc đối tượng áp dụng của Luật Doanh nghiệp?",
+        "status": "error",
+        "failure_category": "prompt (lỗi sinh phản hồi từ LLM)",
+        "answer": "Exception: LLMTimeoutError: Hết thời gian chờ phản hồi từ LLM provider.",
+        "reasons": [
+          "Trạng thái: error"
+        ]
+      }
+    ]
+  },
+  "raw_results_count": 3
 }
