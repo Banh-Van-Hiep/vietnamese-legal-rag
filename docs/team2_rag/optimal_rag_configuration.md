@@ -54,7 +54,7 @@ truncate, chưa kiểm chứng toàn bộ pipeline v2 hoặc SLA.
    - Các điều luật về thủ tục hành chính (Nghị định 168/2025/NĐ-CP) thường dài từ 500 đến 1.000 token.
    - Bản **VLRA-57** bổ sung tùy chọn xử lý passage dài; cần chạy lại model để xác nhận tác động:
      - `truncate=True` (`truncation="only_second"`): Giữ nguyên 100% câu hỏi, cắt phần đuôi văn bản luật nếu vượt 512 token trước khi chấm điểm. Vẫn có thể lỗi nếu riêng câu hỏi đã vượt giới hạn; cắt đuôi cũng có thể mất căn cứ.
-     - `strict_rerank=False`: Khi scorer báo lỗi, pipeline có thể giữ nguyên thứ hạng Hybrid RRF và ghi log fallback. Code hiện chưa có timer cưỡng chế dừng rerank sau 4 giây; không coi mốc này là hành vi đã triển khai.
+     - `strict_rerank=False`: Khi scorer báo lỗi, pipeline có thể giữ nguyên thứ hạng Hybrid RRF và ghi log fallback. Từ Tuần 9 (VLRA-T2-22) `RAGPipeline` đã cưỡng chế timeout rerank 4 giây (`RAG_RERANK_TIMEOUT_SECONDS`) rồi lùi về thứ hạng Hybrid; trước đó chưa có.
 
 ---
 
@@ -70,7 +70,7 @@ Các tham số dưới đây là mục tiêu cần kiểm chứng, chưa phải 
 ### 3.2. Tầng 2 — Reranker & Context Builder (Team 2)
 - **Mô hình Reranker:** `BAAI/bge-reranker-v2-m3` (revision `953dc6f6f85a`).
 - **Chế độ suy luận:**
-  - `truncate: True` (chế độ cắt đuôi an toàn văn bản dài).
+  - `truncate: False` là mặc định đang chạy (`RAG_RERANK_TRUNCATE=false`). `True` chỉ là tùy chọn: lượt 02/11 cho Recall@5 83,08% so với Hybrid 88,39% trên 110 câu, nên chưa chọn nó làm mặc định.
   - `strict_rerank: False` (chế độ Graceful Degradation tự động fallback về thứ tự Hybrid RRF khi xảy ra sự cố).
   - Timeout tối đa của bước Rerank: $\le 4.0$ giây.
 - **Số lượng chunks chọn lọc vào Context ($K_{\text{out}}$):** Lấy tối đa **$K_{\text{out}} = 5$ chunks** có điểm cao nhất.
@@ -106,5 +106,5 @@ Tổng thời gian toàn trình AI Layer: p95 <= 29.0 giây (Dư an toàn 16 gi�
 
 ## 5. Kết Luận Bàn Giao
 
-1. **Mã nguồn:** `BGEScorer` đã có tùy chọn `truncate=True`, nhưng `runtime.py` vẫn gọi `BGEScorer()` với mặc định `truncate=False`, mặc định `RAG_TOP_K=10`. Cần Người 2 xác nhận cấu hình triển khai; runner khảo sát vẫn giữ top 20 để so sánh. Không tự đổi runtime bằng kết quả chưa đo.
+1. **Mã nguồn:** `BGEScorer` đã có tùy chọn `truncate=True`, nhưng `runtime.py` vẫn gọi `BGEScorer()` với mặc định `truncate=False`, mặc định `RAG_TOP_K=10`. Cấu hình đang chạy (06/11/2026): Hybrid BM25:Dense 0,5:1, `top_k=10`, rerank bật, `truncate=false`, `strict_rerank=false`, timeout rerank 4 giây; mọi giá trị đặt qua biến môi trường và ghi vào log `rag_config`. Runner khảo sát vẫn giữ top 20 để so sánh. Chưa chốt: rerank mặc định bật hay tắt. Cần bản so sánh có và không rerank trên Dev Set đã đóng băng (VLRA-T2-22, T2-29), Người 2 chưa xác nhận. Không đổi mặc định bằng kết quả chưa đo.
 2. **Kế hoạch kiểm chứng lại:** Khi Team 1 đóng băng bộ Dev Set chuẩn 110 câu (`team1_data/golden/golden_phase1.json`), nhóm sẽ tái chạy bộ runner đo đạc chính thức để đối chiếu lần cuối trước buổi nghiệm thu Gate G4.

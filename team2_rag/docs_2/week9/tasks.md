@@ -81,14 +81,25 @@ Không có chunk dùng được, hoặc câu hỏi nhắc lượt trước mà k
 - Thiếu căn cứ thì từ chối, không đưa kết luận.
 - Metadata citation chép nguyên văn từ tiêu đề chunk. Prompt không bảo đảm được điều này nên hậu kiểm vẫn bắt buộc.
 
-### 3.3. Định nghĩa ba chỉ số (bản nháp, VLRA-T2-25 sẽ chốt)
-| Chỉ số | Công thức |
-| :--- | :--- |
-| Citation Correctness | Số citation có chunk nguồn thật sự hỗ trợ claim gắn với nó, chia cho tổng citation trong các câu `answered`. Mốc: ít nhất 90%. |
-| Citation Coverage | Số claim pháp lý có ít nhất một citation hợp lệ, chia cho tổng claim pháp lý. |
-| Hallucination Rate | Số claim không được context hỗ trợ, chia cho tổng claim. |
+### 3.3. Định nghĩa ba chỉ số (VLRA-T2-25)
 
-Hai điểm chưa có đáp án: câu `insufficient_context` nằm trong mẫu số hay tính thành tỷ lệ từ chối đúng và sai riêng, và ai chấm tay phần "hỗ trợ ngữ nghĩa" khi rubric tự động chưa đủ tin cậy.
+Người 1 rà soát `verification/metrics.py` và `verifier.py` ngày 06/11/2026. Bảng dưới là điều code đang tính, không phải bản nháp ban đầu:
+
+| Chỉ số | Công thức trong code | Mốc |
+| :--- | :--- | :--- |
+| Citation Correctness | `valid_citations / total_citations` trên các câu `answered`. Citation hợp lệ khi nhãn có trong context, `chunk_id` khớp và `document_id`, `article_id`, `article` khớp chunk. | ít nhất 90% |
+| Citation Coverage | `supported_claims / total_claims`. Claim `supported` khi mọi citation của nó hợp lệ và điểm từ vựng ở mức SUPPORTED hoặc PARTIAL. | ít nhất 85% |
+| Hallucination Rate | Mức câu: số câu `answered` có ít nhất một claim không được hỗ trợ hoặc không `passed`, chia cho số câu `answered`. Mức claim: `(total_claims - supported_claims) / total_claims`. Mốc áp cho mức câu. | không quá 5% |
+
+Mẫu số bằng 0 thì ghi "chưa đo", không gán 100%. Câu `insufficient_context` và câu `error` không nằm trong mẫu số của cả ba chỉ số; báo cáo ghi riêng số câu của hai nhóm này.
+
+Bốn chỗ code lệch với định nghĩa trong tài liệu hoặc gây hiểu nhầm, cần Người 2 xác nhận hướng xử lý:
+1. **Citation Correctness chỉ đo nguồn gốc, không đo hỗ trợ ngữ nghĩa.** Cờ `supports_claim` có tính nhưng không dùng. Phần kiểm nguồn gốc đã được `answer.py` chặn bằng `CITATION_INVALID` trước khi tới Verification, nên chỉ số này gần như luôn đạt trên câu đã qua chặn. Nếu muốn đo đúng ý "citation hỗ trợ claim", cần tính citation đúng khi hợp lệ và có ít nhất một claim trích nó được hỗ trợ.
+2. **Coverage và Hallucination mức claim là cùng một con số** (`1 - coverage = hallucination mức claim`). Hai chỉ số này không độc lập.
+3. **Hallucination mức câu tính cả lỗi nguồn gốc** (điều kiện `not passed`), còn `citation_rubric.md` mục 4.3 chỉ nói claim UNSUPPORTED hoặc CONTRADICTED.
+4. **Câu `error` bị loại khỏi mẫu số**, nên timeout làm các tỷ lệ đẹp lên. Khi báo cáo phải nêu số câu `error` ngay cạnh các tỷ lệ.
+
+Chưa có tỷ lệ từ chối đúng và sai: cần nhãn "nên từ chối" trong Golden. Phần hỗ trợ ngữ nghĩa do heuristic từ vựng chấm (xem `citation_rubric.md`), chưa có người chấm tay đối chiếu.
 
 ---
 
@@ -189,10 +200,10 @@ Nhánh `feature/team2-rag` tại `bfa89a9`. 94 test Team 2 pass, contract valida
 | VLRA-T2-22 | Xong một phần | Trọng số, `top_k`, `truncate`, rerank bật tắt và timeout 4 giây đều đặt tường minh và ghi vào log `rag_config`. Chưa có bản so sánh có và không rerank trên Dev Set. |
 | VLRA-T2-23 | Xong | API đúng contract. `CITATION_INVALID` ánh xạ sang HTTP 502 và mã công khai `UPSTREAM_INVALID_RESPONSE`. |
 | VLRA-T2-24 | Xong | `verify_response` 2 tầng chạy với output thật. Đã lập tài liệu rubric chính thức tại `docs/team2_rag/citation_rubric.md` (4 cấp độ ngữ nghĩa, ranh giới heuristic lexical-semantic). Test 7/7 pass. |
-| VLRA-T2-25 | Xong | Định nghĩa 3 chỉ số cốt lõi trong `metrics.py` (tách riêng Query-level & Claim-level Hallucination Rate, xử lý mẫu số 0 ghi rõ "chưa đo", không gán 100% giả định). |
-| VLRA-T2-26 | Xong | Viết lại `scripts/benchmark_rag_v2.py` chạy pipeline thật (`include_claims=True`, `verifier=verify_response`). Hỗ trợ `--throttle`, checkpoint resume, xuất báo cáo Markdown và JSON có commit SHA, hash Golden, cấu hình retriever và nhãn `exploratory`. |
-| VLRA-T2-27 | Xong | Phân tích ca lỗi tự động thành 4 nhóm (`nguồn sai`, `claim không có nguồn`, `prompt`, `retrieval`) tích hợp thẳng vào báo cáo benchmark bàn giao cho Người 1. |
-| VLRA-T2-28 | Chưa xong | Chưa thống nhất `truncate` và rerank mặc định. |
+| VLRA-T2-25 | Người 1 đã rà soát, chờ Người 2 | `metrics.py` xử lý mẫu số 0 là "chưa đo" và tách hai mức Hallucination. Công thức ghi ở mục 3.3 theo đúng code, kèm bốn chỗ lệch cần Người 2 quyết định hướng sửa. |
+| VLRA-T2-26 | Runner xong, chưa có lần chạy đủ | Runner chạy pipeline thật, có `--throttle`, checkpoint, ghi commit, hash Golden và cấu hình; benchmark tắt fallback Gemini và ghi model thật. Báo cáo hiện có mới 3 câu (0 câu `answered`), nên mọi chỉ số vẫn "chưa đo". Cần chạy đủ ít nhất 30 câu. |
+| VLRA-T2-27 | Phân loại xong, chưa có dữ liệu để phân tích | Runner phân ca lỗi theo loại ngoại lệ: lỗi LLM như timeout là "hạ tầng LLM", không phải prompt. Chưa có lần chạy đủ nên chưa có ca lỗi thật để chỉnh prompt. |
+| VLRA-T2-28 | Xong phần sửa tài liệu, chờ quyết định rerank | Đã sửa mô tả sai của Tuần 8 (`truncate` mặc định là `false`, timeout 4 giây mới có từ Tuần 9) và `optimal_rag_configuration.md`. Chưa chốt rerank mặc định bật hay tắt; cần bản so sánh trên Dev Set đã đóng băng và Người 2 xác nhận. |
 | VLRA-T2-29 | Chờ Team 1 | Dev Set chưa đóng băng, hai file Golden còn lệch. |
 
 Chạy thử cả hệ thống (Frontend, Backend, Team 2 API, Gemini) dùng `RAG_BM25_ONLY=true`, chỉ BM25 và không rerank, nên chất lượng truy xuất thấp hơn Hybrid và không dùng để đo benchmark. LLM đang dùng `gemini-3.1-flash-lite`, tên model chưa được Người 2 xác nhận.
