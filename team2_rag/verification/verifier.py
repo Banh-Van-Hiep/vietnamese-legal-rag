@@ -191,8 +191,10 @@ class CitationVerifier:
         total_citations = len(output.citations)
         valid_citations = len(valid_citation_ids)
 
-        correctness_rate = (valid_citations / total_citations) if total_citations > 0 else 1.0
-        coverage_rate = (supported_claims / total_claims) if total_claims > 0 else 1.0
+        # Không gán mặc định 1.0 (100%) khi mẫu số = 0 để tránh báo cáo giả tạo.
+        # Giá trị None được đưa vào summary để caller (metrics.py) ghi "chưa đo" thay vì 100%.
+        correctness_rate = (valid_citations / total_citations) if total_citations > 0 else None
+        coverage_rate = (supported_claims / total_claims) if total_claims > 0 else None
 
         # Điều kiện passed tổng:
         # 1. Không có citation bịa / sai metadata
@@ -205,8 +207,9 @@ class CitationVerifier:
             "supported_claims": supported_claims,
             "total_citations": total_citations,
             "valid_citations": valid_citations,
-            "citation_correctness": round(correctness_rate, 4),
-            "citation_coverage": round(coverage_rate, 4),
+            # None khi mẫu số = 0 → caller ghi "chưa đo", không gán mặc định 100%
+            "citation_correctness": round(correctness_rate, 4) if correctness_rate is not None else None,
+            "citation_coverage": round(coverage_rate, 4) if coverage_rate is not None else None,
             "hallucination_detected": hallucination_found,
             "all_citations_valid": all_citations_valid,
         }

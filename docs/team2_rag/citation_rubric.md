@@ -22,6 +22,13 @@ Module **Citation Verification** của Người 2 đóng vai trò là chốt ch�
   - Tốc độ xử lý siêu nhanh ($< 1$ ms/claim trên CPU), chạy inline trực tiếp trong request mà không cần tốn chi phí gọi LLM lần 2 gây trễ hệ thống.
   - *Lưu ý:* Phương pháp này được sử dụng làm baseline và bộ lọc thời gian thực trong sản phẩm; chưa thay thế hoàn toàn cho mô hình Cross-Encoder NLI nặng hoặc chấm điểm chuyên gia ngoại tuyến.
 
+
+> [!WARNING]
+> **Giới hạn của phương pháp Lexical-Semantic Heuristic:**
+> Rubric hiện tại chấm điểm dựa trên **độ trùng khớp từ vựng (word overlap)** kết hợp cực tính phủ định, KHÔNG phải mô hình hiểu ngữ nghĩa sâu (Full Semantic NLI / LLM-as-a-judge):
+> - Điểm Citation Correctness / Coverage là **ước lượng gần đúng tầng đầu (fast lexical heuristic)**, chưa phải điểm NLI tuyệt đối.
+> - Thống nhất đo ảo giác (Hallucination) song song ở 2 cấp: **Query-level** (tỷ lệ câu trả lời có ảo giác / tổng số câu answered) và **Claim-level** (tỷ lệ claim ảo giác / tổng số claim).
+
 ---
 
 ## 3. Rubric Thẩm Định Ngữ Nghĩa 4 Cấp Độ
