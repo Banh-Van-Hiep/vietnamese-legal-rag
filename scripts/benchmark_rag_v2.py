@@ -76,7 +76,7 @@ def classify_failure(
     - 'claim không có nguồn': Claim bị đánh giá UNSUPPORTED/CONTRADICTED (Hallucination)
     - 'retrieval': Không tìm thấy ngữ cảnh phù hợp
     """
-if error is not None:
+    if error is not None:
         # Lỗi ngoại lệ phân theo loại: timeout hay quá tải LLM không phải lỗi prompt, người sửa prompt không xử lý được.
         if isinstance(error, CitationInvalidError):
             return "nguồn sai (Verification không qua)"
