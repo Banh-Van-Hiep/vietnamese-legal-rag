@@ -56,11 +56,30 @@ _EXCEPTION_MARKERS = {
     "nếu có thỏa thuận khác", "trừ điều lệ công ty có quy định khác"
 }
 
+_OPPOSITE_PAIRS = [
+    ("được quyền", "không được"),
+    ("được phép", "không được"),
+    ("có quyền", "không có quyền"),
+    ("phải", "không phải"),
+    ("được tính", "không tính"),
+    ("được tính", "không được tính"),
+    ("áp dụng", "không áp dụng"),
+    ("chịu trách nhiệm", "không phải chịu trách nhiệm"),
+]
+
+
 def detect_polar_conflict(claim_norm: str, chunk_norm: str) -> bool:
     """Kiểm tra mâu thuẫn phân cực quyền hạn/cấm đoán.
 
-    Tránh false positive khi chunk luật dài 500 từ chứa từ 'không' ở câu khác.
+    Kết hợp đối chiếu cặp phản nghĩa trực tiếp và kiểm tra quyền hạn/cấm đoán,
+    tránh false positive khi chunk luật dài 500 từ chứa từ 'không' ở câu khác.
     """
+    # Đối chiếu cặp phản nghĩa trực tiếp (chặn lỗi substring: nếu chứa neg thì không tính pos)
+    for pos, neg in _OPPOSITE_PAIRS:
+        if (pos in claim_norm and neg not in claim_norm and neg in chunk_norm) or \
+           (neg in claim_norm and pos in chunk_norm and neg not in chunk_norm):
+            return True
+
     claim_has_negation = any(neg in claim_norm for neg in _NEGATION_WORDS)
     chunk_has_negation = any(neg in chunk_norm for neg in _NEGATION_WORDS)
 

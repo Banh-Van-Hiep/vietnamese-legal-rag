@@ -32,6 +32,12 @@
 
 *Ghi chú:* Các trường hợp không có mẫu số (0 citation / 0 claim / 0 answered) được ghi rõ `"chưa đo"`, tuyệt đối không tính 100% giả định.
 
+> [!WARNING]
+> **Giới hạn kỹ thuật của chỉ số Hallucination Rate (4.00%):**
+> 1. Con số 4.00% (1/25 câu answered) phản ánh kết quả thẩm định của bộ lọc **Lexical-Semantic Heuristic** (độ trùng khớp từ vựng + đối chiếu cặp từ khóa đối lập tầng đầu), **chưa phải mô hình Full Semantic NLI sâu hay LLM-as-a-judge**.
+> 2. Bộ lọc heuristic có thể bỏ sót những trường hợp mâu thuẫn ngữ nghĩa tinh tế hoặc đảo cấu trúc ngữ pháp phức tạp ngoài các cặp từ khóa đối lập phổ biến đã định nghĩa.
+> 3. Mốc $\le 5\%$ đạt được trên tập mẫu 25 câu trả lời thực tế của Golden Phase 1; đây là chỉ số tham chiếu kỹ thuật cho tầng lọc inline thời gian thực và cần được kiểm chứng thêm khi Team 1 bàn giao Dev Set đóng băng 110 câu.
+
 ---
 
 ## 3. Thống Kê Tổng Quan Theo Nhóm Câu
