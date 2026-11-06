@@ -1,0 +1,3 @@
+# Standalone T3-15 tooling; application dependencies are unchanged.
+locust==2.43.1
+jsonschema[format]>=4.25,<5

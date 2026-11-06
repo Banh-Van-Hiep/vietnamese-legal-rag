@@ -1,5 +1,5 @@
 // Khung hiển thị hội thoại.
-import { useEffect, useRef } from "react";
+import { memo, useCallback, useEffect, useRef } from "react";
 import type { Citation, UiMessage } from "../../types";
 import { suggestions } from "../../data/suggestions";
 import { statusTextClass } from "../common/classes";
@@ -33,13 +33,13 @@ export default function ChatWindow({ messages, loading, onSuggestion, onRetry, o
       ) : (
         <div className="mx-auto flex max-w-[760px] flex-col gap-7 pt-8 pb-6">
           {messages.map((m, i) => (
-            <MessageBubble
+            <MessageRow
               key={m.key}
               message={m}
               isLast={i === messages.length - 1}
               activeCitationId={openCitation?.messageKey === m.key ? openCitation.citationId : null}
               onRetry={onRetry}
-              onOpenCitation={(citation) => onOpenCitation(m.key, citation)}
+              onOpenCitation={onOpenCitation}
             />
           ))}
           <div ref={end} />
@@ -48,6 +48,20 @@ export default function ChatWindow({ messages, loading, onSuggestion, onRetry, o
     </div>
   );
 }
+
+// Preserve unchanged history rows while the pending answer receives deltas.
+// Binding inside the memoized row keeps the callback stable between parent renders.
+const MessageRow = memo(function MessageRow({ message, isLast, activeCitationId, onRetry, onOpenCitation }: {
+  message: UiMessage;
+  isLast: boolean;
+  activeCitationId: string | null;
+  onRetry: Props["onRetry"];
+  onOpenCitation: Props["onOpenCitation"];
+}) {
+  const open = useCallback((citation: Citation) => onOpenCitation(message.key, citation), [message.key, onOpenCitation]);
+  return <MessageBubble message={message} isLast={isLast} activeCitationId={activeCitationId}
+    onRetry={onRetry} onOpenCitation={open} />;
+});
 
 function Welcome({ onSuggestion }: { onSuggestion: (question: string) => void }) {
   return (

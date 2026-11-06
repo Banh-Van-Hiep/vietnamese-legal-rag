@@ -11,11 +11,11 @@ venv/
 *.log
 node_modules/
 
-# Keep Spec Kit tooling local; feature documents under specs/ are shared.
+# Keep Spec Kit tooling local.
 /.specify/
 /.agents/skills/speckit-*/
 
-# Personal instructions stay local; implementation reports and specs are shared.
+# Local instructions and runtime artifacts.
 /.local/
 
 # Index build artifacts (rebuild with python -m team1_data.retrieval build)

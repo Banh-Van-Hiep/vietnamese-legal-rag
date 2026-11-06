@@ -1,0 +1,15 @@
+{
+  "format_version": 1,
+  "selected": "hybrid-v2",
+  "targets": [
+    {
+      "name": "baseline",
+      "rag_url": "http://127.0.0.1:8001"
+    },
+    {
+      "name": "hybrid-v2",
+      "rag_url": "http://127.0.0.1:8002",
+      "config_path": "../../../team1_data/retrieval/retrieval_v2.json"
+    }
+  ]
+}

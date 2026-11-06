@@ -22,7 +22,7 @@ def test_hybrid_retriever_combines_bm25_and_dense():
     bm25 = FakeRetriever([make_row("A"), make_row("B")])
     dense = FakeRetriever([make_row("B"), make_row("C")])
 
-    retriever = HybridRetriever(bm25, dense)
+    retriever = HybridRetriever(bm25, dense, weights=(1.0, 1.0))
     result = retriever.retrieve("luật doanh nghiệp", top_k=3)
 
     assert result["question"] == "luật doanh nghiệp"
@@ -31,6 +31,16 @@ def test_hybrid_retriever_combines_bm25_and_dense():
         row["retrieval_method"] == "hybrid_rrf"
         for row in result["results"]
     )
+
+
+def test_hybrid_default_weights_favor_dense_as_chosen_in_vlra53():
+    bm25 = FakeRetriever([make_row("A"), make_row("B")])
+    dense = FakeRetriever([make_row("B"), make_row("C")])
+
+    result = HybridRetriever(bm25, dense).retrieve("luật doanh nghiệp", top_k=3)
+
+    # BM25 0.5, Dense 1.0: C (Dense hạng 2) vượt A (BM25 hạng 1).
+    assert [row["chunk_id"] for row in result["results"]] == ["B", "C", "A"]
 
 
 def test_hybrid_retriever_raises_when_a_branch_fails():

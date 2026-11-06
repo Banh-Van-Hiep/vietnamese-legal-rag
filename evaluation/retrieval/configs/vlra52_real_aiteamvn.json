@@ -1,0 +1,21 @@
+[
+ {
+  "name": "dense_aiteamvn",
+  "method": "dense",
+  "embedder": {
+   "type": "sentence_transformers",
+   "name": "AITeamVN/Vietnamese_Embedding",
+   "revision": "dea33aa1ab339f38d66ae0a40e6c40e0a9249568"
+  }
+ },
+ {
+  "name": "hybrid_k60_aiteamvn",
+  "method": "hybrid_rrf",
+  "rrf_k": 60,
+  "embedder": {
+   "type": "sentence_transformers",
+   "name": "AITeamVN/Vietnamese_Embedding",
+   "revision": "dea33aa1ab339f38d66ae0a40e6c40e0a9249568"
+  }
+ }
+]

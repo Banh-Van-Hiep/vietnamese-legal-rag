@@ -20,8 +20,8 @@ Tài liệu theo tuần của từng team được đặt ngay trong thư mục 
 `team1_data/docs/week_XX/tasks.md`
 `team2_rag/docs/week_XX/tasks.md`
 `team3_fullstack/docs_3/weekN/tasks.md` (ví dụ `week4`, `week5`; theo quyết định tổ chức tài liệu ngày 28/10/2026).
-Với Team 3, nhiệm vụ và bộ spec/plan/tasks/verification đặt cùng tuần trong `docs_3/`. Chỉ duy trì bộ nhiệm vụ tuần hiện hành, không giữ bản nhiệm vụ cũ song song trong `specs/`. Báo cáo nghiệm thu `verification.md` nằm ngay trong thư mục tuần tương ứng; không đánh dấu đạt chỉ bằng cách chuyển tài liệu.
-Mỗi task Team 3 vẫn thực hiện theo Spec Kit: specify → clarify → plan → tasks → analyze → sửa vấn đề → implement → validate. Bộ chi tiết nằm tại `team3_fullstack/docs_3/weekN/<jira>-<chuc-nang>/`; lưu kết quả validate tại `validation.md` trong bộ task, tổng hợp nghiệm thu vào `weekN/verification.md`. Cách bố trí và nội dung validate tại [quy trình Team 3](../team3_fullstack/docs_3/README.md#quy-trình-thực-hiện-nhiệm-vụ). Đây là quy trình công việc, không yêu cầu cài Spec Kit để người khác đọc được tài liệu.
+Với Team 3, mỗi thư mục `team3_fullstack/docs_3/weekN/` chỉ giữ `tasks.md`. Theo quyết định ngày 03/11/2026, hồ sơ Spec Kit và kết quả kiểm chứng chỉ lưu local tại `specs/local-team3/weekN/`, được Git bỏ qua; không viết hoặc chia sẻ báo cáo nghiệm thu tổng hợp từng tuần. Không thay đổi cách tổ chức hồ sơ của Team 1/2.
+Mỗi task Team 3 vẫn thực hiện theo Spec Kit: specify → clarify → plan → tasks → analyze → sửa vấn đề → implement → validate. Bộ chi tiết nằm local tại `specs/local-team3/weekN/<jira>-<chuc-nang>/`, kết quả validate lưu cùng bộ task. Cách bố trí tại [quy trình Team 3](../team3_fullstack/docs_3/README.md#quy-trình-thực-hiện-nhiệm-vụ). Việc lưu local không thay tiêu chí kiểm chứng hoặc cho phép suy hoàn thành từ tài liệu.
 Cấu trúc bắt buộc của mỗi file `tasks.md` hàng tuần:
 Task list: Ghi rõ mã Jira (ví dụ `VLRA16`), người phụ trách, mục tiêu và Definition of Done cụ thể.
 Technical Details: Ý tưởng giải thuật, công thức tính toán, thư viện và tham số cấu hình.

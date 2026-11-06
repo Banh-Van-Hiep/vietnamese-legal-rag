@@ -79,7 +79,7 @@ Nhận xét:
 | Tham số | Giá trị khởi đầu | Ghi chú |
 |---|---:|---|
 | `rrf_k` | 60 | Giá trị trong bài báo gốc (Cormack, Clarke & Büttcher, 2009), dùng phổ biến làm mặc định |
-| `weights` | BM25 1.0, Dense 1.0 | Tinh chỉnh sau khi có bộ đánh giá |
+| `weights` | BM25 0.5, Dense 1.0 | Chốt theo VLRA-53 (Dev Set 110 câu, AITeamVN/Vietnamese_Embedding) |
 | Số candidate mỗi nhánh | 100 | Lớn hơn nhiều so với `top_k = 20` để chunk chỉ đứng hạng 30–50 ở một nhánh nhưng cao ở nhánh kia vẫn được xét |
 | `top_k` đầu ra | Team 2 truyền vào (mặc định 20, tối đa 50) | Theo contract |
 

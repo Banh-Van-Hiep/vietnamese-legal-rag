@@ -8,6 +8,7 @@ import Notice, { noticeActionClass } from "../common/Notice";
 import Seal from "../common/Seal";
 import CitationList from "../citation/CitationList";
 import AnswerContent from "./AnswerContent";
+import DebugLatencyBadge from "./DebugLatencyBadge";
 
 interface Props {
   message: UiMessage;
@@ -81,6 +82,7 @@ export default function MessageBubble({ message, isLast, activeCitationId = null
             </div>
           </>
         )}
+        {message.state === "completed" && <DebugLatencyBadge elapsedMs={message.responseTimeMs} />}
       </div>
     </div>
   );

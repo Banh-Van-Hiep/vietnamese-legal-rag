@@ -1,0 +1,21 @@
+[
+ {
+  "name": "dense_bgem3",
+  "method": "dense",
+  "embedder": {
+   "type": "sentence_transformers",
+   "name": "BAAI/bge-m3",
+   "revision": "5617a9f61b028005a4858fdac845db406aefb181"
+  }
+ },
+ {
+  "name": "hybrid_k60_bgem3",
+  "method": "hybrid_rrf",
+  "rrf_k": 60,
+  "embedder": {
+   "type": "sentence_transformers",
+   "name": "BAAI/bge-m3",
+   "revision": "5617a9f61b028005a4858fdac845db406aefb181"
+  }
+ }
+]

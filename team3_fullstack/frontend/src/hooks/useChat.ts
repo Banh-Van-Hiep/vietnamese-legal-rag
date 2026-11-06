@@ -107,6 +107,7 @@ export function useChat({ conversationId, onConversationCreated, onChanged }: Op
         activeId.current = id; justCreated.current = id; callbacks.current.onConversationCreated(id);
       }
     };
+    const startedAt = performance.now();
     try {
       const result = await sendQuery({ question, client_request_id: requestId, conversation_id: target }, {
         signal: controller.signal,
@@ -115,7 +116,10 @@ export function useChat({ conversationId, onConversationCreated, onChanged }: Op
       });
       forgetTurn(requestId); retryInfo.current.delete(assistantKey);
       if (!current()) return;
-      patch(assistantKey, (m) => ({ ...m, state: "completed", content: result.answer, answerStatus: result.status, citations: result.citations, failure: undefined }));
+      const responseTimeMs = import.meta.env.DEV && import.meta.env.VITE_DEBUG_LATENCY === "true"
+        ? Math.max(0, performance.now() - startedAt) : undefined;
+      patch(assistantKey, (m) => ({ ...m, state: "completed", content: result.answer, answerStatus: result.status,
+        citations: result.citations, failure: undefined, responseTimeMs }));
     } catch (error) {
       if (!current()) return;
       let api = error instanceof ApiError ? error : null;
@@ -125,11 +129,11 @@ export function useChat({ conversationId, onConversationCreated, onChanged }: Op
       if (!sameId) forgetTurn(requestId);
       retryInfo.current.set(assistantKey, { requestId, sameId });
       if (api?.code === "REQUEST_IN_PROGRESS") {
-        patch(assistantKey, (m) => ({ ...m, state: "pending", content: null, failure: undefined }));
+        patch(assistantKey, (m) => ({ ...m, state: "pending", content: null, failure: undefined, responseTimeMs: undefined }));
       } else if (api?.code === "CONVERSATION_BUSY") {
         setReloadToken((n) => n + 1);
       } else {
-        patch(assistantKey, (m) => ({ ...m, state: "failed", content: null, citations: [], answerStatus: null,
+        patch(assistantKey, (m) => ({ ...m, state: "failed", content: null, citations: [], answerStatus: null, responseTimeMs: undefined,
           failure: { message: api?.message ?? "Chưa rõ kết quả. Hãy kiểm tra lại lượt hỏi.", code: api?.code ?? "UNKNOWN_ERROR",
             requestId: api?.requestId ?? null, retryable: canRetry(api ?? error), outcomeUnknown: sameId } }));
       }
@@ -159,7 +163,7 @@ export function useChat({ conversationId, onConversationCreated, onChanged }: Op
     running.current = true; setReceiving(true);
     const info = retryInfo.current.get(key);
     if (info?.sameId) {
-      patch(key, (m) => ({ ...m, state: "pending", content: null, citations: [], answerStatus: null, failure: undefined }));
+      patch(key, (m) => ({ ...m, state: "pending", content: null, citations: [], answerStatus: null, failure: undefined, responseTimeMs: undefined }));
       void runTurn(key, question, info.requestId);
     } else {
       const requestId = uuidv4(), newKey = `a-${requestId}`;

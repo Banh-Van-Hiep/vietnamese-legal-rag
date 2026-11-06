@@ -13,6 +13,8 @@ from .errors import RetrievalUnavailableError
 
 CANDIDATE_LIMIT = 100
 RETRIEVAL_TIMEOUT = 5
+# BM25 : Dense, chọn theo VLRA-53 (team1_data/retrieval/retrieval_v2.json).
+DEFAULT_WEIGHTS = (0.5, 1.0)
 
 
 def rrf_fuse(
@@ -93,7 +95,7 @@ class HybridRetriever:
         bm25_retriever,
         dense_retriever,
         rrf_k: int = 60,
-        weights: Sequence[float] = (1.0, 1.0),
+        weights: Sequence[float] = DEFAULT_WEIGHTS,
         timeout: float = RETRIEVAL_TIMEOUT,
     ):
         if isinstance(rrf_k, bool) or not isinstance(rrf_k, int) or rrf_k < 1:
