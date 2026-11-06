@@ -1,7 +1,7 @@
 {
   "metadata": {
-    "git_commit": "c18441021dd9d8f95ae91cb4ad0612510fbe6d19",
-    "golden_dataset": "team2_rag\\data\\golden\\golden_phase1_30cai.json",
+    "git_commit": "0799e076ded5b4b3bf532b9404d085ee049b0918",
+    "golden_dataset": "team2_rag/data/golden/golden_phase1_30cai.json",
     "golden_sha256": "a9da43c9dd1cd0907c89b604d9875265df2b96fb0388edc175742e522b97a23c",
     "dataset_status": "exploratory (Dev Set chưa đóng băng hoàn toàn)",
     "llm_model": "gemini-3.1-flash-lite",

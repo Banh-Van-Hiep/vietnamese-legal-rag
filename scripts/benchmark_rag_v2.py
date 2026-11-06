@@ -157,7 +157,7 @@ def run_pipeline_benchmark(
     # Cấu hình hiện tại để đưa vào báo cáo
     cfg_report = {
         "git_commit": git_commit,
-        "golden_dataset": str(golden_path),
+        "golden_dataset": golden_path.as_posix(),
         "golden_sha256": golden_sha256,
         "dataset_status": "exploratory (Dev Set chưa đóng băng hoàn toàn)",
         "llm_model": getattr(pipeline.llm_service.provider, "model", "unknown"),
