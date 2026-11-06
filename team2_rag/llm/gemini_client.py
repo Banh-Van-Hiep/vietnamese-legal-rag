@@ -99,4 +99,4 @@ class GeminiProvider(LLMProvider):
         text = text.strip()
         self.actual_model = successful_model
         u = data.get("usageMetadata") or {}
-        return ProviderReply(text, Usage(u.get("promptTokenCount"), u.get("candidatesTokenCount")), finish)
+        return ProviderReply(text, Usage(u.get("promptTokenCount"), u.get("candidatesTokenCount")), finish, actual_model=successful_model)

@@ -21,6 +21,7 @@ class ProviderReply:
     text: str
     usage: Usage
     finish_reason: Optional[str] = None
+    actual_model: Optional[str] = None
 
 
 class LLMProvider(ABC):

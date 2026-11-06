@@ -84,7 +84,8 @@ class RAGPipeline:
                  scorer: PairScorer | None = None, top_k: int = 20,
                  settings=None, token_budget=None, response_model=None,
                  strict_rerank: bool = True, rerank_enabled: bool = True,
-                 rerank_timeout: float | None = 4.0, verifier: Callable[[LLMOutputV2, BuiltContext], VerificationResult] | None = None):
+                 rerank_timeout: float | None = 4.0, pipeline_timeout: float = 45.0,
+                 verifier: Callable[[LLMOutputV2, BuiltContext], VerificationResult] | None = None):
         if type(top_k) is not int or not 1 <= top_k <= 50:
             raise ValueError("top_k must be an integer from 1 to 50")
         if rerank_timeout is not None and (isinstance(rerank_timeout, bool) or not 0 < rerank_timeout <= 45):
@@ -95,6 +96,8 @@ class RAGPipeline:
         self.response_model = response_model
         self.strict_rerank = strict_rerank
         self.rerank_enabled, self.rerank_timeout, self.verifier = rerank_enabled, rerank_timeout, verifier
+        self.pipeline_timeout = pipeline_timeout  # trần 45 giây toàn pipeline theo NFR-07
+        self.last_model = getattr(llm_service.provider, "model", "")
         # Một worker: thread rerank không dừng cưỡng bức được, nên không để các lượt sau xếp hàng chồng lên nó.
         self._rerank_pool = ThreadPoolExecutor(max_workers=1, thread_name_prefix="rerank")
         self._rerank_job = None
@@ -132,6 +135,10 @@ class RAGPipeline:
             raise CitationInvalidError("Verification không qua.")  # -> HTTP 502 UPSTREAM_INVALID_RESPONSE
 
     def query(self, question: str, history: Sequence[Mapping] | None = None, *, request_id=None):
+        import time
+        start_time = time.monotonic()
+        deadline = start_time + self.pipeline_timeout
+
         question, history = validate_input(question, history)
         # No query rewriter has been agreed yet. Ask instead of inventing a
         # referent or treating a previous assistant answer as legal evidence.
@@ -139,9 +146,18 @@ class RAGPipeline:
             log.info("rag_refused request_id=%s reason=ambiguous_reference", request_id)
             return {"status": "insufficient_context", "citations": [],
                     "answer": "Bạn hãy nêu rõ doanh nghiệp hoặc tình huống pháp lý cần hỏi để tra cứu đúng nguồn."}
+
+        # 1. Retrieval
         retrieved = self.retriever.retrieve(question, top_k=self.top_k)
         if not isinstance(retrieved, Mapping) or retrieved.get("question") != question:
             raise ValueError("retrieval must echo the actual query")
+
+        remaining = deadline - time.monotonic()
+        if remaining <= 0:
+            from .llm.errors import LLMTimeoutError
+            raise LLMTimeoutError(f"Toàn pipeline vượt ngân sách thời gian {self.pipeline_timeout}s sau retrieval.")
+
+        # 2. Rerank
         # Graceful degradation (VLRA-T2-16): falls back to retrieval order when strict_rerank=False
         details = self._rerank(retrieved)
         if details.fallback_reason:
@@ -150,17 +166,31 @@ class RAGPipeline:
         if not details.output["results"]:
             log.info("rag_refused request_id=%s reason=no_candidates", request_id)
             return {"status": "insufficient_context", "answer": NO_CONTEXT_ANSWER, "citations": []}
+
+        remaining = deadline - time.monotonic()
+        if remaining <= 1.0:
+            from .llm.errors import LLMTimeoutError
+            raise LLMTimeoutError(f"Toàn pipeline không đủ thời gian còn lại ({remaining:.2f}s < 1s) trong ngân sách {self.pipeline_timeout}s.")
+
+        # 3. Generation & Verification
         generated = generate_answer_detailed(details.output, history, llm_service=self.llm_service,
                                              settings=self.settings, token_budget=self.token_budget,
                                              request_id=request_id)
+        self.last_model = getattr(generated, "model", "")
         response = validate_generated_response(generated.response, response_model=self.response_model)
         if response["status"] != "answered":
             log.info("rag_refused request_id=%s reason=%s", request_id,
                      "empty_context" if generated.context.is_empty else "llm_insufficient")
         elif self.verifier is not None:
             self._verify(generated, request_id)
-        log.info("rag_completed request_id=%s candidates=%d citations=%d status=%s",
-                 request_id, len(details.output["results"]), len(response["citations"]), response["status"])
+
+        elapsed = time.monotonic() - start_time
+        if elapsed > self.pipeline_timeout:
+            from .llm.errors import LLMTimeoutError
+            raise LLMTimeoutError(f"Toàn pipeline vượt trần thời gian {self.pipeline_timeout}s (thực tế {elapsed:.2f}s).")
+
+        log.info("rag_completed request_id=%s candidates=%d citations=%d status=%s elapsed_s=%.2f",
+                 request_id, len(details.output["results"]), len(response["citations"]), response["status"], elapsed)
         return response
 
 

@@ -41,7 +41,7 @@ class LLMService:
             raise
         latency_ms = int((self._clock() - started) * 1000)
         # Model thật đã trả lời (Gemini có thể rơi về model dự phòng); provider khác không có `actual_model`.
-        model = getattr(self.provider, "actual_model", self.provider.model)
+        model = getattr(reply, "actual_model", None) or getattr(self.provider, "actual_model", self.provider.model)
         logger.info("llm_call request_id=%s provider=%s model=%s prompt_version=%s input_tokens=%s output_tokens=%s latency_ms=%s finish_reason=%s",
                     request_id, self.provider.name, model, request.prompt_version,
                     reply.usage.input_tokens, reply.usage.output_tokens, latency_ms, reply.finish_reason)

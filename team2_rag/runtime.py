@@ -91,7 +91,7 @@ def build_runtime(env=None) -> Runtime:
         chunks = env.get("RAG_CHUNKS", "data/doanh-nghiep/processed/chunks.jsonl")
         sparse = BM25Retriever.load(bm_dir, chunks)
         vectors = DenseRetriever.connect(dense_dir, embedder, client=client)
-        retrieval_timeout = float(env.get("RAG_RETRIEVAL_TIMEOUT", "35"))
+        retrieval_timeout = float(env.get("RAG_RETRIEVAL_TIMEOUT", "10"))
         # Trọng số đặt tường minh (mặc định = retrieval_v2 của Team 1) để log và report ghi đúng giá trị đang chạy.
         weights = (float(env.get("RAG_BM25_WEIGHT", DEFAULT_WEIGHTS[0])), float(env.get("RAG_DENSE_WEIGHT", DEFAULT_WEIGHTS[1])))
         hybrid = HybridRetriever(BM25SearchAdapter(sparse), vectors, weights=weights, timeout=retrieval_timeout)

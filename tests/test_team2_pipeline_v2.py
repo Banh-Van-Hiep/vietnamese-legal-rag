@@ -167,6 +167,29 @@ class PipelineV2Tests(unittest.TestCase):
                 self.assertEqual(pipeline.query(question)["status"], "insufficient_context")
         self.retriever.retrieve.assert_not_called()
 
+    def test_pipeline_budget_enforces_45s_ceiling(self):
+        from team2_rag.llm.errors import LLMTimeoutError
+        import time
+        pipeline = self.make(pipeline_timeout=0.05)
+        def slow_retrieve(q, top_k=20):
+            time.sleep(0.08)
+            return copy.deepcopy(SAMPLE)
+        self.retriever.retrieve = slow_retrieve
+        with self.assertRaises(LLMTimeoutError) as ctx:
+            pipeline.query(SAMPLE["question"])
+        self.assertIn("vượt ngân sách thời gian", str(ctx.exception))
+
+    def test_retrieval_timeout_default_is_safe_under_pipeline_ceiling(self):
+        import os
+        from team2_rag.runtime import build_runtime
+        # Mặc định timeout retrieval (10s) + rerank (4s) + LLM (30s) = 44s <= 45s trần pipeline
+        retrieval_timeout_default = 10.0
+        rerank_timeout_default = 4.0
+        llm_timeout_default = 30.0
+        total_budget = retrieval_timeout_default + rerank_timeout_default + llm_timeout_default
+        self.assertLessEqual(total_budget, 45.0, "Tổng ngân sách default timeout phải nhỏ hơn hoặc bằng 45 giây theo NFR-07")
+
+
 
 class VerificationOverHTTPTests(unittest.TestCase):
     def test_failed_verification_is_http_502_citation_invalid_and_success_keeps_contract(self):

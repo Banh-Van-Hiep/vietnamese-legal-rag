@@ -39,6 +39,7 @@ class GeneratedAnswer:
     response: RAGResponse
     claims: tuple[Claim, ...]
     context: BuiltContext
+    model: str = ""
 
 
 def cited_chunk_ids(response: Mapping) -> list[str]:
@@ -102,12 +103,12 @@ def answer_from_rerank_detailed(
             if total > token_budget.prompt_limit:
                 raise ContextBudgetError(f"Prompt {total} token vượt giới hạn {token_budget.prompt_limit}.")
     if context.is_empty:
-        return GeneratedAnswer(_insufficient(), (), context)
+        return GeneratedAnswer(_insufficient(), (), context, model=getattr(llm_service.provider, 'actual_model', llm_service.provider.model))
 
     result = llm_service.ask(question, context.text, history, request_id=request_id)
     out = result.output
     if out.status != STATUS_ANSWERED:
-        return GeneratedAnswer(_insufficient(out.answer), (), context)
+        return GeneratedAnswer(_insufficient(out.answer), (), context, model=result.model)
 
     by_label = context.by_label()
     for cand in out.citations:

@@ -1,10 +1,12 @@
 {
   "metadata": {
-    "git_commit": "0a7c3520a80f10f2cd736572c38f2146657c8bfa",
+    "git_commit": "ddfda129beb029fc2643d9610a27c4922a5730d7",
     "golden_dataset": "team2_rag\\data\\golden\\golden_phase1_30cai.json",
     "golden_sha256": "298ae763fed0d32976d3c1967fa49601ebcce9276d0f393109c3536197dd6fdb",
     "dataset_status": "exploratory (Dev Set chưa đóng băng hoàn toàn)",
     "llm_model": "gemini-3.1-flash-lite",
+    "allow_fallback": false,
+    "pipeline_timeout": 45.0,
     "top_k": 5,
     "rerank_enabled": false,
     "strict_rerank": false,
@@ -13,56 +15,96 @@
   },
   "metrics": {
     "dataset_summary": {
-      "total_queries": 3,
-      "answered_queries": 0,
-      "insufficient_context_queries": 2,
-      "error_queries": 1
+      "total_queries": 30,
+      "answered_queries": 25,
+      "insufficient_context_queries": 5,
+      "error_queries": 0
     },
     "claims_summary": {
-      "total_claims": 0,
-      "supported_claims": 0,
-      "unsupported_claims": 0
+      "total_claims": 67,
+      "supported_claims": 62,
+      "unsupported_claims": 5
     },
     "citations_summary": {
-      "total_citations": 0,
-      "valid_citations": 0,
+      "total_citations": 72,
+      "valid_citations": 72,
       "invalid_citations": 0
     },
     "core_metrics": {
-      "citation_correctness": null,
-      "citation_correctness_pct": "chưa đo (0 citation)",
-      "citation_coverage": null,
-      "citation_coverage_pct": "chưa đo (0 claim)",
-      "query_hallucination_rate": null,
-      "query_hallucination_rate_pct": "chưa đo (0 câu answered)",
-      "claim_hallucination_rate": null,
-      "claim_hallucination_rate_pct": "chưa đo (0 claim)",
-      "hallucination_rate": null,
-      "hallucination_rate_pct": "chưa đo (0 câu answered)"
+      "citation_correctness": 1.0,
+      "citation_correctness_pct": "100.00%",
+      "citation_coverage": 0.9254,
+      "citation_coverage_pct": "92.54%",
+      "query_hallucination_rate": 0.2,
+      "query_hallucination_rate_pct": "20.00%",
+      "claim_hallucination_rate": 0.0746,
+      "claim_hallucination_rate_pct": "7.46%",
+      "hallucination_rate": 0.2,
+      "hallucination_rate_pct": "20.00%"
     },
     "targets_check": {
-      "citation_correctness_target_met": false,
-      "citation_coverage_target_met": false,
+      "citation_correctness_target_met": true,
+      "citation_coverage_target_met": true,
       "hallucination_rate_target_met": false
     }
   },
   "failure_analysis": {
-    "total_failed": 1,
+    "total_failed": 5,
     "categories": {
-      "prompt (lỗi sinh phản hồi từ LLM)": 1
+      "claim không có nguồn (nội dung khẳng định không có trong điều luật)": 5
     },
     "failed_cases": [
       {
         "query_id": "gold_002",
         "question": "Những ai thuộc đối tượng áp dụng của Luật Doanh nghiệp?",
-        "status": "error",
-        "failure_category": "prompt (lỗi sinh phản hồi từ LLM)",
-        "answer": "Exception: LLMTimeoutError: Hết thời gian chờ phản hồi từ LLM provider.",
+        "status": "answered",
+        "failure_category": "claim không có nguồn (nội dung khẳng định không có trong điều luật)",
+        "answer": "Đối tượng áp dụng của Luật Doanh nghiệp bao gồm doanh nghiệp [C1].",
         "reasons": [
-          "Trạng thái: error"
+          "[C1]: Nội dung claim không tìm thấy căn cứ xác thực trong chunk được trích dẫn (Độ bao phủ chỉ đạt 20.0%). Nguy cơ Hallucination."
+        ]
+      },
+      {
+        "query_id": "gold_007",
+        "question": "Thành viên công ty TNHH hai thành viên trở lên phải góp đủ vốn đã cam kết trong bao lâu? Thời gian vận chuyển, nhập khẩu tài sản góp vốn và làm thủ tục chuyển quyền sở hữu có tính vào thời hạn này không?",
+        "status": "answered",
+        "failure_category": "claim không có nguồn (nội dung khẳng định không có trong điều luật)",
+        "answer": "Thành viên công ty TNHH hai thành viên trở lên phải góp đủ và đúng loại tài sản đã cam kết trong thời hạn 90 ngày kể từ ngày được cấp Giấy chứng nhận đăng ký doanh nghiệp [C1], [C2]. Thời gian vận chuyển, nhập khẩu tài sản góp vốn và thực hiện thủ tục hành chính để chuyển quyền sở hữu tài sản không ",
+        "reasons": [
+          "[C1]: Phát hiện mâu thuẫn phân cực (phủ định/khẳng định) với điều luật. Độ trùng khớp từ vựng: 88.6% | [C2]: Phát hiện mâu thuẫn phân cực (phủ định/khẳng định) với điều luật. Độ trùng khớp từ vựng: 88.6%"
+        ]
+      },
+      {
+        "query_id": "gold_017",
+        "question": "Cổ đông công ty cổ phần chịu trách nhiệm về nợ của công ty trong phạm vi nào và có những nghĩa vụ gì?",
+        "status": "answered",
+        "failure_category": "claim không có nguồn (nội dung khẳng định không có trong điều luật)",
+        "answer": "Cổ đông công ty cổ phần chỉ chịu trách nhiệm về các khoản nợ và nghĩa vụ tài sản khác của doanh nghiệp trong phạm vi số vốn đã góp vào doanh nghiệp [C1]. Cổ đông không được rút vốn đã góp bằng cổ phần phổ thông ra khỏi công ty dưới mọi hình thức, trừ trường hợp được công ty hoặc người khác mua lại c",
+        "reasons": [
+          "[C2]: Phát hiện mâu thuẫn phân cực (phủ định/khẳng định) với điều luật. Độ trùng khớp từ vựng: 100.0% | [C3]: Phát hiện mâu thuẫn phân cực (phủ định/khẳng định) với điều luật. Độ trùng khớp từ vựng: 100.0%"
+        ]
+      },
+      {
+        "query_id": "gold_023",
+        "question": "Theo văn bản hợp nhất Nghị định hướng dẫn Luật Doanh nghiệp (7566/VBHN-BKHĐT), doanh nghiệp xã hội được xác định theo quy định nào, phải duy trì những cam kết gì và ai phải chịu trách nhiệm liên đới khi doanh nghiệp xã hội vi phạm?",
+        "status": "answered",
+        "failure_category": "claim không có nguồn (nội dung khẳng định không có trong điều luật)",
+        "answer": "Doanh nghiệp xã hội phải duy trì mục tiêu xã hội, môi trường, mức lợi nhuận giữ lại để tái đầu tư và các nội dung khác ghi tại Cam kết thực hiện mục tiêu xã hội, môi trường trong suốt quá trình hoạt động [C1]. Các đối tượng chịu trách nhiệm liên đới đối với các thiệt hại phát sinh khi doanh nghiệp x",
+        "reasons": [
+          "[C1]: Phát hiện mâu thuẫn phân cực (phủ định/khẳng định) với điều luật. Độ trùng khớp từ vựng: 100.0%"
+        ]
+      },
+      {
+        "query_id": "gold_030",
+        "question": "Doanh nghiệp tạm ngừng kinh doanh phải gửi thông báo trước ít nhất mấy ngày làm việc, hồ sơ gồm những giấy tờ nào, và hành vi không thông báo tạm ngừng kinh doanh bị xử phạt thế nào?",
+        "status": "answered",
+        "failure_category": "claim không có nguồn (nội dung khẳng định không có trong điều luật)",
+        "answer": "Doanh nghiệp phải gửi hồ sơ thông báo tạm ngừng kinh doanh đến Cơ quan đăng ký kinh doanh cấp tỉnh chậm nhất 03 ngày làm việc trước ngày tạm ngừng kinh doanh [C1]. Thời hạn tạm ngừng của mỗi lần thông báo không được quá 12 tháng [C1]. LEGAL CONTEXT hiện tại không quy định về thành phần hồ sơ cụ thể ",
+        "reasons": [
+          "[C1]: Phát hiện mâu thuẫn phân cực (phủ định/khẳng định) với điều luật. Độ trùng khớp từ vựng: 100.0%"
         ]
       }
     ]
   },
-  "raw_results_count": 3
+  "raw_results_count": 30
 }

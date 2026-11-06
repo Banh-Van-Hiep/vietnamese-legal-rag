@@ -67,14 +67,16 @@ def classify_failure(
     retrieved_chunk_ids: List[str],
     error: Optional[BaseException] = None,
 ) -> str:
-    """Phân loại nguyên nhân thất bại (VLRA-T2-27):
+    """Phân loại nguyên nhân thất bại chuẩn xác theo T2-27:
 
-    - 'retrieval': Không tìm thấy chunk liên quan trong Golden
+    - 'timeout / hạ tầng': Quá hạn phản hồi LLM hoặc mạng/dịch vụ
+    - 'hạ tầng (503/504)': Lỗi upstream từ provider
+    - 'prompt': Định dạng sai, JSON malformed, thiếu marker do prompt
     - 'nguồn sai': Citation trích dẫn không khớp hoặc bịa metadata
     - 'claim không có nguồn': Claim bị đánh giá UNSUPPORTED/CONTRADICTED (Hallucination)
-    - 'prompt': Định dạng sai, từ chối không lý do hoặc thiếu marker
+    - 'retrieval': Không tìm thấy ngữ cảnh phù hợp
     """
-    if error is not None:
+if error is not None:
         # Lỗi ngoại lệ phân theo loại: timeout hay quá tải LLM không phải lỗi prompt, người sửa prompt không xử lý được.
         if isinstance(error, CitationInvalidError):
             return "nguồn sai (Verification không qua)"
@@ -83,12 +85,14 @@ def classify_failure(
         if isinstance(error, LLMError):
             return "hạ tầng LLM (timeout, quá tải hoặc cấu hình; không phải lỗi prompt)"
         return "hệ thống (lỗi ngoài LLM, xem log)"
+    if status == "error":
+        return "hệ thống (trạng thái error)"
 
     if status == "insufficient_context":
         return "retrieval (hệ thống từ chối do không đủ ngữ cảnh)"
 
     if not v_res:
-        return "prompt (lỗi sinh phản hồi từ LLM)"
+        return "prompt (không sinh được cấu trúc phản hồi hợp lệ)"
 
     # Kiểm tra metadata và provenance
     has_cit_error = any(
@@ -141,15 +145,15 @@ def run_pipeline_benchmark(
         except Exception as e:
             logger.warning(f"Không thể đọc checkpoint ({e}), chạy mới từ đầu.")
 
-    # Khởi tạo Runtime với pipeline thật
-    logger.info("Đang khởi tạo RAG Runtime...")
-    # Chỉ đo đúng model được cấu hình: không để Gemini âm thầm rơi về model dự phòng khi gặp 503.
-    # Đặt ở đây, không ở mức module, để import runner (vd. trong test) không đổi môi trường của tiến trình.
-    os.environ.setdefault("LLM_ALLOW_FALLBACK", "false")
+# Khởi tạo Runtime với pipeline thật
+    logger.info("Đang khởi tạo RAG Runtime (tắt fallback model để đo đạc trung thực)...")
+    os.environ["LLM_ALLOW_FALLBACK"] = "false"
     rt = build_runtime()
     pipeline = rt.pipeline
     # Bật chế độ include_claims để prompt ép LLM khai claims
     pipeline.llm_service.include_claims = True
+    if hasattr(pipeline.llm_service.provider, "allow_fallback"):
+        pipeline.llm_service.provider.allow_fallback = False
 
     # Cấu hình hiện tại để đưa vào báo cáo
     cfg_report = {
@@ -158,6 +162,8 @@ def run_pipeline_benchmark(
         "golden_sha256": golden_sha256,
         "dataset_status": "exploratory (Dev Set chưa đóng băng hoàn toàn)",
         "llm_model": getattr(pipeline.llm_service.provider, "model", "unknown"),
+        "allow_fallback": False,
+        "pipeline_timeout": getattr(pipeline, "pipeline_timeout", 45.0),
         "top_k": pipeline.top_k,
         "rerank_enabled": pipeline.rerank_enabled,
         "strict_rerank": pipeline.strict_rerank,
@@ -194,6 +200,7 @@ def run_pipeline_benchmark(
             logger.info(f"[{idx}/{len(cases_to_run)}] Đang chạy câu hỏi: '{query_id}'...")
             t_start = time.time()
             v_res = None
+            last_exc = None
             status = "error"
             answer_text = ""
             citations_res = []
@@ -235,10 +242,13 @@ def run_pipeline_benchmark(
                         claims_res = [c.model_dump() for c in output_v2.claims]
 
             except Exception as exc:
+                last_exc = exc
                 logger.error(f"Lỗi khi xử lý câu '{query_id}': {exc}")
                 status = "error"
                 error = exc
                 answer_text = f"Exception: {type(exc).__name__}: {exc}"
+
+            actual_model = getattr(pipeline.llm_service.provider, "actual_model", getattr(pipeline.llm_service.provider, "model", "unknown"))
 
             is_passed = (v_res.passed if v_res else (status == "insufficient_context"))
 
@@ -266,6 +276,7 @@ def run_pipeline_benchmark(
                 "query_id": query_id,
                 "question": question,
                 "status": status,
+                "actual_model": actual_model,
                 "passed": is_passed,
                 "elapsed_seconds": round(time.time() - t_start, 2),
                 "answer": answer_text,
@@ -339,6 +350,8 @@ def run_pipeline_benchmark(
 | **Git Commit SHA** | `{git_commit[:10]}` | Nhánh `feature/team2-rag` |
 | **Tập dữ liệu Golden** | `{cfg_report['golden_dataset']}` | Hash SHA-256: `{golden_sha256[:12]}...` |
 | **Mô hình LLM Benchmark** | `{cfg_report['llm_model']}` | Chạy thật qua Google API v1beta |
+| **Trạng thái Fallback Model** | `TẮT (LLM_ALLOW_FALLBACK=false)` | Bảo đảm 100% câu hỏi do đúng model cấu hình xử lý |
+| **Ngân sách thời gian Pipeline** | `{cfg_report.get('pipeline_timeout', 45.0)}s` trần toàn luồng | Cưỡng chế trần NFR-07 (LLM <= 30s, Retrieval <= 10s, Rerank <= 4s) |
 | **Tham số Retrieval** | `RAG_TOP_K={cfg_report['top_k']}`, `weights={cfg_report['weights']}` | BM25 + Qdrant Dense |
 | **Cấu hình Reranker** | `enabled={cfg_report['rerank_enabled']}`, `timeout={cfg_report['rerank_timeout']}s` | BGE-Reranker-v2-m3 |
 | **Cơ chế Claims & Verifier** | `include_claims=True`, `verifier=verify_response` | Kích hoạt bộ kiểm định 2 tầng Người 2 |
