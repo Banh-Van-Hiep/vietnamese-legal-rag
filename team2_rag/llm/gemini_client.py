@@ -13,16 +13,12 @@ class GeminiProvider(LLMProvider):
     name = "gemini"
     default_base_url = "https://generativelanguage.googleapis.com/v1beta"
 
-    def __init__(self, api_key: str, model: str, timeout_seconds: float = 30.0, *, base_url: Optional[str] = None, transport: Optional[Transport] = None, allow_fallback: Optional[bool] = None):
-        import os
+    def __init__(self, api_key: str, model: str, timeout_seconds: float = 30.0, *, base_url: Optional[str] = None, transport: Optional[Transport] = None, allow_fallback: bool = True):
         self._api_key, self.model = api_key, model.removeprefix("models/")
         self.timeout_seconds = timeout_seconds
         self.base_url = (base_url or self.default_base_url).rstrip("/")
         self.transport = transport or UrllibTransport()
-        if allow_fallback is None:
-            self.allow_fallback = os.getenv("LLM_ALLOW_FALLBACK", "true").lower() in ("true", "1")
-        else:
-            self.allow_fallback = allow_fallback
+        self.allow_fallback = allow_fallback
         self.actual_model = self.model
 
     def build_payload(self, prompt: RenderedPrompt, params: LLMParams) -> dict:

@@ -56,9 +56,27 @@ _EXCEPTION_MARKERS = {
     "nếu có thỏa thuận khác", "trừ điều lệ công ty có quy định khác"
 }
 
-_LEGAL_MODALS = {
-    "phải", "có nghĩa vụ", "bắt buộc", "được quyền", "có quyền", "được phép"
-}
+def detect_polar_conflict(claim_norm: str, chunk_norm: str) -> bool:
+    """Kiểm tra mâu thuẫn phân cực quyền hạn/cấm đoán.
+
+    Tránh false positive khi chunk luật dài 500 từ chứa từ 'không' ở câu khác.
+    """
+    claim_has_negation = any(neg in claim_norm for neg in _NEGATION_WORDS)
+    chunk_has_negation = any(neg in chunk_norm for neg in _NEGATION_WORDS)
+
+    # TH1: Claim đặt ra phủ định / điều kiện không làm nhưng luật không hề có phủ định nào
+    if claim_has_negation and not chunk_has_negation:
+        for modal in ["được quyền", "có quyền", "được thành lập", "được quản lý", "phải"]:
+            if modal in claim_norm and modal in chunk_norm:
+                return True
+
+    # TH2: Claim khẳng định quyền hạn được phép nhưng luật lại có quy định cấm đoán trực tiếp
+    if not claim_has_negation and any(p in chunk_norm for p in ["không được", "nghiêm cấm", "cấm", "không có quyền", "không được phép"]):
+        for modal in ["được quyền", "có quyền", "được phép", "được thành lập", "được quản lý"]:
+            if modal in claim_norm:
+                return True
+
+    return False
 
 
 def normalize_vietnamese_text(text: str) -> str:
@@ -122,19 +140,8 @@ def evaluate_claim_against_chunk(claim_text: str, chunk_content: str) -> RubricS
             reason="Claim không chứa từ vựng pháp lý hợp lệ."
         )
 
-    # 1. Kiểm tra phân cực phủ định (Negation polarity)
-    claim_has_negation = any(neg in claim_norm for neg in _NEGATION_WORDS)
-    chunk_has_negation = any(neg in chunk_norm for neg in _NEGATION_WORDS)
-
-    # Nếu claim phủ định mà chunk không có từ phủ định nào và ngược lại khi nói về quyền hạn
-    has_polar_conflict = False
-    if claim_has_negation != chunk_has_negation:
-        # Kiểm tra sâu hơn nếu có từ chỉ quyền hạn / cấm đoán
-        for modal in ["được quyền", "có quyền", "được thành lập", "được quản lý", "phải"]:
-            if modal in claim_norm and modal in chunk_norm:
-                if (claim_has_negation and not chunk_has_negation) or (not claim_has_negation and chunk_has_negation):
-                    has_polar_conflict = True
-                    break
+    # 1. Kiểm tra mâu thuẫn phân cực quyền hạn/nghĩa vụ
+    has_polar_conflict = detect_polar_conflict(claim_norm, chunk_norm)
 
     # 2. Tính tỷ lệ bao phủ từ vựng (Word overlap coverage)
     intersection = claim_words.intersection(chunk_words)

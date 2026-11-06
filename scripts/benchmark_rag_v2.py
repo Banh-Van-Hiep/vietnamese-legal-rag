@@ -52,12 +52,11 @@ def get_git_commit_sha() -> str:
 
 
 def compute_file_sha256(path: Path) -> str:
-    """Tính mã băm SHA-256 của file dữ liệu."""
-    h = hashlib.sha256()
+    """Tính mã băm SHA-256 của file dữ liệu (chuẩn hóa LF để nhất quán trên mọi OS/Git)."""
     with open(path, "rb") as f:
-        while chunk := f.read(65536):
-            h.update(chunk)
-    return h.hexdigest()
+        content = f.read()
+    normalized = content.replace(b"\r\n", b"\n")
+    return hashlib.sha256(normalized).hexdigest()
 
 
 def classify_failure(
@@ -168,6 +167,7 @@ def run_pipeline_benchmark(
         "rerank_enabled": pipeline.rerank_enabled,
         "strict_rerank": pipeline.strict_rerank,
         "rerank_timeout": pipeline.rerank_timeout,
+        "rerank_note": "Tắt rerank (không chạy BGE-Reranker)" if not pipeline.rerank_enabled else "Bật BGE-Reranker-v2-m3",
         "weights": getattr(pipeline.retriever, "weights", "(0.5, 1.0)"),
     }
 
@@ -324,6 +324,7 @@ def run_pipeline_benchmark(
             "categories": cat_counts,
             "failed_cases": failed_cases,
         },
+        "raw_results": list(checkpoint_data.values()),
         "raw_results_count": len(eval_results),
     }
 
@@ -353,7 +354,7 @@ def run_pipeline_benchmark(
 | **Trạng thái Fallback Model** | `TẮT (LLM_ALLOW_FALLBACK=false)` | Bảo đảm 100% câu hỏi do đúng model cấu hình xử lý |
 | **Ngân sách thời gian Pipeline** | `{cfg_report.get('pipeline_timeout', 45.0)}s` trần toàn luồng | Cưỡng chế trần NFR-07 (LLM <= 30s, Retrieval <= 10s, Rerank <= 4s) |
 | **Tham số Retrieval** | `RAG_TOP_K={cfg_report['top_k']}`, `weights={cfg_report['weights']}` | BM25 + Qdrant Dense |
-| **Cấu hình Reranker** | `enabled={cfg_report['rerank_enabled']}`, `timeout={cfg_report['rerank_timeout']}s` | BGE-Reranker-v2-m3 |
+| **Cấu hình Reranker** | `enabled={cfg_report['rerank_enabled']}`, `timeout={cfg_report['rerank_timeout']}s` | {cfg_report.get('rerank_note', 'BGE-Reranker-v2-m3')} |
 | **Cơ chế Claims & Verifier** | `include_claims=True`, `verifier=verify_response` | Kích hoạt bộ kiểm định 2 tầng Người 2 |
 
 ---
