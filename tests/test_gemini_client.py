@@ -5,6 +5,7 @@ from unittest.mock import patch
 from team2_rag.llm.errors import LLMTimeoutError
 from team2_rag.llm.gemini_client import GeminiProvider
 from team2_rag.llm.http import HttpResponse
+from team2_rag.llm.service import LLMService
 from team2_rag.llm.types import LLMParams
 from team2_rag.prompts.render import RenderedPrompt
 
@@ -24,8 +25,12 @@ class FakeTransport:
         return reply
 
 
-def complete(transport, timeout_seconds=30.0):
-    provider = GeminiProvider("k", "gemini-x", timeout_seconds, transport=transport)
+REFUSAL = '{"status": "insufficient_context", "answer": "Chưa đủ căn cứ.", "citations": []}'
+OK_REFUSAL = HttpResponse(200, {"candidates": [{"content": {"parts": [{"text": REFUSAL}]}, "finishReason": "STOP"}]})
+
+
+def complete(transport, timeout_seconds=30.0, **kw):
+    provider = GeminiProvider("k", "gemini-x", timeout_seconds, transport=transport, **kw)
     return provider.complete(RenderedPrompt("sys", "user"), LLMParams())
 
 
@@ -52,6 +57,19 @@ class GeminiBudgetTests(unittest.TestCase):
         with patch("time.sleep"):
             complete(transport)
         self.assertIn("gemini-flash-lite-latest", transport.calls[-1][0])
+
+    def test_fallback_can_be_disabled_so_benchmark_measures_only_the_configured_model(self):
+        transport = FakeTransport(BUSY, BUSY)
+        with patch("time.sleep"), self.assertRaises(Exception):
+            complete(transport, allow_fallback=False)
+        self.assertEqual(len(transport.calls), 2)  # gọi + một lần retry, không có lần gọi model dự phòng
+        self.assertTrue(all("gemini-x" in url for url, _ in transport.calls))
+
+    def test_llm_result_reports_the_model_that_actually_answered(self):
+        provider = GeminiProvider("k", "gemini-x", 30.0, transport=FakeTransport(BUSY, BUSY, OK_REFUSAL))
+        with patch("time.sleep"):
+            result = LLMService(provider).ask("Câu hỏi?", "context")
+        self.assertEqual(result.model, "gemini-flash-lite-latest")  # không ghi nhầm model đã cấu hình
 
     def test_transport_timeout_is_reported_as_llm_timeout(self):
         with self.assertRaises(LLMTimeoutError):

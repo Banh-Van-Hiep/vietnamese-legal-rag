@@ -40,10 +40,12 @@ class LLMService:
         except LLMBadOutputError:
             raise
         latency_ms = int((self._clock() - started) * 1000)
+        # Model thật đã trả lời (Gemini có thể rơi về model dự phòng); provider khác không có `actual_model`.
+        model = getattr(self.provider, "actual_model", self.provider.model)
         logger.info("llm_call request_id=%s provider=%s model=%s prompt_version=%s input_tokens=%s output_tokens=%s latency_ms=%s finish_reason=%s",
-                    request_id, self.provider.name, self.provider.model, request.prompt_version,
+                    request_id, self.provider.name, model, request.prompt_version,
                     reply.usage.input_tokens, reply.usage.output_tokens, latency_ms, reply.finish_reason)
-        return LLMResult(output, reply.text, self.provider.name, self.provider.model, reply.usage, latency_ms, reply.finish_reason, 0)
+        return LLMResult(output, reply.text, self.provider.name, model, reply.usage, latency_ms, reply.finish_reason, 0)
 
     def ask(self, question: str, context: Union[str, Mapping], history: Optional[Iterable[Union[HistoryTurn, Mapping]]] = None,
             *, request_id: Optional[str] = None, original_question: Optional[str] = None) -> LLMResult:

@@ -32,7 +32,7 @@ import dotenv
 dotenv.load_dotenv(".env")
 
 from team2_rag.config.settings import load_settings
-from team2_rag.llm.errors import CitationInvalidError, LLMError
+from team2_rag.llm.errors import CitationInvalidError, LLMBadOutputError, LLMContentBlockedError, LLMError
 from team2_rag.runtime import build_runtime
 from team2_rag.verification.metrics import compute_benchmark_metrics
 from team2_rag.verification.types import Claim, LLMOutputV2, VerificationResult
@@ -65,6 +65,7 @@ def classify_failure(
     v_res: Optional[VerificationResult],
     status: str,
     retrieved_chunk_ids: List[str],
+    error: Optional[BaseException] = None,
 ) -> str:
     """Phân loại nguyên nhân thất bại (VLRA-T2-27):
 
@@ -73,6 +74,16 @@ def classify_failure(
     - 'claim không có nguồn': Claim bị đánh giá UNSUPPORTED/CONTRADICTED (Hallucination)
     - 'prompt': Định dạng sai, từ chối không lý do hoặc thiếu marker
     """
+    if error is not None:
+        # Lỗi ngoại lệ phân theo loại: timeout hay quá tải LLM không phải lỗi prompt, người sửa prompt không xử lý được.
+        if isinstance(error, CitationInvalidError):
+            return "nguồn sai (Verification không qua)"
+        if isinstance(error, (LLMBadOutputError, LLMContentBlockedError)):
+            return "prompt (LLM trả sai form hoặc bị chặn nội dung)"
+        if isinstance(error, LLMError):
+            return "hạ tầng LLM (timeout, quá tải hoặc cấu hình; không phải lỗi prompt)"
+        return "hệ thống (lỗi ngoài LLM, xem log)"
+
     if status == "insufficient_context":
         return "retrieval (hệ thống từ chối do không đủ ngữ cảnh)"
 
@@ -132,6 +143,9 @@ def run_pipeline_benchmark(
 
     # Khởi tạo Runtime với pipeline thật
     logger.info("Đang khởi tạo RAG Runtime...")
+    # Chỉ đo đúng model được cấu hình: không để Gemini âm thầm rơi về model dự phòng khi gặp 503.
+    # Đặt ở đây, không ở mức module, để import runner (vd. trong test) không đổi môi trường của tiến trình.
+    os.environ.setdefault("LLM_ALLOW_FALLBACK", "false")
     rt = build_runtime()
     pipeline = rt.pipeline
     # Bật chế độ include_claims để prompt ép LLM khai claims
@@ -185,6 +199,7 @@ def run_pipeline_benchmark(
             citations_res = []
             claims_res = []
             failure_info = None
+            error = None
 
             try:
                 # 1. Chạy qua retrieval & rerank
@@ -222,12 +237,13 @@ def run_pipeline_benchmark(
             except Exception as exc:
                 logger.error(f"Lỗi khi xử lý câu '{query_id}': {exc}")
                 status = "error"
+                error = exc
                 answer_text = f"Exception: {type(exc).__name__}: {exc}"
 
             is_passed = (v_res.passed if v_res else (status == "insufficient_context"))
 
             if not is_passed or status == "error":
-                fail_cat = classify_failure(case, v_res, status, [c.get("chunk_id", "") for c in citations_res])
+                fail_cat = classify_failure(case, v_res, status, [c.get("chunk_id", "") for c in citations_res], error)
                 reasons = []
                 if v_res:
                     reasons = [c.reason for c in v_res.claim_results if not c.supported]
