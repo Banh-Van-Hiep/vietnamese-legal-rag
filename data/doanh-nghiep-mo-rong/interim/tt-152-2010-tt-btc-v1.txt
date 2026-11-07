@@ -1,0 +1,1543 @@
+BỘ TÀI CHÍNH
+
+CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM
+
+Độc lập – Tự do – Hạnh phúc
+
+Số: 152/2010/TT-BTC
+
+Hà Nội, ngày 28 tháng 9 năm 2010
+
+THÔNG TƯ
+
+Hướng dẫn kế toán áp dụng đối với
+
+Trung tâm Lưu ký chứng khoán Việt Nam
+
+______________________
+
+- Căn cứ Luật Kế toán số 03/2003/QH11 ngày 17/06/2003;
+
+- Căn cứ Nghị định số 129/2004/NĐ-CP ngày 31/5/2004 của Chính phủ quy định chi tiết và hướng dẫn thi hành một số điều của Luật Kế toán áp dụng trong hoạt động kinh doanh;
+
+- Căn cứ Nghị định số 118/2008/NĐ-CP ngày 27/11/2008 của Chính phủ quy định chức năng, nhiệm vụ, quyền hạn và cơ cấu tổ chức của Bộ Tài chính;
+
+- Căn cứ Quyết định số 171/2008/QĐ-TTg ngày 18/12/2008 của Thủ tướng Chính phủ về việc thành lập Trung tâm Lưu ký chứng khoán Việt Nam;
+
+- Căn cứ Quyết định số 1393/QĐ-BTC ngày 4/6/2009 của Bộ trưởng Bộ Tài chính về việc ban hành Điều lệ tổ chức và hoạt động của Trung tâm Lưu ký chứng khoán Việt Nam;
+
+Bộ Tài chính hướng dẫn kế toán áp dụng đối với Trung tâm Lưu ký chứng khoán Việt Nam như sau:
+
+Điều 1. Phạm vi điều chỉnh và đối tượng áp dụng
+
+1. Thông tư này quy định một số Tài khoản, mẫu Báo cáo tài chính áp dụng riêng cho Trung tâm Lưu ký chứng khoán Việt Nam.
+
+2. Những nội dung kế toán không hướng dẫn trong Thông tư này, Trung tâm Lưu ký chứng khoán Việt Nam thực hiện theo Chế độ kế toán doanh nghiệp ban hành kèm theo Quyết định số 15/2006/QĐ-BTC ngày 20/3/2006 của Bộ trưởng Bộ Tài chính (dưới đây gọi là Quyết định 15/2006/QĐ-BTC) và các Thông tư hướng dẫn thực hiện chuẩn mực kế toán, Thông tư số 244/2009/TT-BTC ngày 31/12/2009 về việc Hướng dẫn sửa đổi, bổ sung chế độ kế toán doanh nghiệp.
+
+Điều 2. Quy định áp dụng hệ thống tài khoản kế toán
+
+Hệ thống Tài khoản kế toán áp dụng đối với Trung tâm Lưu ký chứng khoán Việt Nam thực hiện theo quy định tại Quyết định 15/2006/QĐ-BTC , Thông tư 244/2009/TT-BTC với các sửa đổi, bổ sung sau:
+
+1. Sửa đổi và bổ sung Tài khoản kế toán
+
+1.1. Đổi tên Tài khoản 511- “Doanh thu bán hàng và cung cấp dịch vụ” thành “Doanh thu”. Tài khoản 511 có các Tài khoản cấp 2 và cấp 3 sau:
+
+- Tài khoản 5111 - Doanh thu phí hoạt động nghiệp vụ:
+
++ Tài khoản 51111 - Doanh thu phí lưu ký chứng khoán;
+
++ Tài khoản 51112 - Doanh thu phí chuyển khoản chứng khoán;
+
++ Tài khoản 51113 - Doanh thu phí đại lý thanh toán hộ cổ tức, gốc và lãi trái phiếu;
+
++ Tài khoản 51114 - Doanh thu phí quản lý thành viên lưu ký;
+
++ Tài khoản 51115 - Doanh thu phí sửa lỗi sau giao dịch;
+
++ Tài khoản 51116 - Doanh thu phí chuyển quyền sở hữu chứng khoán không qua hệ thống giao dịch của Sở Giao dịch chứng khoán;
+
++ Tài khoản 51117 - Doanh thu phí thực hiện quyền;
+
++ Tài khoản 51118 - Doanh thu phí đăng ký chứng khoán.
+
+- Tài khoản 5113 - Doanh thu hoạt động cung cấp dịch vụ:
+
++ Tài khoản 51131 - Doanh thu hoạt động dịch vụ cung cấp thông tin;
+
++ Tài khoản 51138 - Doanh thu hoạt động cung cấp dịch vụ khác.
+
+- Tài khoản 5118 - Doanh thu khác.
+
+1.2. Đổi tên Tài khoản 532 - “Giảm giá hàng bán” thành “Các khoản giảm trừ doanh thu”.
+
+1.3. Đổi tên Tài khoản 631 - “Giá thành sản xuất” thành “Chi phí hoạt động”. Tài khoản 631 có các Tài khoản cấp 2 và cấp 3 sau:
+
+- Tài khoản 6311 - Chi phí hoạt động nghiệp vụ:
+
++ Tài khoản 63111 - Chi phí hoạt động lưu ký chứng khoán;
+
++ Tài khoản 63112 - Chi phí hoạt động chuyển khoản chứng khoán;
+
++ Tài khoản 63113 - Chi phí hoạt động đại lý thanh toán hộ cổ tức, gốc và lãi trái phiếu;
+
++ Tài khoản 63114 - Chi phí hoạt động quản lý thành viên lưu ký;
+
++ Tài khoản 63115 - Chi phí hoạt động sửa lỗi sau giao dịch;
+
++ Tài khoản 63116 - Chi phí hoạt động chuyển quyền;
+
++ Tài khoản 63117 - Chi phí hoạt động thực hiện quyền;
+
++ Tài khoản 63118 - Chi phí hoạt động đăng ký chứng khoán.
+
+- Tài khoản 6313 - Chi phí hoạt động dịch vụ:
+
++ Tài khoản 63131 - Chi phí hoạt động cung cấp dịch vụ cung cấp thông tin;
+
++ Tài khoản 63132 - Chi phí hoạt động cung cấp dịch vụ đại lý chuyển nhượng và thực hiện quyền sở hữu;
+
++ Tài khoản 63138 - Chi phí hoạt động cung cấp dịch vụ khác.
+
+- Tài khoản 6318 - Chi phí hoạt động khác.
+
+1.4. Đổi tên Tài khoản 002 - “Vật tư, hàng hoá nhận giữ hộ, nhận gia công” thành “Vật tư, chứng chỉ có giá nhận giữ hộ”.
+
+2. Bổ sung Tài khoản cấp 1
+
+2.1. Bổ sung Tài khoản 114 - Tiền gửi thực hiện quyền mua chứng khoán.
+
+2.2. Bổ sung Tài khoản 115 - Tiền gửi Quỹ hỗ trợ thanh toán.
+
+2.3. Bổ sung Tài khoản 116 - Tiền gửi thanh toán hộ cổ tức, gốc và lãi trái phiếu.
+
+2.4. Bổ sung Tài khoản 118 - Tiền gửi thanh toán bù trừ giao dịch chứng khoán.
+
+2.5. Bổ sung Tài khoản 132 - Phải thu tổ chức phát hành chứng khoán. Tài khoản này có 5 Tài khoản cấp 2 sau:
+
+- Tài khoản 1321 - Phải thu phí đại lý thanh toán hộ cổ tức, gốc và lãi trái phiếu;
+
+- Tài khoản 1322 - Phải thu phí đại lý chuyển nhượng chứng khoán;
+
+- Tài khoản 1323 - Phải thu phí đăng ký chứng khoán;
+
+- Tài khoản 1324 - Phải thu phí thực hiện quyền;
+
+- Tài khoản 1328 - Phải thu từ hoạt động cung cấp dịch vụ khác.
+
+2.6. Bổ sung Tài khoản 134 - Phải thu thành viên lưu ký chứng khoán. Tài khoản này có các Tài khoản cấp 2 và cấp 3 sau:
+
+- Tài khoản 1341 - Phải thu về phí:
+
++ Tài khoản 13411- Phải thu phí lưu ký chứng khoán;
+
++ Tài khoản 13412 - Phải thu phí chuyển khoản chứng khoán;
+
++ Tài khoản 13414 - Phải thu phí quản lý thành viên lưu ký chứng khoán;
+
++ Tài khoản 13415 - Phải thu phí sửa lỗi sau giao dịch;
+
++ Tài khoản 13416 - Phải thu phí chuyển quyền sở hữu chứng khoán không qua hệ thống giao dịch của Sở Giao dịch chứng khoán;
+
++ Tài khoản 13418 - Phải thu phí khác.
+
+- Tài khoản 1343 - Phải thu từ hoạt động cung cấp dịch vụ:
+
++ Tài khoản 13431 - Phải thu từ hoạt động dịch vụ cung cấp thông tin;
+
++ Tài khoản 13438 - Phải thu từ hoạt động cung cấp dịch vụ khác.
+
+- Tài khoản 1345 - Phải thu Quỹ hỗ trợ thanh toán;
+
+- Tài khoản 1348 - Phải thu khác của thành viên lưu ký chứng khoán.
+
+2.7. Bổ sung Tài khoản 321 - Thanh toán giao dịch chứng khoán tại Trung tâm Lưu ký chứng khoán. Tài khoản này có 2 Tài khoản cấp 2:
+
+- Tài khoản 3211 - Thanh toán bù trừ giao dịch chứng khoán;
+
+- Tài khoản 3212 - Thanh toán trực tiếp giao dịch chứng khoán.
+
+2.8. Bổ sung Tài khoản 322 - Phải trả tổ chức phát hành chứng khoán. Tài khoản này có 2 Tài khoản cấp 2:
+
+- Tài khoản 3221 - Phải trả tiền thực hiện quyền mua chứng khoán;
+
+- Tài khoản 3228 - Phải trả khác cho tổ chức phát hành chứng khoán.
+
+2.9. Bổ sung Tài khoản 325 - Quỹ hỗ trợ thanh toán.
+
+2.10. Bổ sung Tài khoản 326 - Phải trả hộ cổ tức, gốc và lãi trái phiếu. Tài khoản này có các Tài khoản cấp 2 và cấp 3 sau:
+
+- Tài khoản 3261 - Phải trả cổ tức:
+
++ Tài khoản 32611 - Phải trả cổ tức bằng tiền;
+
++ Tài khoản 32612 - Phải trả cổ phiếu lẻ bằng tiền.
+
+- Tài khoản 3262 - Phải trả gốc trái phiếu;
+
+- Tài khoản 3263 - Phải trả lãi trái phiếu.
+
+2.11. Bổ sung Tài khoản 359 - Quỹ phòng ngừa rủi ro nghiệp vụ.
+
+2.12. Bổ sung Tài khoản 637 - Chi phí trực tiếp chung. Tài khoản này có các Tài khoản cấp 2 và cấp 3 sau:
+
+- Tài khoản 6371 - Chi phí nhân viên trực tiếp;
+
+- Tài khoản 6372 - Chi phí vật tư, đồ dùng;
+
+- Tài khoản 6374 - Chi phí tài sản cố định:
+
++ Tài khoản 63741 - Chi phí khấu hao TSCĐ;
+
++ Tài khoản 63742 - Chi phí bảo dưỡng, sửa chữa TSCĐ;
+
++ Tài khoản 63743 - Chi phí thuê thiết bị, tài sản.
+
+- Tài khoản 6376 - Chi phí đào tạo chuyên gia;
+
+- Tài khoản 6377 - Chi phí giám sát;
+
+- Tài khoản 6378 - Chi phí bằng tiền khác.
+
+2.13. Bổ sung Tài khoản 005 - Công cụ, dụng cụ lâu bền đang sử dụng.
+
+2.14. Bổ sung Tài khoản 012 - Chứng khoán lưu ký. Tài khoản này có các Tài khoản cấp 2 và cấp 3 sau:
+
+- Tài khoản 0121 - Chứng khoán giao dịch
+
++ Tài khoản 01211 - Chứng khoán giao dịch của thành viên lưu ký;
+
++ Tài khoản 01212 - Chứng khoán giao dịch của khách hàng trong nước;
+
++ Tài khoản 01213 - Chứng khoán giao dịch của khách hàng nước ngoài;
+
++ Tài khoản 01218 - Chứng khoán giao dịch của tổ chức khác.
+
+- Tài khoản 0122 - Chứng khoán tạm ngừng giao dịch
+
++ Tài khoản 01221 - Chứng khoán tạm ngừng giao dịch của thành viên lưu ký;
+
++ Tài khoản 01222 - Chứng khoán tạm ngừng giao dịch của khách hàng trong nước;
+
++ Tài khoản 01223 - Chứng khoán tạm ngừng giao dịch của khách hàng nước ngoài;
+
++ Tài khoản 01228 - Chứng khoán tạm ngừng giao dịch của tổ chức khác.
+
+- Tài khoản 0123 - Chứng khoán cầm cố
+
++ Tài khoản 01231 - Chứng khoán cầm cố của thành viên lưu ký;
+
++ Tài khoản 01232 - Chứng khoán cầm cố của khách hàng trong nước;
+
++ Tài khoản 01233 - Chứng khoán cầm cố của khách hàng nước ngoài;
+
++ Tài khoản 01238 - Chứng khoán cầm cố của tổ chức khác;
+
+- Tài khoản 0124 - Chứng khoán tạm giữ
+
++ Tài khoản 01241 - Chứng khoán tạm giữ của thành viên lưu ký;
+
++ Tài khoản 01242 - Chứng khoán tạm giữ của khách hàng trong nước;
+
++ Tài khoản 01243 - Chứng khoán tạm giữ của khách hàng nước ngoài;
+
++ Tài khoản 01248 - Chứng khoán tạm giữ của tổ chức khác.
+
+- Tài khoản 0125 - Chứng khoán chờ thanh toán
+
++ Tài khoản 01251 - Chứng khoán chờ chuyển đi của thành viên lưu ký;
+
++ Tài khoản 01252 - Chứng khoán chờ chuyển đi của khách hàng trong nước;
+
++ Tài khoản 01253 - Chứng khoán chờ chuyển đi của khách hàng nước ngoài;
+
++ Tài khoản 01254 - Chứng khoán chờ về của thành viên lưu ký;
+
++ Tài khoản 01255 - Chứng khoán chờ về của khách hàng trong nước;
+
++ Tài khoản 01256 - Chứng khoán chờ về của khách hàng nước ngoài;
+
++ Tài khoản 01257 - Phong toả bán chứng khoán chờ về của thành viên lưu ký;
+
++ Tài khoản 01258 - Phong toả bán chứng khoán chờ về của khách hàng trong nước;
+
++ Tài khoản 01259 - Phong toả bán chứng khoán chờ về của khách hàng nước ngoài.
+
+- Tài khoản 0126 - Chứng khoán phong toả chờ rút
+
++ Tài khoản 01261 - Chứng khoán phong toả chờ rút của thành viên lưu ký;
+
++ Tài khoản 01262 - Chứng khoán phong toả chờ rút của khách hàng trong nước;
+
++ Tài khoản 01263 - Chứng khoán phong toả chờ rút của khách hàng nước ngoài;
+
++ Tài khoản 01268 - Chứng khoán phong toả chờ rút của tổ chức khác.
+
+- Tài khoản 0127 - Chứng khoán chờ giao dịch
+
++ Tài khoản 01271 - Chứng khoán chờ giao dịch của thành viên lưu ký;
+
++ Tài khoản 01272 - Chứng khoán chờ giao dịch của khách hàng trong nước;
+
++ Tài khoản 01273 - Chứng khoán chờ giao dịch của khách hàng nước ngoài;
+
++ Tài khoản 01274 - Chứng khoán chờ giao dịch của tổ chức khác;
+
++ Tài khoản 01275 - Chứng khoán chờ giao dịch hạn chế chuyển nhượng của thành viên lưu ký;
+
++ Tài khoản 01276 - Chứng khoán chờ giao dịch hạn chế chuyển nhượng của khách hàng trong nước;
+
++ Tài khoản 01277 - Chứng khoán chờ giao dịch hạn chế chuyển nhượng của khách hàng nước ngoài;
+
++ Tài khoản 01278 - Chứng khoán chờ giao dịch hạn chế chuyển nhượng của tổ chức khác.
+
+- Tài khoản 0128 - Chứng khoán ký quỹ đảm bảo khoản vay
+
++ Tài khoản 01281 - Chứng khoán ký quỹ đảm bảo các khoản vay của thành viên lưu ký;
+
++ Tài khoản 01282 - Chứng khoán ký quỹ đảm bảo các khoản vay khách hàng trong nước;
+
++ Tài khoản 01283 - Chứng khoán ký quỹ đảm bảo các khoản vay của khách hàng nước ngoài;
+
++ Tài khoản 01288 - Chứng khoán ký quỹ đảm bảo các khoản vay của tổ chức khác.
+
+- Tài khoản 0129 - Chứng khoán sửa lỗi giao dịch.
+
+2.15. Bổ sung Tài khoản 013 - Chứng khoán lưu ký công ty đại chúng đăng ký lưu ký tại Trung tâm Lưu ký chứng khoán nhưng không niêm yết, đăng ký giao dịch tại Sở Giao dịch chứng khoán. Tài khoản này có các Tài khoản cấp 2 và cấp 3 sau:
+
+- Tài khoản 0131 - Chứng khoán giao dịch
+
++ Tài khoản 01311 - Chứng khoán giao dịch của thành viên lưu ký;
+
++ Tài khoản 01312 - Chứng khoán giao dịch của khách hàng trong nước;
+
++ Tài khoản 01313 - Chứng khoán giao dịch của khách hàng nước ngoài;
+
++ Tài khoản 01318 - Chứng khoán giao dịch của tổ chức khác.
+
+- Tài khoản 0132 - Chứng khoán tạm ngừng giao dịch
+
++ Tài khoản 01321 - Chứng khoán tạm ngừng giao dịch của thành viên lưu ký;
+
++ Tài khoản 01322 - Chứng khoán tạm ngừng giao dịch của khách hàng trong nước;
+
++ Tài khoản 01323 - Chứng khoán tạm ngừng giao dịch của khách hàng nước ngoài;
+
++ Tài khoản 01328 - Chứng khoán tạm ngừng giao dịch của tổ chức khác.
+
+- Tài khoản 0133 - Chứng khoán cầm cố
+
++ Tài khoản 01331 - Chứng khoán cầm cố của thành viên lưu ký;
+
++ Tài khoản 01332 - Chứng khoán cầm cố của khách hàng trong nước;
+
++ Tài khoản 01333 - Chứng khoán cầm cố của khách hàng nước ngoài;
+
++ Tài khoản 01338 - Chứng khoán cầm cố của tổ chức khác.
+
+- Tài khoản 0134 - Chứng khoán tạm giữ
+
++ Tài khoản 01341 - Chứng khoán tạm giữ của thành viên lưu ký;
+
++ Tài khoản 01342 - Chứng khoán tạm giữ của khách hàng trong nước;
+
++ Tài khoản 01343 - Chứng khoán tạm giữ của khách hàng nước ngoài;
+
++ Tài khoản 01348 - Chứng khoán tạm giữ của tổ chức khác.
+
+- Tài khoản 0136 - Chứng khoán phong toả chờ rút
+
++ Tài khoản 01361 - Chứng khoán phong toả chờ rút của thành viên lưu ký;
+
++ Tài khoản 01362 - Chứng khoán phong toả chờ rút của khách hàng trong nước;
+
++ Tài khoản 01363 - Chứng khoán phong toả chờ rút của khách hàng nước ngoài;
+
++ Tài khoản 01368 - Chứng khoán phong toả chờ rút của tổ chức khác.
+
+3. Không dùng một số Tài khoản kế toán
+
+3.1. Không dùng các Tài khoản trong Bảng cân đối kế toán sau:
+
+- Tài khoản 121 - Đầu tư chứng khoán ngắn hạn;
+
+- Tài khoản 129 - Dự phòng giảm giá đầu tư ngắn hạn;
+
+- Tài khoản 151 - Hàng mua đang đi đường;
+
+- Tài khoản 154 - Chi phí sản xuất, kinh doanh dở dang;
+
+- Tài khoản 155 - Thành phẩm;
+
+- Tài khoản 156 - Hàng hoá;
+
+- Tài khoản 157 - Hàng hoá gửi bán;
+
+- Tài khoản 158 - Hàng hoá kho bảo thuế;
+
+- Tài khoản 159 - Dự phòng giảm giá hàng tồn kho;
+
+- Tài khoản 171 - Giao dịch mua bán lại trái phiếu Chính phủ;
+
+- Tài khoản 217 - Bất động sản đầu tư;
+
+- Tài khoản 315 - Nợ dài hạn đến hạn trả;
+
+- Tài khoản 337 - Thanh toán theo tiến độ kế hoạch hợp đồng xây dựng;
+
+- Tài khoản 343 - Trái phiếu phát hành;
+
+- Tài khoản 417 - Quỹ hỗ trợ sắp xếp doanh nghiệp;
+
+- Tài khoản 419 - Cổ phiếu quỹ;
+
+- Tài khoản 441 - Nguồn vốn đầu tư xây dựng cơ bản;
+
+- Tài khoản 512 - Doanh thu bán hàng nội bộ;
+
+- Tài khoản 521- Chiết khấu thương mại;
+
+- Tài khoản 531 - Hàng bán bị trả lại;
+
+- Tài khoản 611 - Mua hàng;
+
+- Tài khoản 621 - Chi phí nguyên liệu, vật liệu trực tiếp;
+
+- Tài khoản 622 - Chi phí nhân công trực tiếp;
+
+- Tài khoản 623 - Chi phí sử dụng máy thi công;
+
+- Tài khoản 627 - Chi phí sản xuất chung;
+
+- Tài khoản 632 - Giá vốn hàng bán;
+
+- Tài khoản 641 - Chi phí bán hàng.
+
+3.2. Không dùng các Tài khoản ngoài Bảng Cân đối kế toán sau:
+
+- Tài khoản 003 - Hàng hoá nhận bán hộ, nhận ký gửi, ký cược.
+
+Danh mục Hệ thống Tài khoản kế toán áp dụng cho Trung tâm Lưu ký chứng khoán Việt Nam như sau (Xem phụ lục 01).
+
+Điều 3. Kế toán Tiền gửi thực hiện quyền mua chứng khoán
+
+Bổ sung Tài khoản 114 - Tiền gửi thực hiện quyền mua chứng khoán.
+
+Tài khoản này dùng để phản ánh số hiện có và tình hình biến động khoản tiền gửi thực hiện quyền mua chứng khoán phát hành của các tổ chức, cá nhân đăng ký mua chứng khoán nộp vào tài khoản của Trung tâm Lưu ký chứng khoán mở tại ngân hàng chỉ định thanh toán.
+
+Kết cấu và nội dung phản ánh của Tài khoản 114 - Tiền gửi thực hiện quyền mua chứng khoán
+
+Bên Nợ:
+
+Số tiền gửi thực hiện quyền mua chứng khoán phát hành của các tổ chức, cá nhân nộp vào tài khoản của Trung tâm Lưu ký chứng khoán mở tại ngân hàng chỉ định thanh toán.
+
+Bên Có:
+
+Rút tiền gửi thực hiện quyền mua chứng khoán thanh toán cho tổ chức phát hành chứng khoán.
+
+Số dư bên Nợ:
+
+Số tiền gửi thực hiện quyền mua chứng khoán hiện còn cuối kỳ.
+
+Phương pháp hạch toán kế toán một số nghiệp vụ kinh tế chủ yếu
+
+1. Khi nhận giấy báo Có của Ngân hàng thanh toán về khoản tiền gửi thực hiện quyền mua chứng khoán phát hành của các thành viên lưu ký, ghi:
+
+Nợ TK 114 - Tiền gửi thực hiện quyền mua chứng khoán
+
+Có TK 322 - Phải trả tổ chức phát hành chứng khoán (3221).
+
+2. Định kỳ nhận lãi tiền gửi của các cá nhân, tổ chức nộp vào tài khoản của Trung tâm lưu ký để thực hiện quyền mua chứng khoán phát hành, ghi:
+
+Nợ TK 114 - Tiền gửi thực hiện quyền mua chứng khoán
+
+Có TK 338 - Phải trả khác (3388).
+
+(Khoản tiền lãi này Trung tâm Lưu ký chứng khoán phải theo dõi riêng để trả lại cho các cá nhân, tổ chức nộp tiền thực hiện quyền mua chứng khoán phát hành.)
+
+3. Khi rút tiền gửi thực hiện quyền mua chứng khoán phát hành sau chuyển trả cho tổ chức phát hành, ghi:
+
+Nợ TK 322 - Phải trả tổ chức phát hành chứng khoán (3221)
+
+Có TK 114- Tiền gửi thực hiện quyền mua chứng khoán.
+
+Điều 4. Kế toán Tiền gửi Quỹ hỗ trợ thanh toán
+
+Bổ sung Tài khoản 115 - Tiền gửi Quỹ hỗ trợ thanh toán.
+
+Tài khoản này được phản ánh số hiện có và tình hình biến động khoản tiền gửi của Quỹ hỗ trợ thanh toán mà Trung tâm Lưu ký chứng khoán được uỷ quyền lập và quản lý từ nguồn đóng góp của các thành viên lưu ký.
+
+Kết cấu và nội dung phản ánh của tài khoản 115 - Tiền gửi Quỹ hỗ trợ thanh toán
+
+Bên Nợ
+
+- Số tiền đóng góp của các thành viên lưu ký vào Quỹ hỗ trợ thanh toán gửi tại Ngân hàng thanh toán;
+
+- Tiền lãi phát sinh từ khoản tiền gửi của Quỹ hỗ trợ thanh toán;
+
+- Số tiền gốc và lãi phạt các thành viên lưu ký thực trả do vay Quỹ hỗ trợ thanh toán.
+
+Bên Có
+
+- Rút tiền gửi Quỹ hỗ trợ thanh toán để thanh toán giao dịch chứng khoán thay cho các thành viên lưu ký trong trường hợp tạm thời mất khả năng thanh toán;
+
+- Hoàn trả cho thành viên lưu ký khi thành viên đó chấm dứt hoạt động lưu ký theo quy định tại Quy chế thành viên của Trung tâm Lưu ký chứng khoán.
+
+Số dư bên Nợ
+
+Số tiền gửi Quỹ hỗ trợ thanh toán hiện còn gửi tại Ngân hàng thanh toán.
+
+Phương pháp hạch toán kế toán một số nghiệp vụ kinh tế chủ yếu
+
+1. Khi thực nhận tiền đóng góp của tất cả thành viên lưu ký vào tài khoản Quỹ hỗ trợ thanh toán đứng tên Trung tâm Lưu ký chứng khoán mở tại Ngân hàng thanh toán theo quy định hiện hành, ghi:
+
+Nợ TK 115 -Tiền gửi Quỹ hỗ trợ thanh toán
+
+Có TK 325 - Quỹ hỗ trợ thanh toán.
+
+2. Khi Trung tâm Lưu ký đề nghị ngân hàng thanh toán chuyển tiền từ tài khoản tiền gửi Quỹ hỗ trợ thanh toán để thanh toán thay cho các thành viên lưu ký bị thiếu hụt tạm thời khả năng thanh toán, căn cứ vào giấy báo Nợ của Ngân hàng, ghi:
+
+Nợ TK 321 - Thanh toán giao dịch chứng khoán tại Trung tâm Lưu ký chứng khoán
+
+Có TK 115 - Tiền gửi Quỹ hỗ trợ thanh toán
+
+Đồng thời, ghi:
+
+Nợ TK 134 - Phải thu thành viên lưu ký chứng khoán (1345)
+
+Có TK 321 - Thanh toán giao dịch chứng khoán tại Trung tâm Lưu ký chứng khoán.
+
+3. Khi thành viên lưu ký hoàn trả Quỹ hỗ trợ thanh toán số tiền đã được Trung tâm lưu ký thanh toán thay cho các thành viên trong trường hợp thành viên lưu ký tạm thời mất khả năng thanh toán và số tiền lãi phạt do sử dụng Quỹ hỗ trợ thanh toán, ghi:
+
+Nợ TK 115 - Tiền gửi Quỹ hỗ trợ thanh toán
+
+Có TK 134 - Phải thu thành viên lưu ký chứng khoán
+
+(Số tiền nợ gốc) (1345)
+
+Có TK 325 - Quỹ hỗ trợ thanh toán (Số tiền lãi phạt phân bổ cho các thành viên).
+
+4. Khi chi tiền gửi trả lại Quỹ hỗ trợ thanh toán cho thành viên lưu ký chứng khoán chấm dứt hoạt động lưu ký theo quy định tại quy chế thành viên của Trung tâm Lưu ký chứng khoán, ghi:
+
+Nợ TK 325 - Quỹ hỗ trợ thanh toán
+
+Có TK 115 - Tiền gửi Quỹ hỗ trợ thanh toán.
+
+5. Khi phát sinh lãi từ tài khoản tiền gửi Quỹ hỗ trợ thanh toán của thành viên lưu ký do Ngân hàng thanh toán, ghi:
+
+Nợ TK 115 - Tiền gửi Quỹ hỗ trợ thanh toán
+
+Có TK 325 - Quỹ hỗ trợ thanh toán.
+
+Điều 5. Kế toán Tiền gửi thanh toán hộ cổ tức, gốc và lãi trái phiếu
+
+Bổ sung Tài khoản 116 - Tiền gửi thanh toán hộ cổ tức, gốc và lãi trái phiếu.
+
+Tài khoản này dùng để phản ánh số hiện có và tình hình biến động về số tiền trên tài khoản của Trung tâm Lưu ký chứng khoán mở tại ngân hàng thanh toán để thanh toán hộ các tổ chức phát hành về cổ tức, gốc và lãi trái phiếu cho các nhà đầu tư thông qua các thành viên lưu ký chứng khoán.
+
+Kết cấu và nội dung phản ánh của tài khoản 116 - Tiền gửi thanh toán hộ cổ tức, gốc và lãi trái phiếu
+
+Bên Nợ:
+
+Số tiền gửi thanh toán hộ cổ tức, gốc và lãi trái phiếu mà tổ chức phát hành gửi tại tài khoản của Trung tâm Lưu ký chứng khoán mở ở Ngân hàng thanh toán.
+
+Bên Có:
+
+- Rút tiền gửi thanh toán hộ cổ tức, gốc và lãi trái phiếu trả cho tổ chức, cá nhân nắm giữ chứng khoán thông qua các thành viên lưu ký chứng khoán;
+
+- Số tiền trả lại tổ chức phát hành chứng khoán (nếu có).
+
+Số dư bên Nợ:
+
+Số tiền gửi thanh toán hộ cổ tức, gốc và lãi trái phiếu hiện còn cuối kỳ.
+
+Phương pháp hạch toán kế toán một số nghiệp vụ kinh tế chủ yếu
+
+1. Khi tiền thực về tài khoản của Trung tâm Lưu ký chứng khoán mở tại Ngân hàng thanh toán do các tổ chức phát hành chuyển khoản để uỷ quyền cho Trung tâm Lưu ký chứng khoán thanh toán hộ cổ tức, gốc và lãi trái phiếu, kế toán ghi:
+
+Nợ TK 116 - Tiền gửi thanh toán hộ cổ tức, gốc và lãi trái phiếu
+
+Có TK 326 - Phải trả hộ cổ tức, gốc và lãi trái phiếu.
+
+2. Khi thực thanh toán hộ cổ tức, gốc và lãi trái phiếu cho người sở hữu chứng khoán thông qua các thành viên lưu ký chứng khoán, ghi:
+
+Nợ TK 326- Phải trả hộ cổ tức, gốc và lãi trái phiếu
+
+Có TK 116 - Tiền gửi thanh toán hộ cổ tức, gốc và lãi trái phiếu.
+
+3. Định kỳ nhận lãi của số tiền gửi thanh toán hộ cổ tức, gốc và lãi trái phiếu, ghi:
+
+Nợ TK 116 - Tiền gửi thanh toán hộ cổ tức, gốc và lãi trái phiếu
+
+Có TK 326 - Phải trả hộ cổ tức, gốc và lãi trái phiếu.
+
+Điều 6. Kế toán Tiền gửi thanh toán bù trừ giao dịch chứng khoán
+
+Bổ sung Tài khoản 118 - Tiền gửi thanh toán bù trừ giao dịch chứng khoán.
+
+Tài khoản này phản ánh số hiện có và tình hình biến động về số tiền của các thành viên lưu ký chứng khoán đã chuyển vào tài khoản của Trung tâm Lưu ký chứng khoán mở tại Ngân hàng thanh toán để sẵn sàng tham gia thanh toán bù trừ giao dịch chứng khoán tại Trung tâm Lưu ký chứng khoán.
+
+Trường hợp Trung tâm Lưu ký chứng khoán và các thành viên lưu ký chứng khoán thoả thuận với các Ngân hàng chịu trách nhiệm thanh toán tiền của các giao dịch chứng khoán đã khớp lệnh của nhà đầu tư theo bảng kê thanh toán bù trừ của Trung tâm Lưu ký chứng khoán thì không sử dụng tài khoản này.
+
+Kết cấu và nội dung phản ánh của Tài khoản 118 - Tiền gửi thanh toán bù trừ giao dịch chứng khoán
+
+Bên Nợ:
+
+Các khoản tiền của thành viên lưu ký đã chuyển vào tài khoản của Trung tâm Lưu ký chứng khoán mở tại Ngân hàng chỉ định thanh toán để chuẩn bị sẵn sàng tham gia thanh toán bù trừ giao dịch chứng khoán tại Trung tâm Lưu ký chứng khoán.
+
+Bên Có:
+
+Số tiền Trung tâm Lưu ký chứng khoán chuyển trả cho các thành viên lưu ký theo kết quả thanh toán bù trừ chứng khoán.
+
+Tài khoản này không có số dư cuối kỳ.
+
+Phương pháp hạch toán kế toán một số nghiệp vụ kinh tế chủ yếu
+
+1. Khi Trung tâm Lưu ký chứng khoán nhận được Giấy báo Có của Ngân hàng thanh toán về số tiền phải thanh toán đã chuyển vào tài khoản thanh toán giao dịch chứng khoán của Trung tâm Lưu ký chứng khoán mở tại Ngân hàng thanh toán theo kết quả thanh toán bù trừ giao dịch chứng khoán, ghi:
+
+Nợ TK 118 - Tiền gửi thanh toán bù trừ giao dịch chứng khoán
+
+Có TK 321 - Thanh toán giao dịch chứng khoán tại Trung tâm Lưu ký chứng khoán (3211).
+
+2. Căn cứ lệnh chuyển tiền của Trung tâm Lưu ký chứng khoán, ngân hàng thanh toán tiến hành chuyển tiền từ tài khoản tiền gửi thanh toán bù trừ giao dịch chứng khoán của Trung tâm Lưu ký chứng khoán sang tài khoản của thành viên lưu ký được nhận (thành viên bán) mở tại Ngân hàng chỉ định thanh toán, ghi:
+
+Nợ TK 321 - Thanh toán giao dịch chứng khoán tại Trung tâm Lưu ký chứng khoán (3211)
+
+Có TK 118 - Tiền gửi thanh toán bù trừ giao dịch chứng khoán.
+
+Đồng thời với việc thanh toán tiền, Trung tâm Lưu ký chứng khoán tiến hành thực hiện các thủ tục chuyển số chứng khoán đã được khớp lệnh mua - bán từ tài khoản của thành viên lưu ký bán sang tài khoản của thành viên lưu ký mua trên Tài khoản 012 - Chứng khoán lưu ký (Tài khoản ngoài Bảng Cân đối kế toán).
+
+Điều 7. Kế toán Phải thu tổ chức phát hành chứng khoán
+
+Bổ sung tài khoản 132 - Phải thu tổ chức phát hành chứng khoán.
+
+Tài khoản này dùng để phản ánh các khoản phải thu của tổ chức phát hành chứng khoán về các khoản phí dịch vụ thanh toán hộ, phí đại lý chuyển nhượng chứng khoán và các dịch vụ khác.
+
+Kết cấu và nội dung phản ánh của tài khoản 132 - Phải thu tổ chức phát hành chứng khoán
+
+Bên Nợ:
+
+Số tiền phải thu tổ chức phát hành chứng khoán.
+
+Bên Có:
+
+Số tiền tổ chức phát hành chứng khoán đã trả.
+
+Số dư bên Nợ:
+
+Số tiền còn phải thu của tổ chức phát hành chứng khoán cuối kỳ.
+
+Tài khoản 132 - Phải thu tổ chức phát hành chứng khoán, có 5 tài khoản cấp 2:
+
+- Tài khoản 1321 - Phải thu phí đại lý thanh toán hộ cổ tức, gốc và lãi trái phiếu: Phản ánh số hiện có và tình hình biến động tăng, giảm khoản phải thu phí đại lý thanh toán hộ cổ tức, gốc và lãi trái phiếu;
+
+- Tài khoản 1322 - Phải thu phí đại lý chuyển nhượng chứng khoán: Phản ánh số hiện có và tình hình biến động tăng, giảm khoản phải thu phí đại lý chuyển nhượng chứng khoán.
+
+- Tài khoản 1323 - Phải thu phí đăng ký chứng khoán: Phản ánh số hiện có và tình hình biến động tăng, giảm khoản phải thu phí đăng ký chứng khoán.
+
+- Tài khoản 1324 - Phải thu phí thực hiện quyền: Phản ánh số hiện có và tình hình biến động tăng, giảm khoản phải thu phí thực hiện quyền.
+
+- Tài khoản 1328 - Phải thu từ hoạt động cung cấp dịch vụ khác: Phản ánh số hiện có và tình hình biến động tăng, giảm khoản phải thu từ hoạt động cung cấp dịch vụ khác chưa được phản ánh ở các tài khoản 1321, 1322, 1323 và 1324.
+
+Phương pháp hạch toán kế toán một số nghiệp vụ kinh tế chủ yếu:
+
+1. Xác định số tiền Trung tâm lưu ký chứng khoán phải thu tổ chức phát hành chứng khoán về các khoản dịch vụ đã cung cấp, ghi:
+
+Nợ TK 132 - Phải thu tổ chức phát hành chứng khoán
+
+Có TK 511 - Doanh thu.
+
+2. Khi thu được tiền, ghi:
+
+Nợ các TK 111, 112, ...
+
+Có TK 132 - Phải thu tổ chức phát hành chứng khoán.
+
+Điều 8. Kế toán Phải thu thành viên lưu ký chứng khoán
+
+Bổ sung Tài khoản 134 - Phải thu thành viên lưu ký chứng khoán.
+
+Tài khoản này dùng để phản ánh các khoản phải thu và tình hình thanh toán các khoản phải thu của Trung tâm Lưu ký chứng khoán đối với các thành viên lưu ký. Các khoản phải thu phản ánh vào tài khoản này gồm:
+
+- Phải thu về phí;
+
+- Phải thu từ hoạt động cung cấp dịch vụ;
+
+- Phải thu thiếu hụt Quỹ hỗ trợ thanh toán;
+
+- Phải thu khác của thành viên lưu ký chứng khoán.
+
+Nguyên tắc hạch toán tài khoản này:
+
+1. Tài khoản này được hạch toán chi tiết cho từng thành viên lưu ký chứng khoán, cho từng nội dung phải thu và từng lần thanh toán.
+
+2. Không phản ánh vào tài khoản này các khoản phí, doanh thu cung cấp dịch vụ cho các thành viên lưu ký chứng khoán đã thu tiền ngay (tiền mặt hoặc séc hoặc đã thu qua ngân hàng).
+
+3. Trong quá trình hạch toán kế toán chi tiết, kế toán phải tiến hành phân loại các khoản nợ để có biện pháp thu hồi nợ kịp thời hoặc có cơ sở lập dự phòng các khoản nợ phải thu khó đòi.
+
+Kết cấu và nội dung phản ánh của tài khoản 134 - Phải thu thành viên lưu ký chứng khoán
+
+Bên Nợ:
+
+- Số phải thu các thành viên lưu ký chứng khoán từ hoạt động nghiệp vụ;
+
+- Số phải thu các thành viên lưu ký chứng khoán từ hoạt động cung ứng dịch vụ;
+
+- Số phải thu các thành viên lưu ký chứng khoán thiếu hụt Quỹ hỗ trợ thanh toán từ nguồn đóng góp của các thành viên lưu ký;
+
+- Số phải thu khác các thành viên lưu ký chứng khoán.
+
+Bên Có:
+
+- Số tiền các thành viên lưu ký chứng khoán đã trả nợ, đã thanh toán.
+
+Số dư bên Nợ:
+
+Số nợ còn phải thu của các thành viên lưu ký chứng khoán cuối kỳ.
+
+Tài khoản 134 - Phải thu thành viên lưu ký chứng khoán, có 4 tài khoản cấp 2:
+
+- Tài khoản 1341 - Phải thu về phí: Phản ánh số tiền phải thu và tình hình thanh toán các khoản phải thu về phí của các thành viên lưu ký chứng khoán. Tài khoản này có 6 tài khoản cấp 3:
+
++ Tài khoản 13411 - Phải thu phí lưu ký chứng khoán;
+
++ Tài khoản 13412 - Phải thu phí chuyển khoản chứng khoán;
+
++ Tài khoản 13414 - Phải thu phí quản lý thành viên lưu ký chứng khoán;
+
++ Tài khoản 13415 - Phải thu phí sửa lỗi sau giao dịch;
+
++ Tài khoản 13416 - Phải thu phí chuyển quyền sở hữu chứng khoán không qua hệ thống giao dịch của Sở Giao dịch chứng khoán;
+
++ Tài khoản 13418 - Phải thu phí khác.
+
+- Tài khoản 1343 - Phải thu từ hoạt động cung cấp dịch vụ: Phản ánh số phải thu và tình hình thanh toán các khoản phải thu từ các khoản cung cấp dịch vụ của Trung tâm Lưu ký chứng khoán cho các thành viên lưu ký chứng khoán. Tài khoản này có 2 tài khoản cấp 3:
+
++ Tài khoản 13431 - Phải thu từ hoạt động dịch vụ cung cấp thông tin;
+
++ Tài khoản 13438 - Phải thu từ hoạt động cung cấp dịch vụ khác
+
+- Tài khoản 1345 - Phải thu Quỹ hỗ trợ thanh toán: Phản ánh số tiền phải thu và tình hình thanh toán số thiếu hụt Quỹ hỗ trợ thanh toán của thành viên lưu ký chứng khoán.
+
+- Tài khoản 1348 - Phải thu khác của thành viên lưu ký chứng khoán: Phản ánh các khoản phải thu và tình hình thanh toán các khoản phải thu khác của thành viên lưu ký chứng khoán ngoài các khoản đã phản ánh ở các TK 1341, 1343, 1345.
+
+Phương pháp hạch toán kế toán một số nghiệp vụ kinh tế chủ yếu:
+
+1. Các khoản phí đã được xác định ghi nhận nhưng chưa thu được tiền, ghi:
+
+Nợ TK 134 - Phải thu thành viên lưu ký chứng khoán (1341)
+
+Có TK 511 - Doanh thu (5111)
+
+Có TK 3331 - Thuế GTGT phải nộp (nếu có).
+
+Khi thực thu được tiền phí từ các thành viên lưu ký chứng khoán, ghi:
+
+Nợ các TK 111, 112
+
+Có TK 134 - Phải thu thành viên lưu ký chứng khoán (1341).
+
+2. Xác định số tiền phải thu các thành viên của Trung tâm Lưu ký chứng khoán từ hoạt động cung ứng dịch vụ, ghi:
+
+Nợ TK 134 - Phải thu thành viên lưu ký chứng khoán (1343)
+
+Có TK 511 - Doanh thu (5113)
+
+Có TK 3331 - Thuế GTGT phải nộp (nếu có).
+
+Khi nhận được tiền do thành viên lưu ký trả tiền liên quan đến việc cung cấp dịch vụ, ghi:
+
+Nợ các TK 111, 112 (1121)
+
+Có TK 134 - Phải thu thành viên lưu ký chứng khoán (1343).
+
+3. Số tiền phải thu các thành viên lưu ký chứng khoán về Quỹ hỗ trợ thanh toán, ghi:
+
+Nợ TK 134 - Phải thu thành viên lưu ký chứng khoán (1345)
+
+Có TK 321 - Thanh toán giao dịch chứng khoán tại Trung tâm Lưu ký chứng khoán.
+
+Khi nhận được tiền của các thành viên lưu ký chứng khoán nộp Quỹ hỗ trợ thanh toán ghi tương tự như nghiệp vụ 1, 2 trên.
+
+4. Khi Trung tâm Lưu ký chứng khoán đề nghị Ngân hàng thanh toán chuyển tiền từ tài khoản tiền gửi Quỹ hỗ trợ thanh toán để thanh toán thay cho các thành viên lưu ký bị thiếu hụt tạm thời khả năng thanh toán, căn cứ vào giấy báo Nợ của ngân hàng, ghi:
+
+Nợ TK 321 - Thanh toán giao dịch chứng khoán tại Trung tâm Lưu ký chứng khoán
+
+Có TK 115 - Tiền gửi Quỹ hỗ trợ thanh toán.
+
+Đồng thời ghi:
+
+Nợ TK 134 - Phải thu Quỹ hỗ trợ thanh toán (1345)
+
+Có TK 321 - Thanh toán giao dịch chứng khoán tại Trung tâm Lưu ký chứng khoán.
+
+5. Trường hợp thành viên lưu ký chuyển tiền mặt hoặc tiền gửi trả Quỹ hỗ trợ thanh toán số tiền được Trung tâm Lưu ký chứng khoán thanh toán thay cho thành viên lưu ký trong trường hợp tạm thời thiếu hụt khả năng thanh toán và số tiền lãi phạt do sử dụng Quỹ hỗ trợ thanh toán, ghi:
+
+Nợ TK 115 - Tiền gửi Quỹ hỗ trợ thanh toán
+
+Có TK 134 - Phải thu thành viên lưu ký chứng khoán (số tiền gốc đã được hỗ trợ thanh toán)
+
+Có TK 325 - Quỹ hỗ trợ thanh toán (số tiền lãi phạt).
+
+6. Nếu có khoản nợ phải thu khó đòi thực sự không thể thu nợ được, phải xử lý xoá sổ, căn cứ vào biên bản xử lý xoá nợ, ghi:
+
+Nợ TK 139 - Dự phòng phải thu khó đòi (nếu đã lập dự phòng)
+
+Nợ TK 642 - Chi phí quản lý doanh nghiệp (nếu chưa lập dự phòng)
+
+Có TK 134 - Phải thu thành viên lưu ký chứng khoán.
+
+Đồng thời, ghi đơn vào bên Nợ TK 004 - Nợ khó đòi đã xử lý (tài khoản ngoài Bảng Cân đối kế toán) nhằm tiếp tục theo dõi trong thời hạn qui định để có thể truy thu thành viên lưu ký mắc nợ số tiền đó.
+
+7. Khi truy thu được khoản nợ khó đòi đã xử lý, ghi:
+
+Nợ các TK 111, 112
+
+Có TK 711 - Thu nhập khác.
+
+Đồng thời ghi đơn bên Có TK 004 - Nợ khó đòi đã xử lý (Tài khoản ngoài Bảng Cân đối kế toán).
+
+Điều 9. Kế toán Thanh toán giao dịch chứng khoán tại Trung tâm Lưu ký chứng khoán.
+
+Bổ sung Tài khoản 321 - Thanh toán giao dịch chứng khoán tại Trung tâm Lưu ký chứng khoán.
+
+Tài khoản này dùng để phản ánh tình hình thanh toán số tiền mà các thành viên lưu ký chứng khoán được nhận và phải trả vào ngày thanh toán tại Ngân hàng thanh toán.
+
+Thanh toán giao dịch chứng khoán tại Trung tâm Lưu ký chứng khoán bao gồm hoạt động thanh toán bù trừ giao dịch chứng khoán (thanh toán đa phương) và hoạt động thanh toán trực tiếp giao dịch chứng khoán (thanh toán song phương).
+
+Nguyên tắc hạch toán tài khoản này:
+
+1. Việc thanh toán bù trừ giao dịch chứng khoán phải tuân theo các nguyên tắc, quy định và quy trình thanh toán được quy định hiện hành tại “Quy chế hoạt động bù trừ và thanh toán chứng khoán”.
+
+2. Việc thực hiện thanh toán bù trừ chứng khoán phải thực hiện bằng hình thức chuyển khoản thông qua hệ thống tài khoản của thành viên lưu ký và Trung tâm Lưu ký chứng khoán mở tại Ngân hàng thanh toán và theo nguyên tắc chuyển giao chứng khoán đồng thời với thanh toán tiền.
+
+3. Kế toán thanh toán giao dịch chứng khoán tại Trung tâm Lưu ký chứng khoán phải mở sổ chi tiết theo dõi từng nghiệp vụ thanh toán và đối tượng thanh toán một cách rõ ràng, chính xác.
+
+4. Về nguyên tắc, tài khoản này phải được tất toán sau mỗi lần kết thúc quá trình thanh toán của từng phiên giao dịch.
+
+Kết cấu và nội dung phản ánh của Tài khoản 321 - Thanh toán giao dịch chứng khoán tại Trung tâm Lưu ký chứng khoán
+
+Bên Nợ:
+
+- Phản ánh số tiền của thành viên lưu ký được ngân hàng thanh toán trích chuyển vào tài khoản của Trung tâm Lưu ký chứng khoán tại ngân hàng thanh toán theo kết quả thanh toán bù trừ giao dịch chứng khoán.
+
+- Số tiền Trung tâm Lưu ký chứng khoán chi từ tài khoản tiền gửi Quỹ hỗ trợ thanh toán để thanh toán thay cho thành viên lưu ký trong trường hợp thành viên lưu ký tạm thời mất khả năng thanh toán.
+
+Bên Có:
+
+- Số tiền Trung tâm Lưu ký chứng khoán chuyển trả cho các thành viên lưu ký bán chứng khoán theo kết quả thanh toán bù trừ.
+
+Kết thúc quá trình thanh toán bù trừ giao dịch chứng khoán tại Ngân hàng thanh toán, Tài khoản 321 không có số dư.
+
+Tài khoản 321 - Thanh toán giao dịch chứng khoán tại Trung tâm Lưu ký chứng khoán, có 2 tài khoản cấp 2:
+
+- Tài khoản 3211 - Thanh toán bù trừ giao dịch chứng khoán: Phản ánh chi tiết kết quả thanh toán bù trừ giao dịch chứng khoán tại Ngân hàng thanh toán trên cơ sở kết quả của quá trình thanh toán bù trừ giữa các thành viên lưu ký mua và bán chứng khoán do Trung tâm Lưu ký chứng khoán thực hiện;
+
+- Tài khoản 3212 - Thanh toán trực tiếp giao dịch chứng khoán: Phản ánh chi tiết kết quả thanh toán trực tiếp giao dịch chứng khoán do Trung tâm Lưu ký chứng khoán thực hiện.
+
+Phương pháp hạch toán một số nghiệp vụ kinh tế chủ yếu:
+
+1. Đến ngày thanh toán, khi có lệnh chuyển tiền của Trung tâm Lưu ký chứng khoán, Ngân hàng thanh toán tiến hành chuyển tiền từ tài khoản tiền gửi của thành viên lưu ký mua chứng khoán tập hợp tại Trung tâm Lưu ký chứng khoán sang tài khoản thanh toán giao dịch chứng khoán của Trung tâm Lưu ký chứng khoán mở tại Ngân hàng thanh toán, căn cứ vào Giấy báo Nợ của Ngân hàng thanh toán, ghi:
+
+Nợ TK 321 - Thanh toán giao dịch chứng khoán tại Trung tâm Lưu ký chứng khoán
+
+Có TK 118 - Tiền gửi thanh toán bù trừ giao dịch chứng khoán (chi tiết theo thành viên lưu ký).
+
+2. Khi Trung tâm Lưu ký chứng khoán nhận được Giấy báo Có của Ngân hàng thanh toán về số tiền phải thanh toán đã về tài khoản thanh toán giao dịch chứng khoán của Trung tâm Lưu ký chứng khoán mở tại Ngân hàng thanh toán theo kết quả thanh toán bù trừ giao dịch chứng khoán đã về tài khoản, ghi:
+
+Nợ TK 118 - Tiền gửi thanh toán bù trừ giao dịch chứng khoán (chi tiết theo thành viên)
+
+Có TK 321 - Thanh toán giao dịch chứng khoán tại Trung tâm Lưu ký chứng khoán.
+
+3. Trong trường hợp thành viên lưu ký tạm thời thiếu hụt khả năng thanh toán, Trung tâm lưu ký chứng khoán sử dụng Quỹ hỗ trợ thanh toán để hỗ trợ thanh toán cho thành viên lưu ký, căn cứ Giấy báo Nợ của Ngân hàng kèm theo các chứng từ liên quan, ghi:
+
+Nợ TK 321 - Thanh toán giao dịch chứng khoán tại Trung tâm Lưu ký chứng khoán
+
+Có TK 118 - Tiền gửi thanh toán bù trừ giao dịch chứng khoán (chi tiết theo thành viên lưu ký) (số tiền thành viên lưu ký có khả năng thanh toán)
+
+Có TK 115 - Tiền gửi Quỹ hỗ trợ thanh toán .
+
+Đồng thời với nghiệp vụ thanh toán tiền, Trung tâm Lưu ký chứng khoán tiến hành các thủ tục thanh toán chứng khoán. Bộ phận kế toán lưu ký chứng khoán căn cứ vào Bảng kê thanh toán chứng khoán để ghi giảm số chứng khoán từ thành viên lưu ký bán ghi nhận tăng cho thành viên lưu ký mua thông qua Tài khoản 012 - Chứng khoán lưu ký (Tài khoản ngoài Bảng Cân đối kế toán).
+
+Điều 10. Kế toán Các khoản phải trả tổ chức phát hành chứng khoán
+
+Bổ sung Tài khoản 322 - Phải trả tổ chức phát hành chứng khoán.
+
+Tài khoản này dùng để phản ánh tình hình nhận và thanh toán khoản phải trả cho tổ chức phát hành chứng khoán về số tiền thực hiện quyền mua chứng khoán của các tổ chức, cá nhân người đầu tư và các khoản khác.
+
+Kết cấu và nội dung phản ánh của Tài khoản 322 - Phải trả tổ chức phát hành chứng khoán
+
+Bên Nợ:
+
+- Số tiền mà Trung tâm Lưu ký chứng khoán đã chuyển trả cho tổ chức phát hành chứng khoán về giá trị số chứng khoán mà tổ chức phát hành chứng khoán đã bán;
+
+- Số tiền Trung tâm Lưu ký chứng khoán đã trả cho tổ chức phát hành chứng khoán về các khoản khác ngoài tiền thực hiện quyền mua chứng khoán;
+
+- Số tiền Trung tâm Lưu ký chứng khoán đã chuyển trả lại cho tổ chức, cá nhân thực hiện quyền mua chứng khoán.
+
+Bên Có:
+
+- Số tiền Trung tâm Lưu ký chứng khoán phải trả cho tổ chức phát hành chứng khoán về số tiền thực hiện quyền mua chứng khoán của các tổ chức, cá nhân đã đăng ký mua của tổ chức phát hành;
+
+- Các khoản phải trả khác cho tổ chức phát hành chứng khoán.
+
+Số dư bên Có:
+
+Số tiền mà Trung tâm Lưu ký chứng khoán còn phải trả cho tổ chức phát hành chứng khoán cuối kỳ.
+
+Tài khoản 322 - Phải trả tổ chức phát hành chứng khoán, có 2 tài khoản cấp 2:
+
+- Tài khoản 3221 - Phải trả tiền thực hiện quyền mua chứng khoán: Phản ánh số phải trả về tiền thực hiện quyền mua chứng khoán và đã trả tiền mua chứng khoán cho tổ chức phát hành chứng khoán;
+
+- Tài khoản 3228 - Phải trả khác cho tổ chức phát hành chứng khoán: Phản ánh số phải trả và đã trả các khoản khác ngoài số tiền thực hiện quyền mua chứng khoán cho tổ chức phát hành chứng khoán.
+
+Phương pháp hạch toán một số nghiệp vụ kinh tế chủ yếu:
+
+1. Khi Trung tâm Lưu ký chứng khoán nhận được tiền do các tổ chức, cá nhân thực hiện quyền mua chứng khoán chuyển đến, ghi:
+
+Nợ TK 114 - Tiền gửi thực hiện quyền mua chứng khoán
+
+Có TK 322 - Phải trả tổ chức phát hành chứng khoán (3221).
+
+2. Khi chuyển tiền trả cho tổ chức phát hành chứng khoán về giá trị số chứng khoán đã phát hành, ghi:
+
+Nợ TK 322 - Phải trả tổ chức phát hành chứng khoán (3221)
+
+Có TK 114 - Tiền gửi thực hiện quyền mua chứng khoán.
+
+3. Khi chi tiền trả các khoản khác cho tổ chức phát hành chứng khoán, ghi:
+
+Nợ TK 322 - Phải trả tổ chức phát hành chứng khoán (3228)
+
+Có các TK 111, 112,…
+
+4. Khi Trung tâm Lưu ký chứng khoán chi tiền trả lại cho các tổ chức, cá nhân về số tiền thừa, ghi:
+
+Nợ TK 322 - Phải trả tổ chức phát hành chứng khoán
+
+Có TK 114 - Tiền gửi thực hiện quyền mua chứng khoán.
+
+Điều 11. Kế toán Quỹ hỗ trợ thanh toán
+
+Bổ sung Tài khoản 325 - Quỹ hỗ trợ thanh toán.
+
+Tài khoản này phản ánh tình hình lập và sử dụng quỹ hỗ trợ thanh toán của Trung tâm Lưu ký chứng khoán từ nguồn đóng góp của các thành viên lưu ký để thực hiện thanh toán thay cho thành viên lưu ký chứng khoán trong trường hợp thành viên tạm thời mất khả năng thanh toán.
+
+Nguyên tắc hạch toán tài khoản này:
+
+1. Quỹ hỗ trợ thanh toán được hình thành từ các khoản đóng góp bằng tiền của tất cả các thành viên lưu ký chứng khoán theo mức cố định ban đầu và mức đóng góp hàng năm theo quy định của cơ chế tài chính. Trung tâm Lưu ký chứng khoán phải mở một tài khoản tiền gửi đứng tên Trung tâm Lưu ký chứng khoán tại Ngân hàng thanh toán để quản lý riêng tiền của thành viên lưu ký đóng góp vào Quỹ hỗ trợ thanh toán và tiền lãi phát sinh từ tài khoản tiền gửi Quỹ hỗ trợ thanh toán và tiền lãi phạt khi thành viên lưu ký tạm thời sử dụng Quỹ hỗ trợ thanh toán trong trường hợp thành viên lưu ký tạm thời thiếu hụt khả năng thanh toán.
+
+2. Trung tâm Lưu ký chứng khoán chỉ được quyền sử dụng Quỹ hỗ trợ thanh toán để thanh toán thay cho thành viên lưu ký trong trường hợp thành viên lưu ký tạm thời thiếu hụt khả năng thanh toán.
+
+3. Kế toán mở sổ chi tiết theo dõi Quỹ hỗ trợ thanh toán theo từng thành viên lưu ký.
+
+Kết cấu và nội dung phản ánh của Tài khoản 325 - Quỹ hỗ trợ thanh toán:
+
+Bên Nợ:
+
+Hoàn trả tiền cho thành viên lưu ký khi thành viên lưu ký bị thu hồi Giấy chứng nhận thành viên lưu ký.
+
+Bên Có:
+
+- Khoản đóng góp vào Quỹ hỗ trợ thanh toán của các thành viên lưu ký;
+
+- Lãi Ngân hàng phát sinh từ tài khoản tiền gửi Quỹ hỗ trợ thanh toán và tiền lãi phạt thu từ thành viên lưu ký vi phạm nghĩa vụ thanh toán.
+
+Số dư bên Có:
+
+Số tiền Quỹ hỗ trợ thanh toán còn lại cuối kỳ.
+
+Phương pháp hạch toán kế toán một số nghiệp vụ kinh tế chủ yếu:
+
+1. Các thành viên lưu ký chứng khoán nộp khoản đóng góp vào Quỹ hỗ trợ thanh toán, ghi:
+
+Nợ TK 115 - Tiền gửi Quỹ hỗ trợ thanh toán
+
+Có TK 325 - Quỹ hỗ trợ thanh toán.
+
+2. Thu tiền gốc và lãi phạt từ các thành viên lưu ký vi phạm nghĩa vụ thanh toán, ghi:
+
+Nợ TK 115 - Tiền gửi Quỹ hỗ trợ thanh toán (số tiền thực thu)
+
+Có TK 134 - Phải thu thành viên lưu ký chứng khoán (1345) (số tiền nợ Quỹ hỗ trợ thanh toán)
+
+Có TK 325 - Quỹ hỗ trợ thanh toán (số tiền lãi phạt ghi tăng Quỹ hỗ trợ thanh toán ).
+
+3. Trường hợp thành viên lưu ký dùng số tiền thu được do bán chứng khoán của lần giao dịch ngay sau đó để trả nợ số tiền vay Quỹ hỗ trợ thanh toán:
+
+- Số tiền thực nhận do bán chứng khoán, ghi:
+
+Nợ TK 118 - Tiền gửi thanh toán bù trừ giao dịch chứng khoán
+
+Có TK 321 - Thanh toán giao dịch chứng khoán tại Trung tâm Lưu ký chứng khoán (3211).
+
+- Số tiền thành viên lưu ký thực trả, ghi:
+
+Nợ TK 115 - Tiền gửi Quỹ hỗ trợ thanh toán (số tiền gốc và lãi vay Quỹ hỗ trợ thanh toán)
+
+Có TK 134 - Phải thu thành viên lưu ký chứng khoán (1345) (số tiền nợ Quỹ hỗ trợ thanh toán )
+
+Có TK 325 - Quỹ hỗ trợ thanh toán (số tiền lãi phạt ghi tăng Quỹ hỗ trợ thanh toán).
+
+4. Hoàn trả thành viên lưu ký bị thu hồi Giấy chứng nhận thành viên lưu ký số tiền đã đóng góp vào Quỹ hỗ trợ thanh toán, ghi:
+
+Nợ TK 325 - Quỹ hỗ trợ thanh toán
+
+Có TK 115 - Tiền gửi Quỹ hỗ trợ thanh toán.
+
+Điều 12. Kế toán Các khoản phải trả hộ cổ tức, gốc và lãi trái phiếu
+
+Bổ sung Tài khoản 326 - Phải trả hộ cổ tức, gốc và lãi trái phiếu.
+
+Tài khoản này dùng để phản ánh số phải trả hộ cổ tức, gốc và lãi trái phiếu cho người sở hữu cổ phiếu, trái phiếu mà Trung tâm Lưu ký chứng khoán có nhiệm vụ trả hộ tổ chức phát hành chứng khoán (Chính phủ hoặc công ty) cổ phiếu, trái phiếu khi được uỷ quyền. Kế toán phải mở sổ hạch toán chi tiết cho từng tổ chức phát hành chứng khoán và từng nội dung phải trả, đã trả.
+
+Kết cấu và nội dung phản ánh của Tài khoản 326 - Phải trả hộ cổ tức, gốc và lãi trái phiếu:
+
+Bên Nợ:
+
+- Số cổ tức, gốc và lãi trái phiếu đã trả cho người sở hữu cổ phiếu, trái phiếu mà Trung tâm Lưu ký chứng khoán có nhiệm vụ trả hộ cho tổ chức phát hành chứng khoán theo uỷ quyền;
+
+- Số tiền trả lại cho tổ chức phát hành chứng khoán (nếu có).
+
+Bên Có:
+
+Số cổ tức, gốc và lãi trái phiếu phải trả cho người sở hữu cổ phiếu, trái phiếu mà Trung tâm Lưu ký chứng khoán có nhiệm vụ trả hộ cho tổ chức phát hành chứng khoán theo uỷ quyền.
+
+Số dư bên Có:
+
+Số cổ tức, gốc và lãi trái phiếu còn phải trả cho người sở hữu cổ phiếu, trái phiếu mà Trung tâm Lưu ký chứng khoán có nhiệm vụ trả hộ cho tổ chức phát hành chứng khoán theo uỷ quyền.
+
+Tài khoản 326 - Phải trả hộ cổ tức, gốc và lãi trái phiếu, có 3 tài khoản cấp 2:
+
+- Tài khoản 3261 - Phải trả cổ tức: Phản ánh số phải trả và số đã trả cổ tức theo uỷ quyền. Tài khoản này có 2 tài khoản cấp 3:
+
++ Tài khoản 32611 - Phải trả cổ tức bằng tiền;
+
++ Tài khoản 32612 - Phải trả cổ phiếu lẻ bằng tiền;
+
+- Tài khoản 3262 - Phải trả gốc trái phiếu: Phản ánh số phải trả và số đã trả gốc trái phiếu theo uỷ quyền.
+
+- Tài khoản 3263 - Phải trả lãi trái phiếu: Phản ánh số phải trả và số đã trả lãi trái phiếu theo uỷ quyền.
+
+Phương pháp hạch toán kế toán một số nghiệp vụ kinh tế chủ yếu:
+
+1. Khi Trung tâm Lưu ký chứng khoán thực nhận được tiền chuyển khoản của tổ chức phát hành chứng khoán về việc thanh toán hộ cổ tức, gốc và lãi trái phiếu cho người sở hữu chứng khoán theo uỷ quyền, kế toán ghi:
+
+Nợ TK 116 - Tiền gửi thanh toán hộ cổ tức, gốc và lãi trái phiếu
+
+Có TK 326 - Phải trả hộ cổ tức, gốc và lãi trái phiếu.
+
+2. Khi Trung tâm Lưu ký chứng khoán thực trả cổ tức, gốc và lãi trái phiếu cho người sở hữu chứng khoán thông qua thành viên lưu ký chứng khoán, ghi:
+
+Nợ TK 326 - Phải trả hộ cổ tức, gốc và lãi trái phiếu
+
+Có TK 116 - Tiền gửi thanh toán hộ cổ tức, gốc và lãi trái phiếu.
+
+Điều 13. Kế toán các khoản nhận ký quỹ, ký cược
+
+Bổ sung Tài khoản 344 - Nhận ký quỹ, ký cược.
+
+Tài khoản này dùng để phản ánh các khoản tiền mà Trung tâm Lưu ký chứng khoán nhận ký quỹ, ký cược của thành viên lưu ký chứng khoán và các đối tượng khác để đảm bảo cho các dịch vụ liên quan đến hoạt động kinh doanh được thực hiện đúng hợp đồng kinh tế đã ký kết, như nhận tiền ký cược, ký quỹ để đảm bảo việc thực hiện hợp đồng kinh tế, hợp đồng đại lý, …
+
+Kế toán nhận ký quỹ, ký cược phải theo dõi chi tiết từng khoản tiền nhận ký quỹ, ký cược của từng khách hàng là nhà đầu tư và các đối tượng khác.
+
+Kết cấu và nội dung phản ánh của Tài khoản 344 - Nhận ký quỹ, ký cược:
+
+Bên Nợ:
+
+- Hoàn trả tiền nhận ký quỹ, ký cược;
+
+- Khoản tiền phạt do vi phạm hợp đồng kinh tế đã ký kết với Trung tâm Lưu ký chứng khoán .
+
+Bên Có:
+
+Nhận ký quỹ, ký cược bằng tiền.
+
+Số dư bên Có:
+
+Số tiền nhận ký quỹ, ký cược chưa trả.
+
+Tài khoản 344 - Nhận ký quỹ, ký cược, có 2 tài khoản cấp 2:
+
+- Tài khoản 3441 - Nhận ký quỹ, ký cược ngắn hạn: Phản ánh các khoản tiền Trung tâm Lưu ký chứng khoán nhận ký quỹ, ký cược của các thành viên lưu ký chứng khoán, các đơn vị, cá nhân khác bên ngoài Trung tâm Lưu ký chứng khoán có thời hạn từ 1 năm trở xuống.
+
+- Tài khoản 3442 - Nhận ký quỹ, ký cược dài hạn: Phản ánh các khoản tiền Trung tâm Lưu ký chứng khoán nhận ký quỹ, ký cược của các thành viên lưu ký chứng khoán, các đơn vị, cá nhân khác bên ngoài Trung tâm Lưu ký chứng khoán có thời hạn từ 1 năm trở lên.
+
+Phương pháp hạch toán kế toán một số nghiệp vụ kinh tế chủ yếu:
+
+1. Khi nhận tiền ký quỹ, ký cược của các thành viên lưu ký chứng khoán và các đơn vị, cá nhân bên ngoài, ghi:
+
+Nợ các TK 111, 112
+
+Có TK 344 - Nhận ký quỹ, ký cược (Chi tiết từng đối tượng).
+
+2. Khi hoàn trả tiền ký quỹ, ký cược cho các thành viên lưu ký chứng khoán và các đơn vị, cá nhân bên ngoài, ghi:
+
+Nợ TK 344 - Nhận ký quỹ, ký cược
+
+Có các TK 111, 112.
+
+3. Trường hợp đơn vị ký quỹ, ký cược vi phạm hợp đồng kinh tế đã ký kết với Trung tâm Lưu ký chứng khoán, bị phạt theo thoả thuận trong hợp đồng kinh tế:
+
+3.1. Khi có quyết định phạt do vi phạm hợp đồng kinh tế đã ký kết và khấu trừ vào tiền nhận ký quỹ, ký cược, ghi:
+
+Nợ TK 344 - Nhận ký quỹ, ký cược
+
+Có TK 711 - Thu nhập khác.
+
+3.2. Khi thực trả khoản ký quỹ, ký cược còn lại, ghi:
+
+Nợ TK 344 - Nhận ký quỹ, ký cược (Đã khấu trừ tiền phạt)
+
+Có các TK 111, 112.
+
+Điều 14. Kế toán Quỹ phòng ngừa rủi ro nghiệp vụ
+
+Bổ sung Tài khoản 359 - Quỹ phòng ngừa rủi ro nghiệp vụ.
+
+Tài khoản này dùng để phản ánh số hiện có và tình hình trích lập, sử dụng Quỹ phòng ngừa rủi ro nghiệp vụ của Trung tâm Lưu ký chứng khoán.
+
+Nguyên tắc hạch toán tài khoản này:
+
+1. Quỹ phòng ngừa rủi ro nghiệp vụ được trích lập hàng năm tính vào chi phí quản lý dùng để bù đắp các tổn thất cho khách hàng do sự cố kỹ thuật, do sơ suất của nhân viên trong quá trình hoạt động. Tổng Giám đốc Trung tâm Lưu ký chứng khoán quyết định mức trích quỹ cụ thể hàng năm trên cơ sở quy định của các văn bản pháp luật liên quan. Trong năm tài chính nếu không sử dụng hết số dự phòng đã lập thì được chuyển sang năm sau để sử dụng tiếp.
+
+2. Về nguyên tắc, cuối mỗi năm tài chính khi khoá sổ kế toán, Trung tâm Lưu ký chứng khoán phải tiến hành trích lập Quỹ phòng ngừa rủi ro nghiệp vụ theo quy định của pháp luật hiện hành.
+
+Kết cấu và nội dung phản ánh của Tài khoản 359 - Quỹ phòng ngừa rủi ro nghiệp vụ:
+
+Bên Nợ:
+
+Quỹ phòng ngừa rủi ro nghiệp vụ giảm do chi bồi thường thiệt hại cho các khách hàng trong trường hợp Trung tâm Lưu ký chứng khoán gây thiệt hại cho các khách hàng giao dịch.
+
+Bên Có:
+
+Quỹ phòng ngừa rủi ro nghiệp vụ tăng do trích lập hàng năm.
+
+Số dư bên Có:
+
+Quỹ phòng ngừa rủi ro nghiệp vụ hiện có cuối kỳ.
+
+Phương pháp hạch toán kế toán một số nghiệp vụ kinh tế chủ yếu:
+
+1. Khi tạm trích lập Quỹ phòng ngừa rủi ro nghiệp vụ, căn cứ khối lượng giao dịch và tỷ lệ (%) được trích dự phòng theo quy định của cơ chế tài chính, Trung tâm Lưu ký chứng khoán tiến hành trích lập Quỹ phòng ngừa rủi ro nghiệp vụ, ghi:
+
+Nợ TK 642 - Chi phí quản lý doanh nghiệp
+
+Có TK 359 - Quỹ phòng ngừa rủi ro nghiệp vụ.
+
+2. Cuối kỳ kế toán năm, căn cứ khối lượng giao dịch của kỳ kế toán, tỷ lệ (%) được trích lập Quỹ phòng ngừa rủi ro nghiệp vụ theo quy định và số dư của Quỹ phòng ngừa rủi ro nghiệp vụ, kế toán tính, xác định số phải trích lập Quỹ phòng ngừa rủi ro nghiệp vụ, nếu số phải lập lớn hơn số đã tạm lập, chênh lệch số phải lập lớn hơn, ghi:
+
+Nợ TK 642 - Chi phí quản lý doanh nghiệp
+
+Có TK 359 - Quỹ phòng ngừa rủi ro nghiệp vụ.
+
+3. Khi phát sinh các khoản thiệt hại phải bồi thường cho các thành viên lưu ký căn cứ quyết định bồi thường của cấp có thẩm quyền, căn cứ hồ sơ bồi thường và chứng từ chi, ghi:
+
+Nợ TK 359 - Quỹ phòng ngừa rủi ro nghiệp vụ
+
+Có các TK 111, 112.
+
+Điều 15. Kế toán Chi phí hoạt động
+
+Sử dụng Tài khoản 631 - Chi phí hoạt động.
+
+Tài khoản này dùng để phản ánh chi phí thực tế phát sinh của hoạt động nghiệp vụ và hoạt động dịch vụ trong một kỳ hoạt động của Trung tâm Lưu ký chứng khoán.
+
+Nguyên tắc hạch toán tài khoản này:
+
+1. Chỉ phản ánh vào tài khoản này các chi phí thực tế đã phát sinh có liên quan trực tiếp đến hoạt động nghiệp vụ và hoạt động cung cấp dịch vụ của Trung tâm Lưu ký chứng khoán theo chế độ quy định trong một kỳ kế toán.
+
+2. Chi phí hoạt động nghiệp vụ được xác định gồm các loại sau:
+
+- Chi phí hoạt động nghiệp vụ, gồm:
+
++ Chi phí phục vụ hoạt động đăng ký, lưu ký, thanh toán bù trừ; chi vận hành, bảo dưỡng, bảo trì hệ thống đăng ký, lưu ký, thanh toán bù trừ chứng khoán; chi cho hệ thống quản lý cổ phiếu công ty đại chúng chưa niêm yết;
+
++ Chi phí thanh toán cổ tức, lãi trái phiếu cho các tổ chức phát hành chứng khoán; chi phí quản lý hỗ trợ thanh toán;
+
++ Chi phí phục vụ việc cung cấp dịch vụ đại lý chuyển nhượng và thực hiện quyền sở hữu.
+
+- Chi phí khác cho hoạt động nghiệp vụ là các khoản chi phí trực tiếp cho hoạt động Trung tâm lưu ký chứng khoán không thuộc các khoản chi trên.
+
+3. Các chi phí trực tiếp khác phát sinh phục vụ đồng thời cho nhiều hoạt động nghiệp vụ và cung cấp dịch vụ như: Chi phí nhân công, khấu hao TSCĐ,… được phản ánh riêng trên Tài khoản 637 - Chi phí trực tiếp chung, cuối kỳ kết chuyển sang tài khoản 631 theo tiêu thức hợp lý để tính chi phí trực tiếp đầy đủ cho từng hoạt động.
+
+4. Không được hạch toán vào Tài khoản 631 - “Chi phí hoạt động” các khoản chi sau:
+
+- Chi phí tài chính như: Chi phí hoạt động đầu tư, chi lãi tiền vay, lỗ tỷ giá hối đoái,…
+
+- Chi phí khác như: Chi thanh lý, nhượng bán TSCĐ, các khoản bị phạt, bị bồi thường,…
+
+- Chi phí quản lý doanh nghiệp của Trung tâm Lưu ký chứng khoán như: chi lương và các khoản trích theo lương của cán bộ quản lý Trung tâm Lưu ký chứng khoán như Ban giám đốc, phòng Kế toán - Tài chính; chi hội nghị, công tác phí, tiếp khách, chi kiểm toán, chi phí dịch vụ mua ngoài, chi nộp phí giám sát cho Uỷ ban chứng khoán Nhà nước, chi trích lập Quỹ bồi thường thiệt hại cho các thành viên giao dịch chứng khoán,…
+
+- Chi các khoản tổn thất tài sản sau khi đã được bù đắp bằng các nguồn theo chế độ;
+
+- Các khoản thiệt hại đã được Chính phủ hỗ trợ, cơ quan bảo hiểm hoặc bên gây thiệt hại bồi thường;
+
+- Các khoản phạt tiền mà tập thể, cá nhân phải nộp;
+
+- Các khoản chi về đầu tư xây dựng cơ bản, chi trợ cấp khó khăn cho người lao động, chi ủng hộ tổ chức cá nhân khác;
+
+- Các khoản chi thuộc nguồn khác đài thọ, như: Chi khen thưởng, phúc lợi, chi trợ cấp khó khăn thường xuyên, đột xuất,…
+
+5. Kế toán phải mở sổ chi tiết theo dõi cho từng nội dung chi phí hoạt động nghiệp vụ.
+
+6. Cuối kỳ kết chuyển toàn bộ chi phí nghiệp vụ phát sinh trong kỳ vào Tài khoản 911 - Xác định kết quả kinh doanh.
+
+Tài khoản 631 không có số dư cuối kỳ.
+
+Kết cấu và nội dung phản ánh của Tài khoản 631 - Chi phí hoạt động
+
+Bên Nợ:
+
+- Chi phí hoạt động nghiệp vụ phát sinh trong kỳ;
+
+- Chi phí cung cấp dịch vụ phát sinh trong kỳ;
+
+- Chi phí hoạt động khác phát sinh trong kỳ.
+
+Bên Có:
+
+Kết chuyển số chi phí hoạt động nghiệp vụ thực tế phát sinh trong kỳ vào Tài khoản 911 - Xác định kết quả kinh doanh.
+
+Tài khoản 631 không có số dư cuối kỳ.
+
+Tài khoản 631 - Chi phí hoạt động, có 3 tài khoản cấp 2:
+
+- Tài khoản 6311 - Chi phí hoạt động nghiệp vụ: Phản ánh số chi phí phát sinh trong kỳ của hoạt động nghiệp vụ. Tài khoản 6311 - Chi phí hoạt động nghiệp vụ có 8 tài khoản cấp 3 như sau:
+
++ Tài khoản 63111 - Chi phí hoạt động lưu ký chứng khoán;
+
++ Tài khoản 63112 - Chi phí hoạt động chuyển khoản chứng khoán;
+
++ Tài khoản 63113 - Chi phí hoạt động đại lý thanh toán hộ cổ tức, gốc và lãi trái phiếu;
+
++ Tài khoản 63114 - Chi phí hoạt động quản lý thành viên lưu ký;
+
++ Tài khoản 63115 - Chi phí hoạt động sửa lỗi sau giao dịch;
+
++ Tài khoàn 63116 - Chi phí hoạt động chuyển quyền;
+
++ Tài khoản 63117 - Chi phí hoạt động thực hiện quyền;
+
++ Tài khoản 63118 - Chi phí hoạt động đăng ký chứng khoán.
+
+- Tài khoản 6313 - Chi phí hoạt động dịch vụ: Phản ánh số chi phí hoạt động cung cấp dịch vụ phát sinh trong kỳ. Tài khoản 6313 - Chi phí hoạt động dịch vụ có 3 tài khoản cấp 3 như sau:
+
++ Tài khoản 63131 - Chi phí hoạt động cung cấp dịch vụ cung cấp thông tin;
+
++ Tài khoản 63132 - Chi phí hoạt động cung cấp dịch vụ đại lý chuyển nhượng và thực hiện quyền sở hữu;
+
++ Tài khoản 63138 - Chi phí hoạt động cung cấp dịch vụ khác.
+
+- Tài khoản 6318 - Chi phí hoạt động khác: Phản ánh số chi phí hoạt động khác của Trung tâm Lưu ký chứng khoán phát sinh trong kỳ ngoài các hoạt động đã phản ánh ở Tài khoản 6311 và Tài khoản 6313.
+
+Phương pháp hạch toán kế toán một số nghiệp vụ kinh tế chủ yếu:
+
+1. Khi phát sinh chi phí hoạt động nghiệp vụ, ghi:
+
+Nợ TK 631 - Chi phí hoạt động
+
+Nợ TK 133 - Thuế GTGT được khấu trừ (nếu có)
+
+Có các TK 111, 112, 152, 153, 331,…
+
+2. Khi phát sinh các chi phí của hoạt động cung cấp dịch vụ và các hoạt động khác của Trung tâm lưu ký chứng khoán, ghi:
+
+Nợ TK 631 - Chi phí hoạt động
+
+Nợ TK 133 - Thuế GTGT được khấu trừ (nếu có)
+
+Có các TK 111, 112, 152, 153, 331,…
+
+3. Cuối kỳ, nhận kết chuyển chi phí trực tiếp chung phân bổ cho các hoạt động, ghi:
+
+Nợ TK 631 - Chi phí hoạt động (6311, 6313, 6318)
+
+Có TK 637 - Chi phí trực tiếp chung.
+
+Cuối kỳ, xác định tổng số chi phí hoạt động phát sinh và kết chuyển vào Tài khoản 911 để xác định kết quả hoạt động trong kỳ, ghi:
+
+Nợ TK 911 - Xác định kết quả kinh doanh
+
+Có TK 631 - Chi phí hoạt động nghiệp vụ.
+
+Điều 16. Kế toán Chi phí trực tiếp chung
+
+Bổ sung Tài khoản 637 - Chi phí trực tiếp chung.
+
+Tài khoản này dùng để phản ánh các chi phí chung phục vụ trực tiếp cho hoạt động kinh doanh của Trung tâm Lưu ký chứng khoán, gồm: chi phí nhân viên trực tiếp, chi phí vật tư, đồ dùng, chi phí khấu hao TSCĐ, chi phí bảo hiểm trách nhiệm nghề nghiệp, chi phí bằng tiền khác.
+
+Cuối kỳ kế toán Trung tâm Lưu ký chứng khoán phải tiến hành tính toán, phân bổ kết chuyển chi phí trực tiếp chung vào chi phí các hoạt động cụ thể ghi vào bên Nợ TK 631 - “Chi phí hoạt động” theo tiêu thức phù hợp và nhất quán giữa các kỳ kế toán.
+
+Kết cấu và nội dung phản ánh của Tài khoản 637 - Chi phí trực tiếp chung:
+
+Bên Nợ:
+
+Các chi phí trực tiếp chung phát sinh trong kỳ.
+
+Bên Có:
+
+- Các khoản ghi giảm chi phí trực tiếp chung;
+
+- Kết chuyển chi phí trực tiếp chung vào bên Nợ TK 631.
+
+Tài khoản 637 không có số dư cuối kỳ.
+
+Tài khoản 637 - Chi phí trực tiếp chung, có 6 tài khoản cấp 2:
+
+- Tài khoản 6371 - Chi phí nhân viên trực tiếp: Phản ánh các chi phí liên quan đến nhân viên trực tiếp hoạt động kinh doanh của Trung tâm Lưu ký chứng khoán như: Chi phí lương, BHXH, …
+
+- Tài khoản 6372 - Chi phí vật tư, đồ dùng: Phản ánh chi phí vật liệu văn phòng dùng trực tiếp chung cho các hoạt động kinh doanh trong kỳ của Trung tâm Lưu ký chứng khoán mà không phải là chi phí vật liệu, văn phòng dùng cho quản lý của Trung tâm Lưu ký chứng khoán.
+
+- Tài khoản 6374 - Chi phí tài sản cố định: Phản ánh chi phí TSCĐ dùng trực tiếp chung cho các hoạt động kinh doanh trong kỳ bao gồm chi phí khấu hao TSCĐ; chi phí bảo dưỡng, sửa chữa TSCĐ và chi phí thuê thiết bị, tài sản. Tài khoản 6374 có 3 tài khoản cấp 3 như sau:
+
++ Tài khoản 63741 - Chi phí khấu hao TSCĐ;
+
++ Tài khoản 63742 - Chi phí bảo dưỡng, sửa chữa TSCĐ;
+
++ Tài khoản 63743 - Chi phí thuê thiết bị, tài sản.
+
+- Tài khoản 6376 - Chi phí đào tạo chuyên gia: Phản ánh các khoản chi phí đào tạo chuyên gia mà Trung tâm Lưu ký chứng khoán phát sinh trong kỳ liên quan đến nhiều hoạt động của Trung tâm Lưu ký chứng khoán.
+
+- Tài khoản 6377 - Chi phí giám sát: Phản ánh các khoản chi phí quản lý, giám sát các thành viên lưu ký chứng khoán phát sinh trong kỳ.
+
+- Tài khoản 6378 - Chi phí bằng tiền khác: Phản ánh các chi phí bằng tiền khác liên quan trực tiếp đến nhiều hoạt động kinh doanh trong kỳ.
+
+Phương pháp hạch toán kế toán một số nghiệp vụ kinh tế chủ yếu:
+
+1. Chi phí nhân viên tham gia trực tiếp hoạt động kinh doanh phải trả trong kỳ:
+
+1.1. Tiền lương, tiền công phải trả, các khoản phải trả theo lương (phụ cấp trách nhiệm, phụ cấp nghề nghiệp, thưởng trong lương, …), ghi:
+
+Nợ TK 637 - Chi phí trực tiếp chung (6371)
+
+Có TK 334 - Phải trả người lao động (3341, 3342).
+
+1.2. Trích BHXH, BHYT, KPCĐ, bảo hiểm thất nghiệp theo quy định hiện hành, ghi:
+
+Nợ TK 334 - Phải trả người lao động (3341, 3342) (Phần khấu trừ vào lương)
+
+Nợ TK 637 - Chi phí trực tiếp chung (6371) (Phần tính vào chi phí)
+
+Có TK 338 - Phải trả, phải nộp khác (3382, 3383, 3384, 3389).
+
+2. Chi phí vật liệu văn phòng dùng cho hoạt động trực tiếp các hoạt động kinh doanh của Trung tâm lưu ký chứng khoán, ghi:
+
+Nợ TK 637- Chi phí trực tiếp chung (6372)
+
+Nợ TK 133 - Thuế GTGT được khấu trừ (nếu có)
+
+Có các TK 111, 112, 152, 331.
+
+3. Chi phí công cụ, đồ dùng dùng cho hoạt động trực tiếp các hoạt động kinh doanh của Trung tâm lưu ký chứng khoán, ghi:
+
+Nợ TK 637- Chi phí trực tiếp chung (6372)
+
+Nợ TK 133 - Thuế GTGT được khấu trừ (nếu có)
+
+Có các TK 111, 112, 153, 331.
+
+4. Khi phát sinh các chi phí khấu hao TSCĐ, chi phí thuê TSCĐ, bảo dưỡng, sửa chữa,… tài sản cố định phục vụ trực tiếp cho hoạt động kinh doanh của Trung tâm Lưu ký chứng khoán, ghi:
+
+4.1. Chi phí khấu hao TSCĐ, ghi:
+
+Nợ TK 637- Chi phí trực tiếp chung (6374)
+
+Có TK 214 - Hao mòn TSCĐ (2141, 2143).
+
+4.2. Chi phí khấu hao TSCĐ thuê tài chính, ghi:
+
+Nợ TK 637- Chi phí trực tiếp chung (6374)
+
+Có TK 214 - Hao mòn TSCĐ (2142).
+
+4.3. Chi phí bảo dưỡng, sửa chữa TSCĐ, ghi:
+
+Nợ TK 637 - Chi phí trực tiếp chung (6374) (Nếu giá trị nhỏ)
+
+Nợ TK 242 - Chi phí trả trước dài hạn (Nếu giá trị lớn, phải phân bổ dần)
+
+Có TK 241 - Xây dựng cơ bản dở dang.
+
+4.4. Chi phí thuê thiết bị tài sản, ghi:
+
+Nợ TK 637 - Chi phí trực tiếp chung (6374)
+
+Nợ TK 133 - Thuế GTGT được khấu trừ (nếu có)
+
+Có các TK 111, 112, 331,…
+
+5. Chi phí đào tạo chuyên gia, chi quản lý, giám sát các thành viên lưu ký, ghi:
+
+Nợ TK 637 - Chi phí trực tiếp chung (6376, 6377)
+
+Có các TK liên quan.
+
+6. Chi phí bằng tiền khác cho hoạt động trực tiếp các hoạt động kinh doanh của Trung tâm Lưu ký chứng khoán, ghi:
+
+Nợ TK 637- Chi phí trực tiếp chung (6378)
+
+Có các TK 111, 112.
+
+7. Khi chi tiền mua bảo hiểm trách nhiệm nghề nghiệp hàng năm, ghi:
+
+Nợ TK 637- Chi phí trực tiếp chung (6378)
+
+Có các TK 111, 112.
+
+8. Trường hợp mua bảo hiểm trách nhiệm nhiều kỳ kế toán:
+
+8.1. Khi mua, ghi:
+
+Nợ TK 242 - Chi phí trả trước dài hạn, hoặc
+
+Nợ TK 142 - Chi phí trả trước ngắn hạn
+
+Có các TK 111, 112.
+
+8.2. Định kỳ, phân bổ vào chi phí, ghi:
+
+Nợ TK 637 - Chi phí trực tiếp chung
+
+Có TK 242 - Chi phí trả trước dài hạn, hoặc
+
+Có TK 142 - Chi phí trả trước ngắn hạn.
+
+9. Cuối kỳ kế toán kết chuyển chi phí vào bên Nợ TK 631 - Chi phí hoạt động kinh doanh theo tiêu thức hợp lý, ghi:
+
+Nợ TK 631 - Chi phí hoạt động (6311, 6313, 6318)
+
+Có TK 637 - Chi phí trực tiếp chung.
+
+Điều 17. Hệ thống báo cáo tài chính năm và báo cáo tài chính giữa niên độ.
+
+1. Báo cáo tài chính năm
+
+Hệ thống báo cáo tài chính năm áp dụng cho Trung tâm Lưu ký chứng khoán bao gồm 5 biểu báo cáo sau:
+
+- Bảng Cân đối kế toán
+
+Mẫu số B 01 - TTLK
+
+- Báo cáo kết quả hoạt động kinh doanh
+
+Mẫu số B 02 - TTLK
+
+- Báo cáo lưu chuyển tiền tệ
+
+Mẫu số B 03 - TTLK
+
+- Báo cáo tình hình biến động vốn chủ sở hữu
+
+Mẫu số B 05 - TTLK
+
+- Bản thuyết minh báo cáo tài chính
+
+Mẫu số B 09 - TTLK
+
+2. Báo cáo tài chính giữa niên độ
+
+Trung tâm Lưu ký chứng khoán phải lập 4 biểu báo cáo tài chính giữa niên độ dạng đầy đủ như sau:
+
+- Bảng Cân đối kế toán giữa niên độ (dạng đầy đủ)
+
+Mẫu số B 01a - TTLK
+
+- Báo cáo kết quả hoạt động kinh doanh giữa niên độ (dạng đầy đủ)
+
+Mẫu số B 02a - TTLK
+
+- Báo cáo lưu chuyển tiền tệ giữa niên độ (dạng đầy đủ)
+
+Mẫu số B 03a - TTLK
+
+- Bản thuyết minh báo cáo tài chính chọn lọc
+
+Mẫu số B 09a - TTLK
+
+Điều 18. Mẫu báo cáo tài chính áp dụng cho Trung tâm Lưu ký chứng khoán.
+
+1. Mẫu báo cáo tài chính năm (Xem Phụ lục số 02)
+
+2. Mẫu báo cáo tài chính giữa niên độ (dạng đầy đủ):
+
+Bốn mẫu báo cáo tài chính giữa niên độ (dạng đầy đủ) áp dụng cho Trung tâm Lưu ký chứng khoán giống như mẫu báo cáo tài chính giữa niên độ (dạng đầy đủ) ban hành theo Quyết định số 15/2006/QĐ-BTC ngày 20/3/2006 và Thông tư 244/2009/TT-BTC ngày 31/12/2009. Các chỉ tiêu trong từng báo cáo tài chính giữa niên độ giống như báo cáo tài chính năm ban hành tại Thông tư này.
+
+Điều 19. Nội dung và phương pháp lập Báo cáo tài chính
+
+1.Nội dung và phương pháp lập Bảng Cân đối kế toán (Mẫu số B 01 - TTLK ) (Xem phụ lục 02).
+
+- Số liệu ghi vào cột 5 “Số đầu năm” của báo cáo này năm nay được căn cứ vào số liệu ghi ở cột 4 “Số cuối năm” của từng chỉ tiêu của báo cáo này năm trước;
+
+- Số liệu ghi vào cột 4 “Số cuối năm” của báo cáo này tại ngày kết thúc kỳ kế toán năm, được hướng dẫn như sau:
+
+Trong Thông tư này chỉ hướng dẫn nội dung và phương pháp lập các chỉ tiêu (khoản mục) có sửa đổi, bổ sung để ghi số liệu vào cột 4 “Số cuối năm” của báo cáo này năm nay. Các chỉ tiêu (khoản mục) không có sửa đổi, bổ sung được lập theo chế độ kế toán doanh nghiệp hiện hành (Chế độ kế toán doanh nghiệp ban hành theo Quyết định số 15/2006/QĐ-BTC ngày 20/3/2006 của Bộ Tài chính và các Thông tư hướng dẫn sửa đổi bổ sung Chế độ kế toán doanh nghiệp).
+
+Phải thu tổ chức phát hành chứng khoán (Mã số 136)
+
+Chỉ tiêu này phản ánh số phải thu tổ chức phát hành chứng khoán tại thời điểm báo cáo. Số liệu để ghi vào chỉ tiêu này được căn cứ vào Số dư nợ Tài khoản 132 - “Phải thu tổ chức phát hành chứng khoán” trên sổ Cái Tài khoản 132.
+
+Phải thu thành viên lưu ký chứng khoán (Mã số 137)
+
+Chỉ tiêu này phản ánh số phải thu ngắn hạn thành viên lưu ký chứng khoán tại thời điểm báo cáo. Số liệu để ghi vào chỉ tiêu này được căn cứ vào số dư Nợ Tài khoản 134 - “Phải thu thành viên lưu ký chứng khoán” trên sổ Cái Tài khoản 134.
+
+Phải trả hộ cổ tức, gốc và lãi trái phiếu (Mã số 321)
+
+Chỉ tiêu này phản ánh tổng giá trị cổ tức, gốc và lãi trái phiếu phải trả cho người sở hữu cổ phiếu, trái phiếu mà tổ chức phát hành chứng khoán uỷ quyền cho Trung tâm Lưu ký chứng khoán trả thông qua các thành viên lưu ký chứng khoán tại thời điểm báo cáo. Số liệu để ghi vào chỉ tiêu “Phải trả hộ cổ tức, gốc và lãi trái phiếu” căn cứ vào số dư Có Tài khoản 326 - “Phải trả hộ cổ tức, gốc và lãi trái phiếu” trên sổ Cái Tài khoản 326.
+
+Phải trả tổ chức phát hành chứng khoán (Mã số 322)
+
+Chỉ tiêu này phản ánh các khoản Trung tâm Lưu ký chứng khoán phải trả cho tổ chức phát hành chứng khoán theo uỷ quyền của các thành viên lưu ký chứng khoán tại thời điểm báo cáo. Số liệu để ghi vào chỉ tiêu “Phải trả tổ chức phát hành chứng khoán” căn cứ vào số dư Có Tài khoản 322 - “Phải trả tổ chức phát hành chứng khoán” trên sổ Cái Tài khoản 322.
+
+Quỹ hỗ trợ thanh toán (Mã số 351)
+
+Chỉ tiêu này phản ánh số Quỹ hỗ trợ thanh toán từ nguồn đóng góp của các thành viên lưu ký chứng khoán hiện có tại thời điểm báo cáo tài chính. Số liệu để ghi vào chỉ tiêu “Quỹ hỗ trợ thanh toán” căn cứ vào số dư Có Tài khoản 325 - “Quỹ hỗ trợ thanh toán” trên sổ Cái Tài khoản 325.
+
+Quỹ phòng ngừa rủi ro nghiệp vụ (Mã số 359)
+
+Chỉ tiêu này phản ánh khoản Quỹ phòng ngừa rủi ro nghiệp vụ hiện có tại thời điểm báo cáo để bồi thường thiệt hại cho khách hàng và thành viên lưu ký chứng khoán. Số liệu để ghi vào chỉ tiêu “Quỹ phòng ngừa rủi ro nghiệp vụ” căn cứ vào số dư Có Tài khoản 359 - “Quỹ phòng ngừa rủi ro nghiệp vụ” trên sổ Cái Tài khoản 359.
+
+2. Nội dung và phương pháp lập Báo cáo tình hình biến động vốn chủ sở hữu (Mẫu số B 05-TTLK)
+
+Báo cáo này dùng để phản ánh tình hình biến động vốn chủ sở hữu của Trung tâm Lưu ký chứng khoán.
+
+Cột A “Chỉ tiêu” phản ánh các chỉ tiêu thuộc vốn chủ sở hữu.
+
+Cột 1, cột 2 “Số dư đầu năm” phản ánh số dư đầu năm (bao gồm năm trước, năm nay) theo từng chỉ tiêu thuộc vốn chủ sở hữu.
+
+Số liệu để ghi vào cột 1 “Năm trước” theo từng chỉ tiêu được căn cứ vào số liệu ghi ở cột 7 của báo cáo này năm trước.
+
+Số liệu để ghi vào cột 2 theo từng chỉ tiêu được căn cứ vào số liệu ghi ở cột 8 của báo cáo này năm trước, hoặc số liệu ghi vào cột 2 được căn cứ vào sổ kế toán các TK 411, 412, 413, 414, 415, 418 và 421 năm nay.
+
+Cột 3, cột 4, cột 5, cột 6 “Số tăng/giảm” phản ánh tình hình tăng, giảm vốn chủ sở hữu theo từng chỉ tiêu trong năm.
+
+Số liệu để ghi vào cột 3, cột 4 “Tăng”, “Giảm” của năm trước theo từng chỉ tiêu căn cứ vào số liệu của cột 5 “Tăng”; cột 6 “Giảm” của báo cáo này năm trước.
+
+Số liệu ghi vào cột 5, cột 6 “Tăng”, “Giảm” của năm nay theo từng chỉ tiêu được căn cứ vào sổ kế toán các TK 411, 412, 413, 414, 415, 418 và 421 năm báo cáo.
+
+Cột 7, cột 8 “Số dư cuối năm” phản ánh số dư cuối năm (bao gồm năm trước, năm nay) vốn chủ sở hữu theo từng chỉ tiêu. Số liệu ghi vào cột 7 (số dư cuối năm trước) của báo cáo này năm nay được căn cứ vào số liệu ghi ở cột 8 (số dư cuối năm nay) của báo cáo này năm trước.
+
+Số liệu ghi vào cột 8 “Số dư cuối năm nay” của báo cáo này năm nay được căn cứ vào số dư cuối năm của các TK 411, 412, 413, 414, 415, 418 và 421 năm báo cáo.
+
+3. Nội dung và phương pháp lập Báo cáo kết quả hoạt động kinh doanh, Báo cáo lưu chuyển tiền tệ, Bản thuyết minh báo cáo tài chính năm, nội dung và phương pháp lập các báo cáo tài chính giữa niên độ được thực hiện theo Chế độ kế toán doanh nghiệp hiện hành (Chế độ kế toán doanh nghiệp ban hành theo Quyết định số 15/2006/QĐ-BTC ngày 20/3/2006 của Bộ Tài chính và các Thông tư hướng dẫn sửa đổi bổ sung Chế độ kế toán doanh nghiệp).
+
+Điều 20. Chế độ chứng từ kế toán và sổ kế toán
+
+Chế độ chứng từ kế toán và Chế độ sổ kế toán áp dụng cho Trung tâm Lưu ký chứng khoán Việt Nam thực hiện theo Luật kế toán; Chế độ chứng từ kế toán, Chế độ sổ kế toán quy định trong Chế độ kế toán doanh nghiệp ban hành kèm theo Quyết định số 15/2006/QĐ-BTC ngày 20/03/2006 của Bộ trưởng Bộ Tài chính và Thông tư 244/2009/TT-BTC ngày 31/12/2009 của Bộ Tài chính.
+
+Hình thức sổ kế toán áp dụng đối với Trung tâm Lưu ký chứng khoán Việt Nam: Áp dụng hình thức kế toán trên máy vi tính.
+
+Điều 21. Hiệu lực thi hành và tổ chức thực hiện
+
+1. Thông tư này có hiệu lực kể từ ngày 01/01/2011.
+
+2. Vụ trưởng Vụ Chế độ kế toán và kiểm toán, Giám đốc Trung tâm Lưu ký chứng khoán Việt Nam và Thủ trưởng các đơn vị liên quan chịu trách nhiệm thực hiện Thông tư này.
+
+3. Trong quá trình thực hiện Thông tư, nếu có khó khăn vướng mắc, đề nghị đơn vị phản ánh về Bộ Tài chính để nghiên cứu, giải quyết./.
+
+KT. BỘ TRƯỞNG
+
+THỨ TRƯỞNG
+
+(Đã ký)
+
+Trần Xuân Hà
