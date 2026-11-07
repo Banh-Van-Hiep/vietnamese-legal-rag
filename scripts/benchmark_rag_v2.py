@@ -412,6 +412,16 @@ Tổng số ca thất bại / cần tinh chỉnh: **{len(failed_cases)}**
         md_content += f"- **Lý do chi tiết:** {'; '.join(fc['reasons'])}\n"
         md_content += f"- **Trích xuất câu trả lời:** _{fc['answer']}_\n\n"
 
+    # Mục 5: Phân tích các ca từ chối
+    refused = [r for r in raw_results if r.get("status") == "insufficient_context"]
+    if refused:
+        md_content += "\n---\n\n## 5. Phân Tích Các Ca Hệ Thống Từ Chối Trả Lời (Insufficient Context)\n\n"
+        md_content += f"Có **{len(refused)} câu hỏi** hệ thống trả lời `insufficient_context` do context không chứa điều luật trực tiếp.\n\n"
+        for idx, r in enumerate(refused, 1):
+            md_content += f"#### {idx}. `{r['query_id']}`\n"
+            md_content += f"- **Câu hỏi:** *{r['question']}*\n"
+            md_content += f"- **Phản hồi của hệ thống:** _{r.get('answer', '')}_\n\n"
+
     with open(report_md_path, "w", encoding="utf-8") as f:
         f.write(md_content)
 
