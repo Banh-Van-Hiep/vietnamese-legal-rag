@@ -447,7 +447,7 @@ Tổng số ca thất bại / cần tinh chỉnh: **{len(failed_cases)}**
         md_content += f"- **Trích xuất câu trả lời:** _{fc['answer']}_\n\n"
 
     # Mục 5: Phân tích các ca từ chối
-    refused = [r for r in raw_results if r.get("status") == "insufficient_context"]
+    refused = [r for r in final_report["raw_results"] if r.get("status") == "insufficient_context"]
     if refused:
         md_content += "\n---\n\n## 5. Phân Tích Các Ca Hệ Thống Từ Chối Trả Lời (Insufficient Context)\n\n"
         md_content += f"Có **{len(refused)} câu hỏi** hệ thống trả lời `insufficient_context` do context không chứa điều luật trực tiếp.\n\n"
