@@ -11,6 +11,7 @@
 from __future__ import annotations
 
 import argparse
+import re
 import hashlib
 import json
 import logging
@@ -57,6 +58,37 @@ def compute_file_sha256(path: Path) -> str:
         content = f.read()
     normalized = content.replace(b"\r\n", b"\n")
     return hashlib.sha256(normalized).hexdigest()
+
+
+_ABSENCE_CLAIM = re.compile(
+    r"^(LEGAL CONTEXT|Nguồn|Dữ liệu|Các tài liệu|Văn bản|Nghị định|Thông tư|Luật)[^.]{0,80}không (có |được )?(quy định|chứa|đề cập|liệt kê)")
+
+
+def count_absence_claims(raw_results: List[Dict[str, Any]]) -> int:
+    """Đếm claim khẳng định nguồn 'không quy định': đối chiếu từ vựng không kiểm chứng được sự vắng mặt,
+    nhưng claim vẫn bị tính vào mẫu số Coverage (rà tay 08/11: 2/59 claim bị gán SUPPORTED nhầm kiểu này)."""
+    return sum(
+        1
+        for r in raw_results
+        for c in ((r.get("verification_result") or {}).get("claim_results") or [])
+        if _ABSENCE_CLAIM.search(c.get("text", ""))
+    )
+
+
+def diagnose_refusal(record: Dict[str, Any]) -> str:
+    """Ca bị từ chối: đối chiếu chunk đúng với context để tách lỗi retrieval khỏi lỗi prompt.
+
+    Cần lượt chạy có lưu `context_chunk_ids` và `gold_chunk_ids`; lượt cũ không có thì không đoán nguyên nhân.
+    """
+    gold = set(record.get("gold_chunk_ids") or [])
+    if not gold or "context_chunk_ids" not in record:
+        return "chưa xác định (lượt chạy không lưu chunk truy xuất)"
+    hit = len(gold & set(record["context_chunk_ids"]))
+    if hit == 0:
+        return f"retrieval: 0/{len(gold)} chunk đúng nằm trong context"
+    if hit < len(gold):
+        return f"retrieval một phần: {hit}/{len(gold)} chunk đúng nằm trong context; kiểm tra chunk còn thiếu có phải chunk then chốt không"
+    return f"prompt hoặc LLM: đủ {hit}/{len(gold)} chunk đúng nằm trong context nhưng vẫn từ chối"
 
 
 def classify_failure(
@@ -343,6 +375,7 @@ def run_pipeline_benchmark(
     c_met = metrics["core_metrics"]
     t_check = metrics["targets_check"]
     d_sum = metrics["dataset_summary"]
+    absence_claims = count_absence_claims(final_report["raw_results"])
 
     md_content = f"""# Báo Cáo Đánh Giá Benchmark RAG v2 — Tuần 9 (VLRA-T2-26, VLRA-68)
 **Thực hiện bởi:** Người 2 (Verification Engine & Benchmark Suite)  
@@ -360,7 +393,7 @@ def run_pipeline_benchmark(
 | **Tập dữ liệu Golden** | `{cfg_report['golden_dataset']}` | Hash SHA-256: `{golden_sha256[:12]}...` |
 | **Mô hình LLM Benchmark** | `{cfg_report['llm_model']}` | Chạy thật qua Google API v1beta |
 | **Trạng thái Fallback Model** | `TẮT (LLM_ALLOW_FALLBACK=false)` | Bảo đảm 100% câu hỏi do đúng model cấu hình xử lý |
-| **Ngân sách thời gian Pipeline** | `{cfg_report.get('pipeline_timeout', 45.0)}s` trần toàn luồng | Cưỡng chế trần NFR-07 (LLM <= 30s, Retrieval <= 10s, Rerank <= 4s) |
+| **Ngân sách thời gian Pipeline** | `{cfg_report.get('pipeline_timeout', 45.0)}s` trần toàn luồng | Trần chỉ kiểm tra giữa các bước trong `RAGPipeline.query`; runner gọi từng bước riêng nên không áp dụng khi benchmark. Giới hạn từng bước: LLM <= 30s, Retrieval <= 10s, Rerank <= 4s |
 | **Tham số Retrieval** | `RAG_TOP_K={cfg_report['top_k']}`, `weights={cfg_report['weights']}` | BM25 + Qdrant Dense |
 | **Cấu hình Reranker** | `enabled={cfg_report['rerank_enabled']}`, `timeout={cfg_report['rerank_timeout']}s` | {cfg_report.get('rerank_note', 'BGE-Reranker-v2-m3')} |
 | **Cơ chế Claims & Verifier** | `include_claims=True`, `verifier=verify_response` | Kích hoạt bộ kiểm định 2 tầng Người 2 |
@@ -381,6 +414,7 @@ def run_pipeline_benchmark(
 > - Mốc Hallucination 4.00% (1/25 câu answered) được đo trên **25 câu trả lời thực tế** (5 câu `insufficient_context` bị loại khỏi mẫu số theo đúng định nghĩa). Toàn bộ kết quả mang nhãn **`EXPLORATORY`** do tập Dev Set 70/110 câu của Team 1 chưa đóng băng.
 > - Con số 4.00% phản ánh khả năng phát hiện của bộ kiểm định đối chiếu từ vựng (Lexical Overlap) kết hợp nhận diện phân cực quyền hạn/cấm đoán. Đây là bộ lọc kỹ thuật rule-based nhanh, có thể bỏ sót các dạng mâu thuẫn ngữ nghĩa phức tạp (như đảo phủ định tinh vi mà không chứa từ khóa phân cực rõ ràng). Tỷ lệ này chưa phải tỷ lệ ảo giác ngữ nghĩa tuyệt đối của mô hình NLI sâu.
 > - Mọi trường hợp không có mẫu số (0 citation / 0 claim / 0 answered) được ghi rõ `"chưa đo"`, tuyệt đối không tính 100% giả định.
+> - Có **{absence_claims} claim** khẳng định nguồn "không quy định": đối chiếu từ vựng không kiểm chứng được sự vắng mặt, nhưng các claim này vẫn nằm trong mẫu số Coverage.
 
 ---
 
@@ -420,6 +454,7 @@ Tổng số ca thất bại / cần tinh chỉnh: **{len(failed_cases)}**
         for idx, r in enumerate(refused, 1):
             md_content += f"#### {idx}. `{r['query_id']}`\n"
             md_content += f"- **Câu hỏi:** *{r['question']}*\n"
+            md_content += f"- **Chẩn đoán từ chunk:** {diagnose_refusal(r)}\n"
             md_content += f"- **Phản hồi của hệ thống:** _{r.get('answer', '')}_\n\n"
 
     with open(report_md_path, "w", encoding="utf-8") as f:

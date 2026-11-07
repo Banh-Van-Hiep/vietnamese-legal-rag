@@ -25,6 +25,16 @@ class FakeTransport:
         return reply
 
 
+class CapturingTransport(FakeTransport):
+    def __init__(self, *replies):
+        super().__init__(*replies)
+        self.bodies = []
+
+    def post_json(self, url, headers, body, timeout):
+        self.bodies.append(body)
+        return super().post_json(url, headers, body, timeout)
+
+
 REFUSAL = '{"status": "insufficient_context", "answer": "Chưa đủ căn cứ.", "citations": []}'
 OK_REFUSAL = HttpResponse(200, {"candidates": [{"content": {"parts": [{"text": REFUSAL}]}, "finishReason": "STOP"}]})
 
@@ -32,6 +42,19 @@ OK_REFUSAL = HttpResponse(200, {"candidates": [{"content": {"parts": [{"text": R
 def complete(transport, timeout_seconds=30.0, **kw):
     provider = GeminiProvider("k", "gemini-x", timeout_seconds, transport=transport, **kw)
     return provider.complete(RenderedPrompt("sys", "user"), LLMParams())
+
+
+class ClaimsOutputCapTests(unittest.TestCase):
+    def cap_sent(self, include_claims):
+        transport = CapturingTransport(OK_REFUSAL)
+        LLMService(GeminiProvider("k", "gemini-x", 30.0, transport=transport), include_claims=include_claims).ask("Câu hỏi?", "context")
+        return transport.bodies[0]["generationConfig"]["maxOutputTokens"]
+
+    def test_claims_mode_gets_room_for_the_longer_json(self):
+        self.assertEqual(self.cap_sent(True), 4096)  # 1500 làm Gemini cắt cụt JSON (finish=MAX_TOKENS)
+
+    def test_normal_mode_keeps_the_configured_cap(self):
+        self.assertEqual(self.cap_sent(False), 1500)
 
 
 class GeminiBudgetTests(unittest.TestCase):

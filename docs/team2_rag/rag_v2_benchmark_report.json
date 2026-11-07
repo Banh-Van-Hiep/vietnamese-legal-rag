@@ -2212,36 +2212,41 @@
       "query_id": "gold_001",
       "question": "Luật Doanh nghiệp quy định về những vấn đề gì?",
       "target_law": "Điều 1 Luật Doanh nghiệp (Phạm vi điều chỉnh)",
-      "root_cause": "Câu hỏi rộng, BM25 bị nhiễu do từ khóa 'Luật Doanh nghiệp' xuất hiện ở nhiều chunk, làm trôi Điều 1 khỏi Top 5.",
-      "system_response": "Dữ liệu cung cấp không chứa thông tin tổng quát về phạm vi điều chỉnh hoặc các vấn đề mà Luật Doanh nghiệp quy định, mà chỉ cung cấp định nghĩa về vốn có quyền biểu quyết và quy định về chế độ làm việc của Hội đồng thành viên."
+      "root_cause": "Giả thuyết của Người 2 (lượt 06/11 không lưu chunk nên chưa kiểm chứng): Câu hỏi rộng, BM25 bị nhiễu do từ khóa 'Luật Doanh nghiệp' xuất hiện ở nhiều chunk, làm trôi Điều 1 khỏi Top 5.",
+      "system_response": "Dữ liệu cung cấp không chứa thông tin tổng quát về phạm vi điều chỉnh hoặc các vấn đề mà Luật Doanh nghiệp quy định, mà chỉ cung cấp định nghĩa về vốn có quyền biểu quyết và quy định về chế độ làm việc của Hội đồng thành viên.",
+      "evidence": "Colab 02/11 (Hybrid 1:1): chunk Điều 1 hạng 2, tức trong top 5. Chẩn đoán BM25-only top_k=10: câu được trả lời dù chunk Điều 1 không nằm trong context (chưa kiểm tra nội dung). Chưa kết luận được cho Hybrid 0,5:1."
     },
     {
       "query_id": "gold_003",
       "question": "Theo Luật Doanh nghiệp, cổ đông là ai?",
       "target_law": "Khoản 3 Điều 4 Luật Doanh nghiệp (Giải thích: Cổ đông)",
-      "root_cause": "Retrieval trả về các chunk nói về cổ đông sáng lập/cổ đông ngoại, thiếu chunk định nghĩa chung tại Khoản 3 Điều 4.",
-      "system_response": "Các tài liệu được cung cấp không chứa quy định định nghĩa cụ thể về việc cổ đông là ai, mà chỉ đề cập đến các loại cổ đông như cổ đông sáng lập, cổ đông là nhà đầu tư nước ngoài, cổ đông là cá nhân hoặc tổ chức trong các ngữ cảnh cụ thể."
+      "root_cause": "Giả thuyết của Người 2 (lượt 06/11 không lưu chunk nên chưa kiểm chứng): Retrieval trả về các chunk nói về cổ đông sáng lập/cổ đông ngoại, thiếu chunk định nghĩa chung tại Khoản 3 Điều 4.",
+      "system_response": "Các tài liệu được cung cấp không chứa quy định định nghĩa cụ thể về việc cổ đông là ai, mà chỉ đề cập đến các loại cổ đông như cổ đông sáng lập, cổ đông là nhà đầu tư nước ngoài, cổ đông là cá nhân hoặc tổ chức trong các ngữ cảnh cụ thể.",
+      "evidence": "Colab 02/11: chunk đúng không có trong Hybrid top 20. Chẩn đoán BM25-only top_k=10: vẫn từ chối, 0/1 chunk đúng trong context. Phù hợp lỗi retrieval."
     },
     {
       "query_id": "gold_006",
       "question": "Công ty TNHH hai thành viên trở lên được có tối thiểu và tối đa bao nhiêu thành viên? Thành viên có thể là tổ chức không?",
       "target_law": "Khoản 1 Điều 46 Luật Doanh nghiệp (Số lượng thành viên TNHH 2TV)",
-      "root_cause": "Retrieval trả về Điều 47 (góp vốn), thiếu Điều 46 (định nghĩa và số lượng thành viên tối thiểu/tối đa).",
-      "system_response": "Các tài liệu pháp luật được cung cấp không chứa thông tin về số lượng thành viên tối thiểu và tối đa của công ty trách nhiệm hữu hạn hai thành viên trở lên, cũng như không quy định cụ thể về việc thành viên có thể là tổ chức hay không."
+      "root_cause": "Giả thuyết của Người 2 (lượt 06/11 không lưu chunk nên chưa kiểm chứng): Retrieval trả về Điều 47 (góp vốn), thiếu Điều 46 (định nghĩa và số lượng thành viên tối thiểu/tối đa).",
+      "system_response": "Các tài liệu pháp luật được cung cấp không chứa thông tin về số lượng thành viên tối thiểu và tối đa của công ty trách nhiệm hữu hạn hai thành viên trở lên, cũng như không quy định cụ thể về việc thành viên có thể là tổ chức hay không.",
+      "evidence": "Colab 02/11: chunk Điều 46 hạng 2, tức trong top 5. Chẩn đoán BM25-only top_k=10: được trả lời, chunk đúng nằm trong context. Chưa quy được cho top_k=5 với Hybrid."
     },
     {
       "query_id": "gold_014",
       "question": "Điều lệ công ty phải quy định những nội dung chủ yếu nào theo Điều 24 Luật Doanh nghiệp?",
       "target_law": "Khoản 2 Điều 24 Luật Doanh nghiệp (Nội dung chủ yếu của Điều lệ)",
-      "root_cause": "Retrieval lấy trúng Khoản 1 & 3 (người ký Điều lệ), thiếu Khoản 2 (danh mục nội dung bắt buộc).",
-      "system_response": "Các văn bản pháp luật được cung cấp tại LEGAL CONTEXT chỉ quy định về thành phần ký tên trên Điều lệ công ty khi đăng ký doanh nghiệp hoặc khi sửa đổi, bổ sung Điều lệ, không liệt kê các nội dung chủ yếu phải có trong Điều lệ công ty theo Điều 24 Luật Doanh nghiệp."
+      "root_cause": "Giả thuyết của Người 2 (lượt 06/11 không lưu chunk nên chưa kiểm chứng): Retrieval lấy trúng Khoản 1 & 3 (người ký Điều lệ), thiếu Khoản 2 (danh mục nội dung bắt buộc).",
+      "system_response": "Các văn bản pháp luật được cung cấp tại LEGAL CONTEXT chỉ quy định về thành phần ký tên trên Điều lệ công ty khi đăng ký doanh nghiệp hoặc khi sửa đổi, bổ sung Điều lệ, không liệt kê các nội dung chủ yếu phải có trong Điều lệ công ty theo Điều 24 Luật Doanh nghiệp.",
+      "evidence": "Colab 02/11: các chunk đúng ở hạng 1, 2, 4, 7. Chẩn đoán BM25-only top_k=10: vẫn từ chối vì Khoản 2 (danh mục nội dung chủ yếu) không có trong context dù Khoản 1, 3, 4 có; LLM từ chối đúng. Phù hợp lỗi retrieval."
     },
     {
       "query_id": "gold_019",
       "question": "Doanh nghiệp bị giải thể trong những trường hợp nào, phải đáp ứng điều kiện gì, và với trường hợp tự giải thể thì phải gửi hồ sơ cho cơ quan đăng ký kinh doanh theo các mốc thời hạn nào?",
       "target_law": "Điều 207 & 208 Luật Doanh nghiệp (Trường hợp & điều kiện giải thể)",
-      "root_cause": "Retrieval lấy trúng Điều 209 (giải thể cưỡng chế do thu hồi GCN), thiếu Điều 207 và Điều 208.",
-      "system_response": "Dữ liệu cung cấp không chứa thông tin về các trường hợp doanh nghiệp bị giải thể nói chung, điều kiện giải thể, cũng như trình tự, thủ tục và thời hạn gửi hồ sơ đối với trường hợp tự giải thể. Nguồn hiện tại chỉ quy định về trình tự, thủ tục giải thể trong trường hợp bị thu hồi Giấy chứng nhận đăng ký doanh nghiệp hoặc theo quyết định của Tòa án."
+      "root_cause": "Giả thuyết của Người 2 (lượt 06/11 không lưu chunk nên chưa kiểm chứng): Retrieval lấy trúng Điều 209 (giải thể cưỡng chế do thu hồi GCN), thiếu Điều 207 và Điều 208.",
+      "system_response": "Dữ liệu cung cấp không chứa thông tin về các trường hợp doanh nghiệp bị giải thể nói chung, điều kiện giải thể, cũng như trình tự, thủ tục và thời hạn gửi hồ sơ đối với trường hợp tự giải thể. Nguồn hiện tại chỉ quy định về trình tự, thủ tục giải thể trong trường hợp bị thu hồi Giấy chứng nhận đăng ký doanh nghiệp hoặc theo quyết định của Tòa án.",
+      "evidence": "Colab 02/11: chỉ 1/5 nhóm căn cứ nằm trong top 20, ở hạng 10. Chẩn đoán BM25-only top_k=10: được trả lời nhưng 0/5 chunk đúng trong context (chưa kiểm tra nội dung). Phù hợp lỗi retrieval ở top_k=5."
     }
   ]
 }

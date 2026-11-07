@@ -96,7 +96,8 @@ class RAGPipeline:
         self.response_model = response_model
         self.strict_rerank = strict_rerank
         self.rerank_enabled, self.rerank_timeout, self.verifier = rerank_enabled, rerank_timeout, verifier
-        self.pipeline_timeout = pipeline_timeout  # trần 45 giây toàn pipeline theo NFR-07
+        # shortcut: chỉ kiểm tra giữa các bước (và sau khi xong), không ngắt được bước đang chạy; trần thật = timeout từng bước (retrieval 10s + rerank 4s + LLM 30s)
+        self.pipeline_timeout = pipeline_timeout
         # Một worker: thread rerank không dừng cưỡng bức được, nên không để các lượt sau xếp hàng chồng lên nó.
         self._rerank_pool = ThreadPoolExecutor(max_workers=1, thread_name_prefix="rerank")
         self._rerank_job = None
