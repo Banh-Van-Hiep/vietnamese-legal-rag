@@ -1,7 +1,7 @@
 # Báo Cáo Đánh Giá Benchmark RAG v2 — Tuần 9 (VLRA-T2-26, VLRA-68)
 **Thực hiện bởi:** Người 2 (Verification Engine & Benchmark Suite)  
 **Người nhận bàn giao:** Người 1 (Đạt — Core Pipeline & Prompting)  
-**Thời điểm thực thi:** 06/11/2026 20:19:23  
+**Thời điểm thực thi:** 07/11/2026 17:42:39  
 **Nhãn đánh giá:** `EXPLORATORY` *(Do tập Dev Set 70/110 câu của Team 1 chưa đóng băng)*  
 
 ---
@@ -10,7 +10,7 @@
 
 | Thông số cấu hình | Giá trị thiết lập | Ghi chú |
 | :--- | :--- | :--- |
-| **Git Commit SHA** | `0799e076de` | Nhánh `feature/team2-rag` |
+| **Git Commit SHA** | `ee50025704` | Nhánh `feature/team2-rag` |
 | **Tập dữ liệu Golden** | `team2_rag/data/golden/golden_phase1_30cai.json` | Hash SHA-256: `a9da43c9dd1c...` |
 | **Mô hình LLM Benchmark** | `gemini-3.1-flash-lite` | Chạy thật qua Google API v1beta |
 | **Trạng thái Fallback Model** | `TẮT (LLM_ALLOW_FALLBACK=false)` | Bảo đảm 100% câu hỏi do đúng model cấu hình xử lý |
@@ -30,13 +30,11 @@
 | **Query-level Hallucination Rate** | **4.00%** | <= 5.00% | ✅ ĐẠT |
 | **Claim-level Hallucination Rate** | **1.49%** | Tham chiếu | Bổ sung theo yêu cầu Người 1 |
 
-*Ghi chú:* Các trường hợp không có mẫu số (0 citation / 0 claim / 0 answered) được ghi rõ `"chưa đo"`, tuyệt đối không tính 100% giả định.
-
-> [!WARNING]
-> **Giới hạn kỹ thuật của chỉ số Hallucination Rate (4.00%):**
-> 1. Con số 4.00% (1/25 câu answered) phản ánh kết quả thẩm định của bộ lọc **Lexical-Semantic Heuristic** (độ trùng khớp từ vựng + đối chiếu cặp từ khóa đối lập tầng đầu), **chưa phải mô hình Full Semantic NLI sâu hay LLM-as-a-judge**.
-> 2. Bộ lọc heuristic có thể bỏ sót những trường hợp mâu thuẫn ngữ nghĩa tinh tế hoặc đảo cấu trúc ngữ pháp phức tạp ngoài các cặp từ khóa đối lập phổ biến đã định nghĩa.
-> 3. Mốc $\le 5\%$ đạt được trên tập mẫu 25 câu trả lời thực tế của Golden Phase 1; đây là chỉ số tham chiếu kỹ thuật cho tầng lọc inline thời gian thực và cần được kiểm chứng thêm khi Team 1 bàn giao Dev Set đóng băng 110 câu.
+> [!NOTE]
+> **Ghi chú về mẫu số và giới hạn của bộ kiểm định (Lexical Heuristic):**
+> - Mốc Hallucination 4.00% (1/25 câu answered) được đo trên **25 câu trả lời thực tế** (5 câu `insufficient_context` bị loại khỏi mẫu số theo đúng định nghĩa chuẩn). Toàn bộ kết quả mang nhãn **`EXPLORATORY`** do tập Dev Set 70/110 câu của Team 1 chưa đóng băng.
+> - Con số 4.00% phản ánh khả năng phát hiện của bộ kiểm định đối chiếu từ vựng (Lexical Overlap) kết hợp nhận diện phân cực quyền hạn/cấm đoán. Đây là bộ lọc kỹ thuật rule-based nhanh, có thể bỏ sót các dạng mâu thuẫn ngữ nghĩa phức tạp (như đảo phủ định tinh vi mà không chứa từ khóa phân cực rõ ràng). Tỷ lệ này chưa phải tỷ lệ ảo giác ngữ nghĩa tuyệt đối của mô hình NLI sâu.
+> - Mọi trường hợp không có mẫu số (0 citation / 0 claim / 0 answered) được ghi rõ `"chưa đo"`, tuyệt đối không tính 100% giả định.
 
 ---
 

@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "git_commit": "0799e076ded5b4b3bf532b9404d085ee049b0918",
+    "git_commit": "ee500257044e9912abdfc435af292c90361cd032",
     "golden_dataset": "team2_rag/data/golden/golden_phase1_30cai.json",
     "golden_sha256": "a9da43c9dd1cd0907c89b604d9875265df2b96fb0388edc175742e522b97a23c",
     "dataset_status": "exploratory (Dev Set chưa đóng băng hoàn toàn)",

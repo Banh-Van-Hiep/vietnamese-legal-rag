@@ -368,7 +368,11 @@ def run_pipeline_benchmark(
 | **Query-level Hallucination Rate** | **{c_met['query_hallucination_rate_pct']}** | <= 5.00% | {'✅ ĐẠT' if t_check['hallucination_rate_target_met'] else '❌ CHƯA ĐẠT'} |
 | **Claim-level Hallucination Rate** | **{c_met['claim_hallucination_rate_pct']}** | Tham chiếu | Bổ sung theo yêu cầu Người 1 |
 
-*Ghi chú:* Các trường hợp không có mẫu số (0 citation / 0 claim / 0 answered) được ghi rõ `"chưa đo"`, tuyệt đối không tính 100% giả định.
+> [!NOTE]
+> **Ghi chú về mẫu số và giới hạn của bộ kiểm định (Lexical Heuristic):**
+> - Mốc Hallucination 4.00% (1/25 câu answered) được đo trên **25 câu trả lời thực tế** (5 câu `insufficient_context` bị loại khỏi mẫu số theo đúng định nghĩa). Toàn bộ kết quả mang nhãn **`EXPLORATORY`** do tập Dev Set 70/110 câu của Team 1 chưa đóng băng.
+> - Con số 4.00% phản ánh khả năng phát hiện của bộ kiểm định đối chiếu từ vựng (Lexical Overlap) kết hợp nhận diện phân cực quyền hạn/cấm đoán. Đây là bộ lọc kỹ thuật rule-based nhanh, có thể bỏ sót các dạng mâu thuẫn ngữ nghĩa phức tạp (như đảo phủ định tinh vi mà không chứa từ khóa phân cực rõ ràng). Tỷ lệ này chưa phải tỷ lệ ảo giác ngữ nghĩa tuyệt đối của mô hình NLI sâu.
+> - Mọi trường hợp không có mẫu số (0 citation / 0 claim / 0 answered) được ghi rõ `"chưa đo"`, tuyệt đối không tính 100% giả định.
 
 ---
 
