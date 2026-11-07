@@ -116,6 +116,7 @@ STRUCTURE_FROM = {"vbhn-67-vbhn-vpqh-v1": "luat-59-2020-qh14-v1"}
 
 PREFIX = {
     "luat": "luat",
+    "nghi_quyet": "nq",
     "nghi_dinh": "nd",
     "thong_tu": "tt",
     "van_ban_hop_nhat": "vbhn",
