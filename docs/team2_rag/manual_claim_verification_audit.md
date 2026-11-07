@@ -9,7 +9,7 @@
 
 ## 1. Phương Pháp Lấy Mẫu & Tiêu Chí Đánh Giá
 
-- **Kích thước mẫu:** 20 claims được trích xuất phân tầng từ 25 câu hỏi được trả lời (`status = answered`) trong đợt chạy Benchmark 30 câu (Golden Phase 1, `gemini-3.1-flash-lite`).
+- **Kích thước mẫu (đợt 1, Người 2):** 20 claims thuộc gold_004 đến gold_016 (11/25 câu được trả lời; 27 claims trong nhóm này). Không phân tầng. Đợt 2 (Người 1, mục 4) bổ sung 39 claims của 13 câu còn lại (gold_017 đến gold_030). Nguồn: đợt chạy 30 câu (Golden Phase 1, `gemini-3.1-flash-lite`).
 - **Quy trình thẩm định:**
   1. Đọc nội dung nhận định pháp lý (`claim_text`).
   2. Đối chiếu trực tiếp với từng chunk văn bản luật nguồn được trích dẫn (`cited_citations`).
@@ -44,12 +44,45 @@
 
 ---
 
-## 3. Kết Luận & Đánh Giá Tác Động (Blocker 7)
+## 3. Kết Luận Đợt 1 (20 claims)
 
-1. **Tỷ lệ bỏ sót mâu thuẫn (False Negative Rate) trên mẫu kiểm tra:** **0.00% (0/20 claims)**.
-   - Toàn bộ 20/20 claims được `rubric.py` đánh giá SUPPORTED khi kiểm tra thủ công đều là khẳng định pháp lý chuẩn xác, không có hiện tượng mâu thuẫn đối lập hoặc suy diễn sai lệch so với văn bản gốc.
-   - Lý do: Bản thân mô hình `gemini-3.1-flash-lite` tuân thủ rất nghiêm ngặt System Prompt v3 (chỉ trích xuất từ LEGAL CONTEXT và giữ nguyên điều kiện/ngoại lệ).
-2. **Khẳng định về giá trị của chỉ số Hallucination 4.00%:**
-   - Bộ lọc Lexical Heuristic hiện tại hoàn thành tốt nhiệm vụ lọc thô trong môi trường thời gian thực (inline verification < 10ms).
-   - Con số **4.00%** (1/25 câu) phản ánh đúng nguy cơ hallucination do trích dẫn chunk không đủ thông tin (`gold_002`).
-   - Mặc dù vậy, nhóm vẫn giữ nguyên nhãn **`EXPLORATORY`** cho mốc này theo đúng thỏa thuận với Người 1, vì phương pháp rule-based về mặt lý thuyết vẫn có thể bỏ sót mâu thuẫn đảo phủ định tinh vi nếu LLM sinh câu với cấu trúc ngữ pháp phức tạp.
+- Trong 20 claims, không thấy mâu thuẫn hay thêm thắt. Lưu ý gold_012 K1 có nhãn `PARTIAL` trong kết quả gốc nhưng bảng trên ghi "ĐÚNG": nội dung đúng nhưng chưa nêu đủ thành phần hồ sơ.
+- 0/20 không chứng minh tỷ lệ bỏ sót bằng 0%: với 20 mẫu, tỷ lệ thật vẫn có thể đến khoảng 14%.
+- Đợt 1 chỉ gồm 11 câu đầu. Kết luận chung phải dựa trên mục 4.
+
+---
+
+## 4. Đợt 2 (Người 1 làm thay Người 2, 08/11/2026): 39 claims của gold_017 đến gold_030
+
+**Cách làm.** Với mỗi claim, đối chiếu với nội dung các chunk trong `gold_chunk_ids` của câu đó (đọc từ `data/doanh-nghiep/processed/chunks.jsonl`) và tìm cụm từ chính trong toàn corpus khi claim không nằm trong gold chunk. Kết quả chạy không lưu chunk đã được trích dẫn, nên đây là đối chiếu với điều luật đúng, không phải với context mà LLM thực sự nhận. Runner đã sửa để lần chạy sau lưu `retrieved_chunk_ids`, `context_chunk_ids`.
+
+| Câu | Số claim | Khớp điều luật | Chưa đối chiếu được | Nhãn SUPPORTED nhưng claim chỉ nói "nguồn không quy định" |
+| :--- | :---: | :---: | :---: | :---: |
+| gold_017 | 3 | 3 | 0 | 0 |
+| gold_018 | 3 | 3 | 0 | 0 |
+| gold_020 | 3 | 3 | 0 | 0 |
+| gold_021 | 4 | 2 | 2 (K2, K4) | 0 |
+| gold_022 | 2 | 2 | 0 | 0 |
+| gold_023 | 2 | 2 | 0 | 0 |
+| gold_024 | 2 | 2 | 0 | 0 |
+| gold_025 | 4 | 3 | 1 (K4) | 0 |
+| gold_026 | 4 | 3 | 0 | 1 (K4) |
+| gold_027 | 2 | 1 | 0 | 1 (K2) |
+| gold_028 | 4 | 3 | 1 (K4) | 0 |
+| gold_029 | 4 | 2 | 2 (K3, K4) | 0 |
+| gold_030 | 2 | 0 | 2 (K1, K2) | 0 |
+| **Tổng** | **39** | **29** | **8** | **2** |
+
+**Phát hiện chính.** Không thấy claim đảo phủ định hay mâu thuẫn trực tiếp với điều luật. Nhưng có 2 claim dạng "nguồn không quy định…" được gán `SUPPORTED`:
+- gold_026 K4: "LEGAL CONTEXT hiện tại không quy định về biện pháp khắc phục hậu quả". Điều 58 khoản 2 Nghị định 122/2021/NĐ-CP quy định "Buộc thực hiện thủ tục giải thể", và câu hỏi gốc hỏi đúng biện pháp này.
+- gold_027 K2: "Nghị định 288/2026/NĐ-CP không quy định cụ thể về xử phạt hành vi chậm đăng ký thay đổi nội dung". Điều 2 của Nghị định 288/2026/NĐ-CP (các khoản 1 đến 7) chứa nội dung "Điều 44. Vi phạm về thời hạn đăng ký thay đổi nội dung…", tức là có quy định đúng nội dung đó.
+
+Cả hai có thể đúng với context LLM nhận (nếu Điều 58 khoản 2 Nghị định 122/2021 và Điều 2 Nghị định 288/2026 không lọt vào context), nhưng bộ kiểm không thể biết, và nhãn `SUPPORTED` lại xuất phát từ độ trùng từ vựng với một chunk không nói điều đó (62,5% và 70,6%). Đây là điểm yếu thật: claim "không có quy định" không kiểm chứng được bằng đối chiếu từ vựng, và nó cũng cho thấy câu trả lời thiếu ý do retrieval.
+
+## 5. Kết Luận Chung (59 claims đã rà: 20 của đợt 1, 39 của đợt 2)
+
+1. Không thấy đảo phủ định hay thêm thắt sai luật. Điểm yếu đã biết (bỏ sót đảo phủ định) chưa xuất hiện trong mẫu này, nhưng mẫu chỉ có 59/67 claims và đối chiếu thủ công bởi một người.
+2. Có 2/59 claim (khoảng 3,4%) gán `SUPPORTED` sai bản chất: đều là claim về việc nguồn không có quy định.
+3. 8 claim còn lại chưa tìm được điều luật tương ứng trong phần đã đọc (không có nghĩa là sai).
+4. Đề xuất cho bộ kiểm (chờ hai người chốt công thức T2-25, chưa sửa code): gắn nhãn riêng (ví dụ `UNVERIFIABLE`) cho claim "nguồn không quy định…" và loại khỏi mẫu số Coverage. Nếu loại hai claim này, Coverage đổi từ 98,51% (66/67) sang khoảng 98,46% (64/65); Hallucination mức câu không đổi.
+5. Mốc Hallucination 4,00% giữ nhãn **`EXPLORATORY`**.

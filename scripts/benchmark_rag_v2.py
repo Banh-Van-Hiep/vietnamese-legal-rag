@@ -207,12 +207,17 @@ def run_pipeline_benchmark(
             claims_res = []
             failure_info = None
             error = None
+            retrieved_ids: List[str] = []
+            context_ids: List[str] = []
 
             try:
                 # 1. Chạy qua retrieval & rerank
                 retrieved = pipeline.retriever.retrieve(question, top_k=pipeline.top_k)
+                # Lưu chunk đã lấy để phân tích ca từ chối bằng bằng chứng, không đoán nguyên nhân.
+                retrieved_ids = [r.get("chunk_id", "") for r in retrieved.get("results", [])]
                 details = pipeline._rerank(retrieved)
                 results_candidates = details.output.get("results", [])
+                context_ids = [r.get("chunk_id", "") for r in results_candidates]
 
                 if not results_candidates:
                     status = "insufficient_context"
@@ -278,6 +283,9 @@ def run_pipeline_benchmark(
                 "status": status,
                 "actual_model": actual_model,
                 "passed": is_passed,
+                "retrieved_chunk_ids": retrieved_ids,
+                "context_chunk_ids": context_ids,
+                "gold_chunk_ids": list(case.get("gold_chunk_ids", [])),
                 "elapsed_seconds": round(time.time() - t_start, 2),
                 "answer": answer_text,
                 "citations_count": len(citations_res),

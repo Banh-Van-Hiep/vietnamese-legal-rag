@@ -12,9 +12,8 @@
 Cả 5 câu hỏi đều có trạng thái hệ thống trả về là **`insufficient_context`** (từ chối do không đủ dữ liệu căn cứ).
 
 > [!IMPORTANT]
-> **Nhận định cốt lõi của Người 2:**  
-> LLM (`gemini-3.1-flash-lite`) và System Prompt v3 **hoạt động hoàn toàn đúng nguyên tắc**: Khi LEGAL CONTEXT không có điều luật quy định trực tiếp, LLM đã từ chối một cách trung thực, giải thích chi tiết lý do và không hề hallucination.  
-> **Nguyên nhân gốc rễ (Root Cause) 100% nằm ở tầng Retrieval:** Với thiết lập `RAG_TOP_K=5`, các chunk điều luật mục tiêu bị phân tán và rớt khỏi Top-5.
+> **Nhận định của Người 2 (giữ lại, chưa kiểm chứng đủ):** LLM và System Prompt v3 từ chối đúng nguyên tắc vì LEGAL CONTEXT không chứa điều luật cần thiết, nguyên nhân nằm ở tầng Retrieval với `RAG_TOP_K=5`.
+> **Kiểm tra của Người 1 (mục 4):** với 3 trong 5 ca (gold_001, gold_006, gold_014), điều luật đúng đứng trong top 5 của Hybrid ở lượt Colab 02/11. Không thể kết luận "100% do top_k" khi chưa có danh sách chunk của lần chạy 06/11.
 
 ---
 
@@ -52,10 +51,31 @@ Cả 5 câu hỏi đều có trạng thái hệ thống trả về là **`insuff
 
 ---
 
-## 3. Đề Xuất Giải Pháp Kỹ Thuật Gửi Người 1
+## 3. Đề Xuất Của Người 2 (chưa kiểm chứng)
 
-1. **Về Prompt:** **Không cần sửa Prompt (giữ nguyên System Prompt v3).**  
-   Prompt hiện tại từ chối rất chuẩn, giải thích rành mạch và có tính tự vệ cao trước ảo giác. Nếu nới lỏng prompt để LLM "cố trả lời" trong khi thiếu chunk, nguy cơ Hallucination sẽ tăng vọt.
-2. **Về Retrieval & Tham Số:**
-   - **Tăng `top_k` lên 10:** Khi chạy với `RAG_TOP_K=10` (đúng cấu hình mặc định của `runtime.py`), xác suất các điều luật như Điều 1, Điều 4, Điều 46, Điều 24 lọt vào context sẽ cao hơn đáng kể.
-   - **Xem xét Query Preprocessing:** Các câu hỏi có chứa số hiệu điều luật cụ thể (ví dụ: *"theo Điều 24"*, *"theo Điều 16"*) nên được ưu tiên trích xuất và boost điểm cho chunk có metadata `article_id == "24"` trong bộ Hybrid Retriever của Team 1.
+1. Giữ nguyên System Prompt v3, vì nới lỏng sẽ tăng nguy cơ hallucination.
+2. Tăng `top_k` lên 10 (đúng mặc định của `runtime.py`) và xem xét ưu tiên chunk theo số điều trong câu hỏi.
+
+Cả hai chưa được chạy thử. Xem mục 4 để biết vì sao chưa thể kết luận.
+
+---
+
+## 4. Kiểm Tra Bằng Dữ Liệu Hybrid Có Sẵn (Người 1, 08/11/2026)
+
+Nguồn: `team2_rag/data/evaluation/colab-20261102/reranker-exploratory.json`, Hybrid top 20 trên cùng 2.576 chunk, embedding `AITeamVN/Vietnamese_Embedding`, trọng số **1:1** (khác 0,5:1 của lượt 06/11), cùng Golden. Thứ hạng của chunk đúng (`gold_chunk_ids`) trong top 20:
+
+| Ca | Thứ hạng chunk đúng trong Hybrid | Trong top 5? | Trong top 10? | Nhận xét |
+| :--- | :--- | :---: | :---: | :--- |
+| gold_001 | 2 | Có | Có | Điều 1 lẽ ra có trong context nhưng LLM vẫn từ chối |
+| gold_003 | Không có trong top 20 | Không | Không | Retrieval trượt hoàn toàn; tăng `top_k` không giúp |
+| gold_006 | 2 | Có | Có | Giống gold_001 |
+| gold_014 | 1, 2, 4, 7 (4 nhóm gold) | 3/4 nhóm | 4/4 nhóm | Điều 24 khoản 2 ở vị trí 2 |
+| gold_019 | 10 (1/5 nhóm gold) | Không | Có 1/5 | `top_k=10` chỉ lấy thêm một phần căn cứ |
+| gold_002 (ca "thất bại thật") | 1, 2 | Có | Có | Chunk đúng ở vị trí 1; không phải "thiếu dữ liệu truy xuất" |
+
+**Kết luận có bằng chứng:**
+- Chỉ gold_003 và gold_019 phù hợp với giải thích "retrieval trượt". Còn lại không thể đổ hết cho `top_k=5` nếu Hybrid ở lượt 06/11 hoạt động giống lượt Colab.
+- Khác biệt có thể nằm ở trọng số (0,5:1), hoặc retrieval của lượt 06/11 chạy khác (báo cáo ghi trọng số bằng giá trị mặc định cứng, không chứng minh Dense hoạt động), hoặc LLM từ chối quá mức dù chunk đúng có trong context. Ba khả năng này dẫn đến hai cách sửa khác nhau (retrieval hay prompt), nên không thể kết luận "không cần sửa prompt".
+- Lượt 06/11 không lưu danh sách chunk. Runner đã được sửa để lưu `retrieved_chunk_ids`, `context_chunk_ids`, `gold_chunk_ids` cho mỗi câu.
+
+**Việc cần làm để kết luận (chạy trên máy có Qdrant hoặc Colab):** chạy lại 30 câu với `RAG_TOP_K=10`, `RAG_RERANK=false`, `RAG_BM25_WEIGHT=0.5`, `RAG_DENSE_WEIGHT=1`, `LLM_ALLOW_FALLBACK=false`; với 5 ca này so `context_chunk_ids` với `gold_chunk_ids`. Chunk đúng có mặt mà LLM vẫn từ chối: lỗi prompt. Chunk đúng vắng mặt: lỗi retrieval.

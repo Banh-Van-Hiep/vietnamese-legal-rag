@@ -97,7 +97,6 @@ class RAGPipeline:
         self.strict_rerank = strict_rerank
         self.rerank_enabled, self.rerank_timeout, self.verifier = rerank_enabled, rerank_timeout, verifier
         self.pipeline_timeout = pipeline_timeout  # trần 45 giây toàn pipeline theo NFR-07
-        self.last_model = getattr(llm_service.provider, "model", "")
         # Một worker: thread rerank không dừng cưỡng bức được, nên không để các lượt sau xếp hàng chồng lên nó.
         self._rerank_pool = ThreadPoolExecutor(max_workers=1, thread_name_prefix="rerank")
         self._rerank_job = None
@@ -176,7 +175,6 @@ class RAGPipeline:
         generated = generate_answer_detailed(details.output, history, llm_service=self.llm_service,
                                              settings=self.settings, token_budget=self.token_budget,
                                              request_id=request_id)
-        self.last_model = getattr(generated, "model", "")
         response = validate_generated_response(generated.response, response_model=self.response_model)
         if response["status"] != "answered":
             log.info("rag_refused request_id=%s reason=%s", request_id,
