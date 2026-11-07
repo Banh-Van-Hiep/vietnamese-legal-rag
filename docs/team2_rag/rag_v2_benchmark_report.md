@@ -1,7 +1,7 @@
 # Báo Cáo Đánh Giá Benchmark RAG v2 — Tuần 9 (VLRA-T2-26, VLRA-68)
 **Thực hiện bởi:** Người 2 (Verification Engine & Benchmark Suite)  
 **Người nhận bàn giao:** Người 1 (Đạt — Core Pipeline & Prompting)  
-**Thời điểm thực thi:** 07/11/2026 17:42:39  
+**Thời điểm thực thi:** 06/11/2026 20:19:23  
 **Nhãn đánh giá:** `EXPLORATORY` *(Do tập Dev Set 70/110 câu của Team 1 chưa đóng băng)*  
 
 ---
@@ -10,7 +10,7 @@
 
 | Thông số cấu hình | Giá trị thiết lập | Ghi chú |
 | :--- | :--- | :--- |
-| **Git Commit SHA** | `ee50025704` | Nhánh `feature/team2-rag` |
+| **Git Commit SHA** | `0799e076de` | Nhánh `feature/team2-rag` |
 | **Tập dữ liệu Golden** | `team2_rag/data/golden/golden_phase1_30cai.json` | Hash SHA-256: `a9da43c9dd1c...` |
 | **Mô hình LLM Benchmark** | `gemini-3.1-flash-lite` | Chạy thật qua Google API v1beta |
 | **Trạng thái Fallback Model** | `TẮT (LLM_ALLOW_FALLBACK=false)` | Bảo đảm 100% câu hỏi do đúng model cấu hình xử lý |

@@ -104,7 +104,7 @@ def build_runtime(env=None) -> Runtime:
         scorer([("Khởi động mô hình", "Đây là nội dung khởi động mô hình.")])
         top_k = int(env.get("RAG_TOP_K", "10"))
         strict_rerank = _flag(env, "RAG_STRICT_RERANK", "false")
-        rerank_enabled = _flag(env, "RAG_RERANK", "true")
+        rerank_enabled = _flag(env, "RAG_RERANK", "false")
         rerank_timeout = float(env.get("RAG_RERANK_TIMEOUT_SECONDS", "4"))
         pipeline = RAGPipeline(hybrid, llm, scorer=scorer, top_k=top_k, settings=settings, token_budget=budget,
                                strict_rerank=strict_rerank, rerank_enabled=rerank_enabled, rerank_timeout=rerank_timeout)
