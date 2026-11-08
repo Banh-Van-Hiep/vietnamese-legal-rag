@@ -6,6 +6,7 @@ provider errors by answer.py/llm (VLRA-39/47). No fake fallback is configured.
 from __future__ import annotations
 
 import json
+import logging
 import os
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -15,6 +16,12 @@ from .llm.factory import create_llm_service
 from .llm.tokens import token_budget_from_settings
 from .pipeline import BM25SearchAdapter, RAGPipeline
 from .reranker import BGEScorer
+
+log = logging.getLogger(__name__)
+
+
+def _flag(env, key, default):
+    return env.get(key, default).strip().lower() in ("true", "1")
 
 
 @dataclass
@@ -31,8 +38,28 @@ class Runtime:
         self.client.close()
 
 
+class _NoClient:
+    def close(self):
+        pass
+
+
+def _build_bm25_only(env) -> Runtime:
+    """Bản nhẹ cho máy không có Qdrant/model BGE: BM25 + LLM thật, không rerank. Truy xuất kém Hybrid, chỉ để chạy thử."""
+    from team1_data.retrieval import BM25Retriever
+    settings = load_settings(env=env)
+    llm = create_llm_service(settings)
+    budget = token_budget_from_settings(settings) if settings.context_window_tokens else None
+    bm25 = BM25Retriever.from_jsonl(env.get("RAG_CHUNKS", "data/doanh-nghiep/processed/chunks.jsonl"))
+    pipeline = RAGPipeline(bm25, llm, top_k=int(env.get("RAG_TOP_K", "10")), settings=settings, token_budget=budget,
+                           strict_rerank=False, rerank_enabled=False)
+    log.info("rag_config retriever=bm25_only rerank=False top_k=%d", pipeline.top_k)
+    return Runtime(pipeline, _NoClient())
+
+
 def build_runtime(env=None) -> Runtime:
     env = {**read_dotenv(".env"), **os.environ} if env is None else env
+    if _flag(env, "RAG_BM25_ONLY", "false"):
+        return _build_bm25_only(env)
     required = ("RAG_BM25_INDEX", "RAG_DENSE_INDEX")
     if any(not env.get(k, "").strip() for k in required):
         raise ConfigError("Set RAG_BM25_INDEX and RAG_DENSE_INDEX to existing Team 1 indexes")
@@ -48,6 +75,10 @@ def build_runtime(env=None) -> Runtime:
     budget = token_budget_from_settings(settings) if settings.context_window_tokens else None
     from qdrant_client import QdrantClient
     from team1_data.retrieval import BM25Retriever, DenseRetriever, HybridRetriever, SentenceTransformerEmbedder
+    try:
+        from team1_data.retrieval.hybrid import DEFAULT_WEIGHTS
+    except ImportError:
+        DEFAULT_WEIGHTS = (0.5, 1.0)
 
     client = (QdrantClient(path=env["RAG_QDRANT_PATH"]) if env.get("RAG_QDRANT_PATH") else
               QdrantClient(url=env.get("RAG_QDRANT_URL", "http://localhost:6333"), timeout=30))
@@ -60,16 +91,25 @@ def build_runtime(env=None) -> Runtime:
         chunks = env.get("RAG_CHUNKS", "data/doanh-nghiep/processed/chunks.jsonl")
         sparse = BM25Retriever.load(bm_dir, chunks)
         vectors = DenseRetriever.connect(dense_dir, embedder, client=client)
-        hybrid = HybridRetriever(BM25SearchAdapter(sparse), vectors, timeout=20)
+        retrieval_timeout = float(env.get("RAG_RETRIEVAL_TIMEOUT", "10"))
+        # Trọng số đặt tường minh (mặc định = retrieval_v2 của Team 1) để log và report ghi đúng giá trị đang chạy.
+        weights = (float(env.get("RAG_BM25_WEIGHT", DEFAULT_WEIGHTS[0])), float(env.get("RAG_DENSE_WEIGHT", DEFAULT_WEIGHTS[1])))
+        hybrid = HybridRetriever(BM25SearchAdapter(sparse), vectors, weights=weights, timeout=retrieval_timeout)
         try:
-            embedder.encode_query("Khởi động mô hình embedding")
+            embedder.embed_query("Khởi động mô hình embedding")
         except Exception:
             pass
-        scorer = BGEScorer()
+        truncate = _flag(env, "RAG_RERANK_TRUNCATE", "false")  # chưa đo lợi ích: mặc định giữ nguyên (xem optimal_rag_configuration.md)
+        scorer = BGEScorer(truncate=truncate)
         scorer([("Khởi động mô hình", "Đây là nội dung khởi động mô hình.")])
         top_k = int(env.get("RAG_TOP_K", "10"))
-        strict_rerank = env.get("RAG_STRICT_RERANK", "false").lower() in ("true", "1")
-        pipeline = RAGPipeline(hybrid, llm, scorer=scorer, top_k=top_k, settings=settings, token_budget=budget, strict_rerank=strict_rerank)
+        strict_rerank = _flag(env, "RAG_STRICT_RERANK", "false")
+        rerank_enabled = _flag(env, "RAG_RERANK", "false")
+        rerank_timeout = float(env.get("RAG_RERANK_TIMEOUT_SECONDS", "4"))
+        pipeline = RAGPipeline(hybrid, llm, scorer=scorer, top_k=top_k, settings=settings, token_budget=budget,
+                               strict_rerank=strict_rerank, rerank_enabled=rerank_enabled, rerank_timeout=rerank_timeout)
+        log.info("rag_config bm25_dense_weights=%s:%s top_k=%d rerank=%s truncate=%s strict_rerank=%s rerank_timeout=%ss",
+                 *weights, top_k, rerank_enabled, truncate, strict_rerank, rerank_timeout)
         return Runtime(pipeline, client)
     except BaseException:
         client.close()
