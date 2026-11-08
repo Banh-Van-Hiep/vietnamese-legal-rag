@@ -1,7 +1,7 @@
 # Báo Cáo Đánh Giá Benchmark RAG v2 — Tuần 9 (VLRA-T2-26, VLRA-68)
 **Thực hiện bởi:** Người 2 (Verification Engine & Benchmark Suite)  
 **Người nhận bàn giao:** Người 1 (Đạt — Core Pipeline & Prompting)  
-**Thời điểm thực thi:** 08/11/2026 04:10:09  
+**Thời điểm thực thi:** 08/11/2026, chạy trên Colab (file kết quả không ghi giờ chạy chính xác)  
 **Nhãn đánh giá:** `EXPLORATORY` *(Do tập Dev Set 70/110 câu của Team 1 chưa đóng băng)*  
 
 ---
@@ -32,8 +32,8 @@
 
 > [!NOTE]
 > **Ghi chú về mẫu số và giới hạn của bộ kiểm định (Lexical Heuristic):**
-> - Mốc Hallucination 4.00% (1/25 câu answered) được đo trên **25 câu trả lời thực tế** (5 câu `insufficient_context` bị loại khỏi mẫu số theo đúng định nghĩa). Toàn bộ kết quả mang nhãn **`EXPLORATORY`** do tập Dev Set 70/110 câu của Team 1 chưa đóng băng.
-> - Con số 4.00% phản ánh khả năng phát hiện của bộ kiểm định đối chiếu từ vựng (Lexical Overlap) kết hợp nhận diện phân cực quyền hạn/cấm đoán. Đây là bộ lọc kỹ thuật rule-based nhanh, có thể bỏ sót các dạng mâu thuẫn ngữ nghĩa phức tạp (như đảo phủ định tinh vi mà không chứa từ khóa phân cực rõ ràng). Tỷ lệ này chưa phải tỷ lệ ảo giác ngữ nghĩa tuyệt đối của mô hình NLI sâu.
+> - Mốc Hallucination 7.14% (2/28 câu answered) được đo trên **28 câu trả lời thực tế** (2 câu `insufficient_context` hoặc lỗi bị loại khỏi mẫu số theo đúng định nghĩa). Toàn bộ kết quả mang nhãn **`EXPLORATORY`** do tập Dev Set 70/110 câu của Team 1 chưa đóng băng.
+> - Con số 7.14% phản ánh khả năng phát hiện của bộ kiểm định đối chiếu từ vựng (Lexical Overlap) kết hợp nhận diện phân cực quyền hạn/cấm đoán. Đây là bộ lọc kỹ thuật rule-based nhanh, có thể bỏ sót các dạng mâu thuẫn ngữ nghĩa phức tạp (như đảo phủ định tinh vi mà không chứa từ khóa phân cực rõ ràng). Tỷ lệ này chưa phải tỷ lệ ảo giác ngữ nghĩa tuyệt đối của mô hình NLI sâu.
 > - Mọi trường hợp không có mẫu số (0 citation / 0 claim / 0 answered) được ghi rõ `"chưa đo"`, tuyệt đối không tính 100% giả định.
 > - Có **0 claim** khẳng định nguồn "không quy định": đối chiếu từ vựng không kiểm chứng được sự vắng mặt, nhưng các claim này vẫn nằm trong mẫu số Coverage.
 

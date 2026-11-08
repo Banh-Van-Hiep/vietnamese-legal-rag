@@ -64,6 +64,11 @@ _ABSENCE_CLAIM = re.compile(
     r"^(LEGAL CONTEXT|Nguồn|Dữ liệu|Các tài liệu|Văn bản|Nghị định|Thông tư|Luật)[^.]{0,80}không (có |được )?(quy định|chứa|đề cập|liệt kê)")
 
 
+def count_hallucinated(raw_results: List[Dict[str, Any]]) -> int:
+    """Số câu được trả lời mà bộ kiểm định không cho qua: tử số của Query-level Hallucination."""
+    return sum(1 for r in raw_results if r.get("status") == "answered" and not r.get("passed", True))
+
+
 def count_absence_claims(raw_results: List[Dict[str, Any]]) -> int:
     """Đếm claim khẳng định nguồn 'không quy định': đối chiếu từ vựng không kiểm chứng được sự vắng mặt,
     nhưng claim vẫn bị tính vào mẫu số Coverage (rà tay 08/11: 2/59 claim bị gán SUPPORTED nhầm kiểu này)."""
@@ -388,6 +393,8 @@ def run_pipeline_benchmark(
     t_check = metrics["targets_check"]
     d_sum = metrics["dataset_summary"]
     absence_claims = count_absence_claims(final_report["raw_results"])
+    halluc_n = count_hallucinated(final_report["raw_results"])
+    excluded_n = d_sum["insufficient_context_queries"] + d_sum["error_queries"]
 
     md_content = f"""# Báo Cáo Đánh Giá Benchmark RAG v2 — Tuần 9 (VLRA-T2-26, VLRA-68)
 **Thực hiện bởi:** Người 2 (Verification Engine & Benchmark Suite)  
@@ -423,8 +430,8 @@ def run_pipeline_benchmark(
 
 > [!NOTE]
 > **Ghi chú về mẫu số và giới hạn của bộ kiểm định (Lexical Heuristic):**
-> - Mốc Hallucination 4.00% (1/25 câu answered) được đo trên **25 câu trả lời thực tế** (5 câu `insufficient_context` bị loại khỏi mẫu số theo đúng định nghĩa). Toàn bộ kết quả mang nhãn **`EXPLORATORY`** do tập Dev Set 70/110 câu của Team 1 chưa đóng băng.
-> - Con số 4.00% phản ánh khả năng phát hiện của bộ kiểm định đối chiếu từ vựng (Lexical Overlap) kết hợp nhận diện phân cực quyền hạn/cấm đoán. Đây là bộ lọc kỹ thuật rule-based nhanh, có thể bỏ sót các dạng mâu thuẫn ngữ nghĩa phức tạp (như đảo phủ định tinh vi mà không chứa từ khóa phân cực rõ ràng). Tỷ lệ này chưa phải tỷ lệ ảo giác ngữ nghĩa tuyệt đối của mô hình NLI sâu.
+> - Mốc Hallucination {c_met['query_hallucination_rate_pct']} ({halluc_n}/{d_sum['answered_queries']} câu answered) được đo trên **{d_sum['answered_queries']} câu trả lời thực tế** ({excluded_n} câu `insufficient_context` hoặc lỗi bị loại khỏi mẫu số theo đúng định nghĩa). Toàn bộ kết quả mang nhãn **`EXPLORATORY`** do tập Dev Set 70/110 câu của Team 1 chưa đóng băng.
+> - Con số {c_met['query_hallucination_rate_pct']} phản ánh khả năng phát hiện của bộ kiểm định đối chiếu từ vựng (Lexical Overlap) kết hợp nhận diện phân cực quyền hạn/cấm đoán. Đây là bộ lọc kỹ thuật rule-based nhanh, có thể bỏ sót các dạng mâu thuẫn ngữ nghĩa phức tạp (như đảo phủ định tinh vi mà không chứa từ khóa phân cực rõ ràng). Tỷ lệ này chưa phải tỷ lệ ảo giác ngữ nghĩa tuyệt đối của mô hình NLI sâu.
 > - Mọi trường hợp không có mẫu số (0 citation / 0 claim / 0 answered) được ghi rõ `"chưa đo"`, tuyệt đối không tính 100% giả định.
 > - Có **{absence_claims} claim** khẳng định nguồn "không quy định": đối chiếu từ vựng không kiểm chứng được sự vắng mặt, nhưng các claim này vẫn nằm trong mẫu số Coverage.
 

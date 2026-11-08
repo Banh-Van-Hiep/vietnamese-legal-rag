@@ -71,5 +71,16 @@ class CountAbsenceClaimsTests(unittest.TestCase):
         self.assertEqual(runner.count_absence_claims([{"verification_result": None}, {}]), 0)
 
 
+class CountHallucinatedTests(unittest.TestCase):
+    def test_counts_only_answered_questions_that_failed_verification(self):
+        raw = [
+            {"status": "answered", "passed": True},
+            {"status": "answered", "passed": False},
+            {"status": "error", "passed": False},                 # lỗi: ngoài mẫu số
+            {"status": "insufficient_context", "passed": True},   # từ chối: ngoài mẫu số
+        ]
+        self.assertEqual(runner.count_hallucinated(raw), 1)
+
+
 if __name__ == "__main__":
     unittest.main()
