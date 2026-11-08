@@ -1,46 +1,46 @@
 {
   "metadata": {
-    "git_commit": "0799e076ded5b4b3bf532b9404d085ee049b0918",
+    "git_commit": "6e09ff13ea",
     "golden_dataset": "team2_rag/data/golden/golden_phase1_30cai.json",
     "golden_sha256": "a9da43c9dd1cd0907c89b604d9875265df2b96fb0388edc175742e522b97a23c",
     "dataset_status": "exploratory (Dev Set chưa đóng băng hoàn toàn)",
     "llm_model": "gemini-3.1-flash-lite",
     "allow_fallback": false,
     "pipeline_timeout": 45.0,
-    "top_k": 5,
+    "top_k": 10,
     "rerank_enabled": false,
     "strict_rerank": false,
     "rerank_timeout": 4.0,
     "rerank_note": "Tắt rerank (không chạy BGE-Reranker)",
     "weights": "(0.5, 1.0)",
-    "execution_time": "06/11/2026 20:19:23"
+    "execution_time": "07/11/2026 20:15:26"
   },
   "metrics": {
     "dataset_summary": {
       "total_queries": 30,
-      "answered_queries": 25,
-      "insufficient_context_queries": 5,
-      "error_queries": 0
+      "answered_queries": 26,
+      "insufficient_context_queries": 1,
+      "error_queries": 3
     },
     "claims_summary": {
-      "total_claims": 67,
-      "supported_claims": 66,
+      "total_claims": 75,
+      "supported_claims": 74,
       "unsupported_claims": 1
     },
     "citations_summary": {
-      "total_citations": 72,
-      "valid_citations": 72,
+      "total_citations": 89,
+      "valid_citations": 89,
       "invalid_citations": 0
     },
     "core_metrics": {
       "citation_correctness": 1.0,
       "citation_correctness_pct": "100.00%",
       "citation_coverage": 0.9851,
-      "citation_coverage_pct": "98.51%",
+      "citation_coverage_pct": "98.67%",
       "query_hallucination_rate": 0.04,
-      "query_hallucination_rate_pct": "4.00%",
+      "query_hallucination_rate_pct": "3.85%",
       "claim_hallucination_rate": 0.0149,
-      "claim_hallucination_rate_pct": "1.49%",
+      "claim_hallucination_rate_pct": "1.33%",
       "hallucination_rate": 0.04,
       "hallucination_rate_pct": "4.00%"
     },
