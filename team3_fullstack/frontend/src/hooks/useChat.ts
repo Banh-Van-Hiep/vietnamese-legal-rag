@@ -2,6 +2,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ApiError } from "../api/client";
 import { canRetry, shouldReuseRequestId } from "../api/retryPolicy";
+import { storedFailure } from "../api/errorText";
 import { sendQuery } from "../api/chatApi";
 import { getAllMessages } from "../api/conversationApi";
 import { numericId } from "../api/publicApi";
@@ -11,21 +12,11 @@ import { codePointLength } from "../utils/text";
 import { uuidv4 } from "../utils/uuid";
 
 export const MAX_QUESTION_LENGTH = 2000;
-const ERROR_TEXT: Record<string,string> = {
-  SERVICE_UNAVAILABLE: "Dịch vụ tạm thời không sẵn sàng. Hãy thử lại sau.",
-  UPSTREAM_TIMEOUT: "Dịch vụ chưa phản hồi kịp.",
-  UPSTREAM_INVALID_RESPONSE: "Kết quả từ dịch vụ không hợp lệ nên không được hiển thị.",
-  PERSISTENCE_UNAVAILABLE: "Chưa xác định được kết quả lưu. Hãy kiểm tra lại lượt hỏi.",
-  PROCESSING_INTERRUPTED: "Lượt xử lý bị gián đoạn. Có thể gửi một lượt mới.",
-  INTERNAL_ERROR: "Hệ thống gặp lỗi khi xử lý yêu cầu.",
-};
-const RETRYABLE = new Set(["SERVICE_UNAVAILABLE","UPSTREAM_TIMEOUT","PERSISTENCE_UNAVAILABLE","PROCESSING_INTERRUPTED"]);
 function fromServer(m: Message): UiMessage {
   const result: UiMessage = { key: m.message_id, clientRequestId: m.client_request_id, role: m.role,
     state: m.state, content: m.content, answerStatus: m.answer_status, citations: m.citations };
   if (m.state === "failed") {
-    const code = m.error_code ?? "INTERNAL_ERROR";
-    result.failure = { code, message: ERROR_TEXT[code] ?? ERROR_TEXT.INTERNAL_ERROR, retryable: RETRYABLE.has(code), requestId: null };
+    result.failure = storedFailure(m.error_code);
   }
   return result;
 }
