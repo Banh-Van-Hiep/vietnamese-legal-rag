@@ -91,6 +91,12 @@ class HttpAiClientTests {
             {"503", "LLM_UNAVAILABLE", "503", "SERVICE_UNAVAILABLE"},
             {"504", "LLM_TIMEOUT", "504", "UPSTREAM_TIMEOUT"},
             {"504", "RETRIEVAL_TIMEOUT", "504", "UPSTREAM_TIMEOUT"},
+            // Public codes sent by the AI Service on develop since 26/10/2026 map to the same result.
+            {"502", "UPSTREAM_INVALID_RESPONSE", "502", "UPSTREAM_INVALID_RESPONSE"},
+            {"503", "SERVICE_UNAVAILABLE", "503", "SERVICE_UNAVAILABLE"},
+            {"504", "UPSTREAM_TIMEOUT", "504", "UPSTREAM_TIMEOUT"},
+            // A code that does not match its HTTP status is still not trusted.
+            {"503", "UPSTREAM_TIMEOUT", "502", "UPSTREAM_ERROR"},
             {"400", "INVALID_REQUEST", "502", "UPSTREAM_CONTRACT_ERROR"},
             {"500", "INTERNAL_ERROR", "502", "UPSTREAM_ERROR"}};
         for (var c : cases) {
