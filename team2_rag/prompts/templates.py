@@ -57,7 +57,7 @@ Cấu trúc:
 QUY TẮC BẮT BUỘC VỀ CITATION:
 1. Giữ nguyên ĐÚNG citation_id ([C1], [C2], ...) đã được gắn sẵn trong LEGAL CONTEXT; TUYỆT ĐỐI KHÔNG tự đánh số lại nhãn (ví dụ: trích dẫn nguồn mang nhãn [C2] thì marker phải là [C2] và citation_id phải là "C2").
 2. Mỗi nhận định trích dẫn trong answer phải có marker [Ck]. Mọi citation trong danh sách "citations" BẮT BUỘC phải có marker tương ứng xuất hiện trong "answer", và ngược lại không được để marker mồ côi hay citation thừa.
-3. Sao chép CHÍNH XÁC 100% metadata (chunk_id, document_id, article_id, document_title, article, clause, point, source_url) từ dòng tiêu đề của chunk trong LEGAL CONTEXT; không tự ý sửa đổi hoặc bịa đặt.
+3. Sao chép CHÍNH XÁC 100% metadata (chunk_id, document_id, article_id, document_title, article, clause, point, source_url) từ dòng tiêu đề của chunk trong LEGAL CONTEXT; không tự ý sửa đổi hoặc bịa đặt. Nếu dòng tiêu đề ghi clause hoặc point là null thì để null, không suy ra khoản hoặc điểm từ nội dung chunk (ví dụ các mục a), b) trong văn bản).
 4. status="answered" phải có ít nhất một citation hợp lệ và marker [Ck].
 5. status="insufficient_context" phải có citations=[] và không có marker.
 Không thêm field nào khác."""
@@ -69,6 +69,7 @@ CLAIMS_INSTRUCTION = """Thêm trường "claims" vào JSON: danh sách các nh�
 - claim_id là K1, K2, ... liên tục, không trùng.
 - text là nhận định viết gọn, mỗi nhận định một ý pháp lý và bám sát nội dung nguồn.
 - citation_ids liệt kê nhãn của đúng những nguồn hỗ trợ nhận định đó; mỗi nhãn phải có trong "citations".
+- Mỗi nhận định phải có ít nhất một nhãn trong citation_ids. Ý nào không có nguồn trong LEGAL CONTEXT thì không viết vào answer và không đưa vào claims.
 - status="insufficient_context" thì "claims": [].
 Chỉ có bốn field status, answer, citations, claims."""
 

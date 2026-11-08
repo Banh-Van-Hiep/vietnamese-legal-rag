@@ -74,6 +74,19 @@ class PromptV3Tests(unittest.TestCase):
         self.assertIn('"claims"', claims.output_instruction)
         self.assertNotIn('"claims"', plain.output_instruction)
 
+    def test_citation_metadata_keeps_null_clause_and_point(self):
+        rule = ("Nếu dòng tiêu đề ghi clause hoặc point là null thì để null, "
+                "không suy ra khoản hoặc điểm từ nội dung chunk")
+        for instruction in (OUTPUT_INSTRUCTION, OUTPUT_INSTRUCTION_WITH_CLAIMS):
+            with self.subTest(instruction=instruction):
+                self.assertIn(rule, instruction)
+
+    def test_claims_require_a_source_and_omit_unsupported_ideas(self):
+        self.assertIn("Mỗi nhận định phải có ít nhất một nhãn trong citation_ids.",
+                      OUTPUT_INSTRUCTION_WITH_CLAIMS)
+        self.assertIn("Ý nào không có nguồn trong LEGAL CONTEXT thì không viết vào answer và không đưa vào claims.",
+                      OUTPUT_INSTRUCTION_WITH_CLAIMS)
+
     def test_system_prompt_states_conditions_exceptions_and_refusal(self):
         for phrase in ("ngoại lệ", "KHI NÀO TỪ CHỐI", 'status="insufficient_context"', "Kiến thức pháp luật có sẵn"):
             self.assertIn(phrase, SYSTEM_INSTRUCTION)

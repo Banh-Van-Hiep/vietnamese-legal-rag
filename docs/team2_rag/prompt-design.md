@@ -76,6 +76,19 @@ Giới hạn: 7 ca, mỗi ca một lần chạy, một model, nên đây là ki�
 
 `.venv/bin/python -m team2_rag.manual_prompt_check claims` chạy bốn ca `answered` ở trên qua `RAGPipeline` với `prompt_v3_claims`, `gemini-3.1-flash-lite` và `verify_response` của Người 2. Hai lần chạy (05/11/2026) cho cùng kết quả: model trả 1 đến 2 claim mỗi ca đúng schema, nhãn đã đánh lại khớp context, mọi claim `SUPPORTED`, không ca nào bị `CITATION_INVALID`. Giới hạn: verifier là heuristic từ vựng và nguồn thử rất ngắn, nên kết quả chứng minh luồng claims chạy được với model thật, chưa chứng minh Verification bắt được claim sai tinh vi. Ca claim sai mới chỉ được thử bằng FakeLLM trong `tests/test_team2_pipeline_v2.py`.
 
+### Làm rõ ngày 08/11/2026
+
+Chẩn đoán bằng Gemini thật trên đúng chunk của lượt [top10-ctx10](runs/top10-ctx10/rag_v2_benchmark_report.md) ghi nhận hai lỗi định dạng:
+
+- `gold_008`: `CitationInvalidError` vì model tự thêm `point: "a"` dù metadata nguồn là `point=null`. Quy tắc citation số 3 nay nói rõ phải giữ `clause`/`point` null từ tiêu đề chunk, không suy ra từ các mục a), b) trong nội dung.
+- `gold_022`: `LLMBadOutputError` vì claim K1 có `citation_ids: []`. Phần claims nay yêu cầu mỗi claim có ít nhất một nhãn; ý thiếu nguồn phải bỏ khỏi cả `answer` lẫn `claims`.
+
+Cách tái hiện: lấy `question` và `retrieved_chunk_ids` của từng câu từ `raw_results` trong JSON cùng thư mục, khôi phục content và metadata từ `data/doanh-nghiep/processed/chunks.jsonl`, cố định retrieval theo danh sách đó và tắt rerank; dùng `top_k=10`, `max_context_chunks=10`, `LLMService(include_claims=True)` với model cấu hình trong `.env`, rồi đối chiếu chunk thực gửi với `llm_context_chunk_ids`. So sánh prompt trước và sau hai câu làm rõ qua pipeline và `verify_response`; không cần chạy model retrieval trên máy local. Giữ nguyên phiên bản `prompt_v3` và `prompt_v3_claims`.
+
+Theo kết quả chẩn đoán bàn giao ngày 08/11, sau sửa, `gold_008`, `gold_022`, `gold_024`, `gold_030` và `gold_014` (hai lượt thành công) đều `answered`; `gold_002` vẫn bị Verification chặn. Đây chỉ là kết quả trên **6 câu khác nhau, chưa chạy lại cả 30 câu**. Có một lượt `gold_014` bị `LLMTimeoutError` trước khi chạy lại thành công. `gold_002` là báo nhầm của heuristic từ vựng: claim đúng về đối tượng áp dụng chỉ trùng 22,2% với chunk ngắn `1. Doanh nghiệp.`; chưa sửa verifier.
+
+Kiểm tra hồi quy ngày 08/11 từ Git root với `PYTHONPATH=.` và `.venv/bin/python`: `-m team2_rag.manual_prompt_check` đạt **7/7**, `-m team2_rag.manual_prompt_check claims` đạt **4/4**, mọi claim `SUPPORTED`. Ca injection trong nguồn của chế độ claims đã qua khi chạy lại; timeout được ghi trong bàn giao được xem là lỗi mạng/provider thoáng qua, không tái hiện ở lượt này. Các kiểm tra này chỉ xác nhận hành vi trên nguồn thử, chưa xác nhận chất lượng trên toàn bộ Golden.
+
 ## Output nội bộ có `claims`
 
 Khi `LLMService(include_claims=True)`, prompt dùng `prompt_v3_claims`: cùng system prompt, phần định dạng yêu cầu thêm `claims`, mỗi claim một nhận định pháp lý và nhãn nguồn hỗ trợ nó.
