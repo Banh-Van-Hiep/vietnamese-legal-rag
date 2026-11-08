@@ -78,6 +78,11 @@ describe("v2.0 SSE transport", () => {
     const pending = expect(streamChat(input, { timeoutMs: 60000 })).rejects.toMatchObject({ code: "CLIENT_TIMEOUT", outcomeUnknown: true, conversationId: "101" });
     await vi.advanceTimersByTimeAsync(60000); await pending;
   });
+  it("stream closing after meta/delta without complete or error is not a success", async () => {
+    mock(frame("meta", meta) + ": heartbeat\n\n" + frame("delta", { text: "Đáp án dở" })); const onDelta = vi.fn();
+    await expect(streamChat(input, { onDelta })).rejects.toMatchObject({ code: "STREAM_INTERRUPTED", outcomeUnknown: true });
+    expect(onDelta).toHaveBeenCalledWith("Đáp án dở");
+  });
   it("stop receiving aborts reads, not an AI cancellation request", async () => {
     const controller = new AbortController();
     vi.stubGlobal("fetch", vi.fn(async () => new Response(new ReadableStream({ start(c) { c.enqueue(new TextEncoder().encode(frame("meta", meta))); } }), { headers: { "Content-Type": "text/event-stream" } })));
