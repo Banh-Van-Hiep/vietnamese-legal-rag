@@ -41,6 +41,17 @@ class DiagnoseRefusalTests(unittest.TestCase):
         record = {"gold_chunk_ids": ["a"], "context_chunk_ids": ["a", "b"]}
         self.assertTrue(runner.diagnose_refusal(record).startswith("prompt hoặc LLM"))
 
+    def test_gold_chunk_ranked_beyond_what_the_llm_sees_is_retrieval_not_prompt(self):
+        # gold_014: chunk then chốt ở hạng 7 nhưng LLM chỉ nhận 5 chunk đầu nên từ chối đúng.
+        ranked = ["x1", "x2", "x3", "x4", "x5", "x6", "gold"]
+        diagnosis = runner.diagnose_refusal({"gold_chunk_ids": ["gold"], "context_chunk_ids": ranked})
+        self.assertTrue(diagnosis.startswith("retrieval: 0/1"))
+        self.assertIn("hạng 7", diagnosis)
+
+    def test_saved_llm_context_takes_precedence_over_the_estimate(self):
+        record = {"gold_chunk_ids": ["a"], "context_chunk_ids": ["x"] * 3 + ["a"], "llm_context_chunk_ids": ["a"]}
+        self.assertTrue(runner.diagnose_refusal(record).startswith("prompt hoặc LLM"))
+
 
 class CountAbsenceClaimsTests(unittest.TestCase):
     def results(self, *texts):

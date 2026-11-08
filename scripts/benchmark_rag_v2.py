@@ -75,20 +75,29 @@ def count_absence_claims(raw_results: List[Dict[str, Any]]) -> int:
     )
 
 
-def diagnose_refusal(record: Dict[str, Any]) -> str:
-    """Ca bị từ chối: đối chiếu chunk đúng với context để tách lỗi retrieval khỏi lỗi prompt.
+def diagnose_refusal(record: Dict[str, Any], max_chunks: int = 5) -> str:
+    """Ca bị từ chối: đối chiếu chunk đúng với context LLM thật sự nhận để tách lỗi retrieval khỏi lỗi prompt.
 
-    Cần lượt chạy có lưu `context_chunk_ids` và `gold_chunk_ids`; lượt cũ không có thì không đoán nguyên nhân.
+    LLM chỉ nhận `max_context_chunks` chunk đầu (mặc định 5, bỏ trùng chunk_id), không phải cả danh sách truy xuất.
+    Lượt chạy mới lưu `llm_context_chunk_ids`; lượt cũ chỉ có `context_chunk_ids` nên ước tính bằng `max_chunks` chunk đầu.
     """
     gold = set(record.get("gold_chunk_ids") or [])
+    ranked = list(record.get("context_chunk_ids") or [])
     if not gold or "context_chunk_ids" not in record:
         return "chưa xác định (lượt chạy không lưu chunk truy xuất)"
-    hit = len(gold & set(record["context_chunk_ids"]))
-    if hit == 0:
-        return f"retrieval: 0/{len(gold)} chunk đúng nằm trong context"
-    if hit < len(gold):
-        return f"retrieval một phần: {hit}/{len(gold)} chunk đúng nằm trong context; kiểm tra chunk còn thiếu có phải chunk then chốt không"
-    return f"prompt hoặc LLM: đủ {hit}/{len(gold)} chunk đúng nằm trong context nhưng vẫn từ chối"
+    if "llm_context_chunk_ids" in record:
+        seen, basis = list(record["llm_context_chunk_ids"]), "context đã gửi cho LLM"
+    else:
+        seen, basis = list(dict.fromkeys(ranked))[:max_chunks], f"{max_chunks} chunk đầu (ước tính)"
+    hit = len(gold & set(seen))
+    if hit == len(gold):
+        return f"prompt hoặc LLM: đủ {hit}/{len(gold)} chunk đúng nằm trong {basis} nhưng vẫn từ chối"
+    where = ", ".join(
+        f"{m.split('__', 1)[-1]} {'hạng ' + str(ranked.index(m) + 1) if m in ranked else 'không có trong danh sách truy xuất'}"
+        for m in sorted(gold - set(seen))
+    )
+    kind = "retrieval" if hit == 0 else "retrieval một phần"
+    return f"{kind}: {hit}/{len(gold)} chunk đúng nằm trong {basis}; thiếu {where}"
 
 
 def classify_failure(
@@ -241,6 +250,7 @@ def run_pipeline_benchmark(
             error = None
             retrieved_ids: List[str] = []
             context_ids: List[str] = []
+            llm_ctx_ids: List[str] = []
 
             try:
                 # 1. Chạy qua retrieval & rerank
@@ -261,6 +271,7 @@ def run_pipeline_benchmark(
                         details.output, [], llm_service=pipeline.llm_service,
                         settings=pipeline.settings, token_budget=pipeline.token_budget,
                     )
+                    llm_ctx_ids = [c.chunk_id for c in generated.context.chunks]  # chunk LLM thật sự nhận
                     resp = generated.response
                     status = resp.get("status", "answered")
                     answer_text = resp.get("answer", "")
@@ -317,6 +328,7 @@ def run_pipeline_benchmark(
                 "passed": is_passed,
                 "retrieved_chunk_ids": retrieved_ids,
                 "context_chunk_ids": context_ids,
+                "llm_context_chunk_ids": llm_ctx_ids,
                 "gold_chunk_ids": list(case.get("gold_chunk_ids", [])),
                 "elapsed_seconds": round(time.time() - t_start, 2),
                 "answer": answer_text,

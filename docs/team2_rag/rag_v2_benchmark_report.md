@@ -1,7 +1,7 @@
 # Báo Cáo Đánh Giá Benchmark RAG v2 — Tuần 9 (VLRA-T2-26, VLRA-68)
 **Thực hiện bởi:** Người 2 (Verification Engine & Benchmark Suite)  
 **Người nhận bàn giao:** Người 1 (Đạt — Core Pipeline & Prompting)  
-**Thời điểm thực thi:** 07/11/2026 20:15:26  
+**Thời điểm thực thi:** 08/11/2026, chạy trên Colab (file kết quả không ghi giờ chạy chính xác)  
 **Nhãn đánh giá:** `EXPLORATORY` *(Do tập Dev Set 70/110 câu của Team 1 chưa đóng băng)*  
 
 ---
@@ -10,7 +10,7 @@
 
 | Thông số cấu hình | Giá trị thiết lập | Ghi chú |
 | :--- | :--- | :--- |
-| **Git Commit SHA** | `6e09ff13ea` | Nhánh `feature/team2-rag` |
+| **Git Commit SHA** | `d1b32c3266` | Nhánh `feature/team2-rag` |
 | **Tập dữ liệu Golden** | `team2_rag/data/golden/golden_phase1_30cai.json` | Hash SHA-256: `a9da43c9dd1c...` |
 | **Mô hình LLM Benchmark** | `gemini-3.1-flash-lite` | Chạy thật qua Google API v1beta |
 | **Trạng thái Fallback Model** | `TẮT (LLM_ALLOW_FALLBACK=false)` | Bảo đảm 100% câu hỏi do đúng model cấu hình xử lý |
@@ -56,8 +56,7 @@ Tổng số ca thất bại / cần tinh chỉnh: **4**
 
 ### Phân loại nguyên nhân lỗi:
 - **Claim không có nguồn (nội dung khẳng định không có trong điều luật)**: 1 ca
-- **Hạ tầng llm (timeout, quá tải hoặc cấu hình; không phải lỗi prompt)**: 1 ca
-- **Nguồn sai (verification không qua)**: 1 ca
+- **Nguồn sai (verification không qua)**: 2 ca
 - **Prompt (llm trả sai form hoặc bị chặn nội dung)**: 1 ca
 
 ### Chi tiết từng ca lỗi:
@@ -69,9 +68,9 @@ Tổng số ca thất bại / cần tinh chỉnh: **4**
 
 #### Ca 2: `gold_003`
 - **Câu hỏi:** Theo Luật Doanh nghiệp, cổ đông là ai?
-- **Nhóm lỗi:** `hạ tầng LLM (timeout, quá tải hoặc cấu hình; không phải lỗi prompt)`
+- **Nhóm lỗi:** `nguồn sai (Verification không qua)`
 - **Lý do chi tiết:** Trạng thái: error
-- **Trích xuất câu trả lời:** _Exception: LLMTimeoutError: Hết thời gian chờ phản hồi từ LLM provider._
+- **Trích xuất câu trả lời:** _Exception: CitationInvalidError: C3: nhãn lạ hoặc metadata không khớp chunk đã gửi cho LLM._
 
 #### Ca 3: `gold_008`
 - **Câu hỏi:** Khi thành viên góp vốn vào công ty TNHH bằng tài sản có đăng ký quyền sở hữu, việc chuyển quyền sở hữu tài sản đó cho công ty có phải chịu lệ phí trước bạ không?
@@ -94,5 +93,5 @@ Có **1 câu hỏi** hệ thống trả lời `insufficient_context` do context 
 
 #### 1. `gold_014`
 - **Câu hỏi:** *Điều lệ công ty phải quy định những nội dung chủ yếu nào theo Điều 24 Luật Doanh nghiệp?*
-- **Chẩn đoán từ chunk:** prompt hoặc LLM: đủ 4/4 chunk đúng nằm trong context nhưng vẫn từ chối
+- **Chẩn đoán từ chunk:** retrieval một phần: 3/4 chunk đúng nằm trong 5 chunk đầu (ước tính); thiếu dieu-24__k2__0 hạng 7
 - **Phản hồi của hệ thống:** _Các văn bản pháp luật được cung cấp trong LEGAL CONTEXT chỉ quy định về thành phần Điều lệ công ty và yêu cầu về họ, tên, chữ ký của những người ký Điều lệ khi đăng ký hoặc sửa đổi, bổ sung, chứ không liệt kê các nội dung chủ yếu phải có trong Điều lệ công ty theo Điều 24 Luật Doanh nghiệp._
