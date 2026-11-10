@@ -11,7 +11,13 @@
   "category": "Phạm vi điều chỉnh",
   "author": "Bành Văn Hiệp",
   "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_001",
-  "review_status": "team2_reviewed"
+  "review_status": "team2_reviewed",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "luat-59-2020-qh14-v1__dieu-1__k0__0"
+   ]
+  ]
  },
  {
   "id": "gold_002",
@@ -26,7 +32,16 @@
   "category": "Đối tượng áp dụng",
   "author": "Bành Văn Hiệp",
   "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_002",
-  "review_status": "team2_reviewed"
+  "review_status": "team2_reviewed",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "luat-59-2020-qh14-v1__dieu-2__k1__0"
+   ],
+   [
+    "luat-59-2020-qh14-v1__dieu-2__k2__0"
+   ]
+  ]
  },
  {
   "id": "gold_003",
@@ -40,7 +55,13 @@
   "category": "Giải thích thuật ngữ",
   "author": "Bành Văn Hiệp",
   "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_003",
-  "review_status": "team2_reviewed"
+  "review_status": "team2_reviewed",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "luat-59-2020-qh14-v1__dieu-4__k3__0"
+   ]
+  ]
  },
  {
   "id": "gold_004",
@@ -54,7 +75,13 @@
   "category": "Vốn",
   "author": "Bành Văn Hiệp",
   "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_004",
-  "review_status": "team2_reviewed"
+  "review_status": "team2_reviewed",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "luat-59-2020-qh14-v1__dieu-4__k34__0"
+   ]
+  ]
  },
  {
   "id": "gold_005",
@@ -78,7 +105,43 @@
   "category": "Quyền của doanh nghiệp",
   "author": "Bành Văn Hiệp",
   "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_005",
-  "review_status": "team2_reviewed"
+  "review_status": "team2_reviewed",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "luat-59-2020-qh14-v1__dieu-7__k1__0"
+   ],
+   [
+    "luat-59-2020-qh14-v1__dieu-7__k2__0"
+   ],
+   [
+    "luat-59-2020-qh14-v1__dieu-7__k3__0"
+   ],
+   [
+    "luat-59-2020-qh14-v1__dieu-7__k4__0"
+   ],
+   [
+    "luat-59-2020-qh14-v1__dieu-7__k5__0"
+   ],
+   [
+    "luat-59-2020-qh14-v1__dieu-7__k6__0"
+   ],
+   [
+    "luat-59-2020-qh14-v1__dieu-7__k7__0"
+   ],
+   [
+    "luat-59-2020-qh14-v1__dieu-7__k8__0"
+   ],
+   [
+    "luat-59-2020-qh14-v1__dieu-7__k9__0"
+   ],
+   [
+    "luat-59-2020-qh14-v1__dieu-7__k10__0"
+   ],
+   [
+    "luat-59-2020-qh14-v1__dieu-7__k11__0"
+   ]
+  ]
  },
  {
   "id": "gold_006",
@@ -92,7 +155,13 @@
   "category": "Công ty TNHH hai thành viên trở lên",
   "author": "Đỗ Đức Đạt",
   "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_006",
-  "review_status": "team2_reviewed"
+  "review_status": "team2_reviewed",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-46__k1__0"
+   ]
+  ]
  },
  {
   "id": "gold_007",
@@ -106,7 +175,13 @@
   "category": "Thời hạn góp vốn",
   "author": "Đỗ Đức Đạt",
   "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_007",
-  "review_status": "team2_reviewed"
+  "review_status": "team2_reviewed",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-47__k2__0"
+   ]
+  ]
  },
  {
   "id": "gold_008",
@@ -120,7 +195,13 @@
   "category": "Chuyển quyền sở hữu tài sản góp vốn",
   "author": "Đỗ Đức Đạt",
   "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_008",
-  "review_status": "team2_reviewed"
+  "review_status": "team2_reviewed",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-35__k1__0"
+   ]
+  ]
  },
  {
   "id": "gold_009",
@@ -134,7 +215,13 @@
   "category": "Công ty cổ phần",
   "author": "Đỗ Đức Đạt",
   "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_009",
-  "review_status": "team2_reviewed"
+  "review_status": "team2_reviewed",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-111__k1__0"
+   ]
+  ]
  },
  {
   "id": "gold_010",
@@ -148,7 +235,13 @@
   "category": "Doanh nghiệp tư nhân",
   "author": "Đỗ Đức Đạt",
   "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_010",
-  "review_status": "team2_reviewed"
+  "review_status": "team2_reviewed",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-188__k2__0"
+   ]
+  ]
  },
  {
   "id": "gold_011",
@@ -168,7 +261,31 @@
   "category": "Hành vi bị nghiêm cấm",
   "author": "Trần Anh Dũng",
   "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_011",
-  "review_status": "team2_reviewed"
+  "review_status": "team2_reviewed",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "luat-59-2020-qh14-v1__dieu-16__k1__0"
+   ],
+   [
+    "luat-59-2020-qh14-v1__dieu-16__k2__0"
+   ],
+   [
+    "luat-59-2020-qh14-v1__dieu-16__k3__0"
+   ],
+   [
+    "luat-59-2020-qh14-v1__dieu-16__k4__0"
+   ],
+   [
+    "luat-59-2020-qh14-v1__dieu-16__k5__0"
+   ],
+   [
+    "luat-59-2020-qh14-v1__dieu-16__k6__0"
+   ],
+   [
+    "luat-59-2020-qh14-v1__dieu-16__k7__0"
+   ]
+  ]
  },
  {
   "id": "gold_012",
@@ -186,7 +303,25 @@
   "category": "Hồ sơ đăng ký doanh nghiệp",
   "author": "Trần Anh Dũng",
   "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_012",
-  "review_status": "team2_reviewed"
+  "review_status": "team2_reviewed",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "luat-59-2020-qh14-v1__dieu-20__k1__0"
+   ],
+   [
+    "luat-59-2020-qh14-v1__dieu-20__k2__0"
+   ],
+   [
+    "luat-59-2020-qh14-v1__dieu-20__k3__0"
+   ],
+   [
+    "luat-59-2020-qh14-v1__dieu-20__k4__0"
+   ],
+   [
+    "luat-59-2020-qh14-v1__dieu-20__k5__0"
+   ]
+  ]
  },
  {
   "id": "gold_013",
@@ -208,7 +343,37 @@
   "category": "Nội dung đăng ký doanh nghiệp",
   "author": "Trần Anh Dũng",
   "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_013",
-  "review_status": "team2_reviewed"
+  "review_status": "team2_reviewed",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "luat-59-2020-qh14-v1__dieu-23__k1__0"
+   ],
+   [
+    "luat-59-2020-qh14-v1__dieu-23__k2__0"
+   ],
+   [
+    "luat-59-2020-qh14-v1__dieu-23__k3__0"
+   ],
+   [
+    "luat-59-2020-qh14-v1__dieu-23__k4__0"
+   ],
+   [
+    "luat-59-2020-qh14-v1__dieu-23__k5__0"
+   ],
+   [
+    "luat-59-2020-qh14-v1__dieu-23__k6__0"
+   ],
+   [
+    "luat-59-2020-qh14-v1__dieu-23__k7__0"
+   ],
+   [
+    "luat-59-2020-qh14-v1__dieu-23__k8__0"
+   ],
+   [
+    "luat-59-2020-qh14-v1__dieu-23__k9__0"
+   ]
+  ]
  },
  {
   "id": "gold_014",
@@ -225,7 +390,22 @@
   "category": "Điều lệ công ty",
   "author": "Trần Anh Dũng",
   "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_014",
-  "review_status": "team2_reviewed"
+  "review_status": "team2_reviewed",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "luat-59-2020-qh14-v1__dieu-24__k1__0"
+   ],
+   [
+    "luat-59-2020-qh14-v1__dieu-24__k2__0"
+   ],
+   [
+    "luat-59-2020-qh14-v1__dieu-24__k3__0"
+   ],
+   [
+    "luat-59-2020-qh14-v1__dieu-24__k4__0"
+   ]
+  ]
  },
  {
   "id": "gold_015",
@@ -242,7 +422,22 @@
   "category": "Giấy chứng nhận đăng ký doanh nghiệp",
   "author": "Trần Anh Dũng",
   "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_015",
-  "review_status": "team2_reviewed"
+  "review_status": "team2_reviewed",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "luat-59-2020-qh14-v1__dieu-28__k1__0"
+   ],
+   [
+    "luat-59-2020-qh14-v1__dieu-28__k2__0"
+   ],
+   [
+    "luat-59-2020-qh14-v1__dieu-28__k3__0"
+   ],
+   [
+    "luat-59-2020-qh14-v1__dieu-28__k4__0"
+   ]
+  ]
  },
  {
   "id": "gold_016",
@@ -256,7 +451,13 @@
   "category": "Trách nhiệm chủ sở hữu công ty TNHH một thành viên",
   "author": "Phương Anh",
   "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_016",
-  "review_status": "team2_reviewed"
+  "review_status": "team2_reviewed",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-74__k1__0"
+   ]
+  ]
  },
  {
   "id": "gold_017",
@@ -276,7 +477,31 @@
   "category": "Cổ đông công ty cổ phần",
   "author": "Phương Anh",
   "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_017",
-  "review_status": "team2_reviewed"
+  "review_status": "team2_reviewed",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "luat-59-2020-qh14-v1__dieu-111__k1__0"
+   ],
+   [
+    "luat-59-2020-qh14-v1__dieu-119__k1__0"
+   ],
+   [
+    "luat-59-2020-qh14-v1__dieu-119__k2__0"
+   ],
+   [
+    "luat-59-2020-qh14-v1__dieu-119__k3__0"
+   ],
+   [
+    "luat-59-2020-qh14-v1__dieu-119__k4__0"
+   ],
+   [
+    "luat-59-2020-qh14-v1__dieu-119__k5__0"
+   ],
+   [
+    "luat-59-2020-qh14-v1__dieu-119__k6__0"
+   ]
+  ]
  },
  {
   "id": "gold_018",
@@ -292,7 +517,19 @@
   "category": "Người đại diện theo pháp luật",
   "author": "Phương Anh",
   "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_018",
-  "review_status": "team2_reviewed"
+  "review_status": "team2_reviewed",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-12__k2__0"
+   ],
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-13__k1__0"
+   ],
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-13__k2__0"
+   ]
+  ]
  },
  {
   "id": "gold_019",
@@ -310,7 +547,25 @@
   "category": "Giải thể doanh nghiệp",
   "author": "Phương Anh",
   "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_019",
-  "review_status": "team2_reviewed"
+  "review_status": "team2_reviewed",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-207__k1__0"
+   ],
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-207__k2__0"
+   ],
+   [
+    "nd-168-2025-nd-cp-v1__dieu-64__k1__0"
+   ],
+   [
+    "nd-168-2025-nd-cp-v1__dieu-64__k3__0"
+   ],
+   [
+    "nd-168-2025-nd-cp-v1__dieu-64__k4__0"
+   ]
+  ]
  },
  {
   "id": "gold_020",
@@ -329,7 +584,28 @@
   "category": "Chủ sở hữu hưởng lợi",
   "author": "Phương Anh",
   "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_020",
-  "review_status": "team2_reviewed"
+  "review_status": "team2_reviewed",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "nd-168-2025-nd-cp-v1__dieu-17__k1__0"
+   ],
+   [
+    "nd-168-2025-nd-cp-v1__dieu-17__k2__0"
+   ],
+   [
+    "nd-168-2025-nd-cp-v1__dieu-18__k1__0"
+   ],
+   [
+    "nd-168-2025-nd-cp-v1__dieu-18__k2__0"
+   ],
+   [
+    "nd-168-2025-nd-cp-v1__dieu-18__k3__0"
+   ],
+   [
+    "nd-168-2025-nd-cp-v1__dieu-19__k0__0"
+   ]
+  ]
  },
  {
   "id": "gold_021",
@@ -343,7 +619,13 @@
   "category": "Lưu giữ thông tin sau giải thể, phá sản",
   "author": "Nhóm đóng góp",
   "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_021",
-  "review_status": "team2_reviewed"
+  "review_status": "team2_reviewed",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "luat-76-2025-qh15-v1__dieu-1__k26__0"
+   ]
+  ]
  },
  {
   "id": "gold_022",
@@ -359,7 +641,19 @@
   "category": "Hiệu lực và chuyển tiếp",
   "author": "Nhóm đóng góp",
   "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_022",
-  "review_status": "team2_reviewed"
+  "review_status": "team2_reviewed",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "luat-76-2025-qh15-v1__dieu-2__k0__0"
+   ],
+   [
+    "luat-76-2025-qh15-v1__dieu-3__k1__0"
+   ],
+   [
+    "luat-76-2025-qh15-v1__dieu-3__k2__0"
+   ]
+  ]
  },
  {
   "id": "gold_023",
@@ -375,7 +669,19 @@
   "category": "Doanh nghiệp xã hội",
   "author": "Nhóm đóng góp",
   "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_023",
-  "review_status": "team2_reviewed"
+  "review_status": "team2_reviewed",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-7566-vbhn-bkhdt-v1__dieu-2__k1__0"
+   ],
+   [
+    "vbhn-7566-vbhn-bkhdt-v1__dieu-3__k1__0"
+   ],
+   [
+    "vbhn-7566-vbhn-bkhdt-v1__dieu-3__k2__0"
+   ]
+  ]
  },
  {
   "id": "gold_024",
@@ -392,7 +698,22 @@
   "category": "Công bố thông tin doanh nghiệp nhà nước",
   "author": "Nhóm đóng góp",
   "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_024",
-  "review_status": "team2_reviewed"
+  "review_status": "team2_reviewed",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-7566-vbhn-bkhdt-v1__dieu-21__k1__0"
+   ],
+   [
+    "vbhn-7566-vbhn-bkhdt-v1__dieu-21__k2__0"
+   ],
+   [
+    "vbhn-7566-vbhn-bkhdt-v1__dieu-20__k4__0"
+   ],
+   [
+    "vbhn-7566-vbhn-bkhdt-v1__dieu-20__k5__0"
+   ]
+  ]
  },
  {
   "id": "gold_025",
@@ -410,7 +731,25 @@
   "category": "Xử phạt vi phạm hành chính",
   "author": "Nhóm đóng góp",
   "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_025",
-  "review_status": "team2_reviewed"
+  "review_status": "team2_reviewed",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "nd-122-2021-nd-cp-v1__dieu-3__k1__0"
+   ],
+   [
+    "nd-122-2021-nd-cp-v1__dieu-3__k2__0"
+   ],
+   [
+    "nd-122-2021-nd-cp-v1__dieu-4__k1__0"
+   ],
+   [
+    "nd-122-2021-nd-cp-v1__dieu-4__k2__0"
+   ],
+   [
+    "nd-122-2021-nd-cp-v1__dieu-5__k1__0"
+   ]
+  ]
  },
  {
   "id": "gold_026",
@@ -426,7 +765,19 @@
   "category": "Xử phạt vi phạm hành chính",
   "author": "Hậu",
   "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_026",
-  "review_status": "team2_reviewed"
+  "review_status": "team2_reviewed",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "nd-122-2021-nd-cp-v1__dieu-58__k1__0"
+   ],
+   [
+    "nd-122-2021-nd-cp-v1__dieu-58__k2__0"
+   ],
+   [
+    "nd-122-2021-nd-cp-v1__dieu-4__k2__0"
+   ]
+  ]
  },
  {
   "id": "gold_027",
@@ -444,7 +795,25 @@
   "category": "Xử phạt vi phạm hành chính",
   "author": "Hậu",
   "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_027",
-  "review_status": "team2_reviewed"
+  "review_status": "team2_reviewed",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "nd-288-2026-nd-cp-v1__dieu-1__k0__0"
+   ],
+   [
+    "nd-288-2026-nd-cp-v1__dieu-2__k1__0"
+   ],
+   [
+    "nd-288-2026-nd-cp-v1__dieu-2__k2__0"
+   ],
+   [
+    "nd-288-2026-nd-cp-v1__dieu-2__k3__0"
+   ],
+   [
+    "nd-288-2026-nd-cp-v1__dieu-2__k4__0"
+   ]
+  ]
  },
  {
   "id": "gold_028",
@@ -460,7 +829,19 @@
   "category": "Hiệu lực và chuyển tiếp",
   "author": "Hậu",
   "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_028",
-  "review_status": "team2_reviewed"
+  "review_status": "team2_reviewed",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "nd-288-2026-nd-cp-v1__dieu-7__k0__0"
+   ],
+   [
+    "nd-288-2026-nd-cp-v1__dieu-8__k1__0"
+   ],
+   [
+    "nd-288-2026-nd-cp-v1__dieu-8__k2__0"
+   ]
+  ]
  },
  {
   "id": "gold_029",
@@ -480,7 +861,31 @@
   "category": "Biểu mẫu đăng ký doanh nghiệp",
   "author": "Hậu",
   "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_029",
-  "review_status": "team2_reviewed"
+  "review_status": "team2_reviewed",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "tt-68-2025-tt-btc-v1__dieu-1__k1__0"
+   ],
+   [
+    "tt-68-2025-tt-btc-v1__dieu-1__k2__0"
+   ],
+   [
+    "tt-68-2025-tt-btc-v1__dieu-2__k1__0"
+   ],
+   [
+    "tt-68-2025-tt-btc-v1__dieu-2__k2__0"
+   ],
+   [
+    "tt-68-2025-tt-btc-v1__dieu-3__k1__0"
+   ],
+   [
+    "tt-68-2025-tt-btc-v1__dieu-3__k2__0"
+   ],
+   [
+    "tt-68-2025-tt-btc-v1__dieu-3__k3__0"
+   ]
+  ]
  },
  {
   "id": "gold_030",
@@ -497,7 +902,22 @@
   "category": "Tạm ngừng kinh doanh",
   "author": "Hậu",
   "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_030",
-  "review_status": "team2_reviewed"
+  "review_status": "team2_reviewed",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "nd-168-2025-nd-cp-v1__dieu-60__k1__0"
+   ],
+   [
+    "nd-168-2025-nd-cp-v1__dieu-60__k2__0"
+   ],
+   [
+    "nd-288-2026-nd-cp-v1__dieu-2__k5__0"
+   ],
+   [
+    "nd-288-2026-nd-cp-v1__dieu-2__k7__0"
+   ]
+  ]
  },
  {
   "id": "gold_031",
@@ -511,7 +931,13 @@
   "category": "Đại diện theo ủy quyền",
   "author": "Đỗ Đức Đạt",
   "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_031",
-  "review_status": "team2_reviewed"
+  "review_status": "team2_reviewed",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-14__k2__0"
+   ]
+  ]
  },
  {
   "id": "gold_032",
@@ -525,7 +951,13 @@
   "category": "Đại diện theo ủy quyền",
   "author": "Đỗ Đức Đạt",
   "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_032",
-  "review_status": "team2_reviewed"
+  "review_status": "team2_reviewed",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-14__k4__0"
+   ]
+  ]
  },
  {
   "id": "gold_033",
@@ -539,7 +971,13 @@
   "category": "Tài sản góp vốn",
   "author": "Đỗ Đức Đạt",
   "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_033",
-  "review_status": "team2_reviewed"
+  "review_status": "team2_reviewed",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-36__k1__0"
+   ]
+  ]
  },
  {
   "id": "gold_034",
@@ -553,7 +991,13 @@
   "category": "Dấu doanh nghiệp",
   "author": "Đỗ Đức Đạt",
   "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_034",
-  "review_status": "team2_reviewed"
+  "review_status": "team2_reviewed",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-43__k1__0"
+   ]
+  ]
  },
  {
   "id": "gold_035",
@@ -567,7 +1011,13 @@
   "category": "Giảm vốn điều lệ",
   "author": "Đỗ Đức Đạt",
   "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_035",
-  "review_status": "team2_reviewed"
+  "review_status": "team2_reviewed",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-87__k3__0"
+   ]
+  ]
  },
  {
   "id": "gold_036",
@@ -581,7 +1031,13 @@
   "category": "Các loại cổ phần",
   "author": "Đỗ Đức Đạt",
   "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_036",
-  "review_status": "team2_reviewed"
+  "review_status": "team2_reviewed",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-114__k1__0"
+   ]
+  ]
  },
  {
   "id": "gold_037",
@@ -595,7 +1051,13 @@
   "category": "Cổ phần ưu đãi cổ tức",
   "author": "Đỗ Đức Đạt",
   "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_037",
-  "review_status": "team2_reviewed"
+  "review_status": "team2_reviewed",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-117__k1__0"
+   ]
+  ]
  },
  {
   "id": "gold_038",
@@ -609,7 +1071,13 @@
   "category": "Cổ đông sáng lập",
   "author": "Đỗ Đức Đạt",
   "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_038",
-  "review_status": "team2_reviewed"
+  "review_status": "team2_reviewed",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-120__k2__0"
+   ]
+  ]
  },
  {
   "id": "gold_039",
@@ -623,7 +1091,13 @@
   "category": "Chi trả cổ tức",
   "author": "Đỗ Đức Đạt",
   "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_039",
-  "review_status": "team2_reviewed"
+  "review_status": "team2_reviewed",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-135__k3__0"
+   ]
+  ]
  },
  {
   "id": "gold_040",
@@ -637,7 +1111,13 @@
   "category": "Chi trả cổ tức",
   "author": "Đỗ Đức Đạt",
   "source": "team2_rag/data/golden/golden_phase1_30cai.json#gold_040",
-  "review_status": "team2_reviewed"
+  "review_status": "team2_reviewed",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-135__k5__0"
+   ]
+  ]
  },
  {
   "id": "gold_041",
@@ -651,7 +1131,13 @@
   "category": "Báo cáo hằng năm",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-175__k3__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-175__k3__0"
+   ]
+  ]
  },
  {
   "id": "gold_042",
@@ -665,7 +1151,13 @@
   "category": "Công ty cổ phần",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-113__k2__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-113__k2__0"
+   ]
+  ]
  },
  {
   "id": "gold_043",
@@ -679,7 +1171,13 @@
   "category": "Đại hội đồng cổ đông",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-146__k4__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-146__k4__0"
+   ]
+  ]
  },
  {
   "id": "gold_044",
@@ -693,7 +1191,13 @@
   "category": "Người đại diện theo ủy quyền",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-15__k2__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-15__k2__0"
+   ]
+  ]
  },
  {
   "id": "gold_045",
@@ -707,7 +1211,13 @@
   "category": "Vốn công ty cổ phần",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-112__k2__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-112__k2__0"
+   ]
+  ]
  },
  {
   "id": "gold_046",
@@ -721,7 +1231,13 @@
   "category": "Doanh nghiệp nhà nước",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-100__k3__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-100__k3__0"
+   ]
+  ]
  },
  {
   "id": "gold_047",
@@ -735,7 +1251,13 @@
   "category": "Đăng ký doanh nghiệp",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-27__k2__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-27__k2__0"
+   ]
+  ]
  },
  {
   "id": "gold_048",
@@ -749,7 +1271,13 @@
   "category": "Hội đồng quản trị",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-157__k3__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-157__k3__0"
+   ]
+  ]
  },
  {
   "id": "gold_049",
@@ -763,7 +1291,13 @@
   "category": "Doanh nghiệp tư nhân",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-193__k4__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-193__k4__0"
+   ]
+  ]
  },
  {
   "id": "gold_050",
@@ -777,7 +1311,13 @@
   "category": "Công ty TNHH hai thành viên",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-66__k2__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-66__k2__0"
+   ]
+  ]
  },
  {
   "id": "gold_051",
@@ -791,7 +1331,13 @@
   "category": "Đại hội đồng cổ đông",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-148__k4__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-148__k4__0"
+   ]
+  ]
  },
  {
   "id": "gold_052",
@@ -805,7 +1351,13 @@
   "category": "Nhóm công ty",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-196__k2__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-196__k2__0"
+   ]
+  ]
  },
  {
   "id": "gold_053",
@@ -819,7 +1371,13 @@
   "category": "Chuyển đổi loại hình",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-202__k3__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-202__k3__0"
+   ]
+  ]
  },
  {
   "id": "gold_054",
@@ -833,7 +1391,13 @@
   "category": "Đăng ký doanh nghiệp",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-33__k2__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-33__k2__0"
+   ]
+  ]
  },
  {
   "id": "gold_055",
@@ -847,7 +1411,13 @@
   "category": "Doanh nghiệp nhà nước",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-95__k3__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-95__k3__0"
+   ]
+  ]
  },
  {
   "id": "gold_056",
@@ -861,7 +1431,13 @@
   "category": "Đăng ký doanh nghiệp",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-32__k1__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-32__k1__0"
+   ]
+  ]
  },
  {
   "id": "gold_057",
@@ -875,7 +1451,13 @@
   "category": "Tên doanh nghiệp",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-37__k4__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-37__k4__0"
+   ]
+  ]
  },
  {
   "id": "gold_058",
@@ -889,7 +1471,13 @@
   "category": "Công ty TNHH hai thành viên",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-62__k1__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-62__k1__0"
+   ]
+  ]
  },
  {
   "id": "gold_059",
@@ -903,7 +1491,13 @@
   "category": "Bảo đảm của Nhà nước",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-5__k2__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-5__k2__0"
+   ]
+  ]
  },
  {
   "id": "gold_060",
@@ -917,7 +1511,13 @@
   "category": "Mua lại cổ phần",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-134__k4__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-134__k4__0"
+   ]
+  ]
  },
  {
   "id": "gold_061",
@@ -931,7 +1531,13 @@
   "category": "Chuyển đổi loại hình",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-205__k3__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-205__k3__0"
+   ]
+  ]
  },
  {
   "id": "gold_062",
@@ -945,7 +1551,13 @@
   "category": "Công ty TNHH hai thành viên",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-57__k5__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-57__k5__0"
+   ]
+  ]
  },
  {
   "id": "gold_063",
@@ -959,7 +1571,13 @@
   "category": "Chuyển nhượng cổ phần",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-127__k1__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-127__k1__0"
+   ]
+  ]
  },
  {
   "id": "gold_064",
@@ -973,7 +1591,13 @@
   "category": "Hội đồng quản trị",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-160__k1__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-160__k1__0"
+   ]
+  ]
  },
  {
   "id": "gold_065",
@@ -987,7 +1611,13 @@
   "category": "Chi nhánh, văn phòng đại diện",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-45__k1__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-45__k1__0"
+   ]
+  ]
  },
  {
   "id": "gold_066",
@@ -1001,7 +1631,13 @@
   "category": "Doanh nghiệp nhà nước",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-89__k1__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-89__k1__0"
+   ]
+  ]
  },
  {
   "id": "gold_067",
@@ -1015,7 +1651,13 @@
   "category": "Khởi kiện người quản lý",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-166__k3__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-166__k3__0"
+   ]
+  ]
  },
  {
   "id": "gold_068",
@@ -1029,7 +1671,13 @@
   "category": "Doanh nghiệp nhà nước",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-98__k12__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-98__k12__0"
+   ]
+  ]
  },
  {
   "id": "gold_069",
@@ -1043,7 +1691,13 @@
   "category": "Công ty hợp danh",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-180__k1__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-180__k1__0"
+   ]
+  ]
  },
  {
   "id": "gold_070",
@@ -1057,7 +1711,13 @@
   "category": "Công ty TNHH hai thành viên",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-53__k5__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-53__k5__0"
+   ]
+  ]
  },
  {
   "id": "gold_071",
@@ -1071,7 +1731,13 @@
   "category": "Doanh nghiệp nhà nước",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-107__k1__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-107__k1__0"
+   ]
+  ]
  },
  {
   "id": "gold_072",
@@ -1085,7 +1751,13 @@
   "category": "Doanh nghiệp nhà nước",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-105__k2__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-105__k2__0"
+   ]
+  ]
  },
  {
   "id": "gold_073",
@@ -1099,7 +1771,13 @@
   "category": "Doanh nghiệp nhà nước",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-91__k1__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-91__k1__0"
+   ]
+  ]
  },
  {
   "id": "gold_074",
@@ -1113,7 +1791,13 @@
   "category": "Doanh nghiệp nhà nước",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-101__k3__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-101__k3__0"
+   ]
+  ]
  },
  {
   "id": "gold_075",
@@ -1127,7 +1811,13 @@
   "category": "Công ty TNHH hai thành viên",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-48__k3__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-48__k3__0"
+   ]
+  ]
  },
  {
   "id": "gold_076",
@@ -1141,7 +1831,13 @@
   "category": "Cổ phần ưu đãi",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-116__k2__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-116__k2__0"
+   ]
+  ]
  },
  {
   "id": "gold_077",
@@ -1155,7 +1851,13 @@
   "category": "Ban kiểm soát",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-169__k2__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-169__k2__0"
+   ]
+  ]
  },
  {
   "id": "gold_078",
@@ -1169,7 +1871,13 @@
   "category": "Tổ chức lại doanh nghiệp",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-198__k1__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-198__k1__0"
+   ]
+  ]
  },
  {
   "id": "gold_079",
@@ -1183,7 +1891,13 @@
   "category": "Khởi kiện người quản lý",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-72__k3__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-72__k3__0"
+   ]
+  ]
  },
  {
   "id": "gold_080",
@@ -1197,7 +1911,13 @@
   "category": "Công ty hợp danh",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-186__k1__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-186__k1__0"
+   ]
+  ]
  },
  {
   "id": "gold_081",
@@ -1211,7 +1931,13 @@
   "category": "Ban kiểm soát",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-170__k7__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-170__k7__0"
+   ]
+  ]
  },
  {
   "id": "gold_082",
@@ -1225,7 +1951,13 @@
   "category": "Lưu giữ tài liệu",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-11__k2__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-11__k2__0"
+   ]
+  ]
  },
  {
   "id": "gold_083",
@@ -1239,7 +1971,13 @@
   "category": "Hội đồng quản trị",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-156__k2__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-156__k2__0"
+   ]
+  ]
  },
  {
   "id": "gold_084",
@@ -1253,7 +1991,13 @@
   "category": "Tên doanh nghiệp",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-40__k3__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-40__k3__0"
+   ]
+  ]
  },
  {
   "id": "gold_085",
@@ -1267,7 +2011,13 @@
   "category": "Công ty hợp danh",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-184__k1__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-184__k1__0"
+   ]
+  ]
  },
  {
   "id": "gold_086",
@@ -1281,7 +2031,13 @@
   "category": "Doanh nghiệp xã hội",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-10__k3__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-10__k3__0"
+   ]
+  ]
  },
  {
   "id": "gold_087",
@@ -1295,7 +2051,13 @@
   "category": "Hội đồng quản trị",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-153__k3__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-153__k3__0"
+   ]
+  ]
  },
  {
   "id": "gold_088",
@@ -1309,7 +2071,13 @@
   "category": "Đại hội đồng cổ đông",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk vbhn-67-vbhn-vpqh-v1__dieu-141__k2__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "vbhn-67-vbhn-vpqh-v1__dieu-141__k2__0"
+   ]
+  ]
  },
  {
   "id": "gold_089",
@@ -1323,7 +2091,13 @@
   "category": "Hộ kinh doanh",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk nd-168-2025-nd-cp-v1__dieu-88__k3__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "nd-168-2025-nd-cp-v1__dieu-88__k3__0"
+   ]
+  ]
  },
  {
   "id": "gold_090",
@@ -1337,7 +2111,13 @@
   "category": "Chia sẻ thông tin",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk nd-168-2025-nd-cp-v1__dieu-81__k4__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "nd-168-2025-nd-cp-v1__dieu-81__k4__0"
+   ]
+  ]
  },
  {
   "id": "gold_091",
@@ -1351,7 +2131,13 @@
   "category": "Hộ kinh doanh",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk nd-168-2025-nd-cp-v1__dieu-87__k1__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "nd-168-2025-nd-cp-v1__dieu-87__k1__0"
+   ]
+  ]
  },
  {
   "id": "gold_092",
@@ -1365,7 +2151,13 @@
   "category": "Hộ kinh doanh",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk nd-168-2025-nd-cp-v1__dieu-96__k3__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "nd-168-2025-nd-cp-v1__dieu-96__k3__0"
+   ]
+  ]
  },
  {
   "id": "gold_093",
@@ -1379,7 +2171,13 @@
   "category": "Cơ quan đăng ký kinh doanh",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk nd-168-2025-nd-cp-v1__dieu-21__k3__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "nd-168-2025-nd-cp-v1__dieu-21__k3__0"
+   ]
+  ]
  },
  {
   "id": "gold_094",
@@ -1393,7 +2191,13 @@
   "category": "Hộ kinh doanh",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk nd-168-2025-nd-cp-v1__dieu-115__k4__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "nd-168-2025-nd-cp-v1__dieu-115__k4__0"
+   ]
+  ]
  },
  {
   "id": "gold_095",
@@ -1407,7 +2211,13 @@
   "category": "Đăng ký doanh nghiệp",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk nd-168-2025-nd-cp-v1__dieu-6__k1__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "nd-168-2025-nd-cp-v1__dieu-6__k1__0"
+   ]
+  ]
  },
  {
   "id": "gold_096",
@@ -1421,7 +2231,13 @@
   "category": "Hộ kinh doanh",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk nd-168-2025-nd-cp-v1__dieu-82__k3__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "nd-168-2025-nd-cp-v1__dieu-82__k3__0"
+   ]
+  ]
  },
  {
   "id": "gold_097",
@@ -1435,7 +2251,13 @@
   "category": "Đăng ký doanh nghiệp",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk nd-168-2025-nd-cp-v1__dieu-33__k2__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "nd-168-2025-nd-cp-v1__dieu-33__k2__0"
+   ]
+  ]
  },
  {
   "id": "gold_098",
@@ -1449,7 +2271,13 @@
   "category": "Hồ sơ đăng ký doanh nghiệp",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk nd-168-2025-nd-cp-v1__dieu-24__k2__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "nd-168-2025-nd-cp-v1__dieu-24__k2__0"
+   ]
+  ]
  },
  {
   "id": "gold_099",
@@ -1463,7 +2291,13 @@
   "category": "Chia sẻ thông tin",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk nd-168-2025-nd-cp-v1__dieu-79__k1__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "nd-168-2025-nd-cp-v1__dieu-79__k1__0"
+   ]
+  ]
  },
  {
   "id": "gold_100",
@@ -1477,7 +2311,13 @@
   "category": "Hộ kinh doanh",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk nd-168-2025-nd-cp-v1__dieu-85__k6__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "nd-168-2025-nd-cp-v1__dieu-85__k6__0"
+   ]
+  ]
  },
  {
   "id": "gold_101",
@@ -1491,7 +2331,13 @@
   "category": "Hộ kinh doanh",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk nd-168-2025-nd-cp-v1__dieu-89__k1__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "nd-168-2025-nd-cp-v1__dieu-89__k1__0"
+   ]
+  ]
  },
  {
   "id": "gold_102",
@@ -1505,7 +2351,13 @@
   "category": "Đăng ký qua mạng",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk nd-168-2025-nd-cp-v1__dieu-38__k3__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "nd-168-2025-nd-cp-v1__dieu-38__k3__0"
+   ]
+  ]
  },
  {
   "id": "gold_103",
@@ -1519,7 +2371,13 @@
   "category": "Hộ kinh doanh",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk nd-168-2025-nd-cp-v1__dieu-86__k1__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "nd-168-2025-nd-cp-v1__dieu-86__k1__0"
+   ]
+  ]
  },
  {
   "id": "gold_104",
@@ -1533,7 +2391,13 @@
   "category": "Địa điểm kinh doanh",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk nd-168-2025-nd-cp-v1__dieu-30__k2__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "nd-168-2025-nd-cp-v1__dieu-30__k2__0"
+   ]
+  ]
  },
  {
   "id": "gold_105",
@@ -1547,7 +2411,13 @@
   "category": "Mã số doanh nghiệp",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk nd-168-2025-nd-cp-v1__dieu-8__k6__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "nd-168-2025-nd-cp-v1__dieu-8__k6__0"
+   ]
+  ]
  },
  {
   "id": "gold_106",
@@ -1561,7 +2431,13 @@
   "category": "Hộ kinh doanh",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk nd-168-2025-nd-cp-v1__dieu-92__k2__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "nd-168-2025-nd-cp-v1__dieu-92__k2__0"
+   ]
+  ]
  },
  {
   "id": "gold_107",
@@ -1575,7 +2451,13 @@
   "category": "Ngành, nghề kinh doanh",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk nd-168-2025-nd-cp-v1__dieu-7__k5__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "nd-168-2025-nd-cp-v1__dieu-7__k5__0"
+   ]
+  ]
  },
  {
   "id": "gold_108",
@@ -1589,7 +2471,13 @@
   "category": "Hộ kinh doanh",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk nd-168-2025-nd-cp-v1__dieu-108__k2__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "nd-168-2025-nd-cp-v1__dieu-108__k2__0"
+   ]
+  ]
  },
  {
   "id": "gold_109",
@@ -1603,7 +2491,13 @@
   "category": "Chi nhánh, văn phòng đại diện",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk nd-168-2025-nd-cp-v1__dieu-56__k1__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "nd-168-2025-nd-cp-v1__dieu-56__k1__0"
+   ]
+  ]
  },
  {
   "id": "gold_110",
@@ -1617,6 +2511,12 @@
   "category": "Đăng ký doanh nghiệp",
   "author": "Team 1 (Claude soạn, chờ rà soát)",
   "source": "chunk nd-168-2025-nd-cp-v1__dieu-31__k4__0",
-  "review_status": "draft_needs_legal_review"
+  "review_status": "draft_needs_legal_review",
+  "split": "dev",
+  "relevant_unit_groups": [
+   [
+    "nd-168-2025-nd-cp-v1__dieu-31__k4__0"
+   ]
+  ]
  }
 ]
