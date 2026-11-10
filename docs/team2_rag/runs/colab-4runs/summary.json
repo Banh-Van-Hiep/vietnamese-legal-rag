@@ -1,0 +1,611 @@
+{
+  "dataset_status": "exploratory",
+  "expected_runs": 4,
+  "expected_cases_per_run": 30,
+  "complete_reports": 4,
+  "runs": [
+    {
+      "run": "run1",
+      "group": "A",
+      "max_context_chars": 9000,
+      "returncode": 0,
+      "report_state": "available",
+      "read_error": null,
+      "answered": 17,
+      "insufficient_context": 0,
+      "error": 13,
+      "total_queries": 30,
+      "complete": true,
+      "metrics": {
+        "citation_correctness": 1.0,
+        "citation_coverage": 0.9677,
+        "query_hallucination_rate": 0.1176,
+        "claim_hallucination_rate": 0.0323
+      },
+      "llm_context_mean_chunks": 4.588235294117647,
+      "llm_context_observed_queries": 17,
+      "llm_context_unobserved_queries": 13,
+      "failures": [
+        {
+          "query_id": "gold_001",
+          "question": "Luật Doanh nghiệp quy định về những vấn đề gì?",
+          "status": "error",
+          "passed": false,
+          "failure_category": "hạ tầng LLM (timeout, quá tải hoặc cấu hình; không phải lỗi prompt)",
+          "reasons": [
+            "Trạng thái: error"
+          ]
+        },
+        {
+          "query_id": "gold_002",
+          "question": "Những ai thuộc đối tượng áp dụng của Luật Doanh nghiệp?",
+          "status": "error",
+          "passed": false,
+          "failure_category": "hạ tầng LLM (timeout, quá tải hoặc cấu hình; không phải lỗi prompt)",
+          "reasons": [
+            "Trạng thái: error"
+          ]
+        },
+        {
+          "query_id": "gold_003",
+          "question": "Theo Luật Doanh nghiệp, cổ đông là ai?",
+          "status": "error",
+          "passed": false,
+          "failure_category": "hạ tầng LLM (timeout, quá tải hoặc cấu hình; không phải lỗi prompt)",
+          "reasons": [
+            "Trạng thái: error"
+          ]
+        },
+        {
+          "query_id": "gold_004",
+          "question": "Vốn điều lệ của công ty trách nhiệm hữu hạn được xác định như thế nào?",
+          "status": "error",
+          "passed": false,
+          "failure_category": "hạ tầng LLM (timeout, quá tải hoặc cấu hình; không phải lỗi prompt)",
+          "reasons": [
+            "Trạng thái: error"
+          ]
+        },
+        {
+          "query_id": "gold_005",
+          "question": "Doanh nghiệp có những quyền gì theo Điều 7 Luật Doanh nghiệp?",
+          "status": "error",
+          "passed": false,
+          "failure_category": "hạ tầng LLM (timeout, quá tải hoặc cấu hình; không phải lỗi prompt)",
+          "reasons": [
+            "Trạng thái: error"
+          ]
+        },
+        {
+          "query_id": "gold_006",
+          "question": "Công ty TNHH hai thành viên trở lên được có tối thiểu và tối đa bao nhiêu thành viên? Thành viên có thể là tổ chức không?",
+          "status": "error",
+          "passed": false,
+          "failure_category": "hạ tầng LLM (timeout, quá tải hoặc cấu hình; không phải lỗi prompt)",
+          "reasons": [
+            "Trạng thái: error"
+          ]
+        },
+        {
+          "query_id": "gold_007",
+          "question": "Thành viên công ty TNHH hai thành viên trở lên phải góp đủ vốn đã cam kết trong bao lâu? Thời gian vận chuyển, nhập khẩu tài sản góp vốn và làm thủ tục chuyển quyền sở hữu có tính vào thời hạn này không?",
+          "status": "error",
+          "passed": false,
+          "failure_category": "hạ tầng LLM (timeout, quá tải hoặc cấu hình; không phải lỗi prompt)",
+          "reasons": [
+            "Trạng thái: error"
+          ]
+        },
+        {
+          "query_id": "gold_008",
+          "question": "Khi thành viên góp vốn vào công ty TNHH bằng tài sản có đăng ký quyền sở hữu, việc chuyển quyền sở hữu tài sản đó cho công ty có phải chịu lệ phí trước bạ không?",
+          "status": "error",
+          "passed": false,
+          "failure_category": "hạ tầng LLM (timeout, quá tải hoặc cấu hình; không phải lỗi prompt)",
+          "reasons": [
+            "Trạng thái: error"
+          ]
+        },
+        {
+          "query_id": "gold_009",
+          "question": "Công ty cổ phần phải có ít nhất bao nhiêu cổ đông và có giới hạn số lượng cổ đông tối đa không?",
+          "status": "error",
+          "passed": false,
+          "failure_category": "hạ tầng LLM (timeout, quá tải hoặc cấu hình; không phải lỗi prompt)",
+          "reasons": [
+            "Trạng thái: error"
+          ]
+        },
+        {
+          "query_id": "gold_010",
+          "question": "Doanh nghiệp tư nhân có được phát hành chứng khoán để huy động vốn không?",
+          "status": "error",
+          "passed": false,
+          "failure_category": "hạ tầng LLM (timeout, quá tải hoặc cấu hình; không phải lỗi prompt)",
+          "reasons": [
+            "Trạng thái: error"
+          ]
+        },
+        {
+          "query_id": "gold_011",
+          "question": "Theo Điều 16 Luật Doanh nghiệp, những hành vi nào bị nghiêm cấm trong đăng ký doanh nghiệp và hoạt động kinh doanh?",
+          "status": "error",
+          "passed": false,
+          "failure_category": "hạ tầng LLM (timeout, quá tải hoặc cấu hình; không phải lỗi prompt)",
+          "reasons": [
+            "Trạng thái: error"
+          ]
+        },
+        {
+          "query_id": "gold_012",
+          "question": "Hồ sơ đăng ký công ty hợp danh gồm những giấy tờ gì theo Điều 20 Luật Doanh nghiệp?",
+          "status": "error",
+          "passed": false,
+          "failure_category": "hạ tầng LLM (timeout, quá tải hoặc cấu hình; không phải lỗi prompt)",
+          "reasons": [
+            "Trạng thái: error"
+          ]
+        },
+        {
+          "query_id": "gold_014",
+          "question": "Điều lệ công ty phải quy định những nội dung chủ yếu nào theo Điều 24 Luật Doanh nghiệp?",
+          "status": "error",
+          "passed": false,
+          "failure_category": "hạ tầng LLM (timeout, quá tải hoặc cấu hình; không phải lỗi prompt)",
+          "reasons": [
+            "Trạng thái: error"
+          ]
+        },
+        {
+          "query_id": "gold_016",
+          "question": "Chủ sở hữu công ty TNHH một thành viên chịu trách nhiệm về các khoản nợ và nghĩa vụ tài sản khác của công ty trong phạm vi nào?",
+          "status": "answered",
+          "passed": false,
+          "failure_category": "claim không có nguồn (nội dung khẳng định không có trong điều luật)",
+          "reasons": [
+            "[C4]: Phát hiện mâu thuẫn phân cực (phủ định/khẳng định) với điều luật. Độ trùng khớp từ vựng: 80.6% | [C5]: Phát hiện mâu thuẫn phân cực (phủ định/khẳng định) với điều luật. Độ trùng khớp từ vựng: 80.6%"
+          ]
+        },
+        {
+          "query_id": "gold_026",
+          "question": "Công ty hết thời hạn hoạt động ghi trong Điều lệ mà không thực hiện thủ tục giải thể thì bị phạt bao nhiêu, phải khắc phục hậu quả thế nào và mức phạt đó áp dụng cho tổ chức hay cá nhân?",
+          "status": "answered",
+          "passed": false,
+          "failure_category": "claim không có nguồn (nội dung khẳng định không có trong điều luật)",
+          "reasons": [
+            "[C1]: Nội dung claim không tìm thấy căn cứ xác thực trong chunk được trích dẫn (Độ bao phủ chỉ đạt 28.1%). Nguy cơ Hallucination. | [C2]: Nội dung claim không tìm thấy căn cứ xác thực trong chunk được trích dẫn (Độ bao phủ chỉ đạt 25.0%). Nguy cơ Hallucination."
+          ]
+        }
+      ]
+    },
+    {
+      "run": "run2",
+      "group": "A",
+      "max_context_chars": 9000,
+      "returncode": 0,
+      "report_state": "available",
+      "read_error": null,
+      "answered": 27,
+      "insufficient_context": 0,
+      "error": 3,
+      "total_queries": 30,
+      "complete": true,
+      "metrics": {
+        "citation_correctness": 1.0,
+        "citation_coverage": 0.9667,
+        "query_hallucination_rate": 0.1111,
+        "claim_hallucination_rate": 0.0333
+      },
+      "llm_context_mean_chunks": 4.62962962962963,
+      "llm_context_observed_queries": 27,
+      "llm_context_unobserved_queries": 3,
+      "failures": [
+        {
+          "query_id": "gold_002",
+          "question": "Những ai thuộc đối tượng áp dụng của Luật Doanh nghiệp?",
+          "status": "answered",
+          "passed": false,
+          "failure_category": "claim không có nguồn (nội dung khẳng định không có trong điều luật)",
+          "reasons": [
+            "[C1]: Nội dung claim không tìm thấy căn cứ xác thực trong chunk được trích dẫn (Độ bao phủ chỉ đạt 20.0%). Nguy cơ Hallucination. | [C2]: Nội dung claim không tìm thấy căn cứ xác thực trong chunk được trích dẫn (Độ bao phủ chỉ đạt 20.0%). Nguy cơ Hallucination."
+          ]
+        },
+        {
+          "query_id": "gold_008",
+          "question": "Khi thành viên góp vốn vào công ty TNHH bằng tài sản có đăng ký quyền sở hữu, việc chuyển quyền sở hữu tài sản đó cho công ty có phải chịu lệ phí trước bạ không?",
+          "status": "error",
+          "passed": false,
+          "failure_category": "hạ tầng LLM (timeout, quá tải hoặc cấu hình; không phải lỗi prompt)",
+          "reasons": [
+            "Trạng thái: error"
+          ]
+        },
+        {
+          "query_id": "gold_016",
+          "question": "Chủ sở hữu công ty TNHH một thành viên chịu trách nhiệm về các khoản nợ và nghĩa vụ tài sản khác của công ty trong phạm vi nào?",
+          "status": "answered",
+          "passed": false,
+          "failure_category": "claim không có nguồn (nội dung khẳng định không có trong điều luật)",
+          "reasons": [
+            "[C4]: Phát hiện mâu thuẫn phân cực (phủ định/khẳng định) với điều luật. Độ trùng khớp từ vựng: 80.6% | [C5]: Phát hiện mâu thuẫn phân cực (phủ định/khẳng định) với điều luật. Độ trùng khớp từ vựng: 80.6%"
+          ]
+        },
+        {
+          "query_id": "gold_019",
+          "question": "Doanh nghiệp bị giải thể trong những trường hợp nào, phải đáp ứng điều kiện gì, và với trường hợp tự giải thể thì phải gửi hồ sơ cho cơ quan đăng ký kinh doanh theo các mốc thời hạn nào?",
+          "status": "error",
+          "passed": false,
+          "failure_category": "hạ tầng LLM (timeout, quá tải hoặc cấu hình; không phải lỗi prompt)",
+          "reasons": [
+            "Trạng thái: error"
+          ]
+        },
+        {
+          "query_id": "gold_023",
+          "question": "Theo văn bản hợp nhất Nghị định hướng dẫn Luật Doanh nghiệp (7566/VBHN-BKHĐT), doanh nghiệp xã hội được xác định theo quy định nào, phải duy trì những cam kết gì và ai phải chịu trách nhiệm liên đới khi doanh nghiệp xã hội vi phạm?",
+          "status": "error",
+          "passed": false,
+          "failure_category": "hạ tầng LLM (timeout, quá tải hoặc cấu hình; không phải lỗi prompt)",
+          "reasons": [
+            "Trạng thái: error"
+          ]
+        },
+        {
+          "query_id": "gold_026",
+          "question": "Công ty hết thời hạn hoạt động ghi trong Điều lệ mà không thực hiện thủ tục giải thể thì bị phạt bao nhiêu, phải khắc phục hậu quả thế nào và mức phạt đó áp dụng cho tổ chức hay cá nhân?",
+          "status": "answered",
+          "passed": false,
+          "failure_category": "claim không có nguồn (nội dung khẳng định không có trong điều luật)",
+          "reasons": [
+            "[C1]: Nội dung claim không tìm thấy căn cứ xác thực trong chunk được trích dẫn (Độ bao phủ chỉ đạt 28.1%). Nguy cơ Hallucination. | [C2]: Nội dung claim không tìm thấy căn cứ xác thực trong chunk được trích dẫn (Độ bao phủ chỉ đạt 25.0%). Nguy cơ Hallucination."
+          ]
+        }
+      ]
+    },
+    {
+      "run": "run3",
+      "group": "B",
+      "max_context_chars": 24000,
+      "returncode": 0,
+      "report_state": "available",
+      "read_error": null,
+      "answered": 29,
+      "insufficient_context": 0,
+      "error": 1,
+      "total_queries": 30,
+      "complete": true,
+      "metrics": {
+        "citation_correctness": 1.0,
+        "citation_coverage": 0.9794,
+        "query_hallucination_rate": 0.069,
+        "claim_hallucination_rate": 0.0206
+      },
+      "llm_context_mean_chunks": 4.689655172413793,
+      "llm_context_observed_queries": 29,
+      "llm_context_unobserved_queries": 1,
+      "failures": [
+        {
+          "query_id": "gold_002",
+          "question": "Những ai thuộc đối tượng áp dụng của Luật Doanh nghiệp?",
+          "status": "answered",
+          "passed": false,
+          "failure_category": "claim không có nguồn (nội dung khẳng định không có trong điều luật)",
+          "reasons": [
+            "[C1]: Nội dung claim không tìm thấy căn cứ xác thực trong chunk được trích dẫn (Độ bao phủ chỉ đạt 20.0%). Nguy cơ Hallucination. | [C2]: Nội dung claim không tìm thấy căn cứ xác thực trong chunk được trích dẫn (Độ bao phủ chỉ đạt 20.0%). Nguy cơ Hallucination."
+          ]
+        },
+        {
+          "query_id": "gold_016",
+          "question": "Chủ sở hữu công ty TNHH một thành viên chịu trách nhiệm về các khoản nợ và nghĩa vụ tài sản khác của công ty trong phạm vi nào?",
+          "status": "answered",
+          "passed": false,
+          "failure_category": "claim không có nguồn (nội dung khẳng định không có trong điều luật)",
+          "reasons": [
+            "[C4]: Phát hiện mâu thuẫn phân cực (phủ định/khẳng định) với điều luật. Độ trùng khớp từ vựng: 80.6% | [C5]: Phát hiện mâu thuẫn phân cực (phủ định/khẳng định) với điều luật. Độ trùng khớp từ vựng: 80.6%"
+          ]
+        },
+        {
+          "query_id": "gold_020",
+          "question": "Chủ sở hữu hưởng lợi của doanh nghiệp được xác định theo tiêu chí nào, doanh nghiệp phải kê khai những thông tin gì và lưu giữ danh sách này ra sao?",
+          "status": "error",
+          "passed": false,
+          "failure_category": "hạ tầng LLM (timeout, quá tải hoặc cấu hình; không phải lỗi prompt)",
+          "reasons": [
+            "Trạng thái: error"
+          ]
+        }
+      ]
+    },
+    {
+      "run": "run4",
+      "group": "B",
+      "max_context_chars": 24000,
+      "returncode": 0,
+      "report_state": "available",
+      "read_error": null,
+      "answered": 30,
+      "insufficient_context": 0,
+      "error": 0,
+      "total_queries": 30,
+      "complete": true,
+      "metrics": {
+        "citation_correctness": 1.0,
+        "citation_coverage": 0.9802,
+        "query_hallucination_rate": 0.0667,
+        "claim_hallucination_rate": 0.0198
+      },
+      "llm_context_mean_chunks": 4.7,
+      "llm_context_observed_queries": 30,
+      "llm_context_unobserved_queries": 0,
+      "failures": [
+        {
+          "query_id": "gold_002",
+          "question": "Những ai thuộc đối tượng áp dụng của Luật Doanh nghiệp?",
+          "status": "answered",
+          "passed": false,
+          "failure_category": "claim không có nguồn (nội dung khẳng định không có trong điều luật)",
+          "reasons": [
+            "[C1]: Nội dung claim không tìm thấy căn cứ xác thực trong chunk được trích dẫn (Độ bao phủ chỉ đạt 20.0%). Nguy cơ Hallucination. | [C2]: Nội dung claim không tìm thấy căn cứ xác thực trong chunk được trích dẫn (Độ bao phủ chỉ đạt 20.0%). Nguy cơ Hallucination."
+          ]
+        },
+        {
+          "query_id": "gold_016",
+          "question": "Chủ sở hữu công ty TNHH một thành viên chịu trách nhiệm về các khoản nợ và nghĩa vụ tài sản khác của công ty trong phạm vi nào?",
+          "status": "answered",
+          "passed": false,
+          "failure_category": "claim không có nguồn (nội dung khẳng định không có trong điều luật)",
+          "reasons": [
+            "[C4]: Phát hiện mâu thuẫn phân cực (phủ định/khẳng định) với điều luật. Độ trùng khớp từ vựng: 80.6% | [C5]: Phát hiện mâu thuẫn phân cực (phủ định/khẳng định) với điều luật. Độ trùng khớp từ vựng: 80.6%"
+          ]
+        }
+      ]
+    }
+  ],
+  "groups": {
+    "A": {
+      "runs": [
+        "run1",
+        "run2"
+      ],
+      "expected_runs": 2,
+      "environment_overrides": {
+        "LLM_MAX_CONTEXT_CHARS": "9000"
+      },
+      "complete_reports": 2,
+      "statistics": {
+        "citation_correctness": {
+          "unit": "percent",
+          "n_runs": 2,
+          "included_runs": [
+            "run1",
+            "run2"
+          ],
+          "mean": 100.0,
+          "min": 100.0,
+          "max": 100.0
+        },
+        "citation_coverage": {
+          "unit": "percent",
+          "n_runs": 2,
+          "included_runs": [
+            "run1",
+            "run2"
+          ],
+          "mean": 96.72,
+          "min": 96.67,
+          "max": 96.77
+        },
+        "query_hallucination_rate": {
+          "unit": "percent",
+          "n_runs": 2,
+          "included_runs": [
+            "run1",
+            "run2"
+          ],
+          "mean": 11.435,
+          "min": 11.110000000000001,
+          "max": 11.76
+        },
+        "claim_hallucination_rate": {
+          "unit": "percent",
+          "n_runs": 2,
+          "included_runs": [
+            "run1",
+            "run2"
+          ],
+          "mean": 3.2800000000000002,
+          "min": 3.2300000000000004,
+          "max": 3.3300000000000005
+        },
+        "error": {
+          "unit": "queries",
+          "n_runs": 2,
+          "included_runs": [
+            "run1",
+            "run2"
+          ],
+          "mean": 8,
+          "min": 3,
+          "max": 13
+        },
+        "insufficient_context": {
+          "unit": "queries",
+          "n_runs": 2,
+          "included_runs": [
+            "run1",
+            "run2"
+          ],
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "llm_context_mean_chunks": {
+          "unit": "chunks",
+          "n_runs": 2,
+          "included_runs": [
+            "run1",
+            "run2"
+          ],
+          "mean": 4.608932461873638,
+          "min": 4.588235294117647,
+          "max": 4.62962962962963
+        }
+      }
+    },
+    "B": {
+      "runs": [
+        "run3",
+        "run4"
+      ],
+      "expected_runs": 2,
+      "environment_overrides": {
+        "LLM_MAX_CONTEXT_CHARS": "24000"
+      },
+      "complete_reports": 2,
+      "statistics": {
+        "citation_correctness": {
+          "unit": "percent",
+          "n_runs": 2,
+          "included_runs": [
+            "run3",
+            "run4"
+          ],
+          "mean": 100.0,
+          "min": 100.0,
+          "max": 100.0
+        },
+        "citation_coverage": {
+          "unit": "percent",
+          "n_runs": 2,
+          "included_runs": [
+            "run3",
+            "run4"
+          ],
+          "mean": 97.97999999999999,
+          "min": 97.94,
+          "max": 98.02
+        },
+        "query_hallucination_rate": {
+          "unit": "percent",
+          "n_runs": 2,
+          "included_runs": [
+            "run3",
+            "run4"
+          ],
+          "mean": 6.785,
+          "min": 6.67,
+          "max": 6.9
+        },
+        "claim_hallucination_rate": {
+          "unit": "percent",
+          "n_runs": 2,
+          "included_runs": [
+            "run3",
+            "run4"
+          ],
+          "mean": 2.02,
+          "min": 1.9800000000000002,
+          "max": 2.06
+        },
+        "error": {
+          "unit": "queries",
+          "n_runs": 2,
+          "included_runs": [
+            "run3",
+            "run4"
+          ],
+          "mean": 0.5,
+          "min": 0,
+          "max": 1
+        },
+        "insufficient_context": {
+          "unit": "queries",
+          "n_runs": 2,
+          "included_runs": [
+            "run3",
+            "run4"
+          ],
+          "mean": 0,
+          "min": 0,
+          "max": 0
+        },
+        "llm_context_mean_chunks": {
+          "unit": "chunks",
+          "n_runs": 2,
+          "included_runs": [
+            "run3",
+            "run4"
+          ],
+          "mean": 4.694827586206896,
+          "min": 4.689655172413793,
+          "max": 4.7
+        }
+      }
+    }
+  },
+  "comparison_B_minus_A": {
+    "citation_correctness": {
+      "unit": "percentage_points",
+      "mean_A": 100.0,
+      "mean_B": 100.0,
+      "delta_B_minus_A": 0.0,
+      "n_runs_A": 2,
+      "n_runs_B": 2
+    },
+    "citation_coverage": {
+      "unit": "percentage_points",
+      "mean_A": 96.72,
+      "mean_B": 97.97999999999999,
+      "delta_B_minus_A": 1.259999999999991,
+      "n_runs_A": 2,
+      "n_runs_B": 2
+    },
+    "query_hallucination_rate": {
+      "unit": "percentage_points",
+      "mean_A": 11.435,
+      "mean_B": 6.785,
+      "delta_B_minus_A": -4.65,
+      "n_runs_A": 2,
+      "n_runs_B": 2
+    },
+    "claim_hallucination_rate": {
+      "unit": "percentage_points",
+      "mean_A": 3.2800000000000002,
+      "mean_B": 2.02,
+      "delta_B_minus_A": -1.2600000000000002,
+      "n_runs_A": 2,
+      "n_runs_B": 2
+    },
+    "error": {
+      "unit": "queries",
+      "mean_A": 8,
+      "mean_B": 0.5,
+      "delta_B_minus_A": -7.5,
+      "n_runs_A": 2,
+      "n_runs_B": 2
+    },
+    "insufficient_context": {
+      "unit": "queries",
+      "mean_A": 0,
+      "mean_B": 0,
+      "delta_B_minus_A": 0,
+      "n_runs_A": 2,
+      "n_runs_B": 2
+    },
+    "llm_context_mean_chunks": {
+      "unit": "chunks",
+      "mean_A": 4.608932461873638,
+      "mean_B": 4.694827586206896,
+      "delta_B_minus_A": 0.08589512433325819,
+      "n_runs_A": 2,
+      "n_runs_B": 2
+    }
+  },
+  "notes": [
+    "Trung bình không trọng số giữa các lượt đủ câu, loại metric thiếu mẫu số; không phải khoảng tin cậy.",
+    "Query-level dùng câu answered; error/insufficient_context không nằm trong mẫu số.",
+    "Số chunk trung bình chỉ dùng llm_context_chunk_ids không rỗng trong raw_results; không gán 0 cho context chưa ghi nhận.",
+    "Chênh lệch B trừ A; tỷ lệ dùng điểm phần trăm, số câu/chunk dùng đơn vị gốc.",
+    "Verifier heuristic từ vựng; kết quả chưa xác nhận ảo giác ngữ nghĩa tuyệt đối."
+  ]
+}
