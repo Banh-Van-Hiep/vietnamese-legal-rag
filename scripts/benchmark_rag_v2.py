@@ -33,6 +33,7 @@ import dotenv
 dotenv.load_dotenv(".env")
 
 from team2_rag.config.settings import load_settings
+from team2_rag.prompts.context import build_context
 from team2_rag.llm.errors import CitationInvalidError, LLMBadOutputError, LLMContentBlockedError, LLMError
 from team2_rag.runtime import build_runtime
 from team2_rag.verification.metrics import compute_benchmark_metrics
@@ -256,6 +257,7 @@ def run_pipeline_benchmark(
             retrieved_ids: List[str] = []
             context_ids: List[str] = []
             llm_ctx_ids: List[str] = []
+            cited_ids: List[str] = []
 
             try:
                 # 1. Chạy qua retrieval & rerank
@@ -265,6 +267,11 @@ def run_pipeline_benchmark(
                 details = pipeline._rerank(retrieved)
                 results_candidates = details.output.get("results", [])
                 context_ids = [r.get("chunk_id", "") for r in results_candidates]
+                # Chunk thật sự gửi cho LLM (ngân sách ký tự); generated.context của câu trả lời chỉ còn chunk được trích dẫn.
+                if pipeline.token_budget is None:
+                    llm_ctx_ids = [c.chunk_id for c in build_context(
+                        results_candidates, max_chunks=pipeline.settings.max_context_chunks,
+                        max_chars=pipeline.settings.max_context_chars).chunks]
 
                 if not results_candidates:
                     status = "insufficient_context"
@@ -276,7 +283,7 @@ def run_pipeline_benchmark(
                         details.output, [], llm_service=pipeline.llm_service,
                         settings=pipeline.settings, token_budget=pipeline.token_budget,
                     )
-                    llm_ctx_ids = [c.chunk_id for c in generated.context.chunks]  # chunk LLM thật sự nhận
+                    cited_ids = [c.chunk_id for c in generated.context.chunks]  # câu trả lời: chỉ chunk được trích dẫn
                     resp = generated.response
                     status = resp.get("status", "answered")
                     answer_text = resp.get("answer", "")
@@ -334,6 +341,7 @@ def run_pipeline_benchmark(
                 "retrieved_chunk_ids": retrieved_ids,
                 "context_chunk_ids": context_ids,
                 "llm_context_chunk_ids": llm_ctx_ids,
+                "cited_chunk_ids": cited_ids,
                 "gold_chunk_ids": list(case.get("gold_chunk_ids", [])),
                 "elapsed_seconds": round(time.time() - t_start, 2),
                 "answer": answer_text,
