@@ -1,0 +1,4272 @@
+{
+  "metadata": {
+    "git_commit": "3b307fa835dad4072535bbcae346daeaf2b61967",
+    "golden_dataset": "/content/vietnamese-legal-rag/team2_rag/data/golden/golden_phase1_30cai.json",
+    "golden_sha256": "a9da43c9dd1cd0907c89b604d9875265df2b96fb0388edc175742e522b97a23c",
+    "dataset_status": "exploratory (Dev Set chưa đóng băng hoàn toàn)",
+    "llm_model": "gemini-3.1-flash-lite",
+    "allow_fallback": false,
+    "pipeline_timeout": 45.0,
+    "top_k": 10,
+    "rerank_enabled": false,
+    "strict_rerank": false,
+    "rerank_timeout": 4.0,
+    "rerank_note": "Tắt rerank (không chạy BGE-Reranker)",
+    "weights": [
+      0.5,
+      1.0
+    ]
+  },
+  "metrics": {
+    "dataset_summary": {
+      "total_queries": 30,
+      "answered_queries": 29,
+      "insufficient_context_queries": 0,
+      "error_queries": 1
+    },
+    "claims_summary": {
+      "total_claims": 97,
+      "supported_claims": 95,
+      "unsupported_claims": 2
+    },
+    "citations_summary": {
+      "total_citations": 136,
+      "valid_citations": 136,
+      "invalid_citations": 0
+    },
+    "core_metrics": {
+      "citation_correctness": 1.0,
+      "citation_correctness_pct": "100.00%",
+      "citation_coverage": 0.9794,
+      "citation_coverage_pct": "97.94%",
+      "query_hallucination_rate": 0.069,
+      "query_hallucination_rate_pct": "6.90%",
+      "claim_hallucination_rate": 0.0206,
+      "claim_hallucination_rate_pct": "2.06%",
+      "hallucination_rate": 0.069,
+      "hallucination_rate_pct": "6.90%"
+    },
+    "targets_check": {
+      "citation_correctness_target_met": true,
+      "citation_coverage_target_met": true,
+      "hallucination_rate_target_met": false
+    }
+  },
+  "failure_analysis": {
+    "total_failed": 3,
+    "categories": {
+      "claim không có nguồn (nội dung khẳng định không có trong điều luật)": 2,
+      "hạ tầng LLM (timeout, quá tải hoặc cấu hình; không phải lỗi prompt)": 1
+    },
+    "failed_cases": [
+      {
+        "query_id": "gold_002",
+        "question": "Những ai thuộc đối tượng áp dụng của Luật Doanh nghiệp?",
+        "status": "answered",
+        "failure_category": "claim không có nguồn (nội dung khẳng định không có trong điều luật)",
+        "answer": "Đối tượng áp dụng của Luật Doanh nghiệp bao gồm doanh nghiệp [C1], [C2] và các cơ quan, tổ chức, cá nhân có liên quan đến việc thành lập, tổ chức quản lý, tổ chức lại, giải thể và hoạt động có liên quan của doanh nghiệp [C3], [C4]. Trong trường hợp luật khác có quy định đặc thù về các vấn đề nêu trê",
+        "reasons": [
+          "[C1]: Nội dung claim không tìm thấy căn cứ xác thực trong chunk được trích dẫn (Độ bao phủ chỉ đạt 20.0%). Nguy cơ Hallucination. | [C2]: Nội dung claim không tìm thấy căn cứ xác thực trong chunk được trích dẫn (Độ bao phủ chỉ đạt 20.0%). Nguy cơ Hallucination."
+        ]
+      },
+      {
+        "query_id": "gold_016",
+        "question": "Chủ sở hữu công ty TNHH một thành viên chịu trách nhiệm về các khoản nợ và nghĩa vụ tài sản khác của công ty trong phạm vi nào?",
+        "status": "answered",
+        "failure_category": "claim không có nguồn (nội dung khẳng định không có trong điều luật)",
+        "answer": "Chủ sở hữu công ty TNHH một thành viên chịu trách nhiệm về các khoản nợ và nghĩa vụ tài sản khác của công ty trong phạm vi số vốn điều lệ của công ty [C1], [C2]. Ngoài ra, chủ sở hữu công ty chịu trách nhiệm bằng toàn bộ tài sản của mình đối với các nghĩa vụ tài chính của công ty và thiệt hại xảy ra",
+        "reasons": [
+          "[C4]: Phát hiện mâu thuẫn phân cực (phủ định/khẳng định) với điều luật. Độ trùng khớp từ vựng: 80.6% | [C5]: Phát hiện mâu thuẫn phân cực (phủ định/khẳng định) với điều luật. Độ trùng khớp từ vựng: 80.6%"
+        ]
+      },
+      {
+        "query_id": "gold_020",
+        "question": "Chủ sở hữu hưởng lợi của doanh nghiệp được xác định theo tiêu chí nào, doanh nghiệp phải kê khai những thông tin gì và lưu giữ danh sách này ra sao?",
+        "status": "error",
+        "failure_category": "hạ tầng LLM (timeout, quá tải hoặc cấu hình; không phải lỗi prompt)",
+        "answer": "Exception: LLMProviderError: gemini: HTTP 503",
+        "reasons": [
+          "Trạng thái: error"
+        ]
+      }
+    ]
+  },
+  "raw_results": [
+    {
+      "query_id": "gold_001",
+      "question": "Luật Doanh nghiệp quy định về những vấn đề gì?",
+      "status": "answered",
+      "actual_model": "gemini-3.1-flash-lite",
+      "passed": true,
+      "retrieved_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-3__k0__0",
+        "luat-59-2020-qh14-v1__dieu-1__k0__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-3__k0__0",
+        "luat-59-2020-qh14-v1__dieu-4__k9__0",
+        "luat-59-2020-qh14-v1__dieu-4__k19__0",
+        "luat-59-2020-qh14-v1__dieu-4__k15__0",
+        "luat-59-2020-qh14-v1__dieu-8__k2__0",
+        "luat-59-2020-qh14-v1__dieu-8__k5__0",
+        "luat-59-2020-qh14-v1__dieu-4__k24__0",
+        "luat-59-2020-qh14-v1__dieu-12__k2__0"
+      ],
+      "context_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-3__k0__0",
+        "luat-59-2020-qh14-v1__dieu-1__k0__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-3__k0__0",
+        "luat-59-2020-qh14-v1__dieu-4__k9__0",
+        "luat-59-2020-qh14-v1__dieu-4__k19__0",
+        "luat-59-2020-qh14-v1__dieu-4__k15__0",
+        "luat-59-2020-qh14-v1__dieu-8__k2__0",
+        "luat-59-2020-qh14-v1__dieu-8__k5__0",
+        "luat-59-2020-qh14-v1__dieu-4__k24__0",
+        "luat-59-2020-qh14-v1__dieu-12__k2__0"
+      ],
+      "llm_context_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-1__k0__0",
+        "luat-59-2020-qh14-v1__dieu-3__k0__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-3__k0__0"
+      ],
+      "gold_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-1__k0__0"
+      ],
+      "elapsed_seconds": 4.93,
+      "answer": "Luật Doanh nghiệp quy định về việc thành lập, tổ chức quản lý, tổ chức lại, giải thể và hoạt động có liên quan của doanh nghiệp, bao gồm công ty trách nhiệm hữu hạn, công ty cổ phần, công ty hợp danh, doanh nghiệp tư nhân và nhóm công ty [C1]. Trong trường hợp luật khác có quy định đặc thù về các vấn đề này thì áp dụng quy định của luật đó [C2][C3].",
+      "citations_count": 3,
+      "claims_count": 2,
+      "verification_result": {
+        "passed": true,
+        "claim_results": [
+          {
+            "claim_id": "K1",
+            "text": "Luật Doanh nghiệp quy định về việc thành lập, tổ chức quản lý, tổ chức lại, giải thể và hoạt động có liên quan của doanh nghiệp, bao gồm công ty trách nhiệm hữu hạn, công ty cổ phần, công ty hợp danh, doanh nghiệp tư nhân và nhóm công ty.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C1]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%).",
+            "cited_citations": [
+              "C1"
+            ]
+          },
+          {
+            "claim_id": "K2",
+            "text": "Trường hợp luật khác có quy định đặc thù về việc thành lập, tổ chức quản lý, tổ chức lại, giải thể và hoạt động có liên quan của doanh nghiệp thì áp dụng quy định của luật đó.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C2]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%). | [C3]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%).",
+            "cited_citations": [
+              "C2",
+              "C3"
+            ]
+          }
+        ],
+        "citation_results": [
+          {
+            "citation_id": "C1",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C2",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C3",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          }
+        ],
+        "summary": {
+          "total_claims": 2,
+          "supported_claims": 2,
+          "total_citations": 3,
+          "valid_citations": 3,
+          "citation_correctness": 1.0,
+          "citation_coverage": 1.0,
+          "hallucination_detected": false,
+          "all_citations_valid": true
+        }
+      },
+      "failure_info": null
+    },
+    {
+      "query_id": "gold_002",
+      "question": "Những ai thuộc đối tượng áp dụng của Luật Doanh nghiệp?",
+      "status": "answered",
+      "actual_model": "gemini-3.1-flash-lite",
+      "passed": false,
+      "retrieved_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-2__k2__0",
+        "luat-59-2020-qh14-v1__dieu-2__k1__0",
+        "luat-59-2020-qh14-v1__dieu-3__k0__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-2__k2__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-3__k0__0",
+        "nd-168-2025-nd-cp-v1__dieu-2__k9__0",
+        "nd-168-2025-nd-cp-v1__dieu-2__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-2__k1__0",
+        "nd-168-2025-nd-cp-v1__dieu-2__k6__0",
+        "nd-168-2025-nd-cp-v1__dieu-2__k2__0"
+      ],
+      "context_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-2__k2__0",
+        "luat-59-2020-qh14-v1__dieu-2__k1__0",
+        "luat-59-2020-qh14-v1__dieu-3__k0__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-2__k2__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-3__k0__0",
+        "nd-168-2025-nd-cp-v1__dieu-2__k9__0",
+        "nd-168-2025-nd-cp-v1__dieu-2__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-2__k1__0",
+        "nd-168-2025-nd-cp-v1__dieu-2__k6__0",
+        "nd-168-2025-nd-cp-v1__dieu-2__k2__0"
+      ],
+      "llm_context_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-2__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-2__k1__0",
+        "luat-59-2020-qh14-v1__dieu-2__k2__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-2__k2__0",
+        "luat-59-2020-qh14-v1__dieu-3__k0__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-3__k0__0"
+      ],
+      "gold_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-2__k1__0",
+        "luat-59-2020-qh14-v1__dieu-2__k2__0"
+      ],
+      "elapsed_seconds": 3.75,
+      "answer": "Đối tượng áp dụng của Luật Doanh nghiệp bao gồm doanh nghiệp [C1], [C2] và các cơ quan, tổ chức, cá nhân có liên quan đến việc thành lập, tổ chức quản lý, tổ chức lại, giải thể và hoạt động có liên quan của doanh nghiệp [C3], [C4]. Trong trường hợp luật khác có quy định đặc thù về các vấn đề nêu trên thì áp dụng quy định của luật đó [C5], [C6].",
+      "citations_count": 6,
+      "claims_count": 3,
+      "verification_result": {
+        "passed": false,
+        "claim_results": [
+          {
+            "claim_id": "K1",
+            "text": "Đối tượng áp dụng của Luật Doanh nghiệp bao gồm doanh nghiệp.",
+            "supported": false,
+            "verdict": "UNSUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C1]: Nội dung claim không tìm thấy căn cứ xác thực trong chunk được trích dẫn (Độ bao phủ chỉ đạt 20.0%). Nguy cơ Hallucination. | [C2]: Nội dung claim không tìm thấy căn cứ xác thực trong chunk được trích dẫn (Độ bao phủ chỉ đạt 20.0%). Nguy cơ Hallucination.",
+            "cited_citations": [
+              "C1",
+              "C2"
+            ]
+          },
+          {
+            "claim_id": "K2",
+            "text": "Đối tượng áp dụng của Luật Doanh nghiệp bao gồm cơ quan, tổ chức, cá nhân có liên quan đến việc thành lập, tổ chức quản lý, tổ chức lại, giải thể và hoạt động có liên quan của doanh nghiệp.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C3]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 76.7%). | [C4]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 76.7%).",
+            "cited_citations": [
+              "C3",
+              "C4"
+            ]
+          },
+          {
+            "claim_id": "K3",
+            "text": "Trường hợp luật khác có quy định đặc thù về việc thành lập, tổ chức quản lý, tổ chức lại, giải thể và hoạt động có liên quan của doanh nghiệp thì áp dụng quy định của luật đó.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C5]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%). | [C6]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%).",
+            "cited_citations": [
+              "C5",
+              "C6"
+            ]
+          }
+        ],
+        "citation_results": [
+          {
+            "citation_id": "C1",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C2",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C3",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C4",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C5",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C6",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          }
+        ],
+        "summary": {
+          "total_claims": 3,
+          "supported_claims": 2,
+          "total_citations": 6,
+          "valid_citations": 6,
+          "citation_correctness": 1.0,
+          "citation_coverage": 0.6667,
+          "hallucination_detected": true,
+          "all_citations_valid": true
+        }
+      },
+      "failure_info": {
+        "query_id": "gold_002",
+        "question": "Những ai thuộc đối tượng áp dụng của Luật Doanh nghiệp?",
+        "status": "answered",
+        "failure_category": "claim không có nguồn (nội dung khẳng định không có trong điều luật)",
+        "answer": "Đối tượng áp dụng của Luật Doanh nghiệp bao gồm doanh nghiệp [C1], [C2] và các cơ quan, tổ chức, cá nhân có liên quan đến việc thành lập, tổ chức quản lý, tổ chức lại, giải thể và hoạt động có liên quan của doanh nghiệp [C3], [C4]. Trong trường hợp luật khác có quy định đặc thù về các vấn đề nêu trê",
+        "reasons": [
+          "[C1]: Nội dung claim không tìm thấy căn cứ xác thực trong chunk được trích dẫn (Độ bao phủ chỉ đạt 20.0%). Nguy cơ Hallucination. | [C2]: Nội dung claim không tìm thấy căn cứ xác thực trong chunk được trích dẫn (Độ bao phủ chỉ đạt 20.0%). Nguy cơ Hallucination."
+        ]
+      }
+    },
+    {
+      "query_id": "gold_003",
+      "question": "Theo Luật Doanh nghiệp, cổ đông là ai?",
+      "status": "answered",
+      "actual_model": "gemini-3.1-flash-lite",
+      "passed": true,
+      "retrieved_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-14__k1__0",
+        "luat-59-2020-qh14-v1__dieu-127__k3__0",
+        "luat-59-2020-qh14-v1__dieu-111__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-127__k3__0",
+        "luat-59-2020-qh14-v1__dieu-14__k3__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-14__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-111__k1__0",
+        "luat-59-2020-qh14-v1__dieu-4__k4__0",
+        "luat-59-2020-qh14-v1__dieu-121__k1__0",
+        "luat-59-2020-qh14-v1__dieu-122__k1__0"
+      ],
+      "context_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-14__k1__0",
+        "luat-59-2020-qh14-v1__dieu-127__k3__0",
+        "luat-59-2020-qh14-v1__dieu-111__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-127__k3__0",
+        "luat-59-2020-qh14-v1__dieu-14__k3__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-14__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-111__k1__0",
+        "luat-59-2020-qh14-v1__dieu-4__k4__0",
+        "luat-59-2020-qh14-v1__dieu-121__k1__0",
+        "luat-59-2020-qh14-v1__dieu-122__k1__0"
+      ],
+      "llm_context_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-111__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-111__k1__0",
+        "luat-59-2020-qh14-v1__dieu-4__k4__0",
+        "luat-59-2020-qh14-v1__dieu-127__k3__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-127__k3__0"
+      ],
+      "gold_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-4__k3__0"
+      ],
+      "elapsed_seconds": 4.09,
+      "answer": "Theo Luật Doanh nghiệp, cổ đông trong công ty cổ phần có thể là tổ chức hoặc cá nhân [C1], [C2]. Cổ đông sáng lập là cổ đông sở hữu ít nhất một cổ phần phổ thông và ký tên trong danh sách cổ đông sáng lập công ty cổ phần [C3]. Ngoài ra, trường hợp cổ đông là cá nhân chết, người thừa kế theo di chúc hoặc theo pháp luật của cổ đông đó sẽ trở thành cổ đông của công ty [C4], [C5].",
+      "citations_count": 5,
+      "claims_count": 3,
+      "verification_result": {
+        "passed": true,
+        "claim_results": [
+          {
+            "claim_id": "K1",
+            "text": "Cổ đông trong công ty cổ phần có thể là tổ chức hoặc cá nhân.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C1]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 92.9%). | [C2]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 92.9%).",
+            "cited_citations": [
+              "C1",
+              "C2"
+            ]
+          },
+          {
+            "claim_id": "K2",
+            "text": "Cổ đông sáng lập là cổ đông sở hữu ít nhất một cổ phần phổ thông và ký tên trong danh sách cổ đông sáng lập công ty cổ phần.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C3]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%).",
+            "cited_citations": [
+              "C3"
+            ]
+          },
+          {
+            "claim_id": "K3",
+            "text": "Trường hợp cổ đông là cá nhân chết, người thừa kế theo di chúc hoặc theo pháp luật của cổ đông đó trở thành cổ đông của công ty.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C4]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%). | [C5]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%).",
+            "cited_citations": [
+              "C4",
+              "C5"
+            ]
+          }
+        ],
+        "citation_results": [
+          {
+            "citation_id": "C1",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C2",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C3",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C4",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C5",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          }
+        ],
+        "summary": {
+          "total_claims": 3,
+          "supported_claims": 3,
+          "total_citations": 5,
+          "valid_citations": 5,
+          "citation_correctness": 1.0,
+          "citation_coverage": 1.0,
+          "hallucination_detected": false,
+          "all_citations_valid": true
+        }
+      },
+      "failure_info": null
+    },
+    {
+      "query_id": "gold_004",
+      "question": "Vốn điều lệ của công ty trách nhiệm hữu hạn được xác định như thế nào?",
+      "status": "answered",
+      "actual_model": "gemini-3.1-flash-lite",
+      "passed": true,
+      "retrieved_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-75__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-75__k1__0",
+        "luat-59-2020-qh14-v1__dieu-4__k34__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-4__k34__0",
+        "luat-59-2020-qh14-v1__dieu-87__k1__0",
+        "luat-59-2020-qh14-v1__dieu-47__k1__0",
+        "luat-59-2020-qh14-v1__dieu-112__k1__0",
+        "luat-59-2020-qh14-v1__dieu-24__k2__0",
+        "luat-59-2020-qh14-v1__dieu-87__k3__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-24__k2__0"
+      ],
+      "context_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-75__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-75__k1__0",
+        "luat-59-2020-qh14-v1__dieu-4__k34__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-4__k34__0",
+        "luat-59-2020-qh14-v1__dieu-87__k1__0",
+        "luat-59-2020-qh14-v1__dieu-47__k1__0",
+        "luat-59-2020-qh14-v1__dieu-112__k1__0",
+        "luat-59-2020-qh14-v1__dieu-24__k2__0",
+        "luat-59-2020-qh14-v1__dieu-87__k3__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-24__k2__0"
+      ],
+      "llm_context_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-4__k34__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-4__k34__0",
+        "luat-59-2020-qh14-v1__dieu-75__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-75__k1__0",
+        "luat-59-2020-qh14-v1__dieu-47__k1__0"
+      ],
+      "gold_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-4__k34__0"
+      ],
+      "elapsed_seconds": 3.81,
+      "answer": "Vốn điều lệ của công ty trách nhiệm hữu hạn được xác định là tổng giá trị tài sản do các thành viên hoặc chủ sở hữu công ty đã góp hoặc cam kết góp khi thành lập công ty [C1], [C2]. Cụ thể, đối với công ty trách nhiệm hữu hạn một thành viên, vốn điều lệ khi đăng ký thành lập là tổng giá trị tài sản do chủ sở hữu công ty cam kết góp và ghi trong Điều lệ công ty [C3], [C4]. Đối với công ty trách nhiệm hữu hạn hai thành viên trở lên, vốn điều lệ khi đăng ký thành lập là tổng giá trị phần vốn góp của các thành viên cam kết góp và ghi trong Điều lệ công ty [C5].",
+      "citations_count": 5,
+      "claims_count": 3,
+      "verification_result": {
+        "passed": true,
+        "claim_results": [
+          {
+            "claim_id": "K1",
+            "text": "Vốn điều lệ của công ty trách nhiệm hữu hạn là tổng giá trị tài sản do các thành viên hoặc chủ sở hữu công ty đã góp hoặc cam kết góp khi thành lập công ty.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C1]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 96.6%). | [C2]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 96.6%).",
+            "cited_citations": [
+              "C1",
+              "C2"
+            ]
+          },
+          {
+            "claim_id": "K2",
+            "text": "Vốn điều lệ của công ty trách nhiệm hữu hạn một thành viên khi đăng ký thành lập là tổng giá trị tài sản do chủ sở hữu cam kết góp và ghi trong Điều lệ công ty.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C3]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%). | [C4]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%).",
+            "cited_citations": [
+              "C3",
+              "C4"
+            ]
+          },
+          {
+            "claim_id": "K3",
+            "text": "Vốn điều lệ của công ty trách nhiệm hữu hạn hai thành viên trở lên khi đăng ký thành lập là tổng giá trị phần vốn góp của các thành viên cam kết góp và ghi trong Điều lệ công ty.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C5]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%).",
+            "cited_citations": [
+              "C5"
+            ]
+          }
+        ],
+        "citation_results": [
+          {
+            "citation_id": "C1",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C2",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C3",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C4",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C5",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          }
+        ],
+        "summary": {
+          "total_claims": 3,
+          "supported_claims": 3,
+          "total_citations": 5,
+          "valid_citations": 5,
+          "citation_correctness": 1.0,
+          "citation_coverage": 1.0,
+          "hallucination_detected": false,
+          "all_citations_valid": true
+        }
+      },
+      "failure_info": null
+    },
+    {
+      "query_id": "gold_005",
+      "question": "Doanh nghiệp có những quyền gì theo Điều 7 Luật Doanh nghiệp?",
+      "status": "answered",
+      "actual_model": "gemini-3.1-flash-lite",
+      "passed": true,
+      "retrieved_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-7__k7__0",
+        "luat-59-2020-qh14-v1__dieu-7__k11__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-7__k7__0",
+        "luat-59-2020-qh14-v1__dieu-7__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-7__k11__0",
+        "luat-59-2020-qh14-v1__dieu-7__k4__0",
+        "luat-59-2020-qh14-v1__dieu-7__k9__0",
+        "luat-59-2020-qh14-v1__dieu-7__k2__0",
+        "luat-59-2020-qh14-v1__dieu-7__k10__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-7__k2__0"
+      ],
+      "context_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-7__k7__0",
+        "luat-59-2020-qh14-v1__dieu-7__k11__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-7__k7__0",
+        "luat-59-2020-qh14-v1__dieu-7__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-7__k11__0",
+        "luat-59-2020-qh14-v1__dieu-7__k4__0",
+        "luat-59-2020-qh14-v1__dieu-7__k9__0",
+        "luat-59-2020-qh14-v1__dieu-7__k2__0",
+        "luat-59-2020-qh14-v1__dieu-7__k10__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-7__k2__0"
+      ],
+      "llm_context_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-7__k1__0",
+        "luat-59-2020-qh14-v1__dieu-7__k2__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-7__k2__0",
+        "luat-59-2020-qh14-v1__dieu-7__k4__0",
+        "luat-59-2020-qh14-v1__dieu-7__k7__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-7__k7__0",
+        "luat-59-2020-qh14-v1__dieu-7__k9__0",
+        "luat-59-2020-qh14-v1__dieu-7__k10__0",
+        "luat-59-2020-qh14-v1__dieu-7__k11__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-7__k11__0"
+      ],
+      "gold_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-7__k1__0",
+        "luat-59-2020-qh14-v1__dieu-7__k2__0",
+        "luat-59-2020-qh14-v1__dieu-7__k3__0",
+        "luat-59-2020-qh14-v1__dieu-7__k4__0",
+        "luat-59-2020-qh14-v1__dieu-7__k5__0",
+        "luat-59-2020-qh14-v1__dieu-7__k6__0",
+        "luat-59-2020-qh14-v1__dieu-7__k7__0",
+        "luat-59-2020-qh14-v1__dieu-7__k8__0",
+        "luat-59-2020-qh14-v1__dieu-7__k9__0",
+        "luat-59-2020-qh14-v1__dieu-7__k10__0",
+        "luat-59-2020-qh14-v1__dieu-7__k11__0"
+      ],
+      "elapsed_seconds": 5.57,
+      "answer": "Theo Điều 7 Luật Doanh nghiệp, doanh nghiệp có các quyền sau: tự do kinh doanh ngành, nghề mà luật không cấm [C1]; tự chủ kinh doanh, lựa chọn hình thức tổ chức, ngành, nghề, địa bàn, hình thức kinh doanh và chủ động điều chỉnh quy mô, ngành, nghề kinh doanh [C2], [C3]; tự do tìm kiếm thị trường, khách hàng và ký kết hợp đồng [C4]; chủ động ứng dụng khoa học và công nghệ để nâng cao hiệu quả kinh doanh, khả năng cạnh tranh và được bảo hộ quyền sở hữu trí tuệ [C5], [C6]; từ chối yêu cầu cung cấp nguồn lực không theo quy định của pháp luật [C7]; khiếu nại, tham gia tố tụng theo quy định [C8]; và các quyền khác theo quy định của pháp luật [C9], [C10].",
+      "citations_count": 10,
+      "claims_count": 7,
+      "verification_result": {
+        "passed": true,
+        "claim_results": [
+          {
+            "claim_id": "K1",
+            "text": "Doanh nghiệp có quyền tự do kinh doanh ngành, nghề mà luật không cấm.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C1]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 76.9%).",
+            "cited_citations": [
+              "C1"
+            ]
+          },
+          {
+            "claim_id": "K2",
+            "text": "Doanh nghiệp có quyền tự chủ kinh doanh, lựa chọn hình thức tổ chức, ngành, nghề, địa bàn, hình thức kinh doanh và chủ động điều chỉnh quy mô, ngành, nghề kinh doanh.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C2]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 87.0%). | [C3]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 87.0%).",
+            "cited_citations": [
+              "C2",
+              "C3"
+            ]
+          },
+          {
+            "claim_id": "K3",
+            "text": "Doanh nghiệp có quyền tự do tìm kiếm thị trường, khách hàng và ký kết hợp đồng.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C4]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 76.5%).",
+            "cited_citations": [
+              "C4"
+            ]
+          },
+          {
+            "claim_id": "K4",
+            "text": "Doanh nghiệp có quyền chủ động ứng dụng khoa học và công nghệ để nâng cao hiệu quả kinh doanh, khả năng cạnh tranh và được bảo hộ quyền sở hữu trí tuệ.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C5]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 93.3%). | [C6]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 93.3%).",
+            "cited_citations": [
+              "C5",
+              "C6"
+            ]
+          },
+          {
+            "claim_id": "K5",
+            "text": "Doanh nghiệp có quyền từ chối yêu cầu cung cấp nguồn lực không theo quy định của pháp luật.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C7]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 78.9%).",
+            "cited_citations": [
+              "C7"
+            ]
+          },
+          {
+            "claim_id": "K6",
+            "text": "Doanh nghiệp có quyền khiếu nại, tham gia tố tụng theo quy định.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C8]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 69.2%).",
+            "cited_citations": [
+              "C8"
+            ]
+          },
+          {
+            "claim_id": "K7",
+            "text": "Doanh nghiệp có các quyền khác theo quy định của pháp luật.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C9]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 66.7%). | [C10]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 66.7%).",
+            "cited_citations": [
+              "C9",
+              "C10"
+            ]
+          }
+        ],
+        "citation_results": [
+          {
+            "citation_id": "C1",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C2",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C3",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C4",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C5",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C6",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C7",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C8",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C9",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C10",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          }
+        ],
+        "summary": {
+          "total_claims": 7,
+          "supported_claims": 7,
+          "total_citations": 10,
+          "valid_citations": 10,
+          "citation_correctness": 1.0,
+          "citation_coverage": 1.0,
+          "hallucination_detected": false,
+          "all_citations_valid": true
+        }
+      },
+      "failure_info": null
+    },
+    {
+      "query_id": "gold_006",
+      "question": "Công ty TNHH hai thành viên trở lên được có tối thiểu và tối đa bao nhiêu thành viên? Thành viên có thể là tổ chức không?",
+      "status": "answered",
+      "actual_model": "gemini-3.1-flash-lite",
+      "passed": true,
+      "retrieved_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-46__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-46__k1__0",
+        "luat-59-2020-qh14-v1__dieu-54__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-54__k1__0",
+        "luat-59-2020-qh14-v1__dieu-204__k1__0",
+        "luat-59-2020-qh14-v1__dieu-54__k3__0",
+        "luat-59-2020-qh14-v1__dieu-54__k2__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-204__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-54__k3__0",
+        "luat-59-2020-qh14-v1__dieu-46__k2__0"
+      ],
+      "context_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-46__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-46__k1__0",
+        "luat-59-2020-qh14-v1__dieu-54__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-54__k1__0",
+        "luat-59-2020-qh14-v1__dieu-204__k1__0",
+        "luat-59-2020-qh14-v1__dieu-54__k3__0",
+        "luat-59-2020-qh14-v1__dieu-54__k2__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-204__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-54__k3__0",
+        "luat-59-2020-qh14-v1__dieu-46__k2__0"
+      ],
+      "llm_context_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-46__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-46__k1__0"
+      ],
+      "gold_chunk_ids": [
+        "vbhn-67-vbhn-vpqh-v1__dieu-46__k1__0"
+      ],
+      "elapsed_seconds": 2.77,
+      "answer": "Công ty trách nhiệm hữu hạn hai thành viên trở lên là doanh nghiệp có từ 02 đến 50 thành viên [C1], [C2]. Thành viên của công ty có thể là tổ chức hoặc cá nhân [C1], [C2].",
+      "citations_count": 2,
+      "claims_count": 2,
+      "verification_result": {
+        "passed": true,
+        "claim_results": [
+          {
+            "claim_id": "K1",
+            "text": "Công ty trách nhiệm hữu hạn hai thành viên trở lên có số lượng thành viên từ 02 đến 50 người.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C1]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 89.5%). | [C2]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 89.5%).",
+            "cited_citations": [
+              "C1",
+              "C2"
+            ]
+          },
+          {
+            "claim_id": "K2",
+            "text": "Thành viên của công ty trách nhiệm hữu hạn hai thành viên trở lên có thể là tổ chức hoặc cá nhân.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C1]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 90.0%). | [C2]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 90.0%).",
+            "cited_citations": [
+              "C1",
+              "C2"
+            ]
+          }
+        ],
+        "citation_results": [
+          {
+            "citation_id": "C1",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C2",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          }
+        ],
+        "summary": {
+          "total_claims": 2,
+          "supported_claims": 2,
+          "total_citations": 2,
+          "valid_citations": 2,
+          "citation_correctness": 1.0,
+          "citation_coverage": 1.0,
+          "hallucination_detected": false,
+          "all_citations_valid": true
+        }
+      },
+      "failure_info": null
+    },
+    {
+      "query_id": "gold_007",
+      "question": "Thành viên công ty TNHH hai thành viên trở lên phải góp đủ vốn đã cam kết trong bao lâu? Thời gian vận chuyển, nhập khẩu tài sản góp vốn và làm thủ tục chuyển quyền sở hữu có tính vào thời hạn này không?",
+      "status": "answered",
+      "actual_model": "gemini-3.1-flash-lite",
+      "passed": true,
+      "retrieved_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-47__k2__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-47__k2__0",
+        "luat-59-2020-qh14-v1__dieu-75__k2__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-75__k2__0",
+        "luat-59-2020-qh14-v1__dieu-113__k1__0",
+        "luat-59-2020-qh14-v1__dieu-47__k4__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-113__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-47__k4__0",
+        "luat-59-2020-qh14-v1__dieu-186__k2__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-186__k2__0"
+      ],
+      "context_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-47__k2__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-47__k2__0",
+        "luat-59-2020-qh14-v1__dieu-75__k2__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-75__k2__0",
+        "luat-59-2020-qh14-v1__dieu-113__k1__0",
+        "luat-59-2020-qh14-v1__dieu-47__k4__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-113__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-47__k4__0",
+        "luat-59-2020-qh14-v1__dieu-186__k2__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-186__k2__0"
+      ],
+      "llm_context_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-47__k2__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-47__k2__0"
+      ],
+      "gold_chunk_ids": [
+        "vbhn-67-vbhn-vpqh-v1__dieu-47__k2__0"
+      ],
+      "elapsed_seconds": 2.61,
+      "answer": "Thành viên công ty TNHH hai thành viên trở lên phải góp đủ và đúng loại tài sản đã cam kết trong thời hạn 90 ngày kể từ ngày được cấp Giấy chứng nhận đăng ký doanh nghiệp [C1], [C2]. Thời gian vận chuyển, nhập khẩu tài sản góp vốn và thực hiện thủ tục hành chính để chuyển quyền sở hữu tài sản không được tính vào thời hạn góp vốn này [C1], [C2].",
+      "citations_count": 2,
+      "claims_count": 2,
+      "verification_result": {
+        "passed": true,
+        "claim_results": [
+          {
+            "claim_id": "K1",
+            "text": "Thành viên công ty TNHH hai thành viên trở lên phải góp đủ và đúng loại tài sản đã cam kết trong thời hạn 90 ngày kể từ ngày được cấp Giấy chứng nhận đăng ký doanh nghiệp.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C1]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 88.6%). | [C2]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 88.6%).",
+            "cited_citations": [
+              "C1",
+              "C2"
+            ]
+          },
+          {
+            "claim_id": "K2",
+            "text": "Thời gian vận chuyển, nhập khẩu tài sản góp vốn và thực hiện thủ tục hành chính để chuyển quyền sở hữu tài sản không được tính vào thời hạn góp vốn.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C1]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 92.3%). | [C2]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 92.3%).",
+            "cited_citations": [
+              "C1",
+              "C2"
+            ]
+          }
+        ],
+        "citation_results": [
+          {
+            "citation_id": "C1",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C2",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          }
+        ],
+        "summary": {
+          "total_claims": 2,
+          "supported_claims": 2,
+          "total_citations": 2,
+          "valid_citations": 2,
+          "citation_correctness": 1.0,
+          "citation_coverage": 1.0,
+          "hallucination_detected": false,
+          "all_citations_valid": true
+        }
+      },
+      "failure_info": null
+    },
+    {
+      "query_id": "gold_008",
+      "question": "Khi thành viên góp vốn vào công ty TNHH bằng tài sản có đăng ký quyền sở hữu, việc chuyển quyền sở hữu tài sản đó cho công ty có phải chịu lệ phí trước bạ không?",
+      "status": "answered",
+      "actual_model": "gemini-3.1-flash-lite",
+      "passed": true,
+      "retrieved_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-35__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-35__k1__0",
+        "luat-59-2020-qh14-v1__dieu-35__k4__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-35__k4__0",
+        "luat-59-2020-qh14-v1__dieu-35__k2__0",
+        "luat-59-2020-qh14-v1__dieu-35__k5__0",
+        "luat-59-2020-qh14-v1__dieu-36__k3__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-35__k2__0",
+        "luat-59-2020-qh14-v1__dieu-35__k3__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-35__k5__0"
+      ],
+      "context_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-35__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-35__k1__0",
+        "luat-59-2020-qh14-v1__dieu-35__k4__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-35__k4__0",
+        "luat-59-2020-qh14-v1__dieu-35__k2__0",
+        "luat-59-2020-qh14-v1__dieu-35__k5__0",
+        "luat-59-2020-qh14-v1__dieu-36__k3__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-35__k2__0",
+        "luat-59-2020-qh14-v1__dieu-35__k3__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-35__k5__0"
+      ],
+      "llm_context_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-35__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-35__k1__0"
+      ],
+      "gold_chunk_ids": [
+        "vbhn-67-vbhn-vpqh-v1__dieu-35__k1__0"
+      ],
+      "elapsed_seconds": 3.41,
+      "answer": "Khi thành viên góp vốn vào công ty TNHH bằng tài sản có đăng ký quyền sở hữu, việc chuyển quyền sở hữu tài sản đó cho công ty không phải chịu lệ phí trước bạ [C1], [C2].",
+      "citations_count": 2,
+      "claims_count": 1,
+      "verification_result": {
+        "passed": true,
+        "claim_results": [
+          {
+            "claim_id": "K1",
+            "text": "Việc chuyển quyền sở hữu tài sản có đăng ký quyền sở hữu khi góp vốn vào công ty TNHH không phải chịu lệ phí trước bạ.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C1]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 87.5%). | [C2]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 87.5%).",
+            "cited_citations": [
+              "C1",
+              "C2"
+            ]
+          }
+        ],
+        "citation_results": [
+          {
+            "citation_id": "C1",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C2",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          }
+        ],
+        "summary": {
+          "total_claims": 1,
+          "supported_claims": 1,
+          "total_citations": 2,
+          "valid_citations": 2,
+          "citation_correctness": 1.0,
+          "citation_coverage": 1.0,
+          "hallucination_detected": false,
+          "all_citations_valid": true
+        }
+      },
+      "failure_info": null
+    },
+    {
+      "query_id": "gold_009",
+      "question": "Công ty cổ phần phải có ít nhất bao nhiêu cổ đông và có giới hạn số lượng cổ đông tối đa không?",
+      "status": "answered",
+      "actual_model": "gemini-3.1-flash-lite",
+      "passed": true,
+      "retrieved_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-111__k1__0",
+        "luat-59-2020-qh14-v1__dieu-120__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-111__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-120__k1__0",
+        "luat-59-2020-qh14-v1__dieu-137__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-137__k1__0",
+        "luat-59-2020-qh14-v1__dieu-14__k2__0",
+        "luat-59-2020-qh14-v1__dieu-25__k4__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-14__k2__0",
+        "luat-59-2020-qh14-v1__dieu-122__k2__0"
+      ],
+      "context_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-111__k1__0",
+        "luat-59-2020-qh14-v1__dieu-120__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-111__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-120__k1__0",
+        "luat-59-2020-qh14-v1__dieu-137__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-137__k1__0",
+        "luat-59-2020-qh14-v1__dieu-14__k2__0",
+        "luat-59-2020-qh14-v1__dieu-25__k4__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-14__k2__0",
+        "luat-59-2020-qh14-v1__dieu-122__k2__0"
+      ],
+      "llm_context_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-111__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-111__k1__0"
+      ],
+      "gold_chunk_ids": [
+        "vbhn-67-vbhn-vpqh-v1__dieu-111__k1__0"
+      ],
+      "elapsed_seconds": 4.83,
+      "answer": "Công ty cổ phần phải có tối thiểu 03 cổ đông [C1], [C2]. Pháp luật không hạn chế số lượng cổ đông tối đa của công ty cổ phần [C1], [C2].",
+      "citations_count": 2,
+      "claims_count": 2,
+      "verification_result": {
+        "passed": true,
+        "claim_results": [
+          {
+            "claim_id": "K1",
+            "text": "Công ty cổ phần phải có tối thiểu 03 cổ đông.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C1]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 90.0%). | [C2]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 90.0%).",
+            "cited_citations": [
+              "C1",
+              "C2"
+            ]
+          },
+          {
+            "claim_id": "K2",
+            "text": "Pháp luật không hạn chế số lượng cổ đông tối đa của công ty cổ phần.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C1]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 93.3%). | [C2]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 93.3%).",
+            "cited_citations": [
+              "C1",
+              "C2"
+            ]
+          }
+        ],
+        "citation_results": [
+          {
+            "citation_id": "C1",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C2",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          }
+        ],
+        "summary": {
+          "total_claims": 2,
+          "supported_claims": 2,
+          "total_citations": 2,
+          "valid_citations": 2,
+          "citation_correctness": 1.0,
+          "citation_coverage": 1.0,
+          "hallucination_detected": false,
+          "all_citations_valid": true
+        }
+      },
+      "failure_info": null
+    },
+    {
+      "query_id": "gold_010",
+      "question": "Doanh nghiệp tư nhân có được phát hành chứng khoán để huy động vốn không?",
+      "status": "answered",
+      "actual_model": "gemini-3.1-flash-lite",
+      "passed": true,
+      "retrieved_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-188__k2__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-188__k2__0",
+        "luat-59-2020-qh14-v1__dieu-177__k3__0",
+        "luat-59-2020-qh14-v1__dieu-111__k3__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-177__k3__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-111__k3__0",
+        "luat-59-2020-qh14-v1__dieu-188__k4__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-188__k4__0",
+        "luat-59-2020-qh14-v1__dieu-46__k3__0",
+        "luat-59-2020-qh14-v1__dieu-114__k6__0"
+      ],
+      "context_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-188__k2__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-188__k2__0",
+        "luat-59-2020-qh14-v1__dieu-177__k3__0",
+        "luat-59-2020-qh14-v1__dieu-111__k3__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-177__k3__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-111__k3__0",
+        "luat-59-2020-qh14-v1__dieu-188__k4__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-188__k4__0",
+        "luat-59-2020-qh14-v1__dieu-46__k3__0",
+        "luat-59-2020-qh14-v1__dieu-114__k6__0"
+      ],
+      "llm_context_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-188__k2__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-188__k2__0"
+      ],
+      "gold_chunk_ids": [
+        "vbhn-67-vbhn-vpqh-v1__dieu-188__k2__0"
+      ],
+      "elapsed_seconds": 3.66,
+      "answer": "Doanh nghiệp tư nhân không được phát hành bất kỳ loại chứng khoán nào [C1][C2].",
+      "citations_count": 2,
+      "claims_count": 1,
+      "verification_result": {
+        "passed": true,
+        "claim_results": [
+          {
+            "claim_id": "K1",
+            "text": "Doanh nghiệp tư nhân không được phát hành bất kỳ loại chứng khoán nào.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C1]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%). | [C2]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%).",
+            "cited_citations": [
+              "C1",
+              "C2"
+            ]
+          }
+        ],
+        "citation_results": [
+          {
+            "citation_id": "C1",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C2",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          }
+        ],
+        "summary": {
+          "total_claims": 1,
+          "supported_claims": 1,
+          "total_citations": 2,
+          "valid_citations": 2,
+          "citation_correctness": 1.0,
+          "citation_coverage": 1.0,
+          "hallucination_detected": false,
+          "all_citations_valid": true
+        }
+      },
+      "failure_info": null
+    },
+    {
+      "query_id": "gold_011",
+      "question": "Theo Điều 16 Luật Doanh nghiệp, những hành vi nào bị nghiêm cấm trong đăng ký doanh nghiệp và hoạt động kinh doanh?",
+      "status": "answered",
+      "actual_model": "gemini-3.1-flash-lite",
+      "passed": true,
+      "retrieved_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-16__k4__0",
+        "luat-59-2020-qh14-v1__dieu-16__k3__0",
+        "luat-59-2020-qh14-v1__dieu-16__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-16__k3__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-16__k4__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-16__k1__0",
+        "luat-59-2020-qh14-v1__dieu-16__k7__0",
+        "luat-59-2020-qh14-v1__dieu-16__k6__0",
+        "luat-59-2020-qh14-v1__dieu-16__k2__0",
+        "luat-59-2020-qh14-v1__dieu-16__k5__0"
+      ],
+      "context_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-16__k4__0",
+        "luat-59-2020-qh14-v1__dieu-16__k3__0",
+        "luat-59-2020-qh14-v1__dieu-16__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-16__k3__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-16__k4__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-16__k1__0",
+        "luat-59-2020-qh14-v1__dieu-16__k7__0",
+        "luat-59-2020-qh14-v1__dieu-16__k6__0",
+        "luat-59-2020-qh14-v1__dieu-16__k2__0",
+        "luat-59-2020-qh14-v1__dieu-16__k5__0"
+      ],
+      "llm_context_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-16__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-16__k1__0",
+        "luat-59-2020-qh14-v1__dieu-16__k2__0",
+        "luat-59-2020-qh14-v1__dieu-16__k3__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-16__k3__0",
+        "luat-59-2020-qh14-v1__dieu-16__k4__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-16__k4__0",
+        "luat-59-2020-qh14-v1__dieu-16__k5__0",
+        "luat-59-2020-qh14-v1__dieu-16__k6__0",
+        "luat-59-2020-qh14-v1__dieu-16__k7__0"
+      ],
+      "gold_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-16__k1__0",
+        "luat-59-2020-qh14-v1__dieu-16__k2__0",
+        "luat-59-2020-qh14-v1__dieu-16__k3__0",
+        "luat-59-2020-qh14-v1__dieu-16__k4__0",
+        "luat-59-2020-qh14-v1__dieu-16__k5__0",
+        "luat-59-2020-qh14-v1__dieu-16__k6__0",
+        "luat-59-2020-qh14-v1__dieu-16__k7__0"
+      ],
+      "elapsed_seconds": 8.16,
+      "answer": "Theo Điều 16 Luật Doanh nghiệp, các hành vi bị nghiêm cấm bao gồm: Cấp hoặc từ chối cấp Giấy chứng nhận đăng ký doanh nghiệp, yêu cầu nộp thêm giấy tờ trái quy định, gây chậm trễ, phiền hà, cản trở, sách nhiễu hoặc nhũng nhiễu người thành lập và hoạt động kinh doanh của doanh nghiệp [C1], [C2]. Ngăn cản chủ sở hữu, thành viên, cổ đông thực hiện quyền, nghĩa vụ [C3]. Hoạt động kinh doanh dưới hình thức doanh nghiệp mà không đăng ký hoặc tiếp tục kinh doanh khi đã bị thu hồi Giấy chứng nhận đăng ký doanh nghiệp hoặc đang bị tạm dừng hoạt động [C4], [C5]. Kê khai không trung thực, không chính xác nội dung hồ sơ đăng ký doanh nghiệp và hồ sơ thay đổi nội dung đăng ký doanh nghiệp [C6], [C7]; trong đó văn bản hợp nhất còn nêu thêm hành vi kê khai giả mạo [C7]. Kê khai khống vốn điều lệ, không góp đủ vốn như đã đăng ký; cố ý định giá tài sản góp vốn không đúng giá trị [C8]. Kinh doanh ngành, nghề cấm đầu tư; ngành, nghề chưa được tiếp cận thị trường đối với nhà đầu tư nước ngoài; ngành, nghề đầu tư kinh doanh có điều kiện khi chưa đủ điều kiện hoặc không bảo đảm duy trì đủ điều kiện trong quá trình hoạt động [C9]. Lừa đảo, rửa tiền, tài trợ khủng bố [C10].",
+      "citations_count": 10,
+      "claims_count": 7,
+      "verification_result": {
+        "passed": true,
+        "claim_results": [
+          {
+            "claim_id": "K1",
+            "text": "Cấm hành vi gây khó khăn, sách nhiễu, nhũng nhiễu trong cấp Giấy chứng nhận đăng ký doanh nghiệp và hoạt động kinh doanh.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C1]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 68.2%). | [C2]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 68.2%).",
+            "cited_citations": [
+              "C1",
+              "C2"
+            ]
+          },
+          {
+            "claim_id": "K2",
+            "text": "Cấm ngăn cản quyền và nghĩa vụ của chủ sở hữu, thành viên, cổ đông doanh nghiệp.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C3]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 94.1%).",
+            "cited_citations": [
+              "C3"
+            ]
+          },
+          {
+            "claim_id": "K3",
+            "text": "Cấm kinh doanh không đăng ký hoặc tiếp tục kinh doanh khi bị thu hồi giấy phép hoặc đang tạm dừng hoạt động.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C4]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 90.0%). | [C5]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 90.0%).",
+            "cited_citations": [
+              "C4",
+              "C5"
+            ]
+          },
+          {
+            "claim_id": "K4",
+            "text": "Cấm kê khai không trung thực, không chính xác, giả mạo hồ sơ đăng ký doanh nghiệp.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C6]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 81.2%). | [C7]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 93.8%).",
+            "cited_citations": [
+              "C6",
+              "C7"
+            ]
+          },
+          {
+            "claim_id": "K5",
+            "text": "Cấm kê khai khống vốn điều lệ, không góp đủ vốn hoặc định giá tài sản góp vốn sai giá trị.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C8]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 82.4%).",
+            "cited_citations": [
+              "C8"
+            ]
+          },
+          {
+            "claim_id": "K6",
+            "text": "Cấm kinh doanh ngành nghề cấm, ngành nghề chưa được tiếp cận thị trường hoặc không đủ điều kiện kinh doanh.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C9]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%).",
+            "cited_citations": [
+              "C9"
+            ]
+          },
+          {
+            "claim_id": "K7",
+            "text": "Cấm hành vi lừa đảo, rửa tiền, tài trợ khủng bố.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C10]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 72.7%).",
+            "cited_citations": [
+              "C10"
+            ]
+          }
+        ],
+        "citation_results": [
+          {
+            "citation_id": "C1",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C2",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C3",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C4",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C5",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C6",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C7",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C8",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C9",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C10",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          }
+        ],
+        "summary": {
+          "total_claims": 7,
+          "supported_claims": 7,
+          "total_citations": 10,
+          "valid_citations": 10,
+          "citation_correctness": 1.0,
+          "citation_coverage": 1.0,
+          "hallucination_detected": false,
+          "all_citations_valid": true
+        }
+      },
+      "failure_info": null
+    },
+    {
+      "query_id": "gold_012",
+      "question": "Hồ sơ đăng ký công ty hợp danh gồm những giấy tờ gì theo Điều 20 Luật Doanh nghiệp?",
+      "status": "answered",
+      "actual_model": "gemini-3.1-flash-lite",
+      "passed": true,
+      "retrieved_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-20__k4__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-20__k4__0",
+        "luat-59-2020-qh14-v1__dieu-20__k5__0",
+        "luat-59-2020-qh14-v1__dieu-20__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-20__k5__0",
+        "luat-59-2020-qh14-v1__dieu-20__k3__0",
+        "luat-59-2020-qh14-v1__dieu-20__k2__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-20__k1__0",
+        "nd-168-2025-nd-cp-v1__dieu-24__k2__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-20__k2__0"
+      ],
+      "context_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-20__k4__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-20__k4__0",
+        "luat-59-2020-qh14-v1__dieu-20__k5__0",
+        "luat-59-2020-qh14-v1__dieu-20__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-20__k5__0",
+        "luat-59-2020-qh14-v1__dieu-20__k3__0",
+        "luat-59-2020-qh14-v1__dieu-20__k2__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-20__k1__0",
+        "nd-168-2025-nd-cp-v1__dieu-24__k2__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-20__k2__0"
+      ],
+      "llm_context_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-20__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-20__k1__0",
+        "luat-59-2020-qh14-v1__dieu-20__k2__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-20__k2__0",
+        "luat-59-2020-qh14-v1__dieu-20__k3__0",
+        "luat-59-2020-qh14-v1__dieu-20__k4__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-20__k4__0",
+        "luat-59-2020-qh14-v1__dieu-20__k5__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-20__k5__0",
+        "nd-168-2025-nd-cp-v1__dieu-24__k2__0"
+      ],
+      "gold_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-20__k1__0",
+        "luat-59-2020-qh14-v1__dieu-20__k2__0",
+        "luat-59-2020-qh14-v1__dieu-20__k3__0",
+        "luat-59-2020-qh14-v1__dieu-20__k4__0",
+        "luat-59-2020-qh14-v1__dieu-20__k5__0"
+      ],
+      "elapsed_seconds": 7.18,
+      "answer": "Hồ sơ đăng ký công ty hợp danh theo Điều 20 Luật Doanh nghiệp bao gồm: Giấy đề nghị đăng ký doanh nghiệp [C1], [C2]; Điều lệ công ty [C3], [C4]; Danh sách thành viên [C5]; Bản sao giấy tờ pháp lý của cá nhân đối với thành viên [C6], [C7]; và Bản sao Giấy chứng nhận đăng ký đầu tư đối với nhà đầu tư nước ngoài theo quy định của Luật Đầu tư [C8], [C9]. Lưu ý, trường hợp thành viên là cá nhân hoặc người đại diện theo ủy quyền của thành viên là tổ chức đã kê khai số định danh cá nhân theo quy định tại khoản 1 Điều 11 Nghị định 168/2025/NĐ-CP thì hồ sơ không bao gồm bản sao giấy tờ pháp lý của các cá nhân này [C10].",
+      "citations_count": 10,
+      "claims_count": 2,
+      "verification_result": {
+        "passed": true,
+        "claim_results": [
+          {
+            "claim_id": "K1",
+            "text": "Hồ sơ đăng ký công ty hợp danh bao gồm Giấy đề nghị đăng ký doanh nghiệp, Điều lệ công ty, Danh sách thành viên, Bản sao giấy tờ pháp lý của cá nhân đối với thành viên và Bản sao Giấy chứng nhận đăng ký đầu tư đối với nhà đầu tư nước ngoài.",
+            "supported": true,
+            "verdict": "PARTIAL",
+            "confidence": 0.9,
+            "reason": "[C6]: Nội dung claim không tìm thấy căn cứ xác thực trong chunk được trích dẫn (Độ bao phủ chỉ đạt 34.2%). Nguy cơ Hallucination. | [C7]: Nội dung claim không tìm thấy căn cứ xác thực trong chunk được trích dẫn (Độ bao phủ chỉ đạt 34.2%). Nguy cơ Hallucination. | [C8]: Claim phản ánh một phần nội dung nhưng có thể thiếu điều kiện hoặc khái quát hóa (Độ bao phủ: 39.5%). | [C1]: Nội dung claim không tìm thấy căn cứ xác thực trong chunk được trích dẫn (Độ bao phủ chỉ đạt 18.4%). Nguy cơ Hallucination. | [C9]: Claim phản ánh một phần nội dung nhưng có thể thiếu điều kiện hoặc khái quát hóa (Độ bao phủ: 39.5%). | [C5]: Nội dung claim không tìm thấy căn cứ xác thực trong chunk được trích dẫn (Độ bao phủ chỉ đạt 10.5%). Nguy cơ Hallucination. | [C3]: Nội dung claim không tìm thấy căn cứ xác thực trong chunk được trích dẫn (Độ bao phủ chỉ đạt 10.5%). Nguy cơ Hallucination. | [C2]: Nội dung claim không tìm thấy căn cứ xác thực trong chunk được trích dẫn (Độ bao phủ chỉ đạt 18.4%). Nguy cơ Hallucination. | [C4]: Nội dung claim không tìm thấy căn cứ xác thực trong chunk được trích dẫn (Độ bao phủ chỉ đạt 10.5%). Nguy cơ Hallucination.",
+            "cited_citations": [
+              "C6",
+              "C7",
+              "C8",
+              "C1",
+              "C9",
+              "C5",
+              "C3",
+              "C2",
+              "C4"
+            ]
+          },
+          {
+            "claim_id": "K2",
+            "text": "Trường hợp thành viên là cá nhân hoặc người đại diện theo ủy quyền của thành viên là tổ chức đã kê khai số định danh cá nhân theo quy định tại khoản 1 Điều 11 Nghị định 168/2025/NĐ-CP thì hồ sơ không bao gồm bản sao giấy tờ pháp lý của các cá nhân này.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C10]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 89.4%).",
+            "cited_citations": [
+              "C10"
+            ]
+          }
+        ],
+        "citation_results": [
+          {
+            "citation_id": "C1",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C2",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C3",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C4",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C5",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C6",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C7",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C8",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C9",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C10",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          }
+        ],
+        "summary": {
+          "total_claims": 2,
+          "supported_claims": 2,
+          "total_citations": 10,
+          "valid_citations": 10,
+          "citation_correctness": 1.0,
+          "citation_coverage": 1.0,
+          "hallucination_detected": false,
+          "all_citations_valid": true
+        }
+      },
+      "failure_info": null
+    },
+    {
+      "query_id": "gold_013",
+      "question": "Giấy đề nghị đăng ký doanh nghiệp phải có những nội dung chủ yếu nào theo Điều 23 Luật Doanh nghiệp?",
+      "status": "answered",
+      "actual_model": "gemini-3.1-flash-lite",
+      "passed": true,
+      "retrieved_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-23__k1__0",
+        "luat-59-2020-qh14-v1__dieu-23__k2__0",
+        "luat-59-2020-qh14-v1__dieu-23__k3__0",
+        "luat-59-2020-qh14-v1__dieu-23__k4__0",
+        "luat-59-2020-qh14-v1__dieu-23__k6__0",
+        "luat-59-2020-qh14-v1__dieu-23__k5__0",
+        "luat-59-2020-qh14-v1__dieu-23__k7__0",
+        "luat-59-2020-qh14-v1__dieu-23__k8__0",
+        "luat-59-2020-qh14-v1__dieu-23__k9__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-23__k1__0"
+      ],
+      "context_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-23__k1__0",
+        "luat-59-2020-qh14-v1__dieu-23__k2__0",
+        "luat-59-2020-qh14-v1__dieu-23__k3__0",
+        "luat-59-2020-qh14-v1__dieu-23__k4__0",
+        "luat-59-2020-qh14-v1__dieu-23__k6__0",
+        "luat-59-2020-qh14-v1__dieu-23__k5__0",
+        "luat-59-2020-qh14-v1__dieu-23__k7__0",
+        "luat-59-2020-qh14-v1__dieu-23__k8__0",
+        "luat-59-2020-qh14-v1__dieu-23__k9__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-23__k1__0"
+      ],
+      "llm_context_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-23__k1__0",
+        "luat-59-2020-qh14-v1__dieu-23__k2__0",
+        "luat-59-2020-qh14-v1__dieu-23__k3__0",
+        "luat-59-2020-qh14-v1__dieu-23__k4__0",
+        "luat-59-2020-qh14-v1__dieu-23__k6__0",
+        "luat-59-2020-qh14-v1__dieu-23__k5__0",
+        "luat-59-2020-qh14-v1__dieu-23__k7__0",
+        "luat-59-2020-qh14-v1__dieu-23__k8__0",
+        "luat-59-2020-qh14-v1__dieu-23__k9__0"
+      ],
+      "gold_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-23__k1__0",
+        "luat-59-2020-qh14-v1__dieu-23__k2__0",
+        "luat-59-2020-qh14-v1__dieu-23__k3__0",
+        "luat-59-2020-qh14-v1__dieu-23__k4__0",
+        "luat-59-2020-qh14-v1__dieu-23__k5__0",
+        "luat-59-2020-qh14-v1__dieu-23__k6__0",
+        "luat-59-2020-qh14-v1__dieu-23__k7__0",
+        "luat-59-2020-qh14-v1__dieu-23__k8__0",
+        "luat-59-2020-qh14-v1__dieu-23__k9__0"
+      ],
+      "elapsed_seconds": 12.7,
+      "answer": "Theo Điều 23 Luật Doanh nghiệp, Giấy đề nghị đăng ký doanh nghiệp bao gồm các nội dung chủ yếu sau: tên doanh nghiệp [C1]; địa chỉ trụ sở chính, số điện thoại, số fax, thư điện tử (nếu có) [C2]; ngành, nghề kinh doanh [C3]; vốn điều lệ, vốn đầu tư của chủ doanh nghiệp tư nhân [C4]; thông tin đăng ký thuế [C5]; các loại cổ phần, mệnh giá và tổng số cổ phần được quyền chào bán đối với công ty cổ phần [C6]; số lượng lao động dự kiến [C7]; thông tin cá nhân của chủ doanh nghiệp tư nhân và thành viên hợp danh của công ty hợp danh [C8]; thông tin cá nhân của người đại diện theo pháp luật của công ty trách nhiệm hữu hạn, công ty cổ phần [C9].",
+      "citations_count": 9,
+      "claims_count": 9,
+      "verification_result": {
+        "passed": true,
+        "claim_results": [
+          {
+            "claim_id": "K1",
+            "text": "Giấy đề nghị đăng ký doanh nghiệp bao gồm tên doanh nghiệp.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C1]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%).",
+            "cited_citations": [
+              "C1"
+            ]
+          },
+          {
+            "claim_id": "K2",
+            "text": "Giấy đề nghị đăng ký doanh nghiệp bao gồm địa chỉ trụ sở chính, số điện thoại, số fax, thư điện tử (nếu có).",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C2]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%).",
+            "cited_citations": [
+              "C2"
+            ]
+          },
+          {
+            "claim_id": "K3",
+            "text": "Giấy đề nghị đăng ký doanh nghiệp bao gồm ngành, nghề kinh doanh.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C3]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%).",
+            "cited_citations": [
+              "C3"
+            ]
+          },
+          {
+            "claim_id": "K4",
+            "text": "Giấy đề nghị đăng ký doanh nghiệp bao gồm vốn điều lệ, vốn đầu tư của chủ doanh nghiệp tư nhân.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C4]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%).",
+            "cited_citations": [
+              "C4"
+            ]
+          },
+          {
+            "claim_id": "K5",
+            "text": "Giấy đề nghị đăng ký doanh nghiệp bao gồm thông tin đăng ký thuế.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C5]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%).",
+            "cited_citations": [
+              "C5"
+            ]
+          },
+          {
+            "claim_id": "K6",
+            "text": "Giấy đề nghị đăng ký doanh nghiệp bao gồm các loại cổ phần, mệnh giá và tổng số cổ phần được quyền chào bán đối với công ty cổ phần.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C6]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%).",
+            "cited_citations": [
+              "C6"
+            ]
+          },
+          {
+            "claim_id": "K7",
+            "text": "Giấy đề nghị đăng ký doanh nghiệp bao gồm số lượng lao động dự kiến.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C7]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%).",
+            "cited_citations": [
+              "C7"
+            ]
+          },
+          {
+            "claim_id": "K8",
+            "text": "Giấy đề nghị đăng ký doanh nghiệp bao gồm thông tin cá nhân của chủ doanh nghiệp tư nhân và thành viên hợp danh của công ty hợp danh.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C8]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%).",
+            "cited_citations": [
+              "C8"
+            ]
+          },
+          {
+            "claim_id": "K9",
+            "text": "Giấy đề nghị đăng ký doanh nghiệp bao gồm thông tin cá nhân của người đại diện theo pháp luật của công ty trách nhiệm hữu hạn, công ty cổ phần.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C9]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%).",
+            "cited_citations": [
+              "C9"
+            ]
+          }
+        ],
+        "citation_results": [
+          {
+            "citation_id": "C1",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C2",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C3",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C4",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C5",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C6",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C7",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C8",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C9",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          }
+        ],
+        "summary": {
+          "total_claims": 9,
+          "supported_claims": 9,
+          "total_citations": 9,
+          "valid_citations": 9,
+          "citation_correctness": 1.0,
+          "citation_coverage": 1.0,
+          "hallucination_detected": false,
+          "all_citations_valid": true
+        }
+      },
+      "failure_info": null
+    },
+    {
+      "query_id": "gold_014",
+      "question": "Điều lệ công ty phải quy định những nội dung chủ yếu nào theo Điều 24 Luật Doanh nghiệp?",
+      "status": "answered",
+      "actual_model": "gemini-3.1-flash-lite",
+      "passed": true,
+      "retrieved_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-24__k1__0",
+        "luat-59-2020-qh14-v1__dieu-24__k3__0",
+        "luat-59-2020-qh14-v1__dieu-24__k4__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-24__k3__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-24__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-24__k4__0",
+        "luat-59-2020-qh14-v1__dieu-24__k2__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-24__k2__0",
+        "luat-59-2020-qh14-v1__dieu-28__k4__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-28__k4__0"
+      ],
+      "context_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-24__k1__0",
+        "luat-59-2020-qh14-v1__dieu-24__k3__0",
+        "luat-59-2020-qh14-v1__dieu-24__k4__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-24__k3__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-24__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-24__k4__0",
+        "luat-59-2020-qh14-v1__dieu-24__k2__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-24__k2__0",
+        "luat-59-2020-qh14-v1__dieu-28__k4__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-28__k4__0"
+      ],
+      "llm_context_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-24__k2__0"
+      ],
+      "gold_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-24__k1__0",
+        "luat-59-2020-qh14-v1__dieu-24__k2__0",
+        "luat-59-2020-qh14-v1__dieu-24__k3__0",
+        "luat-59-2020-qh14-v1__dieu-24__k4__0"
+      ],
+      "elapsed_seconds": 23.01,
+      "answer": "Theo Điều 24 Luật Doanh nghiệp, Điều lệ công ty bao gồm các nội dung chủ yếu sau: tên, địa chỉ trụ sở chính, chi nhánh, văn phòng đại diện (nếu có) [C1]; ngành, nghề kinh doanh [C1]; vốn điều lệ, tổng số cổ phần, loại cổ phần và mệnh giá từng loại cổ phần (đối với công ty cổ phần) [C1]; họ, tên, địa chỉ liên lạc, quốc tịch của thành viên hợp danh, chủ sở hữu công ty, thành viên, cổ đông sáng lập; phần vốn góp, giá trị vốn góp của thành viên; số cổ phần, loại cổ phần, mệnh giá của cổ đông sáng lập [C1]; quyền và nghĩa vụ của thành viên, cổ đông [C1]; cơ cấu tổ chức quản lý [C1]; số lượng, chức danh quản lý, quyền và nghĩa vụ của người đại diện theo pháp luật [C1]; thể thức thông qua quyết định và nguyên tắc giải quyết tranh chấp nội bộ [C1]; căn cứ và phương pháp xác định tiền lương, thù lao, thưởng của người quản lý và Kiểm soát viên [C1]; trường hợp thành viên, cổ đông có quyền yêu cầu mua lại phần vốn góp hoặc cổ phần [C1]; nguyên tắc phân chia lợi nhuận và xử lý lỗ [C1]; trường hợp, trình tự giải thể và thủ tục thanh lý tài sản [C1]; và thể thức sửa đổi, bổ sung Điều lệ công ty [C1].",
+      "citations_count": 1,
+      "claims_count": 1,
+      "verification_result": {
+        "passed": true,
+        "claim_results": [
+          {
+            "claim_id": "K1",
+            "text": "Điều lệ công ty bao gồm các nội dung chủ yếu về tên, địa chỉ trụ sở chính, chi nhánh, văn phòng đại diện; ngành, nghề kinh doanh; vốn điều lệ và các thông tin liên quan đến cổ phần, phần vốn góp, thành viên, cổ đông sáng lập; quyền và nghĩa vụ của thành viên, cổ đông; cơ cấu tổ chức quản lý; người đại diện theo pháp luật; thể thức thông qua quyết định và giải quyết tranh chấp; tiền lương, thù lao, thưởng; mua lại phần vốn góp, cổ phần; phân chia lợi nhuận, xử lý lỗ; giải thể, thanh lý tài sản và thể thức sửa đổi, bổ sung Điều lệ.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C1]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 95.3%).",
+            "cited_citations": [
+              "C1"
+            ]
+          }
+        ],
+        "citation_results": [
+          {
+            "citation_id": "C1",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          }
+        ],
+        "summary": {
+          "total_claims": 1,
+          "supported_claims": 1,
+          "total_citations": 1,
+          "valid_citations": 1,
+          "citation_correctness": 1.0,
+          "citation_coverage": 1.0,
+          "hallucination_detected": false,
+          "all_citations_valid": true
+        }
+      },
+      "failure_info": null
+    },
+    {
+      "query_id": "gold_015",
+      "question": "Giấy chứng nhận đăng ký doanh nghiệp gồm những nội dung chủ yếu nào theo Điều 28 Luật Doanh nghiệp?",
+      "status": "answered",
+      "actual_model": "gemini-3.1-flash-lite",
+      "passed": true,
+      "retrieved_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-28__k1__0",
+        "luat-59-2020-qh14-v1__dieu-28__k2__0",
+        "luat-59-2020-qh14-v1__dieu-28__k3__0",
+        "luat-59-2020-qh14-v1__dieu-28__k4__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-28__k4__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-28__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-28__k2__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-28__k3__0",
+        "luat-59-2020-qh14-v1__dieu-30__k1__0",
+        "luat-59-2020-qh14-v1__dieu-23__k9__0"
+      ],
+      "context_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-28__k1__0",
+        "luat-59-2020-qh14-v1__dieu-28__k2__0",
+        "luat-59-2020-qh14-v1__dieu-28__k3__0",
+        "luat-59-2020-qh14-v1__dieu-28__k4__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-28__k4__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-28__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-28__k2__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-28__k3__0",
+        "luat-59-2020-qh14-v1__dieu-30__k1__0",
+        "luat-59-2020-qh14-v1__dieu-23__k9__0"
+      ],
+      "llm_context_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-28__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-28__k1__0",
+        "luat-59-2020-qh14-v1__dieu-28__k2__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-28__k2__0",
+        "luat-59-2020-qh14-v1__dieu-28__k3__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-28__k3__0",
+        "luat-59-2020-qh14-v1__dieu-28__k4__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-28__k4__0"
+      ],
+      "gold_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-28__k1__0",
+        "luat-59-2020-qh14-v1__dieu-28__k2__0",
+        "luat-59-2020-qh14-v1__dieu-28__k3__0",
+        "luat-59-2020-qh14-v1__dieu-28__k4__0"
+      ],
+      "elapsed_seconds": 5.12,
+      "answer": "Theo Điều 28 Luật Doanh nghiệp, Giấy chứng nhận đăng ký doanh nghiệp bao gồm các nội dung chủ yếu sau: tên doanh nghiệp và mã số doanh nghiệp [C1], [C2]; địa chỉ trụ sở chính của doanh nghiệp [C3], [C4]; họ, tên, địa chỉ liên lạc, quốc tịch, số giấy tờ pháp lý của cá nhân đối với người đại diện theo pháp luật của công ty trách nhiệm hữu hạn, công ty cổ phần, thành viên hợp danh của công ty hợp danh, chủ doanh nghiệp tư nhân; họ, tên, địa chỉ liên lạc, quốc tịch, số giấy tờ pháp lý của cá nhân đối với thành viên là cá nhân; tên, mã số doanh nghiệp và địa chỉ trụ sở chính của thành viên là tổ chức đối với công ty trách nhiệm hữu hạn [C5], [C6]; vốn điều lệ đối với công ty, vốn đầu tư đối với doanh nghiệp tư nhân [C7], [C8].",
+      "citations_count": 8,
+      "claims_count": 4,
+      "verification_result": {
+        "passed": true,
+        "claim_results": [
+          {
+            "claim_id": "K1",
+            "text": "Giấy chứng nhận đăng ký doanh nghiệp bao gồm tên doanh nghiệp và mã số doanh nghiệp.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C1]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%). | [C2]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%).",
+            "cited_citations": [
+              "C1",
+              "C2"
+            ]
+          },
+          {
+            "claim_id": "K2",
+            "text": "Giấy chứng nhận đăng ký doanh nghiệp bao gồm địa chỉ trụ sở chính của doanh nghiệp.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C3]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%). | [C4]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%).",
+            "cited_citations": [
+              "C3",
+              "C4"
+            ]
+          },
+          {
+            "claim_id": "K3",
+            "text": "Giấy chứng nhận đăng ký doanh nghiệp bao gồm thông tin cá nhân của người đại diện theo pháp luật, thành viên hợp danh, chủ doanh nghiệp tư nhân, thành viên là cá nhân và thông tin của thành viên là tổ chức.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C5]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 93.3%). | [C6]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 93.3%).",
+            "cited_citations": [
+              "C5",
+              "C6"
+            ]
+          },
+          {
+            "claim_id": "K4",
+            "text": "Giấy chứng nhận đăng ký doanh nghiệp bao gồm vốn điều lệ đối với công ty hoặc vốn đầu tư đối với doanh nghiệp tư nhân.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C7]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 95.0%). | [C8]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 95.0%).",
+            "cited_citations": [
+              "C7",
+              "C8"
+            ]
+          }
+        ],
+        "citation_results": [
+          {
+            "citation_id": "C1",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C2",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C3",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C4",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C5",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C6",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C7",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C8",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          }
+        ],
+        "summary": {
+          "total_claims": 4,
+          "supported_claims": 4,
+          "total_citations": 8,
+          "valid_citations": 8,
+          "citation_correctness": 1.0,
+          "citation_coverage": 1.0,
+          "hallucination_detected": false,
+          "all_citations_valid": true
+        }
+      },
+      "failure_info": null
+    },
+    {
+      "query_id": "gold_016",
+      "question": "Chủ sở hữu công ty TNHH một thành viên chịu trách nhiệm về các khoản nợ và nghĩa vụ tài sản khác của công ty trong phạm vi nào?",
+      "status": "answered",
+      "actual_model": "gemini-3.1-flash-lite",
+      "passed": false,
+      "retrieved_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-74__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-74__k1__0",
+        "luat-59-2020-qh14-v1__dieu-46__k1__0",
+        "luat-59-2020-qh14-v1__dieu-77__k5__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-46__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-77__k5__0",
+        "luat-59-2020-qh14-v1__dieu-76__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-76__k1__0",
+        "luat-59-2020-qh14-v1__dieu-75__k4__0",
+        "luat-59-2020-qh14-v1__dieu-50__k1__0"
+      ],
+      "context_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-74__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-74__k1__0",
+        "luat-59-2020-qh14-v1__dieu-46__k1__0",
+        "luat-59-2020-qh14-v1__dieu-77__k5__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-46__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-77__k5__0",
+        "luat-59-2020-qh14-v1__dieu-76__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-76__k1__0",
+        "luat-59-2020-qh14-v1__dieu-75__k4__0",
+        "luat-59-2020-qh14-v1__dieu-50__k1__0"
+      ],
+      "llm_context_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-74__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-74__k1__0",
+        "luat-59-2020-qh14-v1__dieu-75__k4__0",
+        "luat-59-2020-qh14-v1__dieu-77__k5__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-77__k5__0"
+      ],
+      "gold_chunk_ids": [
+        "vbhn-67-vbhn-vpqh-v1__dieu-74__k1__0"
+      ],
+      "elapsed_seconds": 5.85,
+      "answer": "Chủ sở hữu công ty TNHH một thành viên chịu trách nhiệm về các khoản nợ và nghĩa vụ tài sản khác của công ty trong phạm vi số vốn điều lệ của công ty [C1], [C2]. Ngoài ra, chủ sở hữu công ty chịu trách nhiệm bằng toàn bộ tài sản của mình đối với các nghĩa vụ tài chính của công ty và thiệt hại xảy ra do không góp, không góp đủ, không góp đúng hạn vốn điều lệ [C3]. Trường hợp chủ sở hữu rút vốn bằng hình thức khác ngoài việc chuyển nhượng một phần hoặc toàn bộ vốn điều lệ cho tổ chức, cá nhân khác thì chủ sở hữu và các cá nhân, tổ chức liên quan phải liên đới chịu trách nhiệm về các khoản nợ và nghĩa vụ tài sản khác của công ty [C4], [C5].",
+      "citations_count": 5,
+      "claims_count": 3,
+      "verification_result": {
+        "passed": false,
+        "claim_results": [
+          {
+            "claim_id": "K1",
+            "text": "Chủ sở hữu công ty TNHH một thành viên chịu trách nhiệm về các khoản nợ và nghĩa vụ tài sản khác của công ty trong phạm vi số vốn điều lệ của công ty.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C1]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 96.7%). | [C2]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 96.7%).",
+            "cited_citations": [
+              "C1",
+              "C2"
+            ]
+          },
+          {
+            "claim_id": "K2",
+            "text": "Chủ sở hữu công ty chịu trách nhiệm bằng toàn bộ tài sản của mình đối với các nghĩa vụ tài chính của công ty và thiệt hại xảy ra do không góp, không góp đủ, không góp đúng hạn vốn điều lệ.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C3]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 97.1%).",
+            "cited_citations": [
+              "C3"
+            ]
+          },
+          {
+            "claim_id": "K3",
+            "text": "Trường hợp rút vốn không đúng quy định (không thông qua chuyển nhượng), chủ sở hữu và các bên liên quan phải liên đới chịu trách nhiệm về các khoản nợ và nghĩa vụ tài sản khác của công ty.",
+            "supported": false,
+            "verdict": "UNSUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C4]: Phát hiện mâu thuẫn phân cực (phủ định/khẳng định) với điều luật. Độ trùng khớp từ vựng: 80.6% | [C5]: Phát hiện mâu thuẫn phân cực (phủ định/khẳng định) với điều luật. Độ trùng khớp từ vựng: 80.6%",
+            "cited_citations": [
+              "C4",
+              "C5"
+            ]
+          }
+        ],
+        "citation_results": [
+          {
+            "citation_id": "C1",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C2",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C3",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C4",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C5",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          }
+        ],
+        "summary": {
+          "total_claims": 3,
+          "supported_claims": 2,
+          "total_citations": 5,
+          "valid_citations": 5,
+          "citation_correctness": 1.0,
+          "citation_coverage": 0.6667,
+          "hallucination_detected": true,
+          "all_citations_valid": true
+        }
+      },
+      "failure_info": {
+        "query_id": "gold_016",
+        "question": "Chủ sở hữu công ty TNHH một thành viên chịu trách nhiệm về các khoản nợ và nghĩa vụ tài sản khác của công ty trong phạm vi nào?",
+        "status": "answered",
+        "failure_category": "claim không có nguồn (nội dung khẳng định không có trong điều luật)",
+        "answer": "Chủ sở hữu công ty TNHH một thành viên chịu trách nhiệm về các khoản nợ và nghĩa vụ tài sản khác của công ty trong phạm vi số vốn điều lệ của công ty [C1], [C2]. Ngoài ra, chủ sở hữu công ty chịu trách nhiệm bằng toàn bộ tài sản của mình đối với các nghĩa vụ tài chính của công ty và thiệt hại xảy ra",
+        "reasons": [
+          "[C4]: Phát hiện mâu thuẫn phân cực (phủ định/khẳng định) với điều luật. Độ trùng khớp từ vựng: 80.6% | [C5]: Phát hiện mâu thuẫn phân cực (phủ định/khẳng định) với điều luật. Độ trùng khớp từ vựng: 80.6%"
+        ]
+      }
+    },
+    {
+      "query_id": "gold_017",
+      "question": "Cổ đông công ty cổ phần chịu trách nhiệm về nợ của công ty trong phạm vi nào và có những nghĩa vụ gì?",
+      "status": "answered",
+      "actual_model": "gemini-3.1-flash-lite",
+      "passed": true,
+      "retrieved_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-111__k1__0",
+        "luat-59-2020-qh14-v1__dieu-119__k2__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-111__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-119__k2__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-50__k1__0",
+        "luat-59-2020-qh14-v1__dieu-127__k5__0",
+        "luat-59-2020-qh14-v1__dieu-50__k1__0",
+        "luat-59-2020-qh14-v1__dieu-136__k0__0",
+        "luat-59-2020-qh14-v1__dieu-113__k4__0",
+        "luat-59-2020-qh14-v1__dieu-187__k2__0"
+      ],
+      "context_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-111__k1__0",
+        "luat-59-2020-qh14-v1__dieu-119__k2__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-111__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-119__k2__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-50__k1__0",
+        "luat-59-2020-qh14-v1__dieu-127__k5__0",
+        "luat-59-2020-qh14-v1__dieu-50__k1__0",
+        "luat-59-2020-qh14-v1__dieu-136__k0__0",
+        "luat-59-2020-qh14-v1__dieu-113__k4__0",
+        "luat-59-2020-qh14-v1__dieu-187__k2__0"
+      ],
+      "llm_context_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-111__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-111__k1__0",
+        "luat-59-2020-qh14-v1__dieu-113__k4__0",
+        "luat-59-2020-qh14-v1__dieu-119__k2__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-119__k2__0"
+      ],
+      "gold_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-111__k1__0",
+        "luat-59-2020-qh14-v1__dieu-119__k1__0",
+        "luat-59-2020-qh14-v1__dieu-119__k2__0",
+        "luat-59-2020-qh14-v1__dieu-119__k3__0",
+        "luat-59-2020-qh14-v1__dieu-119__k4__0",
+        "luat-59-2020-qh14-v1__dieu-119__k5__0",
+        "luat-59-2020-qh14-v1__dieu-119__k6__0"
+      ],
+      "elapsed_seconds": 5.24,
+      "answer": "Cổ đông công ty cổ phần chỉ chịu trách nhiệm về các khoản nợ và nghĩa vụ tài sản khác của doanh nghiệp trong phạm vi số vốn đã góp vào doanh nghiệp [C1], [C2]. Trường hợp cổ đông chưa thanh toán hoặc chưa thanh toán đủ số cổ phần đã đăng ký mua, cổ đông phải chịu trách nhiệm tương ứng với tổng mệnh giá cổ phần đã đăng ký mua đối với các nghĩa vụ tài chính của công ty phát sinh trong thời hạn trước ngày công ty đăng ký điều chỉnh vốn điều lệ [C3]. Ngoài ra, nếu cổ đông rút vốn trái quy định, cổ đông đó phải liên đới chịu trách nhiệm về các khoản nợ và nghĩa vụ tài sản khác của công ty trong phạm vi giá trị cổ phần đã bị rút và các thiệt hại xảy ra [C4], [C5].",
+      "citations_count": 5,
+      "claims_count": 3,
+      "verification_result": {
+        "passed": true,
+        "claim_results": [
+          {
+            "claim_id": "K1",
+            "text": "Cổ đông chịu trách nhiệm về các khoản nợ và nghĩa vụ tài sản khác của doanh nghiệp trong phạm vi số vốn đã góp.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C1]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%). | [C2]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%).",
+            "cited_citations": [
+              "C1",
+              "C2"
+            ]
+          },
+          {
+            "claim_id": "K2",
+            "text": "Cổ đông chưa thanh toán đủ số cổ phần đã đăng ký mua phải chịu trách nhiệm tương ứng với tổng mệnh giá cổ phần đã đăng ký mua đối với các nghĩa vụ tài chính phát sinh trước ngày công ty đăng ký điều chỉnh vốn điều lệ.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C3]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%).",
+            "cited_citations": [
+              "C3"
+            ]
+          },
+          {
+            "claim_id": "K3",
+            "text": "Cổ đông rút vốn trái quy định phải liên đới chịu trách nhiệm về các khoản nợ và nghĩa vụ tài sản khác của công ty trong phạm vi giá trị cổ phần đã rút và các thiệt hại xảy ra.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C4]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%). | [C5]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%).",
+            "cited_citations": [
+              "C4",
+              "C5"
+            ]
+          }
+        ],
+        "citation_results": [
+          {
+            "citation_id": "C1",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C2",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C3",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C4",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C5",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          }
+        ],
+        "summary": {
+          "total_claims": 3,
+          "supported_claims": 3,
+          "total_citations": 5,
+          "valid_citations": 5,
+          "citation_correctness": 1.0,
+          "citation_coverage": 1.0,
+          "hallucination_detected": false,
+          "all_citations_valid": true
+        }
+      },
+      "failure_info": null
+    },
+    {
+      "query_id": "gold_018",
+      "question": "Công ty trách nhiệm hữu hạn và công ty cổ phần có thể có bao nhiêu người đại diện theo pháp luật, và người đại diện theo pháp luật phải thực hiện những trách nhiệm gì?",
+      "status": "answered",
+      "actual_model": "gemini-3.1-flash-lite",
+      "passed": true,
+      "retrieved_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-12__k2__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-12__k2__0",
+        "nd-168-2025-nd-cp-v1__dieu-4__k2__0",
+        "luat-59-2020-qh14-v1__dieu-12__k3__0",
+        "luat-59-2020-qh14-v1__dieu-54__k3__0",
+        "luat-59-2020-qh14-v1__dieu-71__k1__0",
+        "luat-59-2020-qh14-v1__dieu-12__k6__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-54__k3__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-12__k3__0",
+        "luat-59-2020-qh14-v1__dieu-71__k4__0"
+      ],
+      "context_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-12__k2__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-12__k2__0",
+        "nd-168-2025-nd-cp-v1__dieu-4__k2__0",
+        "luat-59-2020-qh14-v1__dieu-12__k3__0",
+        "luat-59-2020-qh14-v1__dieu-54__k3__0",
+        "luat-59-2020-qh14-v1__dieu-71__k1__0",
+        "luat-59-2020-qh14-v1__dieu-12__k6__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-54__k3__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-12__k3__0",
+        "luat-59-2020-qh14-v1__dieu-71__k4__0"
+      ],
+      "llm_context_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-12__k2__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-12__k2__0",
+        "luat-59-2020-qh14-v1__dieu-71__k1__0",
+        "luat-59-2020-qh14-v1__dieu-12__k3__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-12__k3__0"
+      ],
+      "gold_chunk_ids": [
+        "vbhn-67-vbhn-vpqh-v1__dieu-12__k2__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-13__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-13__k2__0"
+      ],
+      "elapsed_seconds": 15.17,
+      "answer": "Công ty trách nhiệm hữu hạn và công ty cổ phần có thể có một hoặc nhiều người đại diện theo pháp luật [C1], [C2]. Người đại diện theo pháp luật có các trách nhiệm sau: thực hiện quyền và nghĩa vụ một cách trung thực, cẩn trọng, tốt nhất nhằm bảo đảm lợi ích hợp pháp tối đa của công ty; trung thành với lợi ích của công ty; không lạm dụng địa vị, chức vụ và sử dụng thông tin, bí quyết, cơ hội kinh doanh, tài sản khác của công ty để tư lợi hoặc phục vụ lợi ích của tổ chức, cá nhân khác; thông báo kịp thời, đầy đủ, chính xác cho công ty về doanh nghiệp mà mình làm chủ hoặc có cổ phần, phần vốn góp và doanh nghiệp mà người có liên quan của mình làm chủ, cùng sở hữu hoặc sở hữu riêng cổ phần, phần vốn góp chi phối; và các trách nhiệm khác theo quy định của pháp luật và Điều lệ công ty [C3]. Ngoài ra, doanh nghiệp phải bảo đảm luôn có ít nhất một người đại diện theo pháp luật cư trú tại Việt Nam; trường hợp chỉ còn lại một người đại diện theo pháp luật cư trú tại Việt Nam thì khi xuất cảnh khỏi Việt Nam, người này phải ủy quyền bằng văn bản cho cá nhân khác cư trú tại Việt Nam thực hiện quyền và nghĩa vụ của mình và vẫn phải chịu trách nhiệm về việc thực hiện quyền và nghĩa vụ đã ủy quyền [C4], [C5].",
+      "citations_count": 5,
+      "claims_count": 4,
+      "verification_result": {
+        "passed": true,
+        "claim_results": [
+          {
+            "claim_id": "K1",
+            "text": "Công ty trách nhiệm hữu hạn và công ty cổ phần có thể có một hoặc nhiều người đại diện theo pháp luật.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C1]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%). | [C2]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%).",
+            "cited_citations": [
+              "C1",
+              "C2"
+            ]
+          },
+          {
+            "claim_id": "K2",
+            "text": "Người đại diện theo pháp luật có trách nhiệm thực hiện quyền và nghĩa vụ trung thực, cẩn trọng, trung thành với lợi ích công ty, không tư lợi, thông báo về các doanh nghiệp liên quan và các trách nhiệm khác theo quy định.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C3]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 97.3%).",
+            "cited_citations": [
+              "C3"
+            ]
+          },
+          {
+            "claim_id": "K3",
+            "text": "Doanh nghiệp phải bảo đảm luôn có ít nhất một người đại diện theo pháp luật cư trú tại Việt Nam.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C4]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%). | [C5]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%).",
+            "cited_citations": [
+              "C4",
+              "C5"
+            ]
+          },
+          {
+            "claim_id": "K4",
+            "text": "Khi chỉ còn một người đại diện theo pháp luật cư trú tại Việt Nam, người này khi xuất cảnh phải ủy quyền bằng văn bản cho cá nhân khác cư trú tại Việt Nam và vẫn chịu trách nhiệm về việc ủy quyền.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C4]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%). | [C5]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%).",
+            "cited_citations": [
+              "C4",
+              "C5"
+            ]
+          }
+        ],
+        "citation_results": [
+          {
+            "citation_id": "C1",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C2",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C3",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C4",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C5",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          }
+        ],
+        "summary": {
+          "total_claims": 4,
+          "supported_claims": 4,
+          "total_citations": 5,
+          "valid_citations": 5,
+          "citation_correctness": 1.0,
+          "citation_coverage": 1.0,
+          "hallucination_detected": false,
+          "all_citations_valid": true
+        }
+      },
+      "failure_info": null
+    },
+    {
+      "query_id": "gold_019",
+      "question": "Doanh nghiệp bị giải thể trong những trường hợp nào, phải đáp ứng điều kiện gì, và với trường hợp tự giải thể thì phải gửi hồ sơ cho cơ quan đăng ký kinh doanh theo các mốc thời hạn nào?",
+      "status": "answered",
+      "actual_model": "gemini-3.1-flash-lite",
+      "passed": true,
+      "retrieved_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-208__k3__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-208__k3__0",
+        "nd-168-2025-nd-cp-v1__dieu-64__k5__0",
+        "nd-168-2025-nd-cp-v1__dieu-64__k3__0",
+        "nd-168-2025-nd-cp-v1__dieu-65__k2__0",
+        "luat-59-2020-qh14-v1__dieu-208__k7__0",
+        "nd-168-2025-nd-cp-v1__dieu-64__k7__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-209__k4__0",
+        "nd-168-2025-nd-cp-v1__dieu-64__k2__0",
+        "luat-59-2020-qh14-v1__dieu-209__k4__0"
+      ],
+      "context_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-208__k3__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-208__k3__0",
+        "nd-168-2025-nd-cp-v1__dieu-64__k5__0",
+        "nd-168-2025-nd-cp-v1__dieu-64__k3__0",
+        "nd-168-2025-nd-cp-v1__dieu-65__k2__0",
+        "luat-59-2020-qh14-v1__dieu-208__k7__0",
+        "nd-168-2025-nd-cp-v1__dieu-64__k7__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-209__k4__0",
+        "nd-168-2025-nd-cp-v1__dieu-64__k2__0",
+        "luat-59-2020-qh14-v1__dieu-209__k4__0"
+      ],
+      "llm_context_chunk_ids": [
+        "luat-59-2020-qh14-v1__dieu-208__k3__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-208__k3__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-209__k4__0",
+        "luat-59-2020-qh14-v1__dieu-209__k4__0",
+        "nd-168-2025-nd-cp-v1__dieu-64__k3__0",
+        "nd-168-2025-nd-cp-v1__dieu-65__k2__0",
+        "luat-59-2020-qh14-v1__dieu-208__k7__0"
+      ],
+      "gold_chunk_ids": [
+        "vbhn-67-vbhn-vpqh-v1__dieu-207__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-207__k2__0",
+        "nd-168-2025-nd-cp-v1__dieu-64__k1__0",
+        "nd-168-2025-nd-cp-v1__dieu-64__k3__0",
+        "nd-168-2025-nd-cp-v1__dieu-64__k4__0"
+      ],
+      "elapsed_seconds": 9.03,
+      "answer": "Doanh nghiệp bị giải thể trong các trường hợp: kết thúc thời hạn hoạt động đã ghi trong Điều lệ công ty mà không có quyết định gia hạn; theo nghị quyết, quyết định của chủ doanh nghiệp đối với doanh nghiệp tư nhân, của Hội đồng thành viên đối với công ty trách nhiệm hữu hạn hai thành viên trở lên, của Hội đồng thành viên đối với công ty trách nhiệm hữu hạn một thành viên, của Đại hội đồng cổ đông đối với công ty cổ phần; bị thu hồi Giấy chứng nhận đăng ký doanh nghiệp hoặc theo quyết định của Tòa án [C1], [C2], [C3], [C4]. Đối với trường hợp tự giải thể, doanh nghiệp phải thanh toán hết các khoản nợ trước khi gửi hồ sơ giải thể [C5], [C6], [C7], [C3], [C4]. Hồ sơ giải thể phải được gửi cho Cơ quan đăng ký kinh doanh trong thời hạn 05 ngày làm việc kể từ ngày thanh toán hết các khoản nợ [C7], [C3], [C4]. Ngoài ra, trong thời hạn 07 ngày làm việc kể từ ngày thông qua nghị quyết, quyết định giải thể, doanh nghiệp phải gửi các văn bản liên quan đến Cơ quan đăng ký kinh doanh, cơ quan thuế và người lao động [C1], [C2].",
+      "citations_count": 7,
+      "claims_count": 4,
+      "verification_result": {
+        "passed": true,
+        "claim_results": [
+          {
+            "claim_id": "K1",
+            "text": "Doanh nghiệp bị giải thể trong các trường hợp: kết thúc thời hạn hoạt động, theo nghị quyết/quyết định của chủ sở hữu/cơ quan có thẩm quyền, bị thu hồi Giấy chứng nhận đăng ký doanh nghiệp hoặc theo quyết định của Tòa án.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C1]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 65.8%). | [C2]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 65.8%). | [C3]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 71.1%). | [C4]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 71.1%).",
+            "cited_citations": [
+              "C1",
+              "C2",
+              "C3",
+              "C4"
+            ]
+          },
+          {
+            "claim_id": "K2",
+            "text": "Doanh nghiệp tự giải thể phải thanh toán hết các khoản nợ trước khi gửi hồ sơ giải thể.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C5]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 82.4%). | [C6]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 82.4%). | [C7]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 76.5%). | [C3]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 82.4%). | [C4]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 82.4%).",
+            "cited_citations": [
+              "C5",
+              "C6",
+              "C7",
+              "C3",
+              "C4"
+            ]
+          },
+          {
+            "claim_id": "K3",
+            "text": "Hồ sơ giải thể phải được gửi cho Cơ quan đăng ký kinh doanh trong thời hạn 05 ngày làm việc kể từ ngày thanh toán hết các khoản nợ.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C7]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 96.6%). | [C3]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 96.6%). | [C4]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 96.6%).",
+            "cited_citations": [
+              "C7",
+              "C3",
+              "C4"
+            ]
+          },
+          {
+            "claim_id": "K4",
+            "text": "Trong thời hạn 07 ngày làm việc kể từ ngày thông qua nghị quyết, quyết định giải thể, doanh nghiệp phải gửi các văn bản liên quan đến Cơ quan đăng ký kinh doanh, cơ quan thuế và người lao động.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C1]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%). | [C2]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%).",
+            "cited_citations": [
+              "C1",
+              "C2"
+            ]
+          }
+        ],
+        "citation_results": [
+          {
+            "citation_id": "C1",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C2",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C3",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C4",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C5",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C6",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C7",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          }
+        ],
+        "summary": {
+          "total_claims": 4,
+          "supported_claims": 4,
+          "total_citations": 7,
+          "valid_citations": 7,
+          "citation_correctness": 1.0,
+          "citation_coverage": 1.0,
+          "hallucination_detected": false,
+          "all_citations_valid": true
+        }
+      },
+      "failure_info": null
+    },
+    {
+      "query_id": "gold_020",
+      "question": "Chủ sở hữu hưởng lợi của doanh nghiệp được xác định theo tiêu chí nào, doanh nghiệp phải kê khai những thông tin gì và lưu giữ danh sách này ra sao?",
+      "status": "error",
+      "actual_model": "gemini-3.1-flash-lite",
+      "passed": false,
+      "retrieved_chunk_ids": [
+        "vbhn-67-vbhn-vpqh-v1__dieu-217__k6__0",
+        "nd-168-2025-nd-cp-v1__dieu-18__k1__0",
+        "nd-168-2025-nd-cp-v1__dieu-18__k2__0",
+        "nd-168-2025-nd-cp-v1__dieu-19__k0__0",
+        "luat-76-2025-qh15-v1__dieu-1__k27__0",
+        "nd-168-2025-nd-cp-v1__dieu-18__k3__0",
+        "nd-168-2025-nd-cp-v1__dieu-17__k1__0",
+        "luat-76-2025-qh15-v1__dieu-1__k2__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-8__k5a__0",
+        "nd-168-2025-nd-cp-v1__dieu-52__k1__0"
+      ],
+      "context_chunk_ids": [
+        "vbhn-67-vbhn-vpqh-v1__dieu-217__k6__0",
+        "nd-168-2025-nd-cp-v1__dieu-18__k1__0",
+        "nd-168-2025-nd-cp-v1__dieu-18__k2__0",
+        "nd-168-2025-nd-cp-v1__dieu-19__k0__0",
+        "luat-76-2025-qh15-v1__dieu-1__k27__0",
+        "nd-168-2025-nd-cp-v1__dieu-18__k3__0",
+        "nd-168-2025-nd-cp-v1__dieu-17__k1__0",
+        "luat-76-2025-qh15-v1__dieu-1__k2__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-8__k5a__0",
+        "nd-168-2025-nd-cp-v1__dieu-52__k1__0"
+      ],
+      "llm_context_chunk_ids": [],
+      "gold_chunk_ids": [
+        "nd-168-2025-nd-cp-v1__dieu-17__k1__0",
+        "nd-168-2025-nd-cp-v1__dieu-17__k2__0",
+        "nd-168-2025-nd-cp-v1__dieu-18__k1__0",
+        "nd-168-2025-nd-cp-v1__dieu-18__k2__0",
+        "nd-168-2025-nd-cp-v1__dieu-18__k3__0",
+        "nd-168-2025-nd-cp-v1__dieu-19__k0__0"
+      ],
+      "elapsed_seconds": 5.06,
+      "answer": "Exception: LLMProviderError: gemini: HTTP 503",
+      "citations_count": 0,
+      "claims_count": 0,
+      "verification_result": null,
+      "failure_info": {
+        "query_id": "gold_020",
+        "question": "Chủ sở hữu hưởng lợi của doanh nghiệp được xác định theo tiêu chí nào, doanh nghiệp phải kê khai những thông tin gì và lưu giữ danh sách này ra sao?",
+        "status": "error",
+        "failure_category": "hạ tầng LLM (timeout, quá tải hoặc cấu hình; không phải lỗi prompt)",
+        "answer": "Exception: LLMProviderError: gemini: HTTP 503",
+        "reasons": [
+          "Trạng thái: error"
+        ]
+      }
+    },
+    {
+      "query_id": "gold_021",
+      "question": "Thông tin về chủ sở hữu hưởng lợi phải được lưu giữ ít nhất bao nhiêu năm kể từ ngày doanh nghiệp giải thể hoặc phá sản?",
+      "status": "answered",
+      "actual_model": "gemini-3.1-flash-lite",
+      "passed": true,
+      "retrieved_chunk_ids": [
+        "luat-76-2025-qh15-v1__dieu-1__k26__0",
+        "nd-168-2025-nd-cp-v1__dieu-19__k0__0",
+        "nd-168-2025-nd-cp-v1__dieu-52__k2__0",
+        "nd-168-2025-nd-cp-v1__dieu-52__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-216__k1__0",
+        "nd-168-2025-nd-cp-v1__dieu-18__k1__0",
+        "nd-168-2025-nd-cp-v1__dieu-18__k3__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-217__k6__0",
+        "nd-168-2025-nd-cp-v1__dieu-17__k1__0",
+        "nd-168-2025-nd-cp-v1__dieu-74__k5__0"
+      ],
+      "context_chunk_ids": [
+        "luat-76-2025-qh15-v1__dieu-1__k26__0",
+        "nd-168-2025-nd-cp-v1__dieu-19__k0__0",
+        "nd-168-2025-nd-cp-v1__dieu-52__k2__0",
+        "nd-168-2025-nd-cp-v1__dieu-52__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-216__k1__0",
+        "nd-168-2025-nd-cp-v1__dieu-18__k1__0",
+        "nd-168-2025-nd-cp-v1__dieu-18__k3__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-217__k6__0",
+        "nd-168-2025-nd-cp-v1__dieu-17__k1__0",
+        "nd-168-2025-nd-cp-v1__dieu-74__k5__0"
+      ],
+      "llm_context_chunk_ids": [
+        "luat-76-2025-qh15-v1__dieu-1__k26__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-216__k1__0"
+      ],
+      "gold_chunk_ids": [
+        "luat-76-2025-qh15-v1__dieu-1__k26__0"
+      ],
+      "elapsed_seconds": 2.61,
+      "answer": "Thông tin về chủ sở hữu hưởng lợi của doanh nghiệp phải được lưu giữ ít nhất 05 năm kể từ ngày doanh nghiệp giải thể hoặc phá sản theo quy định của pháp luật [C1], [C2].",
+      "citations_count": 2,
+      "claims_count": 1,
+      "verification_result": {
+        "passed": true,
+        "claim_results": [
+          {
+            "claim_id": "K1",
+            "text": "Thông tin về chủ sở hữu hưởng lợi của doanh nghiệp phải được lưu giữ ít nhất 05 năm kể từ ngày doanh nghiệp giải thể hoặc phá sản.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C1]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 88.9%). | [C2]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 92.6%).",
+            "cited_citations": [
+              "C1",
+              "C2"
+            ]
+          }
+        ],
+        "citation_results": [
+          {
+            "citation_id": "C1",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C2",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          }
+        ],
+        "summary": {
+          "total_claims": 1,
+          "supported_claims": 1,
+          "total_citations": 2,
+          "valid_citations": 2,
+          "citation_correctness": 1.0,
+          "citation_coverage": 1.0,
+          "hallucination_detected": false,
+          "all_citations_valid": true
+        }
+      },
+      "failure_info": null
+    },
+    {
+      "query_id": "gold_022",
+      "question": "Luật số 76/2025/QH15 có hiệu lực từ khi nào, doanh nghiệp thành lập trước ngày luật có hiệu lực phải bổ sung thông tin chủ sở hữu hưởng lợi vào thời điểm nào, và các đợt chào bán trái phiếu riêng lẻ đã công bố thông tin trước đó áp dụng quy định nào?",
+      "status": "answered",
+      "actual_model": "gemini-3.1-flash-lite",
+      "passed": true,
+      "retrieved_chunk_ids": [
+        "luat-76-2025-qh15-v1__dieu-3__k2__0",
+        "luat-76-2025-qh15-v1__dieu-3__k1__0",
+        "luat-76-2025-qh15-v1__dieu-1__k2__0",
+        "nd-288-2026-nd-cp-v1__dieu-3__k1__0",
+        "luat-76-2025-qh15-v1__dieu-1__k10__0",
+        "luat-76-2025-qh15-v1__dieu-1__k27__0",
+        "luat-76-2025-qh15-v1__dieu-1__k11__0",
+        "luat-76-2025-qh15-v1__dieu-1__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-129__k2__0",
+        "luat-59-2020-qh14-v1__dieu-129__k2__0"
+      ],
+      "context_chunk_ids": [
+        "luat-76-2025-qh15-v1__dieu-3__k2__0",
+        "luat-76-2025-qh15-v1__dieu-3__k1__0",
+        "luat-76-2025-qh15-v1__dieu-1__k2__0",
+        "nd-288-2026-nd-cp-v1__dieu-3__k1__0",
+        "luat-76-2025-qh15-v1__dieu-1__k10__0",
+        "luat-76-2025-qh15-v1__dieu-1__k27__0",
+        "luat-76-2025-qh15-v1__dieu-1__k11__0",
+        "luat-76-2025-qh15-v1__dieu-1__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-129__k2__0",
+        "luat-59-2020-qh14-v1__dieu-129__k2__0"
+      ],
+      "llm_context_chunk_ids": [
+        "luat-76-2025-qh15-v1__dieu-3__k1__0",
+        "luat-76-2025-qh15-v1__dieu-3__k2__0"
+      ],
+      "gold_chunk_ids": [
+        "luat-76-2025-qh15-v1__dieu-2__k0__0",
+        "luat-76-2025-qh15-v1__dieu-3__k1__0",
+        "luat-76-2025-qh15-v1__dieu-3__k2__0"
+      ],
+      "elapsed_seconds": 7.85,
+      "answer": "Các tài liệu pháp luật được cung cấp không nêu cụ thể thời điểm Luật số 76/2025/QH15 có hiệu lực thi hành. Đối với doanh nghiệp thành lập trước thời điểm Luật này có hiệu lực, việc bổ sung thông tin về chủ sở hữu hưởng lợi được thực hiện đồng thời khi doanh nghiệp thực hiện thủ tục đăng ký thay đổi nội dung đăng ký doanh nghiệp hoặc thông báo thay đổi nội dung đăng ký doanh nghiệp gần nhất, trừ trường hợp doanh nghiệp có yêu cầu bổ sung sớm hơn [C1]. Đối với các đợt chào bán trái phiếu doanh nghiệp riêng lẻ đã gửi nội dung công bố thông tin cho Sở giao dịch chứng khoán trước ngày Luật này có hiệu lực, việc thực hiện tiếp tục áp dụng theo quy định của Luật Doanh nghiệp số 59/2020/QH14 đã được sửa đổi, bổ sung bởi Luật số 03/2022/QH15 [C2].",
+      "citations_count": 2,
+      "claims_count": 2,
+      "verification_result": {
+        "passed": true,
+        "claim_results": [
+          {
+            "claim_id": "K1",
+            "text": "Doanh nghiệp thành lập trước thời điểm Luật có hiệu lực bổ sung thông tin chủ sở hữu hưởng lợi khi thực hiện thủ tục đăng ký thay đổi nội dung đăng ký doanh nghiệp hoặc thông báo thay đổi nội dung đăng ký doanh nghiệp gần nhất, trừ trường hợp có yêu cầu sớm hơn.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C1]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 95.2%).",
+            "cited_citations": [
+              "C1"
+            ]
+          },
+          {
+            "claim_id": "K2",
+            "text": "Các đợt chào bán trái phiếu riêng lẻ đã gửi công bố thông tin trước ngày Luật có hiệu lực tiếp tục thực hiện theo Luật Doanh nghiệp số 59/2020/QH14 đã được sửa đổi, bổ sung bởi Luật số 03/2022/QH15.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C2]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 97.5%).",
+            "cited_citations": [
+              "C2"
+            ]
+          }
+        ],
+        "citation_results": [
+          {
+            "citation_id": "C1",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C2",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          }
+        ],
+        "summary": {
+          "total_claims": 2,
+          "supported_claims": 2,
+          "total_citations": 2,
+          "valid_citations": 2,
+          "citation_correctness": 1.0,
+          "citation_coverage": 1.0,
+          "hallucination_detected": false,
+          "all_citations_valid": true
+        }
+      },
+      "failure_info": null
+    },
+    {
+      "query_id": "gold_023",
+      "question": "Theo văn bản hợp nhất Nghị định hướng dẫn Luật Doanh nghiệp (7566/VBHN-BKHĐT), doanh nghiệp xã hội được xác định theo quy định nào, phải duy trì những cam kết gì và ai phải chịu trách nhiệm liên đới khi doanh nghiệp xã hội vi phạm?",
+      "status": "answered",
+      "actual_model": "gemini-3.1-flash-lite",
+      "passed": true,
+      "retrieved_chunk_ids": [
+        "vbhn-7566-vbhn-bkhdt-v1__dieu-3__k1__0",
+        "luat-59-2020-qh14-v1__dieu-10__k2__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-10__k2__0",
+        "vbhn-7566-vbhn-bkhdt-v1__dieu-2__k1__0",
+        "vbhn-7566-vbhn-bkhdt-v1__dieu-5__k2__0",
+        "vbhn-7566-vbhn-bkhdt-v1__dieu-3__k2__0",
+        "nd-168-2025-nd-cp-v1__dieu-28__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-10__k1__0",
+        "luat-59-2020-qh14-v1__dieu-10__k1__0",
+        "nd-168-2025-nd-cp-v1__dieu-28__k5__0"
+      ],
+      "context_chunk_ids": [
+        "vbhn-7566-vbhn-bkhdt-v1__dieu-3__k1__0",
+        "luat-59-2020-qh14-v1__dieu-10__k2__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-10__k2__0",
+        "vbhn-7566-vbhn-bkhdt-v1__dieu-2__k1__0",
+        "vbhn-7566-vbhn-bkhdt-v1__dieu-5__k2__0",
+        "vbhn-7566-vbhn-bkhdt-v1__dieu-3__k2__0",
+        "nd-168-2025-nd-cp-v1__dieu-28__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-10__k1__0",
+        "luat-59-2020-qh14-v1__dieu-10__k1__0",
+        "nd-168-2025-nd-cp-v1__dieu-28__k5__0"
+      ],
+      "llm_context_chunk_ids": [
+        "vbhn-7566-vbhn-bkhdt-v1__dieu-2__k1__0",
+        "vbhn-7566-vbhn-bkhdt-v1__dieu-3__k1__0",
+        "vbhn-7566-vbhn-bkhdt-v1__dieu-3__k2__0"
+      ],
+      "gold_chunk_ids": [
+        "vbhn-7566-vbhn-bkhdt-v1__dieu-2__k1__0",
+        "vbhn-7566-vbhn-bkhdt-v1__dieu-3__k1__0",
+        "vbhn-7566-vbhn-bkhdt-v1__dieu-3__k2__0"
+      ],
+      "elapsed_seconds": 3.86,
+      "answer": "Theo văn bản hợp nhất Nghị định 7566/VBHN-BKHĐT, doanh nghiệp xã hội được xác định là doanh nghiệp đáp ứng các tiêu chí tại khoản 1 Điều 10 Luật Doanh nghiệp [C1]. Doanh nghiệp xã hội phải duy trì mục tiêu xã hội, môi trường, mức lợi nhuận giữ lại để tái đầu tư và các nội dung khác đã ghi tại Cam kết thực hiện mục tiêu xã hội, môi trường trong suốt quá trình hoạt động [C2]. Khi doanh nghiệp xã hội vi phạm các quy định này, chủ doanh nghiệp tư nhân, thành viên hợp danh (đối với công ty hợp danh), thành viên công ty trách nhiệm hữu hạn, cổ đông (đối với công ty cổ phần), thành viên Hội đồng quản trị, Giám đốc, Tổng Giám đốc ở nhiệm kỳ hoặc thời gian có liên quan phải chịu trách nhiệm liên đới đối với các thiệt hại phát sinh [C3].",
+      "citations_count": 3,
+      "claims_count": 3,
+      "verification_result": {
+        "passed": true,
+        "claim_results": [
+          {
+            "claim_id": "K1",
+            "text": "Doanh nghiệp xã hội được xác định là doanh nghiệp đáp ứng các tiêu chí tại khoản 1 Điều 10 Luật Doanh nghiệp.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C1]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 94.4%).",
+            "cited_citations": [
+              "C1"
+            ]
+          },
+          {
+            "claim_id": "K2",
+            "text": "Doanh nghiệp xã hội phải duy trì mục tiêu xã hội, môi trường, mức lợi nhuận giữ lại để tái đầu tư và các nội dung khác đã ghi tại Cam kết thực hiện mục tiêu xã hội, môi trường trong suốt quá trình hoạt động.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C2]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%).",
+            "cited_citations": [
+              "C2"
+            ]
+          },
+          {
+            "claim_id": "K3",
+            "text": "Chủ doanh nghiệp tư nhân, thành viên hợp danh, thành viên công ty trách nhiệm hữu hạn, cổ đông, thành viên Hội đồng quản trị, Giám đốc, Tổng Giám đốc ở nhiệm kỳ hoặc thời gian có liên quan phải chịu trách nhiệm liên đới đối với các thiệt hại phát sinh khi doanh nghiệp xã hội vi phạm quy định về duy trì mục tiêu và cam kết.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C3]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 80.0%).",
+            "cited_citations": [
+              "C3"
+            ]
+          }
+        ],
+        "citation_results": [
+          {
+            "citation_id": "C1",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C2",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C3",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          }
+        ],
+        "summary": {
+          "total_claims": 3,
+          "supported_claims": 3,
+          "total_citations": 3,
+          "valid_citations": 3,
+          "citation_correctness": 1.0,
+          "citation_coverage": 1.0,
+          "hallucination_detected": false,
+          "all_citations_valid": true
+        }
+      },
+      "failure_info": null
+    },
+    {
+      "query_id": "gold_024",
+      "question": "Doanh nghiệp nhà nước công bố thông tin bằng hình thức và phương tiện nào, báo cáo công bố qua mạng điện tử có giá trị pháp lý ra sao và phải được duy trì tối thiểu bao lâu?",
+      "status": "answered",
+      "actual_model": "gemini-3.1-flash-lite",
+      "passed": true,
+      "retrieved_chunk_ids": [
+        "vbhn-7566-vbhn-bkhdt-v1__dieu-20__k5__0",
+        "vbhn-7566-vbhn-bkhdt-v1__dieu-20__k4__0",
+        "vbhn-7566-vbhn-bkhdt-v1__dieu-21__k1__0",
+        "vbhn-7566-vbhn-bkhdt-v1__dieu-21__k2__0",
+        "luat-59-2020-qh14-v1__dieu-109__k1__0",
+        "vbhn-7566-vbhn-bkhdt-v1__dieu-20__k3__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-109__k1__0",
+        "luat-59-2020-qh14-v1__dieu-109__k4__0",
+        "vbhn-7566-vbhn-bkhdt-v1__dieu-25__k2__0",
+        "vbhn-7566-vbhn-bkhdt-v1__dieu-24__k0__0"
+      ],
+      "context_chunk_ids": [
+        "vbhn-7566-vbhn-bkhdt-v1__dieu-20__k5__0",
+        "vbhn-7566-vbhn-bkhdt-v1__dieu-20__k4__0",
+        "vbhn-7566-vbhn-bkhdt-v1__dieu-21__k1__0",
+        "vbhn-7566-vbhn-bkhdt-v1__dieu-21__k2__0",
+        "luat-59-2020-qh14-v1__dieu-109__k1__0",
+        "vbhn-7566-vbhn-bkhdt-v1__dieu-20__k3__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-109__k1__0",
+        "luat-59-2020-qh14-v1__dieu-109__k4__0",
+        "vbhn-7566-vbhn-bkhdt-v1__dieu-25__k2__0",
+        "vbhn-7566-vbhn-bkhdt-v1__dieu-24__k0__0"
+      ],
+      "llm_context_chunk_ids": [
+        "vbhn-7566-vbhn-bkhdt-v1__dieu-21__k1__0",
+        "vbhn-7566-vbhn-bkhdt-v1__dieu-21__k2__0",
+        "vbhn-7566-vbhn-bkhdt-v1__dieu-20__k4__0",
+        "vbhn-7566-vbhn-bkhdt-v1__dieu-20__k5__0"
+      ],
+      "gold_chunk_ids": [
+        "vbhn-7566-vbhn-bkhdt-v1__dieu-21__k1__0",
+        "vbhn-7566-vbhn-bkhdt-v1__dieu-21__k2__0",
+        "vbhn-7566-vbhn-bkhdt-v1__dieu-20__k4__0",
+        "vbhn-7566-vbhn-bkhdt-v1__dieu-20__k5__0"
+      ],
+      "elapsed_seconds": 15.43,
+      "answer": "Doanh nghiệp thực hiện công bố thông tin dưới hình thức văn bản và dữ liệu điện tử [C1]. Các phương tiện báo cáo, công bố thông tin bao gồm trang thông tin điện tử của doanh nghiệp, cổng hoặc trang thông tin điện tử của cơ quan đại diện chủ sở hữu và Cổng thông tin doanh nghiệp [C2]. Báo cáo công bố thông tin qua mạng điện tử có giá trị pháp lý như bản giấy, là cơ sở để đối chiếu, so sánh, xác thực thông tin phục vụ công tác thu thập, tổng hợp, kiểm tra và giám sát [C3]. Báo cáo công bố thông tin phải được duy trì trên các trang thông tin điện tử nêu trên tối thiểu 05 năm [C4].",
+      "citations_count": 4,
+      "claims_count": 4,
+      "verification_result": {
+        "passed": true,
+        "claim_results": [
+          {
+            "claim_id": "K1",
+            "text": "Hình thức công bố thông tin gồm văn bản và dữ liệu điện tử.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C1]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%).",
+            "cited_citations": [
+              "C1"
+            ]
+          },
+          {
+            "claim_id": "K2",
+            "text": "Các phương tiện báo cáo, công bố thông tin bao gồm trang thông tin điện tử của doanh nghiệp, cổng hoặc trang thông tin điện tử của cơ quan đại diện chủ sở hữu và Cổng thông tin doanh nghiệp.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C2]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 96.3%).",
+            "cited_citations": [
+              "C2"
+            ]
+          },
+          {
+            "claim_id": "K3",
+            "text": "Báo cáo công bố thông tin qua mạng điện tử có giá trị pháp lý như bản giấy, là cơ sở đối chiếu, so sánh, xác thực thông tin phục vụ cho công tác thu thập, tổng hợp thông tin; kiểm tra, giám sát theo quy định của pháp luật.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C3]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%).",
+            "cited_citations": [
+              "C3"
+            ]
+          },
+          {
+            "claim_id": "K4",
+            "text": "Báo cáo công bố thông tin phải được duy trì trên trang thông tin điện tử của doanh nghiệp, cổng hoặc trang thông tin điện tử của cơ quan đại diện chủ sở hữu và Cổng thông tin doanh nghiệp tối thiểu 05 năm.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C4]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%).",
+            "cited_citations": [
+              "C4"
+            ]
+          }
+        ],
+        "citation_results": [
+          {
+            "citation_id": "C1",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C2",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C3",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C4",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          }
+        ],
+        "summary": {
+          "total_claims": 4,
+          "supported_claims": 4,
+          "total_citations": 4,
+          "valid_citations": 4,
+          "citation_correctness": 1.0,
+          "citation_coverage": 1.0,
+          "hallucination_detected": false,
+          "all_citations_valid": true
+        }
+      },
+      "failure_info": null
+    },
+    {
+      "query_id": "gold_025",
+      "question": "Theo Nghị định 122/2021/NĐ-CP, vi phạm hành chính trong lĩnh vực đăng ký doanh nghiệp bị xử phạt bằng những hình thức nào, mức phạt tiền tối đa là bao nhiêu, mức phạt đối với cá nhân so với tổ chức ra sao và thời hiệu xử phạt là bao lâu?",
+      "status": "answered",
+      "actual_model": "gemini-3.1-flash-lite",
+      "passed": true,
+      "retrieved_chunk_ids": [
+        "nd-122-2021-nd-cp-v1__dieu-4__k1__0",
+        "nd-122-2021-nd-cp-v1__dieu-4__k2__0",
+        "nd-122-2021-nd-cp-v1__dieu-44__k4__0",
+        "nd-122-2021-nd-cp-v1__dieu-3__k1__0",
+        "nd-122-2021-nd-cp-v1__dieu-5__k1__0",
+        "nd-288-2026-nd-cp-v1__dieu-2__k4__0",
+        "nd-122-2021-nd-cp-v1__dieu-44__k5__0",
+        "nd-122-2021-nd-cp-v1__dieu-44__k2__0",
+        "nd-288-2026-nd-cp-v1__dieu-2__k3__0",
+        "nd-122-2021-nd-cp-v1__dieu-46__k4__0"
+      ],
+      "context_chunk_ids": [
+        "nd-122-2021-nd-cp-v1__dieu-4__k1__0",
+        "nd-122-2021-nd-cp-v1__dieu-4__k2__0",
+        "nd-122-2021-nd-cp-v1__dieu-44__k4__0",
+        "nd-122-2021-nd-cp-v1__dieu-3__k1__0",
+        "nd-122-2021-nd-cp-v1__dieu-5__k1__0",
+        "nd-288-2026-nd-cp-v1__dieu-2__k4__0",
+        "nd-122-2021-nd-cp-v1__dieu-44__k5__0",
+        "nd-122-2021-nd-cp-v1__dieu-44__k2__0",
+        "nd-288-2026-nd-cp-v1__dieu-2__k3__0",
+        "nd-122-2021-nd-cp-v1__dieu-46__k4__0"
+      ],
+      "llm_context_chunk_ids": [
+        "nd-122-2021-nd-cp-v1__dieu-3__k1__0",
+        "nd-122-2021-nd-cp-v1__dieu-4__k1__0",
+        "nd-122-2021-nd-cp-v1__dieu-4__k2__0",
+        "nd-122-2021-nd-cp-v1__dieu-5__k1__0"
+      ],
+      "gold_chunk_ids": [
+        "nd-122-2021-nd-cp-v1__dieu-3__k1__0",
+        "nd-122-2021-nd-cp-v1__dieu-3__k2__0",
+        "nd-122-2021-nd-cp-v1__dieu-4__k1__0",
+        "nd-122-2021-nd-cp-v1__dieu-4__k2__0",
+        "nd-122-2021-nd-cp-v1__dieu-5__k1__0"
+      ],
+      "elapsed_seconds": 7.77,
+      "answer": "Theo Nghị định 122/2021/NĐ-CP, các hình thức xử phạt chính đối với vi phạm hành chính trong lĩnh vực đăng ký doanh nghiệp bao gồm phạt cảnh cáo và phạt tiền [C1]. Mức phạt tiền tối đa trong lĩnh vực này là 100.000.000 đồng [C2]. Đối với cùng một hành vi vi phạm, mức phạt tiền đối với cá nhân bằng 1/2 mức phạt tiền đối với tổ chức [C3]. Thời hiệu xử phạt vi phạm hành chính trong lĩnh vực đăng ký doanh nghiệp là 01 năm [C4].",
+      "citations_count": 4,
+      "claims_count": 4,
+      "verification_result": {
+        "passed": true,
+        "claim_results": [
+          {
+            "claim_id": "K1",
+            "text": "Các hình thức xử phạt chính đối với vi phạm hành chính trong lĩnh vực đăng ký doanh nghiệp bao gồm phạt cảnh cáo và phạt tiền.",
+            "supported": true,
+            "verdict": "PARTIAL",
+            "confidence": 0.9,
+            "reason": "[C1]: Claim phản ánh một phần nội dung nhưng có thể thiếu điều kiện hoặc khái quát hóa (Độ bao phủ: 37.5%).",
+            "cited_citations": [
+              "C1"
+            ]
+          },
+          {
+            "claim_id": "K2",
+            "text": "Mức phạt tiền tối đa trong lĩnh vực đăng ký doanh nghiệp là 100.000.000 đồng.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C2]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%).",
+            "cited_citations": [
+              "C2"
+            ]
+          },
+          {
+            "claim_id": "K3",
+            "text": "Đối với cùng một hành vi vi phạm, mức phạt tiền đối với cá nhân bằng 1/2 mức phạt tiền đối với tổ chức.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C3]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%).",
+            "cited_citations": [
+              "C3"
+            ]
+          },
+          {
+            "claim_id": "K4",
+            "text": "Thời hiệu xử phạt vi phạm hành chính trong lĩnh vực đăng ký doanh nghiệp là 01 năm.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C4]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 94.4%).",
+            "cited_citations": [
+              "C4"
+            ]
+          }
+        ],
+        "citation_results": [
+          {
+            "citation_id": "C1",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C2",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C3",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C4",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          }
+        ],
+        "summary": {
+          "total_claims": 4,
+          "supported_claims": 4,
+          "total_citations": 4,
+          "valid_citations": 4,
+          "citation_correctness": 1.0,
+          "citation_coverage": 1.0,
+          "hallucination_detected": false,
+          "all_citations_valid": true
+        }
+      },
+      "failure_info": null
+    },
+    {
+      "query_id": "gold_026",
+      "question": "Công ty hết thời hạn hoạt động ghi trong Điều lệ mà không thực hiện thủ tục giải thể thì bị phạt bao nhiêu, phải khắc phục hậu quả thế nào và mức phạt đó áp dụng cho tổ chức hay cá nhân?",
+      "status": "answered",
+      "actual_model": "gemini-3.1-flash-lite",
+      "passed": true,
+      "retrieved_chunk_ids": [
+        "nd-122-2021-nd-cp-v1__dieu-58__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-207__k1__0",
+        "luat-59-2020-qh14-v1__dieu-207__k1__0",
+        "nd-122-2021-nd-cp-v1__dieu-58__k2__0",
+        "nd-122-2021-nd-cp-v1__dieu-46__k3__0",
+        "nd-122-2021-nd-cp-v1__dieu-57__k1__0",
+        "nd-168-2025-nd-cp-v1__dieu-64__k6__0",
+        "luat-59-2020-qh14-v1__dieu-208__k3__0",
+        "nd-122-2021-nd-cp-v1__dieu-54__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-211__k2__0"
+      ],
+      "context_chunk_ids": [
+        "nd-122-2021-nd-cp-v1__dieu-58__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-207__k1__0",
+        "luat-59-2020-qh14-v1__dieu-207__k1__0",
+        "nd-122-2021-nd-cp-v1__dieu-58__k2__0",
+        "nd-122-2021-nd-cp-v1__dieu-46__k3__0",
+        "nd-122-2021-nd-cp-v1__dieu-57__k1__0",
+        "nd-168-2025-nd-cp-v1__dieu-64__k6__0",
+        "luat-59-2020-qh14-v1__dieu-208__k3__0",
+        "nd-122-2021-nd-cp-v1__dieu-54__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-211__k2__0"
+      ],
+      "llm_context_chunk_ids": [
+        "nd-122-2021-nd-cp-v1__dieu-58__k1__0",
+        "nd-122-2021-nd-cp-v1__dieu-58__k2__0"
+      ],
+      "gold_chunk_ids": [
+        "nd-122-2021-nd-cp-v1__dieu-58__k1__0",
+        "nd-122-2021-nd-cp-v1__dieu-58__k2__0",
+        "nd-122-2021-nd-cp-v1__dieu-4__k2__0"
+      ],
+      "elapsed_seconds": 3.28,
+      "answer": "Công ty không thực hiện thủ tục giải thể khi kết thúc thời hạn hoạt động ghi trong Điều lệ mà không có quyết định gia hạn sẽ bị phạt tiền từ 20.000.000 đồng đến 30.000.000 đồng [C1]. Ngoài ra, công ty còn bị áp dụng biện pháp khắc phục hậu quả là buộc phải thực hiện thủ tục giải thể doanh nghiệp [C2]. Các quy định về mức phạt và biện pháp khắc phục nêu trên áp dụng đối với hành vi vi phạm của doanh nghiệp, tuy nhiên các văn bản pháp luật trong nguồn cung cấp không nêu rõ mức phạt này áp dụng cho tổ chức hay cá nhân.",
+      "citations_count": 2,
+      "claims_count": 2,
+      "verification_result": {
+        "passed": true,
+        "claim_results": [
+          {
+            "claim_id": "K1",
+            "text": "Công ty không thực hiện thủ tục giải thể khi kết thúc thời hạn hoạt động ghi trong Điều lệ mà không có quyết định gia hạn sẽ bị phạt tiền từ 20.000.000 đồng đến 30.000.000 đồng.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C1]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 94.3%).",
+            "cited_citations": [
+              "C1"
+            ]
+          },
+          {
+            "claim_id": "K2",
+            "text": "Công ty bị buộc thực hiện thủ tục giải thể doanh nghiệp như một biện pháp khắc phục hậu quả.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C2]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 75.0%).",
+            "cited_citations": [
+              "C2"
+            ]
+          }
+        ],
+        "citation_results": [
+          {
+            "citation_id": "C1",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C2",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          }
+        ],
+        "summary": {
+          "total_claims": 2,
+          "supported_claims": 2,
+          "total_citations": 2,
+          "valid_citations": 2,
+          "citation_correctness": 1.0,
+          "citation_coverage": 1.0,
+          "hallucination_detected": false,
+          "all_citations_valid": true
+        }
+      },
+      "failure_info": null
+    },
+    {
+      "query_id": "gold_027",
+      "question": "Theo Nghị định 288/2026/NĐ-CP, kê khai không trung thực hồ sơ đăng ký doanh nghiệp và chậm đăng ký thay đổi nội dung đăng ký doanh nghiệp bị xử phạt như thế nào?",
+      "status": "answered",
+      "actual_model": "gemini-3.1-flash-lite",
+      "passed": true,
+      "retrieved_chunk_ids": [
+        "nd-288-2026-nd-cp-v1__dieu-1__k0__0",
+        "nd-288-2026-nd-cp-v1__dieu-2__k6__0",
+        "nd-288-2026-nd-cp-v1__dieu-2__k5__0",
+        "nd-122-2021-nd-cp-v1__dieu-43__k0__0",
+        "nd-168-2025-nd-cp-v1__dieu-63__k2__0",
+        "nd-288-2026-nd-cp-v1__dieu-2__k2__0",
+        "nd-288-2026-nd-cp-v1__dieu-2__k3__0",
+        "nd-288-2026-nd-cp-v1__dieu-2__k4__0",
+        "nd-288-2026-nd-cp-v1__dieu-2__k1__0",
+        "nd-168-2025-nd-cp-v1__dieu-69__k1__0"
+      ],
+      "context_chunk_ids": [
+        "nd-288-2026-nd-cp-v1__dieu-1__k0__0",
+        "nd-288-2026-nd-cp-v1__dieu-2__k6__0",
+        "nd-288-2026-nd-cp-v1__dieu-2__k5__0",
+        "nd-122-2021-nd-cp-v1__dieu-43__k0__0",
+        "nd-168-2025-nd-cp-v1__dieu-63__k2__0",
+        "nd-288-2026-nd-cp-v1__dieu-2__k2__0",
+        "nd-288-2026-nd-cp-v1__dieu-2__k3__0",
+        "nd-288-2026-nd-cp-v1__dieu-2__k4__0",
+        "nd-288-2026-nd-cp-v1__dieu-2__k1__0",
+        "nd-168-2025-nd-cp-v1__dieu-69__k1__0"
+      ],
+      "llm_context_chunk_ids": [
+        "nd-288-2026-nd-cp-v1__dieu-1__k0__0",
+        "nd-288-2026-nd-cp-v1__dieu-2__k1__0",
+        "nd-288-2026-nd-cp-v1__dieu-2__k2__0",
+        "nd-288-2026-nd-cp-v1__dieu-2__k3__0",
+        "nd-288-2026-nd-cp-v1__dieu-2__k4__0",
+        "nd-288-2026-nd-cp-v1__dieu-2__k6__0",
+        "nd-288-2026-nd-cp-v1__dieu-2__k5__0"
+      ],
+      "gold_chunk_ids": [
+        "nd-288-2026-nd-cp-v1__dieu-1__k0__0",
+        "nd-288-2026-nd-cp-v1__dieu-2__k1__0",
+        "nd-288-2026-nd-cp-v1__dieu-2__k2__0",
+        "nd-288-2026-nd-cp-v1__dieu-2__k3__0",
+        "nd-288-2026-nd-cp-v1__dieu-2__k4__0"
+      ],
+      "elapsed_seconds": 8.64,
+      "answer": "Theo Nghị định 288/2026/NĐ-CP, hành vi kê khai không trung thực, không chính xác nội dung hồ sơ đăng ký doanh nghiệp, hồ sơ đăng ký thay đổi nội dung đăng ký doanh nghiệp và các hồ sơ liên quan khác bị phạt tiền từ 30.000.000 đồng đến 70.000.000 đồng [C1]. Đối với hành vi vi phạm thời hạn đăng ký thay đổi nội dung đăng ký doanh nghiệp và các thông báo liên quan, mức xử phạt được quy định như sau: cảnh cáo nếu quá thời hạn từ 01 đến 10 ngày [C2]; phạt tiền từ 10.000.000 đồng đến 20.000.000 đồng nếu quá thời hạn từ 11 đến 30 ngày [C3]; phạt tiền từ 30.000.000 đồng đến 40.000.000 đồng nếu quá thời hạn từ 31 đến 90 ngày [C4]; và phạt tiền từ 50.000.000 đồng đến 60.000.000 đồng nếu quá thời hạn từ 91 ngày trở lên [C5]. Ngoài ra, đối với doanh nghiệp thành lập trước ngày 01/07/2025, hành vi không bổ sung thông tin về chủ sở hữu hưởng lợi khi thực hiện thủ tục đăng ký thay đổi gần nhất bị phạt tiền từ 70.000.000 đồng đến 100.000.000 đồng [C6]. Hành vi không đăng ký thay đổi nội dung đăng ký doanh nghiệp hoặc không thông báo thay đổi thông tin chủ sở hữu hưởng lợi bị phạt tiền từ 30.000.000 đồng đến 70.000.000 đồng [C7].",
+      "citations_count": 7,
+      "claims_count": 7,
+      "verification_result": {
+        "passed": true,
+        "claim_results": [
+          {
+            "claim_id": "K1",
+            "text": "Hành vi kê khai không trung thực, không chính xác nội dung hồ sơ đăng ký doanh nghiệp và các hồ sơ liên quan bị phạt tiền từ 30.000.000 đồng đến 70.000.000 đồng.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C1]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 83.3%).",
+            "cited_citations": [
+              "C1"
+            ]
+          },
+          {
+            "claim_id": "K2",
+            "text": "Vi phạm thời hạn đăng ký thay đổi nội dung đăng ký doanh nghiệp quá thời hạn từ 01 đến 10 ngày bị cảnh cáo.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C2]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 95.2%).",
+            "cited_citations": [
+              "C2"
+            ]
+          },
+          {
+            "claim_id": "K3",
+            "text": "Vi phạm thời hạn đăng ký thay đổi nội dung đăng ký doanh nghiệp quá thời hạn từ 11 đến 30 ngày bị phạt tiền từ 10.000.000 đồng đến 20.000.000 đồng.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C3]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 96.0%).",
+            "cited_citations": [
+              "C3"
+            ]
+          },
+          {
+            "claim_id": "K4",
+            "text": "Vi phạm thời hạn đăng ký thay đổi nội dung đăng ký doanh nghiệp quá thời hạn từ 31 đến 90 ngày bị phạt tiền từ 30.000.000 đồng đến 40.000.000 đồng.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C4]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 96.0%).",
+            "cited_citations": [
+              "C4"
+            ]
+          },
+          {
+            "claim_id": "K5",
+            "text": "Vi phạm thời hạn đăng ký thay đổi nội dung đăng ký doanh nghiệp quá thời hạn từ 91 ngày trở lên bị phạt tiền từ 50.000.000 đồng đến 60.000.000 đồng.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C5]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 96.2%).",
+            "cited_citations": [
+              "C5"
+            ]
+          },
+          {
+            "claim_id": "K6",
+            "text": "Doanh nghiệp thành lập trước 01/07/2025 không bổ sung thông tin chủ sở hữu hưởng lợi khi đăng ký thay đổi gần nhất bị phạt từ 70.000.000 đồng đến 100.000.000 đồng.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C6]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 90.9%).",
+            "cited_citations": [
+              "C6"
+            ]
+          },
+          {
+            "claim_id": "K7",
+            "text": "Hành vi không đăng ký thay đổi nội dung đăng ký doanh nghiệp hoặc không thông báo thay đổi thông tin chủ sở hữu hưởng lợi bị phạt từ 30.000.000 đồng đến 70.000.000 đồng.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C7]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 96.4%).",
+            "cited_citations": [
+              "C7"
+            ]
+          }
+        ],
+        "citation_results": [
+          {
+            "citation_id": "C1",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C2",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C3",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C4",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C5",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C6",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C7",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          }
+        ],
+        "summary": {
+          "total_claims": 7,
+          "supported_claims": 7,
+          "total_citations": 7,
+          "valid_citations": 7,
+          "citation_correctness": 1.0,
+          "citation_coverage": 1.0,
+          "hallucination_detected": false,
+          "all_citations_valid": true
+        }
+      },
+      "failure_info": null
+    },
+    {
+      "query_id": "gold_028",
+      "question": "Nghị định 288/2026/NĐ-CP bãi bỏ những quy định nào của Nghị định 122/2021/NĐ-CP, có hiệu lực từ khi nào và ai chịu trách nhiệm hướng dẫn thi hành?",
+      "status": "answered",
+      "actual_model": "gemini-3.1-flash-lite",
+      "passed": true,
+      "retrieved_chunk_ids": [
+        "nd-288-2026-nd-cp-v1__dieu-8__k2__0",
+        "nd-288-2026-nd-cp-v1__dieu-8__k3__0",
+        "nd-288-2026-nd-cp-v1__dieu-8__k1__0",
+        "nd-288-2026-nd-cp-v1__dieu-7__k0__0",
+        "tt-68-2025-tt-btc-v1__dieu-3__k3__0",
+        "vbhn-7566-vbhn-bkhdt-v1__dieu-34__k2__0",
+        "nd-288-2026-nd-cp-v1__dieu-3__k2__0",
+        "nd-288-2026-nd-cp-v1__dieu-5__k2__0",
+        "nd-288-2026-nd-cp-v1__dieu-5__k1__0",
+        "nd-288-2026-nd-cp-v1__dieu-3__k1__0"
+      ],
+      "context_chunk_ids": [
+        "nd-288-2026-nd-cp-v1__dieu-8__k2__0",
+        "nd-288-2026-nd-cp-v1__dieu-8__k3__0",
+        "nd-288-2026-nd-cp-v1__dieu-8__k1__0",
+        "nd-288-2026-nd-cp-v1__dieu-7__k0__0",
+        "tt-68-2025-tt-btc-v1__dieu-3__k3__0",
+        "vbhn-7566-vbhn-bkhdt-v1__dieu-34__k2__0",
+        "nd-288-2026-nd-cp-v1__dieu-3__k2__0",
+        "nd-288-2026-nd-cp-v1__dieu-5__k2__0",
+        "nd-288-2026-nd-cp-v1__dieu-5__k1__0",
+        "nd-288-2026-nd-cp-v1__dieu-3__k1__0"
+      ],
+      "llm_context_chunk_ids": [
+        "nd-288-2026-nd-cp-v1__dieu-7__k0__0",
+        "nd-288-2026-nd-cp-v1__dieu-8__k1__0",
+        "nd-288-2026-nd-cp-v1__dieu-8__k2__0",
+        "nd-288-2026-nd-cp-v1__dieu-8__k3__0"
+      ],
+      "gold_chunk_ids": [
+        "nd-288-2026-nd-cp-v1__dieu-7__k0__0",
+        "nd-288-2026-nd-cp-v1__dieu-8__k1__0",
+        "nd-288-2026-nd-cp-v1__dieu-8__k2__0"
+      ],
+      "elapsed_seconds": 4.71,
+      "answer": "Nghị định 288/2026/NĐ-CP bãi bỏ Điều 49 và điểm a, điểm b khoản 1 và điểm a, điểm b khoản 2 Điều 50 của Nghị định 122/2021/NĐ-CP [C1]. Nghị định này có hiệu lực thi hành kể từ ngày ký ban hành [C2]. Bộ trưởng Bộ Tài chính có trách nhiệm hướng dẫn và tổ chức thi hành Nghị định [C3]. Ngoài ra, các Bộ trưởng, Thủ trưởng cơ quan ngang bộ, Chủ tịch Ủy ban nhân dân tỉnh, thành phố trực thuộc trung ương trong phạm vi chức năng, nhiệm vụ của mình cũng chịu trách nhiệm hướng dẫn và thi hành Nghị định này [C4].",
+      "citations_count": 4,
+      "claims_count": 4,
+      "verification_result": {
+        "passed": true,
+        "claim_results": [
+          {
+            "claim_id": "K1",
+            "text": "Nghị định 288/2026/NĐ-CP bãi bỏ Điều 49 và điểm a, điểm b khoản 1 và điểm a, điểm b khoản 2 Điều 50 của Nghị định 122/2021/NĐ-CP.",
+            "supported": true,
+            "verdict": "PARTIAL",
+            "confidence": 0.9,
+            "reason": "[C1]: Claim phản ánh một phần nội dung nhưng có thể thiếu điều kiện hoặc khái quát hóa (Độ bao phủ: 47.1%).",
+            "cited_citations": [
+              "C1"
+            ]
+          },
+          {
+            "claim_id": "K2",
+            "text": "Nghị định 288/2026/NĐ-CP có hiệu lực thi hành kể từ ngày ký ban hành.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C2]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 75.0%).",
+            "cited_citations": [
+              "C2"
+            ]
+          },
+          {
+            "claim_id": "K3",
+            "text": "Bộ trưởng Bộ Tài chính có trách nhiệm hướng dẫn và tổ chức thi hành Nghị định.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C3]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%).",
+            "cited_citations": [
+              "C3"
+            ]
+          },
+          {
+            "claim_id": "K4",
+            "text": "Các Bộ trưởng, Thủ trưởng cơ quan ngang bộ, Chủ tịch Ủy ban nhân dân tỉnh, thành phố trực thuộc trung ương trong phạm vi chức năng, nhiệm vụ của mình chịu trách nhiệm hướng dẫn và thi hành Nghị định.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C4]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%).",
+            "cited_citations": [
+              "C4"
+            ]
+          }
+        ],
+        "citation_results": [
+          {
+            "citation_id": "C1",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C2",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C3",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C4",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          }
+        ],
+        "summary": {
+          "total_claims": 4,
+          "supported_claims": 4,
+          "total_citations": 4,
+          "valid_citations": 4,
+          "citation_correctness": 1.0,
+          "citation_coverage": 1.0,
+          "hallucination_detected": false,
+          "all_citations_valid": true
+        }
+      },
+      "failure_info": null
+    },
+    {
+      "query_id": "gold_029",
+      "question": "Thông tư 68/2025/TT-BTC ban hành biểu mẫu cho những hoạt động nào, áp dụng cho đối tượng nào, có hiệu lực từ khi nào và làm hết hiệu lực hoặc bãi bỏ những văn bản nào?",
+      "status": "answered",
+      "actual_model": "gemini-3.1-flash-lite",
+      "passed": true,
+      "retrieved_chunk_ids": [
+        "tt-68-2025-tt-btc-v1__dieu-3__k2__0",
+        "tt-68-2025-tt-btc-v1__dieu-3__k3__0",
+        "tt-68-2025-tt-btc-v1__dieu-3__k1__0",
+        "tt-68-2025-tt-btc-v1__dieu-1__k2__0",
+        "tt-68-2025-tt-btc-v1__dieu-1__k1__0",
+        "tt-68-2025-tt-btc-v1__dieu-3__k4__0",
+        "tt-68-2025-tt-btc-v1__dieu-2__k1__0",
+        "nd-168-2025-nd-cp-v1__dieu-120__k2__0",
+        "tt-68-2025-tt-btc-v1__dieu-2__k2__0",
+        "vbhn-7566-vbhn-bkhdt-v1__dieu-34__k2__0"
+      ],
+      "context_chunk_ids": [
+        "tt-68-2025-tt-btc-v1__dieu-3__k2__0",
+        "tt-68-2025-tt-btc-v1__dieu-3__k3__0",
+        "tt-68-2025-tt-btc-v1__dieu-3__k1__0",
+        "tt-68-2025-tt-btc-v1__dieu-1__k2__0",
+        "tt-68-2025-tt-btc-v1__dieu-1__k1__0",
+        "tt-68-2025-tt-btc-v1__dieu-3__k4__0",
+        "tt-68-2025-tt-btc-v1__dieu-2__k1__0",
+        "nd-168-2025-nd-cp-v1__dieu-120__k2__0",
+        "tt-68-2025-tt-btc-v1__dieu-2__k2__0",
+        "vbhn-7566-vbhn-bkhdt-v1__dieu-34__k2__0"
+      ],
+      "llm_context_chunk_ids": [
+        "tt-68-2025-tt-btc-v1__dieu-1__k1__0",
+        "tt-68-2025-tt-btc-v1__dieu-1__k2__0",
+        "tt-68-2025-tt-btc-v1__dieu-3__k1__0",
+        "tt-68-2025-tt-btc-v1__dieu-3__k3__0",
+        "tt-68-2025-tt-btc-v1__dieu-3__k2__0"
+      ],
+      "gold_chunk_ids": [
+        "tt-68-2025-tt-btc-v1__dieu-1__k1__0",
+        "tt-68-2025-tt-btc-v1__dieu-1__k2__0",
+        "tt-68-2025-tt-btc-v1__dieu-2__k1__0",
+        "tt-68-2025-tt-btc-v1__dieu-2__k2__0",
+        "tt-68-2025-tt-btc-v1__dieu-3__k1__0",
+        "tt-68-2025-tt-btc-v1__dieu-3__k2__0",
+        "tt-68-2025-tt-btc-v1__dieu-3__k3__0"
+      ],
+      "elapsed_seconds": 7.57,
+      "answer": "Thông tư 68/2025/TT-BTC ban hành biểu mẫu sử dụng trong đăng ký doanh nghiệp và đăng ký hộ kinh doanh [C1]. Thông tư áp dụng cho các đối tượng quy định tại Điều 2 Nghị định số 168/2025/NĐ-CP ngày 30 tháng 6 năm 2025 của Chính phủ về đăng ký doanh nghiệp [C2]. Thông tư có hiệu lực thi hành từ ngày 01 tháng 7 năm 2025 [C3]. Kể từ ngày Thông tư này có hiệu lực, Thông tư số 01/2021/TT-BKHĐT và Thông tư số 02/2023/TT-BKHĐT hết hiệu lực thi hành [C4]. Ngoài ra, Thông tư bãi bỏ biểu mẫu quy định tại Phụ lục I ban hành kèm theo Thông tư số 43/2025/TT-BTC ngày 17 tháng 6 năm 2025 [C5].",
+      "citations_count": 5,
+      "claims_count": 5,
+      "verification_result": {
+        "passed": true,
+        "claim_results": [
+          {
+            "claim_id": "K1",
+            "text": "Thông tư 68/2025/TT-BTC ban hành biểu mẫu sử dụng trong đăng ký doanh nghiệp và đăng ký hộ kinh doanh.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C1]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 75.0%).",
+            "cited_citations": [
+              "C1"
+            ]
+          },
+          {
+            "claim_id": "K2",
+            "text": "Thông tư áp dụng cho các đối tượng quy định tại Điều 2 Nghị định số 168/2025/NĐ-CP ngày 30 tháng 6 năm 2025 của Chính phủ về đăng ký doanh nghiệp.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C2]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%).",
+            "cited_citations": [
+              "C2"
+            ]
+          },
+          {
+            "claim_id": "K3",
+            "text": "Thông tư có hiệu lực thi hành từ ngày 01 tháng 7 năm 2025.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C3]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%).",
+            "cited_citations": [
+              "C3"
+            ]
+          },
+          {
+            "claim_id": "K4",
+            "text": "Thông tư làm hết hiệu lực Thông tư số 01/2021/TT-BKHĐT và Thông tư số 02/2023/TT-BKHĐT kể từ ngày có hiệu lực thi hành.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C4]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 95.0%).",
+            "cited_citations": [
+              "C4"
+            ]
+          },
+          {
+            "claim_id": "K5",
+            "text": "Thông tư bãi bỏ biểu mẫu quy định tại Phụ lục I ban hành kèm theo Thông tư số 43/2025/TT-BTC ngày 17 tháng 6 năm 2025.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C5]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%).",
+            "cited_citations": [
+              "C5"
+            ]
+          }
+        ],
+        "citation_results": [
+          {
+            "citation_id": "C1",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C2",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C3",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C4",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C5",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          }
+        ],
+        "summary": {
+          "total_claims": 5,
+          "supported_claims": 5,
+          "total_citations": 5,
+          "valid_citations": 5,
+          "citation_correctness": 1.0,
+          "citation_coverage": 1.0,
+          "hallucination_detected": false,
+          "all_citations_valid": true
+        }
+      },
+      "failure_info": null
+    },
+    {
+      "query_id": "gold_030",
+      "question": "Doanh nghiệp tạm ngừng kinh doanh phải gửi thông báo trước ít nhất mấy ngày làm việc, hồ sơ gồm những giấy tờ nào, và hành vi không thông báo tạm ngừng kinh doanh bị xử phạt thế nào?",
+      "status": "answered",
+      "actual_model": "gemini-3.1-flash-lite",
+      "passed": true,
+      "retrieved_chunk_ids": [
+        "nd-168-2025-nd-cp-v1__dieu-60__k1__0",
+        "nd-168-2025-nd-cp-v1__dieu-60__k2__0",
+        "luat-59-2020-qh14-v1__dieu-206__k1__0",
+        "nd-168-2025-nd-cp-v1__dieu-60__k3__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-206__k1__0",
+        "nd-168-2025-nd-cp-v1__dieu-60__k4__0",
+        "nd-168-2025-nd-cp-v1__dieu-60__k5__0",
+        "nd-168-2025-nd-cp-v1__dieu-69__k8__0",
+        "nd-168-2025-nd-cp-v1__dieu-60__k6__0",
+        "nd-168-2025-nd-cp-v1__dieu-103__k1__0"
+      ],
+      "context_chunk_ids": [
+        "nd-168-2025-nd-cp-v1__dieu-60__k1__0",
+        "nd-168-2025-nd-cp-v1__dieu-60__k2__0",
+        "luat-59-2020-qh14-v1__dieu-206__k1__0",
+        "nd-168-2025-nd-cp-v1__dieu-60__k3__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-206__k1__0",
+        "nd-168-2025-nd-cp-v1__dieu-60__k4__0",
+        "nd-168-2025-nd-cp-v1__dieu-60__k5__0",
+        "nd-168-2025-nd-cp-v1__dieu-69__k8__0",
+        "nd-168-2025-nd-cp-v1__dieu-60__k6__0",
+        "nd-168-2025-nd-cp-v1__dieu-103__k1__0"
+      ],
+      "llm_context_chunk_ids": [
+        "nd-168-2025-nd-cp-v1__dieu-60__k1__0",
+        "luat-59-2020-qh14-v1__dieu-206__k1__0",
+        "vbhn-67-vbhn-vpqh-v1__dieu-206__k1__0",
+        "nd-168-2025-nd-cp-v1__dieu-60__k2__0"
+      ],
+      "gold_chunk_ids": [
+        "nd-168-2025-nd-cp-v1__dieu-60__k1__0",
+        "nd-168-2025-nd-cp-v1__dieu-60__k2__0",
+        "nd-288-2026-nd-cp-v1__dieu-2__k5__0",
+        "nd-288-2026-nd-cp-v1__dieu-2__k7__0"
+      ],
+      "elapsed_seconds": 6.1,
+      "answer": "Doanh nghiệp phải gửi thông báo tạm ngừng kinh doanh đến Cơ quan đăng ký kinh doanh cấp tỉnh chậm nhất 03 ngày làm việc trước ngày tạm ngừng kinh doanh [C1], [C2], [C3]. Hồ sơ thông báo tạm ngừng kinh doanh bao gồm: thông báo tạm ngừng kinh doanh và bản sao hoặc bản chính nghị quyết hoặc quyết định của chủ sở hữu công ty, Hội đồng thành viên hoặc Hội đồng quản trị về việc tạm ngừng kinh doanh [C4]. Đối với câu hỏi về xử phạt hành vi không thông báo tạm ngừng kinh doanh, các văn bản trong nguồn cung cấp không quy định cụ thể về mức xử phạt.",
+      "citations_count": 4,
+      "claims_count": 2,
+      "verification_result": {
+        "passed": true,
+        "claim_results": [
+          {
+            "claim_id": "K1",
+            "text": "Doanh nghiệp phải gửi thông báo tạm ngừng kinh doanh đến Cơ quan đăng ký kinh doanh cấp tỉnh chậm nhất 03 ngày làm việc trước ngày tạm ngừng kinh doanh.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C1]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 100.0%). | [C2]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 82.6%). | [C3]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 82.6%).",
+            "cited_citations": [
+              "C1",
+              "C2",
+              "C3"
+            ]
+          },
+          {
+            "claim_id": "K2",
+            "text": "Hồ sơ thông báo tạm ngừng kinh doanh bao gồm thông báo tạm ngừng kinh doanh và nghị quyết hoặc quyết định của chủ sở hữu công ty, Hội đồng thành viên hoặc Hội đồng quản trị về việc tạm ngừng kinh doanh.",
+            "supported": true,
+            "verdict": "SUPPORTED",
+            "confidence": 0.9,
+            "reason": "[C4]: Nội dung claim được chứng minh rõ ràng bởi chunk nguồn (Độ bao phủ: 96.6%).",
+            "cited_citations": [
+              "C4"
+            ]
+          }
+        ],
+        "citation_results": [
+          {
+            "citation_id": "C1",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C2",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C3",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          },
+          {
+            "citation_id": "C4",
+            "exists_in_context": true,
+            "chunk_id_valid": true,
+            "metadata_valid": true,
+            "supports_claim": true,
+            "detail": "Hợp lệ"
+          }
+        ],
+        "summary": {
+          "total_claims": 2,
+          "supported_claims": 2,
+          "total_citations": 4,
+          "valid_citations": 4,
+          "citation_correctness": 1.0,
+          "citation_coverage": 1.0,
+          "hallucination_detected": false,
+          "all_citations_valid": true
+        }
+      },
+      "failure_info": null
+    }
+  ],
+  "raw_results_count": 30
+}
