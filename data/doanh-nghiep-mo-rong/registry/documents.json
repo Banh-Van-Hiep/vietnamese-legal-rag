@@ -1413,14 +1413,14 @@
     "document_title": "Thành lập Đoàn giám sát \"Việc thực hiện chính sách, pháp luật về quản lý, sử dụng vốn, tài sản nhà nước tại doanh nghiệp và cổ phần hóa doanh nghiệp nhà nước giai đoạn 2011 - 2016\"",
     "issuing_authority": "Quốc hội",
     "issued_date": "2017-06-21",
-    "effective_date": null,
+    "effective_date": "2017-06-21",
     "legal_status": "con_hieu_luc",
     "source_url": "https://vbpl.vn/van-ban/chi-tiet/nghi-quyet-so-45-2017-qh14-thanh-lap-doan-giam-sat-viec-thuc-hien-chinh-sach-phap-luat-ve-quan-ly-su-dung-von-tai-san-nha-nuoc-tai-doanh-nghiep-va-co-phan-hoa-doanh-nghiep-nha-nuoc-giai-doan-2011-2016--122864",
     "source_format": "html",
     "source_dataset": "https://huggingface.co/datasets/th1nhng0/vietnamese-legal-documents",
     "source_dataset_id": "122864",
     "scope_tier": "core",
-    "note": "Lấy từ bộ dữ liệu HF (crawl vbpl.vn); source_url dựng theo mẫu vbpl.vn, chưa mở kiểm tra.",
+    "note": "Lấy từ bộ dữ liệu HF (crawl vbpl.vn); source_url dựng theo mẫu vbpl.vn, chưa mở kiểm tra. effective_date theo Điều 3 (hiệu lực kể từ ngày Quốc hội thông qua) và câu kết 'thông qua ngày 21 tháng 6 năm 2017' trong interim/nq-45-2017-qh14-v1.txt.",
     "document_id": "nq-45-2017-qh14-v1"
   },
   {
@@ -5893,14 +5893,14 @@
     "document_title": "Sửa đổi, bổ sung một số điều của Nghị định số 181/2025/NĐ-CP ngày 01 tháng 7 năm 2025 của Chính phủ quy định chi tiết thi hành một số điều của Luật Thuế giá trị gia tăng",
     "issuing_authority": "Chính phủ",
     "issued_date": "2025-12-31",
-    "effective_date": null,
+    "effective_date": "2026-01-01",
     "legal_status": "con_hieu_luc",
     "source_url": "https://vbpl.vn/van-ban/chi-tiet/nghi-dinh-so-359-2025-nd-cp-sua-doi-bo-sung-mot-so-dieu-cua-nghi-dinh-so-181-2025-nd-cp-ngay-01-thang-7-nam-2025-cua-chinh-phu-quy-dinh-chi-tiet-thi-hanh-mot-so-dieu-cua-luat-thue-gia-tri-gia-tang--186979",
     "source_format": "html",
     "source_dataset": "https://huggingface.co/datasets/th1nhng0/vietnamese-legal-documents",
     "source_dataset_id": "186979",
     "scope_tier": "near",
-    "note": "Lấy từ bộ dữ liệu HF (crawl vbpl.vn); source_url dựng theo mẫu vbpl.vn, chưa mở kiểm tra.",
+    "note": "Lấy từ bộ dữ liệu HF (crawl vbpl.vn); source_url dựng theo mẫu vbpl.vn, chưa mở kiểm tra. effective_date theo khoản 1 Điều 2 trong interim/nd-359-2025-nd-cp-v1.txt.",
     "document_id": "nd-359-2025-nd-cp-v1"
   },
   {
@@ -11756,7 +11756,7 @@
     "source_dataset": "https://huggingface.co/datasets/th1nhng0/vietnamese-legal-documents",
     "source_dataset_id": "110268",
     "scope_tier": "near",
-    "note": "Lấy từ bộ dữ liệu HF (crawl vbpl.vn); source_url dựng theo mẫu vbpl.vn, chưa mở kiểm tra.",
+    "note": "Lấy từ bộ dữ liệu HF (crawl vbpl.vn); source_url dựng theo mẫu vbpl.vn, chưa mở kiểm tra. effective_date chưa điền: khoản 1 Điều cuối ghi 'hiệu lực sau 15 ngày kể từ ngày đăng Công báo' nhưng chưa xác minh được ngày đăng Công báo (vbpl.vn trả 403 ngày 10/11/2026).",
     "document_id": "tt-31-2004-tt-btc-v1"
   },
   {
@@ -11797,14 +11797,14 @@
     "document_title": "Ban hành chế độ chứng từ sổ sách kế toán",
     "issuing_authority": "Bộ Tài chính",
     "issued_date": "1964-02-21",
-    "effective_date": null,
+    "effective_date": "1964-02-21",
     "legal_status": "con_hieu_luc",
     "source_url": "https://vbpl.vn/van-ban/chi-tiet/thong-tu-so-07-tc-cdkt-ban-hanh-che-do-chung-tu-so-sach-ke-toan--108775",
     "source_format": "html",
     "source_dataset": "https://huggingface.co/datasets/th1nhng0/vietnamese-legal-documents",
     "source_dataset_id": "108775",
     "scope_tier": "near",
-    "note": "Lấy từ bộ dữ liệu HF (crawl vbpl.vn); source_url dựng theo mẫu vbpl.vn, chưa mở kiểm tra.",
+    "note": "Lấy từ bộ dữ liệu HF (crawl vbpl.vn); source_url dựng theo mẫu vbpl.vn, chưa mở kiểm tra. effective_date theo Điều 58 của Chế độ ban hành kèm Thông tư (thi hành kể từ ngày ban hành) và ngày ký Thông tư 21/02/1964 trong interim/tt-07-tc-cdkt-v1.txt.",
     "document_id": "tt-07-tc-cdkt-v1"
   },
   {
