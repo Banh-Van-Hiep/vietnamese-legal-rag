@@ -20,6 +20,8 @@ ROOT = Path(__file__).resolve().parent
 INTERIM = ROOT / "interim"
 REGISTRY = ROOT / "registry" / "documents.json"
 OUT = ROOT / "processed" / "chunks.jsonl"
+# Article Store: nguyên văn cả Điều cho Document Viewer (chunk-format-spec.md mục 5).
+ARTICLES_OUT = ROOT / "processed" / "articles.jsonl"
 
 RE_CHAPTER = re.compile(r"^(Chương|CHƯƠNG)\s+([IVXLCDM]+)\b\.?\s*(.*)$")
 RE_SECTION = re.compile(r"^(Mục|MỤC)\s+(\d+)\b\.?\s*(.*)$")
@@ -226,6 +228,7 @@ class Parser:
         self.pending = None
         self.article = None
         self.chunks = []
+        self.articles = []
         self.stopped = False
 
     def feed(self, line: str) -> None:
@@ -323,6 +326,7 @@ class Parser:
         dieu = f"Điều {art['num']}"
         if art["title"]:
             dieu += f". {art['title']}"
+        self._emit_article(art, dieu)
         intro = "\n".join(art["intro"]).strip()
         if not art["clauses"]:
             body = intro or dieu
@@ -333,6 +337,22 @@ class Parser:
             if intro:
                 text = intro + "\n\n" + text
             self._emit(art["num"], clause["num"], dieu, text)
+
+    def _emit_article(self, art: dict, dieu: str) -> None:
+        """Giữ nguyên văn Điều (kể cả marker [n]) và nối định nghĩa chú thích hợp nhất ở cuối."""
+        lines = [dieu, *art["intro"]] + [line for clause in art["clauses"] for line in clause["lines"]]
+        content = re.sub(r"\n{3,}", "\n\n", "\n".join(lines)).strip()
+        marks = dict.fromkeys(m.group(1) for m in RE_FOOTNOTE_MARK.finditer(content))
+        if marks:
+            content += "\n\n" + "\n".join(f"[{n}] {self.footnotes.get(n) or MISSING_NOTE}" for n in marks)
+        self.articles.append({
+            "document_id": self.document_id,
+            "document_title": self.meta["document_title"],
+            "article_id": f"dieu-{art['num'].lower()}",
+            "article": f"Điều {art['num']}",
+            "content": content,
+            "source_url": self.meta["source_url"],
+        })
 
     def _emit(self, art_num: str, clause_num: str | None, dieu: str, body: str) -> None:
         article_id = f"dieu-{art_num.lower()}"
@@ -398,6 +418,7 @@ def chunk_document(meta: dict, cleaned: str) -> list[dict]:
 def main() -> None:
     registry = json.loads(REGISTRY.read_text(encoding="utf-8"))
     all_chunks = []
+    all_articles = []
     by_document = {}
     sources = {}
     for meta in registry:
@@ -419,6 +440,7 @@ def main() -> None:
             raise SystemExit(f"duplicate chunk_id in {meta['document_id']}: {dup[:8]}")
         by_document[parser.document_id] = parser.chunks
         all_chunks.extend(parser.chunks)
+        all_articles.extend(parser.articles)
         print(f"{parser.document_id}: {len(parser.chunks)} chunks")
 
     for target_id, source_id in STRUCTURE_FROM.items():
@@ -439,6 +461,13 @@ def main() -> None:
         for chunk in all_chunks:
             fh.write(json.dumps(chunk, ensure_ascii=False) + "\n")
     print(f"wrote {len(all_chunks)} -> {OUT}")
+    keys = [(a["document_id"], a["article_id"]) for a in all_articles]
+    if len(keys) != len(set(keys)):
+        raise SystemExit("(document_id, article_id) trùng trong Article Store")
+    with ARTICLES_OUT.open("w", encoding="utf-8", newline="\n") as fh:
+        for article in all_articles:
+            fh.write(json.dumps(article, ensure_ascii=False) + "\n")
+    print(f"wrote {len(all_articles)} articles -> {ARTICLES_OUT}")
 
 
 if __name__ == "__main__":

@@ -71,7 +71,7 @@ def test_sample_ids_do_not_collide_with_full_golden():
 
 
 def test_llm_insufficient_context_with_unrelated_chunks():
-    item = by_id("gold_041")
+    item = by_id("sample_oos_001")
     ro = {**rerank_output(by_id("gold_003")), "question": item["question"]}
     out = {"status": "insufficient_context", "answer": item["ground_truth"], "citations": []}
     provider = FakeLLMProvider([out])
