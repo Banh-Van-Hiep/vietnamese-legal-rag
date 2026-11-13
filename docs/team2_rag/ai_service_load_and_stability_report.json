@@ -1,0 +1,85 @@
+{
+  "git_commit": "9f03b9d646",
+  "timestamp_utc": "2026-11-13T17:41:34.361933+00:00",
+  "dataset_path": "team2_rag/data/golden/golden_phase1_30cai.json",
+  "dataset_sha256": "a2ee16bdf374",
+  "config": {
+    "retrieval_mode": "bm25_only_local",
+    "provider": "gemini",
+    "model": "gemini-3.1-flash-lite",
+    "top_k": 5,
+    "rerank_enabled": false,
+    "verify_claims": false,
+    "pipeline_timeout_s": 45.0
+  },
+  "request_outcomes": {
+    "total": 50,
+    "answered": 41,
+    "insufficient_context": 8,
+    "error": 1,
+    "timeout": 0
+  },
+  "error_breakdown": {
+    "INVALID_LLM_OUTPUT": 1
+  },
+  "stage_latency": {
+    "retrieval": {
+      "count": 50,
+      "mean_s": 0.003,
+      "p50_s": 0.003,
+      "p90_s": 0.006,
+      "p95_s": 0.006,
+      "max_s": 0.011
+    },
+    "rerank": {
+      "count": 50,
+      "mean_s": 0.0,
+      "p50_s": 0.0,
+      "p90_s": 0.0,
+      "p95_s": 0.001,
+      "max_s": 0.001
+    },
+    "llm": {
+      "count": 50,
+      "mean_s": 6.169,
+      "p50_s": 5.424,
+      "p90_s": 12.284,
+      "p95_s": 13.429,
+      "max_s": 24.087
+    },
+    "verify": {
+      "count": 50,
+      "mean_s": 0.0,
+      "p50_s": 0.0,
+      "p90_s": 0.0,
+      "p95_s": 0.0,
+      "max_s": 0.0
+    },
+    "e2e_total": {
+      "count": 50,
+      "mean_s": 6.346,
+      "p50_s": 5.49,
+      "p90_s": 12.287,
+      "p95_s": 13.434,
+      "max_s": 24.093
+    }
+  },
+  "nfr07_p95_le_45s_passed": true,
+  "nfr08_timeout_chain_verified": true,
+  "article_viewer": {
+    "sample_size": 20,
+    "cold_start_ms": 83.546,
+    "warm_p50_ms": 0.002,
+    "warm_p95_ms": 0.005,
+    "warm_max_ms": 0.014,
+    "error_cases_tested": {
+      "DOCUMENT_NOT_FOUND": 404,
+      "ARTICLE_NOT_FOUND": 404,
+      "INVALID_REQUEST": 400
+    },
+    "nfr09_passed": true
+  },
+  "failed_query_ids": [
+    "gold_030"
+  ]
+}
