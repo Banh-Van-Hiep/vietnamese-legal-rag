@@ -24,6 +24,18 @@ def _flag(env, key, default):
     return env.get(key, default).strip().lower() in ("true", "1")
 
 
+def _verifier(env, llm):
+    """RAG_VERIFY_CLAIMS=true: LLM khai claims và pipeline chạy verify_response (benchmark).
+
+    Mặc định tắt khi chạy online: claims cần thêm token output và thời gian sinh.
+    """
+    if not _flag(env, "RAG_VERIFY_CLAIMS", "false"):
+        return None
+    from .verification import verify_response
+    llm.include_claims = True  # verifier không có claims thì không kiểm được nhận định nào
+    return verify_response
+
+
 @dataclass
 class Runtime:
     pipeline: RAGPipeline
@@ -50,9 +62,10 @@ def _build_bm25_only(env) -> Runtime:
     llm = create_llm_service(settings)
     budget = token_budget_from_settings(settings) if settings.context_window_tokens else None
     bm25 = BM25Retriever.from_jsonl(env.get("RAG_CHUNKS", "data/doanh-nghiep/processed/chunks.jsonl"))
+    verifier = _verifier(env, llm)
     pipeline = RAGPipeline(bm25, llm, top_k=int(env.get("RAG_TOP_K", "10")), settings=settings, token_budget=budget,
-                           strict_rerank=False, rerank_enabled=False)
-    log.info("rag_config retriever=bm25_only rerank=False top_k=%d", pipeline.top_k)
+                           strict_rerank=False, rerank_enabled=False, verifier=verifier)
+    log.info("rag_config retriever=bm25_only rerank=False top_k=%d verify_claims=%s", pipeline.top_k, verifier is not None)
     return Runtime(pipeline, _NoClient())
 
 
@@ -100,16 +113,21 @@ def build_runtime(env=None) -> Runtime:
         except Exception:
             pass
         truncate = _flag(env, "RAG_RERANK_TRUNCATE", "false")  # chưa đo lợi ích: mặc định giữ nguyên (xem optimal_rag_configuration.md)
-        scorer = BGEScorer(truncate=truncate)
-        scorer([("Khởi động mô hình", "Đây là nội dung khởi động mô hình.")])
+        rerank_enabled = _flag(env, "RAG_RERANK", "false")
+        scorer = None
+        if rerank_enabled:  # rerank tắt thì không nạp BGE (~2 GB RAM, thêm thời gian khởi động)
+            scorer = BGEScorer(truncate=truncate)
+            scorer([("Khởi động mô hình", "Đây là nội dung khởi động mô hình.")])
         top_k = int(env.get("RAG_TOP_K", "10"))
         strict_rerank = _flag(env, "RAG_STRICT_RERANK", "false")
-        rerank_enabled = _flag(env, "RAG_RERANK", "false")
         rerank_timeout = float(env.get("RAG_RERANK_TIMEOUT_SECONDS", "4"))
+        verifier = _verifier(env, llm)
         pipeline = RAGPipeline(hybrid, llm, scorer=scorer, top_k=top_k, settings=settings, token_budget=budget,
-                               strict_rerank=strict_rerank, rerank_enabled=rerank_enabled, rerank_timeout=rerank_timeout)
-        log.info("rag_config bm25_dense_weights=%s:%s top_k=%d rerank=%s truncate=%s strict_rerank=%s rerank_timeout=%ss",
-                 *weights, top_k, rerank_enabled, truncate, strict_rerank, rerank_timeout)
+                               strict_rerank=strict_rerank, rerank_enabled=rerank_enabled, rerank_timeout=rerank_timeout,
+                               verifier=verifier)
+        log.info("rag_config bm25_dense_weights=%s:%s top_k=%d rerank=%s truncate=%s strict_rerank=%s rerank_timeout=%ss "
+                 "verify_claims=%s", *weights, top_k, rerank_enabled, truncate, strict_rerank, rerank_timeout,
+                 verifier is not None)
         return Runtime(pipeline, client)
     except BaseException:
         client.close()
