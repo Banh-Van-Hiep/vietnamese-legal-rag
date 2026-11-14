@@ -1,0 +1,451 @@
+BỘ CÔNG AN
+
+CỘNG HOÀ XÃ HỘI CHỦ NGHĨA VIỆT NAM
+
+Độc lập - Tự do - Hạnh phúc
+
+Số: 03/2026/TT-BCA
+
+Hà Nội, ngày 08 tháng 01 năm 2026
+
+THÔNG TƯ
+
+Quy định cấp, quản lý sổ bảo hiểm xã hội trong Công an nhân dân
+
+Căn cứ Luật Bảo hiểm xã hội số 41/2024/QH15;
+
+Căn cứ Nghị định số 02/2025/NĐ-CP ngày 18 tháng 02 năm 2025 của Chính phủ quy định chức năng, nhiệm vụ, quyền hạn và cơ cấu tổ chức của Bộ Công an, được sửa đổi, bổ sung bởi Nghị định số 11/2025/NĐ-CP ngày 01 tháng 7 năm 2025 của Chính phủ;
+
+Căn cứ Nghị định số 164/2025/NĐ-CP ngày 29 tháng 6 năm 2025 của Chính phủ quy định về giao dịch điện tử trong lĩnh vực bảo hiểm xã hội và Cơ sở dữ liệu quốc gia về bảo hiểm;
+
+Theo đề nghị của Cục trưởng Cục Tổ chức cán bộ;
+
+Bộ trưởng Bộ Công an ban hành Thông tư quy định cấp, quản lý sổ bảo hiểm xã hội trong Công an nhân dân.
+
+Chương I
+
+QUY ĐỊNH CHUNG
+
+Điều 1. Phạm vi điều chỉnh
+
+Thông tư này quy định về đối tượng, hồ sơ, trình tự, thẩm quyền cấp, tạo lập, tích hợp, quản lý và sử dụng sổ bảo hiểm xã hội trong Công an nhân dân.
+
+Điều 2. Đối tượng áp dụng
+
+1. Người lao động tham gia bảo hiểm xã hội bắt buộc trong Công an nhân dân (sau đây viết gọn là cán bộ, chiến sĩ), bao gồm:
+
+a) Sĩ quan, hạ sĩ quan nghiệp vụ; sĩ quan, hạ sĩ quan chuyên môn kỹ thuật;
+
+b) Hạ sĩ quan, chiến sĩ nghĩa vụ;
+
+c) Học viên hưởng sinh hoạt phí học tại các trường Công an nhân dân hoặc gửi học tại các trường ngoài Công an nhân dân do Công an nhân dân trả sinh hoạt phí (sau đây viết gọn là học viên);
+
+d) Công nhân công an;
+
+đ) Người làm việc theo hợp đồng lao động không xác định thời hạn, hợp đồng lao động xác định thời hạn, hợp đồng lao động theo mùa vụ hoặc theo một công việc nhất định có thời hạn từ đủ 01 tháng trở lên, bao gồm cả hợp đồng lao động được ký kết giữa người sử dụng lao động với người đại diện theo pháp luật của người dưới 15 tuổi theo quy định của pháp luật về lao động tại các cơ quan, đơn vị thuộc Công an nhân dân;
+
+e) Công dân được tạm tuyển trước khi chính thức được tuyển chọn vào Công an nhân dân (sau đây viết gọn là công dân tạm tuyển).
+
+2. Người sử dụng lao động tham gia bảo hiểm xã hội bắt buộc trong Công an nhân dân (sau đây gọi chung là Công an đơn vị, địa phương), bao gồm:
+
+a) Đơn vị thuộc cơ quan Bộ Công an (sau đây viết gọn là đơn vị cấp cục); Công an tỉnh, thành phố (sau đây viết gọn là Công an cấp tỉnh);
+
+b) Doanh nghiệp, đơn vị sự nghiệp công lập trong Công an nhân dân (sau đây viết gọn là doanh nghiệp).
+
+3. Các tổ chức, cá nhân có liên quan trong thực hiện cấp, quản lý sổ bảo hiểm xã hội trong Công an nhân dân.
+
+Điều 3. Giải thích từ ngữ
+
+Trong Thông tư này các từ ngữ dưới đây được hiểu như sau:
+
+1. Cơ sở dữ liệu: là tập hợp dữ liệu bảo hiểm xã hội, bảo hiểm y tế, bảo hiểm thất nghiệp của cán bộ, chiến sĩ; được sắp xếp, tổ chức quản lý tập trung, thống nhất tại Bảo hiểm xã hội Công an nhân dân theo các quy định về an toàn thông tin, bảo vệ bí mật nhà nước để phục vụ việc truy cập, khai thác, chia sẻ, cập nhật; trong đó, thông tin cán bộ, chiến sĩ được xác thực với Cơ sở dữ liệu quốc gia về dân cư.
+
+2. Hệ thống: bao gồm các phần mềm nghiệp vụ bảo hiểm xã hội, bảo hiểm thất nghiệp và cơ sở dữ liệu do Bảo hiểm xã hội Công an nhân dân quản lý bảo đảm các quy định về bảo vệ bí mật nhà nước để thực hiện cấp, quản lý sổ bảo hiểm xã hội, xác nhận thời gian tham gia bảo hiểm xã hội, bảo hiểm thất nghiệp; giải quyết các chế độ bảo hiểm xã hội trên môi trường điện tử.
+
+3. Phần mềm cục bộ: là phần mềm nghiệp vụ bảo hiểm xã hội, bảo hiểm thất nghiệp được cài đặt trên các máy tính độc lập tại Công an đơn vị, địa phương mà không có kết nối đến hệ thống; được dùng để tạo lập hồ sơ bảo hiểm xã hội; có thể trích xuất, đồng bộ với hệ thống bằng phương thức ngoại tuyến.
+
+4. Ký số: là hoạt động sử dụng chữ ký số hợp lệ được cấp theo quy định của pháp luật hoặc chữ ký số chuyên dùng công vụ được cấp bởi tổ chức cung cấp dịch vụ chứng thực số chuyên dùng công vụ trong Công an nhân dân; nhằm mục đích ký, xác nhận các tài liệu, dữ liệu về công tác bảo hiểm xã hội, bảo hiểm thất nghiệp trên hệ thống.
+
+5. Cơ quan tổ chức cán bộ: phòng có chức năng thực hiện công tác tổ chức cán bộ thuộc Công an cấp tỉnh, đơn vị cấp cục; bộ phận có chức năng thực hiện công tác bảo hiểm xã hội tại doanh nghiệp.
+
+6. Cơ quan tài chính: phòng có chức năng thực hiện công tác tài chính bảo hiểm xã hội thuộc Công an cấp tỉnh, đơn vị cấp cục; bộ phận có chức năng thực hiện công tác tài chính bảo hiểm xã hội tại doanh nghiệp.
+
+7. Đơn vị trực tiếp quản lý: Công an xã, phường, đặc khu; đồn Công an; phòng và tương đương thuộc Công an cấp tỉnh; phòng và tương đương thuộc đơn vị cấp cục.
+
+Điều 4. Nguyên tắc thực hiện
+
+1. Sổ bảo hiểm xã hội, bao gồm sổ bảo hiểm xã hội bản giấy và sổ bảo hiểm xã hội bản điện tử được cấp cho từng cán bộ, chiến sĩ để theo dõi việc đóng, hưởng các chế độ bảo hiểm xã hội, bảo hiểm thất nghiệp và là cơ sở để giải quyết các chế độ bảo hiểm xã hội, bảo hiểm thất nghiệp đối với từng cá nhân.
+
+2. Việc cấp, quản lý sổ bảo hiểm xã hội phải thực hiện trên hệ thống; bảo đảm chặt chẽ, đúng quy định của pháp luật về bảo hiểm xã hội, hướng dẫn của Bảo hiểm xã hội Việt Nam và Bảo hiểm xã hội Công an nhân dân. Công an đơn vị, địa phương báo cáo về Bộ Công an qua Cục Tổ chức cán bộ đối với các trường hợp không thực hiện lập hồ sơ đề nghị cấp, quản lý sổ bảo hiểm xã hội trên hệ thống để bảo đảm các quy định về bảo vệ bí mật nhà nước trong lĩnh vực an ninh, trật tự an toàn xã hội.
+
+3. Nội dung ghi trên sổ bảo hiểm xã hội phải trùng khớp với thông tin lưu trữ tại cơ sở dữ liệu. Mọi thông tin liên quan đến đóng, hưởng bảo hiểm xã hội, bảo hiểm thất nghiệp khi có thay đổi phải được kịp thời cập nhật vào hệ thống đúng quy định. Mọi hoạt động truy cập, khai thác, sử dụng dữ liệu trên hệ thống được ghi nhận, lưu vết bảo đảm phát hiện và kịp thời xử lý các hành vi vi phạm.
+
+4. Nghiêm cấm việc tự ý sửa chữa, tẩy xóa làm sai lệch nội dung ghi trên sổ bảo hiểm xã hội bản giấy; can thiệp, sửa chữa thông tin trái phép trên sổ bảo hiểm xã hội bản điện tử. Trường hợp mất, hỏng sổ bảo hiểm xã hội bản giấy hoặc có thay đổi về thông tin trên sổ bảo hiểm xã hội phải báo cáo kịp thời với Công an đơn vị, địa phương và Bảo hiểm xã hội Công an nhân dân để được giải quyết.
+
+5. Nghiêm cấm cầm cố, mua bán, thế chấp, đặt cọc và các hành vi sử dụng sai mục đích sổ bảo hiểm xã hội theo quy định của pháp luật. Tổ chức, cá nhân vi phạm quy định về cấp, quản lý và sử dụng sổ bảo hiểm xã hội trong Công an nhân dân thì tuỳ theo tính chất, mức độ vi phạm bị xử lý kỷ luật, xử phạt hành chính hoặc bị truy cứu trách nhiệm hình sự; nếu gây thiệt hại thì phải bồi thường theo quy định của pháp luật.
+
+6. Hồ sơ, giấy tờ bản giấy phải được số hóa, ký số xác thực để tích hợp, lưu trữ trên hệ thống. Trường hợp các thông tin, dữ liệu, hồ sơ, giấy tờ liên quan làm căn cứ để cấp sổ bảo hiểm xã hội, xác nhận thời gian tham gia bảo hiểm xã hội đã được lưu trữ trên hệ thống đúng quy định thì không yêu cầu tổ chức, cá nhân kê khai, nộp lại.
+
+Điều 5. Biểu mẫu cấp, quản lý và sử dụng sổ bảo hiểm xã hội
+
+Mẫu sổ bảo hiểm xã hội và biểu mẫu cấp, quản lý sổ bảo hiểm xã hội trong Công an nhân dân do Giám đốc Bảo hiểm xã hội Công an nhân dân quy định phù hợp với đặc thù của lực lượng Công an nhân dân, hệ thống phần mềm của Bảo hiểm xã hội Công an nhân dân và thống nhất với biểu mẫu do Bảo hiểm xã hội Việt Nam ban hành; cụ thể:
+
+1. Tờ khai cung cấp và thay đổi thông tin (mẫu số TK1-TS);
+
+2. Danh sách cán bộ, chiến sĩ tham gia bảo hiểm xã hội (mẫu số D02-TS);
+
+3. Giấy xác nhận thời gian tham gia bảo hiểm xã hội (mẫu số C14-TS);
+
+4. Biên bản hủy sổ bảo hiểm xã hội (mẫu số C10-TS).
+
+Chương II
+
+QUY ĐỊNH CỤ THỂ
+
+Điều 6. Sổ bảo hiểm xã hội
+
+1. Sổ bảo hiểm xã hội bản giấy gồm trang bìa sổ bảo hiểm xã hội (sau đây viết gọn là bìa sổ) và các trang tờ rời sổ bảo hiểm xã hội (sau đây viết gọn là tờ rời) do cơ quan bảo hiểm xã hội cấp, chứa đựng thông tin cơ bản về nhân thân, ghi nhận việc đóng, hưởng, giải quyết các chế độ bảo hiểm xã hội, bảo hiểm thất nghiệp và các thông tin khác có liên quan. Sổ bảo hiểm xã hội bản giấy được cấp khi không bảo đảm các điều kiện về giải pháp kỹ thuật và các quy định về bảo vệ bí mật nhà nước để cấp sổ bảo hiểm xã hội bản điện tử hoặc được cấp theo yêu cầu cán bộ, chiến sĩ khi thực hiện bảo lưu thời gian tham gia bảo hiểm xã hội, bảo hiểm thất nghiệp.
+
+2. Sổ bảo hiểm xã hội bản điện tử do Bộ Công an tạo lập, tích hợp, quản lý trên ứng dụng định danh quốc gia (VNeID) mức độ 2 có các thông tin, giá trị pháp lý như sổ bảo hiểm xã hội bản giấy và bảo đảm các quy định về bảo vệ bí mật nhà nước trong lĩnh vực an ninh, trật tự an toàn xã hội. Sổ bảo hiểm xã hội bản điện tử dưới dạng thông điệp dữ liệu được tạo lập hoặc số hóa từ sổ bảo hiểm xã hội bản giấy, được ký số bởi Bảo hiểm xã hội Công an nhân dân.
+
+a) Sổ bảo hiểm xã hội bản điện tử được tích hợp, quản lý trên VNeID của cán bộ, chiến sĩ đang công tác gồm các thông tin: họ và tên; mã số bảo hiểm xã hội; ngày tháng năm sinh; tổng thời gian tham gia bảo hiểm xã hội, bảo hiểm tai nạn lao động, bệnh nghề nghiệp và bảo hiểm thất nghiệp chưa hưởng;
+
+b) Sổ bảo hiểm xã hội bản điện tử đối với trường hợp đã được Bảo hiểm xã hội Công an nhân dân bảo lưu quá trình đóng bảo hiểm xã hội, bảo hiểm thất nghiệp được quản lý theo quy định của Bảo hiểm xã hội Việt Nam.
+
+3. Mã số bảo hiểm xã hội là mã số định danh cá nhân của cán bộ, chiến sĩ đã được cấp theo quy định của pháp luật. Mã số bảo hiểm xã hội được hệ thống cấp phát, ghi nhận khi dữ liệu bảo hiểm xã hội của cán bộ, chiến sĩ được phát sinh lần đầu trên hệ thống.
+
+Điều 7. Cấp sổ bảo hiểm xã hội lần đầu
+
+1. Cán bộ, chiến sĩ quy định tại khoản 1 Điều 2 Thông tư này nếu chưa được cấp sổ bảo hiểm xã hội thì được cấp sổ bảo hiểm xã hội lần đầu theo quy định tại Điều này.
+
+2. Hồ sơ đề nghị cấp sổ bảo hiểm xã hội lần đầu
+
+a) Công văn đề nghị cấp sổ bảo hiểm xã hội;
+
+b) Danh sách cán bộ, chiến sĩ tham gia bảo hiểm xã hội;
+
+c) Tờ khai cung cấp và thay đổi thông tin;
+
+d) Quyết định tuyển dụng, tuyển chọn, hợp đồng lao động và các hồ sơ, tài liệu khác có liên quan.
+
+3. Quy trình cấp sổ bảo hiểm xã hội lần đầu
+
+a) Sau khi cán bộ, chiến sĩ có quyết định tuyển dụng, tuyển chọn hoặc ký hợp đồng lao động; đơn vị trực tiếp quản lý thực hiện cung cấp, hướng dẫn cán bộ, chiến sĩ ghi Tờ khai cung cấp và thay đổi thông tin theo quy định nộp cho đơn vị trực tiếp quản lý để chuyển về cơ quan tổ chức cán bộ;
+
+b) Cơ quan tổ chức cán bộ tiếp nhận, kiểm tra, đối chiếu nội dung Tờ khai cung cấp và thay đổi thông tin do đơn vị trực tiếp quản lý chuyển đến với hồ sơ cán bộ và tài liệu liên quan khác; nếu đúng thì thực hiện tạo lập, gửi yêu cầu xác nhận hồ sơ đăng ký tham gia bảo hiểm xã hội lần đầu trên hệ thống để Bảo hiểm xã hội Công an nhân dân xét duyệt. Trường hợp nội dung Tờ khai cung cấp và thay đổi thông tin do cán bộ, chiến sĩ lập chưa đầy đủ, chưa đúng với hồ sơ cán bộ thì cơ quan tổ chức cán bộ có trách nhiệm hướng dẫn cán bộ, chiến sĩ kê khai lại;
+
+c) Bảo hiểm xã hội Công an nhân dân căn cứ đề nghị của Công an đơn vị, địa phương tiến hành thẩm định, xác nhận việc tạo lập hồ sơ bảo hiểm xã hội lần đầu đối với cán bộ, chiến sĩ và thực hiện cấp mã số bảo hiểm xã hội trên hệ thống;
+
+d) Sau khi được Bảo hiểm xã hội Công an nhân dân xác nhận tạo lập hồ sơ bảo hiểm xã hội trên hệ thống, cơ quan tổ chức cán bộ lập hồ sơ quy định tại khoản 2 Điều này trên hệ thống, trích xuất tờ rời, báo cáo thủ trưởng Công an đơn vị, địa phương hoặc giao thủ trưởng cơ quan tổ chức cán bộ thừa lệnh ký, xác nhận trên hệ thống;
+
+đ) Cơ quan tổ chức cán bộ chuyển hồ sơ đề nghị cấp sổ bảo hiểm xã hội đã được ký, xác nhận theo quy định đến Bảo hiểm xã hội Công an nhân dân thông qua hệ thống;
+
+e) Trường hợp Công an đơn vị, địa phương không thực hiện được việc tạo lập, chuyển hồ sơ trên hệ thống theo quy định tại khoản 2 Điều 4 thì số hóa hồ sơ quy định tại khoản 2 Điều này cùng với tờ rời đã được ký số, kèm theo dữ liệu phù hợp với hồ sơ đề nghị cấp sổ bảo hiểm xã hội lần đầu được trích xuất từ phần mềm cục bộ gửi Bảo hiểm xã hội Công an nhân dân;
+
+g) Bảo hiểm xã hội Công an nhân dân tiếp nhận hồ sơ đề nghị cấp sổ bảo hiểm xã hội do Công an đơn vị, địa phương chuyển đến; thẩm định, ký, xác nhận trang bìa, tờ rời trên hệ thống; đồng thời:
+
+- Trường hợp cấp sổ bảo hiểm xã hội bản giấy: in tờ bìa hoặc in tờ rời và tờ bìa đối với trường hợp quy định tại điểm e khoản này, chuyển trả Công an đơn vị, địa phương;
+
+- Trường hợp cấp sổ bảo hiểm xã hội bản điện tử: thực hiện chia sẻ, đồng bộ dữ liệu để tạo lập sổ bảo hiểm xã hội bản điện tử, tích hợp trên VNeID;
+
+- Thông báo trên hệ thống để Công an đơn vị, địa phương biết, phối hợp quản lý; trường hợp không cấp phải trả lời bằng văn bản và nêu rõ lý do; đồng thời thông báo cho cán bộ, chiến sĩ biết qua hệ thống tin nhắn tự động hoặc qua VNeID;
+
+h) Công an đơn vị, địa phương tiếp nhận lại sổ bảo hiểm xã hội bản giấy để quản lý.
+
+4. Thời hạn giải quyết
+
+a) Trong thời hạn 30 ngày kể từ ngày giao kết hợp đồng lao động hoặc có quyết định tuyển dụng, Công an đơn vị, địa phương phải lập và chuyển hồ sơ đề nghị cấp sổ bảo hiểm xã hội cho cán bộ, chiến sĩ về Bảo hiểm xã hội Công an nhân dân;
+
+b) Trong thời hạn 05 ngày làm việc, kể từ ngày nhận đủ hồ sơ theo quy định, Bảo hiểm xã hội Công an nhân dân phải thực hiện cấp sổ bảo hiểm xã hội bản giấy hoặc bản điện tử.
+
+Điều 8. Cấp lại sổ bảo hiểm xã hội
+
+1. Trường hợp cấp lại sổ bảo hiểm xã hội
+
+a) Cấp lại bìa sổ và tờ rời bản giấy đối với các trường hợp: mất, hỏng, gộp sổ bảo hiểm xã hội; khi thay đổi mã số định danh cá nhân, mã số bảo hiểm xã hội; họ, tên, chữ đệm; ngày, tháng, năm sinh; người đã hưởng bảo hiểm xã hội một lần mà còn thời gian đóng bảo hiểm thất nghiệp chưa hưởng;
+
+b) Cấp lại bìa sổ bản giấy đối với các trường hợp: sai giới tính, quốc tịch;
+
+c) Cấp lại tờ rời bản giấy đối với các trường hợp: mất, hỏng; trường hợp chỉ mất, hỏng một hoặc một số tờ rời thì thực hiện in, cấp lại các tờ rời bị mất, hỏng đó và phải đảm bảo đầy đủ thời gian, mức đóng bảo hiểm xã hội, bảo hiểm thất nghiệp chưa hưởng;
+
+d) Cấp lại tờ rời bản giấy đối với các trường hợp điều chỉnh quá trình tham gia bảo hiểm xã hội, bảo hiểm thất nghiệp, bao gồm: điều chỉnh thời gian, mức đóng, tỷ lệ đóng bảo hiểm xã hội, bảo hiểm thất nghiệp hoặc điều chỉnh nội dung về cấp bậc, chức vụ; chức danh nghề, công việc, nơi làm việc;
+
+đ) Cấp lại sổ bảo hiểm xã hội bản điện tử đối với các trường hợp đã được cấp sổ bảo hiểm xã hội bản điện tử mà có thay đổi mã số định danh cá nhân, mã số bảo hiểm xã hội; họ, tên, chữ đệm; ngày, tháng, năm sinh; người đã hưởng bảo hiểm xã hội một lần mà còn thời gian đóng bảo hiểm thất nghiệp chưa hưởng; điều chỉnh quá trình tham gia bảo hiểm xã hội, bảo hiểm thất nghiệp theo quy định tại điểm d khoản này.
+
+2. Hồ sơ đề nghị cấp lại sổ bảo hiểm xã hội
+
+a) Công văn đề nghị cấp lại sổ bảo hiểm xã hội;
+
+b) Danh sách cán bộ, chiến sĩ tham gia bảo hiểm xã hội;
+
+c) Sổ bảo hiểm xã hội bản giấy đã được cấp, trừ trường hợp bị mất;
+
+d) Tờ khai cung cấp và thay đổi thông tin;
+
+đ) Các hồ sơ, tài liệu liên quan chứng minh nội dung thay đổi quy định tại khoản 1 Điều này.
+
+3. Quy trình cấp lại sổ bảo hiểm xã hội
+
+a) Cán bộ, chiến sĩ nộp cho đơn vị trực tiếp quản lý Tờ khai cung cấp và thay đổi thông tin, trong đó ghi rõ nội dung yêu cầu, lý do cấp lại và các hồ sơ, tài liệu quy định tại điểm đ khoản 2 Điều này; trừ trường hợp cấp lại sổ bảo hiểm xã hội khi giải quyết hưởng chế độ bảo hiểm xã hội một lần còn thời gian đóng bảo hiểm thất nghiệp chưa hưởng;
+
+b) Cơ quan tổ chức cán bộ tiếp nhận, kiểm tra, đối chiếu nội dung Tờ khai cung cấp và thay đổi thông tin, các hồ sơ, tài liệu kèm theo do đơn vị trực tiếp quản lý cán bộ, chiến sĩ cung cấp để xác định nội dung cần điều chỉnh; thực hiện đề nghị điều chỉnh thông tin trên hệ thống; lập hồ sơ quy định tại khoản 2 Điều này trên hệ thống kèm theo tờ rời đã được điều chỉnh nội dung theo quy định để báo cáo thủ trưởng Công an đơn vị, địa phương hoặc giao cho thủ trưởng cơ quan tổ chức cán bộ thừa lệnh ký, xác nhận trên hệ thống;
+
+c) Trường hợp Công an đơn vị, địa phương không thực hiện được việc lập, chuyển hồ sơ trên hệ thống thì số hóa sơ quy định tại khoản 2 Điều cùng với tờ rời đã được ký số, kèm theo dữ liệu phù hợp với hồ sơ đề nghị cấp lại sổ bảo hiểm xã hội được trích xuất từ phần mềm cục bộ gửi Bảo hiểm xã hội Công an nhân dân;
+
+d) Bảo hiểm xã hội Công an nhân dân tiếp nhận, thẩm định hồ sơ đề nghị cấp lại sổ bảo hiểm xã hội do Công an đơn vị, địa phương chuyển đến; ký, xác nhận trang bìa, tờ rời trên hệ thống; đồng thời:
+
+- Trường hợp cấp lại sổ bảo hiểm xã hội bản giấy: in bìa sổ, tờ rời theo quy định tại khoản 1 Điều này chuyển trả Công an đơn vị, địa phương;
+
+- Trường hợp cấp lại sổ bảo hiểm xã hội bản điện tử: thực hiện chia sẻ, đồng bộ dữ liệu để điều chỉnh thông tin sổ bảo hiểm xã hội bản điện tử đã được tích hợp trên VNeID;
+
+- Thông báo trên hệ thống để Công an đơn vị, địa phương biết, phối hợp quản lý, trường hợp không cấp phải trả lời bằng văn bản và nêu rõ lý do; đồng thời thông báo cho cán bộ, chiến sĩ biết qua hệ thống tin nhắn tự động hoặc qua VNeID;
+
+đ) Công an đơn vị, địa phương tiếp nhận lại sổ bảo hiểm xã hội bản giấy để quản lý; thực hiện thu hồi, hủy sổ bảo hiểm xã hội bản giấy đã cấp trước đó.
+
+4. Thời hạn giải quyết
+
+a) Trong thời hạn 07 ngày làm việc, kể từ khi nhận được hồ sơ đề nghị cấp lại sổ bảo hiểm xã hội, Công an đơn vị, địa phương phải lập và chuyển hồ sơ đề nghị cấp lại sổ bảo hiểm xã hội về Bảo hiểm xã hội Công an nhân dân;
+
+b) Trong thời hạn 05 ngày làm việc, kể từ ngày nhận đủ hồ sơ theo quy định, Bảo hiểm xã hội Công an nhân dân phải thực hiện cấp lại sổ bảo hiểm xã hội bản giấy hoặc bản điện tử; trường hợp cấp lại sổ bảo hiểm xã hội khi giải quyết hưởng chế độ bảo hiểm xã hội một lần còn thời gian đóng bảo hiểm thất nghiệp chưa hưởng thì thời hạn giải quyết theo quy định của thời hạn giải quyết chế độ bảo hiểm xã hội một lần.
+
+Điều 9. Xác nhận sổ bảo hiểm xã hội
+
+1. Trường hợp xác nhận sổ bảo hiểm xã hội
+
+a) Cán bộ, chiến sĩ được điều động đến Công an, đơn vị địa phương khác, bao gồm cả trường hợp cán bộ, chiến sĩ được cử đi học tập trung tại các trường Công an nhân dân hoặc luân chuyển có thời hạn;
+
+b) Tiếp nhận sổ bảo hiểm xã hội đối với người lao động chuyển vào Công an nhân dân mà trước đó đã được cấp sổ bảo hiểm xã hội, bao gồm cả bản giấy và bản điện tử.
+
+2. Hồ sơ đề nghị xác nhận sổ bảo hiểm xã hội
+
+a) Công văn đề nghị xác nhận sổ bảo hiểm xã hội;
+
+b) Danh sách cán bộ, chiến sĩ tham gia bảo hiểm xã hội;
+
+c) Sổ bảo hiểm xã hội bản giấy đã được cấp đối với trường hợp quy định tại điểm b khoản 1 Điều này;
+
+d) Tờ khai cung cấp và thay đổi thông tin đối với trường hợp quy định tại điểm b khoản 1 Điều này;
+
+đ) Các hồ sơ, tài liệu liên quan.
+
+3. Quy trình xác nhận sổ bảo hiểm xã hội
+
+a) Cán bộ, chiến sĩ quy định tại điểm b khoản 1 Điều này nộp sổ bảo hiểm xã hội và Tờ khai cung cấp và thay đổi thông tin cho đơn vị trực tiếp quản lý. Trường hợp người lao động chỉ được cấp sổ bảo hiểm xã hội bản điện tử mà không có bản giấy thì cung cấp thông tin sổ bảo hiểm xã hội cho đơn vị trực tiếp quản lý;
+
+b) Cơ quan tổ chức cán bộ căn cứ các quyết định điều động, cử đi học của cán bộ, chiến sĩ; thực hiện lập yêu cầu xác nhận sổ bảo hiểm xã hội do điều động (báo giảm); trường hợp tiếp nhận sổ bảo hiểm xã hội đối với người lao động chuyển vào Công an nhân dân thì thực hiện tiếp nhận, kiểm tra, đối chiếu nội dung Tờ khai cung cấp và thay đổi thông tin, hồ sơ, tài liệu kèm theo do đơn vị trực tiếp quản lý cán bộ, chiến sĩ cung cấp và lập yêu cầu tiếp nhận sổ bảo hiểm xã hội (báo tăng); lập hồ sơ quy định tại khoản 2 Điều này trên hệ thống kèm theo tờ rời đã được điều chỉnh nội dung theo quy định để báo cáo thủ trưởng Công an đơn vị, địa phương hoặc giao thủ trưởng cơ quan tổ chức cán bộ thừa lệnh ký số trên hệ thống;
+
+c) Trường hợp Công an đơn vị, địa phương không thực hiện được việc lập hồ sơ trên hệ thống thì số hóa hồ sơ quy định tại khoản 2 Điều này cùng với tờ rời đã được ký số, kèm theo dữ liệu phù hợp với hồ sơ đề nghị xác nhận sổ bảo hiểm xã hội được trích xuất từ phần mềm cục bộ gửi Bảo hiểm xã hội Công an nhân dân;
+
+d) Bảo hiểm xã hội Công an nhân dân tiếp nhận, thẩm định ký, xác nhận tờ rời trên hệ thống và thực hiện di chuyển dữ liệu đến đơn vị tiếp nhận, đồng thời:
+
+- Đối với xác nhận trên sổ bảo hiểm xã hội bản giấy: in tờ rời chuyển trả Công an đơn vị, địa phương;
+
+- Đối với xác nhận trên sổ bảo hiểm xã hội bản điện tử: thực hiện chia sẻ, đồng bộ dữ liệu để điều chỉnh thông tin sổ bảo hiểm xã hội bản điện tử đã được tích hợp trên VNeID;
+
+- Trường hợp cán bộ, chiến sĩ đã được cấp sổ bảo hiểm xã hội bản điện tử: thực hiện tiếp nhận dữ liệu, thông tin sổ bảo hiểm xã hội bản điện tử đã được tạo lập trước đó để thực hiện tích hợp, quản lý trên VNeID theo quy định cấp, quản lý sổ bảo hiểm xã hội trong Công an nhân dân;
+
+- Thông báo trên hệ thống để Công an đơn vị, địa phương biết, phối hợp quản lý, trường hợp không thực hiện xác nhận sổ bảo hiểm xã hội phải trả lời bằng văn bản và nêu rõ lý do; đồng thời thông báo cho cán bộ, chiến sĩ biết qua hệ thống tin nhắn tự động hoặc qua VNeID;
+
+đ) Công an đơn vị, địa phương tiếp nhận lại sổ bảo hiểm xã hội bản giấy để quản lý hoặc chuyển tới đơn vị tiếp nhận cùng hồ sơ cán bộ.
+
+4. Thời hạn giải quyết
+
+a) Trong thời hạn 07 ngày làm việc, kể từ khi cán bộ, chiến sĩ có quyết định điều động, luận chuyển, cử đi học, phân công học viên ra trường, trả học viên về Công an đơn vị, địa phương hoặc nhận được sổ bảo hiểm xã hội của người lao động chuyển vào Công an nhân dân hoặc nhận được hồ sơ đề nghị điều chỉnh thời gian tham gia bảo hiểm xã hội, bảo hiểm thất nghiệp; Công an đơn vị, địa phương phải lập và chuyển hồ sơ đề nghị xác nhận sổ bảo hiểm xã hội cho cán bộ, chiến sĩ về Bảo hiểm xã hội Công an nhân dân;
+
+b) Trong thời hạn 05 ngày làm việc, kể từ ngày nhận đủ hồ sơ theo quy định, Bảo hiểm xã hội Công an nhân dân phải thực hiện xác nhận sổ bảo hiểm xã hội bản giấy hoặc bản điện tử.
+
+Điều 10. Bảo lưu thời gian tham gia bảo hiểm xã hội
+
+1. Bảo lưu thời gian tham gia bảo hiểm xã hội, bảo hiểm thất nghiệp đối với trường hợp cán bộ, chiến sĩ thuộc trường hợp quy định tại khoản 1 Điều 16 Thông tư số 88/2025/TT-BCA ngày 17 tháng 9 năm 2025 của Bộ trưởng Bộ Công an hướng dẫn thực hiện bảo hiểm xã hội bắt buộc đối với sĩ quan, hạ sĩ quan, chiến sĩ Công an nhân dân hoặc trường hợp công dân tạm tuyển hết thời gian tạm tuyển nhưng không được tuyển dụng vào Công an nhân dân, người lao động chấm dứt hợp đồng lao động, hợp đồng làm việc, buộc thôi việc, buộc thôi học nhưng chưa đủ điều kiện hưởng lương hưu.
+
+2. Hồ sơ bảo lưu thời gian tham gia bảo hiểm xã hội
+
+a) Công văn đề nghị bảo lưu thời gian tham gia bảo hiểm xã hội;
+
+b) Danh sách cán bộ, chiến sĩ tham gia bảo hiểm xã hội;
+
+c) Một trong các quyết định: xuất ngũ, chuyển ngành, thôi việc, tước danh hiệu Công an nhân dân, buộc thôi việc, buộc thôi học, không tuyển dụng hoặc văn bản chấm dứt hợp đồng lao động, hợp đồng làm việc;
+
+d) Các hồ sơ, tài liệu liên quan khác.
+
+3. Quy trình bảo lưu thời gian tham gia bảo hiểm xã hội
+
+a) Cán bộ, chiến sĩ thuộc trường hợp quy định tại khoản 1 Điều này, sau khi được cấp có thẩm quyền ban hành các quyết định: xuất ngũ, chuyển ngành, thôi việc, tước danh hiệu Công an nhân dân, buộc thôi việc, buộc thôi học, không tuyển dụng hoặc văn bản chấm dứt hợp đồng lao động, hợp đồng làm việc báo cáo với đơn vị trực tiếp quản lý để thực hiện bảo lưu thời gian tham gia bảo hiểm xã hội;
+
+b) Cơ quan tổ chức cán bộ tiếp nhận hồ sơ do đơn vị trực tiếp quản lý cán bộ, chiến sĩ chuyển đến, lập yêu cầu báo giảm: lập hồ sơ quy định tại khoản 2 Điều này kèm theo tờ rời để báo cáo thủ trưởng Công an đơn vị, địa phương hoặc giao thủ trưởng cơ quan tổ chức cán bộ thừa lệnh ký số trên hệ thống;
+
+c) Trường hợp Công an đơn vị, địa phương không thực hiện được việc lập, chuyển hồ sơ trên hệ thống thì số hóa hồ sơ quy định tại khoản 2 Điều này cùng với tờ rời đã được ký số, kèm theo dữ liệu được trích xuất từ phần mềm cục bộ gửi Bảo hiểm xã hội Công an nhân dân;
+
+d) Bảo hiểm xã hội Công an nhân dân tiếp nhận và thẩm định hồ sơ đề nghị bảo lưu thời gian tham gia bảo hiểm xã hội do Công an đơn vị, địa phương chuyển đến; ký, xác nhận tờ rời trên hệ thống, đồng thời:
+
+- In tờ rời chuyển trả Công an đơn vị, địa phương;
+
+- Dừng tích hợp sổ bảo hiểm xã hội bản điện tử trên VNeID; chuyển dữ liệu để Bảo hiểm xã hội Việt Nam quản lý theo quy định;
+
+- Thông báo trên hệ thống để Công an đơn vị, địa phương biết, phối hợp quản lý, trường hợp không thực hiện bảo lưu phải trả lời bằng văn bản và nêu rõ lý do; đồng thời thông báo cho cán bộ, chiến sĩ biết qua hệ thống tin nhắn tự động hoặc qua VNeID;
+
+đ) Công an đơn vị, địa phương tiếp nhận lại sổ bảo hiểm xã hội bản giấy để bàn giao cho cán bộ, chiến sĩ theo quy định.
+
+4. Thời hạn giải quyết
+
+a) Trong thời hạn 05 ngày làm việc, kể từ ngày nhận được Giấy đề nghị bảo lưu thời gian tham gia bảo hiểm xã hội; Công an đơn vị, địa phương phải lập và chuyển hồ sơ đề nghị bảo lưu thời gian tham gia bảo hiểm xã hội cho cán bộ, chiến sĩ về Bảo hiểm xã hội Công an nhân dân;
+
+b) Trong thời hạn 05 ngày làm việc, kể từ ngày nhận đủ hồ sơ theo quy định, Bảo hiểm xã hội Công an nhân dân phải thực hiện bảo lưu thời gian tham gia bảo hiểm xã hội.
+
+Điều 11. Xác nhận thời gian tham gia bảo hiểm xã hội
+
+1. Xác nhận thời gian tham gia bảo hiểm xã hội đối với trường hợp cán bộ, chiến sĩ không còn công tác, làm việc trong lực lượng Công an nhân dân có thời gian làm nghề hoặc công việc nặng nhọc, độc hại, nguy hiểm hoặc đặc biệt nặng nhọc, độc hại, nguy hiểm; có thời gian làm việc tại nơi có phụ cấp khu vực; có thời gian làm việc được tính hưởng phụ cấp thâm niên nghề, phụ cấp thâm niên vượt khung và các loại phụ cấp khác làm căn cứ tính đóng bảo hiểm xã hội, bảo hiểm thất nghiệp mà chưa được ghi nhận hoặc ghi nhận chưa đầy đủ trên sổ bảo hiểm xã hội bản giấy hoặc bản điện tử. Xác nhận thời gian tham gia bảo hiểm xã hội đối với các trường hợp khác do Giám đốc Bảo hiểm xã hội Công an nhân dân quyết định.
+
+2. Hồ sơ xác nhận thời gian tham gia bảo hiểm xã hội
+
+a) Công văn đề nghị xác nhận thời gian tham gia bảo hiểm xã hội;
+
+b) Danh sách cán bộ, chiến sĩ tham gia bảo hiểm xã hội;
+
+c) Tờ khai cung cấp và thay đổi thông tin;
+
+d) Các hồ sơ, tài liệu liên quan khác.
+
+3. Quy trình xác nhận thời gian tham gia bảo hiểm xã hội
+
+a) Cán bộ, chiến sĩ có nguyện vọng được xác nhận thời gian tham gia bảo hiểm xã hội liên hệ để được cơ quan tổ chức cán bộ nơi công tác trước khi dừng tham gia bảo hiểm xã hội hướng dẫn ghi Tờ khai cung cấp và thay đổi thông tin, trong đó nêu rõ nội dung đề nghị xác nhận; đồng thời, cán bộ, chiến sĩ cung cấp các hồ sơ, tài liệu liên quan để chứng minh quá trình tham gia bảo hiểm xã hội;
+
+b) Cơ quan tổ chức cán bộ lập hồ sơ theo khoản 2 Điều này báo cáo thủ trưởng Công an đơn vị, địa phương hoặc giao thủ trưởng cơ quan tổ chức cán bộ thừa lệnh ký số trên hệ thống. Trường hợp Công an đơn vị, địa phương không thực hiện được việc lập, chuyển hồ sơ trên hệ thống thì số hóa hồ sơ quy định tại khoản 2 Điều này, ký xác nhận và gửi kèm dữ liệu được trích xuất từ phần mềm cục bộ gửi Bảo hiểm xã hội Công an nhân dân;
+
+c) Bảo hiểm xã hội Công an nhân dân tiếp nhận và thẩm định hồ sơ do Công an đơn vị, địa phương chuyển đến; thực hiện in, ký, xác nhận văn bản về việc xác nhận thời gian tham gia bảo hiểm xã hội, đồng thời chuyển dữ liệu về Bảo hiểm xã hội Việt Nam. Thông báo trên hệ thống để Công an đơn vị, địa phương biết, phối hợp quản lý, trường hợp không xác nhận phải trả lời bằng văn bản và nêu rõ lý do; đồng thời thông báo cho cán bộ, chiến sĩ biết qua hệ thống tin nhắn tự động hoặc qua VNeID;
+
+d) Công an đơn vị, địa phương tiếp nhận văn bản về việc xác nhận thời gian tham gia bảo hiểm xã hội để bàn giao cho cán bộ, chiến sĩ.
+
+4. Thời hạn giải quyết
+
+a) Trong thời hạn 07 ngày làm việc, kể từ ngày nhận được Giấy đề nghị xác nhận thời gian tham gia bảo hiểm xã hội và các hồ sơ, tài liệu liên quan kèm theo; Công an đơn vị, địa phương phải lập và chuyển hồ sơ đề nghị xác nhận thời gian tham gia bảo hiểm xã hội cho cán bộ, chiến sĩ về Bảo hiểm xã hội Công an nhân dân;
+
+b) Trong thời hạn 05 ngày làm việc, kể từ ngày nhận đủ hồ sơ theo quy định, Bảo hiểm xã hội Công an nhân dân phải thực hiện xác nhận thời gian tham gia bảo hiểm xã hội.
+
+Điều 12. Cấp sổ bảo hiểm xã hội đối với đối tượng hưởng sinh hoạt phí, công dân tạm tuyển và xử lý một số tình huống
+
+1. Cấp sổ bảo hiểm xã hội đối với đối tượng hưởng sinh hoạt phí, công dân tạm tuyển
+
+Đối tượng quy định tại điểm b, điểm c, điểm e khoản 1 Điều 2 Thông tư này sau khi nhập ngũ, nhập học hoặc tạm tuyển được cấp mã số bảo hiểm xã hội và quản lý quá trình đóng bảo hiểm xã hội trên hệ thống; việc cấp sổ bảo hiểm xã hội được thực hiện như sau:
+
+a) Hạ sĩ quan, chiến sĩ nghĩa vụ được cấp sổ bảo hiểm xã hội trong các trường hợp: khi được chuyển chuyên nghiệp; trong thời gian nghĩa vụ bị tai nạn lao động, bệnh nghề nghiệp, hi sinh, từ trần được cấp sổ bảo hiểm xã hội để giải quyết chế độ; hết thời gian nghĩa vụ không được chuyển chuyên nghiệp hoặc không đủ điều kiện tiếp tục thực hiện nghĩa vụ mà có nguyện vọng bảo lưu thời gian đã đóng bảo hiểm xã hội;
+
+b) Học viên được cấp sổ bảo hiểm xã hội trong các trường hợp: tốt nghiệp ra trường (do Công an đơn vị, địa phương nơi công tác thực hiện); trong thời gian học tập bị tai nạn lao động, bệnh nghề nghiệp, hi sinh, từ trần được cấp sổ bảo hiểm xã hội để giải quyết chế độ; nếu không đủ điều kiện tiếp tục học mà có nguyện vọng bảo lưu thời gian đã đóng bảo hiểm xã hội;
+
+c) Công dân tạm tuyển được cấp sổ bảo hiểm xã hội trong các trường hợp: sau khi được tuyển dụng; trong thời gian tạm tuyển nếu bị tai nạn lao động, bệnh nghề nghiệp, hi sinh, từ trần được cấp sổ bảo hiểm xã hội để giải quyết chế độ; hết thời gian tạm tuyển hoặc không đủ điều kiện được tiếp tục tạm tuyển mà có nguyện vọng bảo lưu thời gian đã đóng bảo hiểm xã hội.
+
+2. Giải quyết đối với trường hợp một cán bộ, chiến sĩ có từ hai sổ bảo hiểm xã hội trở lên
+
+a) Trường hợp các sổ bảo hiểm xã hội ghi thời gian đóng bảo hiểm xã hội không trùng nhau thì thu hồi tất cả các sổ bảo hiểm xã hội đó để cấp lại. Sổ bảo hiểm cấp lại đảm bảo đầy đủ thời gian, mức đóng bảo hiểm xã hội, bảo hiểm thất nghiệp chưa hưởng của các sổ bảo hiểm xã hội đã thu hồi. Mã số bảo hiểm xã hội cấp lại là mã số định danh cá nhân của cán bộ, chiến sĩ được cấp đúng theo quy định của pháp luật;
+
+b) Trường hợp các sổ bảo hiểm xã hội có thời gian đóng bảo hiểm xã hội, bảo hiểm thất nghiệp trùng nhau thì hoàn trả cho cán bộ, chiến sĩ số tiền đơn vị và cán bộ, chiến sĩ đã đóng vào quỹ hưu trí, tử tuất và quỹ bảo hiểm thất nghiệp, bao gồm cả số tiền thuộc trách nhiệm đóng bảo hiểm xã hội, bảo hiểm thất nghiệp của người sử dụng lao động, không bao gồm tiền lãi; ghi quá trình đóng vào sổ bảo hiểm xã hội có mã số theo mã số định danh cá nhân mà có thời gian tham gia bảo hiểm hiểm xã hội phát sinh trước. Trường hợp các sổ chưa được cấp theo mã số định danh cá nhân thì thu hồi tất cả các sổ bảo hiểm xã hội đó để cấp lại.
+
+3. Trường hợp một mã số bảo hiểm xã hội (cấp trước thời điểm Thông tư này có hiệu lực thi hành) được cấp cho hai hay nhiều cán bộ, chiến sĩ thì thực hiện thu hồi tất cả các sổ bảo hiểm xã hội đó để cấp lại, trừ trường hợp đã giải quyết hưởng chế độ hưu trí, tử tuất, bảo hiểm xã hội một lần. Mã số bảo hiểm xã hội cấp lại là mã số định danh cá nhân của cán bộ, chiến sĩ được cấp đúng theo quy định của pháp luật.
+
+4. Trường hợp Công an đơn vị, địa phương mà cán bộ, chiến sĩ tham gia bảo hiểm xã hội, bảo hiểm thất nghiệp đã giải thể, sáp nhập thì đơn vị tiếp nhận chức năng, nhiệm vụ, tiếp nhận cán bộ hoặc quản lý, lưu trữ hồ sơ cán bộ có trách nhiệm tiếp nhận, lập hồ sơ đề nghị cấp mới, cấp lại, xác nhận sổ bảo hiểm xã hội, xác nhận thời gian tham gia bảo hiểm xã hội với cán bộ, chiến sĩ.
+
+Điều 13. Trách nhiệm quản lý, sử dụng sổ bảo hiểm xã hội
+
+1. Cục Tổ chức cán bộ (Bảo hiểm xã hội Công an nhân dân)
+
+a) Quản lý, bảo quản sổ bảo hiểm xã hội khi tiếp nhận từ Công an đơn vị, địa phương để thực hiện cấp, cấp lại, điều chỉnh nội dung ghi trên sổ bảo hiểm xã hội bản giấy; giải quyết chế độ bảo hiểm xã hội; chốt, xác nhận sổ bảo hiểm xã hội khi di chuyển;
+
+b) Xác nhận đã giải quyết các chế độ: tai nạn lao động, bệnh nghề nghiệp, hưu trí, bảo hiểm xã hội một lần, tử tuất sau khi đã giải quyết hưởng trên trang 3 bìa sổ bảo hiểm xã hội bản giấy theo quy định;
+
+c) Quyết định tiêu hủy hoặc lưu giữ đối với sổ bảo hiểm xã hội bản giấy hỏng, cấp không đúng quy định do Công an đơn vị, địa phương chuyển đến;
+
+d) Phối hợp với Cục Cảnh sát quản lý hành chính về trật tự xã hội và các đơn vị chức năng quản lý sổ bảo hiểm xã hội bản điện tử được tạo lập, tích hợp trên VNeID; hủy tích hợp sổ bảo hiểm xã hội bản điện tử trên VNeID đối với các trường hợp cấp không đúng quy định hoặc không thuộc đối tượng quản lý;
+
+đ) Phối hợp với Bảo hiểm xã hội Việt Nam và các đơn vị chức năng kết nối, chia sẻ thông tin sổ bảo hiểm xã hội bản điện tử, dữ liệu quá trình tham gia bảo hiểm xã hội, bảo hiểm thất nghiệp theo quy định.
+
+2. Cục Cảnh sát quản lý hành chính về trật tự xã hội
+
+Phối hợp với Cục Tổ chức cán bộ (Bảo hiểm xã hội Công an nhân dân) và các đơn vị chức năng xây dựng quy trình, triển khai phương án kỹ thuật và thực hiện tích hợp, quản lý dữ liệu sổ bảo hiểm xã hội bản điện tử của cán bộ, chiến sĩ trên VNeID; thông báo đến cán bộ, chiến sĩ kết quả tiếp nhận, giải quyết các thủ tục liên quan đến công tác cấp, quản lý sổ bảo hiểm xã hội thông qua VNeID bảo đảm các quy định về bảo vệ bí mật nhà nước trong lĩnh vực an ninh, trật tự an toàn xã hội.
+
+3. Trung tâm Dữ liệu quốc gia
+
+Phối hợp với Cục Tổ chức cán bộ (Bảo hiểm xã hội Công an nhân dân) và các đơn vị liên quan thực hiện tích hợp, đồng bộ dữ liệu bảo hiểm xã hội, bảo hiểm thất nghiệp của cán bộ, chiến sĩ về Trung tâm dữ liệu quốc gia.
+
+4. Tổng công ty Viễn thông Mobifone
+
+Phối hợp với Cục Tổ chức cán bộ (Bảo hiểm xã hội Công an nhân dân) và các đơn vị chức năng xây dựng quy trình, triển khai phương án kỹ thuật trong việc thông báo đến cán bộ, chiến sĩ kết quả tiếp nhận, giải quyết các thủ tục liên quan đến công tác cấp, quản lý sổ bảo hiểm xã hội thông qua hệ thống tin nhắn.
+
+5. Công an đơn vị, địa phương
+
+a) Lưu giữ, quản lý sổ bảo hiểm xã hội bản giấy cùng với hồ sơ cán bộ, trường hợp đơn vị không trực tiếp quản lý hồ sơ cán bộ thì được quản lý tại cơ quan tổ chức cán bộ theo các quy định về quản lý hồ sơ cán bộ trong Công an nhân dân;
+
+b) Thu hồi, báo cáo Bảo hiểm xã hội Công an nhân dân đối với sổ bảo hiểm xã hội cấp không đúng quy định kèm theo sổ bảo hiểm xã hội đã thu hồi;
+
+c) Thường xuyên cập nhật thông tin liên quan đến nhân thân cán bộ, chiến sĩ và quá trình tham gia bảo hiểm xã hội, bảo hiểm thất nghiệp trên hệ thống bảo đảm đầy đủ, chính xác;
+
+d) Định kỳ 6 tháng đầu năm (trước ngày 15 tháng 7) và định kỳ hằng năm (trước ngày 15 tháng 01 của năm sau), lập báo cáo về tình hình biến động cán bộ, chiến sĩ tham gia bảo hiểm xã hội, bảo hiểm thất nghiệp trên hệ thống (hoặc lập báo cáo bằng bản giấy đối với Công an đơn vị, địa phương không thực hiện lập hồ sơ đề nghị cấp, quản lý sổ bảo hiểm xã hội trên hệ thống).
+
+6. Cán bộ, chiến sĩ
+
+a) Quản lý sổ bảo hiểm xã hội bản giấy đã được Bảo hiểm xã hội Công an nhân dân bảo lưu quá trình đóng bảo hiểm xã hội để tiếp tục tham gia đóng bảo hiểm xã hội, bảo hiểm thất nghiệp hoặc để giải quyết hưởng chế độ bảo hiểm xã hội, bảo hiểm thất nghiệp theo quy định (trừ trường hợp bảo lưu khi giải quyết chế độ ốm đau) sau khi được giải quyết xuất ngũ, chuyển ngành, bị tước danh hiệu Công an nhân dân, chấm dứt hợp đồng lao động;
+
+b) Cài đặt ứng dụng Định danh quốc gia để theo dõi thông tin sổ bảo hiểm xã hội bản điện tử; kịp thời đề xuất đơn vị quản lý trực tiếp hoặc cơ quan tổ chức cán bộ để thực hiện điều chỉnh khi thông tin sổ bảo hiểm xã hội chưa chính xác.
+
+Điều 14. Trách nhiệm quản lý, sử dụng phôi sổ bảo hiểm xã hội
+
+1. Cục Tổ chức cán bộ (Bảo hiểm xã hội Công an nhân dân)
+
+a) Tiếp nhận, quản lý phôi bìa sổ do Bảo hiểm xã hội Việt Nam cấp;
+
+b) Trước ngày 01 tháng 7 hằng năm, báo cáo quyết toán số phôi bìa sổ đã nhận với Bảo hiểm xã hội Việt Nam; quyết toán số tờ rời đã sản xuất, sử dụng trong năm theo quy định; lập kế hoạch sử dụng phôi bìa sổ năm tiếp theo gửi Bảo hiểm xã hội Việt Nam và lập kế hoạch, tổ chức sản xuất tờ rời sử dụng cho năm tiếp theo.
+
+2. Công an đơn vị, địa phương
+
+a) Tiếp nhận, quản lý, lưu giữ phôi tờ rời do Bảo hiểm xã hội Công an nhân dân cấp;
+
+b) Thành lập Hội đồng hủy phôi sổ bảo hiểm xã hội, bao gồm: 01 đồng chí lãnh đạo Công an đơn vị, địa phương phụ trách công tác xây dựng lực lượng làm Chủ tịch hoặc giao cho thủ trưởng cơ quan tổ chức cán bộ làm Chủ tịch Hội đồng; ít nhất 01 cán bộ được giao quản lý phôi sổ bảo hiểm xã hội là thành viên. Hội đồng hủy phôi sổ bảo hiểm xã hội có trách nhiệm thực hiện hủy đối với phôi tờ rời không sử dụng được do chất lượng kém, bị hỏng hoặc do in sai. Hội đồng hủy phôi sổ bảo hiểm xã hội làm việc theo chế độ kiêm nhiệm, tự giải thể sau khi hoàn thành nhiệm vụ. Biên bản hủy sổ bảo hiểm xã hội được lập thành 02 bản: 01 bản lưu tại đơn vị, 01 bản gửi Bảo hiểm xã hội Công an nhân dân để theo dõi.
+
+Chương III
+
+ĐIỀU KHOẢN THI HÀNH
+
+Điều 15. Quy định chuyển tiếp
+
+1. Sổ bảo hiểm xã hội được cấp trước thời điểm Thông tư này có hiệu lực thi hành được tiếp tục sử dụng để theo dõi quá trình đóng, giải quyết hưởng các chế độ bảo hiểm xã hội, bảo hiểm thất nghiệp đối với cán bộ, chiến sĩ. Mã số bảo hiểm xã hội được chuyển đổi tự động trên hệ thống và tích hợp trên sổ bảo hiểm xã hội bản điện tử; trừ trường hợp đã được Bảo hiểm xã hội Công an nhân dân giải quyết hưởng các chế độ: hưu trí, tử tuất, bảo hiểm xã hội một lần hoặc đã thực hiện bảo lưu thời gian tham gia bảo hiểm xã hội.
+
+2. Công an đơn vị, địa phương thực hiện chốt, xác nhận thời gian đóng bảo hiểm xã hội của cán bộ, chiến sĩ đang công tác trên hệ thống đến thời điểm Thông tư này có hiệu lực thi hành.
+
+3. Quy định cấp, quản lý sổ bảo hiểm xã hội đối với cán bộ, chiến sĩ làm nhiệm vụ đặc biệt do Bộ trưởng Bộ Công an quyết định trên cơ sở đề xuất của Cục trưởng Cục Tổ chức cán bộ, Giám đốc Bảo hiểm xã hội Công an nhân dân.
+
+Điều 16. Hiệu lực thi hành
+
+1. Thông tư này có hiệu lực thi hành kể từ ngày 01 tháng 4 năm 2026.
+
+2. Thông tư số 04/2017/TT-BCA ngày 07 tháng 02 năm 2017 của Bộ trưởng Bộ Công an quy định cấp, quản lý và sử dụng sổ bảo hiểm xã hội trong Công an nhân dân; Thông tư số 88/2021/TT-BCA ngày 04 tháng 10 năm 2021 của Bộ trưởng Bộ Công an sửa đổi, bổ sung một số điều của Thông tư số 04/2017/TT-BCA ngày 07 tháng 02 năm 2017 của Bộ trưởng Bộ Công an quy định cấp, quản lý và sử dụng sổ bảo hiểm xã hội trong Công an nhân dân hết hiệu lực thi hành kể từ ngày Thông tư này có hiệu lực thi hành.
+
+3. Các văn bản, biểu mẫu dẫn chiếu trong Thông tư này khi được sửa đổi, bổ sung hoặc thay thế bằng các văn bản, biểu mẫu khác thì nội dung dẫn chiếu cũng được điều chỉnh theo.
+
+Điều 17. Trách nhiệm thi hành
+
+1. Thủ trưởng Công an đơn vị, địa phương có trách nhiệm phổ biến, quán triệt và tổ chức thực hiện Thông tư này.
+
+2. Cục Tổ chức cán bộ có trách nhiệm hướng dẫn, kiểm tra việc thực hiện Thông tư này; chủ trì phối hợp với Cục Cảnh sát quản lý hành chính về trật tự xã hội, Trung tâm Dữ liệu quốc gia báo cáo Bộ trưởng Bộ Công an triển khai cấp sổ bảo hiểm xã hội bản điện tử đối với từng lực lượng, đơn vị cụ thể để đảm an ninh an toàn và bảo vệ bí mật nhà nước.
+
+Trong quá trình thực hiện, nếu phát sinh khó khăn, vướng mắc, Công an đơn vị, địa phương báo cáo về Bộ Công an (qua Cục Tổ chức cán bộ) để hướng dẫn, giải quyết./.
+
+Nơi nhận:
+
+- Các đồng chí Thứ trưởng;
+
+- Bộ Tài chính;
+
+- Các đơn vị thuộc cơ quan Bộ Công an;
+
+- Công an tỉnh, thành phố;
+
+- Công báo, Cổng TTĐT của Chính phủ;
+
+- Cổng TTĐT Bộ Công an;
+
+- Cục KTVB và QLXLVPHC thuộc BTP;
+
+- Lưu: VT, V03, X01(P9, 140b).
+
+BỘ TRƯỞNG
+
+Đại tướng Lương Tam Quang

@@ -31,6 +31,27 @@ npm test                    # test đơn vị (vitest), không cần backend
 
 Main UI cần Backend profile `rag` v2.0 và PostgreSQL. Backend mock cũ trả JSON v1.2 chỉ phù hợp trang `/try-backend`, không dùng cho main chat mới. Team 2 đã có app HTTP và mock; pipeline live cần index/model/provider được cấu hình. Cách chạy kiểm thử và giới hạn tại [nghiệm thu tuần 5](../docs_3/week5/verification.md#3-lệnh-chạy-lại) và [tuần 7](../docs_3/week7/verification.md).
 
+## Kiểm thử Chat Panel và Viewer
+
+Kiểm thử tự động Chat Panel và Viewer từ gốc repository:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File team3_fullstack/run-week10-e2e.ps1
+```
+
+Lệnh build Backend bằng Maven Wrapper, khởi tạo PostgreSQL test riêng, chạy Java,
+HTTP fixture được gắn nhãn mock, Vite và Edge/Chrome headless; kết thúc sẽ dừng các
+tiến trình do lệnh tạo. Cần JDK25, Node22+, PostgreSQL tools và môi trường Python
+đã cài dependency API của Team2. Có thể truyền `-Python`, `-JavaHome`, `-PgBin`,
+`-BrowserPath`, `-OutputDir` để chọn công cụ trên máy.
+
+Kết quả `ui-results.json`, `summary.json` và ảnh nằm trong `backend/target/week10-*`.
+Chế độ mặc định kiểm18 trạng thái UI. `-Mode corpus` kiểm Viewer trên nguyên văn
+Article Store thật; `-Mode live -Bm25Only` chạy pipeline RAG thật bằng cấu hình
+BM25/LLM hiện có trong `.env` gốc. Đây là kiểm chứng tích hợp, không phải benchmark
+Hybrid. Có thể dùng `-Mode live -RagUrl http://host:8001` cho dịch vụ đã được cấu hình.
+Các chế độ ghi kết quả riêng; lỗi hoặc ca chưa chạy không được tính PASS.
+
 ## Các trang
 
 | Đường dẫn | Chức năng |

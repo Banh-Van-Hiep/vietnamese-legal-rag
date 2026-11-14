@@ -6,6 +6,7 @@ Kết quả đúng contracts/v0.1/rag_response.schema.json (`status`, `answer`, 
 from __future__ import annotations
 
 import logging
+from dataclasses import dataclass, replace
 from typing import Iterable, Mapping, Optional, Union
 
 from team2_rag.config.settings import DEFAULT_MAX_CONTEXT_CHARS, DEFAULT_MAX_CONTEXT_CHUNKS, LLMSettings, load_settings
@@ -14,9 +15,9 @@ from team2_rag.llm.factory import create_llm_service
 from team2_rag.llm.output_parser import _MARKER_RE as _MARKER  # cùng regex marker với parser, không định nghĩa lại
 from team2_rag.llm.service import LLMService
 from team2_rag.llm.tokens import TokenBudget, token_budget_from_settings
-from team2_rag.llm.types import STATUS_ANSWERED, STATUS_INSUFFICIENT, HistoryTurn
+from team2_rag.llm.types import STATUS_ANSWERED, STATUS_INSUFFICIENT, Claim, HistoryTurn
 from team2_rag.prompts.builder import PromptBuilder
-from team2_rag.prompts.context import ContextBudgetError, ContextBuildError, build_context
+from team2_rag.prompts.context import BuiltContext, ContextBudgetError, ContextBuildError, build_context
 from team2_rag.prompts.render import render_prompt
 from team2_rag.types import RAGResponse
 
@@ -25,6 +26,20 @@ logger.addHandler(logging.NullHandler())
 
 NO_CONTEXT_ANSWER = "Tài liệu được truy xuất chưa đủ căn cứ để trả lời."
 MAX_QUESTION_CHARS = 4000  # câu hỏi gửi retrieval (docs/team1_data/retrieval-design.md)
+
+
+@dataclass(frozen=True)
+class GeneratedAnswer:
+    """Kết quả sinh câu trả lời. `response` là đúng thứ gửi Team 3; `claims` chỉ dùng nội bộ, không ra API.
+
+    Khi `answered`, `claims` và `context` dùng cùng nhãn C1..Cn với `response`, và `context.chunks` chỉ gồm các
+    chunk được trích dẫn (`context.text` vẫn mang nhãn gốc của prompt, đừng dùng nó để tra nhãn). Khi từ chối,
+    `claims` rỗng và `context` là context đã dựng. `claims` cũng rỗng nếu LLM không được yêu cầu khai claim.
+    """
+    response: RAGResponse
+    claims: tuple[Claim, ...]
+    context: BuiltContext
+    model: str = ""
 
 
 def cited_chunk_ids(response: Mapping) -> list[str]:
@@ -36,7 +51,7 @@ def _insufficient(answer: str = NO_CONTEXT_ANSWER) -> RAGResponse:
     return {"status": STATUS_INSUFFICIENT, "answer": answer, "citations": []}
 
 
-def answer_from_rerank(
+def answer_from_rerank_detailed(
     rerank_output: Mapping,
     llm_service: LLMService,
     history: Optional[Iterable[Union[HistoryTurn, Mapping]]] = None,
@@ -45,7 +60,7 @@ def answer_from_rerank(
     max_context_chars: Optional[int] = DEFAULT_MAX_CONTEXT_CHARS,
     token_budget: Optional[TokenBudget] = None,
     request_id: Optional[str] = None,
-) -> RAGResponse:
+) -> GeneratedAnswer:
     """Sinh câu trả lời từ output của Reranker (candidate 12 trường của Team 1, đã xếp theo rerank).
 
     Lỗi: input sai contract -> ValueError/ContextBuildError; lỗi gọi LLM -> LLMError hiện có;
@@ -55,6 +70,9 @@ def answer_from_rerank(
     Budget: truyền `token_budget` để đếm bằng tokenizer của LLM (đúng spec context-builder.md). Không truyền thì
     dùng `max_context_chars` (xấp xỉ, KHÔNG đáp ứng spec token; chỉ dùng cho dev/test). Prompt cố định
     (system/question/history) chiếm hết budget -> ContextBudgetError, không gửi prompt vượt giới hạn.
+
+    Trả `GeneratedAnswer`: `response` đúng contract Team 3, kèm `claims` và `context` cho Verification (cùng nhãn
+    với `response`). `answer_from_rerank` chỉ trả `response`.
     """
     if not isinstance(rerank_output, Mapping):
         raise ValueError("rerank_output phải là object có question và results")
@@ -71,7 +89,7 @@ def answer_from_rerank(
         context = build_context(rerank_output["results"], max_chunks=max_chunks, max_chars=max_context_chars)
     else:
         # Token cố định = system + user (tag, history, question, output_instruction) với context giữ chỗ "-" (dư ≤ vài token).
-        fixed = render_prompt(PromptBuilder().build(question, "-", history))
+        fixed = render_prompt(PromptBuilder(include_claims=llm_service.include_claims).build(question, "-", history))
         fixed_tokens = token_budget.counter.count(fixed.system) + token_budget.counter.count(fixed.user)
         available = token_budget.available_for_context(fixed_tokens)
         if available < 1:
@@ -80,17 +98,17 @@ def answer_from_rerank(
         context = build_context(rerank_output["results"], max_chunks=max_chunks,
                                 token_counter=token_budget.counter, max_tokens=available)
         if not context.is_empty:  # chốt chặn: đếm lại toàn bộ prompt thật, vì token không cộng tính tuyệt đối
-            full = render_prompt(PromptBuilder().build(question, context.text, history))
+            full = render_prompt(PromptBuilder(include_claims=llm_service.include_claims).build(question, context.text, history))
             total = token_budget.counter.count(full.system) + token_budget.counter.count(full.user)
             if total > token_budget.prompt_limit:
                 raise ContextBudgetError(f"Prompt {total} token vượt giới hạn {token_budget.prompt_limit}.")
     if context.is_empty:
-        return _insufficient()
+        return GeneratedAnswer(_insufficient(), (), context, model=getattr(llm_service.provider, 'actual_model', llm_service.provider.model))
 
     result = llm_service.ask(question, context.text, history, request_id=request_id)
     out = result.output
     if out.status != STATUS_ANSWERED:
-        return _insufficient(out.answer)
+        return GeneratedAnswer(_insufficient(out.answer), (), context, model=result.model)
 
     by_label = context.by_label()
     for cand in out.citations:
@@ -115,10 +133,18 @@ def answer_from_rerank(
     for old in order:
         meta = by_label[old].source_metadata()
         citations.append({"citation_id": new_id[old], **meta})
-    return {"status": STATUS_ANSWERED, "answer": answer, "citations": citations}
+    # Claim chỉ trỏ tới nhãn đã có trong citations (parser đã kiểm), nên mọi nhãn đều có trong new_id.
+    claims = tuple(replace(c, citation_ids=tuple(new_id[i] for i in c.citation_ids)) for c in out.claims)
+    cited = replace(context, chunks=tuple(replace(by_label[old], label=new_id[old]) for old in order))
+    return GeneratedAnswer({"status": STATUS_ANSWERED, "answer": answer, "citations": citations}, claims, cited)
 
 
-def generate_answer(
+def answer_from_rerank(*args, **kwargs) -> RAGResponse:
+    """Như `answer_from_rerank_detailed` nhưng chỉ trả RAGResponse (hành vi cũ của VLRA-29)."""
+    return answer_from_rerank_detailed(*args, **kwargs).response
+
+
+def generate_answer_detailed(
     rerank_output: Mapping,
     history: Optional[Iterable[Union[HistoryTurn, Mapping]]] = None,
     *,
@@ -126,7 +152,7 @@ def generate_answer(
     settings: Optional[LLMSettings] = None,
     token_budget: Optional[TokenBudget] = None,
     request_id: Optional[str] = None,
-) -> RAGResponse:
+) -> GeneratedAnswer:
     """Luồng thật của VLRA-29: output Reranker -> context -> LLM -> RAGResponse đã kiểm tra citation.
 
     Không truyền `llm_service` thì gọi LLM thật theo cấu hình (LLM_PROVIDER/LLM_MODEL/*_API_KEY); test truyền
@@ -140,7 +166,12 @@ def generate_answer(
         if token_budget is None and settings.context_window_tokens is not None:
             token_budget = token_budget_from_settings(settings)
     limits = {} if settings is None else {"max_chunks": settings.max_context_chunks, "max_context_chars": settings.max_context_chars}
-    return answer_from_rerank(rerank_output, llm_service, history, token_budget=token_budget, request_id=request_id, **limits)
+    return answer_from_rerank_detailed(rerank_output, llm_service, history, token_budget=token_budget, request_id=request_id, **limits)
+
+
+def generate_answer(*args, **kwargs) -> RAGResponse:
+    """Như `generate_answer_detailed` nhưng chỉ trả RAGResponse."""
+    return generate_answer_detailed(*args, **kwargs).response
 
 
 _ERROR_MESSAGES = {
@@ -168,4 +199,5 @@ def to_error_response(exc: BaseException) -> Optional[dict]:
 
 
 __all__ = ["ContextBudgetError", "ContextBuildError", "NO_CONTEXT_ANSWER", "answer_from_rerank",
-           "cited_chunk_ids", "generate_answer", "to_error_response"]
+           "answer_from_rerank_detailed", "cited_chunk_ids", "generate_answer", "generate_answer_detailed",
+           "to_error_response"]

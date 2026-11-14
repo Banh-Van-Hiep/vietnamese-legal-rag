@@ -1,0 +1,133 @@
+{
+  "dataset_status": "exploratory",
+  "created_at_utc": "2026-11-10T08:32:25.983764+00:00",
+  "branch": "develop",
+  "git_commit": "3b307fa835dad4072535bbcae346daeaf2b61967",
+  "repo_url": "https://github.com/Banh-Van-Hiep/vietnamese-legal-rag.git",
+  "gpu": "Tesla T4",
+  "torch": "2.14.1+cu130",
+  "cuda": "13.0",
+  "python": "3.13.16 (main, Oct  1 2026, 15:40:24) [GCC 13.3.0]",
+  "platform": "Linux-6.6.159+-x86_64-with-glibc2.39",
+  "packages": {
+    "torch": "2.14.1+cu130",
+    "transformers": "4.57.6",
+    "sentence-transformers": "5.7.0",
+    "sentencepiece": "0.2.2",
+    "qdrant-client": "1.20.0",
+    "bm25s": "0.3.16",
+    "underthesea": "9.5.0",
+    "pydantic": "2.14.2",
+    "python-dotenv": "1.2.4",
+    "jsonschema": "4.26.0",
+    "numpy": "2.4.6"
+  },
+  "environment": {
+    "LLM_PROVIDER": "gemini",
+    "LLM_MODEL": "gemini-3.1-flash-lite",
+    "LLM_ALLOW_FALLBACK": "false",
+    "LLM_TIMEOUT_SECONDS": "30",
+    "LLM_MAX_RETRIES": "0",
+    "LLM_TEMPERATURE": "0",
+    "LLM_MAX_OUTPUT_TOKENS": "1500",
+    "LLM_MAX_CONTEXT_CHUNKS": "10",
+    "LLM_MAX_CONTEXT_CHARS": "9000",
+    "LLM_MAX_CONTEXT_TOKENS": "3000",
+    "LLM_SAFETY_MARGIN_TOKENS": "256",
+    "LLM_CONTEXT_WINDOW_TOKENS": "",
+    "RAG_TOP_K": "10",
+    "RAG_RERANK": "false",
+    "RAG_BM25_ONLY": "false",
+    "RAG_BM25_WEIGHT": "0.5",
+    "RAG_DENSE_WEIGHT": "1.0",
+    "RAG_RETRIEVAL_TIMEOUT": "10",
+    "RAG_STRICT_RERANK": "false",
+    "RAG_RERANK_TRUNCATE": "false",
+    "RAG_RERANK_TIMEOUT_SECONDS": "4",
+    "RAG_CHUNKS": "/content/vietnamese-legal-rag/data/doanh-nghiep/processed/chunks.jsonl",
+    "RAG_BM25_INDEX": "/content/legal-rag-indexes/20261110T083225958727Z/bm25",
+    "RAG_DENSE_INDEX": "/content/legal-rag-indexes/20261110T083225958727Z/dense",
+    "RAG_QDRANT_PATH": "/content/legal-rag-indexes/20261110T083225958727Z/qdrant",
+    "PYTHONPATH": "/content/vietnamese-legal-rag",
+    "PYTHONUNBUFFERED": "1"
+  },
+  "limit": 30,
+  "throttle_seconds": 1,
+  "run_count": 4,
+  "run_groups": {
+    "A": {
+      "runs": [
+        "run1",
+        "run2"
+      ],
+      "environment_overrides": {
+        "LLM_MAX_CONTEXT_CHARS": "9000"
+      }
+    },
+    "B": {
+      "runs": [
+        "run3",
+        "run4"
+      ],
+      "environment_overrides": {
+        "LLM_MAX_CONTEXT_CHARS": "24000"
+      }
+    }
+  },
+  "golden_dataset": "/content/vietnamese-legal-rag/team2_rag/data/golden/golden_phase1_30cai.json",
+  "golden_total_cases": 50,
+  "evaluated_case_ids": [
+    "gold_001",
+    "gold_002",
+    "gold_003",
+    "gold_004",
+    "gold_005",
+    "gold_006",
+    "gold_007",
+    "gold_008",
+    "gold_009",
+    "gold_010",
+    "gold_011",
+    "gold_012",
+    "gold_013",
+    "gold_014",
+    "gold_015",
+    "gold_016",
+    "gold_017",
+    "gold_018",
+    "gold_019",
+    "gold_020",
+    "gold_021",
+    "gold_022",
+    "gold_023",
+    "gold_024",
+    "gold_025",
+    "gold_026",
+    "gold_027",
+    "gold_028",
+    "gold_029",
+    "gold_030"
+  ],
+  "golden_sha256": "a9da43c9dd1cd0907c89b604d9875265df2b96fb0388edc175742e522b97a23c",
+  "team1_golden_sha256": "f89956d5d61bcf78e9fe080cc825f3f259ec3d36dd633bbedea4188c92e29fb2",
+  "corpus_sha256": "042bd7f1696e4ef1acea90dbc6dc179c782515af04b5fdd4da5104b9158c5466",
+  "corpus_chunk_count": 2576,
+  "index_version": "colab-042bd7f1696e-dea33aa1",
+  "embedding_model": "AITeamVN/Vietnamese_Embedding",
+  "embedding_revision": "dea33aa1ab339f38d66ae0a40e6c40e0a9249568",
+  "query_prefix": "",
+  "passage_prefix": "",
+  "runtime_embedding_device": "cpu",
+  "context_budget_unit": "chars_approx",
+  "reranker_startup_note": "Runtime hiện warm-up BGE trên CPU dù rerank tắt; revision BGE không được runtime ghim.",
+  "source_sha256": {
+    "team2_rag/runtime.py": "54ef2189d1bf23dfa1d7c0cef3b240df6667aa4720f592db9c4eed1330d24fc5",
+    "team2_rag/config/settings.py": "6b02f9a71ce4634c0704f1c854a40d6bd05b717e337fa1ef27b94099dcd3d480",
+    "team2_rag/prompts/templates.py": "7f2b881acc02651f0cc3915279f26cdab126d2847a02c15e50e5e28a4af1cd55",
+    "scripts/benchmark_rag_v2.py": "db452f16ebee5f7dad5532a32530cf978ea7b5c04fa71e1f22726d31c9dd28dd",
+    "team1_data/retrieval/retrieval_v2.json": "83332f3149313dc34686579ecfee7ef65e4b0a302cf2c4b0b92a015a7f139ec0"
+  },
+  "collection": "legal_chunks_colab-042bd7f1696e-dea33aa1",
+  "embedding_dim": 1024,
+  "build_elapsed_seconds": 166.29
+}

@@ -29,6 +29,9 @@ import tools.jackson.databind.json.JsonMapper;
 public class HttpAiClient implements AiClient {
     private static final Set<String> CITATION = Set.of("citation_id", "chunk_id", "document_id",
             "article_id", "document_title", "article", "clause", "point", "source_url");
+    private static final Set<String> INVALID_CODES = Set.of("INVALID_LLM_OUTPUT", "CITATION_INVALID", "UPSTREAM_INVALID_RESPONSE");
+    private static final Set<String> UNAVAILABLE_CODES = Set.of("RETRIEVAL_UNAVAILABLE", "LLM_UNAVAILABLE", "SERVICE_UNAVAILABLE");
+    private static final Set<String> TIMEOUT_CODES = Set.of("RETRIEVAL_TIMEOUT", "LLM_TIMEOUT", "UPSTREAM_TIMEOUT");
     private final JsonMapper mapper = JsonMapper.builder().enable(StreamReadFeature.STRICT_DUPLICATE_DETECTION)
             .enable(DeserializationFeature.FAIL_ON_TRAILING_TOKENS).build();
     private final HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(2))
@@ -118,11 +121,13 @@ public class HttpAiClient implements AiClient {
         }
         if (status >= 400 && status < 500) { throw new ApiException(502, "UPSTREAM_CONTRACT_ERROR",
                 "Dịch vụ xử lý từ chối yêu cầu nội bộ.", false); }
-        if (status == 502 && Set.of("INVALID_LLM_OUTPUT", "CITATION_INVALID").contains(code)) { throw invalid(); }
-        if (status == 503 && Set.of("RETRIEVAL_UNAVAILABLE", "LLM_UNAVAILABLE").contains(code)) {
+        // ARCHITECTURE §7. The AI Service may send either its internal code or the matching public code
+        // (Team 2 switched to public codes on develop, 26/10/2026); both map to the same public error.
+        if (status == 502 && INVALID_CODES.contains(code)) { throw invalid(); }
+        if (status == 503 && UNAVAILABLE_CODES.contains(code)) {
             throw new ApiException(503, "SERVICE_UNAVAILABLE", "Dịch vụ trả lời tạm thời không sẵn sàng.", true);
         }
-        if (status == 504 && Set.of("RETRIEVAL_TIMEOUT", "LLM_TIMEOUT").contains(code)) { throw timeout(); }
+        if (status == 504 && TIMEOUT_CODES.contains(code)) { throw timeout(); }
         throw new ApiException(502, "UPSTREAM_ERROR", "Dịch vụ xử lý gặp lỗi.", false);
     }
     private static void exact(JsonNode node, Set<String> fields) {

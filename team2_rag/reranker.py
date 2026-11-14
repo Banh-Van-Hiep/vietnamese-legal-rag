@@ -193,6 +193,12 @@ def rerank_with_details(
     return RerankDetails(output, scores)
 
 
+def keep_retrieval_order(retrieval_output: Mapping, reason: str) -> RerankDetails:
+    """Bỏ qua model nhưng vẫn kiểm tra đầu vào: giữ thứ tự retrieval khi rerank bị tắt hoặc quá hạn."""
+    _validate(retrieval_output)
+    return RerankDetails(copy.deepcopy(dict(retrieval_output)), {}, reason)
+
+
 def rerank(
     retrieval_output: Mapping, *, scorer: PairScorer | None = None, strict: bool = False,
 ) -> dict:

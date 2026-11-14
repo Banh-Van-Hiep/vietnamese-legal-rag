@@ -8,6 +8,9 @@ import os
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 
+from team2_rag.api.handlers import internal_error_payload
+from team2_rag.errors import ErrorCode
+
 MOCK_ARTICLE = {
     "document_id": "mock_v1",
     "document_title": "Văn bản giả lập dùng để kiểm thử",
@@ -15,6 +18,46 @@ MOCK_ARTICLE = {
     "article": "Điều 1 (giả lập)",
     "content": "Điều 1 (giả lập)\n1. Đây là nguyên văn Điều giả lập dùng để kiểm thử tích hợp.\n2. Nội dung này không phải quy định pháp luật.",
     "source_url": "https://example.com/mock-law",
+}
+
+_MOCK_CITATION = {
+    "citation_id": "C1",
+    "chunk_id": "mock_v1__art1__k1__0",
+    "document_id": "mock_v1",
+    "document_title": "Văn bản giả lập dùng để kiểm thử",
+    "article_id": "art1",
+    "article": "Điều 1 (giả lập)",
+    "clause": "Khoản 1",
+    "point": None,
+    "source_url": "https://example.com/mock-law",
+}
+
+# Câu trả lời có Markdown (danh sách, bảng) và hai marker, để Team 3 kiểm thử phần hiển thị.
+MOCK_MARKDOWN_RESPONSE = {
+    "status": "answered",
+    "answer": (
+        "**Dữ liệu giả lập**, không phải tư vấn pháp luật.\n\n"
+        "Các ý chính:\n"
+        "- Ý thứ nhất lấy từ Khoản 1 [C1].\n"
+        "- Ý thứ hai lấy từ Khoản 2 [C2].\n"
+        "  1. Mục con thứ nhất.\n"
+        "  2. Mục con thứ hai.\n\n"
+        "| Nội dung | Căn cứ |\n"
+        "| --- | --- |\n"
+        "| Ý thứ nhất | [C1] |\n"
+        "| Ý thứ hai | [C2] |"
+    ),
+    "citations": [
+        _MOCK_CITATION,
+        {**_MOCK_CITATION, "citation_id": "C2", "chunk_id": "mock_v1__art1__k2__0", "clause": "Khoản 2"},
+    ],
+}
+
+# Kịch bản lỗi: cùng mã HTTP và body như app thật trả cho Backend (handlers.internal_error_payload).
+MOCK_ERRORS = {
+    "error_timeout": ErrorCode.UPSTREAM_TIMEOUT,             # 504 LLM_TIMEOUT
+    "error_busy": ErrorCode.SERVICE_UNAVAILABLE,             # 503 LLM_UNAVAILABLE (đang xử lý request khác)
+    "error_invalid_output": ErrorCode.UPSTREAM_INVALID_RESPONSE,  # 502 INVALID_LLM_OUTPUT
 }
 
 
@@ -40,6 +83,11 @@ def create_mock_app() -> FastAPI:
     @app.post("/internal/v1/query")
     async def query(request: Request):
         scenario = os.environ.get("RAG_MOCK_SCENARIO", "answered")
+        if scenario in MOCK_ERRORS:
+            status, body = internal_error_payload(MOCK_ERRORS[scenario])
+            return JSONResponse(body, status_code=status)
+        if scenario == "answered_markdown":
+            return JSONResponse(MOCK_MARKDOWN_RESPONSE)
         if scenario == "insufficient_context":
             return JSONResponse({
                 "status": "insufficient_context",
@@ -49,17 +97,7 @@ def create_mock_app() -> FastAPI:
         return JSONResponse({
             "status": "answered",
             "answer": "Đây là câu trả lời giả lập để kiểm thử API/UI, không phải tư vấn pháp luật. Đoạn mẫu được dẫn tại [C1].",
-            "citations": [{
-                "citation_id": "C1",
-                "chunk_id": "mock_v1__art1__k1__0",
-                "document_id": "mock_v1",
-                "document_title": "Văn bản giả lập dùng để kiểm thử",
-                "article_id": "art1",
-                "article": "Điều 1 (giả lập)",
-                "clause": "Khoản 1",
-                "point": None,
-                "source_url": "https://example.com/mock-law",
-            }],
+            "citations": [_MOCK_CITATION],
         })
 
     @app.get("/internal/v1/documents/{document_id}/articles/{article_id}")

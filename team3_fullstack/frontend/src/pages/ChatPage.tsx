@@ -30,6 +30,8 @@ export default function ChatPage() {
   const title = conversationId
     ? conversations.find((c) => c.conversation_id === conversationId)?.title ?? "Hội thoại"
     : undefined;
+  const hasPendingTurn = chat.messages.some((m) => m.state === "pending");
+  const canRefreshUncertainTurn = !!conversationId && chat.messages.some((m) => m.failure?.outcomeUnknown);
 
   return (
     <>
@@ -72,10 +74,12 @@ export default function ChatPage() {
               <button className={noticeActionClass} type="button" onClick={chat.stopReceiving}>Dừng nhận</button>
             </div>
           )}
-          {chat.sending && !chat.receiving && chat.messages.some((m) => m.state === "pending") && (
+          {chat.sending && !chat.receiving && (hasPendingTurn || canRefreshUncertainTurn) && (
             <div className="px-6 py-2 text-center text-[13.5px] text-muted" role="status">
-              Lượt hỏi đang được xử lý trên máy chủ.{" "}
-              <button className={noticeActionClass} type="button" onClick={chat.reload}>Tải lại trạng thái</button>
+              {hasPendingTurn
+                ? "Lượt hỏi đang được xử lý trên máy chủ."
+                : "Chưa xác định được kết quả lượt hỏi trên máy chủ."}{" "}
+              <button className={noticeActionClass} type="button" onClick={chat.reload} data-testid="refresh-turn">Tải lại trạng thái</button>
             </div>
           )}
           <ChatInput onSend={chat.send} sending={chat.sending} />

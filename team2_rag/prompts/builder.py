@@ -4,7 +4,9 @@ from __future__ import annotations
 from typing import Iterable, Mapping, Optional, Union
 
 from team2_rag.llm.types import HistoryTurn, LLMInput, LLMParams
-from team2_rag.prompts.templates import OUTPUT_INSTRUCTION, PROMPT_VERSION, SYSTEM_INSTRUCTION
+from team2_rag.prompts.templates import (
+    CLAIMS_PROMPT_VERSION, OUTPUT_INSTRUCTION, OUTPUT_INSTRUCTION_WITH_CLAIMS, PROMPT_VERSION, SYSTEM_INSTRUCTION,
+)
 
 _ROLES = ("user", "assistant")
 
@@ -41,8 +43,9 @@ def _history(history: Optional[Iterable[Union[HistoryTurn, Mapping]]]) -> tuple[
 
 
 class PromptBuilder:
-    def __init__(self, params: Optional[LLMParams] = None):
+    def __init__(self, params: Optional[LLMParams] = None, *, include_claims: bool = False):
         self.params = params or LLMParams()
+        self.include_claims = include_claims
 
     def build(
         self,
@@ -63,9 +66,9 @@ class PromptBuilder:
             system_instruction=SYSTEM_INSTRUCTION,
             legal_context=ctx,
             user_question=question,
-            output_instruction=OUTPUT_INSTRUCTION,
+            output_instruction=OUTPUT_INSTRUCTION_WITH_CLAIMS if self.include_claims else OUTPUT_INSTRUCTION,
             history=_history(history),
             original_question=original,
-            prompt_version=PROMPT_VERSION,
+            prompt_version=CLAIMS_PROMPT_VERSION if self.include_claims else PROMPT_VERSION,
             params=self.params,
         )

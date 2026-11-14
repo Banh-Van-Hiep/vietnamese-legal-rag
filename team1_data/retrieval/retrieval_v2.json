@@ -1,7 +1,7 @@
 {
  "version": "retrieval-v2-2026-10-31",
  "status": "đã chốt (VLRA-53)",
- "evidence": "docs/weekly-changes/2026-10-31.md (VLRA-49..53), evaluation/retrieval/runs/vlra52-*, vlra53-aiteamvn-weights",
+ "evidence": "team1_data/docs_1/week8/tasks.md mục 6 (VLRA-49..53), evaluation/retrieval/runs/vlra52-*, vlra53-aiteamvn-weights",
  "method": "hybrid_rrf",
  "top_k": 20,
  "bm25": {

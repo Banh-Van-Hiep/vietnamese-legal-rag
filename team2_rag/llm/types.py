@@ -29,7 +29,7 @@ class LLMInput:
     output_instruction: str
     history: Tuple[HistoryTurn, ...] = ()
     original_question: Optional[str] = None
-    prompt_version: str = "prompt_v2"
+    prompt_version: str = "prompt_v3"
     params: LLMParams = field(default_factory=LLMParams)
 
     @property
@@ -79,17 +79,32 @@ class CitationCandidate:
 
 
 @dataclass(frozen=True)
+class Claim:
+    """Một nhận định pháp lý trong answer, kèm nhãn citation hỗ trợ nó. Chỉ dùng nội bộ để thẩm định; không ra API."""
+    claim_id: str
+    text: str
+    citation_ids: Tuple[str, ...]
+
+    def to_dict(self) -> dict[str, Any]:
+        return {"claim_id": self.claim_id, "text": self.text, "citation_ids": list(self.citation_ids)}
+
+
+@dataclass(frozen=True)
 class LLMOutput:
     status: str
     answer: str
     citations: Tuple[CitationCandidate, ...] = ()
+    claims: Tuple[Claim, ...] = ()
 
     def to_dict(self) -> dict[str, Any]:
-        return {
+        data = {
             "status": self.status,
             "answer": self.answer,
             "citations": [c.to_dict() for c in self.citations],
         }
+        if self.claims:
+            data["claims"] = [c.to_dict() for c in self.claims]
+        return data
 
 
 @dataclass(frozen=True)

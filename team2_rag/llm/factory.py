@@ -18,7 +18,7 @@ def _openai(s: LLMSettings, t: Optional[Transport]) -> LLMProvider:
 
 
 def _gemini(s: LLMSettings, t: Optional[Transport]) -> LLMProvider:
-    return GeminiProvider(s.gemini_api_key, s.model, s.timeout_seconds, transport=t)
+    return GeminiProvider(s.gemini_api_key, s.model, s.timeout_seconds, transport=t, allow_fallback=s.allow_fallback)
 
 
 def _qwen(s: LLMSettings, t: Optional[Transport]) -> LLMProvider:
