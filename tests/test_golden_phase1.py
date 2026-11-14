@@ -1,15 +1,19 @@
 """VLRA-36: Golden Dataset Phase 1 của Team 1 — đủ số câu, có căn cứ, gold_chunk_ids có trong corpus."""
 
+import hashlib
 import json
 import sys
+import unicodedata
 import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 from eval_retrieval import validate_cases  # noqa: E402
+from scripts.eval_reranker import validate_dataset  # noqa: E402
 
 GOLDEN = ROOT / "team1_data/golden/golden_phase1.json"
+MANIFEST = ROOT / "team1_data/golden/golden_phase1.manifest.json"
 CHUNKS = ROOT / "data/doanh-nghiep/processed/chunks.jsonl"
 REQUIRED = ("id", "question", "expected_status", "ground_truth", "gold_chunk_ids", "citation",
             "category", "author", "source", "review_status")
@@ -52,6 +56,18 @@ class GoldenPhase1Test(unittest.TestCase):
                 with self.subTest(id=case["id"]):
                     original = team2[case["id"]]
                     self.assertEqual({k: case[k] for k in original}, original)
+
+    def test_dev_set_is_frozen(self):
+        """Dev Set: split, one group per gold chunk, and hash recorded in the manifest."""
+        validate_dataset(self.cases, self.corpus)
+        for case in self.cases:
+            with self.subTest(id=case["id"]):
+                self.assertEqual(case["split"], "dev")
+                self.assertEqual(case["relevant_unit_groups"], [[cid] for cid in case["gold_chunk_ids"]])
+        manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
+        canon = json.dumps(self.cases, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+        digest = hashlib.sha256(unicodedata.normalize("NFC", canon).encode("utf-8")).hexdigest()
+        self.assertEqual((manifest["case_count"], manifest["sha256"]), (len(self.cases), digest))
 
 
 if __name__ == "__main__":

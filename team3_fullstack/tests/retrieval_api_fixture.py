@@ -2,6 +2,7 @@
 import copy
 import json
 import os
+import time
 from pathlib import Path
 
 from team1_data.retrieval.errors import RetrievalUnavailableError
@@ -23,9 +24,14 @@ def create_fixture_app():
             if os.environ.get('EVALUATION_FIXTURE_LOG'):
                 with Path(os.environ['EVALUATION_FIXTURE_LOG']).open('a',encoding='utf-8') as stream:
                     stream.write(json.dumps({'question':question,'history':history,'request_id':request_id},ensure_ascii=False)+'\n')
+            if scenario=='demo' and question.startswith('fixture-slow-'):
+                time.sleep(3)  # Browser Stop/retry fixture; normal load queries remain fast.
+            if scenario=='demo' and question=='fixture-timeout-week8':
+                raise LLMTimeoutError('fixture timeout')
             if scenario=='retrieval_unavailable':raise RetrievalUnavailableError('fixture unavailable')
             if scenario=='timeout':raise LLMTimeoutError('fixture timeout')
-            if scenario=='insufficient_context':return {'status':'insufficient_context','answer':'Dữ liệu kiểm thử chưa đủ căn cứ.','citations':[]}
+            if scenario=='insufficient_context' or (scenario=='demo' and question=='fixture-insufficient'):
+                return {'status':'insufficient_context','answer':'Dữ liệu kiểm thử chưa đủ căn cứ.','citations':[]}
             return {'status':'answered','answer':'Phản hồi giả lập kiểm thử contract, không phải tư vấn pháp luật '+('[C2]' if scenario=='invalid_citation' else '[C1]'),
                     'citations':[copy.deepcopy(citation)]}
 

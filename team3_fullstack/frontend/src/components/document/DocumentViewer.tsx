@@ -34,7 +34,7 @@ export default function DocumentViewer({ documentId, articleId, focus = null }: 
 
   useEffect(() => {
     if (ready) highlight.current?.scrollIntoView({ block: "center" });
-  }, [ready, documentId, articleId, focus?.clause, focus?.point]);
+  }, [ready, documentId, articleId, focus?.citationId, focus?.clause, focus?.point]);
 
   if (state.status === "loading") {
     return <p className={`${statusTextClass} !mt-6`} role="status">Đang tải nguyên văn điều luật…</p>;
@@ -57,7 +57,7 @@ export default function DocumentViewer({ documentId, articleId, focus = null }: 
               rel="noopener noreferrer"
               data-testid="fallback-source-link"
             >
-              Mở nguồn văn bản chính thức
+              Văn bản nguồn gốc
               <Icon name="externalLink" size={14} />
             </a>
           ) : undefined
@@ -140,7 +140,7 @@ export default function DocumentViewer({ documentId, articleId, focus = null }: 
 
       <footer className="mt-[22px] border-t border-line pt-3 text-[13.5px]">
         <a href={article.source_url} target="_blank" rel="noopener noreferrer" data-testid="source-link" className={externalLinkClass}>
-          Nguồn văn bản chính thức
+          Văn bản nguồn gốc
           <Icon name="externalLink" size={14} />
           <span className="sr-only">(mở trong tab mới)</span>
         </a>

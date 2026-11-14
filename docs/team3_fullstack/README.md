@@ -37,7 +37,7 @@ Khi baseline, schema, quyết định và code lệch nhau: ghi hai nội dung/v
 báo người phụ trách để thống nhất; không tự nâng hành vi code thành contract mới.
 
 Các tài liệu phân biệt quy tắc đã chốt, implementation đọc từ source và khoảng thiếu.
-Những điểm đã nhận diện gồm recovery chưa định kỳ, NFC/legal ID validation cần đối chiếu,
+Những điểm đã nhận diện gồm NFC/legal ID validation cần đối chiếu,
 các phần UI chưa có. DDL đã có CHECK JS-safe cho cả conversation.id và message.id.
 Ghi nhận không đồng nghĩa đã sửa code.
 Wireframe và ERD đã được đại diện Team 3 xác nhận ngày 29/10/2026; quyết định G1 theo

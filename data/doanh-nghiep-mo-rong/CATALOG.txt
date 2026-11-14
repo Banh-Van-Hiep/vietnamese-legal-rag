@@ -1,0 +1,48 @@
+Corpus Doanh nghiệp mở rộng — 1.000 văn bản trung ương
+Cập nhật: 2026-11-07
+
+Nguồn và giấy phép
+- Bộ dữ liệu "vietnamese-legal-documents" của th1nhng0 trên Hugging Face, giấy phép CC BY 4.0:
+  https://huggingface.co/datasets/th1nhng0/vietnamese-legal-documents
+  Dữ liệu được crawl từ vbpl.vn (Cơ sở dữ liệu quốc gia về văn bản pháp luật, Bộ Tư pháp).
+- Văn bản được chuyển từ HTML sang text. Câu chữ không bị sửa (chỉ chuẩn hóa Unicode và khoảng trắng).
+- Mỗi mục registry có source_dataset_id (id trong bộ dữ liệu) và source_url dựng theo mẫu
+  https://vbpl.vn/van-ban/chi-tiet/<slug>--<id>. Các URL này CHƯA được mở để kiểm tra,
+  vì vbpl.vn chặn truy cập tự động.
+
+Tiêu chí chọn (build_from_hf.py)
+- Phạm vi Trung ương. Tình trạng: còn hiệu lực hoặc hết hiệu lực một phần (theo vbpl.vn trong bộ dữ liệu).
+- Loại: Bộ luật, Luật, Văn bản hợp nhất, Nghị định, Nghị quyết, Thông tư. Đây là các loại có trong
+  enum document_type của schema. Thông tư liên tịch và Pháp lệnh không có trong enum nên bị bỏ.
+- Không lấy lại 8 văn bản đã có trong data/doanh-nghiep/.
+- Gán tầng phạm vi (scope_tier), lấy theo thứ tự tầng, rồi loại văn bản (Luật trước), rồi ngày ban hành mới trước:
+  core    346  tiêu đề hoặc lĩnh vực nói về doanh nghiệp, đăng ký kinh doanh, hộ kinh doanh, phá sản,
+               hợp tác xã, vốn nhà nước, cổ phần hóa, quản trị công ty
+  near    392  tiêu đề về đầu tư kinh doanh, chứng khoán, kế toán, kiểm toán độc lập, cạnh tranh,
+               thuế TNDN, quản lý thuế, hóa đơn, thuế GTGT, thương mại, giao dịch bảo đảm, đấu thầu,
+               kinh doanh bảo hiểm, lao động/hợp đồng lao động, sở hữu trí tuệ
+  related 262  chỉ để bù cho đủ 1.000: thuế/phí, hải quan, xuất nhập khẩu, lao động, tiền lương,
+               tổ chức tín dụng, bảo hiểm xã hội
+- Loại bỏ tự động (trong 1.473 ứng viên đã xét):
+  121 số hiệu không có trong phần đầu toàn văn (nguồn ghép sai toàn văn với metadata)
+  268 không tách được Điều (văn bản chia theo mục I, II… hoặc không có Điều)
+   35 có khoản dài quá maxLength content của schema (chunker chưa tách khoản dài)
+   20 số Điều lặp do có văn bản ban hành kèm theo (quy chế, điều lệ)
+   21 trùng document_id; 8 không có toàn văn
+
+Kết quả
+- 1.000 văn bản: 534 Thông tư, 397 Nghị định, 42 Luật, 26 Nghị quyết, 1 Bộ luật.
+  753 còn hiệu lực, 247 hết hiệu lực một phần. Ban hành từ 1958 đến 2026.
+  4 văn bản không có ngày hiệu lực trong nguồn.
+- 60.382 chunk, chunker và pipeline giống corpus chính (scripts/preprocess_legal_data.run), 0 lỗi.
+  Mọi chunk đều qua docs/team1_data/schemas/chunk_metadata.schema.json.
+
+File
+- registry/documents.json, interim/{document_id}.txt
+- processed/chunks.jsonl.gz (bản commit), processed/processing_report.json
+- processed/chunks.jsonl (~136MB) không commit vì vượt giới hạn file của GitHub. Giải nén từ .gz hoặc chạy lại script.
+
+Giới hạn
+- Chưa đưa vào index hay Retrieval. Chưa có Golden cho phần mở rộng.
+- Tình trạng hiệu lực lấy từ bộ dữ liệu (bản 08/2026) và chưa đối chiếu trực tiếp với vbpl.vn.
+- amended_by và amendment_notes đang rỗng. Bộ dữ liệu có bảng quan hệ sửa đổi (relationships.parquet) nhưng chưa dùng.

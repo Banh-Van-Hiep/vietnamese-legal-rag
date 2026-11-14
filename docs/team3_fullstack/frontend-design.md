@@ -1,6 +1,6 @@
 # Thiết kế Chat, Citation và Document Viewer
 
-**Loại:** thiết kế chung Team 3. **Đối chiếu source:** `62c3556`, ngày 28/10/2026.
+**Loại:** thiết kế chung Team 3. **Đối chiếu source:** `ac216a2` + thay đổi Team3 local, ngày03/11/2026.
 **Căn cứ:** [ARCHITECTURE](../ARCHITECTURE.md) §2.2/§3.1 và
 [CODING_CONVENTIONS](../CODING_CONVENTIONS.md) §3.3.
 Các wireframe dưới đây mô tả UI đang có trong source, **được đại diện Team 3 xác nhận
@@ -8,6 +8,7 @@ Các wireframe dưới đây mô tả UI đang có trong source, **được đ�
 danh tính bổ sung. Đây là baseline hiện tại, không ngăn điều chỉnh UI cho phù hợp hơn.
 
 ## 1. Component và route
+
 
 | Thành phần | Source và trách nhiệm |
 | --- | --- |
@@ -109,7 +110,7 @@ Mở nguồn trên màn hình 360px:
 | Completed answered |Complete thay buffer bằng answer/citation chuẩn; marker mở nguồn |
 | Completed insufficient |Thông báo thiếu căn cứ riêng, không tạo thẻ citation giả |
 | Failed đã rõ |Thông báo code/trace an toàn; nếu retryable và là lượt cuối thì retry với UUID mới |
-| Mạng lỗi/dừng nhận, outcomeUnknown |Giữ UUID và receipt; retry/reconcile đúng lượt, không tự gửi lượt khác |
+| Mạng lỗi/dừng nhận, outcomeUnknown |Giữ UUID và receipt; retry/reconcile đúng lượt. Khi đã biết hội thoại, có nút Tải lại trạng thái đọc history mà không gửi thêm câu hỏi; trước meta chưa có ID thì giữ thao tác thử lại cùng UUID |
 | History còn pending |Chặn gửi mới; có nút tải lại trạng thái, không query AI lại chỉ vì reload |
 | Đổi conv khi request cũ về |Abort nhận và kiểm epoch/route, không gắn answer cũ vào lựa chọn mới |
 | Xóa conv |Xác nhận xóa; server chặn pending409; không xóa corpus |
@@ -128,6 +129,9 @@ UUID sau reload trước meta. `VITE_MOCK_MODE` chỉ là nhãn, không tạo c�
   để đối chiếu nguồn gốc; không thay phiên bản hoặc xóa answer đang xem.
 - Nội dung Điều là text với whitespace-pre-wrap; highlight Khoản/Điểm chỉ khi
   `locateCitedUnit` xác định được đúng đoạn. Không chắc thì hiển thị toàn Điều và báo rõ.
+- Tự cuộn tới đoạn được đánh dấu khi tải xong hoặc đổi citation, kể cả khi hai citation
+  trỏ cùng Điều/Khoản. Nút Văn bản nguồn gốc mở nguồn của Điều đã tải hoặc nguồn trong
+  citation khi tra cứu trả404.
 - Link nguồn mở tab mới với noopener/noreferrer; URL do validator kiểm HTTPS/host.
 - AnswerContent dùng parser cấu trúc giới hạn: heading/bold/list/paragraph/marker;
   render React nodes/text. Không dùng dangerouslySetInnerHTML hoặc hứa hỗ trợ toàn bộ Markdown.
@@ -139,9 +143,25 @@ Source hỗ trợ: [answerFormat](../../team3_fullstack/frontend/src/utils/answe
 [publicApi adapter](../../team3_fullstack/frontend/src/api/publicApi.ts),
 [SSE transport](../../team3_fullstack/frontend/src/api/chatStream.ts).
 
-## 6. Giới hạn và trạng thái tài liệu
+## 6. Debug latency và render stream
 
-Chưa thấy debug latency badge hoặc kết quả profiling re-render trong code được đọc.
+Trong Vite dev, `VITE_DEBUG_LATENCY=true` bật nhãn thời gian trên tin assistant đã
+nhận `complete` hợp lệ. Mặc định tắt; production luôn ẩn dù cờ được bật.
+[`useChat`](../../team3_fullstack/frontend/src/hooks/useChat.ts) đo bằng `performance.now()`
+từ lúc bắt đầu request đến khi nhận/kiểm response cuối. Mỗi lần retry/replay đo lại
+lượt đó; không suy thành thời gian model hoặc lấy timestamp lịch sử để dựng số đo.
+Giá trị chỉ nằm trong `UiMessage.responseTimeMs`, không gửi API hoặc lưu database.
+Pending, lỗi, Dừng nhận và history tải lại không hiển thị thời gian hoàn thành.
+
+[`ChatWindow`](../../team3_fullstack/frontend/src/components/chat/ChatWindow.tsx) dùng
+row được memo hóa với callback mở citation ổn định. Khi pending answer đổi nội dung,
+tin lịch sử không đổi được bỏ qua; đổi active citation vẫn cập nhật đúng row.
+Giữ xử lý từng delta và nội dung canonical từ complete; không thêm hàng đợi callback
+stream có thể chạy sau Stop/navigation. Phương pháp profiling/test tại
+[performance-measurement](performance-measurement.md#5-kiểm-pool-và-render-độc-lập-với-model).
+
+## 7. Giới hạn và trạng thái tài liệu
+
 Viewer render nguyên văn text; nếu task yêu cầu Markdown thì phải đối chiếu trước khi
 thêm renderer, không coi implementation text hiện tại là đã hỗ trợ Markdown đầy đủ.
 Wireframe đã được xác nhận duyệt theo vai trò/ngày ở đầu tài liệu; khi UI thay đổi,

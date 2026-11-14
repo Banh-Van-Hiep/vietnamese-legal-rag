@@ -1,0 +1,399 @@
+[
+  {
+    "id": "edge_001",
+    "case_type": "multi_citation",
+    "corpus": "base",
+    "question": "Theo Điều 2 Luật Doanh nghiệp 2020, những nhóm đối tượng nào thuộc phạm vi áp dụng? Hãy dẫn chiếu cả hai khoản.",
+    "expected_status": "answered",
+    "ground_truth": "Khoản 1: Doanh nghiệp. Khoản 2: Cơ quan, tổ chức, cá nhân có liên quan đến việc thành lập, tổ chức quản lý, tổ chức lại, giải thể và hoạt động có liên quan của doanh nghiệp.",
+    "gold_chunk_ids": [
+      "luat-59-2020-qh14-v1__dieu-2__k1__0",
+      "luat-59-2020-qh14-v1__dieu-2__k2__0"
+    ],
+    "expected_citations": [
+      "luat-59-2020-qh14-v1__dieu-2__k1__0",
+      "luat-59-2020-qh14-v1__dieu-2__k2__0"
+    ],
+    "review_status": "draft_needs_legal_review",
+    "source": "data/doanh-nghiep/processed/chunks.jsonl"
+  },
+  {
+    "id": "edge_002",
+    "case_type": "out_of_corpus",
+    "corpus": "expanded",
+    "question": "Quy chế thưởng nội bộ chưa được cung cấp của Công ty ABC quy định mức thưởng của nhân viên vào tháng 12/2027 là bao nhiêu?",
+    "expected_status": "insufficient_context",
+    "ground_truth": "Không đủ căn cứ trong corpus văn bản pháp luật để xác định quy chế thưởng nội bộ của công ty.",
+    "gold_chunk_ids": [],
+    "expected_citations": [],
+    "review_status": "draft_needs_legal_review",
+    "source": "Thiết kế tình huống ngoài corpus; không trích dẫn văn bản"
+  },
+  {
+    "id": "edge_003",
+    "case_type": "amended_law",
+    "corpus": "base",
+    "question": "Theo khoản 2 Điều 1 Luật 76/2025/QH15, nghĩa vụ nào về chủ sở hữu hưởng lợi được bổ sung vào Điều 8 Luật Doanh nghiệp?",
+    "expected_status": "answered",
+    "ground_truth": "Bổ sung khoản 5a vào sau khoản 5 Điều 8: doanh nghiệp thu thập, cập nhật, lưu giữ thông tin về chủ sở hữu hưởng lợi; cung cấp thông tin cho cơ quan nhà nước có thẩm quyền để xác định chủ sở hữu hưởng lợi của doanh nghiệp khi được yêu cầu.",
+    "gold_chunk_ids": [
+      "luat-76-2025-qh15-v1__dieu-1__k2__0"
+    ],
+    "expected_citations": [
+      "luat-76-2025-qh15-v1__dieu-1__k2__0"
+    ],
+    "review_status": "draft_needs_legal_review",
+    "source": "data/doanh-nghiep/processed/chunks.jsonl"
+  },
+  {
+    "id": "edge_004",
+    "case_type": "amended_law",
+    "corpus": "base",
+    "question": "Theo khoản 1 Điều 1 Luật 76/2025/QH15, định nghĩa cổ tức tại khoản 5 Điều 4 Luật Doanh nghiệp được sửa đổi thành nội dung gì?",
+    "expected_status": "answered",
+    "ground_truth": "Cổ tức là khoản lợi nhuận sau thuế được trả cho mỗi cổ phần bằng tiền hoặc bằng tài sản khác.",
+    "gold_chunk_ids": [
+      "luat-76-2025-qh15-v1__dieu-1__k1__0"
+    ],
+    "expected_citations": [
+      "luat-76-2025-qh15-v1__dieu-1__k1__0"
+    ],
+    "review_status": "draft_needs_legal_review",
+    "source": "data/doanh-nghiep/processed/chunks.jsonl"
+  },
+  {
+    "id": "edge_005",
+    "case_type": "version_conflict",
+    "corpus": "base",
+    "question": "Theo Luật Doanh nghiệp đã được sửa đổi, bổ sung và hợp nhất tại 67/VBHN-VPQH, khoản 5 và khoản 6 Điều 217 quy định về những vấn đề gì?",
+    "expected_status": "answered",
+    "ground_truth": "Khoản 5 giao Chính phủ quy định chi tiết về tổ chức quản lý và hoạt động của một số doanh nghiệp phục vụ quốc phòng, an ninh hoặc kết hợp kinh tế với quốc phòng, an ninh. Khoản 6 giao Chính phủ quy định chi tiết về việc xác định, kê khai, cung cấp, lưu giữ và chia sẻ thông tin chủ sở hữu hưởng lợi của doanh nghiệp.",
+    "gold_chunk_ids": [
+      "vbhn-67-vbhn-vpqh-v1__dieu-217__k5__0",
+      "vbhn-67-vbhn-vpqh-v1__dieu-217__k6__0"
+    ],
+    "expected_citations": [
+      "vbhn-67-vbhn-vpqh-v1__dieu-217__k5__0",
+      "vbhn-67-vbhn-vpqh-v1__dieu-217__k6__0"
+    ],
+    "review_status": "draft_needs_legal_review",
+    "source": "data/doanh-nghiep/processed/chunks.jsonl"
+  },
+  {
+    "id": "edge_006",
+    "case_type": "partially_expired",
+    "corpus": "base",
+    "question": "Theo quy định tại khoản 5 Điều 217 Luật Doanh nghiệp sau khi được sửa đổi năm 2022, Chính phủ có trách nhiệm quy định chi tiết về hoạt động của những doanh nghiệp nào? Hãy sử dụng nội dung đang áp dụng trong văn bản hợp nhất 67/VBHN-VPQH.",
+    "expected_status": "answered",
+    "ground_truth": "Chính phủ quy định chi tiết về tổ chức quản lý và hoạt động của doanh nghiệp trực tiếp phục vụ quốc phòng, an ninh hoặc kết hợp kinh tế với quốc phòng, an ninh là doanh nghiệp nhà nước và công ty trách nhiệm hữu hạn do doanh nghiệp nhà nước quy định tại khoản 2 Điều 88 nắm giữ 100% vốn điều lệ.",
+    "gold_chunk_ids": [
+      "vbhn-67-vbhn-vpqh-v1__dieu-217__k5__0"
+    ],
+    "expected_citations": [
+      "vbhn-67-vbhn-vpqh-v1__dieu-217__k5__0"
+    ],
+    "review_status": "draft_needs_legal_review",
+    "source": "data/doanh-nghiep/processed/chunks.jsonl"
+  },
+  {
+    "id": "edge_007",
+    "case_type": "amended_law",
+    "corpus": "base",
+    "question": "Từ ngày 01/07/2025, khoản 6 được bổ sung vào Điều 217 Luật Doanh nghiệp quy định Chính phủ có trách nhiệm hướng dẫn chi tiết những nội dung nào?",
+    "expected_status": "answered",
+    "ground_truth": "Chính phủ quy định chi tiết tiêu chí xác định chủ sở hữu hưởng lợi, chủ thể kê khai, việc kê khai thông tin, thông tin phục vụ xác định chủ sở hữu hưởng lợi và việc cung cấp, lưu giữ, chia sẻ các thông tin liên quan.",
+    "gold_chunk_ids": [
+      "vbhn-67-vbhn-vpqh-v1__dieu-217__k6__0"
+    ],
+    "expected_citations": [
+      "vbhn-67-vbhn-vpqh-v1__dieu-217__k6__0"
+    ],
+    "review_status": "draft_needs_legal_review",
+    "source": "data/doanh-nghiep/processed/chunks.jsonl"
+  },
+  {
+    "id": "edge_008",
+    "case_type": "insufficient_context",
+    "corpus": "base",
+    "question": "Công ty ABC có ba cổ đông nhưng chưa cung cấp tỷ lệ sở hữu và quyền kiểm soát. Hãy xác định cụ thể ai là chủ sở hữu hưởng lợi của công ty.",
+    "expected_status": "insufficient_context",
+    "ground_truth": "Không đủ thông tin về cơ cấu sở hữu và quyền kiểm soát để xác định cá nhân cụ thể là chủ sở hữu hưởng lợi.",
+    "gold_chunk_ids": [],
+    "expected_citations": [],
+    "review_status": "draft_needs_legal_review",
+    "source": "Synthetic insufficient-context case"
+  },
+  {
+    "id": "edge_009",
+    "case_type": "insufficient_context",
+    "corpus": "base",
+    "question": "Theo hợp đồng góp vốn chưa được cung cấp của Công ty XYZ, ông A đã cam kết góp chính xác bao nhiêu tiền?",
+    "expected_status": "insufficient_context",
+    "ground_truth": "Không thể xác định số tiền cam kết góp vốn khi chưa có hợp đồng hoặc dữ liệu liên quan.",
+    "gold_chunk_ids": [],
+    "expected_citations": [],
+    "review_status": "draft_needs_legal_review",
+    "source": "Synthetic insufficient-context case"
+  },
+  {
+    "id": "edge_010",
+    "case_type": "citation_mismatch",
+    "corpus": "base",
+    "question": "Khoản 6 Điều 217 trong văn bản hợp nhất 67/VBHN-VPQH quy định Chính phủ phải hướng dẫn những nội dung gì về chủ sở hữu hưởng lợi?",
+    "expected_status": "answered",
+    "ground_truth": "Chính phủ quy định chi tiết về tiêu chí xác định, chủ thể kê khai, việc kê khai, cung cấp, lưu giữ và chia sẻ thông tin về chủ sở hữu hưởng lợi của doanh nghiệp.",
+    "gold_chunk_ids": [
+      "vbhn-67-vbhn-vpqh-v1__dieu-217__k6__0"
+    ],
+    "expected_citations": [
+      "vbhn-67-vbhn-vpqh-v1__dieu-217__k6__0"
+    ],
+    "candidate_citations": [
+      "luat-59-2020-qh14-v1__dieu-217__k2__0"
+    ],
+    "review_status": "draft_needs_legal_review",
+    "source": "data/doanh-nghiep/processed/chunks.jsonl"
+  },
+  {
+    "id": "edge_011",
+    "case_type": "citation_mismatch",
+    "corpus": "base",
+    "question": "Khoản nào của Điều 1 Luật 76/2025/QH15 bổ sung nghĩa vụ thu thập và lưu giữ thông tin chủ sở hữu hưởng lợi tại Điều 8 Luật Doanh nghiệp?",
+    "expected_status": "answered",
+    "ground_truth": "Khoản 2 Điều 1 Luật 76/2025/QH15 bổ sung khoản 5a vào Điều 8 Luật Doanh nghiệp.",
+    "gold_chunk_ids": [
+      "luat-76-2025-qh15-v1__dieu-1__k2__0"
+    ],
+    "expected_citations": [
+      "luat-76-2025-qh15-v1__dieu-1__k2__0"
+    ],
+    "candidate_citations": [
+      "luat-76-2025-qh15-v1__dieu-1__k1__0"
+    ],
+    "review_status": "draft_needs_legal_review",
+    "source": "data/doanh-nghiep/processed/chunks.jsonl"
+  },
+  {
+    "id": "edge_012",
+    "case_type": "multi_citation",
+    "corpus": "base",
+    "question": "Luật 76/2025/QH15 đã bổ sung những quy định nào vào Điều 8 và Điều 11 Luật Doanh nghiệp?",
+    "expected_status": "answered",
+    "ground_truth": "Khoản 2 Điều 1 bổ sung khoản 5a Điều 8 về thu thập, cập nhật, lưu giữ và cung cấp thông tin chủ sở hữu hưởng lợi. Khoản 3 Điều 1 bổ sung điểm h khoản 1 Điều 11 về danh sách chủ sở hữu hưởng lợi của doanh nghiệp (nếu có).",
+    "gold_chunk_ids": [
+      "luat-76-2025-qh15-v1__dieu-1__k2__0",
+      "luat-76-2025-qh15-v1__dieu-1__k3__0"
+    ],
+    "expected_citations": [
+      "luat-76-2025-qh15-v1__dieu-1__k2__0",
+      "luat-76-2025-qh15-v1__dieu-1__k3__0"
+    ],
+    "review_status": "draft_needs_legal_review",
+    "source": "data/doanh-nghiep/processed/chunks.jsonl"
+  },
+  {
+    "id": "edge_013",
+    "case_type": "amended_law",
+    "corpus": "base",
+    "question": "Khoản 3 Điều 1 Luật 76/2025/QH15 bổ sung nội dung gì vào khoản 1 Điều 11 Luật Doanh nghiệp?",
+    "expected_status": "answered",
+    "ground_truth": "Bổ sung điểm h về danh sách chủ sở hữu hưởng lợi của doanh nghiệp (nếu có).",
+    "gold_chunk_ids": [
+      "luat-76-2025-qh15-v1__dieu-1__k3__0"
+    ],
+    "expected_citations": [
+      "luat-76-2025-qh15-v1__dieu-1__k3__0"
+    ],
+    "review_status": "draft_needs_legal_review",
+    "source": "data/doanh-nghiep/processed/chunks.jsonl"
+  },
+  {
+    "id": "edge_014",
+    "case_type": "version_conflict",
+    "corpus": "base",
+    "question": "So sánh khoản 1 Điều 217 của Luật Doanh nghiệp 59/2020/QH14 với văn bản hợp nhất 67/VBHN-VPQH. Hai văn bản có ghi khác nhau về ngày Luật Doanh nghiệp bắt đầu có hiệu lực không? Không suy diễn ngày ban hành văn bản hợp nhất thành ngày hiệu lực của Luật.",
+    "expected_status": "answered",
+    "ground_truth": "Không khác nhau. Cả hai chunk đều ghi Luật có hiệu lực từ ngày 01/01/2021.",
+    "gold_chunk_ids": [
+      "luat-59-2020-qh14-v1__dieu-217__k1__0",
+      "vbhn-67-vbhn-vpqh-v1__dieu-217__k1__0"
+    ],
+    "expected_citations": [
+      "luat-59-2020-qh14-v1__dieu-217__k1__0",
+      "vbhn-67-vbhn-vpqh-v1__dieu-217__k1__0"
+    ],
+    "review_status": "draft_needs_legal_review",
+    "source": "data/doanh-nghiep/processed/chunks.jsonl"
+  },
+  {
+    "id": "edge_015",
+    "case_type": "partially_expired",
+    "corpus": "base",
+    "question": "Luật Doanh nghiệp 59/2020/QH14 có trạng thái hết hiệu lực một phần. Đối chiếu khoản 4 Điều 217 với văn bản hợp nhất 67/VBHN-VPQH: hai chunk có khác nội dung không, và chỉ từ trạng thái của cả luật có thể kết luận khoản 4 đã hết hiệu lực không?",
+    "expected_status": "answered",
+    "ground_truth": "Hai chunk có cùng nội dung: Chính phủ quy định việc đăng ký và hoạt động của hộ kinh doanh. Không thể kết luận riêng khoản 4 hết hiệu lực chỉ vì toàn văn bản được gắn trạng thái hết hiệu lực một phần; cần kiểm tra văn bản sửa đổi, bãi bỏ và thông tin hiệu lực ở cấp điều khoản.",
+    "gold_chunk_ids": [
+      "luat-59-2020-qh14-v1__dieu-217__k4__0",
+      "vbhn-67-vbhn-vpqh-v1__dieu-217__k4__0"
+    ],
+    "expected_citations": [
+      "luat-59-2020-qh14-v1__dieu-217__k4__0",
+      "vbhn-67-vbhn-vpqh-v1__dieu-217__k4__0"
+    ],
+    "review_status": "draft_needs_legal_review",
+    "source": "data/doanh-nghiep/processed/chunks.jsonl"
+  },
+  {
+    "id": "edge_016",
+    "case_type": "citation_mismatch",
+    "corpus": "base",
+    "question": "Khoản 4 Điều 217 Luật Doanh nghiệp 59/2020/QH14 quy định cơ quan nào chịu trách nhiệm về đăng ký và hoạt động của hộ kinh doanh?",
+    "expected_status": "answered",
+    "ground_truth": "Chính phủ quy định việc đăng ký và hoạt động của hộ kinh doanh.",
+    "gold_chunk_ids": [
+      "luat-59-2020-qh14-v1__dieu-217__k4__0"
+    ],
+    "expected_citations": [
+      "luat-59-2020-qh14-v1__dieu-217__k4__0"
+    ],
+    "review_status": "draft_needs_legal_review",
+    "source": "data/doanh-nghiep/processed/chunks.jsonl",
+    "candidate_citations": [
+      "luat-59-2020-qh14-v1__dieu-217__k2__0"
+    ]
+  },
+  {
+    "id": "edge_017",
+    "case_type": "insufficient_context",
+    "corpus": "base",
+    "question": "Công ty ABC đã tổ chức cuộc họp Hội đồng quản trị gần nhất vào ngày nào? Biên bản họp chưa được cung cấp.",
+    "expected_status": "insufficient_context",
+    "ground_truth": "Không đủ căn cứ để xác định ngày họp khi không có biên bản hoặc thông tin của công ty.",
+    "gold_chunk_ids": [],
+    "expected_citations": [],
+    "review_status": "draft_needs_legal_review",
+    "source": "Synthetic case - missing private context"
+  },
+  {
+    "id": "edge_018",
+    "case_type": "out_of_corpus",
+    "corpus": "base",
+    "question": "Theo hợp đồng riêng chưa được cung cấp giữa Công ty ABC và Công ty XYZ, giá trị thanh toán chính xác là bao nhiêu?",
+    "expected_status": "insufficient_context",
+    "ground_truth": "Không đủ căn cứ xác định giá trị của hợp đồng riêng không có trong dữ liệu.",
+    "gold_chunk_ids": [],
+    "expected_citations": [],
+    "review_status": "draft_needs_legal_review",
+    "source": "Synthetic case - missing private context"
+  },
+  {
+    "id": "edge_019",
+    "case_type": "citation_mismatch",
+    "corpus": "expanded",
+    "question": "Điều 1 Nghị định 64/2026/NĐ-CP quy định phạm vi điều chỉnh về vấn đề gì?",
+    "expected_status": "answered",
+    "ground_truth": "Nghị định quy định chi tiết Điều 76, Điều 77 và một số biện pháp hướng dẫn thi hành Luật Phục hồi, phá sản về thi hành quyết định tuyên bố doanh nghiệp, hợp tác xã phá sản.",
+    "gold_chunk_ids": [
+      "nd-64-2026-nd-cp-v1__dieu-1__k0__0"
+    ],
+    "expected_citations": [
+      "nd-64-2026-nd-cp-v1__dieu-1__k0__0"
+    ],
+    "review_status": "draft_needs_legal_review",
+    "source": "data/doanh-nghiep-mo-rong/processed/chunks.jsonl.gz",
+    "candidate_citations": [
+      "nd-320-2025-nd-cp-v1__dieu-1__k1__0"
+    ]
+  },
+  {
+    "id": "edge_020",
+    "case_type": "partially_expired",
+    "corpus": "expanded",
+    "question": "Trong metadata của corpus, Nghị định 320/2025/NĐ-CP được ghi nhận hết hiệu lực một phần. Chỉ dựa vào khoản 1 Điều 1 về phạm vi điều chỉnh, có thể xác định chính xác điều khoản nào đã hết hiệu lực và từ ngày nào không?",
+    "expected_status": "insufficient_context",
+    "ground_truth": "Không đủ căn cứ. Khoản 1 Điều 1 chỉ mô tả phạm vi điều chỉnh; cần đối chiếu văn bản sửa đổi, bãi bỏ và lịch sử hiệu lực để xác định cụ thể điều khoản bị ảnh hưởng cùng thời điểm áp dụng.",
+    "gold_chunk_ids": [],
+    "expected_citations": [],
+    "review_status": "draft_needs_legal_review",
+    "source": "data/doanh-nghiep-mo-rong/processed/chunks.jsonl.gz"
+  },
+  {
+    "id": "edge_021",
+    "case_type": "citation_mismatch",
+    "corpus": "expanded",
+    "question": "Điều 1 Thông tư 15/2026/TT-BQP quy định về những thủ tục nào đối với tàu quân sự?",
+    "expected_status": "answered",
+    "ground_truth": "Thông tư quy định về thủ tục cấp phép, nhập cảnh, xuất cảnh, chuyển cảng và các hoạt động kiểm tra, giám sát, bảo đảm an ninh, an toàn liên quan đến tàu quân sự.",
+    "gold_chunk_ids": [
+      "tt-15-2026-tt-bqp-v1__dieu-1__k0__0"
+    ],
+    "expected_citations": [
+      "tt-15-2026-tt-bqp-v1__dieu-1__k0__0"
+    ],
+    "review_status": "draft_needs_legal_review",
+    "source": "data/doanh-nghiep-mo-rong/processed/chunks.jsonl.gz",
+    "candidate_citations": [
+      "tt-27-2024-tt-nhnn-v1__dieu-1__k0__0"
+    ]
+  },
+  {
+    "id": "edge_022",
+    "case_type": "partially_expired",
+    "corpus": "expanded",
+    "question": "Trong metadata của corpus, Thông tư 27/2024/TT-NHNN được ghi nhận hết hiệu lực một phần. Chỉ dựa vào Điều 1 về phạm vi điều chỉnh, có thể xác định chính xác những quy định nào đã hết hiệu lực không?",
+    "expected_status": "insufficient_context",
+    "ground_truth": "Không đủ căn cứ để xác định điều khoản cụ thể đã hết hiệu lực từ Điều 1 về phạm vi điều chỉnh. Cần đối chiếu văn bản sửa đổi, bãi bỏ và lịch sử hiệu lực chi tiết.",
+    "gold_chunk_ids": [],
+    "expected_citations": [],
+    "review_status": "draft_needs_legal_review",
+    "source": "data/doanh-nghiep-mo-rong/processed/chunks.jsonl.gz"
+  },
+  {
+    "id": "edge_023",
+    "case_type": "multi_citation",
+    "corpus": "expanded",
+    "question": "So sánh phạm vi điều chỉnh của Nghị định 64/2026/NĐ-CP và Nghị định 320/2025/NĐ-CP.",
+    "expected_status": "answered",
+    "ground_truth": "Nghị định 64/2026/NĐ-CP hướng dẫn thi hành Luật Phục hồi, phá sản liên quan đến quyết định tuyên bố phá sản. Nghị định 320/2025/NĐ-CP quy định chi tiết và hướng dẫn thi hành Luật Thuế thu nhập doanh nghiệp.",
+    "gold_chunk_ids": [
+      "nd-64-2026-nd-cp-v1__dieu-1__k0__0",
+      "nd-320-2025-nd-cp-v1__dieu-1__k1__0"
+    ],
+    "expected_citations": [
+      "nd-64-2026-nd-cp-v1__dieu-1__k0__0",
+      "nd-320-2025-nd-cp-v1__dieu-1__k1__0"
+    ],
+    "review_status": "draft_needs_legal_review",
+    "source": "data/doanh-nghiep-mo-rong/processed/chunks.jsonl.gz"
+  },
+  {
+    "id": "edge_024",
+    "case_type": "multi_citation",
+    "corpus": "expanded",
+    "question": "Thông tư 15/2026/TT-BQP và Thông tư 27/2024/TT-NHNN có cùng phạm vi điều chỉnh không?",
+    "expected_status": "answered",
+    "ground_truth": "Không. Thông tư 15/2026/TT-BQP điều chỉnh thủ tục và hoạt động liên quan đến tàu quân sự. Thông tư 27/2024/TT-NHNN điều chỉnh một số nội dung về giấy phép, tổ chức, quản trị và hoạt động của ngân hàng hợp tác xã cùng quỹ bảo đảm an toàn hệ thống quỹ tín dụng nhân dân.",
+    "gold_chunk_ids": [
+      "tt-15-2026-tt-bqp-v1__dieu-1__k0__0",
+      "tt-27-2024-tt-nhnn-v1__dieu-1__k0__0"
+    ],
+    "expected_citations": [
+      "tt-15-2026-tt-bqp-v1__dieu-1__k0__0",
+      "tt-27-2024-tt-nhnn-v1__dieu-1__k0__0"
+    ],
+    "review_status": "draft_needs_legal_review",
+    "source": "data/doanh-nghiep-mo-rong/processed/chunks.jsonl.gz"
+  },
+  {
+    "id": "edge_025",
+    "case_type": "insufficient_context",
+    "corpus": "expanded",
+    "question": "Một tàu quân sự nước ngoài đã được cấp phép vào cảng Việt Nam ngày nào, khi chưa cung cấp tên tàu và hồ sơ cấp phép?",
+    "expected_status": "insufficient_context",
+    "ground_truth": "Không đủ thông tin để xác định ngày được cấp phép. Văn bản quy định thủ tục pháp lý không thay thế cho hồ sơ cấp phép cụ thể.",
+    "gold_chunk_ids": [],
+    "expected_citations": [],
+    "review_status": "draft_needs_legal_review",
+    "source": "data/doanh-nghiep-mo-rong/processed/chunks.jsonl.gz"
+  }
+]

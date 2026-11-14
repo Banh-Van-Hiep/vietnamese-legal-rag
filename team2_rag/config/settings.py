@@ -42,6 +42,7 @@ class LLMSettings:
     safety_margin_tokens: int = DEFAULT_SAFETY_MARGIN_TOKENS
     context_window_tokens: Optional[int] = None  # bắt buộc nếu dùng token budget; phụ thuộc model
     ollama_base_url: str = DEFAULT_OLLAMA_BASE_URL  # cuối dataclass để không đổi thứ tự field cũ
+    allow_fallback: bool = True  # cờ cho phép chuyển model dự phòng khi 503/429 (tắt khi benchmark)
 
     def api_key(self, provider: Optional[str] = None) -> str:
         # ollama chạy cục bộ, không có API key.
@@ -130,4 +131,5 @@ def load_settings(env: Optional[Mapping[str, str]] = None, dotenv_path: Optional
         safety_margin_tokens=_num(values, "LLM_SAFETY_MARGIN_TOKENS", d.safety_margin_tokens, int),
         context_window_tokens=_num(values, "LLM_CONTEXT_WINDOW_TOKENS", d.context_window_tokens, int),
         ollama_base_url=str(values.get("OLLAMA_BASE_URL", d.ollama_base_url)).strip() or d.ollama_base_url,
+        allow_fallback=str(values.get("LLM_ALLOW_FALLBACK", "true")).strip().lower() in ("true", "1"),
     )

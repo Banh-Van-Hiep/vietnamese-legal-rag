@@ -1,0 +1,28 @@
+{
+  "status": "answered",
+  "answer": "Công ty TNHH một thành viên do một tổ chức hoặc một cá nhân làm chủ sở hữu [C1]. Công ty TNHH hai thành viên trở lên có từ 02 đến 50 thành viên [C2].",
+  "citations": [
+    {
+      "citation_id": "C1",
+      "chunk_id": "luat-59-2020-qh14-v1__dieu-74__k1__0",
+      "document_id": "luat-59-2020-qh14-v1",
+      "article_id": "dieu-74",
+      "document_title": "Luật Doanh nghiệp",
+      "article": "Điều 74",
+      "clause": "Khoản 1",
+      "point": null,
+      "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+    },
+    {
+      "citation_id": "C2",
+      "chunk_id": "luat-59-2020-qh14-v1__dieu-46__k1__0",
+      "document_id": "luat-59-2020-qh14-v1",
+      "article_id": "dieu-46",
+      "document_title": "Luật Doanh nghiệp",
+      "article": "Điều 46",
+      "clause": "Khoản 1",
+      "point": null,
+      "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+    }
+  ]
+}

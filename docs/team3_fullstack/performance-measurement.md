@@ -1,6 +1,6 @@
 # Đo độ trễ và timing Backend
 
-Đối chiếu implementation ngày31/10/2026. Căn cứ [ARCHITECTURE](../ARCHITECTURE.md) §3/§8;
+Đối chiếu implementation ngày03/11/2026. Căn cứ [ARCHITECTURE](../ARCHITECTURE.md) §3/§8;
 API public theo [đặc tả SSE](public-api-specification.md). Đây là thiết kế chức năng
 dùng chung, không phải biên bản nghiệm thu hoặc phê duyệt benchmark.
 
@@ -83,3 +83,23 @@ Exit0 là công cụ chạy đúng trong mode đã chọn; exit1 là lỗi reque
 (timing bắt buộc khi đã chỉ định log hoặc ở live); exit2 là thiếu điều kiện/cấu hình/output.
 Exit0 với mock không là nghiệm thu live. Dependency riêng tại
 [requirements-performance.txt](../../team3_fullstack/requirements-performance.txt).
+
+## 5. Kiểm pool và render độc lập với model
+
+[`run_week8_acceptance.py`](../../team3_fullstack/tests/run_week8_acceptance.py)
+điều phối các tiến trình test do nó tạo; không thay cấu hình hệ điều hành.
+`--mode profile` đo component ChatWindow thật bằng React Profiler với history/delta
+cố định, có warm-up và raw render/rAF/long-task samples. Đây là phép so sánh development,
+không phải bằng chứng thời gian render production hoặc latency model.
+
+`--mode full` cần JAR/JDK25, Python API và Python performance, PostgreSQL kiểm thử qua
+SPRING_DATASOURCE_*; chạy năm hội thoại×10 lượt và một workload Locust50 truy vấn
+độc lập. Hai workload được ghi riêng. JMX chỉ attach vào Java PID do harness tạo,
+quan sát Hikari/JVM/thread trong tải và sau idle; không thêm endpoint metrics public.
+Luồng tải dùng HTTP mock không có model để cô lập sức tải của Java/PostgreSQL.
+
+`--mode ui` chạy riêng kiểm UI qua adapter FastAPI có pipeline fixture: debug timing,
+history/error, citation, Slow3G và Stop/replay/chuyển route. Fixture luôn gắn nhãn mock.
+CORS được cấu hình đúng origin test, không dùng wildcard. Output phải là thư mục mới;
+harness dừng các process của nó. Lượt quan sát pool hữu hạn không bảo đảm không leak
+trong mọi thời gian/mọi môi trường. Giới hạn hardware/model vẫn được ghi riêng.

@@ -127,14 +127,19 @@ class ManagedGateway(AbstractContextManager):
             raise
 
     def __exit__(self,*_):
-        if self.process is not None and self.process.poll() is None:
-            if os.name=='nt':
-                subprocess.run(['taskkill','/PID',str(self.process.pid),'/T','/F'],
-                    stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,creationflags=getattr(subprocess,'CREATE_NO_WINDOW',0))
-            else: self.process.terminate()
-            try:self.process.wait(timeout=10)
-            except subprocess.TimeoutExpired:self.process.kill();self.process.wait(timeout=5)
-        if self.log:self.log.close()
+        try:
+            if self.process is not None and self.process.poll() is None:
+                if os.name=='nt':
+                    try:
+                        subprocess.run(['taskkill','/PID',str(self.process.pid),'/T','/F'],
+                            stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL,creationflags=getattr(subprocess,'CREATE_NO_WINDOW',0))
+                    except OSError:
+                        self.process.terminate()
+                else: self.process.terminate()
+                try:self.process.wait(timeout=10)
+                except subprocess.TimeoutExpired:self.process.kill();self.process.wait(timeout=5)
+        finally:
+            if self.log:self.log.close()
         return False
 
 

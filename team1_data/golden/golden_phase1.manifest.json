@@ -1,0 +1,14 @@
+{
+ "file": "golden_phase1.json",
+ "split": "dev",
+ "frozen_on": "2026-11-10",
+ "case_count": 110,
+ "review_status_counts": {
+  "draft_needs_legal_review": 70,
+  "team2_reviewed": 40
+ },
+ "hash_algorithm": "sha256 of NFC(json.dumps(cases, ensure_ascii=False, sort_keys=True, separators=(',', ':'))) encoded UTF-8",
+ "sha256": "92233687ad17bff6acf54c093a23c964619f2fca1899931949a8e5aa70efb918",
+ "relevant_unit_groups_rule": "One group per gold chunk: no gold chunk has sibling subchunks (same document/article/clause prefix) in data/doanh-nghiep/processed/chunks.jsonl, so no equivalent subchunks are merged.",
+ "pending": "draft_needs_legal_review cases still need legal review; any edit requires a new hash."
+}

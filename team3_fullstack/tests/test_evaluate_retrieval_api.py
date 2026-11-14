@@ -182,5 +182,22 @@ class CaptureAndGatewayTests(unittest.TestCase):
                     finally:
                         if gateway.log and not gateway.log.closed:gateway.log.close()
 
+    def test_interrupted_startup_falls_back_if_tree_cleanup_cannot_start(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            jar=Path(tmp)/'backend.jar';jar.write_bytes(b'fixture')
+            proc=Mock();proc.pid=12345;proc.poll.return_value=None
+            with patch.dict(os.environ,{'SPRING_DATASOURCE_URL':'jdbc:postgresql://127.0.0.1/test','SPRING_DATASOURCE_USERNAME':'test'}), \
+                 patch('team3_fullstack.tools.retrieval_api_evaluation.subprocess.Popen',return_value=proc), \
+                 patch('team3_fullstack.tools.retrieval_api_evaluation.subprocess.run',side_effect=OSError('cleanup command unavailable')), \
+                 patch('team3_fullstack.tools.retrieval_api_evaluation.urllib.request.urlopen',side_effect=KeyboardInterrupt):
+                gateway=ManagedGateway({'name':'v2','rag_url':'http://localhost:8001'},tmp,jar,'java')
+                try:
+                    with self.assertRaises(KeyboardInterrupt):gateway.__enter__()
+                    proc.terminate.assert_called_once_with()
+                    proc.wait.assert_called_once_with(timeout=10)
+                    self.assertTrue(gateway.log.closed)
+                finally:
+                    if gateway.log and not gateway.log.closed:gateway.log.close()
+
 
 if __name__=='__main__':unittest.main()
