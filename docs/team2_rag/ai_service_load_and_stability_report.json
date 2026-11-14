@@ -1,8 +1,9 @@
 {
-  "git_commit": "9f03b9d646",
-  "timestamp_utc": "2026-11-13T17:41:34.361933+00:00",
+  "git_commit": "a8f444ddfc",
+  "timestamp_utc": "2026-11-14T11:33:25.403390+00:00",
   "dataset_path": "team2_rag/data/golden/golden_phase1_30cai.json",
   "dataset_sha256": "a2ee16bdf374",
+  "dataset_note": "File team2_rag/data/golden/golden_phase1_30cai.json trong nhánh Team 2 có 50 câu hỏi (bản mở rộng kiểm thử tải nội bộ của Team 2, khác với bộ 30 câu của Team 1 dùng ở Tuần 9).",
   "config": {
     "retrieval_mode": "bm25_only_local",
     "provider": "gemini",
@@ -11,7 +12,7 @@
     "rerank_enabled": false,
     "verify_claims": false,
     "pipeline_timeout_s": 45.0,
-    "top_k_note": "Số lượng kết quả tìm kiếm do tầng Retrieval trả về (được cấu hình qua RAG_TOP_K=5 trong .env khi đo; mặc định của mã nguồn là 10). Số chunk thực tế đưa vào prompt được giới hạn bởi max_context_chunks."
+    "top_k_note": "Số lượng kết quả tìm kiếm do tầng Retrieval trả về (cấu hình RAG_TOP_K=5 trong .env khi đo; mặc định của mã nguồn là 10). Số chunk thực tế đưa vào prompt được giới hạn bởi max_context_chunks."
   },
   "request_outcomes": {
     "total": 50,
@@ -26,27 +27,27 @@
   "stage_latency": {
     "retrieval": {
       "count": 50,
-      "mean_s": 0.003,
-      "p50_s": 0.003,
-      "p90_s": 0.006,
-      "p95_s": 0.006,
-      "max_s": 0.011
+      "mean_s": 0.006,
+      "p50_s": 0.006,
+      "p90_s": 0.008,
+      "p95_s": 0.011,
+      "max_s": 0.014
     },
     "rerank": {
       "count": 50,
       "mean_s": 0.0,
       "p50_s": 0.0,
-      "p90_s": 0.0,
+      "p90_s": 0.001,
       "p95_s": 0.001,
       "max_s": 0.001
     },
     "llm": {
       "count": 50,
-      "mean_s": 6.169,
-      "p50_s": 5.424,
-      "p90_s": 12.284,
-      "p95_s": 13.429,
-      "max_s": 24.087
+      "mean_s": 5.391,
+      "p50_s": 4.195,
+      "p90_s": 8.054,
+      "p95_s": 12.362,
+      "max_s": 32.487
     },
     "verify": {
       "count": 50,
@@ -58,22 +59,23 @@
     },
     "e2e_total": {
       "count": 50,
-      "mean_s": 6.346,
-      "p50_s": 5.49,
-      "p90_s": 12.287,
-      "p95_s": 13.434,
-      "max_s": 24.093
+      "mean_s": 5.475,
+      "p50_s": 4.206,
+      "p90_s": 8.058,
+      "p95_s": 12.374,
+      "max_s": 32.494
     }
   },
   "nfr07_p95_le_45s_passed": true,
+  "nfr07_scope_note": "Đạt ngưỡng p95 <= 45.0s trên cấu hình local BM25-only (không chạy Dense/Hybrid do nhóm thống nhất không dùng Colab).",
   "nfr08_timeout_chain_verified": true,
   "article_viewer": {
-    "measurement_method": "HTTP GET /internal/v1/documents/{document_id}/articles/{article_id} (FastAPI TestClient) + Python get_article()",
+    "measurement_method": "HTTP GET /internal/v1/documents/{document_id}/articles/{article_id} (FastAPI TestClient)",
     "sample_size": 20,
-    "cold_start_ms": 221.03,
-    "warm_p50_ms": 6.437,
-    "warm_p95_ms": 7.858,
-    "warm_max_ms": 10.771,
+    "cold_start_ms": 110.035,
+    "warm_p50_ms": 6.174,
+    "warm_p95_ms": 7.118,
+    "warm_max_ms": 7.768,
     "error_cases_tested": {
       "DOCUMENT_NOT_FOUND": 404,
       "ARTICLE_NOT_FOUND": 404,
@@ -86,20 +88,18 @@
   "failed_query_ids": [
     "gold_030"
   ],
-  "dataset_note": "File team2_rag/data/golden/golden_phase1_30cai.json trong nhánh Team 2 có 50 câu hỏi (bản mở rộng kiểm thử tải nội bộ của Team 2, khác với bộ 30 câu của Team 1 dùng ở Tuần 9).",
-  "nfr07_scope_note": "Đạt ngưỡng p95 <= 45.0s trên cấu hình local BM25-only (không chạy Dense/Hybrid do nhóm thống nhất không dùng Colab).",
   "raw_results": [
     {
       "id": "gold_001",
       "question": "Luật Doanh nghiệp quy định về những vấn đề gì?",
-      "outcome": "answered",
+      "outcome": "insufficient_context",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.0045,
+        "rerank": 0.0003,
+        "llm": 2.8342,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 2.8406
       }
     },
     {
@@ -108,24 +108,24 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.0032,
+        "rerank": 0.0007,
+        "llm": 1.8393,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 1.8445
       }
     },
     {
       "id": "gold_003",
       "question": "Theo Luật Doanh nghiệp, cổ đông là ai?",
-      "outcome": "answered",
+      "outcome": "insufficient_context",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.0011,
+        "rerank": 0.0002,
+        "llm": 10.0123,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 10.0145
       }
     },
     {
@@ -134,11 +134,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.0036,
+        "rerank": 0.0004,
+        "llm": 6.3023,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 6.3078
       }
     },
     {
@@ -147,11 +147,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.0048,
+        "rerank": 0.0006,
+        "llm": 2.4716,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 2.4798
       }
     },
     {
@@ -160,63 +160,63 @@
       "outcome": "insufficient_context",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.0065,
+        "rerank": 0.0002,
+        "llm": 2.1802,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 2.1878
       }
     },
     {
       "id": "gold_007",
       "question": "Thành viên công ty TNHH hai thành viên trở lên phải góp đủ vốn đã cam kết trong bao lâu? Thời gian vận chuyển, nhập khẩu tài sản góp vốn và làm thủ tục chuyển quyền sở hữu có tính vào thời hạn này không?",
-      "outcome": "insufficient_context",
+      "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.0137,
+        "rerank": 0.0004,
+        "llm": 13.2209,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 13.2371
       }
     },
     {
       "id": "gold_008",
       "question": "Khi thành viên góp vốn vào công ty TNHH bằng tài sản có đăng ký quyền sở hữu, việc chuyển quyền sở hữu tài sản đó cho công ty có phải chịu lệ phí trước bạ không?",
-      "outcome": "insufficient_context",
+      "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.004,
+        "rerank": 0.0002,
+        "llm": 3.7894,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 3.7944
       }
     },
     {
       "id": "gold_009",
       "question": "Công ty cổ phần phải có ít nhất bao nhiêu cổ đông và có giới hạn số lượng cổ đông tối đa không?",
-      "outcome": "insufficient_context",
+      "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.0055,
+        "rerank": 0.0001,
+        "llm": 11.312,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 11.3189
       }
     },
     {
       "id": "gold_010",
       "question": "Doanh nghiệp tư nhân có được phát hành chứng khoán để huy động vốn không?",
-      "outcome": "insufficient_context",
+      "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.0055,
+        "rerank": 0.0002,
+        "llm": 4.4855,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 4.4925
       }
     },
     {
@@ -225,11 +225,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.0059,
+        "rerank": 0.0002,
+        "llm": 7.3613,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 7.3692
       }
     },
     {
@@ -238,11 +238,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.004,
+        "rerank": 0.0004,
+        "llm": 5.4441,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 5.4509
       }
     },
     {
@@ -251,24 +251,24 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.0018,
+        "rerank": 0.0001,
+        "llm": 5.7544,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 5.758
       }
     },
     {
       "id": "gold_014",
       "question": "Điều lệ công ty phải quy định những nội dung chủ yếu nào theo Điều 24 Luật Doanh nghiệp?",
-      "outcome": "answered",
+      "outcome": "insufficient_context",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.0053,
+        "rerank": 0.0001,
+        "llm": 4.4969,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 4.5033
       }
     },
     {
@@ -277,11 +277,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.0054,
+        "rerank": 0.0001,
+        "llm": 32.4868,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 32.4942
       }
     },
     {
@@ -290,11 +290,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.0034,
+        "rerank": 0.0002,
+        "llm": 27.4272,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 27.4317
       }
     },
     {
@@ -303,11 +303,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.0023,
+        "rerank": 0.0001,
+        "llm": 7.8368,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 7.8402
       }
     },
     {
@@ -316,24 +316,24 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.0077,
+        "rerank": 0.0002,
+        "llm": 5.6137,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 5.6229
       }
     },
     {
       "id": "gold_019",
       "question": "Doanh nghiệp bị giải thể trong những trường hợp nào, phải đáp ứng điều kiện gì, và với trường hợp tự giải thể thì phải gửi hồ sơ cho cơ quan đăng ký kinh doanh theo các mốc thời hạn nào?",
-      "outcome": "answered",
+      "outcome": "insufficient_context",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.0039,
+        "rerank": 0.0002,
+        "llm": 4.5252,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 4.5299
       }
     },
     {
@@ -342,11 +342,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.0104,
+        "rerank": 0.0006,
+        "llm": 4.8501,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 4.8634
       }
     },
     {
@@ -355,11 +355,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.0063,
+        "rerank": 0.0002,
+        "llm": 1.6726,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 1.6805
       }
     },
     {
@@ -368,11 +368,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.0081,
+        "rerank": 0.0002,
+        "llm": 2.9554,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 2.9647
       }
     },
     {
@@ -381,11 +381,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.0079,
+        "rerank": 0.0001,
+        "llm": 4.274,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 4.2836
       }
     },
     {
@@ -394,11 +394,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.0077,
+        "rerank": 0.0002,
+        "llm": 7.6045,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 7.6139
       }
     },
     {
@@ -407,37 +407,37 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.0078,
+        "rerank": 0.0002,
+        "llm": 4.9671,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 4.9768
       }
     },
     {
       "id": "gold_026",
       "question": "Công ty hết thời hạn hoạt động ghi trong Điều lệ mà không thực hiện thủ tục giải thể thì bị phạt bao nhiêu, phải khắc phục hậu quả thế nào và mức phạt đó áp dụng cho tổ chức hay cá nhân?",
-      "outcome": "insufficient_context",
+      "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.013,
+        "rerank": 0.0006,
+        "llm": 4.1912,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 4.2081
       }
     },
     {
       "id": "gold_027",
       "question": "Theo Nghị định 288/2026/NĐ-CP, kê khai không trung thực hồ sơ đăng ký doanh nghiệp và chậm đăng ký thay đổi nội dung đăng ký doanh nghiệp bị xử phạt như thế nào?",
-      "outcome": "insufficient_context",
+      "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.0066,
+        "rerank": 0.0002,
+        "llm": 7.4296,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 7.4378
       }
     },
     {
@@ -446,11 +446,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.0112,
+        "rerank": 0.0007,
+        "llm": 3.6604,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 3.6748
       }
     },
     {
@@ -459,11 +459,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.0032,
+        "rerank": 0.0002,
+        "llm": 5.0331,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 5.0381
       }
     },
     {
@@ -472,11 +472,11 @@
       "outcome": "error",
       "error_code": "INVALID_LLM_OUTPUT",
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.007,
+        "rerank": 0.0002,
+        "llm": 0.0,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 3.811
       }
     },
     {
@@ -485,11 +485,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.0073,
+        "rerank": 0.0002,
+        "llm": 4.19,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 4.1984
       }
     },
     {
@@ -498,11 +498,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.0064,
+        "rerank": 0.0001,
+        "llm": 1.9172,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 1.9252
       }
     },
     {
@@ -511,11 +511,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.0064,
+        "rerank": 0.0002,
+        "llm": 1.8984,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 1.9065
       }
     },
     {
@@ -524,11 +524,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.0031,
+        "rerank": 0.0004,
+        "llm": 4.5551,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 4.5603
       }
     },
     {
@@ -537,24 +537,24 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.0033,
+        "rerank": 0.0002,
+        "llm": 2.7629,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 2.7679
       }
     },
     {
       "id": "gold_036",
       "question": "Công ty cổ phần có bắt buộc phải có cổ phần phổ thông không và người sở hữu loại cổ phần này được gọi là gì?",
-      "outcome": "answered",
+      "outcome": "insufficient_context",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.0039,
+        "rerank": 0.0002,
+        "llm": 6.059,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 6.0644
       }
     },
     {
@@ -563,11 +563,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.0037,
+        "rerank": 0.0003,
+        "llm": 3.7442,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 3.7498
       }
     },
     {
@@ -576,11 +576,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.0026,
+        "rerank": 0.0001,
+        "llm": 4.1997,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 4.2033
       }
     },
     {
@@ -589,11 +589,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.0062,
+        "rerank": 0.0002,
+        "llm": 1.7086,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 1.7165
       }
     },
     {
@@ -602,11 +602,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.0026,
+        "rerank": 0.0002,
+        "llm": 1.776,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 1.7796
       }
     },
     {
@@ -615,11 +615,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.005,
+        "rerank": 0.0002,
+        "llm": 2.2887,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 2.2948
       }
     },
     {
@@ -628,24 +628,24 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.0026,
+        "rerank": 0.0002,
+        "llm": 2.191,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 2.1955
       }
     },
     {
       "id": "gt_t3_008",
       "question": "Thuế suất thuế thu nhập doanh nghiệp phổ thông hiện nay là bao nhiêu phần trăm?",
-      "outcome": "answered",
+      "outcome": "insufficient_context",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.0064,
+        "rerank": 0.0006,
+        "llm": 0.9204,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 0.9295
       }
     },
     {
@@ -654,24 +654,24 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.0059,
+        "rerank": 0.0002,
+        "llm": 3.7705,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 3.7776
       }
     },
     {
       "id": "gt_t3_010",
       "question": "Công ty tôi muốn dùng văn phòng đại diện để thực hiện hoạt động kinh doanh của công ty, có được không?",
-      "outcome": "answered",
+      "outcome": "insufficient_context",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.0062,
+        "rerank": 0.0002,
+        "llm": 1.5561,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 1.5634
       }
     },
     {
@@ -680,11 +680,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.007,
+        "rerank": 0.0001,
+        "llm": 2.482,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 2.4905
       }
     },
     {
@@ -693,11 +693,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.0057,
+        "rerank": 0.0002,
+        "llm": 6.1298,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 6.137
       }
     },
     {
@@ -706,11 +706,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.006,
+        "rerank": 0.0002,
+        "llm": 5.4505,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 5.4578
       }
     },
     {
@@ -719,11 +719,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.0057,
+        "rerank": 0.0002,
+        "llm": 2.156,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 2.1636
       }
     },
     {
@@ -732,11 +732,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.003,
-        "rerank": 0.0,
-        "llm": 5.424,
+        "retrieval": 0.006,
+        "rerank": 0.0002,
+        "llm": 3.7812,
         "verify": 0.0,
-        "e2e_total": 5.427
+        "e2e_total": 3.7887
       }
     }
   ]

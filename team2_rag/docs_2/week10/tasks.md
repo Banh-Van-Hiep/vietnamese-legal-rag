@@ -145,7 +145,7 @@ def answer_from_rerank_detailed(
 
 | Mã công việc | Người phụ trách | Trạng thái | Ghi chú kết quả |
 | :--- | :--- | :---: | :--- |
-| `VLRA-T2-30` | Người 1 (VLRA-73) | **DONE (Đã xong)** | Đã tối ưu `runtime.py`, thêm `RAG_VERIFY_CLAIMS`, cập nhật prompt và merge PR #62 vào `develop`. |
+| `VLRA-T2-30` | Người 1 (VLRA-73) | **DONE (Đã xong)** | Đã tối ưu `runtime.py`, thêm `RAG_VERIFY_CLAIMS`, rà soát prompt (kết luận không cần sửa) và merge PR #62 vào `develop`. |
 | `VLRA-T2-31` | Người 1 (VLRA-73) | **DONE (Đã xong)** | Đã bổ sung kịch bản `answered_markdown` và các kịch bản lỗi vào `mock_app.py` kèm unit test. |
 | `VLRA-T2-32` | Người 1 (VLRA-73) | **DONE (Đã xong)** | Đã bàn giao `docs/team2_rag/ui-integration-guide.md` cho Team 3. |
 | `VLRA-T2-33` | Người 2 (VLRA-74) | **DONE (Đã xong)** | Đã truyền `remaining` timeout xuống LLM (`pipeline.py`, `answer.py`, `llm/service.py`) và có unit test `test_nfr08_timeout_concurrency.py`. |
