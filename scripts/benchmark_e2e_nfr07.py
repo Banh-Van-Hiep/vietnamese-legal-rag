@@ -1,19 +1,5 @@
-"""End-to-End Latency & Stability Benchmark (VLRA-T2-34 & VLRA-T2-35: NFR-07, NFR-08, NFR-09).
-
-Chạy chế độ local BM25-only + Gemini thật, lưu raw_results thật cho từng câu,
-tính toàn bộ bảng tổng trực tiếp từ raw_results, đo NFR-09 qua HTTP TestClient,
-và xuất đồng thời cả 2 file JSON + Markdown hoàn toàn khớp số liệu.
-"""
 from __future__ import annotations
-
-import argparse
-import hashlib
-import json
-import logging
-import os
-import subprocess
-import sys
-import time
+import argparse, hashlib, json, logging, os, subprocess, sys, time
 from datetime import datetime, timezone
 from pathlib import Path
 import numpy as np
@@ -36,17 +22,14 @@ from team2_rag.verification import verify_response
 log = logging.getLogger("e2e_benchmark")
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 
-
 def _flag(env: dict, key: str, default: str) -> bool:
     return str(env.get(key, default)).strip().lower() in ("true", "1")
-
 
 def _git_sha() -> str:
     try:
         return subprocess.check_output(["git", "rev-parse", "--short=10", "HEAD"], text=True).strip()
     except Exception:
         return "unknown"
-
 
 def _calc_dist(arr: list[float]) -> dict:
     if not arr:
@@ -60,9 +43,7 @@ def _calc_dist(arr: list[float]) -> dict:
         "max_s": round(float(np.max(arr)), 3),
     }
 
-
 def benchmark_article_viewer_http() -> dict:
-    """Đo thực nghiệm NFR-09 qua HTTP Endpoint GET /internal/v1/documents/{doc_id}/articles/{art_id}."""
     class _DummyPipe:
         def query(self, q, h, request_id=None):
             return {"status": "answered", "answer": "ok", "citations": []}
@@ -116,7 +97,6 @@ def benchmark_article_viewer_http() -> dict:
         "scope_note": "Đã đo qua tầng HTTP của AI Service (phục vụ mốc Java -> AI <= 10s). Luồng qua Java Backend tới Frontend (<= 15s) thuộc phạm vi nghiệm thu tích hợp liên team T2-36.",
     }
 
-
 def _render_markdown_report(report: dict) -> str:
     cfg = report["config"]
     out = report["request_outcomes"]
@@ -138,7 +118,7 @@ def _render_markdown_report(report: dict) -> str:
 - **Git Commit:** `{report['git_commit']}`
 - **Thời điểm đo (UTC):** `{report['timestamp_utc']}`
 - **Tập dữ liệu đo:** `{report['dataset_path']}` (SHA-256: `{report['dataset_sha256']}`, gồm **`{out['total']}` câu hỏi**)
-  - *Lưu ý minh bạch về bộ dữ liệu:* File `{report['dataset_path']}` trong nhánh làm việc của Team 2 chứa **{out['total']} câu hỏi** (bản mở rộng kiểm thử tải, khác với bộ Golden 30 câu của Team 1 sử dụng trong báo cáo Tuần 9). Chi tiết kết quả thực nghiệm của từng câu (`gold_001` -> `gold_{out['total']:03d}`) được lưu đầy đủ trong trường `raw_results` của file `ai_service_load_and_stability_report.json`.
+  - *Lưu ý minh bạch về bộ dữ liệu:* File `{report['dataset_path']}` trong nhánh làm việc của Team 2 chứa **{out['total']} câu hỏi** (bản mở rộng kiểm thử tải, khác với bộ Golden 30 câu của Team 1 sử dụng trong báo cáo Tuần 9). Chi tiết kết quả thực nghiệm của từng câu được lưu đầy đủ trong trường `raw_results` của file `ai_service_load_and_stability_report.json`.
 - **Chế độ thực thi:** `{cfg['retrieval_mode']}` (Nhóm thống nhất không chạy Colab nên đo trực tiếp trên máy local với chế độ `BM25-only` kết hợp Gemini API thật `{cfg['model']}`).
 
 ---
@@ -188,7 +168,7 @@ def _render_markdown_report(report: dict) -> str:
 {err_lines}
 
 - **Danh sách `query_id` gặp lỗi/timeout:** {failed_str}
-- Toàn bộ kết quả đo thực tế của từng câu (`gold_001` -> `gold_{out['total']:03d}`) được lưu trong mảng `raw_results` của `docs/team2_rag/ai_service_load_and_stability_report.json` và khớp hoàn toàn với bảng tổng hợp trên.
+- Toàn bộ kết quả đo thực tế của từng câu được lưu trong mảng `raw_results` của `docs/team2_rag/ai_service_load_and_stability_report.json` và khớp 100% với bảng tổng hợp trên.
 
 ---
 
@@ -228,15 +208,7 @@ Hệ thống đảm bảo bất biến:
   - **Tầng tích hợp qua Java Backend lên Frontend (`Java <= 10s, FE <= 15s`):** Sẽ được nghiệm thu liên team cùng Team 3 trong đầu việc chung `VLRA-T2-36`.
 """
 
-
-def run_e2e_benchmark(
-    golden_path: Path,
-    output_dir: Path,
-    *,
-    limit: int | None = None,
-    delay_s: float = 4.0,
-    reset_checkpoint: bool = False,
-) -> None:
+def run_e2e_benchmark(golden_path: Path, output_dir: Path, *, limit: int | None = None, delay_s: float = 4.0, reset_checkpoint: bool = False) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
     env = {**read_dotenv(".env"), **os.environ}
     env.setdefault("RAG_BM25_ONLY", "true")
@@ -261,12 +233,7 @@ def run_e2e_benchmark(
 
     llm = create_llm_service(settings, include_claims=verify_claims)
     pipeline = RAGPipeline(
-        bm25,
-        llm,
-        scorer=scorer,
-        top_k=top_k,
-        settings=settings,
-        token_budget=budget,
+        bm25, llm, scorer=scorer, top_k=top_k, settings=settings, token_budget=budget,
         strict_rerank=_flag(env, "RAG_STRICT_RERANK", "false"),
         rerank_enabled=rerank_enabled,
         rerank_timeout=float(env.get("RAG_RERANK_TIMEOUT_SECONDS", "4")),
@@ -280,33 +247,18 @@ def run_e2e_benchmark(
     orig_verifier = pipeline.verifier
 
     def timed_retrieve(*a, **k):
-        t0 = time.monotonic()
-        res = orig_retrieve(*a, **k)
-        stage_timings["retrieval"] = time.monotonic() - t0
-        return res
-
+        t0 = time.monotonic(); res = orig_retrieve(*a, **k); stage_timings["retrieval"] = time.monotonic() - t0; return res
     def timed_rerank(*a, **k):
-        t0 = time.monotonic()
-        res = orig_rerank(*a, **k)
-        stage_timings["rerank"] = time.monotonic() - t0
-        return res
-
+        t0 = time.monotonic(); res = orig_rerank(*a, **k); stage_timings["rerank"] = time.monotonic() - t0; return res
     def timed_ask(*a, **k):
-        t0 = time.monotonic()
-        res = orig_ask(*a, **k)
-        stage_timings["llm"] = time.monotonic() - t0
-        return res
+        t0 = time.monotonic(); res = orig_ask(*a, **k); stage_timings["llm"] = time.monotonic() - t0; return res
 
     pipeline.retriever.retrieve = timed_retrieve
     pipeline._rerank = timed_rerank
     pipeline.llm_service.ask = timed_ask
-
     if orig_verifier is not None:
         def timed_verify(*a, **k):
-            t0 = time.monotonic()
-            res = orig_verifier(*a, **k)
-            stage_timings["verify"] = time.monotonic() - t0
-            return res
+            t0 = time.monotonic(); res = orig_verifier(*a, **k); stage_timings["verify"] = time.monotonic() - t0; return res
         pipeline.verifier = timed_verify
 
     ckpt_path = output_dir / "e2e_nfr07_checkpoint.json"
@@ -314,13 +266,12 @@ def run_e2e_benchmark(
     if ckpt_path.exists() and not reset_checkpoint:
         try:
             saved_records = json.loads(ckpt_path.read_text(encoding="utf-8"))
-            log.info("Đã nạp %d câu từ checkpoint %s", len(saved_records), ckpt_path)
         except Exception:
             saved_records = {}
 
     for idx, item in enumerate(golden_data):
         qid = item["id"]
-        if qid in saved_records:
+        if qid in saved_records and "stage_latency_s" in saved_records[qid]:
             log.info("[%d/%d] Bỏ qua %s (đã có trong checkpoint)", idx + 1, len(golden_data), qid)
             continue
 
@@ -365,7 +316,6 @@ def run_e2e_benchmark(
         if idx + 1 < len(golden_data) and delay_s > 0:
             time.sleep(delay_s)
 
-    # TÍNH BẢNG TỔNG TRỰC TIẾP TỪ CHÍNH MẢNG RAW_RESULTS ĐỂ KHỚP 100%
     raw_results: list[dict] = [saved_records[item["id"]] for item in golden_data]
     latencies: dict[str, list[float]] = {"retrieval": [], "rerank": [], "llm": [], "verify": [], "e2e_total": []}
     outcomes = {"total": len(raw_results), "answered": 0, "insufficient_context": 0, "error": 0, "timeout": 0}
@@ -425,7 +375,6 @@ def run_e2e_benchmark(
     md_file.write_text(_render_markdown_report(report), encoding="utf-8")
     log.info("Hoàn tất! Đã ghi %d raw_results thật vào %s và %s", len(raw_results), json_file, md_file)
 
-
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("golden", nargs="?", default="team2_rag/data/golden/golden_phase1_30cai.json")
@@ -434,11 +383,4 @@ if __name__ == "__main__":
     parser.add_argument("--delay", type=float, default=4.0)
     parser.add_argument("--reset", action="store_true")
     args = parser.parse_args()
-
-    run_e2e_benchmark(
-        Path(args.golden),
-        Path(args.output_dir),
-        limit=args.limit,
-        delay_s=args.delay,
-        reset_checkpoint=args.reset,
-    )
+    run_e2e_benchmark(Path(args.golden), Path(args.output_dir), limit=args.limit, delay_s=args.delay, reset_checkpoint=args.reset)

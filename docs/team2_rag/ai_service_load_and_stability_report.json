@@ -1,6 +1,6 @@
 {
-  "git_commit": "a8f444ddfc",
-  "timestamp_utc": "2026-11-14T11:33:25.403390+00:00",
+  "git_commit": "d12289e172",
+  "timestamp_utc": "2026-11-14T11:45:40.585251+00:00",
   "dataset_path": "team2_rag/data/golden/golden_phase1_30cai.json",
   "dataset_sha256": "a2ee16bdf374",
   "dataset_note": "File team2_rag/data/golden/golden_phase1_30cai.json trong nhánh Team 2 có 50 câu hỏi (bản mở rộng kiểm thử tải nội bộ của Team 2, khác với bộ 30 câu của Team 1 dùng ở Tuần 9).",
@@ -16,21 +16,22 @@
   },
   "request_outcomes": {
     "total": 50,
-    "answered": 41,
+    "answered": 40,
     "insufficient_context": 8,
-    "error": 1,
+    "error": 2,
     "timeout": 0
   },
   "error_breakdown": {
-    "INVALID_LLM_OUTPUT": 1
+    "INVALID_LLM_OUTPUT": 1,
+    "LLM_UNAVAILABLE": 1
   },
   "stage_latency": {
     "retrieval": {
       "count": 50,
       "mean_s": 0.006,
-      "p50_s": 0.006,
-      "p90_s": 0.008,
-      "p95_s": 0.011,
+      "p50_s": 0.005,
+      "p90_s": 0.009,
+      "p95_s": 0.012,
       "max_s": 0.014
     },
     "rerank": {
@@ -43,11 +44,11 @@
     },
     "llm": {
       "count": 50,
-      "mean_s": 5.391,
-      "p50_s": 4.195,
-      "p90_s": 8.054,
-      "p95_s": 12.362,
-      "max_s": 32.487
+      "mean_s": 5.319,
+      "p50_s": 4.069,
+      "p90_s": 9.049,
+      "p95_s": 16.965,
+      "max_s": 23.447
     },
     "verify": {
       "count": 50,
@@ -59,11 +60,11 @@
     },
     "e2e_total": {
       "count": 50,
-      "mean_s": 5.475,
-      "p50_s": 4.206,
-      "p90_s": 8.058,
-      "p95_s": 12.374,
-      "max_s": 32.494
+      "mean_s": 5.986,
+      "p50_s": 4.28,
+      "p90_s": 11.595,
+      "p95_s": 19.33,
+      "max_s": 28.481
     }
   },
   "nfr07_p95_le_45s_passed": true,
@@ -72,10 +73,10 @@
   "article_viewer": {
     "measurement_method": "HTTP GET /internal/v1/documents/{document_id}/articles/{article_id} (FastAPI TestClient)",
     "sample_size": 20,
-    "cold_start_ms": 110.035,
-    "warm_p50_ms": 6.174,
-    "warm_p95_ms": 7.118,
-    "warm_max_ms": 7.768,
+    "cold_start_ms": 44.346,
+    "warm_p50_ms": 5.836,
+    "warm_p95_ms": 6.751,
+    "warm_max_ms": 7.627,
     "error_cases_tested": {
       "DOCUMENT_NOT_FOUND": 404,
       "ARTICLE_NOT_FOUND": 404,
@@ -86,7 +87,8 @@
     "scope_note": "Đã đo qua tầng HTTP của AI Service (phục vụ mốc Java -> AI <= 10s). Luồng qua Java Backend tới Frontend (<= 15s) thuộc phạm vi nghiệm thu tích hợp liên team T2-36."
   },
   "failed_query_ids": [
-    "gold_030"
+    "gold_030",
+    "gold_038"
   ],
   "raw_results": [
     {
@@ -95,11 +97,11 @@
       "outcome": "insufficient_context",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.0045,
+        "retrieval": 0.0013,
         "rerank": 0.0003,
-        "llm": 2.8342,
+        "llm": 2.9196,
         "verify": 0.0,
-        "e2e_total": 2.8406
+        "e2e_total": 2.9225
       }
     },
     {
@@ -108,11 +110,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.0032,
-        "rerank": 0.0007,
-        "llm": 1.8393,
+        "retrieval": 0.0039,
+        "rerank": 0.0004,
+        "llm": 4.5865,
         "verify": 0.0,
-        "e2e_total": 1.8445
+        "e2e_total": 4.5923
       }
     },
     {
@@ -121,11 +123,11 @@
       "outcome": "insufficient_context",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.0011,
-        "rerank": 0.0002,
-        "llm": 10.0123,
+        "retrieval": 0.0026,
+        "rerank": 0.0004,
+        "llm": 2.6901,
         "verify": 0.0,
-        "e2e_total": 10.0145
+        "e2e_total": 2.6952
       }
     },
     {
@@ -134,11 +136,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.0036,
-        "rerank": 0.0004,
-        "llm": 6.3023,
+        "retrieval": 0.0055,
+        "rerank": 0.0002,
+        "llm": 4.3667,
         "verify": 0.0,
-        "e2e_total": 6.3078
+        "e2e_total": 4.3738
       }
     },
     {
@@ -147,11 +149,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.0048,
-        "rerank": 0.0006,
-        "llm": 2.4716,
+        "retrieval": 0.0054,
+        "rerank": 0.0003,
+        "llm": 19.6664,
         "verify": 0.0,
-        "e2e_total": 2.4798
+        "e2e_total": 19.6743
       }
     },
     {
@@ -160,11 +162,11 @@
       "outcome": "insufficient_context",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.0065,
-        "rerank": 0.0002,
-        "llm": 2.1802,
+        "retrieval": 0.0022,
+        "rerank": 0.0001,
+        "llm": 23.4471,
         "verify": 0.0,
-        "e2e_total": 2.1878
+        "e2e_total": 23.4503
       }
     },
     {
@@ -173,11 +175,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.0137,
-        "rerank": 0.0004,
-        "llm": 13.2209,
+        "retrieval": 0.0071,
+        "rerank": 0.0001,
+        "llm": 7.3152,
         "verify": 0.0,
-        "e2e_total": 13.2371
+        "e2e_total": 7.3232
       }
     },
     {
@@ -186,11 +188,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.004,
-        "rerank": 0.0002,
-        "llm": 3.7894,
+        "retrieval": 0.0066,
+        "rerank": 0.0001,
+        "llm": 1.8553,
         "verify": 0.0,
-        "e2e_total": 3.7944
+        "e2e_total": 1.8636
       }
     },
     {
@@ -199,11 +201,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.0055,
-        "rerank": 0.0001,
-        "llm": 11.312,
+        "retrieval": 0.0059,
+        "rerank": 0.0002,
+        "llm": 1.9185,
         "verify": 0.0,
-        "e2e_total": 11.3189
+        "e2e_total": 1.9256
       }
     },
     {
@@ -212,11 +214,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.0055,
+        "retrieval": 0.0053,
         "rerank": 0.0002,
-        "llm": 4.4855,
+        "llm": 1.9522,
         "verify": 0.0,
-        "e2e_total": 4.4925
+        "e2e_total": 1.9592
       }
     },
     {
@@ -225,11 +227,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.0059,
+        "retrieval": 0.0031,
         "rerank": 0.0002,
-        "llm": 7.3613,
+        "llm": 3.0879,
         "verify": 0.0,
-        "e2e_total": 7.3692
+        "e2e_total": 3.0931
       }
     },
     {
@@ -238,11 +240,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.004,
-        "rerank": 0.0004,
-        "llm": 5.4441,
+        "retrieval": 0.0054,
+        "rerank": 0.0002,
+        "llm": 3.1959,
         "verify": 0.0,
-        "e2e_total": 5.4509
+        "e2e_total": 3.2032
       }
     },
     {
@@ -251,11 +253,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.0018,
+        "retrieval": 0.0055,
         "rerank": 0.0001,
-        "llm": 5.7544,
+        "llm": 4.1945,
         "verify": 0.0,
-        "e2e_total": 5.758
+        "e2e_total": 4.2022
       }
     },
     {
@@ -264,11 +266,11 @@
       "outcome": "insufficient_context",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.0053,
+        "retrieval": 0.0056,
         "rerank": 0.0001,
-        "llm": 4.4969,
+        "llm": 4.0833,
         "verify": 0.0,
-        "e2e_total": 4.5033
+        "e2e_total": 4.09
       }
     },
     {
@@ -277,11 +279,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.0054,
-        "rerank": 0.0001,
-        "llm": 32.4868,
+        "retrieval": 0.0016,
+        "rerank": 0.0002,
+        "llm": 5.3324,
         "verify": 0.0,
-        "e2e_total": 32.4942
+        "e2e_total": 5.3351
       }
     },
     {
@@ -290,11 +292,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.0034,
-        "rerank": 0.0002,
-        "llm": 27.4272,
+        "retrieval": 0.0065,
+        "rerank": 0.0001,
+        "llm": 2.3923,
         "verify": 0.0,
-        "e2e_total": 27.4317
+        "e2e_total": 2.4005
       }
     },
     {
@@ -303,11 +305,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.0023,
-        "rerank": 0.0001,
-        "llm": 7.8368,
+        "retrieval": 0.0081,
+        "rerank": 0.0006,
+        "llm": 2.5693,
         "verify": 0.0,
-        "e2e_total": 7.8402
+        "e2e_total": 2.5803
       }
     },
     {
@@ -316,11 +318,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.0077,
-        "rerank": 0.0002,
-        "llm": 5.6137,
+        "retrieval": 0.0028,
+        "rerank": 0.0001,
+        "llm": 4.5114,
         "verify": 0.0,
-        "e2e_total": 5.6229
+        "e2e_total": 4.515
       }
     },
     {
@@ -329,11 +331,11 @@
       "outcome": "insufficient_context",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.0039,
+        "retrieval": 0.0036,
         "rerank": 0.0002,
-        "llm": 4.5252,
+        "llm": 2.118,
         "verify": 0.0,
-        "e2e_total": 4.5299
+        "e2e_total": 2.1224
       }
     },
     {
@@ -342,11 +344,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.0104,
+        "retrieval": 0.0107,
         "rerank": 0.0006,
-        "llm": 4.8501,
+        "llm": 5.8214,
         "verify": 0.0,
-        "e2e_total": 4.8634
+        "e2e_total": 5.8355
       }
     },
     {
@@ -355,11 +357,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.0063,
-        "rerank": 0.0002,
-        "llm": 1.6726,
+        "retrieval": 0.003,
+        "rerank": 0.0001,
+        "llm": 6.3073,
         "verify": 0.0,
-        "e2e_total": 1.6805
+        "e2e_total": 6.3111
       }
     },
     {
@@ -368,11 +370,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.0081,
-        "rerank": 0.0002,
-        "llm": 2.9554,
+        "retrieval": 0.0084,
+        "rerank": 0.0005,
+        "llm": 6.5062,
         "verify": 0.0,
-        "e2e_total": 2.9647
+        "e2e_total": 6.516
       }
     },
     {
@@ -381,11 +383,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.0079,
-        "rerank": 0.0001,
-        "llm": 4.274,
+        "retrieval": 0.008,
+        "rerank": 0.0002,
+        "llm": 14.5933,
         "verify": 0.0,
-        "e2e_total": 4.2836
+        "e2e_total": 14.6035
       }
     },
     {
@@ -394,11 +396,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.0077,
-        "rerank": 0.0002,
-        "llm": 7.6045,
+        "retrieval": 0.0056,
+        "rerank": 0.0003,
+        "llm": 3.6712,
         "verify": 0.0,
-        "e2e_total": 7.6139
+        "e2e_total": 3.6789
       }
     },
     {
@@ -407,11 +409,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.0078,
+        "retrieval": 0.0077,
         "rerank": 0.0002,
-        "llm": 4.9671,
+        "llm": 4.3495,
         "verify": 0.0,
-        "e2e_total": 4.9768
+        "e2e_total": 4.3585
       }
     },
     {
@@ -420,11 +422,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.013,
+        "retrieval": 0.0134,
         "rerank": 0.0006,
-        "llm": 4.1912,
+        "llm": 2.9763,
         "verify": 0.0,
-        "e2e_total": 4.2081
+        "e2e_total": 2.9921
       }
     },
     {
@@ -433,11 +435,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.0066,
-        "rerank": 0.0002,
-        "llm": 7.4296,
+        "retrieval": 0.0055,
+        "rerank": 0.0004,
+        "llm": 2.9416,
         "verify": 0.0,
-        "e2e_total": 7.4378
+        "e2e_total": 2.9494
       }
     },
     {
@@ -446,11 +448,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.0112,
-        "rerank": 0.0007,
-        "llm": 3.6604,
+        "retrieval": 0.0034,
+        "rerank": 0.0002,
+        "llm": 3.4903,
         "verify": 0.0,
-        "e2e_total": 3.6748
+        "e2e_total": 3.495
       }
     },
     {
@@ -459,11 +461,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.0032,
-        "rerank": 0.0002,
-        "llm": 5.0331,
+        "retrieval": 0.0109,
+        "rerank": 0.0006,
+        "llm": 2.794,
         "verify": 0.0,
-        "e2e_total": 5.0381
+        "e2e_total": 2.8083
       }
     },
     {
@@ -472,11 +474,11 @@
       "outcome": "error",
       "error_code": "INVALID_LLM_OUTPUT",
       "stage_latency_s": {
-        "retrieval": 0.007,
-        "rerank": 0.0002,
+        "retrieval": 0.0034,
+        "rerank": 0.0001,
         "llm": 0.0,
         "verify": 0.0,
-        "e2e_total": 3.811
+        "e2e_total": 4.519
       }
     },
     {
@@ -485,11 +487,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.0073,
-        "rerank": 0.0002,
-        "llm": 4.19,
+        "retrieval": 0.0139,
+        "rerank": 0.0006,
+        "llm": 1.9792,
         "verify": 0.0,
-        "e2e_total": 4.1984
+        "e2e_total": 1.996
       }
     },
     {
@@ -498,11 +500,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.0064,
-        "rerank": 0.0001,
-        "llm": 1.9172,
+        "retrieval": 0.0066,
+        "rerank": 0.0002,
+        "llm": 3.3115,
         "verify": 0.0,
-        "e2e_total": 1.9252
+        "e2e_total": 3.3198
       }
     },
     {
@@ -511,11 +513,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.0064,
+        "retrieval": 0.0023,
         "rerank": 0.0002,
-        "llm": 1.8984,
+        "llm": 6.3466,
         "verify": 0.0,
-        "e2e_total": 1.9065
+        "e2e_total": 6.3499
       }
     },
     {
@@ -524,11 +526,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.0031,
-        "rerank": 0.0004,
-        "llm": 4.5551,
+        "retrieval": 0.003,
+        "rerank": 0.0003,
+        "llm": 7.979,
         "verify": 0.0,
-        "e2e_total": 4.5603
+        "e2e_total": 7.9955
       }
     },
     {
@@ -537,11 +539,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.0033,
-        "rerank": 0.0002,
-        "llm": 2.7629,
+        "retrieval": 0.0058,
+        "rerank": 0.0004,
+        "llm": 3.7432,
         "verify": 0.0,
-        "e2e_total": 2.7679
+        "e2e_total": 3.751
       }
     },
     {
@@ -550,11 +552,11 @@
       "outcome": "insufficient_context",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.0039,
-        "rerank": 0.0002,
-        "llm": 6.059,
+        "retrieval": 0.0049,
+        "rerank": 0.0001,
+        "llm": 8.073,
         "verify": 0.0,
-        "e2e_total": 6.0644
+        "e2e_total": 8.0787
       }
     },
     {
@@ -563,24 +565,24 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.0037,
-        "rerank": 0.0003,
-        "llm": 3.7442,
+        "retrieval": 0.0021,
+        "rerank": 0.0001,
+        "llm": 4.9632,
         "verify": 0.0,
-        "e2e_total": 3.7498
+        "e2e_total": 4.9664
       }
     },
     {
       "id": "gold_038",
       "question": "Khi đăng ký thành lập doanh nghiệp, các cổ đông sáng lập phải cùng đăng ký mua tối thiểu bao nhiêu phần trăm cổ phần phổ thông được quyền chào bán?",
-      "outcome": "answered",
-      "error_code": null,
+      "outcome": "error",
+      "error_code": "LLM_UNAVAILABLE",
       "stage_latency_s": {
-        "retrieval": 0.0026,
-        "rerank": 0.0001,
-        "llm": 4.1997,
+        "retrieval": 0.0132,
+        "rerank": 0.0004,
+        "llm": 0.0,
         "verify": 0.0,
-        "e2e_total": 4.2033
+        "e2e_total": 28.4808
       }
     },
     {
@@ -589,11 +591,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.0062,
-        "rerank": 0.0002,
-        "llm": 1.7086,
+        "retrieval": 0.0089,
+        "rerank": 0.0006,
+        "llm": 4.0551,
         "verify": 0.0,
-        "e2e_total": 1.7165
+        "e2e_total": 4.0673
       }
     },
     {
@@ -602,11 +604,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.0026,
-        "rerank": 0.0002,
-        "llm": 1.776,
+        "retrieval": 0.006,
+        "rerank": 0.0004,
+        "llm": 1.8089,
         "verify": 0.0,
-        "e2e_total": 1.7796
+        "e2e_total": 1.8171
       }
     },
     {
@@ -615,11 +617,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.005,
-        "rerank": 0.0002,
-        "llm": 2.2887,
+        "retrieval": 0.0045,
+        "rerank": 0.0005,
+        "llm": 4.8838,
         "verify": 0.0,
-        "e2e_total": 2.2948
+        "e2e_total": 4.8905
       }
     },
     {
@@ -628,11 +630,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.0026,
-        "rerank": 0.0002,
-        "llm": 2.191,
+        "retrieval": 0.0059,
+        "rerank": 0.0001,
+        "llm": 1.8493,
         "verify": 0.0,
-        "e2e_total": 2.1955
+        "e2e_total": 1.8567
       }
     },
     {
@@ -641,11 +643,11 @@
       "outcome": "insufficient_context",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.0064,
+        "retrieval": 0.0059,
         "rerank": 0.0006,
-        "llm": 0.9204,
+        "llm": 8.8044,
         "verify": 0.0,
-        "e2e_total": 0.9295
+        "e2e_total": 8.8131
       }
     },
     {
@@ -654,11 +656,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.0059,
-        "rerank": 0.0002,
-        "llm": 3.7705,
+        "retrieval": 0.0017,
+        "rerank": 0.0001,
+        "llm": 5.5021,
         "verify": 0.0,
-        "e2e_total": 3.7776
+        "e2e_total": 5.5053
       }
     },
     {
@@ -667,11 +669,11 @@
       "outcome": "insufficient_context",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.0062,
+        "retrieval": 0.006,
         "rerank": 0.0002,
-        "llm": 1.5561,
+        "llm": 2.4493,
         "verify": 0.0,
-        "e2e_total": 1.5634
+        "e2e_total": 2.4563
       }
     },
     {
@@ -680,11 +682,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.007,
-        "rerank": 0.0001,
-        "llm": 2.482,
+        "retrieval": 0.004,
+        "rerank": 0.0002,
+        "llm": 7.4009,
         "verify": 0.0,
-        "e2e_total": 2.4905
+        "e2e_total": 7.406
       }
     },
     {
@@ -693,11 +695,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.0057,
-        "rerank": 0.0002,
-        "llm": 6.1298,
+        "retrieval": 0.0027,
+        "rerank": 0.0001,
+        "llm": 18.9048,
         "verify": 0.0,
-        "e2e_total": 6.137
+        "e2e_total": 18.9089
       }
     },
     {
@@ -706,11 +708,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.006,
-        "rerank": 0.0002,
-        "llm": 5.4505,
+        "retrieval": 0.0041,
+        "rerank": 0.0003,
+        "llm": 2.2173,
         "verify": 0.0,
-        "e2e_total": 5.4578
+        "e2e_total": 2.2228
       }
     },
     {
@@ -719,11 +721,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.0057,
-        "rerank": 0.0002,
-        "llm": 2.156,
+        "retrieval": 0.002,
+        "rerank": 0.0001,
+        "llm": 4.7649,
         "verify": 0.0,
-        "e2e_total": 2.1636
+        "e2e_total": 4.7684
       }
     },
     {
@@ -732,11 +734,11 @@
       "outcome": "answered",
       "error_code": null,
       "stage_latency_s": {
-        "retrieval": 0.006,
+        "retrieval": 0.0057,
         "rerank": 0.0002,
-        "llm": 3.7812,
+        "llm": 11.2539,
         "verify": 0.0,
-        "e2e_total": 3.7887
+        "e2e_total": 11.2612
       }
     }
   ]
