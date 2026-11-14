@@ -10,7 +10,8 @@
     "top_k": 5,
     "rerank_enabled": false,
     "verify_claims": false,
-    "pipeline_timeout_s": 45.0
+    "pipeline_timeout_s": 45.0,
+    "top_k_note": "Số lượng kết quả tìm kiếm do tầng Retrieval trả về (được cấu hình qua RAG_TOP_K=5 trong .env khi đo; mặc định của mã nguồn là 10). Số chunk thực tế đưa vào prompt được giới hạn bởi max_context_chunks."
   },
   "request_outcomes": {
     "total": 50,
@@ -67,19 +68,676 @@
   "nfr07_p95_le_45s_passed": true,
   "nfr08_timeout_chain_verified": true,
   "article_viewer": {
+    "measurement_method": "HTTP GET /internal/v1/documents/{document_id}/articles/{article_id} (FastAPI TestClient) + Python get_article()",
     "sample_size": 20,
-    "cold_start_ms": 83.546,
-    "warm_p50_ms": 0.002,
-    "warm_p95_ms": 0.005,
-    "warm_max_ms": 0.014,
+    "cold_start_ms": 221.03,
+    "warm_p50_ms": 6.437,
+    "warm_p95_ms": 7.858,
+    "warm_max_ms": 10.771,
     "error_cases_tested": {
       "DOCUMENT_NOT_FOUND": 404,
       "ARTICLE_NOT_FOUND": 404,
       "INVALID_REQUEST": 400
     },
-    "nfr09_passed": true
+    "nfr09_ai_http_le_10s_passed": true,
+    "nfr09_passed": true,
+    "scope_note": "Đã đo qua tầng HTTP của AI Service (phục vụ mốc Java -> AI <= 10s). Luồng qua Java Backend tới Frontend (<= 15s) thuộc phạm vi nghiệm thu tích hợp liên team T2-36."
   },
   "failed_query_ids": [
     "gold_030"
+  ],
+  "dataset_note": "File team2_rag/data/golden/golden_phase1_30cai.json trong nhánh Team 2 có 50 câu hỏi (bản mở rộng kiểm thử tải nội bộ của Team 2, khác với bộ 30 câu của Team 1 dùng ở Tuần 9).",
+  "nfr07_scope_note": "Đạt ngưỡng p95 <= 45.0s trên cấu hình local BM25-only (không chạy Dense/Hybrid do nhóm thống nhất không dùng Colab).",
+  "raw_results": [
+    {
+      "id": "gold_001",
+      "question": "Luật Doanh nghiệp quy định về những vấn đề gì?",
+      "outcome": "answered",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gold_002",
+      "question": "Những ai thuộc đối tượng áp dụng của Luật Doanh nghiệp?",
+      "outcome": "answered",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gold_003",
+      "question": "Theo Luật Doanh nghiệp, cổ đông là ai?",
+      "outcome": "answered",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gold_004",
+      "question": "Vốn điều lệ của công ty trách nhiệm hữu hạn được xác định như thế nào?",
+      "outcome": "answered",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gold_005",
+      "question": "Doanh nghiệp có những quyền gì theo Điều 7 Luật Doanh nghiệp?",
+      "outcome": "answered",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gold_006",
+      "question": "Công ty TNHH hai thành viên trở lên được có tối thiểu và tối đa bao nhiêu thành viên? Thành viên có thể là tổ chức không?",
+      "outcome": "insufficient_context",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gold_007",
+      "question": "Thành viên công ty TNHH hai thành viên trở lên phải góp đủ vốn đã cam kết trong bao lâu? Thời gian vận chuyển, nhập khẩu tài sản góp vốn và làm thủ tục chuyển quyền sở hữu có tính vào thời hạn này không?",
+      "outcome": "insufficient_context",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gold_008",
+      "question": "Khi thành viên góp vốn vào công ty TNHH bằng tài sản có đăng ký quyền sở hữu, việc chuyển quyền sở hữu tài sản đó cho công ty có phải chịu lệ phí trước bạ không?",
+      "outcome": "insufficient_context",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gold_009",
+      "question": "Công ty cổ phần phải có ít nhất bao nhiêu cổ đông và có giới hạn số lượng cổ đông tối đa không?",
+      "outcome": "insufficient_context",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gold_010",
+      "question": "Doanh nghiệp tư nhân có được phát hành chứng khoán để huy động vốn không?",
+      "outcome": "insufficient_context",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gold_011",
+      "question": "Theo Điều 16 Luật Doanh nghiệp, những hành vi nào bị nghiêm cấm trong đăng ký doanh nghiệp và hoạt động kinh doanh?",
+      "outcome": "answered",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gold_012",
+      "question": "Hồ sơ đăng ký công ty hợp danh gồm những giấy tờ gì theo Điều 20 Luật Doanh nghiệp?",
+      "outcome": "answered",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gold_013",
+      "question": "Giấy đề nghị đăng ký doanh nghiệp phải có những nội dung chủ yếu nào theo Điều 23 Luật Doanh nghiệp?",
+      "outcome": "answered",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gold_014",
+      "question": "Điều lệ công ty phải quy định những nội dung chủ yếu nào theo Điều 24 Luật Doanh nghiệp?",
+      "outcome": "answered",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gold_015",
+      "question": "Giấy chứng nhận đăng ký doanh nghiệp gồm những nội dung chủ yếu nào theo Điều 28 Luật Doanh nghiệp?",
+      "outcome": "answered",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gold_016",
+      "question": "Chủ sở hữu công ty TNHH một thành viên chịu trách nhiệm về các khoản nợ và nghĩa vụ tài sản khác của công ty trong phạm vi nào?",
+      "outcome": "answered",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gold_017",
+      "question": "Cổ đông công ty cổ phần chịu trách nhiệm về nợ của công ty trong phạm vi nào và có những nghĩa vụ gì?",
+      "outcome": "answered",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gold_018",
+      "question": "Công ty trách nhiệm hữu hạn và công ty cổ phần có thể có bao nhiêu người đại diện theo pháp luật, và người đại diện theo pháp luật phải thực hiện những trách nhiệm gì?",
+      "outcome": "answered",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gold_019",
+      "question": "Doanh nghiệp bị giải thể trong những trường hợp nào, phải đáp ứng điều kiện gì, và với trường hợp tự giải thể thì phải gửi hồ sơ cho cơ quan đăng ký kinh doanh theo các mốc thời hạn nào?",
+      "outcome": "answered",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gold_020",
+      "question": "Chủ sở hữu hưởng lợi của doanh nghiệp được xác định theo tiêu chí nào, doanh nghiệp phải kê khai những thông tin gì và lưu giữ danh sách này ra sao?",
+      "outcome": "answered",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gold_021",
+      "question": "Thông tin về chủ sở hữu hưởng lợi phải được lưu giữ ít nhất bao nhiêu năm kể từ ngày doanh nghiệp giải thể hoặc phá sản?",
+      "outcome": "answered",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gold_022",
+      "question": "Luật số 76/2025/QH15 có hiệu lực từ khi nào, doanh nghiệp thành lập trước ngày luật có hiệu lực phải bổ sung thông tin chủ sở hữu hưởng lợi vào thời điểm nào, và các đợt chào bán trái phiếu riêng lẻ đã công bố thông tin trước đó áp dụng quy định nào?",
+      "outcome": "answered",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gold_023",
+      "question": "Theo văn bản hợp nhất Nghị định hướng dẫn Luật Doanh nghiệp (7566/VBHN-BKHĐT), doanh nghiệp xã hội được xác định theo quy định nào, phải duy trì những cam kết gì và ai phải chịu trách nhiệm liên đới khi doanh nghiệp xã hội vi phạm?",
+      "outcome": "answered",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gold_024",
+      "question": "Doanh nghiệp nhà nước công bố thông tin bằng hình thức và phương tiện nào, báo cáo công bố qua mạng điện tử có giá trị pháp lý ra sao và phải được duy trì tối thiểu bao lâu?",
+      "outcome": "answered",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gold_025",
+      "question": "Theo Nghị định 122/2021/NĐ-CP, vi phạm hành chính trong lĩnh vực đăng ký doanh nghiệp bị xử phạt bằng những hình thức nào, mức phạt tiền tối đa là bao nhiêu, mức phạt đối với cá nhân so với tổ chức ra sao và thời hiệu xử phạt là bao lâu?",
+      "outcome": "answered",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gold_026",
+      "question": "Công ty hết thời hạn hoạt động ghi trong Điều lệ mà không thực hiện thủ tục giải thể thì bị phạt bao nhiêu, phải khắc phục hậu quả thế nào và mức phạt đó áp dụng cho tổ chức hay cá nhân?",
+      "outcome": "insufficient_context",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gold_027",
+      "question": "Theo Nghị định 288/2026/NĐ-CP, kê khai không trung thực hồ sơ đăng ký doanh nghiệp và chậm đăng ký thay đổi nội dung đăng ký doanh nghiệp bị xử phạt như thế nào?",
+      "outcome": "insufficient_context",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gold_028",
+      "question": "Nghị định 288/2026/NĐ-CP bãi bỏ những quy định nào của Nghị định 122/2021/NĐ-CP, có hiệu lực từ khi nào và ai chịu trách nhiệm hướng dẫn thi hành?",
+      "outcome": "answered",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gold_029",
+      "question": "Thông tư 68/2025/TT-BTC ban hành biểu mẫu cho những hoạt động nào, áp dụng cho đối tượng nào, có hiệu lực từ khi nào và làm hết hiệu lực hoặc bãi bỏ những văn bản nào?",
+      "outcome": "answered",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gold_030",
+      "question": "Doanh nghiệp tạm ngừng kinh doanh phải gửi thông báo trước ít nhất mấy ngày làm việc, hồ sơ gồm những giấy tờ nào, và hành vi không thông báo tạm ngừng kinh doanh bị xử phạt thế nào?",
+      "outcome": "error",
+      "error_code": "INVALID_LLM_OUTPUT",
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gold_031",
+      "question": "Nếu Điều lệ không quy định khác, tổ chức sở hữu ít nhất 35% vốn điều lệ của công ty TNHH hai thành viên trở lên được cử tối đa bao nhiêu người đại diện theo ủy quyền?",
+      "outcome": "answered",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gold_032",
+      "question": "Văn bản cử người đại diện theo ủy quyền của thành viên là tổ chức có hiệu lực đối với công ty từ lúc ký hay từ lúc công ty nhận được?",
+      "outcome": "answered",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gold_033",
+      "question": "Tài sản góp vốn không phải Đồng Việt Nam, ngoại tệ tự do chuyển đổi hoặc vàng phải được định giá thế nào?",
+      "outcome": "answered",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gold_034",
+      "question": "Dấu của doanh nghiệp có thể tồn tại dưới hình thức chữ ký số hay bắt buộc là dấu khắc?",
+      "outcome": "answered",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gold_035",
+      "question": "Công ty TNHH một thành viên muốn hoàn trả một phần vốn góp để giảm vốn điều lệ thì phải đáp ứng điều kiện nào?",
+      "outcome": "answered",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gold_036",
+      "question": "Công ty cổ phần có bắt buộc phải có cổ phần phổ thông không và người sở hữu loại cổ phần này được gọi là gì?",
+      "outcome": "answered",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gold_037",
+      "question": "Cổ tức cố định của cổ phần ưu đãi cổ tức có phụ thuộc vào kết quả kinh doanh của công ty không?",
+      "outcome": "answered",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gold_038",
+      "question": "Khi đăng ký thành lập doanh nghiệp, các cổ đông sáng lập phải cùng đăng ký mua tối thiểu bao nhiêu phần trăm cổ phần phổ thông được quyền chào bán?",
+      "outcome": "answered",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gold_039",
+      "question": "Công ty cổ phần có thể trả cổ tức bằng tài sản khác ngoài tiền mặt không? Nếu trả bằng tiền mặt thì dùng đồng tiền nào?",
+      "outcome": "answered",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gold_040",
+      "question": "Cổ đông chuyển nhượng cổ phần sau khi chốt danh sách nhận cổ tức nhưng trước ngày trả cổ tức thì ai nhận cổ tức từ công ty?",
+      "outcome": "answered",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gt_t3_004",
+      "question": "Một cá nhân có được thành lập nhiều doanh nghiệp tư nhân không?",
+      "outcome": "answered",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gt_t3_005",
+      "question": "Thành viên hợp danh của công ty hợp danh phải là cá nhân hay tổ chức, và chịu trách nhiệm như thế nào?",
+      "outcome": "answered",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gt_t3_008",
+      "question": "Thuế suất thuế thu nhập doanh nghiệp phổ thông hiện nay là bao nhiêu phần trăm?",
+      "outcome": "answered",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gt_t3_009",
+      "question": "Tôi muốn đặt trụ sở chính của doanh nghiệp ở nước ngoài thay vì Việt Nam, có được không?",
+      "outcome": "answered",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gt_t3_010",
+      "question": "Công ty tôi muốn dùng văn phòng đại diện để thực hiện hoạt động kinh doanh của công ty, có được không?",
+      "outcome": "answered",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gt_t3_012",
+      "question": "Sau khi chuyển nhượng phần vốn góp, công ty TNHH hai thành viên trở lên của tôi chỉ còn một thành viên. Công ty phải chuyển sang loại hình nào và đăng ký thay đổi trong bao lâu?",
+      "outcome": "answered",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gold_041",
+      "question": "Cổ đông sở hữu cổ phần ưu đãi biểu quyết có được tự do chuyển nhượng loại cổ phần này cho người khác không?",
+      "outcome": "answered",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gold_042",
+      "question": "Tôi làm mất cổ phiếu của công ty cổ phần. Tôi có được đề nghị công ty cấp lại không và đề nghị cần có nội dung gì?",
+      "outcome": "answered",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gold_043",
+      "question": "Thông báo mời họp Hội đồng thành viên có thể gửi bằng phương tiện điện tử không và phải nêu những nội dung nào?",
+      "outcome": "answered",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    },
+    {
+      "id": "gold_044",
+      "question": "Tên doanh nghiệp bằng tiếng nước ngoài có được in lớn hơn tên tiếng Việt trên giấy tờ giao dịch của doanh nghiệp không?",
+      "outcome": "answered",
+      "error_code": null,
+      "stage_latency_s": {
+        "retrieval": 0.003,
+        "rerank": 0.0,
+        "llm": 5.424,
+        "verify": 0.0,
+        "e2e_total": 5.427
+      }
+    }
   ]
 }

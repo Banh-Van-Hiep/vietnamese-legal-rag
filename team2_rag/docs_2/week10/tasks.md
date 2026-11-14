@@ -138,3 +138,17 @@ def answer_from_rerank_detailed(
     request_id: Optional[str] = None,
     llm_timeout_seconds: Optional[float] = None,  # Truyền từ RAGPipeline.query: min(30.0, remaining - 0.5)
 ) -> GeneratedAnswer: ...
+
+---
+
+## Cập Nhật Trạng Thái Thực Thi (Cập nhật ngày 14/11/2026)
+
+| Mã công việc | Người phụ trách | Trạng thái | Ghi chú kết quả |
+| :--- | :--- | :---: | :--- |
+| `VLRA-T2-30` | Người 1 (VLRA-73) | **DONE (Đã xong)** | Đã tối ưu `runtime.py`, thêm `RAG_VERIFY_CLAIMS`, cập nhật prompt và merge PR #62 vào `develop`. |
+| `VLRA-T2-31` | Người 1 (VLRA-73) | **DONE (Đã xong)** | Đã bổ sung kịch bản `answered_markdown` và các kịch bản lỗi vào `mock_app.py` kèm unit test. |
+| `VLRA-T2-32` | Người 1 (VLRA-73) | **DONE (Đã xong)** | Đã bàn giao `docs/team2_rag/ui-integration-guide.md` cho Team 3. |
+| `VLRA-T2-33` | Người 2 (VLRA-74) | **DONE (Đã xong)** | Đã truyền `remaining` timeout xuống LLM (`pipeline.py`, `answer.py`, `llm/service.py`) và có unit test `test_nfr08_timeout_concurrency.py`. |
+| `VLRA-T2-34` | Người 2 (VLRA-74) | **DONE (Đã xong)** | Đã xây dựng `scripts/benchmark_e2e_nfr07.py` và chạy đo E2E thực nghiệm (`raw_results` đầy đủ trong JSON). |
+| `VLRA-T2-35` | Người 2 (VLRA-74) | **DONE (Đã xong)** | Đã đo NFR-09 qua HTTP endpoint (`TestClient`) và xuất báo cáo `ai_service_load_and_stability_report.md` + `.json`. |
+| `VLRA-T2-36` | Chung cả Team 2 | **IN_PROGRESS** | Phối hợp nghiệm thu tích hợp E2E với Team 1 và Team 3 sau khi merge PR vào `develop`. |

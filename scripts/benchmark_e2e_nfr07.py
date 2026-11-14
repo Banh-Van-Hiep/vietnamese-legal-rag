@@ -141,7 +141,7 @@ def _render_markdown_report(report: dict) -> str:
 | :--- | :--- | :--- |
 | `retrieval_mode` | `{cfg['retrieval_mode']}` | Chạy local không phụ thuộc GPU/Colab |
 | `model` | `{cfg['model']}` | Provider: `{cfg['provider']}` |
-| `top_k` | `{cfg['top_k']}` | Số chunk đưa vào bước tạo context |
+| `top_k` (`RAG_TOP_K`) | `{cfg['top_k']}` | Số lượng kết quả tìm kiếm do tầng Retrieval lấy về |
 | `rerank_enabled` | `{cfg['rerank_enabled']}` | Tắt theo cấu hình tối ưu Tuần 9 |
 | `verify_claims` | `{cfg['verify_claims']}` | Chế độ runtime online (`RAG_VERIFY_CLAIMS=false`) |
 | `pipeline_timeout_s` | `{cfg['pipeline_timeout_s']}s` | Trần ngân sách thời gian tầng AI (NFR-08) |
@@ -402,6 +402,7 @@ def run_e2e_benchmark(
         "nfr08_timeout_chain_verified": True,
         "article_viewer": viewer_metrics,
         "failed_query_ids": failed_ids,
+        "raw_results": list(saved_records.values()),
     }
 
     json_file = output_dir / "ai_service_load_and_stability_report.json"
