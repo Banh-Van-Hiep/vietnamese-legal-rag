@@ -24,7 +24,7 @@ Giữ đúng hai nhiệm vụ Jira, không tạo task con. Phần lớn chức n
 
 | Mã Jira | Tên công việc & Nội dung | Tiêu chí hoàn thành (Definition of Done - DoD) |
 | :--- | :--- | :--- |
-| **VLRA-75** | **Hoàn thiện Chat Panel: trạng thái loading, lỗi mạng và nút Dừng nhận**<br>- Xử lý mượt trạng thái chờ từ lúc gửi câu hỏi đến khi nhận `complete` hoặc `error`.<br>- Thông báo lỗi mạng và cơ chế thử lại an toàn theo `retryable` và quy tắc định danh lượt (`clientRequestId`).<br>- Nút "Dừng nhận stream" cho phép người dùng chủ động ngắt luồng nhận câu trả lời.<br>- Kiểm tra bố cục responsive và kết nối giao diện với RAG Pipeline v2. | - Khi gửi: hiện chỉ báo đang chờ (có `role="status"`), khóa gửi trùng; mỗi lần bấm gửi chỉ tạo đúng một `POST /api/v1/chat/stream`.<br>- Mất kết nối, Backend tắt, stream đứt hoặc quá 60 giây: hiện thông báo an toàn, không lộ chi tiết kỹ thuật; lượt được đánh dấu chưa rõ kết quả và **thử lại dùng lại đúng `clientRequestId`** (phát lại kết quả nếu server đã xong), không tạo lượt thứ hai.<br>- Lỗi đã rõ từ server: chỉ có nút "Thử lại" khi `retryable = true` và là lượt cuối, theo bảng lỗi [ARCHITECTURE §7](../../../docs/ARCHITECTURE.md).<br>- "Dừng nhận" chỉ hiện khi đang nhận; bấm thì ngừng đọc stream ngay, **không** gửi yêu cầu hủy xử lý AI; lượt trên server vẫn hoàn tất và "Tải lại trạng thái" lấy được kết quả cuối mà không gọi AI lần nữa; nội dung không bị gắn vào hội thoại khác.<br>- Responsive: ở 360, 768 và 1280 px, Chat Panel, ô nhập, thẻ citation và nút Dừng nhận/Thử lại hiển thị đủ, không cuộn ngang trang.<br>- Kết nối RAG Pipeline v2 (`develop` sau PR #54): ít nhất một lượt `answered` và một lượt `insufficient_context` chạy thật qua UI; ghi commit RAG, cấu hình và LLM đã dùng trong kết quả local.<br>- **Đầu ra:** Chat Panel hoàn chỉnh các trạng thái chờ, lỗi, thử lại và dừng nhận, hoạt động với RAG Pipeline v2. |
+| **VLRA-75** | **Hoàn thiện Chat Panel: trạng thái loading, lỗi mạng và nút Dừng nhận**<br>- Xử lý mượt trạng thái chờ từ lúc gửi câu hỏi đến khi nhận `complete` hoặc `error`.<br>- Thông báo lỗi mạng và cơ chế thử lại an toàn theo `retryable` và quy tắc định danh lượt (`clientRequestId`).<br>- Nút "Dừng nhận stream" cho phép người dùng chủ động ngắt luồng nhận câu trả lời.<br>- Kiểm tra bố cục responsive và kết nối giao diện với RAG Pipeline v2. | - Khi gửi: hiện chỉ báo đang chờ (có `role="status"`), khóa gửi trùng; mỗi lần bấm gửi chỉ tạo đúng một `POST /api/v1/chat/stream`.<br>- Mất kết nối, Backend tắt, stream đứt hoặc quá 60 giây: hiện thông báo an toàn, không lộ chi tiết kỹ thuật; lượt được đánh dấu chưa rõ kết quả và **thử lại dùng lại đúng `clientRequestId`** (phát lại kết quả nếu server đã xong), không tạo lượt thứ hai.<br>- Lỗi đã rõ từ server: chỉ có nút "Thử lại" khi `retryable = true` và là lượt cuối, theo bảng lỗi [ARCHITECTURE §7](../../../docs/ARCHITECTURE.md).<br>- "Dừng nhận" chỉ hiện khi đang nhận; bấm thì ngừng đọc stream ngay, **không** gửi yêu cầu hủy xử lý AI; lượt trên server tiếp tục xử lý và có thể kết thúc ở `completed` hoặc `failed`. "Tải lại trạng thái" hiển thị trạng thái hiện có hoặc kết quả cuối đã lưu, không gọi AI lần nữa; nội dung không bị gắn vào hội thoại khác.<br>- Responsive: ở 360, 768 và 1280 px, Chat Panel, ô nhập, thẻ citation và nút Dừng nhận/Thử lại hiển thị đủ, không cuộn ngang trang.<br>- Kết nối RAG Pipeline v2 (`develop` sau PR #54): ít nhất một lượt `answered` và một lượt `insufficient_context` chạy thật qua UI; ghi commit RAG, cấu hình và LLM đã dùng trong kết quả local.<br>- **Đầu ra:** Chat Panel hoàn chỉnh các trạng thái chờ, lỗi, thử lại và dừng nhận, hoạt động với RAG Pipeline v2. |
 | **VLRA-76** | **Hoàn thiện Document Viewer và bộ test E2E giao diện**<br>- Tự động cuộn và làm nổi bật Khoản/Điểm của Điều luật đang xem.<br>- Nút mở văn bản nguồn gốc.<br>- Xây dựng và chạy bộ kiểm thử tự động E2E bao phủ các trạng thái của UI (mục 4.2). | - Mở citation: Viewer tải đúng Điều theo `documentId`/`articleId`, tự cuộn tới Khoản/Điểm được trích và đánh dấu đoạn đó; chuyển sang citation khác thì cuộn và đánh dấu theo citation mới.<br>- Chỉ đánh dấu khi `locateCitedUnit` xác định được duy nhất một đoạn; nếu không, hiện toàn Điều kèm ghi chú rõ ràng, không đánh dấu sai.<br>- Nút "Văn bản nguồn gốc" mở `sourceUrl` ở tab mới với `noopener noreferrer`; khi Điều không tồn tại (404) vẫn có liên kết nguồn từ citation để đối chiếu.<br>- Kiểm trên Article Store thật của Team 1 (`data/doanh-nghiep/processed/articles.jsonl`, VLRA-71): nội dung là nguyên văn Điều, không phải chunk.<br>- Bộ E2E chạy bằng một lệnh, bao phủ toàn bộ trạng thái ở mục 4.2, **đạt 100%** ở chế độ mock; kết quả chạy với RAG v2 thật ghi riêng.<br>- **Đầu ra:** Frontend v2 và Document Viewer đầy đủ chức năng tra cứu; bộ test E2E các trạng thái UI đạt 100%. |
 
 ---
@@ -45,7 +45,7 @@ Giữ đúng hai nhiệm vụ Jira, không tạo task con. Phần lớn chức n
 ### 3.2. Chat Panel — VLRA-75
 
 - Tái sử dụng React/TypeScript, `useChat`, `chatStream`, `retryPolicy`, `pendingTurn` và component hiện có.
-- Dừng nhận chỉ hủy việc đọc stream phía trình duyệt (AbortController). Lượt trên server tiếp tục theo state machine; kết quả lấy lại bằng replay cùng `clientRequestId` hoặc tải lại lịch sử.
+- Dừng nhận chỉ hủy việc đọc stream phía trình duyệt (AbortController), không gửi yêu cầu hủy xử lý model. Lượt trên server tiếp tục theo state machine và có thể kết thúc ở `completed` hoặc `failed`; nếu còn `pending` thì UI tiếp tục thể hiện chưa có kết quả cuối. Tải lại lịch sử để đọc trạng thái hiện có hoặc replay cùng `clientRequestId` theo contract; không tự tạo thêm lượt hỏi.
 - Không thêm event SSE, field hoặc endpoint public; không tự gửi lại câu hỏi với UUID mới khi kết quả chưa rõ.
 - Chi tiết: [thiết kế Frontend §4](../../../docs/team3_fullstack/frontend-design.md) và [thiết kế hội thoại](../../../docs/team3_fullstack/conversation-design.md).
 
@@ -66,7 +66,7 @@ Giữ đúng hai nhiệm vụ Jira, không tạo task con. Phần lớn chức n
 | :--- | :--- | :--- |
 | Frontend → Backend | `POST /api/v1/chat/stream`, `clientRequestId` UUIDv4; SSE `meta`, `delta`, `complete`, `error`, heartbeat | [chat_stream.schema.json](../../../contracts/v0.1/chat_stream.schema.json), [API public](../../../docs/team3_fullstack/public-api-specification.md) |
 | Viewer | `GET /api/v1/documents/{documentId}?articleId={articleId}` trả 6 trường; 404 `DOCUMENT_NOT_FOUND`/`ARTICLE_NOT_FOUND` | [API public](../../../docs/team3_fullstack/public-api-specification.md), [internal_article.schema.json](../../../contracts/v0.1/internal_article.schema.json) |
-| Lỗi | Envelope `{code, message, retryable}`; hành vi thử lại theo `retryable` | [ARCHITECTURE §7](../../../docs/ARCHITECTURE.md), [error_response.schema.json](../../../contracts/v0.1/error_response.schema.json) |
+| Lỗi | Envelope `{"error":{"code":"UPSTREAM_TIMEOUT","message":"Dịch vụ xử lý chưa phản hồi trong thời hạn.","retryable":true}}`; hành vi thử lại theo `retryable` | [ARCHITECTURE §7](../../../docs/ARCHITECTURE.md), [error_response.schema.json](../../../contracts/v0.1/error_response.schema.json) |
 
 ### 4.2. Ma trận trạng thái UI cho bộ E2E — VLRA-76
 
@@ -79,7 +79,7 @@ Giữ đúng hai nhiệm vụ Jira, không tạo task con. Phần lớn chức n
 | S05 | Lỗi retryable | Thông báo an toàn, nút Thử lại, thử lại thành công | E08, E09 |
 | S06 | Lỗi không retryable | Thông báo an toàn, không nút Thử lại | U03 |
 | S07 | Backend tắt / mạng đứt | Chưa rõ kết quả, thử lại cùng UUID, không tạo lượt mới | — |
-| S08 | Dừng nhận | Ngừng đọc stream, tải lại trạng thái lấy kết quả cuối | U04 |
+| S08 | Dừng nhận | Ngừng đọc stream; tải lại hiển thị pending nếu chưa xong, kết quả completed hoặc lỗi failed nếu đã kết thúc; không gọi AI thêm | U04 |
 | S09 | Đổi hội thoại khi đang nhận | Kết quả cũ không gắn vào hội thoại mới | U05 |
 | S10 | Lịch sử còn lượt pending | Chặn gửi mới, có nút tải lại trạng thái | — |
 | S11 | Viewer mở citation | Đúng Điều, cuộn và đánh dấu Khoản/Điểm, đổi citation thì cập nhật | E03 |
@@ -87,11 +87,15 @@ Giữ đúng hai nhiệm vụ Jira, không tạo task con. Phần lớn chức n
 | S13 | Viewer 404 | Thông báo không tìm thấy, có liên kết nguồn từ citation | E06, CORPUS_404 |
 | S14 | Văn bản nguồn gốc | Mở `sourceUrl` tab mới, `noopener noreferrer` | CORPUS_CONTENT |
 | S15 | Responsive | Chat Panel và Viewer ở 360/768/1280 không cuộn ngang | CORPUS_VIEWPORT_* |
+| S16 | Viewer đang tải | Hiện chỉ báo tải trong vùng Viewer, không hiển thị nội dung của nguồn cũ khi đổi citation | — |
+| S17 | Viewer lỗi mạng | Hiện thông báo lỗi an toàn và thao tác thử lại; không làm mất câu trả lời đang xem hoặc hiển thị nội dung Điều cũ như kết quả mới | — |
+| S18 | Thử lại tải Viewer | Khi kết nối phục hồi, thử lại tải đúng `documentId`/`articleId` đang chọn, hiển thị nguyên văn và highlight nếu xác định được đoạn; không gửi lại câu hỏi chat | — |
 
 ### 4.3. Dữ liệu mock
 
 - Dùng HTTP mock của Team 2 (`team2_rag.api.mock_app`, kịch bản `answered`/`insufficient_context`) và fixture hiện có; lỗi và payload sai tạo bằng stub trong bộ test, không thêm endpoint public chỉ để kích hoạt tình huống kiểm thử.
 - Kết quả mock ghi nhãn mock, không dùng để kết luận chất lượng RAG thật.
+- Bộ E2E mock kiểm chứng các trạng thái có thể tái lập; kiểm chứng UI → Backend → RAG Pipeline v2 thật được ghi riêng. VLRA-75 chỉ hoàn thành khi đạt cả các tiêu chí UI và tiêu chí tích hợp thật ở mục 2; PASS mock không thay thế tiêu chí tích hợp này.
 
 ---
 
@@ -104,5 +108,5 @@ Giữ đúng hai nhiệm vụ Jira, không tạo task con. Phần lớn chức n
 | **Cả hai** | Trình duyệt kiểm thử (Edge/Chrome qua CDP) và môi trường Windows của thành viên chạy test. | Bộ E2E tự bật/tắt các tiến trình do nó tạo và ghi rõ môi trường; trường hợp chỉ chạy được ở mock được ghi là giới hạn. |
 
 - Không đồng nhất kết quả mock với kết quả chạy RAG v2 thật.
-- "Đạt 100%" áp dụng cho toàn bộ trạng thái ở mục 4.2 trong cùng một lần chạy; ca bị bỏ qua không được tính là đạt.
+- "Đạt 100%" nghĩa là toàn bộ ca kiểm thử đã xác định để bao phủ ma trận mục 4.2 đều được chạy và PASS trong cùng một lần chạy bộ E2E mock, không có ca bỏ qua; không có nghĩa bao phủ 100% mã nguồn. Kết quả kiểm chứng RAG v2 thật ghi riêng theo tiêu chí VLRA-75 ở mục 2.
 - Hồ sơ Spec Kit và kết quả kiểm chứng lưu local theo [quy trình Team 3](../README.md#quy-trình-thực-hiện-nhiệm-vụ); thư mục tuần chỉ giữ `tasks.md`.

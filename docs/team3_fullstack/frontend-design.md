@@ -110,7 +110,7 @@ Mở nguồn trên màn hình 360px:
 | Completed answered |Complete thay buffer bằng answer/citation chuẩn; marker mở nguồn |
 | Completed insufficient |Thông báo thiếu căn cứ riêng, không tạo thẻ citation giả |
 | Failed đã rõ |Thông báo code/trace an toàn; nếu retryable và là lượt cuối thì retry với UUID mới |
-| Mạng lỗi/dừng nhận, outcomeUnknown |Giữ UUID và receipt; retry/reconcile đúng lượt, không tự gửi lượt khác |
+| Mạng lỗi/dừng nhận, outcomeUnknown |Giữ UUID và receipt; retry/reconcile đúng lượt. Khi đã biết hội thoại, có nút Tải lại trạng thái đọc history mà không gửi thêm câu hỏi; trước meta chưa có ID thì giữ thao tác thử lại cùng UUID |
 | History còn pending |Chặn gửi mới; có nút tải lại trạng thái, không query AI lại chỉ vì reload |
 | Đổi conv khi request cũ về |Abort nhận và kiểm epoch/route, không gắn answer cũ vào lựa chọn mới |
 | Xóa conv |Xác nhận xóa; server chặn pending409; không xóa corpus |
@@ -129,6 +129,9 @@ UUID sau reload trước meta. `VITE_MOCK_MODE` chỉ là nhãn, không tạo c�
   để đối chiếu nguồn gốc; không thay phiên bản hoặc xóa answer đang xem.
 - Nội dung Điều là text với whitespace-pre-wrap; highlight Khoản/Điểm chỉ khi
   `locateCitedUnit` xác định được đúng đoạn. Không chắc thì hiển thị toàn Điều và báo rõ.
+- Tự cuộn tới đoạn được đánh dấu khi tải xong hoặc đổi citation, kể cả khi hai citation
+  trỏ cùng Điều/Khoản. Nút Văn bản nguồn gốc mở nguồn của Điều đã tải hoặc nguồn trong
+  citation khi tra cứu trả404.
 - Link nguồn mở tab mới với noopener/noreferrer; URL do validator kiểm HTTPS/host.
 - AnswerContent dùng parser cấu trúc giới hạn: heading/bold/list/paragraph/marker;
   render React nodes/text. Không dùng dangerouslySetInnerHTML hoặc hứa hỗ trợ toàn bộ Markdown.
