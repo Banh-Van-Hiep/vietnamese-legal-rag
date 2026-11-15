@@ -1,5 +1,7 @@
 __pycache__/
+**/__pycache__/
 *.py[cod]
+*.pyc
 *.egg-info/
 build/
 dist/
@@ -10,6 +12,8 @@ venv/
 .pytest_cache/
 *.log
 node_modules/
+**/node_modules/
+*checkpoint.json
 
 # Keep Spec Kit tooling local.
 /.specify/
