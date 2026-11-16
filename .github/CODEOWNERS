@@ -1,5 +1,27 @@
-/src/team1_data/        @team1-lead
-/src/team2_rag/         @team2-lead
+# Người duyệt mặc định cho mỗi vùng của repo. Dòng sau thắng dòng trước.
+# TODO (cần nhóm chốt): thay @team1-lead, @team2-lead, @team3-lead bằng handle GitHub thật
+# của trưởng mỗi team; handle không tồn tại sẽ không được GitHub tự động request review.
+
+# Team 1 — Data & Retrieval
+/data/                  @team1-lead
+/team1_data/            @team1-lead
+/docs/team1_data/       @team1-lead
+/evaluation/            @team1-lead @team2-lead
+
+# Team 2 — RAG & LLM
+/team2_rag/             @team2-lead
+/docs/team2_rag/        @team2-lead
+/notebooks/             @team2-lead
+
+# Team 3 — Fullstack
 /team3_fullstack/       @team3-lead
-/contracts/         @team1-lead @team2-lead @team3-lead
-/evaluation/        @team1-lead @team2-lead
+/docs/team3_fullstack/  @team3-lead
+
+# Dùng chung: cần cả ba team duyệt
+/contracts/             @team1-lead @team2-lead @team3-lead
+/docs/ARCHITECTURE.md   @team1-lead @team2-lead @team3-lead
+/docs/REQUIREMENTS.md   @team1-lead @team2-lead @team3-lead
+/docs/decisions/        @team1-lead @team2-lead @team3-lead
+/AGENTS.md              @team1-lead @team2-lead @team3-lead
+/scripts/harness_verify.py @team1-lead @team2-lead @team3-lead
+/.github/               @team1-lead @team2-lead @team3-lead

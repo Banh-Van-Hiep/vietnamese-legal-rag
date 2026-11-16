@@ -2,6 +2,16 @@
 
 Tài liệu này là điểm vào trung tâm (Single Entrypoint) theo nguyên lý **Progressive Disclosure** của Harness Engineering. Mọi lập trình viên và AI Coding Agent phải đọc file này trước khi sửa code.
 
+## 0. Setup (chạy một lần trên máy mới)
+
+```powershell
+python -m venv .venv
+.venv\Scripts\python.exe -m pip install -e ".[test,api,retrieval]"
+.venv\Scripts\python.exe scripts/harness_verify.py
+```
+
+Đặc tả chuẩn: `docs/ARCHITECTURE.md`. Yêu cầu và truy vết: `docs/REQUIREMENTS.md`. Lý do của các quyết định kỹ thuật: `docs/decisions/` (đọc trước khi đổi một quyết định đã ghi).
+
 ---
 
 ## 1. Bản Đồ Kiến Trúc & Ranh Giới Phân Hệ (Module Boundaries)
@@ -15,7 +25,7 @@ Dự án được chia thành 3 phân hệ độc lập giao tiếp qua hợp đ
 | **Team 3 (Fullstack & System)** | `team3_fullstack/` | `docs/team3_fullstack/` | `team3_fullstack/docs_3/` | `team3_fullstack/AGENTS.md` |
 | **Contracts (SSOT Schemas)** | `contracts/v0.1/` | `docs/ARCHITECTURE.md` | - | Xem mục 2 & 3 bên dưới |
 
-- **Quy tắc tài liệu bắt buộc:** Thư mục gốc `docs/` chỉ chứa `ARCHITECTURE.md` và `CODING_CONVENTIONS.md`. Mọi báo cáo thiết kế/benchmark của team nào phải đặt trong `docs/teamX_*/`, và kế hoạch công việc hàng tuần (`weekX/tasks.md`) phải đặt trong `teamX_*/docs_X/`.
+- **Quy tắc tài liệu bắt buộc:** Thư mục gốc `docs/` chỉ chứa `README.md`, `ARCHITECTURE.md`, `CODING_CONVENTIONS.md`, `REQUIREMENTS.md`, thư mục ADR `decisions/` và ba thư mục `teamX_*/` (Gate 1 kiểm danh sách này). Mọi báo cáo thiết kế/benchmark của team nào phải đặt trong `docs/teamX_*/`, và kế hoạch công việc hàng tuần (`weekX/tasks.md`) phải đặt trong `teamX_*/docs_X/`.
 
 ---
 

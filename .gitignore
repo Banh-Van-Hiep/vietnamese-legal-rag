@@ -27,3 +27,6 @@ node_modules/
 
 /data/qdrant_storage/
 docs/team2_rag/benchmark_checkpoint.json
+
+# Vite writes this temp file while loading vite.config.ts
+*.timestamp-*.mjs

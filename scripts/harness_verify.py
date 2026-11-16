@@ -30,36 +30,48 @@ def check_gate_1_hygiene() -> list[str]:
         if not af.exists():
             errors.append(f"[Gate 1 - Hygiene] Thiếu file định tuyến ngữ cảnh: {af.relative_to(ROOT)}")
 
+    # Gate 1 chỉ xét file được Git track: file cá nhân chưa track trên máy không làm fail gate,
+    # còn file tạm đã lỡ commit thì bị bắt.
+    try:
+        tracked = subprocess.check_output(
+            ["git", "ls-files", "-z"], cwd=ROOT, text=True, encoding="utf-8"
+        ).split("\0")
+        tracked = [f for f in tracked if f]
+    except (OSError, subprocess.CalledProcessError) as exc:
+        return [f"[Gate 1 - Hygiene] Không chạy được 'git ls-files' ({exc}); Gate 1 cần một Git checkout."]
+
     # 2. Kiểm tra cấu trúc thư mục docs/ gốc
-    docs_dir = ROOT / "docs"
     allowed_docs_root = {
         "ARCHITECTURE.md",
         "CODING_CONVENTIONS.md",
         "README.md",
+        "REQUIREMENTS.md",
+        "decisions",
         "team1_data",
         "team2_rag",
         "team3_fullstack",
     }
-    if docs_dir.exists():
-        actual_docs_root = {p.name for p in docs_dir.iterdir()}
-        unexpected = actual_docs_root - allowed_docs_root
-        if unexpected:
-            errors.append(f"[Gate 1 - Hygiene] Thư mục docs/ gốc chứa mục sai quy ước: {sorted(unexpected)}")
+    docs_root = {f.split("/")[1] for f in tracked if f.startswith("docs/") and f.count("/") >= 1}
+    unexpected = docs_root - allowed_docs_root
+    if unexpected:
+        errors.append(
+            f"[Gate 1 - Hygiene] Thư mục docs/ gốc chứa mục sai quy ước: {sorted(unexpected)}. "
+            "Báo cáo của team đặt trong docs/teamX_*/; xem quy tắc tài liệu trong AGENTS.md."
+        )
 
-    # 3. Kiểm tra không còn file checkpoint tạm chưa xóa
-    ckpt = ROOT / "docs/team2_rag/e2e_nfr07_checkpoint.json"
-    if ckpt.exists():
-        errors.append(f"[Gate 1 - Hygiene] File checkpoint tạm chưa được xóa: {ckpt.relative_to(ROOT)}")
+    # 3. Kiểm tra không còn file checkpoint hoặc file tạm bị commit
+    for f in tracked:
+        name = f.rsplit("/", 1)[-1]
+        if name.endswith("checkpoint.json"):
+            errors.append(f"[Gate 1 - Hygiene] File checkpoint tạm đang bị Git track: {f}. Chạy 'git rm --cached {f}'.")
+        if ".timestamp-" in name and name.endswith(".mjs"):
+            errors.append(f"[Gate 1 - Hygiene] File tạm của Vite đang bị Git track: {f}. Chạy 'git rm --cached {f}'.")
 
     # 4. Kiểm tra git index không track file .env hoặc node_modules
-    try:
-        tracked = subprocess.check_output(["git", "ls-files"], cwd=ROOT, text=True).splitlines()
-        if ".env" in tracked:
-            errors.append("[Gate 1 - Hygiene] File nhạy cảm '.env' đang bị Git track! Hãy chạy 'git rm --cached .env'.")
-        if any("node_modules/" in f for f in tracked):
-            errors.append("[Gate 1 - Hygiene] Thư mục 'node_modules/' đang bị Git track!")
-    except Exception:
-        pass
+    if any(f == ".env" or f.endswith("/.env") for f in tracked):
+        errors.append("[Gate 1 - Hygiene] File nhạy cảm '.env' đang bị Git track! Hãy chạy 'git rm --cached .env'.")
+    if any("node_modules/" in f for f in tracked):
+        errors.append("[Gate 1 - Hygiene] Thư mục 'node_modules/' đang bị Git track!")
 
     return errors
 
@@ -75,13 +87,35 @@ def check_gate_2_contracts() -> list[str]:
     if len(schema_files) < 5:
         errors.append(f"[Gate 2 - Contracts] Số lượng schema trong contracts/v0.1/ quá ít ({len(schema_files)} file).")
 
+    try:
+        from jsonschema import Draft202012Validator
+        from jsonschema.exceptions import SchemaError
+    except ImportError:
+        return errors + ["[Gate 2 - Contracts] Thiếu gói jsonschema. Cài bằng: pip install -e \".[test]\""]
+
     for sf in schema_files:
         try:
             data = json.loads(sf.read_text(encoding="utf-8"))
             if "type" not in data and "$schema" not in data:
                 errors.append(f"[Gate 2 - Contracts] File schema thiếu trường định nghĩa chuẩn: {sf.name}")
+            Draft202012Validator.check_schema(data)
+        except SchemaError as exc:
+            errors.append(f"[Gate 2 - Contracts] {sf.name} không phải JSON Schema 2020-12 hợp lệ: {exc.message}")
         except Exception as exc:
             errors.append(f"[Gate 2 - Contracts] Lỗi cú pháp JSON tại {sf.name}: {exc}")
+
+    # Chạy bộ ví dụ public (positive và negative) của contract SSE.
+    validator = contracts_dir / "validate_public_contract.py"
+    if validator.exists():
+        res = subprocess.run(
+            [sys.executable, str(validator)], cwd=ROOT, capture_output=True, text=True, encoding="utf-8"
+        )
+        if res.returncode != 0:
+            detail = (res.stdout + res.stderr).strip().splitlines()[-3:]
+            errors.append(
+                "[Gate 2 - Contracts] validate_public_contract.py thất bại: " + " | ".join(detail)
+                + ". Kiểm tra đã cài jsonschema[format] chưa."
+            )
     return errors
 
 
@@ -129,14 +163,22 @@ def check_gate_3_report_integrity() -> list[str]:
 
 
 def check_gate_4_unit_tests() -> list[str]:
-    cmd = [sys.executable, "-m", "pytest", "team2_rag/tests", "-q"]
+    suites = ["team2_rag/tests", "tests"]
+    cmd = [sys.executable, "-m", "pytest", *suites, "-q", "-p", "no:cacheprovider"]
     res = subprocess.run(cmd, cwd=ROOT)
+    if res.returncode == 5:
+        return ["[Gate 4 - Unit Tests] pytest không tìm thấy test nào."]
     if res.returncode != 0:
-        return ["[Gate 4 - Unit Tests] Bộ kiểm thử 'team2_rag/tests' thất bại."]
+        return [f"[Gate 4 - Unit Tests] Bộ kiểm thử {suites} thất bại (pytest exit {res.returncode}). "
+                "Nếu báo 'No module named pytest', cài bằng: pip install -e \".[test,api,retrieval]\""]
     return []
 
 
 def main() -> int:
+    # Trên Windows, stdout bị chuyển sang file/pipe mặc định dùng cp1252 và crash với tiếng Việt.
+    for stream in (sys.stdout, sys.stderr):
+        if hasattr(stream, "reconfigure"):
+            stream.reconfigure(encoding="utf-8")
     print("==========================================================")
     print("   VIETNAMESE LEGAL RAG — HARNESS VERIFICATION GATES")
     print("==========================================================")

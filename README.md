@@ -1,6 +1,6 @@
 # Vietnamese Legal RAG Assistant
 
-Project xây dựng trợ lý hỏi đáp pháp luật Việt Nam dựa trên Retrieval-Augmented Generation (RAG). Đặc tả chung nằm trong [docs/](docs/README.md); nhiệm vụ và kết quả nghiệm thu Team 3 nằm trong [docs_3/](team3_fullstack/docs_3/README.md). Kết quả mock được phân biệt với pipeline RAG thật.
+Project xây dựng trợ lý hỏi đáp pháp luật doanh nghiệp Việt Nam dựa trên Retrieval-Augmented Generation (RAG). Người mới (và AI agent) đọc [AGENTS.md](AGENTS.md) trước: file này chỉ đường tới code, tài liệu, lệnh setup và lệnh kiểm chứng của từng team. Đặc tả chuẩn là [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md). Kết quả mock được phân biệt với pipeline RAG thật.
 
 ## System Flow
 
@@ -30,60 +30,62 @@ Hybrid Retrieval và RRF nằm trong phạm vi Team 1. Team 2 bắt đầu với
 
 ## Team Responsibilities
 
-### Team 1 — Data & Retrieval (`data/`, `scripts/`)
+### Team 1 — Data & Retrieval (`data/`, `team1_data/`, `evaluation/`)
 
-Phụ trách legal data, data cleaning, chunking, metadata, BM25 retrieval, dense retrieval, embedding, vector store/vector database, hybrid retrieval, RRF và retrieval evaluation. Hybrid Retrieval và RRF thuộc Team 1, không thuộc Team 2.
+Phụ trách legal data, data cleaning, chunking, metadata, Article Store, BM25 retrieval, dense retrieval, embedding, vector store, hybrid retrieval (RRF), Golden Dev Set và retrieval evaluation. Chỉ dẫn: [team1_data/AGENTS.md](team1_data/AGENTS.md).
 
 ### Team 2 — RAG & LLM (`team2_rag/`)
 
-Phụ trách reranker, context builder, prompt, LLM, citation, RAG pipeline, RAG evaluation, answer quality, hallucination/grounding và citation verification.
+Phụ trách reranker, context builder, prompt, LLM client, citation verification, FastAPI AI service (`/internal/v1/*`), RAG evaluation và benchmark. Chỉ dẫn: [team2_rag/AGENTS.md](team2_rag/AGENTS.md).
 
 ### Team 3 — Fullstack (`team3_fullstack/`)
 
-Phụ trách backend, REST API, frontend, UI/UX, document viewer, integration và deployment.
+Phụ trách backend Spring Boot, public API/SSE, frontend React, Document Viewer, đo latency end-to-end và deployment. Chỉ dẫn: [team3_fullstack/AGENTS.md](team3_fullstack/AGENTS.md).
 
 ## Repository Structure
 
 ```text
 .
-├── .github/          # CODEOWNERS và Pull Request template
-├── configs/          # Cấu hình dùng chung (chưa có implementation)
-├── contracts/        # Interface/data contract giữa các team, xem contracts/v0.1/CONTRACT.md
+├── AGENTS.md              # Điểm vào cho người mới và AI agent: bản đồ repo, bất biến, lệnh kiểm chứng
+├── .github/               # CODEOWNERS, Pull Request template, workflow CI
+├── configs/               # File env mẫu (team2-api.env.example)
+├── contracts/v0.1/        # Contract JSON Schema giữa các team (xem CONTRACT.md)
 ├── data/
-│   └── doanh-nghiep/ # Corpus pháp luật doanh nghiệp: raw, interim, processed, registry
-├── docs/             # Tài liệu project
-│   ├── team1_data/
-│   ├── team2_rag/
-│   └── team3_fullstack/
-├── evaluation/       # Evaluation dùng chung (chưa có code)
-├── scripts/          # Script dùng chung, hiện có preprocess_legal_data.py
-├── specs/            # Mục lục vị trí hồ sơ; task Team 3 ở team3_fullstack/docs_3/
-├── team2_rag/        # Code RAG/LLM của Team 2
-├── team3_fullstack/  # Backend/Frontend của Team 3
-└── tests/            # Test dùng chung
+│   ├── doanh-nghiep/      # Corpus P0: raw, interim, processed (chunks.jsonl, articles.jsonl), registry
+│   └── doanh-nghiep-mo-rong/  # Corpus mở rộng 1.000 văn bản, chưa dùng trong runtime
+├── docs/
+│   ├── ARCHITECTURE.md    # Đặc tả chuẩn
+│   ├── REQUIREMENTS.md    # BR, NFR-10..16, truy vết, cổng nghiệm thu
+│   ├── CODING_CONVENTIONS.md
+│   ├── decisions/         # ADR: vì sao nhóm chọn như vậy
+│   └── team1_data/ team2_rag/ team3_fullstack/   # Thiết kế và báo cáo của từng team
+├── evaluation/retrieval/  # Cấu hình và kết quả các lượt đánh giá retrieval
+├── notebooks/             # Notebook chạy benchmark trên Colab
+├── scripts/               # Script dùng chung, gồm harness_verify.py (4 cổng kiểm chứng)
+├── team1_data/            # Code retrieval, Golden Dev Set, evaluation; docs_1/ là task theo tuần
+├── team2_rag/             # Code RAG/LLM và AI service; docs_2/ là task theo tuần
+├── team3_fullstack/       # backend/ (Spring Boot), frontend/ (React), tools/; docs_3/ là task theo tuần
+└── tests/                 # Test Python dùng chung, kiểm chỗ các team gặp nhau
 ```
 
-Các thư mục team độc lập về implementation. Project chạy của Team 3 ở `team3_fullstack/`; xem [mục lục Team 3](docs/team3_fullstack/README.md). Đọc [nhiệm vụ và nghiệm thu Team 3](team3_fullstack/docs_3/README.md) sau khi nhận/merge code; không suy ra trạng thái RAG thật từ mock hoặc từ một báo cáo cũ.
+Thiết kế ổn định nằm trong `docs/teamX_*/`; kế hoạch và kết quả từng tuần nằm trong `teamX_*/docs_X/weekN/tasks.md`. Không suy ra trạng thái RAG thật từ mock hoặc từ một báo cáo cũ.
 
 ## Shared Contracts
 
-`contracts/` là nơi thống nhất dữ liệu trao đổi giữa các team, không áp đặt cách triển khai bên trong từng team. Luồng giao tiếp dự kiến:
+`contracts/v0.1/` là nơi thống nhất dữ liệu trao đổi giữa các team, không áp đặt cách triển khai bên trong từng team. Đọc [contracts/v0.1/CONTRACT.md](contracts/v0.1/CONTRACT.md) để biết schema nào dùng ở ranh giới nào.
 
 ```text
-Team 1 -- Retrieval results / chunks --> Team 2
-Team 2 -- Answer + citations ---------> Team 3
-Team 3 -- User question --------------> Team 2
+Frontend --query_request / chat_stream--> Java backend
+Java backend --POST /internal/v1/query--> Team 2 AI service --rag_response--> Java backend
+Team 1 --retrieval_output / internal_article--> Team 2
 ```
 
-Thiết kế interface/API cho Team 2 được ghi tại [`docs/team2_rag/rag-io-specification.md`](docs/team2_rag/rag-io-specification.md). Bộ contract chung đề xuất theo đặc tả Team 1/3 nằm tại [`contracts/v0.1/`](contracts/v0.1/). Bộ [`docs/team2_rag/schemas/`](docs/team2_rag/schemas/) là schema nháp cũ, giữ để tham khảo và không dùng để validate giao tiếp liên team v1.2. Các team cần review và xác nhận contract trước khi triển khai.
-
-## Team 2 Week 1 Design
-
-Tài liệu phân tích và thiết kế RAG & LLM của Team 2 bắt đầu tại [`docs/team2_rag/rag-flow.md`](docs/team2_rag/rag-flow.md), cùng API/interface specification tại [`docs/team2_rag/rag-io-specification.md`](docs/team2_rag/rag-io-specification.md). Week 1 không triển khai chức năng RAG.
+Schema trong `docs/team2_rag/schemas/` là bản nháp cũ của Team 2, không dùng để validate giao tiếp giữa các team.
 
 ## Development Workflow
 
-- Đọc README của team và tài liệu trong `contracts/` trước khi tích hợp liên team.
+- Đọc `AGENTS.md` (gốc và của team) và tài liệu trong `contracts/` trước khi sửa code hoặc tích hợp liên team.
+- Chạy `python scripts/harness_verify.py` trước khi mở Pull Request; CI chạy lại các cổng này cho mỗi PR vào `develop`.
 - Giữ implementation nội bộ trong phạm vi team phụ trách.
 - Cập nhật tài liệu khi thay đổi phạm vi hoặc interface dùng chung.
 - Không commit API key, password hoặc secret; dùng `.env.example` làm danh sách placeholder.

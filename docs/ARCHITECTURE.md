@@ -4,6 +4,7 @@
 > **Tài liệu tham chiếu:** Baseline v2.0 hợp nhất BRD -> FRD -> NFR -> System Design -> App Design
 > **Lịch trình học phần:** 9 tuần thực hiện (Tuần 4 đến Tuần 12 theo quy đổi: Tuần mới = Tuần cũ + 3)
 > **Vai trò nguồn, xác nhận 28/10/2026:** Đây là đặc tả chính hiện hành về yêu cầu, hành vi và kiến trúc hệ thống. Quy chuẩn triển khai/nghiệm thu tại [CODING_CONVENTIONS.md](CODING_CONVENTIONS.md); tài liệu nhiệm vụ theo tuần phải bám đặc tả này. Nội dung thiết kế không tự chứng minh đã triển khai hoặc đã được nghiệm thu.
+> **Nguồn chuẩn, cập nhật 16/11/2026:** File này là nguồn chuẩn trong repo. Google Doc "Legal RAG" (Đặc tả tổng thể v2.0) là bản gốc để lưu trữ; phần hiện trạng của Doc dừng ở develop ngày 12/10/2026. Nếu Doc và file này khác nhau, file này thắng. Yêu cầu nghiệp vụ, NFR-10..16 và bảng truy vết nằm ở [REQUIREMENTS.md](REQUIREMENTS.md); các quyết định kỹ thuật nằm ở [decisions/](decisions/README.md).
 
 ---
 
@@ -134,7 +135,21 @@ Quy ước chuẩn: Public API giao tiếp ngoài dùng camelCase và ID số; I
 - Search Text: Search Text = context_header + "\n" + content.
 
 ### 4.3. Quản lý Hiệu lực Từng Đơn vị (Unit Applicability)
-Team 1 duy trì file data/registry/unit_applicability.jsonl kiểm soát trạng thái áp dụng đến cấp Khoản/Điểm: verified_current, verified_historical, pending_review. Chỉ các bản ghi verified_current mới được đưa vào index truy vấn mặc định.
+Thiết kế mục tiêu: Team 1 duy trì file `unit_applicability.jsonl` kiểm soát trạng thái áp dụng đến cấp Khoản/Điểm: verified_current, verified_historical, pending_review. Chỉ các bản ghi verified_current mới được đưa vào index truy vấn mặc định.
+
+**Trạng thái 16/11/2026:** file `unit_applicability.jsonl` chưa được triển khai. Hiệu lực hiện chỉ được ghi ở cấp văn bản (`effective_date`, `legal_status`) trong registry.
+
+### 4.4. Cấu trúc dữ liệu thực tế trong repo
+| Đường dẫn | Nội dung | Người dùng |
+| :--- | :--- | :--- |
+| `data/doanh-nghiep/raw/`, `interim/` | Văn bản gốc và text đã làm sạch của corpus P0 (8 văn bản) | Pipeline Team 1 |
+| `data/doanh-nghiep/registry/documents.json` | Metadata văn bản: số hiệu, ngày ban hành, `effective_date`, `legal_status`, `source_url` | Team 1, Team 2 |
+| `data/doanh-nghiep/processed/chunks.jsonl` | 2.576 chunk kèm metadata (mô tả ở `docs/team1_data/metadata-specification.md`) | Retrieval Team 1 |
+| `data/doanh-nghiep/processed/articles.jsonl` | Article Store: 635 Điều nguyên văn, khóa `(document_id, article_id)`, 6 trường của `contracts/v0.1/internal_article.schema.json` | `get_article`, Viewer |
+| `data/doanh-nghiep-mo-rong/` | Corpus mở rộng 1.000 văn bản (chunk nén `.jsonl.gz`); chưa dùng trong runtime | Thử nghiệm Team 1 |
+| `data/index/`, `data/qdrant_storage/` | Index BM25 và vector, sinh lại bằng lệnh build, không commit | Runtime |
+
+`data/doanh-nghiep/chunk_documents.py` sinh cả `chunks.jsonl` và `articles.jsonl` từ cùng một lần tách, nên hai file luôn cùng snapshot.
 
 ---
 
@@ -189,6 +204,25 @@ Cấu trúc JSON phản hồi sự cố:
 | Treo xử lý quá 60 giây | 503 | PROCESSING_INTERRUPTED | true | Tự động hủy bởi background recovery. |
 | Timeout toàn trình vượt 45s - 50s | 504 | UPSTREAM_TIMEOUT | true | Ngắt kết nối và đóng stream có kiểm soát. |
 
+### 7.1. Ánh xạ mã lỗi nội bộ (Python AI) → public (Java)
+AI service trả mã nội bộ trong cùng envelope `{"error": {...}}`. Java backend đổi sang mã public theo bảng dưới; không đổi `retryable`. Mã nội bộ không bao giờ hiện ra frontend.
+
+| Tình huống ở AI service | HTTP nội bộ | Mã nội bộ | Mã public (Java) | retryable |
+| :--- | :---: | :--- | :--- | :---: |
+| LLM trả sai cấu trúc JSON | 502 | INVALID_LLM_OUTPUT | UPSTREAM_INVALID_RESPONSE | false |
+| Citation sai hoặc nằm ngoài context | 502 | CITATION_INVALID | UPSTREAM_INVALID_RESPONSE | false |
+| LLM provider không phản hồi, hoặc slot LLM đang bận | 503 | LLM_UNAVAILABLE | SERVICE_UNAVAILABLE | true |
+| Index retrieval chưa sẵn sàng hoặc lỗi | 503 | RETRIEVAL_UNAVAILABLE | SERVICE_UNAVAILABLE | true |
+| Article Store không đọc được (thiếu `articles.jsonl` hoặc có dòng hỏng) | 503 | RETRIEVAL_UNAVAILABLE | SERVICE_UNAVAILABLE | true |
+| Hết deadline LLM | 504 | LLM_TIMEOUT | UPSTREAM_TIMEOUT | true |
+| Hết deadline retrieval | 504 | RETRIEVAL_TIMEOUT | UPSTREAM_TIMEOUT | true |
+| Không có văn bản / Điều được yêu cầu | 404 | DOCUMENT_NOT_FOUND / ARTICLE_NOT_FOUND | giữ nguyên | false |
+| `document_id` / `article_id` sai định dạng | 400 | INVALID_REQUEST | giữ nguyên | false |
+| Query nội bộ trả 4xx khác | 4xx | (bất kỳ) | UPSTREAM_CONTRACT_ERROR (HTTP 502) | false |
+| Envelope lỗi sai cấu trúc | — | — | UPSTREAM_INVALID_RESPONSE | false |
+
+Article Store không đọc được là lỗi kỹ thuật: AI service không được âm thầm dựng lại Điều từ chunk và không được trả `insufficient_context`.
+
 ---
 
 ## 8. Ngân Sách Hiệu Năng & Mục Tiêu Nghiệm Thu (NFRs & Verification)
@@ -198,11 +232,21 @@ Cấu trúc JSON phản hồi sự cố:
 - Retrieval p95: <= 1 giây (Đo sau warm-up trên phần cứng tiêu chuẩn).
 - Timeout giao tiếp: Backend chờ AI tối đa 50 giây; Frontend chờ Backend tối đa 60 giây.
 
+| Mã | Yêu cầu | Phạm vi đo |
+| :--- | :--- | :--- |
+| NFR-06 | Retrieval p95 ≤ 1 giây; timeout 5 giây | Sau warm-up; báo cáo ghi corpus, model và phần cứng |
+| NFR-07 | Query end-to-end p95 ≤ 45 giây (AI deadline 45 giây) | 50 query hợp lệ; tách latency theo phase; ghi cả tỷ lệ lỗi |
+| NFR-08 | Chuỗi timeout: AI 45 s < Backend 50 s (connect ≤ 2 s) < Frontend 60 s | Đo timeout và kết quả đến muộn; không cộng timeout từng phase thành deadline mới |
+| NFR-09 | Viewer: Java → AI ≤ 10 giây; Frontend hiển thị ≤ 15 giây; `get_article` p95 ≤ 200 ms; health p95 ≤ 1 giây | Test endpoint `GET /internal/v1/documents/{document_id}/articles/{article_id}` và các lỗi 400/404/503 ở mục 7.1 |
+
+Mọi báo cáo đo phải lưu `raw_results` của từng lần chạy và tính số tổng hợp từ đó (bất biến số 5 trong `AGENTS.md`). Điều kiện "5 người dùng đồng thời" của NFR-07 trong bản Google Doc đang mâu thuẫn với khóa 1 lượt LLM trong `AGENTS.md`; xem [ADR 0004](decisions/0004-single-llm-slot.md).
+
 ### 8.2. Tiêu chuẩn Đánh giá Chất lượng (Project 1 Evaluation Gates)
 
 #### A. Cấu trúc Golden Dataset
 - **Quy mô:** Tuần 5 có 30–50 câu (khởi đầu); Tuần 7 đóng băng Golden Dataset v1 gồm 100–150 câu. Phân tầng xấp xỉ 60% Dev / 40% Test (tỷ lệ khoảng 75% answerable, 25% unanswerable).
-- **Cấu trúc bản ghi (File `golden_phase1_30cai.json` hiện hữu gồm 8 trường):**
+- **File chuẩn:** Dev Set là `team1_data/golden/golden_phase1.json` (110 câu, `split: "dev"`, đóng băng ngày 10/11/2026; hash sha256 ghi trong `golden_phase1.manifest.json`). Câu ngoài phạm vi nằm ở `team1_data/golden/out_of_scope_v1.json`. File `team2_rag/data/golden/golden_phase1_30cai.json` là bộ 50 câu Team 2 dùng để đo tải, không phải Golden chuẩn. Test set độc lập (khoảng 40%) chưa được tạo.
+- **Cấu trúc bản ghi (8 trường cốt lõi; Dev Set có thêm `split`, `relevant_unit_groups`, `review_status`):**
   - `id`: Định danh duy nhất và ổn định (cho phép tiền tố đóng góp, VD: `gold_team3_001`; ví dụ công khai không dùng danh tính cá nhân).
   - `question`: Câu hỏi tiếng Việt thực tế từ người dùng.
   - `expected_status`: `"answered"` hoặc `"insufficient_context"`.
@@ -211,7 +255,7 @@ Cấu trúc JSON phản hồi sự cố:
   - `citation`: Nhãn trích dẫn kỳ vọng (VD: `Điều 12 Luật Doanh nghiệp 2020`).
   - `category`: Nhóm chủ đề (thành lập, vốn, quản trị, giải thể, ngoài phạm vi...).
   - `author`: Thành viên đóng góp câu hỏi.
-- **Lưu ý kỹ thuật:** Script validator tự động hiện tại của nhóm đang kiểm tra nhầm enum `answerable` thay vì `answered` -> Cần sửa lại validator cho khớp với cấu trúc `answered` của dataset để tránh báo lỗi giả.
+- **Validator:** `team2_rag/validate_golden.py` kiểm `expected_status` theo enum `answered` / `insufficient_context` (đã sửa lỗi nhận nhầm `answerable` trước đây).
 
 #### B. Các Cổng Chất lượng Bắt buộc (Evaluation Gates)
 1. Retrieval Recall@5: >= 85% (Bắt buộc cho MVP trên tập câu hỏi answerable). Đánh giá bổ sung Recall@20 >= 90% và MRR@20.
