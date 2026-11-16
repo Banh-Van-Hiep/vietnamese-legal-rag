@@ -22,6 +22,7 @@ class HttpAiClientTests {
     private volatile int status = 200;
     private volatile long delay;
     private volatile long bodyDelay;
+    private volatile long articleDelay;
     private String requestBody;
     private String trace;
     private final AtomicInteger calls = new AtomicInteger();
@@ -52,6 +53,18 @@ class HttpAiClientTests {
                 exchange.getResponseBody().write(bytes);
                 }
             } finally { exchange.close(); }
+        });
+        server.createContext("/internal/v1/documents/", exchange -> {
+            calls.incrementAndGet();
+            try { Thread.sleep(articleDelay); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
+            byte[] bytes = """
+                {"document_id":"mock_v1","document_title":"Văn bản kiểm thử","article_id":"art1",
+                "article":"Điều 1","content":"Nội dung kiểm thử.","source_url":"https://example.com/mock-law"}
+                """.getBytes(StandardCharsets.UTF_8);
+            exchange.getResponseHeaders().set("Content-Type", "application/json; charset=utf-8");
+            try { exchange.sendResponseHeaders(200, bytes.length); exchange.getResponseBody().write(bytes); }
+            catch (java.io.IOException ignored) { /* client gave up after its timeout */ }
+            finally { exchange.close(); }
         });
         server.start();
         ai = new HttpAiClient("http://127.0.0.1:" + server.getAddress().getPort(), 1000);
@@ -119,6 +132,28 @@ class HttpAiClientTests {
         bodyDelay = 1000;
         assertEquals(504, assertThrows(ApiException.class, () -> ai.query("Q")).status());
         assertEquals(1, calls.get());
+    }
+    @Test void articleUsesItsOwnShorterTimeout() {
+        // NFR-09: Viewer has its own budget, independent of the 50 s query timeout.
+        ai = new HttpAiClient("http://127.0.0.1:" + server.getAddress().getPort(), 5000, 300);
+        articleDelay = 2000;
+        long started = System.nanoTime();
+        var e = assertThrows(ApiException.class, () -> ai.article("mock_v1", "art1"));
+        long elapsedMs = (System.nanoTime() - started) / 1_000_000;
+        assertEquals(504, e.status());
+        assertEquals("UPSTREAM_TIMEOUT", e.body().error().code());
+        assertTrue(elapsedMs < 1500, "article waited " + elapsedMs + " ms");
+        assertEquals(1, calls.get());
+    }
+    @Test void articleWithinBudgetSucceeds() {
+        ai = new HttpAiClient("http://127.0.0.1:" + server.getAddress().getPort(), 5000, 1000);
+        assertEquals("Điều 1", ai.article("mock_v1", "art1").article());
+    }
+    @Test void articleTimeoutNeverExceedsTenSeconds() {
+        String url = "http://127.0.0.1:" + server.getAddress().getPort();
+        assertThrows(IllegalArgumentException.class, () -> new HttpAiClient(url, 50000, 10001));
+        assertThrows(IllegalArgumentException.class, () -> new HttpAiClient(url, 50000, 0));
+        new HttpAiClient(url, 50000, 10000);
     }
     @Test void connectionFailureIsUnavailable() {
         int port = server.getAddress().getPort(); server.stop(0);
