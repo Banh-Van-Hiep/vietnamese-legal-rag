@@ -1,20 +1,28 @@
-# Shared Contracts (Contract-First SSOT)
+# Shared Contracts
 
-Thư mục `contracts/v0.1/` là nơi lưu trữ tập trung toàn bộ JSON Schema (Single Source of Truth) định nghĩa hợp đồng giao tiếp giữa Team 1, Team 2 và Team 3.
+[Danh mục và mapping từng file](v0.1/CONTRACT.md) là điểm đọc chính.
+Giữ đường dẫn contracts/v0.1/ để các bên tiếp tục tìm đúng file, không tạo bộ public
+song song. Căn cứ yêu cầu: [ARCHITECTURE](../docs/ARCHITECTURE.md).
 
-[Danh mục và mapping chi tiết từng file](v0.1/CONTRACT.md) là điểm đọc chính.
-Giữ nguyên đường dẫn `contracts/v0.1/` để các bên tiếp tục tìm đúng file theo kiến trúc [ARCHITECTURE](../docs/ARCHITECTURE.md).
+| File | Ranh giới | Trạng thái cập nhật 29/10/2026 |
+| --- | --- | --- |
+| [query_request.schema.json](v0.1/query_request.schema.json) | FE → Java /api/v1/chat/stream | Sửa trực tiếp request public theo baseline: camelCase/ID số |
+| [chat_stream.schema.json](v0.1/chat_stream.schema.json) | Java → FE SSE | Bổ sung payload meta/delta/complete và public citation/error |
+| [retrieval_output.schema.json](v0.1/retrieval_output.schema.json) | Team 1 → Team 2 | Giữ nguyên |
+| [rag_response.schema.json](v0.1/rag_response.schema.json) | Team 2 → Java | Giữ nguyên, snake_case; không phải public complete |
+| [internal_article.schema.json](v0.1/internal_article.schema.json) | Python → Java Viewer | Giữ nguyên |
+| [error_response.schema.json](v0.1/error_response.schema.json) | Lỗi nội bộ/dùng chung hiện có | Giữ nguyên; public error có definition trong chat_stream |
 
-| File Schema | Ranh giới giao tiếp | Chức năng chính |
-| :--- | :--- | :--- |
-| [retrieval_output.schema.json](v0.1/retrieval_output.schema.json) | Team 1 → Team 2 | Cấu trúc danh sách candidate chunks trả về sau Retrieval |
-| [chunk_metadata.schema.json](v0.1/chunk_metadata.schema.json) | Team 1 → Team 2 | Định nghĩa đầy đủ metadata 12 trường của từng chunk |
-| [rerank_output.schema.json](v0.1/rerank_output.schema.json) | Team 2 Nội bộ | Candidate chunks sau khi chấm điểm và xếp hạng qua Reranker |
-| [context.schema.json](v0.1/context.schema.json) | Team 2 Nội bộ | Ngữ cảnh nén và format nhãn [C1]..[Cn] đưa vào Prompt |
-| [llm_input.schema.json](v0.1/llm_input.schema.json) | Team 2 Nội bộ | Định dạng tham số và prompt hoàn chỉnh gửi tới LLM Provider |
-| [llm_output.schema.json](v0.1/llm_output.schema.json) | Team 2 Nội bộ | Cấu trúc JSON bắt buộc mà LLM phản hồi |
-| [rag_response.schema.json](v0.1/rag_response.schema.json) | Team 2 → Java Backend | Định dạng phản hồi cuối cùng của RAG Pipeline |
-| [internal_article.schema.json](v0.1/internal_article.schema.json) | Python → Java Backend | Endpoint xem chi tiết Điều luật (`/internal/v1/documents/...`) |
-| [error_response.schema.json](v0.1/error_response.schema.json) | Dùng chung toàn hệ thống | Chuẩn hóa cấu trúc lỗi wire code và cờ `retryable` |
-| [query_request.schema.json](v0.1/query_request.schema.json) | Frontend → Java Backend | Request gửi câu hỏi và lịch sử hội thoại |
-| [chat_stream.schema.json](v0.1/chat_stream.schema.json) | Java Backend → Frontend | Sự kiện Server-Sent Events (SSE) stream câu trả lời về UI |
+query_request hiện không còn kiểm JSON legacy /api/v1/query. Tên thư mục v0.1 không
+định nghĩa phiên bản URL; public chat vẫn /api/v1/chat/stream. Không sửa API runtime.
+Request question/history nội bộ không dùng query_request public.
+
+[Validator public](v0.1/validate_public_contract.py) và [fixture mock](v0.1/public_examples.json)
+phục vụ kiểm payload. Các schema nháp tại docs/team2_rag/schemas không thay bộ này.
+Không suy schema hợp lệ thành dịch vụ live đã hoàn thành hoặc đáp án đã đúng pháp lý.
+
+Ghi chú 16/11/2026: commit `969d3da` từng chép 7 schema nháp (request, citation, context,
+llm_input, llm_output, rerank_output, chunk_metadata) vào `v0.1/`. Các file đó đã được gỡ;
+bản gốc vẫn ở `docs/team2_rag/schemas/` (nháp nội bộ Team 2) và
+`docs/team1_data/schemas/chunk_metadata.schema.json` (schema dữ liệu nội bộ Team 1,
+được `scripts/preprocess_legal_data.py` dùng). Contract giữa các team chỉ gồm 6 schema ở bảng trên.
