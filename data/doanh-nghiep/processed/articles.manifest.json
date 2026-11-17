@@ -1,0 +1,8 @@
+{
+  "file": "articles.jsonl",
+  "schema": "contracts/v0.1/internal_article.schema.json",
+  "article_count": 635,
+  "document_count": 8,
+  "sha256": "2dc363048aba80b6042fc15228e24eef0a98bb2d604a1da257ea567a96821ab9",
+  "snapshot_date": "2026-11-16"
+}

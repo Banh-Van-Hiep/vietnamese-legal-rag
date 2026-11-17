@@ -11749,14 +11749,14 @@
     "document_title": "Hướng dẫn thực hiện Nghị định số 118/2003/NĐ-CP ngày 13/10/2003 của Chính phủ quy định xử phạt vi phạm hành chính trong lĩnh vực kinh doanh bảo hiểm",
     "issuing_authority": "Bộ Tài chính",
     "issued_date": "2004-04-12",
-    "effective_date": null,
+    "effective_date": "2004-05-07",
     "legal_status": "con_hieu_luc",
     "source_url": "https://vbpl.vn/van-ban/chi-tiet/thong-tu-so-31-2004-tt-btc-huong-dan-thuc-hien-nghi-dinh-so-118-2003-nd-cp-ngay-13-10-2003-cua-chinh-phu-quy-dinh-xu-phat-vi-pham-hanh-chinh-trong-linh-vuc-kinh-doanh-bao-hiem--110268",
     "source_format": "html",
     "source_dataset": "https://huggingface.co/datasets/th1nhng0/vietnamese-legal-documents",
     "source_dataset_id": "110268",
     "scope_tier": "near",
-    "note": "Lấy từ bộ dữ liệu HF (crawl vbpl.vn); source_url dựng theo mẫu vbpl.vn, chưa mở kiểm tra. effective_date chưa điền: khoản 1 Điều cuối ghi 'hiệu lực sau 15 ngày kể từ ngày đăng Công báo' nhưng chưa xác minh được ngày đăng Công báo (vbpl.vn trả 403 ngày 10/11/2026).",
+    "note": "Lấy từ bộ dữ liệu HF (crawl vbpl.vn); source_url dựng theo mẫu vbpl.vn, chưa mở kiểm tra. effective_date chưa điền: khoản 1 Điều cuối ghi 'hiệu lực sau 15 ngày kể từ ngày đăng Công báo' nhưng chưa xác minh được ngày đăng Công báo (vbpl.vn trả 403 ngày 10/11/2026). Đối chiếu ngày 17/11/2026: LuatVietnam ghi effective_date = 2004-05-07 (https://luatvietnam.vn/vi-pham-hanh-chinh/thong-tu-31-2004-tt-btc-bo-tai-chinh-16109-d1.html). Chưa đối chiếu được ngày đăng Công báo gốc. legal_status cần kiểm tra lại.",
     "document_id": "tt-31-2004-tt-btc-v1"
   },
   {
