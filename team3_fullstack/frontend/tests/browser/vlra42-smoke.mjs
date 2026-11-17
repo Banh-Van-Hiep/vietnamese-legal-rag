@@ -1,5 +1,6 @@
 /** Browser integration via installed Edge/Chrome DevTools; no framework dependency.
- * Prerequisites/run commands and fixture limits are in the VLRA42 quickstart. */
+ * Prerequisites/run commands and fixture limits are in the VLRA42 quickstart.
+ * Start Vite with VITE_MOCK_MODE=true: the mock badge is asserted and is hidden by default. */
 import assert from "node:assert/strict";
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
