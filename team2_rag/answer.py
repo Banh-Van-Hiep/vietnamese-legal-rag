@@ -60,6 +60,7 @@ def answer_from_rerank_detailed(
     max_context_chars: Optional[int] = DEFAULT_MAX_CONTEXT_CHARS,
     token_budget: Optional[TokenBudget] = None,
     request_id: Optional[str] = None,
+    llm_timeout_seconds: Optional[float] = None,
 ) -> GeneratedAnswer:
     """Sinh câu trả lời từ output của Reranker (candidate 12 trường của Team 1, đã xếp theo rerank).
 
@@ -105,7 +106,11 @@ def answer_from_rerank_detailed(
     if context.is_empty:
         return GeneratedAnswer(_insufficient(), (), context, model=getattr(llm_service.provider, 'actual_model', llm_service.provider.model))
 
-    result = llm_service.ask(question, context.text, history, request_id=request_id)
+    timeout_override = None
+    if llm_timeout_seconds is not None:
+        default_timeout = getattr(llm_service.provider, "timeout_seconds", 30.0)
+        timeout_override = min(default_timeout, llm_timeout_seconds) if llm_timeout_seconds > 0.5 else llm_timeout_seconds
+    result = llm_service.ask(question, context.text, history, request_id=request_id, timeout_seconds=timeout_override)
     out = result.output
     if out.status != STATUS_ANSWERED:
         return GeneratedAnswer(_insufficient(out.answer), (), context, model=result.model)
@@ -152,6 +157,7 @@ def generate_answer_detailed(
     settings: Optional[LLMSettings] = None,
     token_budget: Optional[TokenBudget] = None,
     request_id: Optional[str] = None,
+    llm_timeout_seconds: Optional[float] = None,
 ) -> GeneratedAnswer:
     """Luồng thật của VLRA-29: output Reranker -> context -> LLM -> RAGResponse đã kiểm tra citation.
 
@@ -166,7 +172,7 @@ def generate_answer_detailed(
         if token_budget is None and settings.context_window_tokens is not None:
             token_budget = token_budget_from_settings(settings)
     limits = {} if settings is None else {"max_chunks": settings.max_context_chunks, "max_context_chars": settings.max_context_chars}
-    return answer_from_rerank_detailed(rerank_output, llm_service, history, token_budget=token_budget, request_id=request_id, **limits)
+    return answer_from_rerank_detailed(rerank_output, llm_service, history, token_budget=token_budget, request_id=request_id, llm_timeout_seconds=llm_timeout_seconds, **limits)
 
 
 def generate_answer(*args, **kwargs) -> RAGResponse:

@@ -1,0 +1,70 @@
+# Chạy lại các cổng kiểm chứng của AGENTS.md cho mỗi Pull Request vào develop và main.
+# Một job fail thì PR chưa được merge.
+name: verify
+
+on:
+  pull_request:
+    branches: [develop, main]
+  push:
+    branches: [develop]
+  workflow_dispatch:
+
+concurrency:
+  group: verify-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  python:
+    name: Harness gates and Python tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[test,api,retrieval]"
+          pip install -r team3_fullstack/requirements-performance.txt
+      - name: Harness gates (hygiene, contracts, report integrity, tests/ and team2_rag/tests)
+        run: python scripts/harness_verify.py
+      - name: Team 3 Python tools
+        run: python -m pytest team3_fullstack/tests -q -p no:cacheprovider
+
+  backend:
+    name: Backend (Spring Boot)
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: team3_fullstack/backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "25"
+          cache: maven
+      - name: mvnw test
+        run: sh ./mvnw -B test
+
+  frontend:
+    name: Frontend (React)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: team3_fullstack/frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: team3_fullstack/frontend/package-lock.json
+      - run: npm ci
+      - run: npm test
+      - run: npm run build

@@ -35,10 +35,17 @@ class LLMService:
         self._sleep = sleep
         self._clock = clock
 
-    def generate(self, request: LLMInput, *, request_id: Optional[str] = None) -> LLMResult:
+    def generate(self, request: LLMInput, *, request_id: Optional[str] = None, timeout_seconds: Optional[float] = None) -> LLMResult:
         started = self._clock()
         prompt = render_prompt(request)
-        reply = self.provider.complete(prompt, request.params)
+        original_timeout = getattr(self.provider, "timeout_seconds", None)
+        if timeout_seconds is not None and hasattr(self.provider, "timeout_seconds"):
+            self.provider.timeout_seconds = timeout_seconds
+        try:
+            reply = self.provider.complete(prompt, request.params)
+        finally:
+            if timeout_seconds is not None and original_timeout is not None:
+                self.provider.timeout_seconds = original_timeout
         try:
             output = parse_llm_output(reply.text, provider=self.provider.name)
         except LLMBadOutputError:
@@ -52,10 +59,10 @@ class LLMService:
         return LLMResult(output, reply.text, self.provider.name, model, reply.usage, latency_ms, reply.finish_reason, 0)
 
     def ask(self, question: str, context: Union[str, Mapping], history: Optional[Iterable[Union[HistoryTurn, Mapping]]] = None,
-            *, request_id: Optional[str] = None, original_question: Optional[str] = None) -> LLMResult:
+            *, request_id: Optional[str] = None, original_question: Optional[str] = None, timeout_seconds: Optional[float] = None) -> LLMResult:
         from team2_rag.prompts.builder import PromptBuilder
         params = self.default_params
         if self.include_claims and (params.max_output_tokens or 0) < CLAIMS_MIN_OUTPUT_TOKENS:
             params = dataclasses.replace(params, max_output_tokens=CLAIMS_MIN_OUTPUT_TOKENS)
         request = PromptBuilder(params=params, include_claims=self.include_claims).build(question, context, history, original_question=original_question)
-        return self.generate(request, request_id=request_id)
+        return self.generate(request, request_id=request_id, timeout_seconds=timeout_seconds)

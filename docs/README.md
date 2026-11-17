@@ -10,6 +10,8 @@ không duy trì bảng task hoặc kết quả test theo tuần trong tài liệ
 | --- | --- |
 | [ARCHITECTURE.md](ARCHITECTURE.md) | Đặc tả chính hiện hành: phạm vi, yêu cầu, kiến trúc, interface và mục tiêu nghiệm thu |
 | [CODING_CONVENTIONS.md](CODING_CONVENTIONS.md) | Quy chuẩn code, interface, Git và phối hợp |
+| [REQUIREMENTS.md](REQUIREMENTS.md) | Mã BR/FR/NFR, bảng truy vết, danh mục test và cổng nghiệm thu G1–G5 |
+| [decisions/](decisions/README.md) | ADR: vì sao nhóm chọn từng quyết định kỹ thuật |
 
 ## Thiết kế các phân hệ
 

@@ -15,6 +15,7 @@ import java.util.concurrent.TimeoutException;
 import java.util.concurrent.ExecutionException;
 import com.legalai.backend.ai.dto.*;
 import com.legalai.backend.common.exception.ApiException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
@@ -36,18 +37,28 @@ public class HttpAiClient implements AiClient {
             .enable(DeserializationFeature.FAIL_ON_TRAILING_TOKENS).build();
     private final HttpClient client = HttpClient.newBuilder().connectTimeout(Duration.ofSeconds(2))
             .followRedirects(HttpClient.Redirect.NEVER).build();
+    /** NFR-09 (ARCHITECTURE §8.1): the Viewer call Java → AI never waits longer than 10 s. */
+    static final long MAX_ARTICLE_TIMEOUT_MS = 10_000;
     private final URI base;
     private final long timeoutMs;
+    private final long articleTimeoutMs;
 
+    public HttpAiClient(String url, long timeoutMs) {
+        this(url, timeoutMs, Math.min(timeoutMs, MAX_ARTICLE_TIMEOUT_MS));
+    }
+    @Autowired
     public HttpAiClient(@Value("${app.rag.base-url}") String url,
-            @Value("${app.rag.timeout-ms:50000}") long timeoutMs) {
+            @Value("${app.rag.timeout-ms:50000}") long timeoutMs,
+            @Value("${app.rag.article-timeout-ms:10000}") long articleTimeoutMs) {
         base = URI.create(url.endsWith("/") ? url : url + "/");
         if (!Set.of("http", "https").contains(base.getScheme()) || base.getHost() == null
                 || base.getUserInfo() != null || base.getQuery() != null || base.getFragment() != null
-                || timeoutMs < 1 || timeoutMs > 50000) {
+                || timeoutMs < 1 || timeoutMs > 50000
+                || articleTimeoutMs < 1 || articleTimeoutMs > MAX_ARTICLE_TIMEOUT_MS) {
             throw new IllegalArgumentException("RAG_BASE_URL or timeout is invalid");
         }
         this.timeoutMs = timeoutMs;
+        this.articleTimeoutMs = articleTimeoutMs;
     }
     @Override public RagAnswer query(String question) {
         return query(question, List.of(), UUID.randomUUID().toString());
@@ -82,7 +93,7 @@ public class HttpAiClient implements AiClient {
             throw ApiException.invalid();
         }
         var request = HttpRequest.newBuilder(base.resolve("internal/v1/documents/" + documentId
-                + "/articles/" + articleId)).timeout(Duration.ofMillis(timeoutMs))
+                + "/articles/" + articleId)).timeout(Duration.ofMillis(articleTimeoutMs))
                 .header("Accept", "application/json").header("X-Request-ID", requestId).GET().build();
         JsonNode n = exchange(request, true);
         exact(n, Set.of("document_id", "document_title", "article_id", "article", "content", "source_url"));
@@ -94,7 +105,7 @@ public class HttpAiClient implements AiClient {
         var future = client.sendAsync(request, HttpResponse.BodyHandlers.ofByteArray());
         HttpResponse<byte[]> response;
         try {
-            response = future.get(timeoutMs, TimeUnit.MILLISECONDS);
+            response = future.get(article ? articleTimeoutMs : timeoutMs, TimeUnit.MILLISECONDS);
         } catch (TimeoutException e) {
             future.cancel(true); throw timeout();
         } catch (InterruptedException e) {

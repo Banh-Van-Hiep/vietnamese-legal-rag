@@ -58,5 +58,54 @@ class ArticleLookupTests(unittest.TestCase):
             self.assertEqual(ctx.exception.status_code, 400)
 
 
+    def test_store_error_scenarios(self):
+        import tempfile
+        from unittest.mock import patch
+        from starlette.testclient import TestClient
+        from team2_rag.api.app import create_app
+        from team2_rag.articles import _load_article_cache
+
+        app = create_app(pipeline=object())
+        client = TestClient(app)
+
+        # 1. Missing articles.jsonl -> 503 RETRIEVAL_UNAVAILABLE
+        with tempfile.TemporaryDirectory() as tmp:
+            missing_path = Path(tmp) / "articles.jsonl"
+            with patch("team2_rag.articles.ARTICLES_PATH", missing_path):
+                _load_article_cache.cache_clear()
+                res = client.get("/internal/v1/documents/doc1/articles/art1")
+                self.assertEqual(res.status_code, 503)
+                data = res.json()["error"]
+                self.assertEqual(data["code"], "RETRIEVAL_UNAVAILABLE")
+                self.assertTrue(data["retryable"])
+
+        # 2. Corrupt line in articles.jsonl -> 503 RETRIEVAL_UNAVAILABLE
+        with tempfile.TemporaryDirectory() as tmp:
+            corrupt_path = Path(tmp) / "articles.jsonl"
+            corrupt_path.write_text('{"document_id": "d1"}\n{bad json\n', encoding="utf-8")
+            with patch("team2_rag.articles.ARTICLES_PATH", corrupt_path):
+                _load_article_cache.cache_clear()
+                res = client.get("/internal/v1/documents/doc1/articles/art1")
+                self.assertEqual(res.status_code, 503)
+                data = res.json()["error"]
+                self.assertEqual(data["code"], "RETRIEVAL_UNAVAILABLE")
+                self.assertTrue(data["retryable"])
+
+        # 3. Empty articles.jsonl -> 503 RETRIEVAL_UNAVAILABLE
+        with tempfile.TemporaryDirectory() as tmp:
+            empty_path = Path(tmp) / "articles.jsonl"
+            empty_path.write_text("", encoding="utf-8")
+            with patch("team2_rag.articles.ARTICLES_PATH", empty_path):
+                _load_article_cache.cache_clear()
+                res = client.get("/internal/v1/documents/doc1/articles/art1")
+                self.assertEqual(res.status_code, 503)
+                data = res.json()["error"]
+                self.assertEqual(data["code"], "RETRIEVAL_UNAVAILABLE")
+                self.assertTrue(data["retryable"])
+
+        # Reset cache back to normal
+        _load_article_cache.cache_clear()
+
+
 if __name__ == "__main__":
     unittest.main()

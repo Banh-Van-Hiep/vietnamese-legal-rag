@@ -10,7 +10,6 @@ from typing import Any
 _ID = re.compile(r"^[A-Za-z0-9_-]+$")
 
 ROOT = Path(__file__).resolve().parents[1]
-CHUNKS_PATH = ROOT / "data" / "doanh-nghiep" / "processed" / "chunks.jsonl"
 ARTICLES_PATH = ROOT / "data" / "doanh-nghiep" / "processed" / "articles.jsonl"
 
 MOCK_ARTICLE = {
@@ -24,67 +23,65 @@ MOCK_ARTICLE = {
 
 
 class ArticleLookupError(Exception):
-    def __init__(self, code: str, message: str, status_code: int = 404):
+    def __init__(self, code: str, message: str, status_code: int = 404, *, retryable: bool | None = None):
         super().__init__(message)
         self.code = code
         self.message = message
         self.status_code = status_code
+        self.retryable = (status_code == 503) if retryable is None else retryable
 
 
 @lru_cache(maxsize=1)
 def _load_article_cache() -> dict[str, dict[str, dict[str, Any]]]:
     """Cache structure: {document_id: {article_id: article_dict}}."""
-    cache: dict[str, dict[str, dict[str, Any]]] = {}
+    if not ARTICLES_PATH.is_file():
+        raise ArticleLookupError(
+            "RETRIEVAL_UNAVAILABLE",
+            "Kho dữ liệu điều luật (Article Store) chưa sẵn sàng.",
+            status_code=503,
+            retryable=True,
+        )
 
-    # 1. If articles.jsonl exists, use it first
-    if ARTICLES_PATH.is_file():
+    cache: dict[str, dict[str, dict[str, Any]]] = {}
+    try:
         with open(ARTICLES_PATH, "r", encoding="utf-8") as f:
             for line in f:
                 line = line.strip()
                 if not line:
                     continue
                 item = json.loads(line)
+                if not isinstance(item, dict):
+                    raise ValueError("Mỗi dòng trong articles.jsonl phải là một JSON object.")
                 doc_id = item.get("document_id")
                 art_id = item.get("article_id")
-                if doc_id and art_id:
-                    cache.setdefault(doc_id, {})[art_id] = {
-                        "document_id": doc_id,
-                        "document_title": item.get("document_title", ""),
-                        "article_id": art_id,
-                        "article": item.get("article", ""),
-                        "content": item.get("content", ""),
-                        "source_url": item.get("source_url", ""),
-                    }
-        return cache
-
-    # 2. Fallback: Reconstruct articles by aggregating chunks from chunks.jsonl
-    if CHUNKS_PATH.is_file():
-        grouped: dict[str, dict[str, list[dict[str, Any]]]] = {}
-        with open(CHUNKS_PATH, "r", encoding="utf-8") as f:
-            for line in f:
-                line = line.strip()
-                if not line:
-                    continue
-                item = json.loads(line)
-                doc_id = item.get("document_id")
-                art_id = item.get("article_id")
-                if doc_id and art_id:
-                    grouped.setdefault(doc_id, {}).setdefault(art_id, []).append(item)
-
-        for doc_id, articles in grouped.items():
-            cache[doc_id] = {}
-            for art_id, chunk_list in articles.items():
-                first = chunk_list[0]
-                chunk_list.sort(key=lambda c: (c.get("chunk_index", 0), c.get("chunk_id", "")))
-                full_content = "\n".join(c.get("content", "") for c in chunk_list if c.get("content"))
-                cache[doc_id][art_id] = {
+                if not doc_id or not art_id:
+                    raise ValueError("Thiếu document_id hoặc article_id trong Article Store.")
+                cache.setdefault(doc_id, {})[art_id] = {
                     "document_id": doc_id,
-                    "document_title": first.get("document_title", ""),
+                    "document_title": item.get("document_title", ""),
                     "article_id": art_id,
-                    "article": first.get("article", ""),
-                    "content": full_content,
-                    "source_url": first.get("source_url", ""),
+                    "article": item.get("article", ""),
+                    "content": item.get("content", ""),
+                    "source_url": item.get("source_url", ""),
                 }
+    except ArticleLookupError:
+        raise
+    except (OSError, UnicodeDecodeError, json.JSONDecodeError, ValueError) as exc:
+        raise ArticleLookupError(
+            "RETRIEVAL_UNAVAILABLE",
+            "Không thể đọc dữ liệu từ Article Store.",
+            status_code=503,
+            retryable=True,
+        ) from exc
+
+    if not cache:
+        raise ArticleLookupError(
+            "RETRIEVAL_UNAVAILABLE",
+            "Kho dữ liệu điều luật (Article Store) đang rỗng.",
+            status_code=503,
+            retryable=True,
+        )
+
     return cache
 
 

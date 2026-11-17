@@ -175,7 +175,7 @@ class RAGPipeline:
         # 3. Generation & Verification
         generated = generate_answer_detailed(details.output, history, llm_service=self.llm_service,
                                              settings=self.settings, token_budget=self.token_budget,
-                                             request_id=request_id)
+                                             request_id=request_id, llm_timeout_seconds=max(0.1, remaining - 0.5))
         response = validate_generated_response(generated.response, response_model=self.response_model)
         if response["status"] != "answered":
             log.info("rag_refused request_id=%s reason=%s", request_id,

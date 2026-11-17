@@ -20,3 +20,9 @@ Request question/history nội bộ không dùng query_request public.
 [Validator public](v0.1/validate_public_contract.py) và [fixture mock](v0.1/public_examples.json)
 phục vụ kiểm payload. Các schema nháp tại docs/team2_rag/schemas không thay bộ này.
 Không suy schema hợp lệ thành dịch vụ live đã hoàn thành hoặc đáp án đã đúng pháp lý.
+
+Ghi chú 16/11/2026: commit `969d3da` từng chép 7 schema nháp (request, citation, context,
+llm_input, llm_output, rerank_output, chunk_metadata) vào `v0.1/`. Các file đó đã được gỡ;
+bản gốc vẫn ở `docs/team2_rag/schemas/` (nháp nội bộ Team 2) và
+`docs/team1_data/schemas/chunk_metadata.schema.json` (schema dữ liệu nội bộ Team 1,
+được `scripts/preprocess_legal_data.py` dùng). Contract giữa các team chỉ gồm 6 schema ở bảng trên.
