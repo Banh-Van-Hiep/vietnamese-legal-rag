@@ -74,7 +74,7 @@ mà không rời hội thoại; "Mở trang riêng" trong ngăn mở cùng đi�
   chưa rõ được giữ tối thiểu trong sessionStorage của tab và xóa question sau terminal;
   nếu storage bị chặn, không cam kết phục hồi UUID khi reload trước meta.
 - `insufficient_context` hiện là thông báo "Chưa đủ căn cứ", tách khỏi lỗi hệ thống.
-- Nhãn "Dữ liệu thử nghiệm" hiện khi `VITE_MOCK_MODE` khác `false`.
+- Nhãn "Dữ liệu thử nghiệm" chỉ hiện khi `VITE_MOCK_MODE=true` (Backend trả fixture/mock); không đặt thì không hiện.
 - Mục "Điều 404" trong trang tra cứu cố ý không có ở backend, để thử đường "không tìm thấy".
 
 ## Giới hạn

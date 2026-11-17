@@ -1,7 +1,12 @@
-// Nhận diện dữ liệu thử nghiệm. Tắt bằng VITE_MOCK_MODE=false khi backend dùng dữ liệu thật.
+// Nhận diện dữ liệu thử nghiệm. Main UI chạy Backend profile rag (dữ liệu thật), nên nhãn chỉ hiện khi
+// bật rõ VITE_MOCK_MODE=true (Backend trả fixture/mock). Không đặt hoặc giá trị khác thì không hiện.
 import Icon from "./Icon";
 
-export const isMockMode = import.meta.env.VITE_MOCK_MODE !== "false";
+export function parseMockMode(value: string | undefined): boolean {
+  return value?.trim().toLowerCase() === "true";
+}
+
+export const isMockMode = parseMockMode(import.meta.env.VITE_MOCK_MODE);
 
 export default function MockBadge() {
   if (!isMockMode) return null;
