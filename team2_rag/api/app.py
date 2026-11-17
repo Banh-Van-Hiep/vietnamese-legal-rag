@@ -126,7 +126,7 @@ def create_app(pipeline=None, *, runtime_factory=None, timeout_seconds=45,
             return JSONResponse(art, headers={"X-Request-ID": request_id})
         except ArticleLookupError as exc:
             return JSONResponse(
-                {"error": {"code": exc.code, "message": exc.message, "retryable": False}},
+                {"error": {"code": exc.code, "message": exc.message, "retryable": exc.retryable}},
                 status_code=exc.status_code,
                 headers={"X-Request-ID": request_id},
             )
