@@ -120,3 +120,56 @@ def compute_benchmark_metrics(
     }
 
     return metrics
+
+
+def _ratio(num: int, den: int) -> Optional[float]:
+    return round(num / den, 4) if den else None  # không có mẫu thì "chưa đo", không mặc định 0 hay 100%
+
+
+def summarize_g5_records(records: List[Dict[str, Any]]) -> Dict[str, Any]:
+    """Chỉ số G5 (VLRA-78) tính lại được từ `raw_results`: runner và Gate 3 cùng gọi hàm này.
+
+    - Citation correctness/coverage và hallucination chỉ xét câu `answered` có kết quả verify.
+    - Từ chối (Precision/Recall): lớp dương là `expected_status == "insufficient_context"`;
+      câu `error` bị loại khỏi cả hai mẫu số vì hệ thống chưa trả lời cũng chưa từ chối.
+    """
+    outcomes: Dict[str, int] = {"answered": 0, "insufficient_context": 0, "error": 0}
+    errors: Dict[str, int] = {}
+    cit = valid_cit = claims = supported = verified = halluc = 0
+    pred_refuse = exp_refuse = true_refuse = fallbacks = 0
+    for r in records:
+        outcome = r["outcome"]
+        outcomes[outcome] = outcomes.get(outcome, 0) + 1
+        if outcome == "error":
+            errors[r.get("error_code") or "UNKNOWN"] = errors.get(r.get("error_code") or "UNKNOWN", 0) + 1
+            continue
+        if r.get("rerank_fallback_reason") not in (None, "rerank_disabled"):
+            fallbacks += 1
+        expected, refused = r.get("expected_status") == "insufficient_context", outcome == "insufficient_context"
+        pred_refuse += refused
+        exp_refuse += expected
+        true_refuse += expected and refused
+        v = r.get("verification")
+        if outcome == "answered" and v:
+            verified += 1
+            cit += v["total_citations"]
+            valid_cit += v["valid_citations"]
+            claims += v["total_claims"]
+            supported += v["supported_claims"]
+            halluc += not v["passed"]
+    return {
+        "request_outcomes": {"total": len(records), **outcomes},
+        "error_breakdown": dict(sorted(errors.items())),
+        "rerank_fallbacks": fallbacks,
+        "counts": {
+            "answered_verified": verified, "citations": cit, "valid_citations": valid_cit,
+            "claims": claims, "supported_claims": supported, "hallucinated_answers": halluc,
+            "predicted_refusals": pred_refuse, "expected_refusals": exp_refuse, "correct_refusals": true_refuse,
+        },
+        "citation_correctness": _ratio(valid_cit, cit),
+        "citation_coverage": _ratio(supported, claims),
+        "query_hallucination_rate": _ratio(halluc, verified),
+        "claim_hallucination_rate": _ratio(claims - supported, claims),
+        "refusal_precision": _ratio(true_refuse, pred_refuse),
+        "refusal_recall": _ratio(true_refuse, exp_refuse),
+    }

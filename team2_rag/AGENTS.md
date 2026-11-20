@@ -20,4 +20,8 @@
 
 # 3. Chạy Benchmark E2E NFR-07/08/09 (chế độ local BM25-only)
 .venv\Scripts\python.exe scripts/benchmark_e2e_nfr07.py
+
+# 4. Thực nghiệm G5 B0 vs T0 (VLRA-78): chạy từng hệ thống rồi gộp báo cáo, xem docstring của script
+.venv\Scripts\python.exe scripts/benchmark_g5.py run --system b0 --dataset <test_set.json> --out docs/team2_rag/runs/g5/b0.json
+.venv\Scripts\python.exe scripts/benchmark_g5.py report --b0 docs/team2_rag/runs/g5/b0.json --t0 docs/team2_rag/runs/g5/t0.json
 ```

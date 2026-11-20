@@ -155,14 +155,14 @@ Ba nhóm chính theo Jira; nhóm context tách thêm nhóm con để Team 1 bi�
 
 ---
 
-## 6. Trạng Thái Thực Thi (cập nhật ngày 18/11/2026)
+## 6. Trạng Thái Thực Thi (cập nhật ngày 20/11/2026)
 
 | Mã | Jira | Người phụ trách | Trạng thái | Ghi chú |
 | :--- | :--- | :--- | :---: | :--- |
 | `VLRA-T2-37` | VLRA-78 | Người 1 | **BLOCKED** | Chờ Test Set. |
-| `VLRA-T2-38` | VLRA-78 | Người 1 | TODO | Làm phần code trên Dev Set (`exploratory`) trong lúc chờ. |
-| `VLRA-T2-39` | VLRA-78 | Người 1 | TODO | Cần T2-38. |
-| `VLRA-T2-40` | VLRA-78 | Người 1 | TODO | Mở rộng Gate 3 làm được ngay. |
+| `VLRA-T2-38` | VLRA-78 | Người 1 | **CODE XONG** | `scripts/benchmark_g5.py` (`run --system b0` hoặc `t0`, rồi `report`), checkpoint chạy tiếp, thử lại lỗi LLM tạm thời cùng quy tắc cho hai bên, ghi cấu hình thật và liệt kê khác biệt. Chưa chạy thật: chờ Test Set và quyết định Colab cho T0. |
+| `VLRA-T2-39` | VLRA-78 | Người 1 | **CODE XONG** | `summarize_g5_records` trong `verification/metrics.py`: citation correctness/coverage, hallucination theo câu/claim, Precision/Recall từ chối, số ca lùi rerank. Chưa có số đo. |
+| `VLRA-T2-40` | VLRA-78 | Người 1 | **CODE XONG** | Gate 3 kiểm `docs/team2_rag/g5_b0_vs_t0_report.json`: chỉ số tính lại từ `raw_results`, B0/T0 cùng tập câu, hash dataset. Test: `tests/test_benchmark_g5.py`. |
 | `VLRA-T2-41` | VLRA-79 | Người 2 | TODO | Cần kết quả B0/T0 từ T2-39. |
 | `VLRA-T2-42` | VLRA-79 | Người 2 | TODO | Mời 2 giám khảo, soạn phiếu chấm ngay. |
 | `VLRA-T2-43` | VLRA-78 | Người 2 | TODO | Cần `raw_results` từ T2-39. |
