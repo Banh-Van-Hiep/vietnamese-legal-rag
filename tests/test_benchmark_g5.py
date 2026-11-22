@@ -148,6 +148,9 @@ class ReportAndGateTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             g5.build_report(b0, t0)
 
+    def test_dataset_path_is_relative_to_repo(self):
+        self.assertEqual(g5.repo_path(ROOT / "team1_data/golden/test_set_v1.json"), "team1_data/golden/test_set_v1.json")
+
     def test_dev_rows_need_exploratory_flag(self):
         path = ROOT / "team1_data/golden/golden_phase1.json"
         with self.assertRaises(ValueError):
