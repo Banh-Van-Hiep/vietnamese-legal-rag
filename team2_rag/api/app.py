@@ -8,6 +8,7 @@ import asyncio
 import json
 import logging
 import threading
+import time
 from contextlib import asynccontextmanager
 from pathlib import Path
 
@@ -51,8 +52,11 @@ def _close_runtime(runtime) -> None:
 
 
 def create_app(pipeline=None, *, runtime_factory=None, timeout_seconds=45,
-               error_installer=None, response_model=None):
+               error_installer=None, response_model=None, max_waiting=4):
     """`response_model` defaults to the shared Pydantic `RAGResponse`; the JSON Schema stays the contract guard.
+
+    One query runs at a time (ADR 0004). Up to `max_waiting` more wait in line instead of getting 503 at once;
+    waiting time counts against the same `timeout_seconds` deadline. `max_waiting=0` restores reject-when-busy.
 
     Where the pipeline comes from:
     - neither argument: `build_runtime` runs at startup (the `--factory` uvicorn entry point);
@@ -63,6 +67,8 @@ def create_app(pipeline=None, *, runtime_factory=None, timeout_seconds=45,
     """
     if not 0 < timeout_seconds <= 45:
         raise ValueError("timeout_seconds must be in (0, 45]")
+    if not isinstance(max_waiting, int) or max_waiting < 0:
+        raise ValueError("max_waiting must be an int >= 0")
     validator = Draft202012Validator(
         json.loads((ROOT / "contracts/v0.1/rag_response.schema.json").read_text(encoding="utf-8")),
         format_checker=FormatChecker(),
@@ -107,6 +113,8 @@ def create_app(pipeline=None, *, runtime_factory=None, timeout_seconds=45,
     # One inference at a time. A timed-out thread keeps its slot until it
     # really finishes, preventing repeated requests from accumulating work.
     slot = threading.Lock()
+    # Tickets = running + waiting. No ticket -> 503 at once, so waiters (one thread each) stay bounded.
+    tickets = threading.BoundedSemaphore(1 + max_waiting)
 
     @app.get("/internal/v1/health")
     def health():
@@ -175,22 +183,41 @@ def create_app(pipeline=None, *, runtime_factory=None, timeout_seconds=45,
         except (UnicodeError, ValueError):
             return _error(ErrorCode.INVALID_REQUEST, request_id)
         active = getattr(app.state, "pipeline", None)
-        if active is None or not slot.acquire(blocking=False):
+        if active is None or not tickets.acquire(blocking=False):
             return _error(ErrorCode.SERVICE_UNAVAILABLE, request_id)
+        arrived = time.monotonic()
+        deadline = arrived + timeout_seconds  # one budget for waiting + running (NFR-08: 45 s < Java 50 s)
+        waiter = asyncio.ensure_future(asyncio.to_thread(slot.acquire, True, timeout_seconds))
+        try:
+            got = await asyncio.shield(waiter)
+        except asyncio.CancelledError:
+            # Client gone while waiting: whoever ends up holding the slot must still give it back.
+            waiter.add_done_callback(lambda t: (slot.release() if not t.cancelled() and t.result() else None,
+                                                tickets.release()))
+            raise
+        if not got:
+            tickets.release()
+            return _error(ErrorCode.UPSTREAM_TIMEOUT, request_id)
+        log.info("query_slot_acquired request_id=%s wait_s=%.3f", request_id, time.monotonic() - arrived)
+        if deadline - time.monotonic() <= 0:  # budget used up while waiting: do not start work nobody awaits
+            slot.release()
+            tickets.release()
+            return _error(ErrorCode.UPSTREAM_TIMEOUT, request_id)
 
         def run():
             try:
-                out = active.query(question, history, request_id=request_id)
+                out = active.query(question, history, request_id=request_id, deadline=deadline)
                 validator.validate(out)  # JSON Schema = authoritative contract; RAGResponse adds marker/order checks.
                 return validate_generated_response(out, response_model=response_model)
             finally:
                 slot.release()
+                tickets.release()
 
         work = asyncio.create_task(asyncio.to_thread(run))
         # Retrieve a late exception without leaking its contents into asyncio logs.
         work.add_done_callback(lambda task: None if task.cancelled() else task.exception())
         try:
-            out = await asyncio.wait_for(asyncio.shield(work), timeout=timeout_seconds)
+            out = await asyncio.wait_for(asyncio.shield(work), timeout=max(0.0, deadline - time.monotonic()))
             return JSONResponse(out, headers={"X-Request-ID": request_id})
         except asyncio.TimeoutError:
             return _error(ErrorCode.UPSTREAM_TIMEOUT, request_id)

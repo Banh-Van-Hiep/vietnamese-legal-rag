@@ -38,7 +38,9 @@ Dự án được chia thành 3 phân hệ độc lập giao tiếp qua hợp đ
    - `T_AI_Deadline (45.0s) < T_Java_Backend_Timeout (50.0s) < T_Frontend_Timeout (60.0s)`.
    - Tầng Pipeline (`team2_rag/pipeline.py`) phải truyền ngân sách thời gian còn lại `remaining = deadline - time.monotonic()` xuống bước gọi LLM (`llm_timeout_seconds = max(0.1, remaining - 0.5)`). Nếu `remaining <= 1.0s` trước khi gọi LLM, phải ngắt sớm với `LLMTimeoutError` (`HTTP 504`, wire code `"LLM_TIMEOUT"`).
 3. **Bất biến Khóa Đồng Thời (Concurrency Slot Lock):**
-   - AI Service (`team2_rag/api/app.py`) sử dụng `slot = threading.Lock()` non-blocking, chỉ cho phép 1 suy luận LLM tại một thời điểm. Request thứ 2 gọi đồng thời khi `slot` đang bận phải lập tức nhận `HTTP 503` (`wire code: "LLM_UNAVAILABLE"`, `retryable: true`).
+   - AI Service (`team2_rag/api/app.py`) dùng `slot = threading.Lock()`, chỉ cho phép 1 lượt query chạy tại một thời điểm (cả pipeline, không chỉ LLM).
+   - Tối đa `max_waiting` request (mặc định 4) chờ trong hàng thay vì bị từ chối ngay. Hàng đầy thì request mới nhận ngay `HTTP 503` (`wire code: "LLM_UNAVAILABLE"`, `retryable: true`).
+   - Thời gian chờ tính vào cùng hạn 45 giây: deadline đặt lúc request đến và được truyền xuống `RAGPipeline.query(deadline=...)`. Chờ quá hạn thì `HTTP 504` (`"LLM_TIMEOUT"`) và không chạy pipeline. Lượt đã quá hạn HTTP vẫn giữ slot đến khi thật sự kết thúc. Xem [ADR 0004](docs/decisions/0004-single-llm-slot.md).
 4. **Bất biến Độ Trễ Truy Vấn & Article Viewer (NFR-07 & NFR-09):**
    - **NFR-07:** Độ trễ End-to-End qua `RAGPipeline.query` đạt `p95 <= 45.0s`.
    - **NFR-09:** Endpoint tra cứu Điều luật `GET /internal/v1/documents/{document_id}/articles/{article_id}` phản hồi `<= 10.0s` (Java -> AI) và `<= 15.0s` (FE Viewer), trả đúng mã lỗi `404` (`DOCUMENT_NOT_FOUND`, `ARTICLE_NOT_FOUND`) và `400` (`INVALID_REQUEST`).
