@@ -45,7 +45,7 @@ class FakePipeline:
         self.result, self.exc, self.started, self.release = result if result is not None else good(), exc, started, release
         self.calls = []
 
-    def query(self, question, history, request_id=None):
+    def query(self, question, history, request_id=None, deadline=None):
         self.calls.append((question, history, request_id))
         if self.started:
             self.started.set()
@@ -217,7 +217,7 @@ def test_runtime_is_closed_on_shutdown():
 
 def test_busy_service_returns_503_then_recovers():
     started, release = threading.Event(), threading.Event()
-    app = make(FakePipeline(started=started, release=release))
+    app = make(FakePipeline(started=started, release=release), max_waiting=0)
     first = {}
     with client(app) as c1, client(app) as c2:
         t = threading.Thread(target=lambda: first.setdefault("r", post(c1, VALID)))
@@ -232,7 +232,7 @@ def test_busy_service_returns_503_then_recovers():
 
 def test_timeout_is_504_and_slot_stays_held_until_work_finishes():
     started, release = threading.Event(), threading.Event()
-    app = make(FakePipeline(started=started, release=release), timeout_seconds=0.05)
+    app = make(FakePipeline(started=started, release=release), timeout_seconds=0.05, max_waiting=0)
     with client(app) as c:
         assert_error(post(c, VALID), 504, "LLM_TIMEOUT", True)
         assert started.wait(2)

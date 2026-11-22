@@ -76,12 +76,12 @@ def test_nfr08_api_shield_timeout_and_slot_concurrency_lock():
     started, release = threading.Event(), threading.Event()
 
     class BlockingPipe:
-        def query(self, q, h, request_id=None):
+        def query(self, q, h, request_id=None, deadline=None):
             started.set()
             release.wait(5.0)
             return {"status": "insufficient_context", "answer": "Chưa đủ căn cứ.", "citations": []}
 
-    app = create_app(BlockingPipe(), timeout_seconds=0.1)
+    app = create_app(BlockingPipe(), timeout_seconds=0.1, max_waiting=0)
     with TestClient(app, raise_server_exceptions=False) as c:
         r_timeout = c.post("/internal/v1/query", json={"question": "Câu hỏi 1?", "history": []})
         assert r_timeout.status_code == 504
@@ -94,3 +94,108 @@ def test_nfr08_api_shield_timeout_and_slot_concurrency_lock():
         assert r_busy.json()["error"]["code"] == "LLM_UNAVAILABLE"
         assert r_busy.json()["error"]["retryable"] is True
         release.set()
+
+
+# ---------------------------------------------------------------- hàng đợi có giới hạn (ADR 0004, VLRA-80)
+ANSWER = {"status": "insufficient_context", "answer": "Chưa đủ căn cứ.", "citations": []}
+BODY = {"question": "Câu hỏi?", "history": []}
+
+
+class GatePipe:
+    """Ghi số lượt chạy cùng lúc; `release` giữ lượt đầu để các lượt sau phải xếp hàng."""
+    def __init__(self, release=None, hold_s=0.0):
+        self.release, self.hold_s = release, hold_s
+        self.running = self.peak = self.calls = 0
+        self.deadlines, self.started, self.lock = [], threading.Event(), threading.Lock()
+
+    def query(self, q, h, request_id=None, deadline=None):
+        with self.lock:
+            self.running += 1
+            self.calls += 1
+            self.peak = max(self.peak, self.running)
+            self.deadlines.append(deadline)
+        self.started.set()
+        try:
+            if self.release:
+                self.release.wait(5.0)
+            time.sleep(self.hold_s)
+            return ANSWER
+        finally:
+            with self.lock:
+                self.running -= 1
+
+
+def post_all(client, n):
+    out = [None] * n
+    threads = [threading.Thread(target=lambda i=i: out.__setitem__(i, client.post("/internal/v1/query", json=BODY)))
+               for i in range(n)]
+    for t in threads:
+        t.start()
+    return threads, out
+
+
+def test_five_concurrent_queries_wait_in_line_and_all_succeed():
+    pipe = GatePipe(hold_s=0.05)
+    with TestClient(create_app(pipe, timeout_seconds=5)) as c:
+        threads, out = post_all(c, 5)
+        for t in threads:
+            t.join(10)
+    assert [r.status_code for r in out] == [200] * 5
+    assert (pipe.calls, pipe.peak) == (5, 1)  # vẫn chỉ một lượt chạy tại một thời điểm
+
+
+def test_full_queue_rejects_with_503_then_recovers():
+    release = threading.Event()
+    pipe = GatePipe(release=release)
+    with TestClient(create_app(pipe, timeout_seconds=5, max_waiting=1)) as c:
+        threads, out = post_all(c, 1)
+        assert pipe.started.wait(2)
+        waiting, waiting_out = post_all(c, 1)
+        time.sleep(0.2)  # lượt thứ hai đã vào hàng đợi
+        busy = c.post("/internal/v1/query", json=BODY)
+        assert busy.status_code == 503
+        assert (busy.json()["error"]["code"], busy.json()["error"]["retryable"]) == ("LLM_UNAVAILABLE", True)
+        release.set()
+        for t in threads + waiting:
+            t.join(10)
+        assert out[0].status_code == waiting_out[0].status_code == 200
+        assert c.post("/internal/v1/query", json=BODY).status_code == 200
+
+
+def test_waiting_past_deadline_is_504_and_never_starts():
+    release = threading.Event()
+    pipe = GatePipe(release=release)
+    with TestClient(create_app(pipe, timeout_seconds=0.3)) as c:
+        threads, out = post_all(c, 1)
+        assert pipe.started.wait(2)
+        late = c.post("/internal/v1/query", json=BODY)  # chờ quá 0.3 s trong hàng
+        assert late.status_code == 504 and late.json()["error"]["code"] == "LLM_TIMEOUT"
+        release.set()
+        threads[0].join(10)
+    assert pipe.calls == 1  # lượt quá hạn không chạy pipeline
+
+
+def test_api_passes_one_deadline_counted_from_arrival():
+    pipe = GatePipe()
+    with TestClient(create_app(pipe, timeout_seconds=5)) as c:
+        before = time.monotonic()
+        assert c.post("/internal/v1/query", json=BODY).status_code == 200
+    assert before < pipe.deadlines[0] <= before + 5.1
+
+
+def test_pipeline_uses_earlier_deadline_from_queue():
+    """Đã chờ trong hàng thì LLM chỉ còn phần thời gian còn lại, không được cấp lại `pipeline_timeout`."""
+    rows = retrieval_output(2)["results"]
+    provider = RecordingTimeoutProvider([reply_for(rows, 0)], timeout_seconds=30.0)
+    pipe = RAGPipeline(SlowRetriever(delay_s=0.0), LLMService(provider), rerank_enabled=False,
+                       strict_rerank=False, pipeline_timeout=45.0)
+    assert pipe.query("Luật Doanh nghiệp quy định gì?", [], deadline=time.monotonic() + 5.0)["status"] == "answered"
+    assert 4.0 <= provider.recorded_timeouts[0] <= 4.5
+    with pytest.raises(LLMTimeoutError):
+        pipe.query("Luật Doanh nghiệp quy định gì?", [], deadline=time.monotonic() + 0.5)
+
+
+def test_max_waiting_must_be_non_negative_int():
+    for bad in (-1, 1.5, None):
+        with pytest.raises(ValueError):
+            create_app(GatePipe(), max_waiting=bad)

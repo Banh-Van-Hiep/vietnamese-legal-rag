@@ -27,7 +27,7 @@ cho Frontend" lấy từ `HttpAiClient.java` (`team3_fullstack/backend/.../ai/Ht
 | :--- | :---: | :---: | :--- | :--- |
 | `INVALID_LLM_OUTPUT` | 502 | false | LLM trả JSON sai cấu trúc hoặc sai contract | 502 `UPSTREAM_INVALID_RESPONSE`, false |
 | `CITATION_INVALID` | 502 | false | Citation không khớp context, hoặc bước Verification không qua | 502 `UPSTREAM_INVALID_RESPONSE`, false |
-| `LLM_UNAVAILABLE` | 503 | true | LLM lỗi hoặc quá tải; AI Service đang xử lý request khác; cấu hình LLM thiếu | 503 `SERVICE_UNAVAILABLE`, true |
+| `LLM_UNAVAILABLE` | 503 | true | LLM lỗi hoặc quá tải; AI Service đang xử lý 1 request và hàng đợi (4 chỗ) đã đầy; cấu hình LLM thiếu | 503 `SERVICE_UNAVAILABLE`, true |
 | `LLM_TIMEOUT` | 504 | true | LLM hoặc toàn pipeline quá thời gian (trần 45 giây) | 504 `UPSTREAM_TIMEOUT`, true |
 | `RETRIEVAL_UNAVAILABLE` | 503 | true | Tìm kiếm (BM25, Qdrant) hoặc reranker không dùng được | 503 `SERVICE_UNAVAILABLE`, true |
 | `RETRIEVAL_TIMEOUT` | 504 | true | Tìm kiếm quá thời gian (mặc định 10 giây) | 504 `UPSTREAM_TIMEOUT`, true |

@@ -211,7 +211,7 @@ AI service trả mã nội bộ trong cùng envelope `{"error": {...}}`. Java ba
 | :--- | :---: | :--- | :--- | :---: |
 | LLM trả sai cấu trúc JSON | 502 | INVALID_LLM_OUTPUT | UPSTREAM_INVALID_RESPONSE | false |
 | Citation sai hoặc nằm ngoài context | 502 | CITATION_INVALID | UPSTREAM_INVALID_RESPONSE | false |
-| LLM provider không phản hồi, hoặc slot LLM đang bận | 503 | LLM_UNAVAILABLE | SERVICE_UNAVAILABLE | true |
+| LLM provider không phản hồi, hoặc slot đang bận và hàng đợi đã đầy | 503 | LLM_UNAVAILABLE | SERVICE_UNAVAILABLE | true |
 | Index retrieval chưa sẵn sàng hoặc lỗi | 503 | RETRIEVAL_UNAVAILABLE | SERVICE_UNAVAILABLE | true |
 | Article Store không đọc được (thiếu `articles.jsonl` hoặc có dòng hỏng) | 503 | RETRIEVAL_UNAVAILABLE | SERVICE_UNAVAILABLE | true |
 | Hết deadline LLM | 504 | LLM_TIMEOUT | UPSTREAM_TIMEOUT | true |
@@ -239,7 +239,7 @@ Article Store không đọc được là lỗi kỹ thuật: AI service không �
 | NFR-08 | Chuỗi timeout: AI 45 s < Backend 50 s (connect ≤ 2 s) < Frontend 60 s | Đo timeout và kết quả đến muộn; không cộng timeout từng phase thành deadline mới |
 | NFR-09 | Viewer: Java → AI ≤ 10 giây; Frontend hiển thị ≤ 15 giây; `get_article` p95 ≤ 200 ms; health p95 ≤ 1 giây | Test endpoint `GET /internal/v1/documents/{document_id}/articles/{article_id}` và các lỗi 400/404/503 ở mục 7.1 |
 
-Mọi báo cáo đo phải lưu `raw_results` của từng lần chạy và tính số tổng hợp từ đó (bất biến số 5 trong `AGENTS.md`). Điều kiện "5 người dùng đồng thời" của NFR-07 trong bản Google Doc đang mâu thuẫn với khóa 1 lượt LLM trong `AGENTS.md`; xem [ADR 0004](decisions/0004-single-llm-slot.md).
+Mọi báo cáo đo phải lưu `raw_results` của từng lần chạy và tính số tổng hợp từ đó (bất biến số 5 trong `AGENTS.md`). Điều kiện "5 người dùng đồng thời" của NFR-07: AI Service chạy 1 lượt một lúc và cho tối đa 4 lượt chờ trong hàng, thời gian chờ tính vào hạn 45 giây; xem [ADR 0004](decisions/0004-single-llm-slot.md).
 
 ### 8.2. Tiêu chuẩn Đánh giá Chất lượng (Project 1 Evaluation Gates)
 
