@@ -1,92 +1,52 @@
-# Giới hạn xử lý đồng thời của AI Service và bài tải NFR-07
+# Kiểm thử tải 50/5 và định hướng sửa lỗi — VLRA-80
 
-- **Ngày đối chiếu:** 20/11/2026.
-- **Nguồn hiện trạng:** source workspace `440296c`, phục vụ trao đổi Team 3 ↔ Team 2 về [VLRA-80](https://banhvanhiep.atlassian.net/browse/VLRA-80).
-- **Trạng thái:** Phân tích tĩnh và đề xuất thảo luận; chưa phải thiết kế đã phê duyệt hoặc kết quả benchmark.
-- **Quyết định kiểm thử đã xác nhận:** Giữ 50 query / 5 người dùng đồng thời, giữ slot hiện hành, tính mọi 503 vào tỷ lệ lỗi. Cách kết luận NFR-07 dưới tải này vẫn chờ nhóm chốt; không thay bài tải bằng chạy tuần tự.
+**Ngày:** 23/11/2026. **Kết luận:** chưa chốt nghiệm thu.
 
-## 1. Vấn đề cần thống nhất
+Code/test và cấu hình thử nghiệm bổ sung đã hoàn tác; giữ code hàng đợi đã merge. Số liệu dưới đây là kết quả đã đo trước hoàn tác, không phải kiểm chứng lại source sau hoàn tác.
 
-VLRA-80 yêu cầu đo p50/p95 trên 50 truy vấn hợp lệ với 5 người dùng đồng thời sau warm-up. [AGENTS.md §2.3](../../AGENTS.md) quy định chỉ một lượt suy luận tại một thời điểm. [ADR 0004](../decisions/0004-single-llm-slot.md) còn **Proposed**, chưa chốt hướng xử lý khác biệt này.
+## 1. Điều kiện đo
 
-[ARCHITECTURE §8.1](../ARCHITECTURE.md) quy định NFR-07 p95 qua `RAGPipeline.query` ≤ 45 giây và chuỗi timeout AI 45 s < Java 50 s < Frontend 60 s. Thời gian hàng đợi, HTTP và hiển thị UI cần ghi riêng để không nhầm phạm vi đo.
+- 50 câu, 5 Locust users, hai warm-up riêng; UI → Java → Python RAG → Gemini, PostgreSQL test riêng.
+- BM25-only, top_k=10, rerank=false, claims=false, fallback=false; một pipeline chạy, tối đa bốn request chờ. Deadline AI/Java/FE: 45/50/60 giây.
+- R01–R08: **Gemini 3.5 Flash Lite**; R09: **Gemini 3.1 Flash Lite**. Máy Windows, 4 logical CPU, RAM 7,74 GiB.
+- Gemini 3.5 Flash Lite được gọi qua alias `gemini-flash-lite-latest`; kiểm tra trực tiếp ngày 23/11/2026 trả `modelVersion=gemini-3.5-flash-lite`. Các lượt cũ chỉ lưu alias, không lưu `modelVersion` riêng.
+- p95 API tính trên lượt hoàn tất, gồm thời gian chờ; không phải thời gian render UI. Các lượt khác cấu hình/thời điểm không dùng làm bằng chứng nhân quả.
 
-**50/5** là tổng 50 query từ 5 người dùng/session độc lập, tối đa 5 lượt đang xử lý; không phải gửi cả 50 cùng lúc. Mỗi người gửi lượt tiếp theo sau khi lượt trước kết thúc. Bài tải không yêu cầu bổ sung đăng nhập/tài khoản vào MVP.
+## 2. Kết quả các lần chạy
 
-## 2. Hành vi hiện tại trong mã nguồn
+| Lượt | Cấu hình | Hoàn tất/đã chạy | Lỗi hạn mức | Lỗi provider | Lỗi output | p95 API (s) |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| M01 | Fixture | 50/50 | 0 | 0 | 0 | 0,527 |
+| R01 | Gemini 3.5 Flash Lite, chưa pacing | Chưa chạy: warm-up lỗi | — | — | — | — |
+| R02 | Gemini 3.5 Flash Lite, chưa pacing | 40/50 | 3 | 7 | 0 | 35,027 |
+| R03 | Gemini 3.5 Flash Lite, chưa pacing | 33/50 | 16 | 1 | 0 | 23,288 |
+| R04 | Gemini 3.5 Flash Lite, chưa pacing | 45/50 | 0 | 5 | 0 | 41,065 |
+| R05 | Gemini 3.5 Flash Lite, chưa pacing | 45/50 | 3 | 1 | 1 | 33,935 |
+| R06 | Gemini 3.5 Flash Lite, chưa pacing | 42/50 | 6 | 1 | 1 | 33,008 |
+| R07 | Gemini 3.5 Flash Lite, 12/phút | 49/50 | 0 | 0 | 1 | 35,202 |
+| R08 | Gemini 3.5 Flash Lite, 12/phút + schema | 46/50 | 0 | 2 | 2 | 35,896 |
+| R09 | Gemini 3.1 Flash Lite, 12/phút + schema | 49/50 | 0 | 0 | 1 | 27,986 |
 
-| Vị trí | Hành vi từ source | Hệ quả |
-| --- | --- | --- |
-| [api/app.py](../../team2_rag/api/app.py), `create_app` / `query` | `threading.Lock()` và `acquire(blocking=False)` trước `active.query(...)` | Khóa bao quanh toàn pipeline query, không chỉ LLM. Lượt đến lúc bận bị từ chối ngay, không xếp hàng |
-| Cùng file, hàm `run` | Nhả khóa trong `finally` khi công việc thực sự kết thúc | HTTP timeout không tự giải phóng slot trong lúc thread còn chạy |
-| Cùng file, chờ kết quả | `asyncio.to_thread`, `asyncio.shield`, `asyncio.wait_for` | Bảo vệ khỏi việc liên tục tạo thêm công việc nền sau timeout |
-| [pipeline.py](../../team2_rag/pipeline.py), `query` | Tạo deadline khi bắt đầu pipeline, tính thời gian còn lại sau retrieval/rerank | Thêm hàng đợi ngoài pipeline không tự trừ thời gian chờ vào deadline hiện tại |
-| [llm/service.py](../../team2_rag/llm/service.py), `generate` | Tạm sửa `self.provider.timeout_seconds`, sau đó phục hồi | Nếu dùng chung provider song song, có nguy cơ ghi đè timeout của nhau; đây là rủi ro tĩnh, chưa phải lỗi race đã tái hiện |
-| [application-rag.properties](../../team3_fullstack/backend/src/main/resources/application-rag.properties) | Java có `app.chat.workers=8`, query timeout 50 s | Worker Java và slot Python là hai giới hạn khác nhau; tăng worker Java không tự tăng khả năng xử lý RAG |
+**R09 mới nhất:** 49/50 hoàn tất (42 `answered`, 7 `insufficient_context`), một lỗi (2%), không timeout. p50 **24,982 s**, p95 **27,986 s**. UI **2/2 PASS**; warm-up **2/2 PASS**; 42 lượt Viewer thành công.
 
-Slot thuộc từng instance/process AI Service, không phải toàn deployment. Tăng số process có thể tăng tổng slot nhưng cũng nhân bản model/tài nguyên và dùng chung quota provider.
+Gemini: **54 attempt HTTP, tất cả 200**, không 429/503. Nhịp nhỏ nhất **5,000 s**, tối đa **12 lần/60 s**. DB: **50 receipt, 100 message, 49 completed, 0 pending**. Đã dừng tài nguyên test.
 
-Health, ready và Article Viewer không lấy khóa query này. Đây là lựa chọn triển khai bảo vệ tài nguyên, không phải RAG hoặc Gemini bắt buộc chỉ phục vụ một người dùng.
+## 3. Lỗi, nguyên nhân và hướng sửa
 
-## 3. Ảnh hưởng đến bài tải 50/5
+| Nhóm lỗi | Bằng chứng | Nguyên nhân xác định / giới hạn bằng chứng | Hướng sửa đề xuất |
+| --- | --- | --- | --- |
+| Hạn mức Gemini | 28 lỗi cuối `LLMRateLimitError` ở R02–R06; bảng quota có đỉnh RPM 18/15 | Provider trả HTTP 429. Đã vượt RPM ở thời điểm bảng quota ghi nhận; log cũ chưa xác định từng lỗi thuộc RPM, TPM hay RPD | Kiểm soát nhịp mọi attempt, gồm retry; mức thử 12/phút có khoảng dự phòng so với 15/phút. Theo dõi quota; đổi key cùng project không tăng hạn mức |
+| Provider không khả dụng | 17 lỗi cuối `LLMProviderError`; riêng R08 có 6 HTTP 503, trong đó hai query vẫn lỗi sau retry | R08 xác nhận 503 từ Google, không phải hàng đợi đầy: request đã lấy slot. Không có bằng chứng xác định nguyên nhân bên trong Google; các lượt cũ có thể gồm lỗi mạng hoặc 5xx | Phân biệt HTTP status với lỗi kết nối trong log; retry/backoff có giới hạn trong deadline 45 giây. Không tăng hàng đợi hoặc timeout để che lỗi provider |
+| Output/citation | 6 lỗi output cuối qua các lượt. R09: `gold_006` → `CITATION_INVALID`, `citations`, HTTP public `UPSTREAM_INVALID_RESPONSE` | Gemini trả JSON đọc được nhưng vi phạm quan hệ status/citation. Parser yêu cầu `answered` có citation; `insufficient_context` không có citation/marker. Log chưa phân biệt nhánh nào bị vi phạm ở mẫu này | Ghi mã lý do riêng cho từng nhánh, kèm status/số citation/số marker; đối chiếu prompt và schema với validator. Giữ từ chối output sai, không tự vá citation |
 
-- Khi nhiều query cùng đến một instance, một lượt lấy khóa; các lượt khác có thể nhận **HTTP 503 / LLM_UNAVAILABLE / retryable=true**. Số lỗi phụ thuộc lịch đến và thời gian xử lý, không mặc định mọi đợt luôn có bốn lỗi.
-- Java ánh xạ lỗi này sang public `SERVICE_UNAVAILABLE`. Không đổi lỗi kỹ thuật thành `insufficient_context`; thiếu context hợp lệ vẫn là kết quả nghiệp vụ completed.
-- Lỗi 503 trả nhanh có thể làm phân vị toàn bộ phản hồi thấp. Cần báo riêng latency thành công, thời gian kết thúc lượt lỗi, tỷ lệ lỗi/timeout và số mẫu; không kết luận đạt chỉ vì p95 thấp.
-- Bài 50/5 vẫn dùng để quan sát hành vi dưới tải; chưa tự chứng minh xử lý thành công năm query đồng thời hoặc đạt đầy đủ mục tiêu nghiệm thu.
+**Chi tiết lỗi R09:** finish reason `STOP`, **92/2048 output token**, 332 ký tự phản hồi; không có dấu hiệu bị cắt vì hết token. Schema cấu trúc đã được bật nhưng không kiểm đủ quan hệ status/citation; tăng token hoặc chỉ đổi model không bảo đảm sửa lỗi này.
 
-## 4. Các phương án cân nhắc
+## 4. Thứ tự xử lý và kiểm tra lại
 
-| Phương án | Lợi ích | Giới hạn |
-| --- | --- | --- |
-| Giữ một slot, từ chối ngay | Giới hạn công việc chặt, ít thay đổi | Nhiều 503 khi tải chồng lấp |
-| Một worker và hàng đợi giới hạn | Hấp thụ đợt request ngắn thay vì từ chối ngay | Chờ nối tiếp có thể vượt deadline; không tăng năng lực xử lý |
-| N lượt chạy và hàng đợi giới hạn | Cân bằng song song với bảo vệ tài nguyên | Cần an toàn đồng thời, deadline chung, kiểm quota và benchmark |
-| Nhiều process/instance | Có thể cô lập trạng thái provider giữa process | Tăng RAM/model/index, cần kiểm tổng tải/quota; chưa được thống nhất |
+1. Bổ sung log lý do citation cụ thể; chạy lại `gold_006`, `gold_019`, `gold_030` để xác định nhánh sai trước khi sửa prompt/schema.
+2. Khôi phục có chọn lọc pacing và chẩn đoán HTTP; giữ một worker/bốn chỗ chờ, deadline 45/50/60 giây và validator citation.
+3. Chạy lại cùng bộ 50/5; báo đủ lượt lỗi, p95, HTTP status và DB pending. Chốt ngưỡng lỗi với nhóm trước khi nghiệm thu; bài BM25-only không thay kiểm chứng Hybrid/G5.
 
-Ví dụ minh họa, không phải số đo: năm query cùng đến, một worker mất đều 15 s/query thì thời gian hoàn tất khoảng 15/30/45/60/75 s, chưa tính overhead. Hàng đợi không bảo đảm deadline. Nếu query rất nhanh, một worker có thể phục vụ tải tốt hơn; cần đo thực tế.
+Dữ liệu từng request, warm-up, cấu hình và hash source thử nghiệm: [nfr07-concurrency-results.json](nfr07-concurrency-results.json). R01 dừng trước tải; không tính là 0% lỗi. Fixture và các ca kiểm tra riêng không cộng vào tải thật.
 
-## 5. Đề xuất thử nghiệm có kiểm soát
-
-Đề xuất để nhóm thảo luận: **concurrency giới hạn kết hợp hàng đợi ngắn**. Có thể bắt đầu thử **N=2**, tối đa **3 lượt chờ**, rồi đo đúng bài 50/5. Các con số này là điểm thử nghiệm, không phải cấu hình chuẩn hay cam kết đạt NFR-07.
-
-```text
-5 người dùng/session → kiểm request và giới hạn tiếp nhận
-                     → hàng đợi ngắn có hạn chờ
-                     → tối đa N công việc RAG thực sự đang chạy
-                     → validate → JSON nội bộ → Java/SSE → UI
-```
-
-Các điều kiện cần xem xét trước khi áp dụng:
-
-1. **Deadline tính cả chờ.** Tính từ tiếp nhận tại AI Service; chờ + chạy nằm trong ngân sách AI 45 s. Pipeline/LLM nhận thời gian còn lại, không cấp thêm 45 s khi rời hàng đợi. Báo riêng queue wait, pipeline time và toàn tuyến.
-2. **Không tích tụ sau timeout.** Chỉ chạy khi có slot thật, không tạo vô hạn thread chờ slot. Request quá hạn khi chưa chạy phải rời hàng đợi. Công việc đã chạy giữ slot đến lúc thật sự kết thúc dù HTTP đã timeout; không giả định cancel coroutine sẽ dừng thread/provider.
-3. **An toàn trạng thái theo request.** Xử lý nguy cơ sửa `provider.timeout_seconds` dùng chung; rà soát model fallback/metadata và khả năng gọi song song của retrieval/reranker/client. Có thể cân nhắc timeout theo lời gọi hoặc cô lập provider theo worker; thiết kế cụ thể cần Team 2 đánh giá.
-4. **Giới hạn mọi tầng.** Hàng đợi đầy từ chối có kiểm soát; hết hạn trả timeout theo contract đã thống nhất. Không tự thêm mã lỗi/status/endpoint public; thay mapping phải thống nhất liên team.
-5. **Tôn trọng quota/tài nguyên.** Tăng N không tăng quota provider. Gemini xét RPM/TPM/RPD, quota theo project chứ không theo từng API key; cần kiểm hạn mức thực tế và ghi rate-limit error. [Tài liệu Gemini](https://ai.google.dev/gemini-api/docs/rate-limits).
-6. **Giữ idempotency/hội thoại.** Năm session dùng hội thoại độc lập; giữ một pending mỗi hội thoại, không retry ngầm hoặc đổi UUID để che lỗi. Kết quả muộn không ghi đè lượt đã recovery.
-
-Tăng N không bảo đảm tăng thông lượng nếu CPU/GPU/model hoặc quota là nút thắt. Chọn cấu hình theo tỷ lệ thành công, p50/p95 và tài nguyên, không chỉ số request được nhận.
-
-## 6. Bằng chứng cần có nếu chọn thay đổi
-
-| Nhóm kiểm chứng | Nội dung cần xác nhận |
-| --- | --- |
-| Giới hạn công việc | Tác vụ thực chạy không vượt N, lượt chờ không vượt giới hạn; lượt bị từ chối không tạo công việc mới |
-| Deadline và cleanup | Chờ + chạy không cấp lại ngân sách; hết hạn trước chạy không gọi AI; timeout khi chạy không nhả slot sớm; kết thúc/lỗi nhả slot đúng |
-| An toàn đồng thời | Request ID/timeout khác nhau không làm lẫn cấu hình/kết quả/provider metadata; lỗi một lượt không làm kẹt slot khác |
-| Contract và DB | HTTP/SSE/error đúng schema, receipt/state nhất quán, không mất/trùng message/citation; recovery pending > 60 s và loại kết quả muộn |
-| Tải thực | Cùng tập 50 query, 5 người dùng, warm-up/snapshot; raw result đủ từng lượt; p50/p95, lỗi/timeout, quota, config/phần cứng rõ |
-
-Fixture kiểm giới hạn/hàng đợi/timeout có thể tái lập. Năng lực RAG thật cần dịch vụ/model/index thực tế; mock không thay benchmark live. Ngưỡng tỷ lệ lỗi chấp nhận và cách chốt NFR-07 cần nhóm xác nhận, không tự đặt trong báo cáo này.
-
-## 7. Quyết định còn chờ và ranh giới phối hợp
-
-- Giữ một slot chính thức hay cho phép thử N slot + hàng đợi?
-- Nếu thử: giới hạn chạy/chờ, deadline, điều kiện quá tải và cấu hình được chọn sau đo là gì?
-- Với tải 50/5: phạm vi latency và tỷ lệ lỗi nào được chấp nhận để nghiệm thu?
-- Sau khi chốt, cập nhật đồng bộ ADR 0004, AGENTS, ARCHITECTURE và test; đề xuất này không tự thay baseline.
-
-**Team 2** phụ trách đánh giá thiết kế AI Service/pipeline/provider và an toàn đồng thời trong phạm vi nhóm duyệt. **Team 3** giữ bài 50/5, thu kết quả public API/UI, kiểm state/idempotency/recovery và PostgreSQL. Báo cáo không tạo thêm Jira task hoặc cho phép tự sửa code Team 2.
-
-Hiện tại giữ slot như đã thống nhất cho VLRA-80, ghi lỗi thực tế và chờ cách nghiệm thu được chốt. Chưa chạy bài tải hoặc triển khai phương án mới trong lượt lập báo cáo.
+Tham chiếu quota: [Google Gemini rate limits](https://ai.google.dev/gemini-api/docs/rate-limits).
