@@ -1,0 +1,19 @@
+{
+ "file": "test_set_v1.json",
+ "split": "test",
+ "frozen_on": "2026-11-20",
+ "case_count": 77,
+ "complexity_counts": {
+  "single_clause": 47,
+  "multi_clause": 15,
+  "refusal": 15
+ },
+ "review_status_counts": {
+  "draft_needs_legal_review": 77
+ },
+ "hash_algorithm": "sha256 of NFC(json.dumps(cases, ensure_ascii=False, sort_keys=True, separators=(',', ':'))) encoded UTF-8",
+ "sha256": "1edaf4f14426bb52cc58620b14eea71d6bdd8393dd0b7040e4e5da4d59882001",
+ "independence_rule": "No Article used by the Dev Set (golden_phase1.json) appears here; Law 59/2020 and VBHN 67 count as the same Article.",
+ "relevant_unit_groups_rule": "One group per gold chunk; a VBHN 67 chunk also accepts the Law 59/2020 chunk of the same Article/Clause when the text is identical (whitespace and footnote marks ignored).",
+ "pending": "All cases need legal review; any edit requires a new hash and a notice to Team 2."
+}
