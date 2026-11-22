@@ -33,7 +33,7 @@ from team2_rag.verification.metrics import summarize_g5_records  # noqa: E402
 REPORT_JSON = "g5_b0_vs_t0_report.json"
 RETRYABLE = {"LLM_UNAVAILABLE", "LLM_TIMEOUT"}
 # Khác biệt hợp lệ giữa hai hệ thống; mọi khóa khác trong config phải giống nhau mới là so sánh công bằng.
-SYSTEM_KEYS = {"system", "retriever", "rerank_enabled", "rerank_timeout", "weights"}
+SYSTEM_KEYS = {"system", "retriever", "rerank_enabled", "rerank_timeout", "rerank_device", "weights"}
 
 
 def sha256_file(path: Path) -> str:
@@ -71,6 +71,7 @@ def run_config(pipeline, system: str) -> dict:
         "retriever": type(pipeline.retriever).__name__,
         "rerank_enabled": pipeline.rerank_enabled,
         "rerank_timeout": pipeline.rerank_timeout,
+        "rerank_device": getattr(pipeline.scorer, "device", None),
         "weights": list(getattr(pipeline.retriever, "weights", ()) or ()),
         "top_k": pipeline.top_k,
         "provider": s.provider,

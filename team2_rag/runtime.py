@@ -116,7 +116,7 @@ def build_runtime(env=None) -> Runtime:
         rerank_enabled = _flag(env, "RAG_RERANK", "false")
         scorer = None
         if rerank_enabled:  # rerank tắt thì không nạp BGE (~2 GB RAM, thêm thời gian khởi động)
-            scorer = BGEScorer(truncate=truncate)
+            scorer = BGEScorer(truncate=truncate, device=env.get("RAG_RERANK_DEVICE", "cpu"))  # cuda trên Colab: CPU dễ vượt hạn 4 s
             scorer([("Khởi động mô hình", "Đây là nội dung khởi động mô hình.")])
         top_k = int(env.get("RAG_TOP_K", "10"))
         strict_rerank = _flag(env, "RAG_STRICT_RERANK", "false")
