@@ -134,10 +134,12 @@ class RAGPipeline:
             log.warning("verification_failed request_id=%s failed=%s", request_id, failed)
             raise CitationInvalidError("Verification không qua.")  # -> HTTP 502 UPSTREAM_INVALID_RESPONSE
 
-    def query(self, question: str, history: Sequence[Mapping] | None = None, *, request_id=None):
+    def query(self, question: str, history: Sequence[Mapping] | None = None, *, request_id=None, deadline=None):
+        """`deadline` (time.monotonic) comes from the API when the request waited in line: the wait is
+        already spent, so the pipeline must not grant itself a fresh `pipeline_timeout`."""
         import time
         start_time = time.monotonic()
-        deadline = start_time + self.pipeline_timeout
+        deadline = min(start_time + self.pipeline_timeout, deadline if deadline is not None else float("inf"))
 
         question, history = validate_input(question, history)
         # No query rewriter has been agreed yet. Ask instead of inventing a
@@ -184,7 +186,7 @@ class RAGPipeline:
             self._verify(generated, request_id)
 
         elapsed = time.monotonic() - start_time
-        if elapsed > self.pipeline_timeout:
+        if time.monotonic() > deadline:
             from .llm.errors import LLMTimeoutError
             raise LLMTimeoutError(f"Toàn pipeline vượt trần thời gian {self.pipeline_timeout}s (thực tế {elapsed:.2f}s).")
 

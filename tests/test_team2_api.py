@@ -3,7 +3,7 @@ import json
 import threading
 import unittest
 from pathlib import Path
-from unittest.mock import Mock
+from unittest.mock import ANY, Mock
 
 from fastapi.testclient import TestClient
 from jsonschema import Draft202012Validator
@@ -44,7 +44,7 @@ class APITests(unittest.TestCase):
             response = client.post("/internal/v1/query", json=BODY, headers={"X-Request-ID": "trace-123"})
             self.assertEqual(response.status_code, 200)
             self.assertEqual(response.headers["x-request-id"], "trace-123")
-            self.pipeline.query.assert_called_once_with(BODY["question"], [], request_id="trace-123")
+            self.pipeline.query.assert_called_once_with(BODY["question"], [], request_id="trace-123", deadline=ANY)
             self.assertEqual(set(response.json()), {"status", "answer", "citations"})
             self.assertEqual(client.get("/internal/v1/ready").status_code, 200)
 
@@ -158,7 +158,7 @@ class APITests(unittest.TestCase):
             finally:
                 finished.set()
         self.pipeline.query.side_effect = blocked
-        with TestClient(create_app(self.pipeline, timeout_seconds=.02)) as client:
+        with TestClient(create_app(self.pipeline, timeout_seconds=.02, max_waiting=0)) as client:
             try:
                 self.check_error(client.post("/internal/v1/query", json=BODY), 504, "LLM_TIMEOUT")
                 self.check_error(client.post("/internal/v1/query", json=BODY), 503, "LLM_UNAVAILABLE")
