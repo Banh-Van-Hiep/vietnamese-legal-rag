@@ -8,6 +8,7 @@ Thực thi 4 chốt chặn kiểm chứng tự động (Verification Gates):
 """
 from __future__ import annotations
 
+import hashlib
 import json
 import subprocess
 import sys
@@ -119,8 +120,40 @@ def check_gate_2_contracts() -> list[str]:
     return errors
 
 
-def check_gate_3_report_integrity() -> list[str]:
+def check_g5_report(report_path: Path) -> list[str]:
+    """Báo cáo G5 B0 vs T0 (VLRA-78): chỉ số phải tính lại được từ raw_results, hai bên cùng dataset."""
+    if not report_path.exists():
+        return []
+    sys.path.insert(0, str(ROOT))
+    from team2_rag.verification.metrics import summarize_g5_records
+
+    tag = "[Gate 3 - G5]"
+    try:
+        rep = json.loads(report_path.read_text(encoding="utf-8"))
+        systems = rep["systems"]
+    except Exception as exc:
+        return [f"{tag} Không đọc được {report_path.name}: {exc}"]
     errors: list[str] = []
+    if set(systems) != {"b0", "t0"}:
+        errors.append(f"{tag} Cần đúng hai hệ thống b0 và t0, đang có {sorted(systems)}.")
+    ids = {name: [r.get("id") for r in s.get("raw_results", [])] for name, s in systems.items()}
+    for name, s in systems.items():
+        raw = s.get("raw_results") or []
+        if not raw:
+            errors.append(f"{tag} {name} thiếu raw_results.")
+        elif summarize_g5_records(raw) != s.get("metrics"):
+            errors.append(f"{tag} Bảng chỉ số của {name} khác với kết quả tính lại từ raw_results.")
+    if len({tuple(sorted(map(str, v))) for v in ids.values()}) > 1:
+        errors.append(f"{tag} B0 và T0 không chạy cùng tập câu hỏi.")
+    for d in rep.get("datasets", []):
+        path = ROOT / d["path"]
+        if path.exists() and hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest() != d["sha256"]:
+            errors.append(f"{tag} Dataset {d['path']} đã đổi so với lúc đo (sha256 lệch).")
+    return errors
+
+
+def check_gate_3_report_integrity() -> list[str]:
+    errors: list[str] = check_g5_report(ROOT / "docs/team2_rag/g5_b0_vs_t0_report.json")
     report_path = ROOT / "docs/team2_rag/ai_service_load_and_stability_report.json"
     if not report_path.exists():
         return errors
@@ -128,7 +161,7 @@ def check_gate_3_report_integrity() -> list[str]:
     try:
         rep = json.loads(report_path.read_text(encoding="utf-8"))
     except Exception as exc:
-        return [f"[Gate 3 - Report] Không đọc được file JSON báo cáo tải: {exc}"]
+        return errors + [f"[Gate 3 - Report] Không đọc được file JSON báo cáo tải: {exc}"]
 
     raw = rep.get("raw_results", [])
     outcomes = rep.get("request_outcomes", {})
