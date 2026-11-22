@@ -40,6 +40,12 @@ def sha256_file(path: Path) -> str:
     return hashlib.sha256(path.read_bytes().replace(b"\r\n", b"\n")).hexdigest()
 
 
+def repo_path(path: Path) -> str:
+    """Đường dẫn tương đối so với repo, để lượt chạy trên Colab (/content/...) và trên máy khớp nhau."""
+    path = path.resolve()
+    return path.relative_to(ROOT).as_posix() if path.is_relative_to(ROOT) else path.as_posix()
+
+
 def git_commit() -> str:
     try:
         return subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
@@ -145,7 +151,7 @@ def cmd_run(args) -> None:
     cases = load_cases(args.dataset, args.exploratory)[: args.limit or None]
     out = args.out
     state = json.loads(out.read_text(encoding="utf-8")) if out.exists() else {}
-    datasets = [{"path": p.as_posix(), "sha256": sha256_file(p)} for p in args.dataset]
+    datasets = [{"path": repo_path(p), "sha256": sha256_file(p)} for p in args.dataset]
     if state and (state["system"] != args.system or state["datasets"] != datasets):
         raise SystemExit(f"{out} là của lượt khác (system/dataset khác); đổi --out hoặc xoá file")
 
