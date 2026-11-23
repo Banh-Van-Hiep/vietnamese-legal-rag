@@ -43,6 +43,8 @@ class LLMSettings:
     context_window_tokens: Optional[int] = None  # bắt buộc nếu dùng token budget; phụ thuộc model
     ollama_base_url: str = DEFAULT_OLLAMA_BASE_URL  # cuối dataclass để không đổi thứ tự field cũ
     allow_fallback: bool = True  # cờ cho phép chuyển model dự phòng khi 503/429 (tắt khi benchmark)
+    # Gemini bản miễn phí cho 15 request/phút theo project; 12 chừa khoảng dự phòng (VLRA-80). 0 = tắt.
+    rate_limit_rpm: int = 12
 
     def api_key(self, provider: Optional[str] = None) -> str:
         # ollama chạy cục bộ, không có API key.
@@ -69,6 +71,8 @@ class LLMSettings:
             # bắt buộc khai báo cửa sổ thật (đặt OLLAMA_CONTEXT_LENGTH trên server cho khớp) để token budget có hiệu lực.
             if self.context_window_tokens is None:
                 raise ConfigError("LLM_CONTEXT_WINDOW_TOKENS là bắt buộc khi LLM_PROVIDER=ollama.")
+        if self.rate_limit_rpm < 0:
+            raise ConfigError("LLM_RATE_LIMIT_RPM phải >= 0 (0 = không giới hạn).")
         if self.max_context_chunks <= 0 or self.max_context_chars <= 0:
             raise ConfigError("LLM_MAX_CONTEXT_CHUNKS và LLM_MAX_CONTEXT_CHARS phải lớn hơn 0.")
         if self.max_context_tokens <= 0 or self.safety_margin_tokens <= 0 or (self.context_window_tokens is not None and self.context_window_tokens <= 0):
@@ -132,4 +136,5 @@ def load_settings(env: Optional[Mapping[str, str]] = None, dotenv_path: Optional
         context_window_tokens=_num(values, "LLM_CONTEXT_WINDOW_TOKENS", d.context_window_tokens, int),
         ollama_base_url=str(values.get("OLLAMA_BASE_URL", d.ollama_base_url)).strip() or d.ollama_base_url,
         allow_fallback=str(values.get("LLM_ALLOW_FALLBACK", "true")).strip().lower() in ("true", "1"),
+        rate_limit_rpm=_num(values, "LLM_RATE_LIMIT_RPM", d.rate_limit_rpm, int),
     )

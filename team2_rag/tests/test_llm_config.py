@@ -2,13 +2,16 @@ import pytest
 from pydantic import ValidationError
 
 from team2_rag.config.llm_config import LLMClientSettings
-from team2_rag.config.settings import ConfigError, LLMSettings
+from team2_rag.config.settings import ConfigError, LLMSettings, load_settings
+from team2_rag.llm.factory import create_provider
+from team2_rag.llm.gemini_client import GeminiProvider
+from team2_rag.tests.helpers import RecordingTransport, env_for
 
 _ENV = [
     "LLM_PROVIDER", "LLM_MODEL", "OPENAI_API_KEY", "GEMINI_API_KEY", "QWEN_API_KEY", "QWEN_BASE_URL",
     "LLM_TIMEOUT_SECONDS", "LLM_MAX_RETRIES", "LLM_TEMPERATURE", "LLM_MAX_OUTPUT_TOKENS", "LLM_MAX_TOKENS",
     "LLM_CONTEXT_WINDOW_TOKENS", "LLM_MAX_CONTEXT_TOKENS", "LLM_SAFETY_MARGIN_TOKENS",
-    "LLM_MAX_CONTEXT_CHUNKS", "LLM_MAX_CONTEXT_CHARS", "OLLAMA_BASE_URL",
+    "LLM_MAX_CONTEXT_CHUNKS", "LLM_MAX_CONTEXT_CHARS", "OLLAMA_BASE_URL", "LLM_RATE_LIMIT_RPM",
 ]
 
 
@@ -27,6 +30,35 @@ def test_defaults():
     assert (s.provider, s.timeout_seconds, s.max_retries, s.max_tokens) == ("openai", 30.0, 0, 1500)
     assert (s.max_context_chunks, s.max_context_tokens, s.safety_margin_tokens) == (5, 3000, 256)
     assert s.context_window_tokens is None
+
+
+def test_runtime_rate_limit_defaults_to_12_rpm():
+    assert LLMSettings().rate_limit_rpm == 12
+    assert load_settings(env={}).rate_limit_rpm == 12
+
+
+@pytest.mark.parametrize("rpm", [0, 30])
+def test_runtime_rate_limit_reads_env(monkeypatch, tmp_path, rpm):
+    monkeypatch.setenv("LLM_RATE_LIMIT_RPM", str(rpm))
+    assert load_settings(dotenv_path=tmp_path / "missing.env").rate_limit_rpm == rpm
+
+
+def test_runtime_negative_rate_limit_is_rejected():
+    settings = load_settings(env=env_for("gemini", LLM_RATE_LIMIT_RPM="-1"))
+    with pytest.raises(ConfigError, match="LLM_RATE_LIMIT_RPM"):
+        settings.validate()
+
+
+@pytest.mark.parametrize("rpm,interval", [(None, 5.0), ("0", 0.0), ("30", 2.0)])
+def test_gemini_factory_passes_rate_limit_interval(rpm, interval):
+    env = env_for("gemini")
+    if rpm is not None:
+        env["LLM_RATE_LIMIT_RPM"] = rpm
+    transport = RecordingTransport()
+    provider = create_provider(load_settings(env=env), transport=transport)
+    assert isinstance(provider, GeminiProvider)
+    assert provider._interval == pytest.approx(interval)
+    assert provider.transport is transport and transport.calls == []
 
 
 def test_env_overrides(monkeypatch):
@@ -104,6 +136,7 @@ def test_to_legacy_matches_runtime_loader(monkeypatch):
     env = {
         "LLM_PROVIDER": "qwen", "LLM_MODEL": "qwen-plus", "QWEN_API_KEY": " k-qwen \n", "LLM_MAX_OUTPUT_TOKENS": "800",
         "LLM_CONTEXT_WINDOW_TOKENS": "32000", "LLM_TEMPERATURE": "0.2", "LLM_MAX_CONTEXT_CHUNKS": "4",
+        "LLM_RATE_LIMIT_RPM": "30",
     }
     for k, v in env.items():
         monkeypatch.setenv(k, v)
