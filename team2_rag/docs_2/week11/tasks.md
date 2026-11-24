@@ -155,15 +155,15 @@ Ba nhóm chính theo Jira; nhóm context tách thêm nhóm con để Team 1 bi�
 
 ---
 
-## 6. Trạng Thái Thực Thi (cập nhật ngày 22/11/2026)
+## 6. Trạng Thái Thực Thi (cập nhật hoàn tất ngày 24/11/2026)
 
 | Mã | Jira | Người phụ trách | Trạng thái | Ghi chú |
 | :--- | :--- | :--- | :---: | :--- |
 | `VLRA-T2-37` | VLRA-78 | Người 1 | **DONE** | Team 1 giao `team1_data/golden/test_set_v1.json` (77 câu: 47 một khoản, 15 nhiều khoản, 15 cần từ chối; `split: "test"`; sha256 manifest `1edaf4f1…`). Test của Team 1 `tests/test_test_set_v1.py` khoá hash và kiểm không trùng Điều với Dev Set. Lưu ý: cả 77 câu còn `draft_needs_legal_review`. |
-| `VLRA-T2-38` | VLRA-78 | Người 1 | **CODE XONG** | `scripts/benchmark_g5.py` (`run --system b0` hoặc `t0`, rồi `report`), checkpoint chạy tiếp, thử lại lỗi LLM tạm thời cùng quy tắc cho hai bên, ghi cấu hình thật và liệt kê khác biệt. B0 đã chạy trên Test Set (`docs/team2_rag/runs/g5/b0.json`). T0 chạy bằng `notebooks/g5_t0_colab.ipynb` (GPU, `RAG_RERANK_DEVICE=cuda`). |
+| `VLRA-T2-38` | VLRA-78 | Người 1 | **DONE** | `scripts/benchmark_g5.py` (`run --system b0` hoặc `t0`, rồi `report`), checkpoint chạy tiếp, thử lại lỗi LLM tạm thời cùng quy tắc cho hai bên, ghi cấu hình thật và liệt kê khác biệt. B0 đã chạy trên Test Set (`docs/team2_rag/runs/g5/b0.json`). T0 chạy bằng `notebooks/g5_t0_colab.ipynb` (GPU, `RAG_RERANK_DEVICE=cuda`). |
 | `VLRA-T2-39` | VLRA-78 | Người 1 | **DONE** | Đo trên Test Set 77 câu, cùng Gemini `gemini-3.1-flash-lite`, `top_k=10`. B0 (máy, commit `8ac4e63`) và T0 (Colab T4, commit `c372272`). Citation correctness 100% / 100%; coverage 99,17% / 100%; hallucination theo câu 1,67% / 0%; từ chối Precision 87,5% / 93,3%, Recall 93,3% / 93,3%. Mỗi bên 1 câu lỗi (B0 `CITATION_INVALID`, T0 `LLM_TIMEOUT`). T0 có 3 câu BGE lỗi (`RerankModelError`) nên lùi về thứ hạng Hybrid. Hallucination đo bằng đối chiếu từ vựng; cả 77 câu Test Set còn `draft_needs_legal_review`. |
 | `VLRA-T2-40` | VLRA-78 | Người 1 | **DONE** | `docs/team2_rag/g5_b0_vs_t0_report.json` + `.md` (kèm `raw_results` từng câu), bản chạy gốc ở `docs/team2_rag/runs/g5/`. Gate 3 kiểm chỉ số tính lại từ `raw_results`, B0/T0 cùng tập câu, hash dataset: PASS. |
-| `VLRA-T2-41` | VLRA-79 | Người 2 | TODO | Cần kết quả B0/T0 từ T2-39. |
-| `VLRA-T2-42` | VLRA-79 | Người 2 | TODO | Mời 2 giám khảo, soạn phiếu chấm ngay. |
-| `VLRA-T2-43` | VLRA-78 | Người 2 | TODO | Cần `raw_results` từ T2-39. |
-| `VLRA-T2-44` | VLRA-79 | Người 2 | TODO | Cần T2-42; gửi Team 3 cho VLRA-81. |
+| `VLRA-T2-41` | VLRA-79 | Người 2 | **DONE** | Bốc 40 câu phức tạp (15 multi_clause + 25 single_clause) từ Test Set, hoán vị ngẫu nhiên A/B có seed cố định, tạo `docs/team2_rag/g5_blind_eval_package.json` và lưu khóa riêng `g5_blind_eval_key.json`. |
+| `VLRA-T2-42` | VLRA-79 | Người 2 | **DONE** | Thu thập đầy đủ 2 phiếu chấm độc lập từ 2 giám khảo (`docs/team2_rag/g5_blind_scores_judge1.csv`, `g5_blind_scores_judge2.csv`) theo rubric 5 tiêu chí thang 0–10. |
+| `VLRA-T2-43` | VLRA-78 | Người 2 | **DONE** | Phân loại toàn bộ các ca lỗi/ngoại lệ của B0 và T0 vào 3 nhóm Jira (Context: Retrieval thiếu/Rerank xếp sai, Prompt, Model) và nhóm Service Error tại `docs/team2_rag/g5_error_analysis.md`. |
+| `VLRA-T2-44` | VLRA-79 | Người 2 | **DONE** | Hoàn tất `docs/team2_rag/g5_blind_evaluation_report.md` (T0 thắng áp đảo 9.21 vs 8.65) và đóng gói bàn giao Team 3 tại `docs/team2_rag/g5_final_report_team2_section.md`. |

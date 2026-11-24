@@ -1,0 +1,41 @@
+blind_no,id,A_legal,A_complete,A_citation,A_clarity,A_safety,A_total,B_legal,B_complete,B_citation,B_clarity,B_safety,B_total,notes
+1,test_048,1,1,1,2,0,5,2,2,1,2,1,8,"A: chỉ trả lời phần tiêu chuẩn, từ chối phần quyền và nghĩa vụ dù Điều 82 Khoản 2 có quy định. B: đủ ý nhưng viện dẫn thêm Điều 64 Khoản 3 (áp dụng cho TNHH 2 thành viên) hơi thừa."
+2,test_049,1,1,1,1,0,4,2,2,2,2,2,10,"A: thiếu toàn bộ phần mô hình quản lý (Khoản 1 Điều 137) và làm lộ chuỗi 'LEGAL CONTEXT'. B: trả lời đầy đủ, đúng chuẩn."
+3,test_050,2,2,2,2,2,10,2,2,2,2,2,10,Cả hai trả lời chính xác Điều 16 Khoản 2 và Khoản 4 Nghị định 168/2025/NĐ-CP.
+4,test_051,0,0,0,2,0,2,0,0,0,2,0,2,Cả A và B đều từ chối sai dù quy định chế độ làm việc của Trưởng BKS và KSV DNNN có trong luật.
+5,test_052,1,1,1,2,0,5,2,2,2,2,2,10,"A: chỉ nêu thẩm quyền chấp thuận (Khoản 1 Điều 67), thiếu thời hạn 15 ngày (Khoản 2 Điều 67) và báo không có quy định. B: đầy đủ cả hai vế."
+6,test_053,2,2,0,2,1,7,1,1,1,2,2,7,"A: nội dung đúng nhưng trích nhầm sang Điều 71 (quyền/nghĩa vụ chủ sở hữu) thay vì Điều 83. B: trích đúng Điều 83 Khoản 3 nhưng thiếu nguyên tắc trung thực, cẩn trọng ở Khoản 2."
+7,test_054,2,2,2,2,2,10,2,2,2,2,2,10,Cả hai nêu đúng nguyên tắc dịch tên và khổ chữ nhỏ hơn tên tiếng Việt theo Điều 39.
+8,test_055,1,1,1,2,1,6,2,2,2,2,2,10,"A: bỏ sót ý truyền thông tin sang Hệ thống ứng dụng đăng ký thuế (Khoản 4 Điều 72) và đưa thừa Khoản 1, 3. B: đủ và chính xác."
+9,test_056,2,2,2,2,2,10,1,1,1,2,0,5,A: đủ tiêu chuẩn thành viên HĐQT (K1 Đ155) và xử lý thành viên độc lập không đủ điều kiện (K3 Đ155). B: từ chối sai phần tiêu chuẩn và dẫn Điều 160.
+10,test_057,2,2,2,2,2,10,2,2,1,2,1,8,"A: gọn, đúng Điều 81 Khoản 1. B: đúng ý chính nhưng kéo thêm Điều 99 (doanh nghiệp nhà nước) không cần thiết."
+11,test_058,2,2,2,2,2,10,1,1,1,2,0,5,"A: đầy đủ số lượng 1–5 KSV, nhiệm kỳ 5 năm và các điều dẫn chiếu 106, 170–174. B: thiếu hẳn vế sau (K3 Đ65) và nhận không có thông tin."
+12,test_059,2,2,2,2,2,10,2,2,2,2,2,10,Hai bên đều đúng 01 ngày làm việc và cập nhật trạng thái tạm ngừng kinh doanh.
+13,test_060,2,2,2,2,2,10,2,2,2,2,2,10,Cả hai liệt kê đầy đủ quyền yêu cầu họp và các quyết định cần 3/4 tán thành theo Điều 182.
+14,test_061,2,2,2,2,2,10,2,2,2,2,2,10,Cả hai nêu đúng quy định bản dịch công chứng và ưu tiên bản tiếng Việt theo Điều 10 NĐ 168/2025.
+15,test_062,2,2,2,2,2,10,0,0,0,1,0,1,A: đúng hoàn toàn Điều 84 Khoản 2 và Khoản 4. B: trả lời ngược quy định (dẫn xử phạt NĐ 122) và bỏ sót phần trách nhiệm nợ.
+16,test_002,2,2,2,2,2,10,2,2,2,2,2,10,Hai bên nêu đầy đủ 6 trường hợp xem xét cách chức Giám đốc/TGĐ theo Điều 102 Khoản 2.
+17,test_003,2,2,2,2,2,10,2,2,2,2,2,10,Cả hai trả lời đúng nội dung Điều 192 Khoản 2 kèm ngoại lệ thỏa thuận khác.
+18,test_004,2,2,2,2,2,10,2,2,2,2,2,10,"Hai bên đều nêu đúng cơ cấu gồm Chủ tịch công ty, Giám đốc/TGĐ và Ban kiểm soát."
+19,test_005,2,2,2,2,1,9,2,2,2,2,2,10,"A: đúng thời hạn 02 năm nhưng diễn giải chi tiết các điểm a, c, d, đ hơi lệch một ý. B: bám sát văn bản gốc."
+20,test_006,2,2,2,2,2,10,2,2,2,2,2,10,Hai bên đều nêu đúng nghị quyết vẫn có hiệu lực trừ khi có biện pháp khẩn cấp tạm thời.
+21,test_007,2,2,2,2,2,10,2,2,2,2,2,10,Hai bên đều đúng 4 trường hợp miễn nhiệm theo Điều 108 Khoản 1.
+22,test_008,2,2,2,2,2,10,2,2,2,2,2,10,Hai bên trả lời đúng thời hạn 07 ngày làm việc theo Điều 164 Khoản 3.
+23,test_009,2,2,2,2,2,10,0,0,0,0,0,0,A: trả lời chính xác Điều 124 Khoản 5. B: gặp lỗi kỹ thuật LLMTimeoutError.
+24,test_010,2,2,2,2,2,10,2,2,2,2,2,10,Cả hai trả lời đúng Điều 56 Khoản 4.
+25,test_011,2,2,2,2,2,10,2,2,2,2,2,10,Cả hai xác định đúng Chủ tịch HĐTV là người đại diện theo pháp luật mặc định.
+26,test_012,2,2,2,2,2,10,2,2,1,2,1,8,A: đúng trọng tâm Điều 8 Khoản 5 và Điều 6. B: thêm nghĩa vụ Giám đốc trả lương (Đ162) hơi rộng.
+27,test_014,2,2,2,2,2,10,2,2,2,2,2,10,Hai bên đều đúng quyền tự triệu tập họp của thành viên hợp danh theo Điều 183 Khoản 1.
+28,test_015,2,2,2,2,2,10,2,2,2,2,1,9,A: bám sát Điều 94 Khoản 1. B: đúng nhưng bổ sung thêm ý về Chủ tịch HĐTV tại Điều 95.
+29,test_017,2,2,2,2,2,10,2,2,2,2,2,10,Cả hai nêu đúng thời hạn 90 ngày theo Điều 151 Khoản 1.
+30,test_020,2,2,2,2,2,10,0,0,0,2,0,2,A: đúng điều kiện ít nhất 2/3 thành viên HĐTV dự họp (Điều 80 Khoản 5). B: từ chối sai dù có chunk đúng.
+31,test_022,2,2,2,2,2,10,2,2,2,2,2,10,Hai bên đều trả lời đúng 21 ngày trước ngày khai mạc theo Điều 143 Khoản 1.
+32,test_023,2,2,2,2,2,10,2,2,2,2,2,10,Hai bên đều đúng nguyên tắc tự đăng ký vốn đầu tư theo Điều 189 Khoản 1.
+33,test_024,1,1,2,2,1,7,2,2,2,2,2,10,A: thiếu chức danh Chủ tịch Hội đồng thành viên trong câu trả lời. B: đầy đủ theo Điều 79 Khoản 3.
+34,test_025,2,2,2,2,2,10,2,2,2,2,2,10,Cả hai trả lời đúng cơ chế tiếp tục nhiệm kỳ cho đến khi bầu thay thế (Điều 154 Khoản 3).
+35,test_026,2,2,2,2,2,10,2,2,2,2,2,10,Hai bên đều nêu đúng việc thông báo bằng văn bản cho BKS và yêu cầu chấm dứt vi phạm.
+36,test_027,2,2,2,2,2,10,2,2,2,2,2,10,Cả hai trả lời đúng thời hạn 10 ngày theo Điều 78 Khoản 1.
+37,test_028,2,2,2,2,2,10,2,2,2,2,2,10,Hai bên đều nêu đúng 2 trường hợp từ chối cấp đăng ký hộ kinh doanh tại Điều 102 Khoản 1.
+38,test_030,2,2,2,2,2,10,2,2,2,2,2,10,Cả hai trả lời đúng thành viên còn lại trở thành chủ hộ và hồ sơ gồm giấy đề nghị + bản sao giấy chứng tử.
+39,test_031,2,2,2,2,2,10,2,2,2,2,2,10,Hai bên đều liệt kê đủ Hợp đồng sáp nhập và nghị quyết/quyết định thông qua của hai bên.
+40,test_032,2,2,2,2,2,10,2,2,2,2,2,10,Hai bên đều trả lời đúng thời hạn 30 ngày theo Điều 68 Khoản 3.

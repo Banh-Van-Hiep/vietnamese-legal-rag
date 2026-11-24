@@ -1,0 +1,41 @@
+blind_no,id,A_legal,A_complete,A_citation,A_clarity,A_safety,A_total,B_legal,B_complete,B_citation,B_clarity,B_safety,B_total,notes
+1,test_048,1,1,1,2,0,5,2,2,2,2,1,9,"A: thiếu hẳn phần quyền/nghĩa vụ và tự nhận không có thông tin dù ground_truth có. B: đủ ý, nhưng thêm điều kiện cho doanh nghiệp nhà nước từ Điều 64 (nhiều khả năng thuộc mục công ty TNHH hai thành viên) là phần thừa."
+2,test_049,1,1,1,1,0,4,2,2,2,2,2,10,"A: thiếu phần hai mô hình quản lý, nói không có thông tin, lộ cụm 'LEGAL CONTEXT' trong câu trả lời. B: đủ và đúng."
+3,test_050,2,2,2,2,2,10,2,2,2,2,2,10,"Hai bên giống nhau, đều đúng."
+4,test_051,0,0,0,2,0,2,0,0,0,2,0,2,Cả hai cùng từ chối 'không có thông tin' trong khi ground_truth có quy định. Không có trích dẫn.
+5,test_052,1,1,1,2,0,5,2,2,2,2,2,10,"A: đúng cơ quan chấp thuận nhưng thiếu thời hạn 15 ngày, tự nhận luật không quy định. B: đủ."
+6,test_053,2,2,1,2,2,9,1,1,1,2,2,7,"A: nội dung đủ (trung thực, cẩn trọng, không tư lợi) nhưng dẫn Điều 71, không đúng điều của công ty TNHH một thành viên (Điều 83). B: dẫn đúng Điều 83 khoản 3 nhưng thiếu nguyên tắc 'trung thực, cẩn trọng, tốt nhất' ở khoản 2."
+7,test_054,2,2,2,2,2,10,2,2,2,2,2,10,Hai bên đều đúng.
+8,test_055,1,1,2,2,2,8,2,2,2,2,2,10,"A: đúng thời hạn 03 ngày làm việc nhưng thiếu ý thông tin phá sản được truyền sang Hệ thống ứng dụng đăng ký thuế, lại thêm nội dung ngoài câu hỏi. B: đủ cả hai ý."
+9,test_056,2,2,2,2,2,10,1,1,1,2,0,5,"B: nói không có tiêu chuẩn thành viên HĐQT (ground_truth có đủ), dẫn Điều 160 không phù hợp. Phần thành viên độc lập đúng."
+10,test_057,2,2,2,2,2,10,2,2,2,2,1,9,"B: đúng nhưng thêm ý về bổ nhiệm theo Điều 99 khá chung chung, ngoài câu hỏi."
+11,test_058,2,2,2,2,2,10,1,1,1,2,0,5,"B: đúng số Kiểm soát viên và nhiệm kỳ nhưng bỏ sót Điều 106, 170–174 và nói 'không có thông tin' trong khi khoản 3 Điều 65 có nêu."
+12,test_059,2,2,2,2,2,10,2,2,2,2,2,10,"Hai bên giống nhau, đúng."
+13,test_060,2,2,2,2,2,10,2,2,2,2,2,10,"Hai bên giống nhau, đủ các quyết định cần ba phần tư."
+14,test_061,2,2,2,2,2,10,2,2,2,2,2,10,Hai bên đều đúng.
+15,test_062,2,2,2,2,2,10,0,0,0,1,0,1,"B: sai (cho rằng góp vốn là hành vi bị xử phạt, ngược với ground_truth), dẫn Nghị định xử phạt không phù hợp, nói không có thông tin về trách nhiệm nợ."
+16,test_002,2,2,2,2,2,10,2,2,2,2,2,10,"Hai bên đều đúng, đủ 6 trường hợp."
+17,test_003,2,2,2,2,2,10,2,2,2,2,2,10,Hai bên đúng.
+18,test_004,2,2,2,2,2,10,2,2,2,2,2,10,Hai bên đúng.
+19,test_005,2,2,2,2,1,9,2,2,2,2,2,10,"A: đúng 02 năm nhưng diễn giải các điểm a, c, d, đ không chính xác (liệt kê cả trường hợp Điều lệ quy định, bỏ trường hợp mất tích/mất năng lực hành vi). B: đúng."
+20,test_006,2,2,2,2,2,10,2,2,2,2,2,10,Hai bên đúng.
+21,test_007,2,2,2,2,2,10,2,2,2,2,2,10,Hai bên đúng.
+22,test_008,2,2,2,2,2,10,2,2,2,2,2,10,Hai bên đúng.
+23,test_009,2,2,2,2,2,10,0,0,0,0,0,0,"B: LLMTimeoutError, không có câu trả lời và không có trích dẫn."
+24,test_010,2,2,2,2,2,10,2,2,2,2,2,10,Hai bên đúng. B liệt kê chi tiết hơn.
+25,test_011,2,2,2,2,2,10,2,2,2,2,2,10,Hai bên đúng.
+26,test_012,2,2,2,2,2,10,2,2,2,2,1,9,"B: thêm nghĩa vụ của Giám đốc về tiền lương (Điều 162), hơi ngoài phạm vi câu hỏi."
+27,test_014,2,2,2,2,2,10,2,2,2,2,2,10,Hai bên đúng.
+28,test_015,2,2,2,2,2,10,2,2,2,2,1,9,B: đúng nhưng thêm trường hợp miễn nhiệm riêng Chủ tịch HĐTV (Điều 95) ngoài ground_truth.
+29,test_017,2,2,2,2,2,10,2,2,2,2,2,10,Hai bên đúng (90 ngày).
+30,test_020,2,2,2,2,2,10,0,0,0,2,0,2,B: từ chối 'không nêu rõ' trong khi Điều 80 khoản 5 có quy định (ít nhất 2/3). Không có trích dẫn.
+31,test_022,2,2,2,2,2,10,2,2,2,2,2,10,Hai bên đúng (21 ngày).
+32,test_023,2,2,2,2,2,10,2,2,2,2,2,10,Hai bên đúng. Cả hai thêm phần tăng/giảm vốn có nguồn nên không trừ điểm.
+33,test_024,1,1,2,2,1,7,2,2,2,2,2,10,"A: chỉ nêu Chủ tịch công ty, thiếu 'Chủ tịch Hội đồng thành viên hoặc Chủ tịch công ty'. B: đúng."
+34,test_025,2,2,2,2,2,10,2,2,2,2,2,10,Hai bên đúng.
+35,test_026,2,2,2,2,2,10,2,2,2,2,2,10,Hai bên đúng. Cả hai thêm ý báo cáo cơ quan đại diện chủ sở hữu (Điều 107) có nguồn.
+36,test_027,2,2,2,2,2,10,2,2,2,2,2,10,Hai bên đúng (10 ngày).
+37,test_028,2,2,2,2,2,10,2,2,2,2,2,10,Hai bên đúng.
+38,test_030,2,2,2,2,2,10,2,2,2,2,2,10,Hai bên giống nhau. Với trường hợp chủ hộ chết thì giấy chứng tử là đủ.
+39,test_031,2,2,2,2,2,10,2,2,2,2,2,10,Hai bên đúng.
+40,test_032,2,2,2,2,2,10,2,2,2,2,2,10,Hai bên đúng (30 ngày).

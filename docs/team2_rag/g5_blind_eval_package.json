@@ -1,0 +1,2567 @@
+[
+  {
+    "blind_no": 1,
+    "id": "test_048",
+    "complexity": "multi_clause",
+    "category": "Công ty TNHH một thành viên",
+    "expected_status": "answered",
+    "question": "Giám đốc công ty trách nhiệm hữu hạn một thành viên phải đáp ứng tiêu chuẩn gì và có những quyền, nghĩa vụ nào?",
+    "ground_truth": "2. Giám đốc hoặc Tổng giám đốc có quyền và nghĩa vụ sau đây:\na) Tổ chức thực hiện nghị quyết, quyết định của Hội đồng thành viên hoặc Chủ tịch công ty;\n\nb) Quyết định các vấn đề liên quan đến hoạt động kinh doanh hằng ngày của công ty;\n\nc) Tổ chức thực hiện kế hoạch kinh doanh và phương án đầu tư của công ty;\n\nd) Ban hành quy chế quản lý nội bộ của công ty;\n\nđ) Bổ nhiệm, miễn nhiệm, bãi nhiệm người quản lý công ty, trừ các chức danh thuộc thẩm quyền của Hội đồng thành viên hoặc Chủ tịch công ty;\n\ne) Ký hợp đồng nhân danh công ty, trừ trường hợp thuộc thẩm quyền của Chủ tịch Hội đồng thành viên hoặc Chủ tịch công ty;\n\ng) Kiến nghị phương án cơ cấu tổ chức công ty;\n\nh) Trình báo cáo tài chính hằng năm lên Hội đồng thành viên hoặc Chủ tịch công ty;\n\ni) Kiến nghị phương án sử dụng lợi nhuận hoặc xử lý lỗ trong kinh doanh;\n\nk) Tuyển dụng lao động;\n\nl) Quyền và nghĩa vụ khác được quy định tại Điều lệ công ty và hợp đồng lao động.\n\n3. Giám đốc hoặc Tổng giám đốc phải có tiêu chuẩn và điều kiện sau đây:\na) Không thuộc đối tượng quy định tại khoản 2 Điều 17 của Luật này;\n\nb) Có trình độ chuyên môn, kinh nghiệm trong quản trị kinh doanh của công ty và điều kiện khác do Điều lệ công ty quy định.",
+    "system_A_answer": "Giám đốc hoặc Tổng giám đốc công ty phải đáp ứng các tiêu chuẩn và điều kiện: không thuộc đối tượng quy định tại khoản 2 Điều 17 của Luật Doanh nghiệp, có trình độ chuyên môn, kinh nghiệm trong quản trị kinh doanh của công ty và các điều kiện khác do Điều lệ công ty quy định [C1], [C2]. Đối với doanh nghiệp nhà nước và công ty con của doanh nghiệp nhà nước, Giám đốc hoặc Tổng giám đốc còn phải đáp ứng thêm điều kiện không được là người có quan hệ gia đình của người quản lý công ty, Kiểm soát viên của công ty và của công ty mẹ; người đại diện phần vốn của doanh nghiệp, người đại diện phần vốn nhà nước tại công ty và công ty mẹ [C3], [C4]. Nguồn cung cấp hiện tại chưa có thông tin về quyền và nghĩa vụ của Giám đốc công ty trách nhiệm hữu hạn một thành viên.",
+    "system_A_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-82__k3__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-82",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 82",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-82__k3__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-82",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 82",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      },
+      {
+        "citation_id": "C3",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-64__k3__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-64",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 64",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C4",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-64__k3__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-64",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 64",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      }
+    ],
+    "system_B_answer": "Giám đốc hoặc Tổng giám đốc công ty trách nhiệm hữu hạn một thành viên phải đáp ứng các tiêu chuẩn và điều kiện: không thuộc đối tượng quy định tại khoản 2 Điều 17 của Luật Doanh nghiệp, có trình độ chuyên môn, kinh nghiệm trong quản trị kinh doanh của công ty và các điều kiện khác do Điều lệ công ty quy định [C1], [C2]. Đối với doanh nghiệp nhà nước và công ty con của doanh nghiệp nhà nước, Giám đốc hoặc Tổng giám đốc còn phải đáp ứng thêm điều kiện không được là người có quan hệ gia đình của người quản lý công ty, Kiểm soát viên của công ty và của công ty mẹ; người đại diện phần vốn của doanh nghiệp, người đại diện phần vốn nhà nước tại công ty và công ty mẹ [C3], [C4]. Về quyền và nghĩa vụ, Giám đốc hoặc Tổng giám đốc có các quyền và nghĩa vụ như: tổ chức thực hiện nghị quyết, quyết định của Hội đồng thành viên hoặc Chủ tịch công ty; quyết định các vấn đề kinh doanh hằng ngày; tổ chức thực hiện kế hoạch kinh doanh và phương án đầu tư; ban hành quy chế quản lý nội bộ; bổ nhiệm, miễn nhiệm, bãi nhiệm người quản lý công ty (trừ các chức danh thuộc thẩm quyền của Hội đồng thành viên hoặc Chủ tịch công ty); ký hợp đồng nhân danh công ty (trừ trường hợp thuộc thẩm quyền của Chủ tịch Hội đồng thành viên hoặc Chủ tịch công ty); kiến nghị phương án cơ cấu tổ chức, phương án sử dụng lợi nhuận hoặc xử lý lỗ; trình báo cáo tài chính hằng năm; tuyển dụng lao động; và các quyền, nghĩa vụ khác theo Điều lệ công ty và hợp đồng lao động [C5].",
+    "system_B_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-82__k3__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-82",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 82",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-82__k3__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-82",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 82",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      },
+      {
+        "citation_id": "C3",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-64__k3__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-64",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 64",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C4",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-64__k3__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-64",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 64",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      },
+      {
+        "citation_id": "C5",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-82__k2__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-82",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 82",
+        "clause": "Khoản 2",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      }
+    ]
+  },
+  {
+    "blind_no": 2,
+    "id": "test_049",
+    "complexity": "multi_clause",
+    "category": "Công ty cổ phần",
+    "expected_status": "answered",
+    "question": "Công ty cổ phần được chọn những mô hình tổ chức quản lý nào, và ai là người đại diện theo pháp luật khi Điều lệ chưa quy định?",
+    "ground_truth": "1. Trừ trường hợp pháp luật về chứng khoán có quy định khác, công ty cổ phần có quyền lựa chọn tổ chức quản lý và hoạt động theo một trong hai mô hình sau đây:\na) Đại hội đồng cổ đông, Hội đồng quản trị, Ban kiểm soát và Giám đốc hoặc Tổng giám đốc. Trường hợp công ty cổ phần có dưới 11 cổ đông và các cổ đông là tổ chức sở hữu dưới 50% tổng số cổ phần của công ty thì không bắt buộc phải có Ban kiểm soát;\n\nb) Đại hội đồng cổ đông, Hội đồng quản trị và Giám đốc hoặc Tổng giám đốc. Trường hợp này ít nhất 20% số thành viên Hội đồng quản trị phải là thành viên độc lập và có Ủy ban kiểm toán trực thuộc Hội đồng quản trị. Cơ cấu tổ chức, chức năng, nhiệm vụ của Ủy ban kiểm toán quy định tại Điều lệ công ty hoặc quy chế hoạt động của Ủy ban kiểm toán do Hội đồng quản trị ban hành.\n\n2. Trường hợp công ty chỉ có một người đại diện theo pháp luật thì Chủ tịch Hội đồng quản trị hoặc Giám đốc hoặc Tổng giám đốc là người đại diện theo pháp luật của công ty. Trường hợp Điều lệ chưa có quy định thì Chủ tịch Hội đồng quản trị là người đại diện theo pháp luật của công ty. Trường hợp công ty có hơn một người đại diện theo pháp luật thì Chủ tịch Hội đồng quản trị và Giám đốc hoặc Tổng giám đốc đương nhiên là người đại diện theo pháp luật của công ty.",
+    "system_A_answer": "Đối với công ty cổ phần, trường hợp công ty chỉ có một người đại diện theo pháp luật mà Điều lệ chưa có quy định cụ thể thì Chủ tịch Hội đồng quản trị là người đại diện theo pháp luật của công ty [C1], [C2]. LEGAL CONTEXT hiện tại không cung cấp thông tin về các mô hình tổ chức quản lý mà công ty cổ phần được lựa chọn.",
+    "system_A_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-137__k2__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-137",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 137",
+        "clause": "Khoản 2",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-137__k2__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-137",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 137",
+        "clause": "Khoản 2",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      }
+    ],
+    "system_B_answer": "Công ty cổ phần có quyền lựa chọn một trong hai mô hình tổ chức quản lý: (1) Đại hội đồng cổ đông, Hội đồng quản trị, Ban kiểm soát và Giám đốc hoặc Tổng giám đốc (trường hợp công ty có dưới 11 cổ đông và các cổ đông là tổ chức sở hữu dưới 50% tổng số cổ phần thì không bắt buộc có Ban kiểm soát); hoặc (2) Đại hội đồng cổ đông, Hội đồng quản trị và Giám đốc hoặc Tổng giám đốc (trường hợp này phải có Ủy ban kiểm toán trực thuộc Hội đồng quản trị và ít nhất 20% thành viên Hội đồng quản trị là thành viên độc lập) [C1], [C2]. Đối với người đại diện theo pháp luật, nếu Điều lệ chưa có quy định thì Chủ tịch Hội đồng quản trị là người đại diện theo pháp luật của công ty [C3], [C4].",
+    "system_B_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-137__k1__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-137",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 137",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-137__k1__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-137",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 137",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      },
+      {
+        "citation_id": "C3",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-137__k2__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-137",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 137",
+        "clause": "Khoản 2",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C4",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-137__k2__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-137",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 137",
+        "clause": "Khoản 2",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      }
+    ]
+  },
+  {
+    "blind_no": 3,
+    "id": "test_050",
+    "complexity": "multi_clause",
+    "category": "Tên doanh nghiệp",
+    "expected_status": "answered",
+    "question": "Chi nhánh của doanh nghiệp có được đăng ký tên bằng tiếng nước ngoài không, và doanh nghiệp 100% vốn nhà nước chuyển thành đơn vị hạch toán phụ thuộc có được giữ tên cũ không?",
+    "ground_truth": "2. Ngoài tên bằng tiếng Việt, chi nhánh, văn phòng đại diện, địa điểm kinh doanh của doanh nghiệp có thể đăng ký tên bằng tiếng nước ngoài và tên viết tắt. Tên bằng tiếng nước ngoài là tên được dịch từ tên tiếng Việt sang một trong những tiếng nước ngoài hệ chữ La-tinh. Tên viết tắt được viết tắt từ tên tiếng Việt hoặc tên bằng tiếng nước ngoài.\n\n4. Đối với những doanh nghiệp 100% vốn nhà nước khi chuyển thành đơn vị hạch toán phụ thuộc do yêu cầu tổ chức lại thì được phép giữ nguyên tên doanh nghiệp nhà nước trước khi tổ chức lại.",
+    "system_A_answer": "Chi nhánh của doanh nghiệp có thể đăng ký tên bằng tiếng nước ngoài [C1]. Đối với doanh nghiệp 100% vốn nhà nước khi chuyển thành đơn vị hạch toán phụ thuộc do yêu cầu tổ chức lại, doanh nghiệp được phép giữ nguyên tên doanh nghiệp nhà nước trước khi tổ chức lại [C2].",
+    "system_A_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-16__k2__0",
+        "document_id": "nd-168-2025-nd-cp-v1",
+        "article_id": "dieu-16",
+        "document_title": "Nghị định về đăng ký doanh nghiệp",
+        "article": "Điều 16",
+        "clause": "Khoản 2",
+        "point": null,
+        "source_url": "https://xaydungchinhsach.chinhphu.vn/toan-van-nghi-dinh-168-2025-nd-cp-ve-dang-ky-doanh-nghiep-119250702175708554.htm"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-16__k4__0",
+        "document_id": "nd-168-2025-nd-cp-v1",
+        "article_id": "dieu-16",
+        "document_title": "Nghị định về đăng ký doanh nghiệp",
+        "article": "Điều 16",
+        "clause": "Khoản 4",
+        "point": null,
+        "source_url": "https://xaydungchinhsach.chinhphu.vn/toan-van-nghi-dinh-168-2025-nd-cp-ve-dang-ky-doanh-nghiep-119250702175708554.htm"
+      }
+    ],
+    "system_B_answer": "Chi nhánh của doanh nghiệp được phép đăng ký tên bằng tiếng nước ngoài [C1]. Đối với doanh nghiệp 100% vốn nhà nước khi chuyển thành đơn vị hạch toán phụ thuộc do yêu cầu tổ chức lại, doanh nghiệp được phép giữ nguyên tên doanh nghiệp nhà nước trước khi tổ chức lại [C2].",
+    "system_B_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-16__k2__0",
+        "document_id": "nd-168-2025-nd-cp-v1",
+        "article_id": "dieu-16",
+        "document_title": "Nghị định về đăng ký doanh nghiệp",
+        "article": "Điều 16",
+        "clause": "Khoản 2",
+        "point": null,
+        "source_url": "https://xaydungchinhsach.chinhphu.vn/toan-van-nghi-dinh-168-2025-nd-cp-ve-dang-ky-doanh-nghiep-119250702175708554.htm"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-16__k4__0",
+        "document_id": "nd-168-2025-nd-cp-v1",
+        "article_id": "dieu-16",
+        "document_title": "Nghị định về đăng ký doanh nghiệp",
+        "article": "Điều 16",
+        "clause": "Khoản 4",
+        "point": null,
+        "source_url": "https://xaydungchinhsach.chinhphu.vn/toan-van-nghi-dinh-168-2025-nd-cp-ve-dang-ky-doanh-nghiep-119250702175708554.htm"
+      }
+    ]
+  },
+  {
+    "blind_no": 4,
+    "id": "test_051",
+    "complexity": "multi_clause",
+    "category": "Doanh nghiệp nhà nước",
+    "expected_status": "answered",
+    "question": "Trong doanh nghiệp nhà nước, Trưởng Ban kiểm soát và Kiểm soát viên làm việc theo chế độ nào?",
+    "ground_truth": "1. Trưởng Ban kiểm soát xây dựng kế hoạch công tác hằng tháng, hằng quý và hằng năm của Ban kiểm soát; phân công nhiệm vụ và công việc cụ thể cho từng Kiểm soát viên.\n\n2. Kiểm soát viên chủ động và độc lập thực hiện nhiệm vụ và công việc được phân công; đề xuất, kiến nghị thực hiện nhiệm vụ, công việc kiểm soát khác ngoài kế hoạch, ngoài phạm vi được phân công khi xét thấy cần thiết.",
+    "system_A_answer": "Các tài liệu pháp luật được cung cấp không chứa thông tin về chế độ làm việc của Trưởng Ban kiểm soát và Kiểm soát viên trong doanh nghiệp nhà nước.",
+    "system_A_citations": [],
+    "system_B_answer": "Các tài liệu pháp luật được cung cấp không chứa thông tin về chế độ làm việc của Trưởng Ban kiểm soát và Kiểm soát viên trong doanh nghiệp nhà nước.",
+    "system_B_citations": []
+  },
+  {
+    "blind_no": 5,
+    "id": "test_052",
+    "complexity": "multi_clause",
+    "category": "Công ty TNHH hai thành viên",
+    "expected_status": "answered",
+    "question": "Hợp đồng giữa công ty trách nhiệm hữu hạn hai thành viên trở lên với Giám đốc của công ty phải được ai chấp thuận, và thời hạn quyết định là bao lâu?",
+    "ground_truth": "1. Hợp đồng, giao dịch giữa công ty với đối tượng sau đây phải được Hội đồng thành viên chấp thuận:\na) Thành viên, người đại diện theo ủy quyền của thành viên, Giám đốc hoặc Tổng giám đốc, người đại diện theo pháp luật của công ty;\n\nb) Người có liên quan của người quy định tại điểm a khoản này;\n\nc) Người quản lý công ty mẹ, người có thẩm quyền bổ nhiệm người quản lý công ty mẹ;\n\nd) Người có liên quan của người quy định tại điểm c khoản này.\n\n2. Người nhân danh công ty ký kết hợp đồng, giao dịch phải thông báo cho các thành viên Hội đồng thành viên, Kiểm soát viên về các đối tượng có liên quan và lợi ích có liên quan đối với hợp đồng, giao dịch đó; kèm theo dự thảo hợp đồng hoặc nội dung chủ yếu của giao dịch dự định tiến hành. Trường hợp Điều lệ công ty không quy định khác thì Hội đồng thành viên phải quyết định chấp thuận hoặc không chấp thuận hợp đồng, giao dịch trong thời hạn 15 ngày kể từ ngày nhận được thông báo và thực hiện theo quy định tại khoản 3 Điều 59 của Luật này. Thành viên Hội đồng thành viên có liên quan đến các bên trong hợp đồng, giao dịch không được tính vào việc biểu quyết.",
+    "system_A_answer": "Hợp đồng, giao dịch giữa công ty trách nhiệm hữu hạn hai thành viên trở lên với Giám đốc của công ty phải được Hội đồng thành viên chấp thuận [C1]. Tuy nhiên, các văn bản pháp luật được cung cấp không quy định cụ thể về thời hạn quyết định đối với loại hình công ty trách nhiệm hữu hạn hai thành viên trở lên.",
+    "system_A_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-67__k1__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-67",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 67",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      }
+    ],
+    "system_B_answer": "Hợp đồng giữa công ty trách nhiệm hữu hạn hai thành viên trở lên với Giám đốc của công ty phải được Hội đồng thành viên chấp thuận [C1], [C2]. Trường hợp Điều lệ công ty không quy định khác, Hội đồng thành viên phải quyết định chấp thuận hoặc không chấp thuận hợp đồng trong thời hạn 15 ngày kể từ ngày nhận được thông báo [C3], [C4].",
+    "system_B_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-67__k1__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-67",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 67",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-67__k1__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-67",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 67",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      },
+      {
+        "citation_id": "C3",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-67__k2__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-67",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 67",
+        "clause": "Khoản 2",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C4",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-67__k2__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-67",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 67",
+        "clause": "Khoản 2",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      }
+    ]
+  },
+  {
+    "blind_no": 6,
+    "id": "test_053",
+    "complexity": "multi_clause",
+    "category": "Công ty TNHH một thành viên",
+    "expected_status": "answered",
+    "question": "Người quản lý công ty trách nhiệm hữu hạn một thành viên phải thực hiện quyền, nghĩa vụ theo nguyên tắc nào và có được dùng cơ hội kinh doanh của công ty để tư lợi không?",
+    "ground_truth": "2. Thực hiện quyền và nghĩa vụ được giao một cách trung thực, cẩn trọng, tốt nhất nhằm bảo đảm lợi ích hợp pháp tối đa của công ty và chủ sở hữu công ty.\n\n3. Trung thành với lợi ích của công ty và chủ sở hữu công ty; không lạm dụng địa vị, chức vụ và sử dụng thông tin, bí quyết, cơ hội kinh doanh, tài sản khác của công ty để tư lợi hoặc phục vụ lợi ích của tổ chức, cá nhân khác.",
+    "system_A_answer": "Người quản lý công ty trách nhiệm hữu hạn một thành viên phải thực hiện quyền và nghĩa vụ một cách trung thực, cẩn trọng, tốt nhất nhằm bảo đảm lợi ích hợp pháp tối đa của công ty [C1], [C2]. Người quản lý không được lạm dụng địa vị, chức vụ và sử dụng thông tin, bí quyết, cơ hội kinh doanh, tài sản khác của công ty để tư lợi hoặc phục vụ lợi ích của tổ chức, cá nhân khác [C1], [C2].",
+    "system_A_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-71__k1__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-71",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 71",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-71__k1__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-71",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 71",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      }
+    ],
+    "system_B_answer": "Người quản lý công ty trách nhiệm hữu hạn một thành viên phải trung thành với lợi ích của công ty và chủ sở hữu công ty [C1], [C2]. Người quản lý không được lạm dụng địa vị, chức vụ và sử dụng thông tin, bí quyết, cơ hội kinh doanh, tài sản khác của công ty để tư lợi hoặc phục vụ lợi ích của tổ chức, cá nhân khác [C1], [C2].",
+    "system_B_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-83__k3__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-83",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 83",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-83__k3__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-83",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 83",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      }
+    ]
+  },
+  {
+    "blind_no": 7,
+    "id": "test_054",
+    "complexity": "multi_clause",
+    "category": "Tên doanh nghiệp",
+    "expected_status": "answered",
+    "question": "Tên doanh nghiệp bằng tiếng nước ngoài được đặt như thế nào và phải trình bày ra sao so với tên tiếng Việt?",
+    "ground_truth": "1. Tên doanh nghiệp bằng tiếng nước ngoài là tên được dịch từ tên tiếng Việt sang một trong những tiếng nước ngoài hệ chữ La-tinh. Khi dịch sang tiếng nước ngoài, tên riêng của doanh nghiệp có thể giữ nguyên hoặc dịch theo nghĩa tương ứng sang tiếng nước ngoài.\n\n2. Trường hợp doanh nghiệp có tên bằng tiếng nước ngoài, tên bằng tiếng nước ngoài của doanh nghiệp được in hoặc viết với khổ chữ nhỏ hơn tên tiếng Việt của doanh nghiệp tại trụ sở chính, chi nhánh, văn phòng đại diện, địa điểm kinh doanh của doanh nghiệp hoặc trên các giấy tờ giao dịch, hồ sơ tài liệu và ấn phẩm do doanh nghiệp phát hành.",
+    "system_A_answer": "Tên doanh nghiệp bằng tiếng nước ngoài là tên được dịch từ tên tiếng Việt sang một trong những tiếng nước ngoài hệ chữ La-tinh [C1]. Khi dịch, tên riêng của doanh nghiệp có thể giữ nguyên hoặc dịch theo nghĩa tương ứng sang tiếng nước ngoài [C1]. Về cách trình bày, khi doanh nghiệp có tên bằng tiếng nước ngoài, tên này phải được in hoặc viết với khổ chữ nhỏ hơn tên tiếng Việt tại trụ sở chính, chi nhánh, văn phòng đại diện, địa điểm kinh doanh hoặc trên các giấy tờ giao dịch, hồ sơ tài liệu và ấn phẩm do doanh nghiệp phát hành [C2].",
+    "system_A_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-39__k1__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-39",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 39",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-39__k2__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-39",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 39",
+        "clause": "Khoản 2",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      }
+    ],
+    "system_B_answer": "Tên doanh nghiệp bằng tiếng nước ngoài là tên được dịch từ tên tiếng Việt sang một trong những tiếng nước ngoài hệ chữ La-tinh [C1], [C2]. Khi dịch, tên riêng của doanh nghiệp có thể giữ nguyên hoặc dịch theo nghĩa tương ứng sang tiếng nước ngoài [C1], [C2]. Tại trụ sở chính, chi nhánh, văn phòng đại diện, địa điểm kinh doanh hoặc trên các giấy tờ giao dịch, hồ sơ tài liệu và ấn phẩm do doanh nghiệp phát hành, tên bằng tiếng nước ngoài phải được in hoặc viết với khổ chữ nhỏ hơn tên tiếng Việt của doanh nghiệp [C3], [C4].",
+    "system_B_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-39__k1__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-39",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 39",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-39__k1__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-39",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 39",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C3",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-39__k2__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-39",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 39",
+        "clause": "Khoản 2",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C4",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-39__k2__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-39",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 39",
+        "clause": "Khoản 2",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      }
+    ]
+  },
+  {
+    "blind_no": 8,
+    "id": "test_055",
+    "complexity": "multi_clause",
+    "category": "Phá sản",
+    "expected_status": "answered",
+    "question": "Trong thủ tục phá sản, Cơ quan đăng ký kinh doanh cấp tỉnh phải đăng tải danh sách chủ nợ trong bao lâu, và thông tin phá sản được truyền đi đâu?",
+    "ground_truth": "2. Trong thời hạn 03 ngày làm việc kể từ ngày nhận được danh sách chủ nợ, Cơ quan đăng ký kinh doanh cấp tỉnh đăng tải danh sách chủ nợ trên Cổng thông tin quốc gia về đăng ký doanh nghiệp.\n\n4. Thông tin về việc doanh nghiệp đang làm thủ tục phá sản hoặc đã phá sản và chi nhánh, văn phòng đại diện, địa điểm kinh doanh đang làm thủ tục chấm dứt hoạt động hoặc đã chấm dứt hoạt động được truyền sang Hệ thống ứng dụng đăng ký thuế để cập nhật.",
+    "system_A_answer": "Trong thủ tục phá sản, Cơ quan đăng ký kinh doanh cấp tỉnh phải đăng tải danh sách chủ nợ trên Cổng thông tin quốc gia về đăng ký doanh nghiệp trong thời hạn 03 ngày làm việc kể từ ngày nhận được danh sách [C1]. Ngoài ra, cơ quan này cũng đăng tải quyết định mở thủ tục phá sản và quyết định tuyên bố doanh nghiệp phá sản của Tòa án trên Cổng thông tin quốc gia về đăng ký doanh nghiệp trong thời hạn 03 ngày làm việc kể từ ngày nhận được các quyết định này [C2], [C3].",
+    "system_A_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-72__k2__0",
+        "document_id": "nd-168-2025-nd-cp-v1",
+        "article_id": "dieu-72",
+        "document_title": "Nghị định về đăng ký doanh nghiệp",
+        "article": "Điều 72",
+        "clause": "Khoản 2",
+        "point": null,
+        "source_url": "https://xaydungchinhsach.chinhphu.vn/toan-van-nghi-dinh-168-2025-nd-cp-ve-dang-ky-doanh-nghiep-119250702175708554.htm"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-72__k1__0",
+        "document_id": "nd-168-2025-nd-cp-v1",
+        "article_id": "dieu-72",
+        "document_title": "Nghị định về đăng ký doanh nghiệp",
+        "article": "Điều 72",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://xaydungchinhsach.chinhphu.vn/toan-van-nghi-dinh-168-2025-nd-cp-ve-dang-ky-doanh-nghiep-119250702175708554.htm"
+      },
+      {
+        "citation_id": "C3",
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-72__k3__0",
+        "document_id": "nd-168-2025-nd-cp-v1",
+        "article_id": "dieu-72",
+        "document_title": "Nghị định về đăng ký doanh nghiệp",
+        "article": "Điều 72",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://xaydungchinhsach.chinhphu.vn/toan-van-nghi-dinh-168-2025-nd-cp-ve-dang-ky-doanh-nghiep-119250702175708554.htm"
+      }
+    ],
+    "system_B_answer": "Trong thời hạn 03 ngày làm việc kể từ ngày nhận được danh sách chủ nợ, Cơ quan đăng ký kinh doanh cấp tỉnh phải đăng tải danh sách này trên Cổng thông tin quốc gia về đăng ký doanh nghiệp [C1]. Thông tin về việc doanh nghiệp đang làm thủ tục phá sản hoặc đã phá sản được truyền sang Hệ thống ứng dụng đăng ký thuế để cập nhật [C2].",
+    "system_B_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-72__k2__0",
+        "document_id": "nd-168-2025-nd-cp-v1",
+        "article_id": "dieu-72",
+        "document_title": "Nghị định về đăng ký doanh nghiệp",
+        "article": "Điều 72",
+        "clause": "Khoản 2",
+        "point": null,
+        "source_url": "https://xaydungchinhsach.chinhphu.vn/toan-van-nghi-dinh-168-2025-nd-cp-ve-dang-ky-doanh-nghiep-119250702175708554.htm"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-72__k4__0",
+        "document_id": "nd-168-2025-nd-cp-v1",
+        "article_id": "dieu-72",
+        "document_title": "Nghị định về đăng ký doanh nghiệp",
+        "article": "Điều 72",
+        "clause": "Khoản 4",
+        "point": null,
+        "source_url": "https://xaydungchinhsach.chinhphu.vn/toan-van-nghi-dinh-168-2025-nd-cp-ve-dang-ky-doanh-nghiep-119250702175708554.htm"
+      }
+    ]
+  },
+  {
+    "blind_no": 9,
+    "id": "test_056",
+    "complexity": "multi_clause",
+    "category": "Hội đồng quản trị",
+    "expected_status": "answered",
+    "question": "Thành viên Hội đồng quản trị công ty cổ phần cần những tiêu chuẩn gì, và khi thành viên độc lập không còn đủ điều kiện thì xử lý thế nào?",
+    "ground_truth": "1. Thành viên Hội đồng quản trị phải có các tiêu chuẩn và điều kiện sau đây:\na) Không thuộc đối tượng quy định tại khoản 2 Điều 17 của Luật này;\n\nb) Có trình độ chuyên môn, kinh nghiệm trong quản trị kinh doanh hoặc trong lĩnh vực, ngành, nghề kinh doanh của công ty và không nhất thiết phải là cổ đông của công ty, trừ trường hợp Điều lệ công ty có quy định khác;\n\nc) Thành viên Hội đồng quản trị công ty có thể đồng thời là thành viên Hội đồng quản trị của công ty khác;\n\nd) Đối với doanh nghiệp nhà nước theo quy định tại điểm b khoản 1 Điều 88 của Luật này và công ty con của doanh nghiệp nhà nước theo quy định tại khoản 1 Điều 88 của Luật này thì thành viên Hội đồng quản trị không được là người có quan hệ gia đình của Giám đốc, Tổng giám đốc và người quản lý khác của công ty; của người quản lý, người có thẩm quyền bổ nhiệm người quản lý công ty mẹ.\n\n3. Thành viên độc lập Hội đồng quản trị phải thông báo với Hội đồng quản trị về việc không còn đáp ứng đủ các tiêu chuẩn và điều kiện quy định tại khoản 2 Điều này và đương nhiên không còn là thành viên độc lập Hội đồng quản trị kể từ ngày không đáp ứng đủ các tiêu chuẩn và điều kiện. Hội đồng quản trị phải thông báo trường hợp thành viên độc lập Hội đồng quản trị không còn đáp ứng đủ các tiêu chuẩn và điều kiện tại cuộc họp Đại hội đồng cổ đông gần nhất hoặc triệu tập họp Đại hội đồng cổ đông để bầu bổ sung hoặc thay thế thành viên độc lập Hội đồng quản trị trong thời hạn 06 tháng kể từ ngày nhận được thông báo của thành viên độc lập Hội đồng quản trị có liên quan.",
+    "system_A_answer": "Thành viên Hội đồng quản trị phải đáp ứng các tiêu chuẩn: không thuộc đối tượng quy định tại khoản 2 Điều 17 Luật Doanh nghiệp [C1], [C2]; có trình độ chuyên môn, kinh nghiệm trong quản trị kinh doanh hoặc lĩnh vực, ngành, nghề kinh doanh của công ty và không nhất thiết phải là cổ đông (trừ khi Điều lệ có quy định khác) [C1], [C2]; có thể đồng thời là thành viên Hội đồng quản trị của công ty khác [C1], [C2]. Đối với doanh nghiệp nhà nước và công ty con của doanh nghiệp nhà nước, thành viên Hội đồng quản trị không được là người có quan hệ gia đình của Giám đốc, Tổng giám đốc, người quản lý khác của công ty hoặc của người quản lý, người có thẩm quyền bổ nhiệm người quản lý công ty mẹ [C1], [C2]. Khi thành viên độc lập Hội đồng quản trị không còn đáp ứng đủ tiêu chuẩn, họ phải thông báo cho Hội đồng quản trị và đương nhiên không còn là thành viên độc lập kể từ ngày không đáp ứng đủ điều kiện [C3], [C4]. Hội đồng quản trị phải thông báo việc này tại cuộc họp Đại hội đồng cổ đông gần nhất hoặc triệu tập họp Đại hội đồng cổ đông để bầu bổ sung hoặc thay thế trong thời hạn 06 tháng kể từ ngày nhận được thông báo [C3], [C4].",
+    "system_A_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-155__k1__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-155",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 155",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-155__k1__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-155",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 155",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C3",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-155__k3__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-155",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 155",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C4",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-155__k3__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-155",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 155",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      }
+    ],
+    "system_B_answer": "Về tiêu chuẩn thành viên Hội đồng quản trị, các văn bản cung cấp không quy định cụ thể các tiêu chuẩn này mà chỉ nêu trường hợp miễn nhiệm khi không có đủ tiêu chuẩn và điều kiện theo quy định tại Điều 155 Luật Doanh nghiệp [C1], [C2]. Đối với thành viên độc lập Hội đồng quản trị, khi không còn đáp ứng đủ tiêu chuẩn và điều kiện, thành viên đó phải thông báo cho Hội đồng quản trị và đương nhiên không còn là thành viên độc lập kể từ ngày không đáp ứng đủ điều kiện [C3], [C4]. Hội đồng quản trị có trách nhiệm thông báo trường hợp này tại cuộc họp Đại hội đồng cổ đông gần nhất hoặc triệu tập họp Đại hội đồng cổ đông để bầu bổ sung hoặc thay thế trong thời hạn 06 tháng kể từ ngày nhận được thông báo [C3], [C4].",
+    "system_B_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-160__k1__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-160",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 160",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-160__k1__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-160",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 160",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      },
+      {
+        "citation_id": "C3",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-155__k3__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-155",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 155",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C4",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-155__k3__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-155",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 155",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      }
+    ]
+  },
+  {
+    "blind_no": 10,
+    "id": "test_057",
+    "complexity": "multi_clause",
+    "category": "Công ty TNHH một thành viên",
+    "expected_status": "answered",
+    "question": "Chủ tịch công ty trách nhiệm hữu hạn một thành viên do ai bổ nhiệm và thực hiện quyền, nghĩa vụ theo quy định nào?",
+    "ground_truth": "1. Chủ tịch công ty do chủ sở hữu công ty bổ nhiệm. Chủ tịch công ty nhân danh chủ sở hữu công ty thực hiện quyền và nghĩa vụ của chủ sở hữu công ty; nhân danh công ty thực hiện quyền và nghĩa vụ của công ty, trừ quyền và nghĩa vụ của Giám đốc hoặc Tổng giám đốc; chịu trách nhiệm trước pháp luật và chủ sở hữu công ty về việc thực hiện quyền và nghĩa vụ được giao theo quy định của Điều lệ công ty, Luật này và quy định khác của pháp luật có liên quan.\n\n2. Quyền, nghĩa vụ và chế độ làm việc của Chủ tịch công ty được thực hiện theo quy định tại Điều lệ công ty, Luật này và quy định khác của pháp luật có liên quan.",
+    "system_A_answer": "Chủ tịch công ty trách nhiệm hữu hạn một thành viên do chủ sở hữu công ty bổ nhiệm [C1]. Chủ tịch công ty thực hiện quyền và nghĩa vụ của mình theo quy định của Điều lệ công ty, Luật Doanh nghiệp và các quy định khác của pháp luật có liên quan [C1].",
+    "system_A_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-81__k1__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-81",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 81",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      }
+    ],
+    "system_B_answer": "Đối với công ty trách nhiệm hữu hạn một thành viên, Chủ tịch công ty do chủ sở hữu công ty bổ nhiệm [C1], [C2]. Chủ tịch công ty thực hiện quyền và nghĩa vụ theo quy định của Điều lệ công ty, Luật Doanh nghiệp và các quy định pháp luật khác có liên quan [C1], [C2]. Đối với trường hợp Chủ tịch công ty do cơ quan đại diện chủ sở hữu bổ nhiệm, việc bổ nhiệm thực hiện theo quy định của pháp luật [C3], [C4].",
+    "system_B_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-81__k1__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-81",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 81",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-81__k1__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-81",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 81",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      },
+      {
+        "citation_id": "C3",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-99__k1__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-99",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 99",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C4",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-99__k1__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-99",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 99",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      }
+    ]
+  },
+  {
+    "blind_no": 11,
+    "id": "test_058",
+    "complexity": "multi_clause",
+    "category": "Công ty TNHH hai thành viên",
+    "expected_status": "answered",
+    "question": "Ban kiểm soát của công ty trách nhiệm hữu hạn hai thành viên trở lên có bao nhiêu Kiểm soát viên, nhiệm kỳ bao lâu, và quyền, nghĩa vụ áp dụng theo những điều nào?",
+    "ground_truth": "1. Ban kiểm soát có từ 01 đến 05 Kiểm soát viên. Nhiệm kỳ Kiểm soát viên không quá 05 năm và có thể được bổ nhiệm lại với số nhiệm kỳ không hạn chế. Trường hợp Ban kiểm soát chỉ có 01 Kiểm soát viên thì Kiểm soát viên đó đồng thời là Trưởng Ban kiểm soát và phải đáp ứng tiêu chuẩn của Trưởng Ban kiểm soát.\n\n3. Quyền, nghĩa vụ, trách nhiệm, việc miễn nhiệm, bãi nhiệm và chế độ làm việc của Ban kiểm soát, Kiểm soát viên được thực hiện tương ứng theo quy định tại các điều 106, 170, 171, 172, 173 và 174 của Luật này.",
+    "system_A_answer": "Ban kiểm soát của công ty trách nhiệm hữu hạn hai thành viên trở lên có từ 01 đến 05 Kiểm soát viên [C1], [C2]. Nhiệm kỳ của Kiểm soát viên không quá 05 năm và có thể được bổ nhiệm lại với số nhiệm kỳ không hạn chế [C1], [C2]. Quyền, nghĩa vụ, trách nhiệm, việc miễn nhiệm, bãi nhiệm và chế độ làm việc của Ban kiểm soát, Kiểm soát viên được thực hiện tương ứng theo quy định tại các điều 106, 170, 171, 172, 173 và 174 của Luật Doanh nghiệp [C3], [C4].",
+    "system_A_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-65__k1__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-65",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 65",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-65__k1__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-65",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 65",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      },
+      {
+        "citation_id": "C3",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-65__k3__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-65",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 65",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C4",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-65__k3__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-65",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 65",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      }
+    ],
+    "system_B_answer": "Ban kiểm soát của công ty trách nhiệm hữu hạn hai thành viên trở lên có từ 01 đến 05 Kiểm soát viên [C1], [C2]. Nhiệm kỳ của Kiểm soát viên không quá 05 năm và có thể được bổ nhiệm lại với số nhiệm kỳ không hạn chế [C1], [C2]. Trường hợp Ban kiểm soát chỉ có 01 Kiểm soát viên thì Kiểm soát viên đó đồng thời là Trưởng Ban kiểm soát và phải đáp ứng tiêu chuẩn của Trưởng Ban kiểm soát [C1], [C2]. Nguồn cung cấp không chứa thông tin về các điều quy định cụ thể về quyền và nghĩa vụ của Ban kiểm soát.",
+    "system_B_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-65__k1__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-65",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 65",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-65__k1__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-65",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 65",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      }
+    ]
+  },
+  {
+    "blind_no": 12,
+    "id": "test_059",
+    "complexity": "multi_clause",
+    "category": "Hộ kinh doanh",
+    "expected_status": "answered",
+    "question": "Hộ kinh doanh đăng ký tạm ngừng kinh doanh thì trong bao lâu được cấp giấy xác nhận và tình trạng pháp lý được cập nhật thế nào?",
+    "ground_truth": "2. Sau khi tiếp nhận hồ sơ đăng ký, Cơ quan đăng ký kinh doanh cấp xã trao giấy tiếp nhận hồ sơ và hẹn trả kết quả cho hộ kinh doanh. Trong thời hạn 01 ngày làm việc kể từ ngày nhận được hồ sơ hợp lệ, Cơ quan đăng ký kinh doanh cấp xã cấp giấy xác nhận về việc hộ kinh doanh đăng ký tạm ngừng kinh doanh, giấy xác nhận về việc hộ kinh doanh đăng ký tiếp tục kinh doanh trước thời hạn đã đăng ký cho hộ kinh doanh.\n\n3. Trường hợp hộ kinh doanh đăng ký tạm ngừng kinh doanh, Cơ quan đăng ký kinh doanh cấp xã cập nhật tình trạng pháp lý của hộ kinh doanh trong Cơ sở dữ liệu về đăng ký hộ kinh doanh sang tình trạng tạm ngừng kinh doanh.",
+    "system_A_answer": "Trong thời hạn 01 ngày làm việc kể từ ngày nhận được hồ sơ hợp lệ, Cơ quan đăng ký kinh doanh cấp xã sẽ cấp giấy xác nhận về việc hộ kinh doanh đăng ký tạm ngừng kinh doanh [C1]. Khi đó, Cơ quan đăng ký kinh doanh cấp xã sẽ cập nhật tình trạng pháp lý của hộ kinh doanh trong Cơ sở dữ liệu về đăng ký hộ kinh doanh sang tình trạng tạm ngừng kinh doanh [C2].",
+    "system_A_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-103__k2__0",
+        "document_id": "nd-168-2025-nd-cp-v1",
+        "article_id": "dieu-103",
+        "document_title": "Nghị định về đăng ký doanh nghiệp",
+        "article": "Điều 103",
+        "clause": "Khoản 2",
+        "point": null,
+        "source_url": "https://xaydungchinhsach.chinhphu.vn/toan-van-nghi-dinh-168-2025-nd-cp-ve-dang-ky-doanh-nghiep-119250702175708554.htm"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-103__k3__0",
+        "document_id": "nd-168-2025-nd-cp-v1",
+        "article_id": "dieu-103",
+        "document_title": "Nghị định về đăng ký doanh nghiệp",
+        "article": "Điều 103",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://xaydungchinhsach.chinhphu.vn/toan-van-nghi-dinh-168-2025-nd-cp-ve-dang-ky-doanh-nghiep-119250702175708554.htm"
+      }
+    ],
+    "system_B_answer": "Trong thời hạn 01 ngày làm việc kể từ ngày nhận được hồ sơ hợp lệ, Cơ quan đăng ký kinh doanh cấp xã sẽ cấp giấy xác nhận về việc hộ kinh doanh đăng ký tạm ngừng kinh doanh [C1]. Đồng thời, Cơ quan đăng ký kinh doanh cấp xã sẽ cập nhật tình trạng pháp lý của hộ kinh doanh trong Cơ sở dữ liệu về đăng ký hộ kinh doanh sang tình trạng tạm ngừng kinh doanh [C2].",
+    "system_B_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-103__k2__0",
+        "document_id": "nd-168-2025-nd-cp-v1",
+        "article_id": "dieu-103",
+        "document_title": "Nghị định về đăng ký doanh nghiệp",
+        "article": "Điều 103",
+        "clause": "Khoản 2",
+        "point": null,
+        "source_url": "https://xaydungchinhsach.chinhphu.vn/toan-van-nghi-dinh-168-2025-nd-cp-ve-dang-ky-doanh-nghiep-119250702175708554.htm"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-103__k3__0",
+        "document_id": "nd-168-2025-nd-cp-v1",
+        "article_id": "dieu-103",
+        "document_title": "Nghị định về đăng ký doanh nghiệp",
+        "article": "Điều 103",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://xaydungchinhsach.chinhphu.vn/toan-van-nghi-dinh-168-2025-nd-cp-ve-dang-ky-doanh-nghiep-119250702175708554.htm"
+      }
+    ]
+  },
+  {
+    "blind_no": 13,
+    "id": "test_060",
+    "complexity": "multi_clause",
+    "category": "Công ty hợp danh",
+    "expected_status": "answered",
+    "question": "Thành viên hợp danh có quyền yêu cầu họp Hội đồng thành viên không, và những quyết định nào cần ít nhất ba phần tư thành viên hợp danh tán thành?",
+    "ground_truth": "2. Thành viên hợp danh có quyền yêu cầu triệu tập họp Hội đồng thành viên để thảo luận và quyết định công việc kinh doanh của công ty. Thành viên yêu cầu triệu tập họp phải chuẩn bị nội dung, chương trình và tài liệu họp.\n\n3. Hội đồng thành viên có quyền quyết định tất cả công việc kinh doanh của công ty. Nếu Điều lệ công ty không quy định thì quyết định các vấn đề sau đây phải được ít nhất ba phần tư tổng số thành viên hợp danh tán thành:\na) Định hướng, chiến lược phát triển công ty;\n\nb) Sửa đổi, bổ sung Điều lệ công ty;\n\nc) Tiếp nhận thêm thành viên mới;\n\nd) Chấp thuận thành viên hợp danh rút khỏi công ty hoặc quyết định khai trừ thành viên;\n\nđ) Quyết định dự án đầu tư;\n\ne) Quyết định việc vay và huy động vốn dưới hình thức khác, cho vay với giá trị từ 50% vốn điều lệ của công ty trở lên, trừ trường hợp Điều lệ công ty quy định một tỷ lệ khác cao hơn;\n\ng) Quyết định mua, bán tài sản có giá trị bằng hoặc lớn hơn vốn điều lệ của công ty, trừ trường hợp Điều lệ công ty quy định một tỷ lệ khác cao hơn;\n\nh) Thông qua báo cáo tài chính hằng năm, tổng số lợi nhuận được chia và số lợi nhuận chia cho từng thành viên;\n\ni) Quyết định giải thể; yêu cầu phá sản công ty.",
+    "system_A_answer": "Thành viên hợp danh có quyền yêu cầu triệu tập họp Hội đồng thành viên để thảo luận và quyết định công việc kinh doanh của công ty [C1], [C2]. Nếu Điều lệ công ty không quy định khác, các quyết định sau đây phải được ít nhất ba phần tư tổng số thành viên hợp danh tán thành: định hướng, chiến lược phát triển công ty; sửa đổi, bổ sung Điều lệ công ty; tiếp nhận thêm thành viên mới; chấp thuận thành viên hợp danh rút khỏi công ty hoặc quyết định khai trừ thành viên; quyết định dự án đầu tư; quyết định việc vay và huy động vốn dưới hình thức khác, cho vay với giá trị từ 50% vốn điều lệ của công ty trở lên (trừ trường hợp Điều lệ công ty quy định tỷ lệ khác cao hơn); quyết định mua, bán tài sản có giá trị bằng hoặc lớn hơn vốn điều lệ của công ty (trừ trường hợp Điều lệ công ty quy định tỷ lệ khác cao hơn); thông qua báo cáo tài chính hằng năm, tổng số lợi nhuận được chia và số lợi nhuận chia cho từng thành viên; quyết định giải thể hoặc yêu cầu phá sản công ty [C3], [C4].",
+    "system_A_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-182__k2__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-182",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 182",
+        "clause": "Khoản 2",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-182__k2__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-182",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 182",
+        "clause": "Khoản 2",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      },
+      {
+        "citation_id": "C3",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-182__k3__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-182",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 182",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C4",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-182__k3__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-182",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 182",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      }
+    ],
+    "system_B_answer": "Thành viên hợp danh có quyền yêu cầu triệu tập họp Hội đồng thành viên để thảo luận và quyết định công việc kinh doanh của công ty [C1], [C2]. Nếu Điều lệ công ty không quy định khác, các quyết định sau đây phải được ít nhất ba phần tư tổng số thành viên hợp danh tán thành: định hướng, chiến lược phát triển công ty; sửa đổi, bổ sung Điều lệ công ty; tiếp nhận thêm thành viên mới; chấp thuận thành viên hợp danh rút khỏi công ty hoặc quyết định khai trừ thành viên; quyết định dự án đầu tư; quyết định việc vay và huy động vốn dưới hình thức khác, cho vay với giá trị từ 50% vốn điều lệ của công ty trở lên (trừ trường hợp Điều lệ công ty quy định tỷ lệ khác cao hơn); quyết định mua, bán tài sản có giá trị bằng hoặc lớn hơn vốn điều lệ của công ty (trừ trường hợp Điều lệ công ty quy định tỷ lệ khác cao hơn); thông qua báo cáo tài chính hằng năm, tổng số lợi nhuận được chia và số lợi nhuận chia cho từng thành viên; quyết định giải thể hoặc yêu cầu phá sản công ty [C3], [C4].",
+    "system_B_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-182__k2__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-182",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 182",
+        "clause": "Khoản 2",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-182__k2__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-182",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 182",
+        "clause": "Khoản 2",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C3",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-182__k3__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-182",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 182",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C4",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-182__k3__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-182",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 182",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      }
+    ]
+  },
+  {
+    "blind_no": 14,
+    "id": "test_061",
+    "complexity": "multi_clause",
+    "category": "Hồ sơ đăng ký doanh nghiệp",
+    "expected_status": "answered",
+    "question": "Hồ sơ đăng ký doanh nghiệp có tài liệu bằng tiếng nước ngoài hoặc lập song ngữ thì xử lý như thế nào?",
+    "ground_truth": "2. Trường hợp hồ sơ đăng ký doanh nghiệp có tài liệu bằng tiếng nước ngoài thì hồ sơ phải có bản dịch tiếng Việt công chứng kèm theo tài liệu bằng tiếng nước ngoài.\n\n3. Trường hợp giấy tờ, tài liệu trong hồ sơ đăng ký doanh nghiệp được lập bằng tiếng Việt và tiếng nước ngoài thì nội dung tiếng Việt được sử dụng để thực hiện thủ tục đăng ký doanh nghiệp.",
+    "system_A_answer": "Đối với hồ sơ đăng ký doanh nghiệp có tài liệu bằng tiếng nước ngoài, hồ sơ phải có bản dịch tiếng Việt công chứng kèm theo [C1]. Trường hợp giấy tờ, tài liệu được lập bằng cả tiếng Việt và tiếng nước ngoài, nội dung tiếng Việt sẽ được sử dụng để thực hiện thủ tục đăng ký doanh nghiệp [C2].",
+    "system_A_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-10__k2__0",
+        "document_id": "nd-168-2025-nd-cp-v1",
+        "article_id": "dieu-10",
+        "document_title": "Nghị định về đăng ký doanh nghiệp",
+        "article": "Điều 10",
+        "clause": "Khoản 2",
+        "point": null,
+        "source_url": "https://xaydungchinhsach.chinhphu.vn/toan-van-nghi-dinh-168-2025-nd-cp-ve-dang-ky-doanh-nghiep-119250702175708554.htm"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-10__k3__0",
+        "document_id": "nd-168-2025-nd-cp-v1",
+        "article_id": "dieu-10",
+        "document_title": "Nghị định về đăng ký doanh nghiệp",
+        "article": "Điều 10",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://xaydungchinhsach.chinhphu.vn/toan-van-nghi-dinh-168-2025-nd-cp-ve-dang-ky-doanh-nghiep-119250702175708554.htm"
+      }
+    ],
+    "system_B_answer": "Đối với hồ sơ đăng ký doanh nghiệp có tài liệu bằng tiếng nước ngoài, hồ sơ phải có bản dịch tiếng Việt công chứng kèm theo tài liệu đó [C1]. Trường hợp giấy tờ, tài liệu được lập bằng cả tiếng Việt và tiếng nước ngoài thì nội dung tiếng Việt được sử dụng để thực hiện thủ tục đăng ký doanh nghiệp [C2].",
+    "system_B_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-10__k2__0",
+        "document_id": "nd-168-2025-nd-cp-v1",
+        "article_id": "dieu-10",
+        "document_title": "Nghị định về đăng ký doanh nghiệp",
+        "article": "Điều 10",
+        "clause": "Khoản 2",
+        "point": null,
+        "source_url": "https://xaydungchinhsach.chinhphu.vn/toan-van-nghi-dinh-168-2025-nd-cp-ve-dang-ky-doanh-nghiep-119250702175708554.htm"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-10__k3__0",
+        "document_id": "nd-168-2025-nd-cp-v1",
+        "article_id": "dieu-10",
+        "document_title": "Nghị định về đăng ký doanh nghiệp",
+        "article": "Điều 10",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://xaydungchinhsach.chinhphu.vn/toan-van-nghi-dinh-168-2025-nd-cp-ve-dang-ky-doanh-nghiep-119250702175708554.htm"
+      }
+    ]
+  },
+  {
+    "blind_no": 15,
+    "id": "test_062",
+    "complexity": "multi_clause",
+    "category": "Hộ kinh doanh",
+    "expected_status": "answered",
+    "question": "Chủ hộ kinh doanh thuê người quản lý thì có còn chịu trách nhiệm về nợ không, và có được góp vốn, mua cổ phần trong doanh nghiệp không?",
+    "ground_truth": "2. Chủ hộ kinh doanh có thể trực tiếp hoặc thuê người khác quản lý, điều hành hoạt động kinh doanh của hộ kinh doanh. Trong trường hợp này, chủ hộ kinh doanh, các thành viên hộ gia đình đăng ký hộ kinh doanh vẫn phải chịu trách nhiệm đối với các khoản nợ và nghĩa vụ tài sản khác phát sinh từ hoạt động kinh doanh của hộ kinh doanh.\n\n4. Chủ hộ kinh doanh, các thành viên hộ gia đình đăng ký hộ kinh doanh được quyền góp vốn, mua cổ phần, mua phần vốn góp trong doanh nghiệp với tư cách cá nhân.",
+    "system_A_answer": "Khi chủ hộ kinh doanh thuê người khác quản lý, điều hành hoạt động kinh doanh, chủ hộ kinh doanh và các thành viên hộ gia đình đăng ký hộ kinh doanh vẫn phải chịu trách nhiệm đối với các khoản nợ và nghĩa vụ tài sản khác phát sinh từ hoạt động kinh doanh của hộ kinh doanh [C1]. Ngoài ra, chủ hộ kinh doanh và các thành viên hộ gia đình đăng ký hộ kinh doanh có quyền góp vốn, mua cổ phần, mua phần vốn góp trong doanh nghiệp với tư cách cá nhân [C2].",
+    "system_A_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-84__k2__0",
+        "document_id": "nd-168-2025-nd-cp-v1",
+        "article_id": "dieu-84",
+        "document_title": "Nghị định về đăng ký doanh nghiệp",
+        "article": "Điều 84",
+        "clause": "Khoản 2",
+        "point": null,
+        "source_url": "https://xaydungchinhsach.chinhphu.vn/toan-van-nghi-dinh-168-2025-nd-cp-ve-dang-ky-doanh-nghiep-119250702175708554.htm"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-84__k4__0",
+        "document_id": "nd-168-2025-nd-cp-v1",
+        "article_id": "dieu-84",
+        "document_title": "Nghị định về đăng ký doanh nghiệp",
+        "article": "Điều 84",
+        "clause": "Khoản 4",
+        "point": null,
+        "source_url": "https://xaydungchinhsach.chinhphu.vn/toan-van-nghi-dinh-168-2025-nd-cp-ve-dang-ky-doanh-nghiep-119250702175708554.htm"
+      }
+    ],
+    "system_B_answer": "Pháp luật hiện hành quy định việc góp vốn thành lập hoặc mua cổ phần, phần vốn góp trong công ty hợp danh, công ty trách nhiệm hữu hạn hoặc công ty cổ phần là hành vi bị xử phạt vi phạm hành chính nếu chủ hộ kinh doanh đồng thời thực hiện hành vi này [C1]. Đối với vấn đề trách nhiệm về nợ khi chủ hộ kinh doanh thuê người quản lý, các tài liệu được cung cấp không chứa thông tin quy định về nội dung này.",
+    "system_B_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "nd-122-2021-nd-cp-v1__dieu-56__k1__0",
+        "document_id": "nd-122-2021-nd-cp-v1",
+        "article_id": "dieu-56",
+        "document_title": "Xử phạt vi phạm hành chính trong lĩnh vực kế hoạch và đầu tư - phần đăng ký doanh nghiệp",
+        "article": "Điều 56",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/nghi-dinh-so-122-2021-nd-cp-36412.htm"
+      }
+    ]
+  },
+  {
+    "blind_no": 16,
+    "id": "test_002",
+    "complexity": "single_clause",
+    "category": "Doanh nghiệp nhà nước",
+    "expected_status": "answered",
+    "question": "Giám đốc hoặc Tổng giám đốc doanh nghiệp nhà nước bị xem xét cách chức trong những trường hợp nào?",
+    "ground_truth": "2. Giám đốc hoặc Tổng giám đốc bị xem xét cách chức trong trường hợp sau đây:\na) Doanh nghiệp không bảo toàn được vốn theo quy định của pháp luật;\n\nb) Doanh nghiệp không hoàn thành các mục tiêu kế hoạch kinh doanh hằng năm;\n\nc) Doanh nghiệp vi phạm pháp luật;\n\nd) Không có đủ trình độ và năng lực đáp ứng yêu cầu của chiến lược phát triển và kế hoạch kinh doanh mới của doanh nghiệp;\n\nđ) Vi phạm một trong số các quyền, nghĩa vụ và trách nhiệm của người quản lý quy định tại Điều 97 và Điều 100 của Luật này;\n\ne) Trường hợp khác quy định tại Điều lệ công ty.",
+    "system_A_answer": "Giám đốc hoặc Tổng giám đốc bị xem xét cách chức trong các trường hợp: doanh nghiệp không bảo toàn được vốn theo quy định pháp luật [C1], [C2]; không hoàn thành mục tiêu kế hoạch kinh doanh hằng năm [C1], [C2]; doanh nghiệp vi phạm pháp luật [C1], [C2]; không đủ trình độ, năng lực đáp ứng yêu cầu chiến lược phát triển và kế hoạch kinh doanh mới [C1], [C2]; vi phạm quyền, nghĩa vụ và trách nhiệm của người quản lý quy định tại Điều 97 và Điều 100 [C1], [C2]; hoặc các trường hợp khác do Điều lệ công ty quy định [C1], [C2].",
+    "system_A_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-102__k2__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-102",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 102",
+        "clause": "Khoản 2",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-102__k2__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-102",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 102",
+        "clause": "Khoản 2",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      }
+    ],
+    "system_B_answer": "Giám đốc hoặc Tổng giám đốc bị xem xét cách chức trong các trường hợp: doanh nghiệp không bảo toàn được vốn theo quy định [C1]; không hoàn thành mục tiêu kế hoạch kinh doanh hằng năm [C1]; vi phạm pháp luật [C1]; không đủ trình độ, năng lực đáp ứng yêu cầu chiến lược phát triển và kế hoạch kinh doanh mới [C1]; vi phạm quyền, nghĩa vụ và trách nhiệm của người quản lý theo quy định [C1]; hoặc các trường hợp khác do Điều lệ công ty quy định [C1].",
+    "system_B_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-102__k2__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-102",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 102",
+        "clause": "Khoản 2",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      }
+    ]
+  },
+  {
+    "blind_no": 17,
+    "id": "test_003",
+    "complexity": "single_clause",
+    "category": "Doanh nghiệp tư nhân",
+    "expected_status": "answered",
+    "question": "Sau khi bán doanh nghiệp tư nhân, chủ doanh nghiệp cũ có còn phải chịu trách nhiệm về các khoản nợ phát sinh trước ngày chuyển giao không?",
+    "ground_truth": "2. Sau khi bán doanh nghiệp tư nhân, chủ doanh nghiệp tư nhân vẫn phải chịu trách nhiệm về các khoản nợ và nghĩa vụ tài sản khác của doanh nghiệp tư nhân phát sinh trong thời gian trước ngày chuyển giao doanh nghiệp, trừ trường hợp chủ doanh nghiệp tư nhân, người mua và chủ nợ của doanh nghiệp tư nhân có thỏa thuận khác.",
+    "system_A_answer": "Sau khi bán doanh nghiệp tư nhân, chủ doanh nghiệp vẫn phải chịu trách nhiệm về các khoản nợ và nghĩa vụ tài sản khác phát sinh trước ngày chuyển giao [C1], [C2]. Tuy nhiên, trách nhiệm này không áp dụng nếu chủ doanh nghiệp tư nhân, người mua và chủ nợ có thỏa thuận khác [C1], [C2].",
+    "system_A_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-192__k2__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-192",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 192",
+        "clause": "Khoản 2",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-192__k2__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-192",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 192",
+        "clause": "Khoản 2",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      }
+    ],
+    "system_B_answer": "Sau khi bán doanh nghiệp tư nhân, chủ doanh nghiệp vẫn phải chịu trách nhiệm về các khoản nợ và nghĩa vụ tài sản khác phát sinh trước ngày chuyển giao, trừ trường hợp chủ doanh nghiệp, người mua và chủ nợ có thỏa thuận khác [C1], [C2].",
+    "system_B_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-192__k2__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-192",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 192",
+        "clause": "Khoản 2",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-192__k2__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-192",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 192",
+        "clause": "Khoản 2",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      }
+    ]
+  },
+  {
+    "blind_no": 18,
+    "id": "test_004",
+    "complexity": "single_clause",
+    "category": "Doanh nghiệp nhà nước",
+    "expected_status": "answered",
+    "question": "Doanh nghiệp nhà nước dạng công ty trách nhiệm hữu hạn một thành viên tổ chức theo mô hình có Chủ tịch công ty thì gồm những bộ phận nào?",
+    "ground_truth": "Cơ quan đại diện chủ sở hữu quyết định tổ chức quản lý doanh nghiệp nhà nước dưới hình thức công ty trách nhiệm hữu hạn một thành viên theo một trong hai mô hình sau đây:\n\n1. Chủ tịch công ty, Giám đốc hoặc Tổng giám đốc, Ban kiểm soát;",
+    "system_A_answer": "Đối với doanh nghiệp nhà nước dưới hình thức công ty trách nhiệm hữu hạn một thành viên tổ chức theo mô hình có Chủ tịch công ty, cơ cấu quản lý bao gồm: Chủ tịch công ty, Giám đốc hoặc Tổng giám đốc và Ban kiểm soát [C1], [C2].",
+    "system_A_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-90__k1__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-90",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 90",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-90__k1__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-90",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 90",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      }
+    ],
+    "system_B_answer": "Đối với doanh nghiệp nhà nước dưới hình thức công ty trách nhiệm hữu hạn một thành viên tổ chức theo mô hình có Chủ tịch công ty, cơ cấu quản lý bao gồm: Chủ tịch công ty, Giám đốc hoặc Tổng giám đốc và Ban kiểm soát [C1], [C2].",
+    "system_B_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-90__k1__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-90",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 90",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-90__k1__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-90",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 90",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      }
+    ]
+  },
+  {
+    "blind_no": 19,
+    "id": "test_005",
+    "complexity": "single_clause",
+    "category": "Công ty hợp danh",
+    "expected_status": "answered",
+    "question": "Người đã chấm dứt tư cách thành viên hợp danh còn phải liên đới chịu trách nhiệm về nợ của công ty trong bao lâu?",
+    "ground_truth": "5. Trong thời hạn 02 năm kể từ ngày chấm dứt tư cách thành viên hợp danh theo quy định tại các điểm a, c, d và đ khoản 1 Điều này thì người đó vẫn phải liên đới chịu trách nhiệm bằng toàn bộ tài sản của mình đối với các khoản nợ của công ty đã phát sinh trước ngày chấm dứt tư cách thành viên.",
+    "system_A_answer": "Trong thời hạn 02 năm kể từ ngày chấm dứt tư cách thành viên hợp danh theo các trường hợp tự nguyện rút vốn, bị khai trừ, chấp hành hình phạt tù/cấm hành nghề hoặc trường hợp khác do Điều lệ quy định, người đó vẫn phải liên đới chịu trách nhiệm bằng toàn bộ tài sản của mình đối với các khoản nợ của công ty đã phát sinh trước ngày chấm dứt tư cách thành viên [C1], [C2].",
+    "system_A_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-185__k5__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-185",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 185",
+        "clause": "Khoản 5",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-185__k5__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-185",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 185",
+        "clause": "Khoản 5",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      }
+    ],
+    "system_B_answer": "Trong thời hạn 02 năm kể từ ngày chấm dứt tư cách thành viên hợp danh theo quy định tại các điểm a, c, d và đ khoản 1 Điều 185, người đó vẫn phải liên đới chịu trách nhiệm bằng toàn bộ tài sản của mình đối với các khoản nợ của công ty đã phát sinh trước ngày chấm dứt tư cách thành viên [C1][C2].",
+    "system_B_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-185__k5__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-185",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 185",
+        "clause": "Khoản 5",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-185__k5__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-185",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 185",
+        "clause": "Khoản 5",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      }
+    ]
+  },
+  {
+    "blind_no": 20,
+    "id": "test_006",
+    "complexity": "single_clause",
+    "category": "Đại hội đồng cổ đông",
+    "expected_status": "answered",
+    "question": "Trong thời gian cổ đông đang yêu cầu Tòa án hủy bỏ nghị quyết Đại hội đồng cổ đông, nghị quyết đó có còn hiệu lực thi hành không?",
+    "ground_truth": "3. Trường hợp có cổ đông, nhóm cổ đông yêu cầu Tòa án hoặc Trọng tài hủy bỏ nghị quyết Đại hội đồng cổ đông theo quy định tại Điều 151 của Luật này, nghị quyết đó vẫn có hiệu lực thi hành cho đến khi quyết định hủy bỏ nghị quyết đó của Tòa án, Trọng tài có hiệu lực, trừ trường hợp áp dụng biện pháp khẩn cấp tạm thời theo quyết định của cơ quan có thẩm quyền.",
+    "system_A_answer": "Trong thời gian cổ đông hoặc nhóm cổ đông yêu cầu Tòa án hoặc Trọng tài hủy bỏ nghị quyết Đại hội đồng cổ đông, nghị quyết đó vẫn có hiệu lực thi hành cho đến khi quyết định hủy bỏ của Tòa án hoặc Trọng tài có hiệu lực [C1][C2]. Ngoại lệ là trường hợp cơ quan có thẩm quyền quyết định áp dụng biện pháp khẩn cấp tạm thời [C1][C2].",
+    "system_A_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-152__k3__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-152",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 152",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-152__k3__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-152",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 152",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      }
+    ],
+    "system_B_answer": "Trong thời gian cổ đông hoặc nhóm cổ đông yêu cầu Tòa án hoặc Trọng tài hủy bỏ nghị quyết Đại hội đồng cổ đông, nghị quyết đó vẫn có hiệu lực thi hành cho đến khi quyết định hủy bỏ của Tòa án hoặc Trọng tài có hiệu lực [C1], [C2]. Ngoại lệ là trường hợp áp dụng biện pháp khẩn cấp tạm thời theo quyết định của cơ quan có thẩm quyền [C1], [C2].",
+    "system_B_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-152__k3__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-152",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 152",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-152__k3__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-152",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 152",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      }
+    ]
+  },
+  {
+    "blind_no": 21,
+    "id": "test_007",
+    "complexity": "single_clause",
+    "category": "Doanh nghiệp nhà nước",
+    "expected_status": "answered",
+    "question": "Trưởng Ban kiểm soát, Kiểm soát viên của doanh nghiệp nhà nước bị miễn nhiệm trong những trường hợp nào?",
+    "ground_truth": "1. Trưởng Ban kiểm soát, Kiểm soát viên bị miễn nhiệm trong trường hợp sau đây:\na) Không còn đủ tiêu chuẩn và điều kiện theo quy định tại Điều 103 của Luật này;\n\nb) Có đơn xin từ chức và được cơ quan đại diện chủ sở hữu chấp thuận;\n\nc) Được cơ quan đại diện chủ sở hữu hoặc cơ quan có thẩm quyền khác điều động, phân công thực hiện nhiệm vụ khác;\n\nd) Trường hợp khác theo quy định tại Điều lệ công ty.",
+    "system_A_answer": "Trưởng Ban kiểm soát, Kiểm soát viên bị miễn nhiệm trong các trường hợp sau: không còn đủ tiêu chuẩn và điều kiện theo quy định [C1], [C2]; có đơn xin từ chức và được cơ quan đại diện chủ sở hữu chấp thuận [C1], [C2]; được cơ quan đại diện chủ sở hữu hoặc cơ quan có thẩm quyền khác điều động, phân công thực hiện nhiệm vụ khác [C1], [C2]; hoặc các trường hợp khác theo quy định tại Điều lệ công ty [C1], [C2].",
+    "system_A_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-108__k1__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-108",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 108",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-108__k1__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-108",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 108",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      }
+    ],
+    "system_B_answer": "Trưởng Ban kiểm soát, Kiểm soát viên bị miễn nhiệm trong các trường hợp sau: không còn đủ tiêu chuẩn và điều kiện theo quy định tại Điều 103 của Luật Doanh nghiệp [C1][C2]; có đơn xin từ chức và được cơ quan đại diện chủ sở hữu chấp thuận [C1][C2]; được cơ quan đại diện chủ sở hữu hoặc cơ quan có thẩm quyền khác điều động, phân công thực hiện nhiệm vụ khác [C1][C2]; hoặc các trường hợp khác theo quy định tại Điều lệ công ty [C1][C2].",
+    "system_B_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-108__k1__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-108",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 108",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-108__k1__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-108",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 108",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      }
+    ]
+  },
+  {
+    "blind_no": 22,
+    "id": "test_008",
+    "complexity": "single_clause",
+    "category": "Công ty cổ phần",
+    "expected_status": "answered",
+    "question": "Người quản lý công ty cổ phần phải kê khai lợi ích liên quan trong thời hạn bao lâu kể từ ngày phát sinh lợi ích?",
+    "ground_truth": "Trường hợp Điều lệ công ty không có quy định khác chặt chẽ hơn, việc công khai lợi ích và người có liên quan của công ty thực hiện theo quy định sau đây:\n\n3. Việc kê khai quy định tại khoản 2 Điều này phải được thực hiện trong thời hạn 07 ngày làm việc kể từ ngày phát sinh lợi ích liên quan; việc sửa đổi, bổ sung phải được thông báo với công ty trong thời hạn 07 ngày làm việc kể từ ngày có sửa đổi, bổ sung tương ứng;",
+    "system_A_answer": "Trường hợp Điều lệ công ty không có quy định khác chặt chẽ hơn, người quản lý công ty phải kê khai lợi ích liên quan trong thời hạn 07 ngày làm việc kể từ ngày phát sinh lợi ích [C1], [C2].",
+    "system_A_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-164__k3__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-164",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 164",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-164__k3__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-164",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 164",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      }
+    ],
+    "system_B_answer": "Trường hợp Điều lệ công ty không có quy định khác chặt chẽ hơn, người quản lý công ty phải thực hiện kê khai lợi ích liên quan trong thời hạn 07 ngày làm việc kể từ ngày phát sinh lợi ích liên quan [C1], [C2].",
+    "system_B_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-164__k3__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-164",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 164",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-164__k3__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-164",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 164",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      }
+    ]
+  },
+  {
+    "blind_no": 23,
+    "id": "test_009",
+    "complexity": "single_clause",
+    "category": "Cổ phần",
+    "expected_status": "answered",
+    "question": "Nếu công ty cổ phần không giao cổ phiếu cho người mua cổ phần thì quyền sở hữu cổ phần được chứng thực bằng cách nào?",
+    "ground_truth": "5. Sau khi cổ phần được thanh toán đầy đủ, công ty phát hành và giao cổ phiếu cho người mua; trường hợp không giao cổ phiếu, các thông tin về cổ đông quy định tại khoản 2 Điều 122 của Luật này được ghi vào sổ đăng ký cổ đông để chứng thực quyền sở hữu cổ phần của cổ đông đó trong công ty.",
+    "system_A_answer": "Trong trường hợp công ty cổ phần không giao cổ phiếu cho người mua sau khi cổ phần đã được thanh toán đầy đủ, các thông tin về cổ đông theo quy định tại khoản 2 Điều 122 của Luật Doanh nghiệp sẽ được ghi vào sổ đăng ký cổ đông để chứng thực quyền sở hữu cổ phần của cổ đông đó trong công ty [C1][C2].",
+    "system_A_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-124__k5__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-124",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 124",
+        "clause": "Khoản 5",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-124__k5__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-124",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 124",
+        "clause": "Khoản 5",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      }
+    ],
+    "system_B_answer": "LLMTimeoutError: Hết thời gian chờ phản hồi từ LLM provider.",
+    "system_B_citations": []
+  },
+  {
+    "blind_no": 24,
+    "id": "test_010",
+    "complexity": "single_clause",
+    "category": "Công ty TNHH hai thành viên",
+    "expected_status": "answered",
+    "question": "Khi Chủ tịch Hội đồng thành viên công ty trách nhiệm hữu hạn hai thành viên trở lên vắng mặt thì ai thực hiện quyền và nghĩa vụ của Chủ tịch?",
+    "ground_truth": "4. Trường hợp Chủ tịch Hội đồng thành viên vắng mặt hoặc không thể thực hiện các quyền và nghĩa vụ của mình thì phải ủy quyền bằng văn bản cho một thành viên thực hiện các quyền và nghĩa vụ của Chủ tịch Hội đồng thành viên theo nguyên tắc quy định tại Điều lệ công ty. Trường hợp không có thành viên được ủy quyền hoặc Chủ tịch Hội đồng thành viên chết, mất tích, bị tạm giam, đang chấp hành hình phạt tù, đang chấp hành biện pháp xử lý hành chính tại cơ sở cai nghiện bắt buộc, cơ sở giáo dục bắt buộc, trốn khỏi nơi cư trú, bị hạn chế hoặc mất năng lực hành vi dân sự, có khó khăn trong nhận thức, làm chủ hành vi, bị Tòa án cấm đảm nhiệm chức vụ, cấm hành nghề hoặc làm công việc nhất định thì một trong số các thành viên Hội đồng thành viên triệu tập họ p các thành viên còn lại bầu một người trong số các thành viên tạm thời làm Chủ tịch Hội đồng thành viên theo nguyên tắc đa số thành viên còn lại tán thành cho đến khi có quyết định mới của Hội đồng thành viên.",
+    "system_A_answer": "Khi Chủ tịch Hội đồng thành viên vắng mặt hoặc không thể thực hiện quyền và nghĩa vụ, người này phải ủy quyền bằng văn bản cho một thành viên khác thực hiện theo nguyên tắc quy định tại Điều lệ công ty [C1], [C2]. Trường hợp không có thành viên được ủy quyền, một trong số các thành viên Hội đồng thành viên triệu tập họp các thành viên còn lại để bầu một người trong số các thành viên tạm thời làm Chủ tịch Hội đồng thành viên theo nguyên tắc đa số thành viên còn lại tán thành cho đến khi có quyết định mới của Hội đồng thành viên [C1], [C2].",
+    "system_A_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-56__k4__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-56",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 56",
+        "clause": "Khoản 4",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-56__k4__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-56",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 56",
+        "clause": "Khoản 4",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      }
+    ],
+    "system_B_answer": "Khi Chủ tịch Hội đồng thành viên vắng mặt hoặc không thể thực hiện quyền và nghĩa vụ, người này phải ủy quyền bằng văn bản cho một thành viên khác thực hiện theo nguyên tắc quy định tại Điều lệ công ty [C1], [C2]. Trường hợp không có thành viên được ủy quyền hoặc Chủ tịch Hội đồng thành viên rơi vào các tình trạng như chết, mất tích, bị tạm giam, đang chấp hành hình phạt tù, đang chấp hành biện pháp xử lý hành chính, trốn khỏi nơi cư trú, bị hạn chế hoặc mất năng lực hành vi dân sự, có khó khăn trong nhận thức, làm chủ hành vi, hoặc bị Tòa án cấm đảm nhiệm chức vụ, cấm hành nghề, thì một trong số các thành viên Hội đồng thành viên sẽ triệu tập họp các thành viên còn lại để bầu một người tạm thời làm Chủ tịch Hội đồng thành viên theo nguyên tắc đa số thành viên còn lại tán thành [C1], [C2].",
+    "system_B_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-56__k4__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-56",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 56",
+        "clause": "Khoản 4",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-56__k4__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-56",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 56",
+        "clause": "Khoản 4",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      }
+    ]
+  },
+  {
+    "blind_no": 25,
+    "id": "test_011",
+    "complexity": "single_clause",
+    "category": "Công ty TNHH hai thành viên",
+    "expected_status": "answered",
+    "question": "Nếu Điều lệ không quy định, ai là người đại diện theo pháp luật của công ty trách nhiệm hữu hạn hai thành viên trở lên?",
+    "ground_truth": "3. Công ty phải có ít nhất một người đại diện theo pháp luật là người giữ một trong các chức danh là Chủ tịch Hội đồng thành viên hoặc Giám đốc hoặc Tổng giám đốc. Trường hợp Điều lệ công ty không quy định thì Chủ tịch Hội đồng thành viên là người đại diện theo pháp luật của công ty.",
+    "system_A_answer": "Trường hợp Điều lệ công ty không quy định, Chủ tịch Hội đồng thành viên là người đại diện theo pháp luật của công ty trách nhiệm hữu hạn hai thành viên trở lên [C1], [C2].",
+    "system_A_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-54__k3__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-54",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 54",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-54__k3__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-54",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 54",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      }
+    ],
+    "system_B_answer": "Đối với công ty trách nhiệm hữu hạn hai thành viên trở lên, nếu Điều lệ công ty không quy định thì Chủ tịch Hội đồng thành viên là người đại diện theo pháp luật của công ty [C1], [C2].",
+    "system_B_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-54__k3__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-54",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 54",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-54__k3__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-54",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 54",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      }
+    ]
+  },
+  {
+    "blind_no": 26,
+    "id": "test_012",
+    "complexity": "single_clause",
+    "category": "Nghĩa vụ của doanh nghiệp",
+    "expected_status": "answered",
+    "question": "Doanh nghiệp có những nghĩa vụ gì đối với người lao động trong doanh nghiệp?",
+    "ground_truth": "5. Bảo đảm quyền, lợi ích hợp pháp, chính đáng của người lao động theo quy định của pháp luật; không phân biệt đối xử, xúc phạm danh dự, nhân phẩm của người lao động trong doanh nghiệp; không ngược đãi lao động, cưỡng bức lao động hoặc sử dụng lao động chưa thành niên trái pháp luật; hỗ trợ và tạo điều kiện thuận lợi cho người lao động tham gia đào tạo nâng cao trình độ, kỹ năng nghề; thực hiện các chính sách, chế độ bảo hiểm xã hội, bảo hiểm thất nghiệp, bảo hiểm y tế và bảo hiểm khác cho người lao động theo quy định của pháp luật.",
+    "system_A_answer": "Doanh nghiệp có các nghĩa vụ đối với người lao động như sau: không được cản trở, gây khó khăn cho người lao động tham gia hoạt động trong các tổ chức chính trị, tổ chức chính trị - xã hội và tổ chức đại diện người lao động tại cơ sở [C1], [C2]; bảo đảm quyền, lợi ích hợp pháp, chính đáng của người lao động theo quy định pháp luật [C3], [C4]; không phân biệt đối xử, xúc phạm danh dự, nhân phẩm của người lao động [C3], [C4]; không ngược đãi, cưỡng bức lao động hoặc sử dụng lao động chưa thành niên trái pháp luật [C3], [C4]; hỗ trợ và tạo điều kiện thuận lợi cho người lao động tham gia đào tạo nâng cao trình độ, kỹ năng nghề [C3], [C4]; thực hiện các chính sách, chế độ bảo hiểm xã hội, bảo hiểm thất nghiệp, bảo hiểm y tế và bảo hiểm khác cho người lao động theo quy định pháp luật [C3], [C4].",
+    "system_A_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-6__k2__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-6",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 6",
+        "clause": "Khoản 2",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-6__k2__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-6",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 6",
+        "clause": "Khoản 2",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      },
+      {
+        "citation_id": "C3",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-8__k5__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-8",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 8",
+        "clause": "Khoản 5",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C4",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-8__k5__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-8",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 8",
+        "clause": "Khoản 5",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      }
+    ],
+    "system_B_answer": "Đối với người lao động, doanh nghiệp có các nghĩa vụ sau: tôn trọng và không được cản trở, gây khó khăn cho việc thành lập tổ chức đại diện người lao động tại cơ sở cũng như không được cản trở, gây khó khăn cho người lao động tham gia hoạt động trong các tổ chức này [C1], [C2]. Doanh nghiệp phải bảo đảm quyền, lợi ích hợp pháp, chính đáng của người lao động; không phân biệt đối xử, xúc phạm danh dự, nhân phẩm; không ngược đãi, cưỡng bức lao động hoặc sử dụng lao động chưa thành niên trái pháp luật; hỗ trợ và tạo điều kiện thuận lợi cho người lao động tham gia đào tạo nâng cao trình độ, kỹ năng nghề; thực hiện các chính sách, chế độ bảo hiểm xã hội, bảo hiểm thất nghiệp, bảo hiểm y tế và bảo hiểm khác theo quy định của pháp luật [C3], [C4]. Ngoài ra, Giám đốc hoặc Tổng giám đốc có nghĩa vụ quyết định tiền lương và lợi ích khác đối với người lao động trong công ty [C5].",
+    "system_B_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-6__k2__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-6",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 6",
+        "clause": "Khoản 2",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-6__k2__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-6",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 6",
+        "clause": "Khoản 2",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      },
+      {
+        "citation_id": "C3",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-8__k5__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-8",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 8",
+        "clause": "Khoản 5",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C4",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-8__k5__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-8",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 8",
+        "clause": "Khoản 5",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      },
+      {
+        "citation_id": "C5",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-162__k3__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-162",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 162",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      }
+    ]
+  },
+  {
+    "blind_no": 27,
+    "id": "test_014",
+    "complexity": "single_clause",
+    "category": "Công ty hợp danh",
+    "expected_status": "answered",
+    "question": "Trong công ty hợp danh, nếu Chủ tịch Hội đồng thành viên không triệu tập họp theo yêu cầu của thành viên hợp danh thì xử lý thế nào?",
+    "ground_truth": "1. Chủ tịch Hội đồng thành viên có thể triệu tập họp Hội đồng thành viên khi xét thấy cần thiết hoặc theo yêu cầu của thành viên hợp danh. Trường hợp Chủ tịch Hội đồng thành viên không triệu tập họp theo yêu cầu của thành viên hợp danh thì thành viên đó triệu tập họp Hội đồng thành viên.",
+    "system_A_answer": "Trong công ty hợp danh, trường hợp Chủ tịch Hội đồng thành viên không triệu tập họp theo yêu cầu của thành viên hợp danh thì thành viên đó có quyền tự triệu tập họp Hội đồng thành viên [C1], [C2].",
+    "system_A_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-183__k1__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-183",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 183",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-183__k1__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-183",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 183",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      }
+    ],
+    "system_B_answer": "Trong công ty hợp danh, nếu Chủ tịch Hội đồng thành viên không triệu tập họp theo yêu cầu của thành viên hợp danh thì chính thành viên đó có quyền triệu tập họp Hội đồng thành viên [C1], [C2].",
+    "system_B_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-183__k1__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-183",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 183",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-183__k1__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-183",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 183",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      }
+    ]
+  },
+  {
+    "blind_no": 28,
+    "id": "test_015",
+    "complexity": "single_clause",
+    "category": "Doanh nghiệp nhà nước",
+    "expected_status": "answered",
+    "question": "Chủ tịch và thành viên Hội đồng thành viên của doanh nghiệp nhà nước bị miễn nhiệm khi nào?",
+    "ground_truth": "1. Chủ tịch và thành viên khác của Hội đồng thành viên bị miễn nhiệm trong trường hợp sau đây:\na) Không còn đủ tiêu chuẩn và điều kiện quy định tại Điều 93 của Luật này;\n\nb) Có đơn xin từ chức và được cơ quan đại diện chủ sở hữu chấp thuận bằng văn bản;\n\nc) Có quyết định điều chuyển, bố trí công việc khác hoặc nghỉ hưu;\n\nd) Không đủ năng lực, trình độ đảm nhận công việc được giao;\n\nđ) Không đủ sức khỏe hoặc không còn uy tín để giữ chức vụ thành viên Hội đồng thành viên.",
+    "system_A_answer": "Chủ tịch và thành viên Hội đồng thành viên bị miễn nhiệm trong các trường hợp: không còn đủ tiêu chuẩn và điều kiện theo quy định [C1][C2]; có đơn xin từ chức và được cơ quan đại diện chủ sở hữu chấp thuận bằng văn bản [C1][C2]; có quyết định điều chuyển, bố trí công việc khác hoặc nghỉ hưu [C1][C2]; không đủ năng lực, trình độ đảm nhận công việc được giao [C1][C2]; hoặc không đủ sức khỏe, không còn uy tín để giữ chức vụ [C1][C2].",
+    "system_A_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-94__k1__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-94",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 94",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-94__k1__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-94",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 94",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      }
+    ],
+    "system_B_answer": "Chủ tịch và thành viên khác của Hội đồng thành viên bị miễn nhiệm trong các trường hợp: không còn đủ tiêu chuẩn và điều kiện theo quy định; có đơn xin từ chức và được cơ quan đại diện chủ sở hữu chấp thuận bằng văn bản; có quyết định điều chuyển, bố trí công việc khác hoặc nghỉ hưu; không đủ năng lực, trình độ đảm nhận công việc được giao; hoặc không đủ sức khỏe, không còn uy tín để giữ chức vụ [C1], [C2]. Ngoài ra, Chủ tịch Hội đồng thành viên có thể bị miễn nhiệm nếu không thực hiện quyền và nghĩa vụ quy định tại khoản 2 Điều 95 [C3], [C4].",
+    "system_B_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-94__k1__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-94",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 94",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-94__k1__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-94",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 94",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      },
+      {
+        "citation_id": "C3",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-95__k3__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-95",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 95",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C4",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-95__k3__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-95",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 95",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      }
+    ]
+  },
+  {
+    "blind_no": 29,
+    "id": "test_017",
+    "complexity": "single_clause",
+    "category": "Đại hội đồng cổ đông",
+    "expected_status": "answered",
+    "question": "Cổ đông có bao nhiêu ngày để yêu cầu Tòa án hủy bỏ nghị quyết Đại hội đồng cổ đông khi trình tự triệu tập họp vi phạm nghiêm trọng?",
+    "ground_truth": "Trong thời hạn 90 ngày kể từ ngày nhận được nghị quyết hoặc biên bản họp Đại hội đồng cổ đông hoặc biên bản kết quả kiểm phiếu lấy ý kiến Đại hội đồng cổ đông, cổ đông, nhóm cổ đông quy định tại khoản 2 Điều 115 của Luật này có quyền yêu cầu Tòa án hoặc Trọng tài xem xét, hủy bỏ nghị quyết hoặc một phần nội dung nghị quyết Đại hội đồng cổ đông trong các trường hợp sau đây:\n\n1. Trình tự, thủ tục triệu tập họp và ra quyết định của Đại hội đồng cổ đông vi phạm nghiêm trọng quy định của Luật này và Điều lệ công ty, trừ trường hợp quy định tại khoản 2 Điều 152 của Luật này;",
+    "system_A_answer": "Trong thời hạn 90 ngày kể từ ngày nhận được nghị quyết hoặc biên bản họp Đại hội đồng cổ đông hoặc biên bản kết quả kiểm phiếu lấy ý kiến Đại hội đồng cổ đông, cổ đông hoặc nhóm cổ đông có quyền yêu cầu Tòa án hoặc Trọng tài xem xét, hủy bỏ nghị quyết nếu trình tự, thủ tục triệu tập họp và ra quyết định vi phạm nghiêm trọng quy định của Luật Doanh nghiệp và Điều lệ công ty [C1][C2].",
+    "system_A_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-151__k1__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-151",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 151",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-151__k1__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-151",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 151",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      }
+    ],
+    "system_B_answer": "Trong thời hạn 90 ngày kể từ ngày nhận được nghị quyết hoặc biên bản họp Đại hội đồng cổ đông hoặc biên bản kết quả kiểm phiếu lấy ý kiến Đại hội đồng cổ đông, cổ đông hoặc nhóm cổ đông có quyền yêu cầu Tòa án hoặc Trọng tài xem xét, hủy bỏ nghị quyết nếu trình tự, thủ tục triệu tập họp và ra quyết định vi phạm nghiêm trọng quy định của Luật Doanh nghiệp và Điều lệ công ty [C1][C2].",
+    "system_B_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-151__k1__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-151",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 151",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-151__k1__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-151",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 151",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      }
+    ]
+  },
+  {
+    "blind_no": 30,
+    "id": "test_020",
+    "complexity": "single_clause",
+    "category": "Công ty TNHH một thành viên",
+    "expected_status": "answered",
+    "question": "Cuộc họp Hội đồng thành viên của công ty trách nhiệm hữu hạn một thành viên do tổ chức làm chủ sở hữu được tiến hành khi có bao nhiêu thành viên dự họp?",
+    "ground_truth": "5. Cuộc họp Hội đồng thành viên được tiến hành khi có ít nhất hai phần ba tổng số thành viên Hội đồng thành viên dự họp. Trường hợp Điều lệ công ty không có quy định khác thì mỗi thành viên Hội đồng thành viên có một phiếu biểu quyết có giá trị như nhau. Hội đồng thành viên có thể thông qua nghị quyết, quyết định theo hình thức lấy ý kiến bằng văn bản.",
+    "system_A_answer": "Cuộc họp Hội đồng thành viên của công ty trách nhiệm hữu hạn một thành viên do tổ chức làm chủ sở hữu được tiến hành khi có ít nhất hai phần ba tổng số thành viên Hội đồng thành viên dự họp [C1], [C2].",
+    "system_A_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-80__k5__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-80",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 80",
+        "clause": "Khoản 5",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-80__k5__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-80",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 80",
+        "clause": "Khoản 5",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      }
+    ],
+    "system_B_answer": "Các quy định trong ngữ cảnh pháp lý được cung cấp chỉ đề cập đến điều kiện tiến hành cuộc họp Hội đồng thành viên của công ty trách nhiệm hữu hạn hai thành viên trở lên (Điều 58) và Hội đồng thành viên của công ty trách nhiệm hữu hạn một thành viên (Điều 80), nhưng không nêu rõ quy định về việc tiến hành cuộc họp Hội đồng thành viên đối với loại hình công ty trách nhiệm hữu hạn một thành viên do tổ chức làm chủ sở hữu.",
+    "system_B_citations": []
+  },
+  {
+    "blind_no": 31,
+    "id": "test_022",
+    "complexity": "single_clause",
+    "category": "Đại hội đồng cổ đông",
+    "expected_status": "answered",
+    "question": "Thông báo mời họp Đại hội đồng cổ đông phải được gửi chậm nhất bao nhiêu ngày trước ngày khai mạc?",
+    "ground_truth": "1. Người triệu tập họp Đại hội đồng cổ đông phải gửi thông báo mời họp đến tất cả cổ đông trong danh sách cổ đông có quyền dự họp chậm nhất là 21 ngày trước ngày khai mạc nếu Điều lệ công ty không quy định thời hạn dài hơn. Thông báo mời họp phải có tên, địa chỉ trụ sở chính, mã số doanh nghiệp; tên, địa chỉ liên lạc của cổ đông, thời gian, địa điểm họp và những yêu cầu khác đối với người dự họp.",
+    "system_A_answer": "Người triệu tập họp Đại hội đồng cổ đông phải gửi thông báo mời họp đến tất cả cổ đông trong danh sách cổ đông có quyền dự họp chậm nhất là 21 ngày trước ngày khai mạc, trừ trường hợp Điều lệ công ty quy định thời hạn dài hơn [C1][C2].",
+    "system_A_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-143__k1__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-143",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 143",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-143__k1__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-143",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 143",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      }
+    ],
+    "system_B_answer": "Người triệu tập họp Đại hội đồng cổ đông phải gửi thông báo mời họp đến tất cả cổ đông trong danh sách cổ đông có quyền dự họp chậm nhất là 21 ngày trước ngày khai mạc, trừ trường hợp Điều lệ công ty quy định thời hạn dài hơn [C1], [C2].",
+    "system_B_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-143__k1__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-143",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 143",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-143__k1__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-143",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 143",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      }
+    ]
+  },
+  {
+    "blind_no": 32,
+    "id": "test_023",
+    "complexity": "single_clause",
+    "category": "Doanh nghiệp tư nhân",
+    "expected_status": "answered",
+    "question": "Vốn đầu tư của chủ doanh nghiệp tư nhân được đăng ký như thế nào?",
+    "ground_truth": "1. Vốn đầu tư của chủ doanh nghiệp tư nhân do chủ doanh nghiệp tự đăng ký. Chủ doanh nghiệp tư nhân có nghĩa vụ đăng ký chính xác tổng số vốn đầu tư, trong đó nêu rõ số vốn bằng Đồng Việt Nam, ngoại tệ tự do chuyển đổi, vàng và tài sản khác; đối với vốn bằng tài sản khác còn phải ghi rõ loại tài sản, số lượng và giá trị còn lại của mỗi loại tài sản.",
+    "system_A_answer": "Vốn đầu tư của chủ doanh nghiệp tư nhân do chủ doanh nghiệp tự đăng ký [C1], [C2]. Chủ doanh nghiệp có nghĩa vụ đăng ký chính xác tổng số vốn, trong đó nêu rõ số vốn bằng Đồng Việt Nam, ngoại tệ tự do chuyển đổi, vàng và tài sản khác; đối với tài sản khác phải ghi rõ loại tài sản, số lượng và giá trị còn lại [C1], [C2]. Trường hợp tăng hoặc giảm vốn đầu tư đã đăng ký, chủ doanh nghiệp phải gửi giấy đề nghị đăng ký thay đổi vốn đầu tư đến Cơ quan đăng ký kinh doanh cấp tỉnh nơi đặt trụ sở chính [C3]. Riêng đối với trường hợp giảm vốn đầu tư xuống thấp hơn mức đã đăng ký, chủ doanh nghiệp chỉ được thực hiện sau khi đã đăng ký với Cơ quan đăng ký kinh doanh [C4], [C5].",
+    "system_A_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-189__k1__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-189",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 189",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-189__k1__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-189",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 189",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      },
+      {
+        "citation_id": "C3",
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-48__k1__0",
+        "document_id": "nd-168-2025-nd-cp-v1",
+        "article_id": "dieu-48",
+        "document_title": "Nghị định về đăng ký doanh nghiệp",
+        "article": "Điều 48",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://xaydungchinhsach.chinhphu.vn/toan-van-nghi-dinh-168-2025-nd-cp-ve-dang-ky-doanh-nghiep-119250702175708554.htm"
+      },
+      {
+        "citation_id": "C4",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-189__k3__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-189",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 189",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C5",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-189__k3__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-189",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 189",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      }
+    ],
+    "system_B_answer": "Vốn đầu tư của chủ doanh nghiệp tư nhân do chủ doanh nghiệp tự đăng ký [C1], [C2]. Chủ doanh nghiệp có nghĩa vụ đăng ký chính xác tổng số vốn đầu tư, trong đó nêu rõ số vốn bằng Đồng Việt Nam, ngoại tệ tự do chuyển đổi, vàng và tài sản khác; đối với vốn bằng tài sản khác còn phải ghi rõ loại tài sản, số lượng và giá trị còn lại của mỗi loại tài sản [C1], [C2]. Trường hợp tăng hoặc giảm vốn đầu tư đã đăng ký, chủ doanh nghiệp tư nhân phải gửi giấy đề nghị đăng ký thay đổi vốn đầu tư đến Cơ quan đăng ký kinh doanh cấp tỉnh nơi doanh nghiệp đặt trụ sở chính [C3].",
+    "system_B_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-189__k1__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-189",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 189",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-189__k1__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-189",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 189",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      },
+      {
+        "citation_id": "C3",
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-48__k1__0",
+        "document_id": "nd-168-2025-nd-cp-v1",
+        "article_id": "dieu-48",
+        "document_title": "Nghị định về đăng ký doanh nghiệp",
+        "article": "Điều 48",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://xaydungchinhsach.chinhphu.vn/toan-van-nghi-dinh-168-2025-nd-cp-ve-dang-ky-doanh-nghiep-119250702175708554.htm"
+      }
+    ]
+  },
+  {
+    "blind_no": 33,
+    "id": "test_024",
+    "complexity": "single_clause",
+    "category": "Công ty TNHH một thành viên",
+    "expected_status": "answered",
+    "question": "Nếu Điều lệ không quy định, ai là người đại diện theo pháp luật của công ty trách nhiệm hữu hạn một thành viên do tổ chức làm chủ sở hữu?",
+    "ground_truth": "3. Công ty phải có ít nhất một người đại diện theo pháp luật là người giữ một trong các chức danh là Chủ tịch Hội đồng thành viên, Chủ tịch công ty hoặc Giám đốc hoặc Tổng giám đốc. Trường hợp Điều lệ công ty không quy định thì Chủ tịch Hội đồng thành viên hoặc Chủ tịch công ty là người đại diện theo pháp luật của công ty.",
+    "system_A_answer": "Trường hợp Điều lệ công ty không quy định, Chủ tịch công ty là người đại diện theo pháp luật của công ty trách nhiệm hữu hạn một thành viên [C1], [C2].",
+    "system_A_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-79__k3__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-79",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 79",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-79__k3__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-79",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 79",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      }
+    ],
+    "system_B_answer": "Đối với công ty trách nhiệm hữu hạn một thành viên do tổ chức làm chủ sở hữu, trường hợp Điều lệ công ty không quy định thì Chủ tịch Hội đồng thành viên hoặc Chủ tịch công ty là người đại diện theo pháp luật của công ty [C1], [C2].",
+    "system_B_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-79__k3__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-79",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 79",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-79__k3__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-79",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 79",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      }
+    ]
+  },
+  {
+    "blind_no": 34,
+    "id": "test_025",
+    "complexity": "single_clause",
+    "category": "Hội đồng quản trị",
+    "expected_status": "answered",
+    "question": "Khi tất cả thành viên Hội đồng quản trị cùng kết thúc nhiệm kỳ mà chưa bầu được người thay thế thì sao?",
+    "ground_truth": "3. Trường hợp tất cả thành viên Hội đồng quản trị cùng kết thúc nhiệm kỳ thì các thành viên đó tiếp tục là thành viên Hội đồng quản trị cho đến khi có thành viên mới được bầu thay thế và tiếp quản công việc, trừ trường hợp Điều lệ công ty có quy định khác.",
+    "system_A_answer": "Trường hợp tất cả thành viên Hội đồng quản trị cùng kết thúc nhiệm kỳ, các thành viên đó tiếp tục là thành viên Hội đồng quản trị cho đến khi có thành viên mới được bầu thay thế và tiếp quản công việc [C1][C2]. Quy định này áp dụng trừ trường hợp Điều lệ công ty có quy định khác [C1][C2].",
+    "system_A_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-154__k3__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-154",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 154",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-154__k3__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-154",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 154",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      }
+    ],
+    "system_B_answer": "Khi tất cả thành viên Hội đồng quản trị cùng kết thúc nhiệm kỳ, các thành viên đó tiếp tục là thành viên Hội đồng quản trị cho đến khi có thành viên mới được bầu thay thế và tiếp quản công việc [C1][C2]. Quy định này không áp dụng trong trường hợp Điều lệ công ty có quy định khác [C1][C2].",
+    "system_B_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-154__k3__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-154",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 154",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-154__k3__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-154",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 154",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      }
+    ]
+  },
+  {
+    "blind_no": 35,
+    "id": "test_026",
+    "complexity": "single_clause",
+    "category": "Ban kiểm soát",
+    "expected_status": "answered",
+    "question": "Kiểm soát viên phát hiện một Kiểm soát viên khác vi phạm trong thực hiện nhiệm vụ thì phải làm gì?",
+    "ground_truth": "6. Trường hợp phát hiện có Kiểm soát viên vi phạm trong thực hiện quyền và nghĩa vụ được giao thì phải thông báo bằng văn bản đến Ban kiểm soát; yêu cầu người có hành vi vi phạm chấm dứt hành vi vi phạm và khắc phục hậu quả.",
+    "system_A_answer": "Khi phát hiện Kiểm soát viên khác vi phạm trong thực hiện quyền và nghĩa vụ được giao, Kiểm soát viên phải thông báo bằng văn bản đến Ban kiểm soát [C1], [C2]. Đồng thời, Kiểm soát viên phải yêu cầu người có hành vi vi phạm chấm dứt hành vi vi phạm và khắc phục hậu quả [C1], [C2]. Ngoài ra, Kiểm soát viên còn có trách nhiệm báo cáo kịp thời cho cơ quan đại diện chủ sở hữu công ty [C3].",
+    "system_A_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-173__k6__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-173",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 173",
+        "clause": "Khoản 6",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-173__k6__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-173",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 173",
+        "clause": "Khoản 6",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      },
+      {
+        "citation_id": "C3",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-107__k5__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-107",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 107",
+        "clause": "Khoản 5",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      }
+    ],
+    "system_B_answer": "Khi phát hiện Kiểm soát viên khác vi phạm trong thực hiện quyền và nghĩa vụ được giao, Kiểm soát viên phải thông báo bằng văn bản đến Ban kiểm soát [C1], [C2]. Đồng thời, Kiểm soát viên phải yêu cầu người có hành vi vi phạm chấm dứt hành vi vi phạm và khắc phục hậu quả [C1], [C2]. Ngoài ra, Kiểm soát viên còn phải báo cáo kịp thời cho cơ quan đại diện chủ sở hữu [C3], [C4].",
+    "system_B_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-173__k6__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-173",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 173",
+        "clause": "Khoản 6",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-173__k6__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-173",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 173",
+        "clause": "Khoản 6",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      },
+      {
+        "citation_id": "C3",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-107__k5__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-107",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 107",
+        "clause": "Khoản 5",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C4",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-107__k5__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-107",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 107",
+        "clause": "Khoản 5",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      }
+    ]
+  },
+  {
+    "blind_no": 36,
+    "id": "test_027",
+    "complexity": "single_clause",
+    "category": "Chuyển đổi loại hình",
+    "expected_status": "answered",
+    "question": "Chủ sở hữu công ty trách nhiệm hữu hạn một thành viên chuyển nhượng một phần vốn điều lệ cho người khác thì công ty phải đăng ký thay đổi trong bao lâu?",
+    "ground_truth": "1. Trường hợp chủ sở hữu công ty chuyển nhượng, tặng cho một phần vốn điều lệ cho một hoặc nhiều tổ chức, cá nhân khác hoặc công ty kết nạp thêm thành viên mới thì công ty phải tổ chức quản lý theo loại hình doanh nghiệp tương ứng và đăng ký thay đổi nội dung đăng ký doanh nghiệp trong thời hạn 10 ngày kể từ ngày hoàn thành việc chuyển nhượng, tặng cho hoặc kết nạp thành viên mới.",
+    "system_A_answer": "Khi chủ sở hữu công ty chuyển nhượng một phần vốn điều lệ cho tổ chức hoặc cá nhân khác, công ty phải đăng ký thay đổi nội dung đăng ký doanh nghiệp trong thời hạn 10 ngày kể từ ngày hoàn thành việc chuyển nhượng [C1], [C2].",
+    "system_A_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-78__k1__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-78",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 78",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-78__k1__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-78",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 78",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      }
+    ],
+    "system_B_answer": "Trường hợp chủ sở hữu công ty trách nhiệm hữu hạn một thành viên chuyển nhượng một phần vốn điều lệ cho tổ chức, cá nhân khác, công ty phải đăng ký thay đổi nội dung đăng ký doanh nghiệp trong thời hạn 10 ngày kể từ ngày hoàn thành việc chuyển nhượng [C1], [C2].",
+    "system_B_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "luat-59-2020-qh14-v1__dieu-78__k1__0",
+        "document_id": "luat-59-2020-qh14-v1",
+        "article_id": "dieu-78",
+        "document_title": "Luật Doanh nghiệp",
+        "article": "Điều 78",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://vbpl.vn/boyte/Pages/vbpq-toanvan.aspx?ItemID=142881"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "vbhn-67-vbhn-vpqh-v1__dieu-78__k1__0",
+        "document_id": "vbhn-67-vbhn-vpqh-v1",
+        "article_id": "dieu-78",
+        "document_title": "Hợp nhất Luật Doanh nghiệp",
+        "article": "Điều 78",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://congbao.chinhphu.vn/van-ban/van-ban-hop-nhat-so-67-vbhn-vpqh-45865.htm"
+      }
+    ]
+  },
+  {
+    "blind_no": 37,
+    "id": "test_028",
+    "complexity": "single_clause",
+    "category": "Hộ kinh doanh",
+    "expected_status": "answered",
+    "question": "Cơ quan đăng ký kinh doanh cấp xã từ chối cấp đăng ký hộ kinh doanh trong những trường hợp nào?",
+    "ground_truth": "1. Cơ quan đăng ký kinh doanh cấp xã từ chối cấp đăng ký hộ kinh doanh nếu thuộc một trong các trường hợp sau đây:\na) Hộ kinh doanh đã bị Cơ quan đăng ký kinh doanh cấp xã ra thông báo về hành vi vi phạm của hộ kinh doanh thuộc trường hợp thu hồi Giấy chứng nhận đăng ký hộ kinh doanh hoặc đã bị ra quyết định thu hồi Giấy chứng nhận đăng ký hộ kinh doanh;\n\nb) Hộ kinh doanh đang trong tình trạng pháp lý \"Không hoạt động tại địa chỉ đã đăng ký\".",
+    "system_A_answer": "Cơ quan đăng ký kinh doanh cấp xã từ chối cấp đăng ký hộ kinh doanh trong các trường hợp sau: hộ kinh doanh đã bị cơ quan này ra thông báo về hành vi vi phạm thuộc trường hợp thu hồi Giấy chứng nhận đăng ký hộ kinh doanh hoặc đã bị ra quyết định thu hồi Giấy chứng nhận đăng ký hộ kinh doanh [C1]; hoặc hộ kinh doanh đang trong tình trạng pháp lý \"Không hoạt động tại địa chỉ đã đăng ký\" [C1]. Ngoài ra, cơ quan đăng ký kinh doanh cấp xã có trách nhiệm xem xét tính hợp lệ của hồ sơ để cấp hoặc từ chối cấp đăng ký hộ kinh doanh theo quy định [C2].",
+    "system_A_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-102__k1__0",
+        "document_id": "nd-168-2025-nd-cp-v1",
+        "article_id": "dieu-102",
+        "document_title": "Nghị định về đăng ký doanh nghiệp",
+        "article": "Điều 102",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://xaydungchinhsach.chinhphu.vn/toan-van-nghi-dinh-168-2025-nd-cp-ve-dang-ky-doanh-nghiep-119250702175708554.htm"
+      },
+      {
+        "citation_id": "C2",
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-22__k1__0",
+        "document_id": "nd-168-2025-nd-cp-v1",
+        "article_id": "dieu-22",
+        "document_title": "Nghị định về đăng ký doanh nghiệp",
+        "article": "Điều 22",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://xaydungchinhsach.chinhphu.vn/toan-van-nghi-dinh-168-2025-nd-cp-ve-dang-ky-doanh-nghiep-119250702175708554.htm"
+      }
+    ],
+    "system_B_answer": "Cơ quan đăng ký kinh doanh cấp xã từ chối cấp đăng ký hộ kinh doanh trong các trường hợp: hộ kinh doanh đã bị cơ quan này ra thông báo về hành vi vi phạm thuộc trường hợp thu hồi Giấy chứng nhận đăng ký hộ kinh doanh hoặc đã bị ra quyết định thu hồi Giấy chứng nhận đăng ký hộ kinh doanh [C1]; hoặc hộ kinh doanh đang trong tình trạng pháp lý \"Không hoạt động tại địa chỉ đã đăng ký\" [C1].",
+    "system_B_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-102__k1__0",
+        "document_id": "nd-168-2025-nd-cp-v1",
+        "article_id": "dieu-102",
+        "document_title": "Nghị định về đăng ký doanh nghiệp",
+        "article": "Điều 102",
+        "clause": "Khoản 1",
+        "point": null,
+        "source_url": "https://xaydungchinhsach.chinhphu.vn/toan-van-nghi-dinh-168-2025-nd-cp-ve-dang-ky-doanh-nghiep-119250702175708554.htm"
+      }
+    ]
+  },
+  {
+    "blind_no": 38,
+    "id": "test_030",
+    "complexity": "single_clause",
+    "category": "Hộ kinh doanh",
+    "expected_status": "answered",
+    "question": "Hộ kinh doanh có hai thành viên mà chủ hộ chết thì ai trở thành chủ hộ và hồ sơ đăng ký thay đổi gồm những gì?",
+    "ground_truth": "5. Trường hợp hộ kinh doanh có hai thành viên mà thành viên là chủ hộ kinh doanh chết hoặc bị Tòa án tuyên bố đã chết, mất tích, bị hạn chế hoặc mất năng lực hành vi dân sự, có khó khăn trong nhận thức, làm chủ hành vi thì thành viên còn lại là chủ hộ kinh doanh. Hồ sơ đăng ký thay đổi chủ hộ kinh doanh trong trường hợp này gồm giấy đề nghị đăng ký thay đổi nội dung đăng ký hộ kinh doanh và bản sao giấy chứng tử hoặc quyết định của Tòa án tuyên bố đã chết, mất tích, bị hạn chế hoặc mất năng lực hành vi dân sự, có khó khăn trong nhận thức, làm chủ hành vi.",
+    "system_A_answer": "Trong trường hợp hộ kinh doanh có hai thành viên mà thành viên là chủ hộ kinh doanh chết, thành viên còn lại sẽ trở thành chủ hộ kinh doanh [C1]. Hồ sơ đăng ký thay đổi chủ hộ kinh doanh trong trường hợp này bao gồm: giấy đề nghị đăng ký thay đổi nội dung đăng ký hộ kinh doanh và bản sao giấy chứng tử [C1].",
+    "system_A_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-100__k5__0",
+        "document_id": "nd-168-2025-nd-cp-v1",
+        "article_id": "dieu-100",
+        "document_title": "Nghị định về đăng ký doanh nghiệp",
+        "article": "Điều 100",
+        "clause": "Khoản 5",
+        "point": null,
+        "source_url": "https://xaydungchinhsach.chinhphu.vn/toan-van-nghi-dinh-168-2025-nd-cp-ve-dang-ky-doanh-nghiep-119250702175708554.htm"
+      }
+    ],
+    "system_B_answer": "Trong trường hợp hộ kinh doanh có hai thành viên mà thành viên là chủ hộ kinh doanh chết, thành viên còn lại sẽ trở thành chủ hộ kinh doanh [C1]. Hồ sơ đăng ký thay đổi chủ hộ kinh doanh trong trường hợp này bao gồm: giấy đề nghị đăng ký thay đổi nội dung đăng ký hộ kinh doanh và bản sao giấy chứng tử [C1].",
+    "system_B_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-100__k5__0",
+        "document_id": "nd-168-2025-nd-cp-v1",
+        "article_id": "dieu-100",
+        "document_title": "Nghị định về đăng ký doanh nghiệp",
+        "article": "Điều 100",
+        "clause": "Khoản 5",
+        "point": null,
+        "source_url": "https://xaydungchinhsach.chinhphu.vn/toan-van-nghi-dinh-168-2025-nd-cp-ve-dang-ky-doanh-nghiep-119250702175708554.htm"
+      }
+    ]
+  },
+  {
+    "blind_no": 39,
+    "id": "test_031",
+    "complexity": "single_clause",
+    "category": "Tổ chức lại doanh nghiệp",
+    "expected_status": "answered",
+    "question": "Hồ sơ đăng ký thay đổi nội dung đăng ký doanh nghiệp của công ty nhận sáp nhập cần thêm những giấy tờ gì?",
+    "ground_truth": "2. Trường hợp sáp nhập một hoặc một số công ty vào một công ty khác, hồ sơ đăng ký thay đổi nội dung đăng ký doanh nghiệp của công ty nhận sáp nhập phải có các giấy tờ tương ứng quy định tại Chương này và các giấy tờ sau đây:\na) Hợp đồng sáp nhập theo quy định tại Điều 201 Luật Doanh nghiệp;\n\nb) Bản sao hoặc bản chính các giấy tờ sau đây: nghị quyết hoặc quyết định của chủ sở hữu công ty đối với công ty trách nhiệm hữu hạn một thành viên; nghị quyết hoặc quyết định của Hội đồng thành viên đối với công ty trách nhiệm hữu hạn hai thành viên trở lên, công ty hợp danh; của Đại hội đồng cổ đông đối với công ty cổ phần về việc thông qua hợp đồng sáp nhập của công ty nhận sáp nhập;\n\nc) Bản sao hoặc bản chính các giấy tờ sau đây: nghị quyết hoặc quyết định của chủ sở hữu công ty đối với công ty trách nhiệm hữu hạn một thành viên; nghị quyết hoặc quyết định của Hội đồng thành viên đối với công ty trách nhiệm hữu hạn hai thành viên trở lên, công ty hợp danh; của Đại hội đồng cổ đông đối với công ty cổ phần về việc thông qua hợp đồng sáp nhập của công ty bị sáp nhập.",
+    "system_A_answer": "Khi sáp nhập một hoặc một số công ty vào một công ty khác, hồ sơ đăng ký thay đổi nội dung đăng ký doanh nghiệp của công ty nhận sáp nhập cần có các giấy tờ tương ứng theo quy định và các giấy tờ sau: Hợp đồng sáp nhập theo quy định tại Điều 201 Luật Doanh nghiệp [C1]; Nghị quyết hoặc quyết định thông qua hợp đồng sáp nhập của công ty nhận sáp nhập [C1]; Nghị quyết hoặc quyết định thông qua hợp đồng sáp nhập của công ty bị sáp nhập [C1].",
+    "system_A_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-55__k2__0",
+        "document_id": "nd-168-2025-nd-cp-v1",
+        "article_id": "dieu-55",
+        "document_title": "Nghị định về đăng ký doanh nghiệp",
+        "article": "Điều 55",
+        "clause": "Khoản 2",
+        "point": null,
+        "source_url": "https://xaydungchinhsach.chinhphu.vn/toan-van-nghi-dinh-168-2025-nd-cp-ve-dang-ky-doanh-nghiep-119250702175708554.htm"
+      }
+    ],
+    "system_B_answer": "Khi sáp nhập công ty, hồ sơ đăng ký thay đổi nội dung đăng ký doanh nghiệp của công ty nhận sáp nhập cần có các giấy tờ sau: Hợp đồng sáp nhập theo quy định tại Điều 201 Luật Doanh nghiệp [C1]; Nghị quyết hoặc quyết định thông qua hợp đồng sáp nhập của công ty nhận sáp nhập [C1]; Nghị quyết hoặc quyết định thông qua hợp đồng sáp nhập của công ty bị sáp nhập [C1]. Các giấy tờ này có thể là bản sao hoặc bản chính [C1].",
+    "system_B_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-55__k2__0",
+        "document_id": "nd-168-2025-nd-cp-v1",
+        "article_id": "dieu-55",
+        "document_title": "Nghị định về đăng ký doanh nghiệp",
+        "article": "Điều 55",
+        "clause": "Khoản 2",
+        "point": null,
+        "source_url": "https://xaydungchinhsach.chinhphu.vn/toan-van-nghi-dinh-168-2025-nd-cp-ve-dang-ky-doanh-nghiep-119250702175708554.htm"
+      }
+    ]
+  },
+  {
+    "blind_no": 40,
+    "id": "test_032",
+    "complexity": "single_clause",
+    "category": "Đăng ký doanh nghiệp",
+    "expected_status": "answered",
+    "question": "Cơ quan được đề nghị xác định nội dung kê khai trong hồ sơ đăng ký doanh nghiệp là giả mạo phải trả lời trong thời hạn bao lâu?",
+    "ground_truth": "3. Trường hợp cần xác định nội dung kê khai trong hồ sơ đăng ký doanh nghiệp là giả mạo, Cơ quan đăng ký kinh doanh cấp tỉnh gửi văn bản kèm theo hồ sơ đăng ký doanh nghiệp đến cơ quan quy định tại điểm a và điểm b khoản 2 Điều này theo quy định của pháp luật về giám định tư pháp. Cơ quan quy định tại điểm a và điểm b khoản 2 Điều này có trách nhiệm trả lời bằng văn bản về kết quả xác định theo đề nghị của Cơ quan đăng ký kinh doanh cấp tỉnh trong thời hạn 30 ngày kể từ ngày nhận được văn bản đề nghị.",
+    "system_A_answer": "Cơ quan được đề nghị xác định nội dung kê khai trong hồ sơ đăng ký doanh nghiệp là giả mạo có trách nhiệm trả lời bằng văn bản về kết quả xác định trong thời hạn 30 ngày kể từ ngày nhận được văn bản đề nghị từ Cơ quan đăng ký kinh doanh cấp tỉnh [C1].",
+    "system_A_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-68__k3__0",
+        "document_id": "nd-168-2025-nd-cp-v1",
+        "article_id": "dieu-68",
+        "document_title": "Nghị định về đăng ký doanh nghiệp",
+        "article": "Điều 68",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://xaydungchinhsach.chinhphu.vn/toan-van-nghi-dinh-168-2025-nd-cp-ve-dang-ky-doanh-nghiep-119250702175708554.htm"
+      }
+    ],
+    "system_B_answer": "Cơ quan được đề nghị xác định nội dung kê khai trong hồ sơ đăng ký doanh nghiệp là giả mạo có trách nhiệm trả lời bằng văn bản về kết quả xác định trong thời hạn 30 ngày kể từ ngày nhận được văn bản đề nghị [C1].",
+    "system_B_citations": [
+      {
+        "citation_id": "C1",
+        "chunk_id": "nd-168-2025-nd-cp-v1__dieu-68__k3__0",
+        "document_id": "nd-168-2025-nd-cp-v1",
+        "article_id": "dieu-68",
+        "document_title": "Nghị định về đăng ký doanh nghiệp",
+        "article": "Điều 68",
+        "clause": "Khoản 3",
+        "point": null,
+        "source_url": "https://xaydungchinhsach.chinhphu.vn/toan-van-nghi-dinh-168-2025-nd-cp-ve-dang-ky-doanh-nghiep-119250702175708554.htm"
+      }
+    ]
+  }
+]
