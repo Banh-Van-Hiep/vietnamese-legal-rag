@@ -48,7 +48,10 @@ class LLMService:
                 self.provider.timeout_seconds = original_timeout
         try:
             output = parse_llm_output(reply.text, provider=self.provider.name)
-        except LLMBadOutputError:
+        except LLMBadOutputError as exc:
+            # Thông báo của parser chỉ nêu luật bị vi phạm (không chứa nội dung trả lời).
+            logger.warning("llm_output_rejected request_id=%s provider=%s reason=%s finish_reason=%s output_tokens=%s",
+                           request_id, self.provider.name, exc, reply.finish_reason, reply.usage.output_tokens)
             raise
         latency_ms = int((self._clock() - started) * 1000)
         # Model thật đã trả lời (Gemini có thể rơi về model dự phòng); provider khác không có `actual_model`.

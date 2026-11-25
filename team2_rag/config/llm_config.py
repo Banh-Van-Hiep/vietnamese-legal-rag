@@ -50,6 +50,7 @@ class LLMClientSettings(BaseSettings):
     # Field ceiling is the largest any provider may use; the stricter 30s limit for remote providers is enforced below.
     timeout_seconds: float = Field(30.0, gt=0, le=MAX_OLLAMA_TIMEOUT_SECONDS, validation_alias="LLM_TIMEOUT_SECONDS")
     max_retries: int = Field(0, ge=0, le=0, validation_alias="LLM_MAX_RETRIES")
+    rate_limit_rpm: int = Field(12, ge=0, validation_alias="LLM_RATE_LIMIT_RPM")  # giống settings.LLMSettings
     temperature: Optional[float] = Field(0.0, ge=0.0, le=2.0, validation_alias="LLM_TEMPERATURE")
     max_tokens: int = Field(
         1500, gt=0, validation_alias=AliasChoices("LLM_MAX_OUTPUT_TOKENS", "LLM_MAX_TOKENS")
@@ -141,6 +142,7 @@ class LLMClientSettings(BaseSettings):
             safety_margin_tokens=self.safety_margin_tokens,
             context_window_tokens=self.context_window_tokens,
             ollama_base_url=self.ollama_base_url,
+            rate_limit_rpm=self.rate_limit_rpm,
         )
 
 

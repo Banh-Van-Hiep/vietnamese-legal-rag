@@ -121,6 +121,11 @@ def answer_from_rerank_detailed(
         got = cand.to_dict()
         got.pop("citation_id")
         if src is None or got != src.source_metadata():
+            # Chỉ log nhãn và tên field lệch, không log nội dung: đủ để biết LLM sai ở đâu (VLRA-80).
+            fields = [] if src is None else sorted(k for k, v in src.source_metadata().items() if got.get(k) != v)
+            logger.warning("citation_invalid request_id=%s reason=%s label=%s fields=%s citations=%d context_chunks=%d",
+                           request_id, "unknown_label" if src is None else "metadata_mismatch", cand.citation_id,
+                           ",".join(fields), len(out.citations), len(by_label))
             raise CitationInvalidError(
                 f"{cand.citation_id}: nhãn lạ hoặc metadata không khớp chunk đã gửi cho LLM.", provider=result.provider)
 
@@ -131,6 +136,10 @@ def answer_from_rerank_detailed(
         if label not in order:
             order.append(label)
     if set(order) != {c.citation_id for c in out.citations}:
+        cited = {c.citation_id for c in out.citations}
+        logger.warning("citation_invalid request_id=%s reason=marker_mismatch citations_without_marker=%s "
+                       "markers_without_citation=%s citations=%d markers=%d", request_id,
+                       ",".join(sorted(cited - set(order))), ",".join(sorted(set(order) - cited)), len(cited), len(order))
         raise CitationInvalidError("citation thừa hoặc marker không có citation.", provider=result.provider)
     new_id = {old: f"C{i}" for i, old in enumerate(order, 1)}
     answer = _MARKER.sub(lambda m: f"[{new_id['C' + m.group(1)]}]", out.answer)  # một lượt, không va chạm nhãn

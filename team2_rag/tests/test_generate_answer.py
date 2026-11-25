@@ -98,6 +98,57 @@ class GenerateAnswerTests(unittest.TestCase):
             self.assertEqual(len(p.calls), 2)
 
 
+class AnswerDiagnosticsTests(unittest.TestCase):
+    def test_metadata_mismatch_logs_field_names_without_content(self):
+        bad = reply(0)
+        bad["citations"][0]["document_title"] = "Tiêu đề riêng cần giữ kín"
+        bad["citations"][0]["chunk_id"] = "private-chunk-id"
+        with self.assertLogs("team2_rag.answer", "WARNING") as logs, self.assertRaises(CitationInvalidError):
+            generate_answer(SAMPLE, llm_service=LLMService(FakeLLMProvider([bad])))
+        text = "\n".join(logs.output)
+        for expected in ("citation_invalid", "reason=metadata_mismatch", "label=C1",
+                         "fields=chunk_id,document_title", "citations=1", f"context_chunks={len(SAMPLE['results'])}"):
+            self.assertIn(expected, text)
+        for private in (bad["answer"], SAMPLE["question"], SAMPLE["results"][0]["content"],
+                        bad["citations"][0]["document_title"], bad["citations"][0]["chunk_id"],
+                        SAMPLE["results"][0]["document_title"], SAMPLE["results"][0]["chunk_id"]):
+            self.assertNotIn(private, text)
+
+    def test_unknown_context_label_is_logged(self):
+        bad = reply(0, answer="Nội dung riêng [C99].")
+        bad["citations"][0]["citation_id"] = "C99"  # Marker khớp citation để đi qua parser tới kiểm context.
+        with self.assertLogs("team2_rag.answer", "WARNING") as logs, self.assertRaises(CitationInvalidError):
+            generate_answer(SAMPLE, llm_service=LLMService(FakeLLMProvider([bad])))
+        text = "\n".join(logs.output)
+        for expected in ("citation_invalid", "reason=unknown_label", "label=C99", "citations=1"):
+            self.assertIn(expected, text)
+        self.assertNotIn(bad["answer"], text)
+
+    def test_unused_citation_logs_marker_mismatch_and_counts(self):
+        # Marker lạ bị parser chặn trước; citation thừa mới tới nhánh marker_mismatch của answer.
+        bad = reply(0, 1, answer="Nội dung riêng [C1].")
+        with self.assertLogs("team2_rag.answer", "WARNING") as logs, self.assertRaises(CitationInvalidError):
+            generate_answer(SAMPLE, llm_service=LLMService(FakeLLMProvider([bad])))
+        text = "\n".join(logs.output)
+        for expected in ("citation_invalid", "reason=marker_mismatch", "citations_without_marker=C2",
+                         "markers_without_citation=", "citations=2", "markers=1"):
+            self.assertIn(expected, text)
+        self.assertNotIn(bad["answer"], text)
+
+    def test_invalid_output_logs_parser_reason_without_raw_content(self):
+        bad = {"status": "answered", "answer": "Nội dung riêng cần giữ kín", "citations": []}
+        provider = FakeLLMProvider([bad])
+        with self.assertLogs("team2_rag.llm", "WARNING") as logs, self.assertRaises(LLMBadOutputError) as raised:
+            generate_answer(SAMPLE, llm_service=LLMService(provider), request_id="req-invalid-output")
+        text = "\n".join(logs.output)
+        for expected in ("llm_output_rejected", "request_id=req-invalid-output", "provider=fake",
+                         f"reason={raised.exception}", "reason=answered phải có ít nhất một citation."):
+            self.assertIn(expected, text)
+        self.assertNotIn(bad["answer"], text)
+        self.assertNotIn(SAMPLE["question"], text)
+        self.assertEqual(len(provider.calls), 1)
+
+
 class ErrorResponseTests(unittest.TestCase):
     CASES = [(LLMTimeoutError("t"), "LLM_TIMEOUT", True), (LLMRateLimitError("r"), "LLM_UNAVAILABLE", True),
              (LLMProviderError("p"), "LLM_UNAVAILABLE", True), (LLMAuthError("a"), "LLM_UNAVAILABLE", True),
