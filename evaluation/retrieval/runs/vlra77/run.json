@@ -1,0 +1,89 @@
+{
+ "run_id": "vlra77",
+ "started_at": "2026-11-25T08:04:37+00:00",
+ "head": "d71128be59e33df4db4a0f3f48ab6b385c4c747b",
+ "inputs": {
+  "dev_set": {
+   "path": "team1_data/golden/test_set_v1.json",
+   "sha256": "7fbd2cc19d79aff332eefa7e264be9551614a6db91e2bf84b63e63354e8cd9f0",
+   "cases": 77,
+   "answered": 62,
+   "gold_ids": 77
+  },
+  "corpus": {
+   "path": "data/doanh-nghiep/processed/chunks.jsonl",
+   "sha256": "37aa6dea2b33a94f9ecc5020796d150f43f8a1dc5ef4d3e797fa9cb1d1707d66",
+   "chunks": 2576,
+   "indexed": 2576,
+   "merged_equivalent_units": 860
+  },
+  "gold_by_document": {
+   "nd-122-2021-nd-cp-v1": 2,
+   "nd-168-2025-nd-cp-v1": 21,
+   "nd-288-2026-nd-cp-v1": 2,
+   "vbhn-67-vbhn-vpqh-v1": 47,
+   "vbhn-7566-vbhn-bkhdt-v1": 5
+  }
+ },
+ "environment": {
+  "python": "3.14.8",
+  "platform": "Windows-11-10.0.26300-SP0",
+  "packages": {
+   "bm25s": "0.3.15",
+   "underthesea": "9.5.0",
+   "numpy": "2.5.3",
+   "qdrant-client": "1.20.0",
+   "jsonschema": "4.26.0",
+   "torch": "2.15.0",
+   "sentence-transformers": "5.7.0"
+  }
+ },
+ "top_k": 20,
+ "configs": [
+  "hybrid_k60_aiteamvn_w0.5-1"
+ ],
+ "finished_at": "2026-11-25T08:22:35+00:00",
+ "summary": [
+  {
+   "name": "hybrid_k60_aiteamvn_w0.5-1",
+   "metrics": {
+    "recall_at_5": 1.0,
+    "recall_at_10": 1.0,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.957,
+    "hit_at_5": 1.0,
+    "article_recall_at_5": 1.0
+   },
+   "metrics_strict_chunk_id": {
+    "recall_at_5": 0.9274,
+    "recall_at_10": 0.9919,
+    "recall_at_20": 1.0,
+    "mrr_at_20": 0.6976
+   },
+   "metrics_by_group": {
+    "draft_needs_legal_review": {
+     "cases": 62,
+     "recall_at_5": 1.0,
+     "recall_at_10": 1.0,
+     "recall_at_20": 1.0,
+     "mrr_at_20": 0.957,
+     "hit_at_5": 1.0,
+     "article_recall_at_5": 1.0
+    }
+   },
+   "latency_ms": {
+    "p50": 136.4,
+    "p95": 148.58
+   },
+   "setup_ms": {
+    "bm25_build_ms": 10705.6,
+    "dense_build_ms": 1052976.6
+   },
+   "counts": {
+    "cases": 77,
+    "scored": 62,
+    "corpus_chunks": 2576
+   }
+  }
+ ]
+}
