@@ -98,15 +98,15 @@ Mã nội bộ nối tiếp Tuần 11 (kết thúc ở `VLRA-T2-44`). Tất cả
 
 ---
 
-## 6. Trạng Thái Thực Thi (cập nhật ngày 25/11/2026)
+## 6. Trạng Thái Thực Thi (cập nhật ngày 25/11/2026, sau khi làm)
 
 | Mã | Jira | Người phụ trách | Trạng thái | Ghi chú |
 | :--- | :--- | :--- | :---: | :--- |
-| `VLRA-T2-45` | VLRA-83 | Người 1 | TODO | |
-| `VLRA-T2-46` | VLRA-83 | Người 1 | TODO | Cần T2-45. |
-| `VLRA-T2-47` | VLRA-83 | Người 1 | TODO | |
-| `VLRA-T2-48` | VLRA-83 | Người 1 | TODO | Hybrid cần index của VLRA-82. |
-| `VLRA-T2-49` | VLRA-83 | Người 2 | TODO | |
-| `VLRA-T2-50` | VLRA-83 | Người 2 | TODO | Cần T2-49. |
-| `VLRA-T2-51` | VLRA-83 | Người 2 | TODO | |
-| `VLRA-T2-52` | VLRA-83, VLRA-84 | Chung | TODO | Cần T2-48. |
+| `VLRA-T2-45` | VLRA-83 | Người 1 | **DONE** | `team2_rag/requirements.txt` khóa 21 gói (không torch). `requirements-dev.txt` trỏ về file này. Extras Dense/BGE chưa khóa (không có máy GPU để kiểm). |
+| `VLRA-T2-46` | VLRA-83 | Người 1 | **DONE** | Venv sạch Python 3.12: cài được, mock CLI chạy, 368 test Team 2 pass. Xem `docs/team2_rag/install-check.md`. Chưa kiểm trên Linux/container. |
+| `VLRA-T2-47` | VLRA-83 | Người 1 | **DONE** | `team2_rag/README.md` viết lại: cài đặt, API key, bảng biến môi trường, 4 chế độ chạy, endpoint, lỗi thường gặp. |
+| `VLRA-T2-48` | VLRA-83 | Người 1 | **BM25 XONG** | Live BM25-only: `/ready` 200 sau 9 s, câu mẫu `answered` 2 citation (24,7 s, có 503 từ Gemini trước khi thành công). Bàn giao Team 3: `docs/team2_rag/ai-service-handoff.md`. Hybrid chờ index VLRA-82 + GPU. |
+| `VLRA-T2-49` | VLRA-83 | Người 2 | **DONE** | `docs/team2_rag/final_report_ai_rag.md`, số liệu trích từ báo cáo G5/NFR kèm đường dẫn nguồn. |
+| `VLRA-T2-50` | VLRA-83 | Người 2 | **DONE** | `docs/team2_rag/slides_ai_rag.md`, 6 slide dạng Marp. |
+| `VLRA-T2-51` | VLRA-83 | Người 2 | **DONE** | `docs/team2_rag/demo_rerank_script.md`: `test_062`, `test_020`, `test_049` (T0 tốt hơn), `test_052` (T0 kém hơn), câu trả lời đã lưu + điểm chấm mù. |
+| `VLRA-T2-52` | VLRA-83, VLRA-84 | Chung | TODO | Chờ Team 3 Docker hóa (VLRA-84). |
