@@ -8,7 +8,7 @@
 1. **Lazy Reranker Loading (`runtime.py`):** Khi `RAG_RERANK=false`, tuyệt đối không khởi tạo hay warm-up `BGEScorer` để tránh chiếm dụng RAM/VRAM.
 2. **Truyền Thời Gian Còn Lại (`VLRA-T2-33`):** Luôn tính `remaining = deadline - time.monotonic()` trong `RAGPipeline.query` và truyền `llm_timeout_seconds=max(0.1, remaining - 0.5)` xuống `generate_answer_detailed`.
 3. **Nghiêm Cấm Tự Vá Citation:** Mọi vi phạm cú pháp marker `[C1]..[Cn]` hoặc trích dẫn ngoài context phải được xử lý qua `errors.py` / `output_parser.py`, không tự sửa chuỗi trả lời của LLM.
-4. **Cập Nhật Sổ Cái Công Việc:** Mọi thay đổi trong tuần phải được đối chiếu với đặc tả trong `team2_rag/docs_2/week11/tasks.md`.
+4. **Cập Nhật Sổ Cái Công Việc:** Mọi thay đổi trong tuần phải được đối chiếu với đặc tả trong `team2_rag/docs_2/week12/tasks.md`.
 
 ## 3. Lệnh Kiểm Chứng Cục Bộ
 ```powershell
